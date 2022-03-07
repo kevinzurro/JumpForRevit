@@ -112,5 +112,4 @@ D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump.frmConfig
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\bin\Debug\SpreadsheetLight.dll
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\bin\Debug\SpreadsheetLight.xml
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\bin\Debug\DocumentFormat.OpenXml.dll
-D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump.csprojResolveAssemblyReference.cache
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump.frmOrdenYEnumeracion.resources

@@ -69,6 +69,7 @@ namespace Jump
             PushButton botonElemenEstructural = panelVisibilidad.AddItem(new PushButtonData("botonElemenEstructural", Language.ObtenerTexto(IdiomaDelPrograma, "EleEst1"), RutaDelEnsamblado, "Jump.cmdVisibilidadEstructural")) as PushButton;
             PushButton botonElemenAnalitico = panelVisibilidad.AddItem(new PushButtonData("botonElemenAnalitico", Language.ObtenerTexto(IdiomaDelPrograma, "EleAna1"), RutaDelEnsamblado, "Jump.cmdVisibilidadAnalitica")) as PushButton;
             PushButton botonIdioma = panelHerramienta.AddItem(new PushButtonData("botonIdioma", Language.ObtenerTexto(IdiomaDelPrograma, "Idi1"), RutaDelEnsamblado, "Jump.cmdIdioma")) as PushButton;
+            PushButton botonOrdenEnumeracion = panelHerramienta.AddItem(new PushButtonData("botonOrdenEnumeracion", Language.ObtenerTexto(IdiomaDelPrograma, "OrdYEnu1"), RutaDelEnsamblado, "Jump.cmdOrdenYEnumeracion")) as PushButton;
             PushButton botonConfiguracion = panelHerramienta.AddItem(new PushButtonData("botonConfiguracion", Language.ObtenerTexto(IdiomaDelPrograma, "Conf1"), RutaDelEnsamblado, "Jump.cmdConfiguraciones")) as PushButton;
 
             // Crear los botones para la visibilidad de la armadura que van en el botón desplegable
@@ -101,6 +102,7 @@ namespace Jump
             botonElemenEstructural.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Boton_Elem_Estructural.png"));
             botonElemenAnalitico.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Boton_Elem_Analitico.png"));
             botonIdioma.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/monitor.png"));
+            botonOrdenEnumeracion.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/.png"));
             botonConfiguracion.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Boton_Configuracion.png"));
 
             #endregion
@@ -129,6 +131,7 @@ namespace Jump
             botonElemenEstructural.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "EleEst2");
             botonElemenAnalitico.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "EleAna2");
             botonIdioma.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "Idi2");
+            botonOrdenEnumeracion.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "OrdYEnu2");
             botonConfiguracion.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "Conf2");
 
             #endregion
@@ -147,6 +150,7 @@ namespace Jump
             botonElemenEstructural.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "EleEst3");
             botonElemenAnalitico.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "EleAna3");
             botonIdioma.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "Idi3");
+            botonOrdenEnumeracion.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "OrdYEnu3");
             botonConfiguracion.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "Conf3");
 
             #endregion

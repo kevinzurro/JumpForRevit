@@ -237,7 +237,7 @@ namespace Jump
         private void frmZapatas_Load(object sender, EventArgs e)
         {
             // Asignación de textos según el idioma
-            // Pestaña 1
+            this.Name = Language.ObtenerTexto(IdiomaDelPrograma, "Zap4");
             tbpgEnumeración.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap1-1");
             gbxSeleccion.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap1-2");
             rbtnTodos.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap1-2-1");

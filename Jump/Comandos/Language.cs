@@ -99,9 +99,30 @@ namespace Jump
             Espanol.Add("Pla2", "Platea descripción corta");
             Espanol.Add("Pla3", "Platea descripción larga");
 
+            Espanol.Add("OrdYEnu1", "Orden y Enumeración");
+            Espanol.Add("OrdYEnu2", "Orden y Enumeración descripción corta");
+            Espanol.Add("OrdYEnu3", "Orden y Enumeración descripción larga");
+            Espanol.Add("OrdYEnu4", "Orden y Enumeración");
+            Espanol.Add("OrdYEnu1-1", "Categoría");
+            Espanol.Add("OrdYEnu1-2", "Todos");
+            Espanol.Add("OrdYEnu1-3", "Elementos seleccionados");
+            Espanol.Add("OrdYEnu1-4", "Elementos de la lista");
+            Espanol.Add("OrdYEnu2-1", "Orden");
+            Espanol.Add("OrdYEnu3-1", "Enumeración");
+            Espanol.Add("OrdYEnu3-2", "Prefijo");
+            Espanol.Add("OrdYEnu3-3", "Número inicial");
+            Espanol.Add("OrdYEnu3-4", "Incremento");
+            Espanol.Add("OrdYEnu3-5", "Sufijo");
+            Espanol.Add("OrdYEnu3-6", "Vista previa");
+            Espanol.Add("OrdYEnu3-7", "Parámetro");
+            Espanol.Add("OrdYEnu3-8", "Enumeración");
+            Espanol.Add("OrdYEnu4-1", "Ejecutar");
+            Espanol.Add("OrdYEnu4-2", "Comando de orden y enumeración");
+
             Espanol.Add("Zap1", "Zapatas");
             Espanol.Add("Zap2", "Zapatas descripción corta");
             Espanol.Add("Zap3", "Zapatas descripción larga");
+            Espanol.Add("Zap4", "Jump");
             Espanol.Add("Zap1-1", "Enumeración");
             Espanol.Add("Zap1-2", "Selección");
             Espanol.Add("Zap1-2-1", "Todos");
@@ -125,7 +146,6 @@ namespace Jump
             Espanol.Add("Zap2-2-5", "Cota lineal");
             Espanol.Add("Zap2-2-6", "Cota de elevación");
             Espanol.Add("Zap2-3", "Vista previa");
-
             Espanol.Add("Zap4-1", "Ejecutar");
             Espanol.Add("Zap4-2", "Acciones a realizar");
             Espanol.Add("Zap4-2-1", "Orden y Enumeración");

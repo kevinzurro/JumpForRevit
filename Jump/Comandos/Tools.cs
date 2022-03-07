@@ -749,7 +749,7 @@ namespace Jump
             return lista;
         }
 
-        ///<summary> Devuelve una lista de parametros que se pueden modificar y sean string </summary>
+        ///<summary> Devuelve una lista de parametros que se pueden modificar y sean tipo texto </summary>
         public static List<Parameter> ObtenerParametrosEjemplarModificables(Document doc, List<Parameter> lista)
         {
             // Crea una lista vacia de parámetros
@@ -5470,6 +5470,26 @@ namespace Jump
 
             // Asigna el primer elemento a la lista desplegable
             combo.SelectedIndex = Properties.Settings.Default.indiceComboboxEscalaVista;
+        }
+
+        ///<summary> Rellena un Combobox con las categorias </summary>
+        public static void RellenarComboboxCategorias(System.Windows.Forms.ComboBox combo, List<Category> categorias)
+        {
+            // Limpia el combobox
+            combo.Items.Clear();
+
+            // Recorre la lista y agrega las cotas al combobox
+            foreach (Category cat in categorias)
+            {
+                combo.Items.Add(cat.Name);
+            }
+
+            // Verifica la lista contenga elementos 
+            if (categorias.Count > 0)
+            {
+                // Asigna el primer elemento a la lista desplegable
+                combo.SelectedIndex = 0;
+            }
         }
 
         ///<summary> Rellena una ListBox con los elementos de una lista </summary>

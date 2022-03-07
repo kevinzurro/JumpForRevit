@@ -67,7 +67,6 @@ namespace Jump
 
             // Llama a las funciones
             AgregarZapatas();
-            AgregarParametros();
             AgregarDiametrosYEstilos();
             CargarComboboxEtiquetas(this.doc);
             AsignarPreviewDeImagen();
@@ -85,23 +84,7 @@ namespace Jump
             // Agrega los elementos a la listbox
             Tools.RellenarListBoxDeElementos(this.lstElementos, doc, this.elementos);
         }
-
-        /// <summary> Agrega los parametros de ejemplar a la lista </summary>
-        private void AgregarParametros()
-        {
-            // Limpia la lista
-            lstParametros.Items.Clear();
-
-            // Obtiene una lista con los parámetros de ejemplar
-            List<Parameter> p = Tools.ObtenerParametrosEjemplar(doc, categoria);
-
-            // Obtiene una lista con parámetros de ejemplar modificables
-            this.parametrosEjemplar = Tools.ObtenerParametrosEjemplarModificables(doc, p);
-
-            // Agrega los parámetros a la listbox
-            Tools.RellenarListBoxDeParametros(this.lstParametros, this.parametrosEjemplar);
-        }
-
+        
         /// <summary> Agrega los diámetros y estilos de lineas al DataGrid </summary>
         private void AgregarDiametrosYEstilos()
         {
@@ -152,15 +135,15 @@ namespace Jump
                 // Verifica que existan elementos
                 if (this.elementos.Count > 0)
                 {
-                    //// Crea la vista para la sección
+                    // Crea la vista para la sección
                     Autodesk.Revit.DB.View vista = CrearVistaXX(this.elementos[posicionImagenPreview]);
 
-                    ////Verifica si la vista es nula
-                    //if (vista == null)
-                    //{
-                    //    // Crea otra vista para la sección
-                    //Autodesk.Revit.DB.View vista = CrearVistaYY(this.elementos[posicionImagenPreview]);
-                    //}
+                    //Verifica si la vista es nula
+                    if (vista == null)
+                    {
+                        // Crea otra vista para la sección
+                        vista = CrearVistaYY(this.elementos[posicionImagenPreview]);
+                    }
 
                     // Crea la vista previa
                     PreviewControl vistaPrevia = new PreviewControl(this.doc, vista.Id);
@@ -238,66 +221,24 @@ namespace Jump
         {
             // Asignación de textos según el idioma
             this.Name = Language.ObtenerTexto(IdiomaDelPrograma, "Zap4");
-            tbpgEnumeración.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap1-1");
             gbxSeleccion.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap1-2");
-            rbtnTodos.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap1-2-1");
-            rbtnElementosSeleccionados.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap1-2-2");
-            rbtnConjuntoDeLaLista.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap1-2-3");
-            gbxOrden.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap1-3");
-            gbxEnumeracion.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap1-4");
-            lblPrefijo.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap1-4-1");
-            lblNumeroInicial.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap1-4-2");
-            lblIncremento.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap1-4-3");
-            lblSufijo.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap1-4-4");
-            gbxPreview.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap1-4-5");
-            lblParametroElegido.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap1-4-6");
-            lblVistaPrevia.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap1-4-7");
-
-            // Pestaña 2
-            tbpgEtiquetas.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap2-1");
-            gbxEtiquetas.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap2-2");
-            lblEscala.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap2-2-1");
-            chbEtiquetaBase.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap2-2-2");
-            chbEtiquetaArmadura.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap2-2-3");
-            chbEtiquetaLongitud.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap2-2-4");
-            chbCotaLineal.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap2-2-5");
-            chbCotaElevacion.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap2-2-6");
-            gbxEtiquetaVistaPrevia.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap2-3");
-
-            // Pestaña 3
-            tbpgEjecutar.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap4-1");
-            gbxEjecutar.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap4-2");
-            chbEnumeracion.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap4-2-1");
-            chbVistaXX.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap4-2-2");
-            chbVistaYY.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap4-2-3");
-            gbxEjecutarVistaPrevia.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap4-3");
-
-            // Cuando se ejecuta el comando
+            rbtnTodos.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap1-3");
+            rbtnElementosSeleccionados.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap1-4");
+            rbtnConjuntoDeLaLista.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap1-5");
+            gbxEtiquetas.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap2-1");
+            lblEscala.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap2-2");
+            chbEtiquetaBase.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap2-3");
+            chbEtiquetaArmadura.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap2-4");
+            chbEtiquetaLongitud.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap2-5");
+            chbCotaLineal.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap2-6");
+            chbCotaElevacion.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap2-7");
+            gbxEtiquetaVistaPrevia.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap3-1");
+            gbxEjecutar.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap4-1");
+            chbVistaXX.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap4-2");
+            chbVistaYY.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap4-3");
             btnEjecutar.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Zap5-1");
         }
 
-        /// <summary> Cambia el texto del label según el parámetro elegido </summary>
-        private void lstParametros_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Asigna el texto
-            lblParametroElegido.Text = lstParametros.Text;
-        }
-
-        /// <summary> Cambia el texto del label según los datos ingresados </summary>
-        private void txtPrefijo_TextChanged(object sender, EventArgs e)
-        {
-            // Limpia y asigna el texto
-            lblVistaPrevia.Text = null;
-            lblVistaPrevia.Text = txtPrefijo.Text + txtNumeroInicial.Text + txtSufijo.Text;
-        }
-
-        /// <summary> Valida que los textos ingresados sean solamente números </summary>
-        private void verificarSoloNumero(object sender, KeyPressEventArgs e)
-        {
-            // Verifica que solo se ingresen numeros en el TextBox
-            Tools.VerificarSoloNumero(e);
-        }
-        
         /// <summary> Cambia la escala de la vista y guarda en las configuraciones </summary>
         private void cmbEscala_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -414,27 +355,7 @@ namespace Jump
                 
                 // Verifica que la lista de zapatas contenga elementos para poder continuar
                 if (this.listaZapatas.Count > 0)
-                {
-                    // Crea la variable para enumerar
-                    int valorActual = 0;
-                    
-                    // Verifica que inicial tenga valor
-                    if (this.txtNumeroInicial.Text != null && this.txtNumeroInicial.Text != "")
-                    {
-                        valorActual = Int32.Parse(this.txtNumeroInicial.Text);
-                    }
-
-                    // Orden
-                    if (this.chbEnumeracion.Checked)
-                    {
-                        // Ordena la lista
-                        try
-                        {
-                            this.listaZapatas = Tools.OrdenarListaSegunCheckboxEnGroupBox(this.gbxOrden, this.listaZapatas);
-                        }
-                        catch (Exception) { }
-                    }
-
+                {                    
                     //// Llama al formulario barra de progreso
                     frmBarraProgreso barraProgreso = new frmBarraProgreso(this.listaZapatas.Count);
 
@@ -444,26 +365,6 @@ namespace Jump
                     // Recorre todos los elementos de la lista
                     foreach (Element elem in this.listaZapatas)
                     {
-                        // Enumeración
-                        if (this.chbEnumeracion.Checked)
-                        {
-                            // Verifica que el usuario cargó un número inicial
-                            if (this.txtNumeroInicial.Text != null && this.txtNumeroInicial.Text != "")
-                            {
-                                // Asigna la enumeración definida según los parámetros ingresados
-                                Tools.EnumeracionParametrosEjemplarListaElementos(this.lstParametros, elem,
-                                                                                  this.txtPrefijo.Text, valorActual,
-                                                                                  this.txtSufijo.Text);
-                            }
-
-                            try
-                            {
-                                // Incrementa la enumeración
-                                valorActual += Convert.ToInt32(this.txtIncremento.Text);
-                            }
-                            catch (Exception){ }
-                        }
-
                         // Verifica que la vista X-X esté activado
                         if (this.chbVistaXX.Checked)
                         {
@@ -491,37 +392,6 @@ namespace Jump
 
             // Cierra el formulario
             this.Close();
-        }
-        
-        /// <summary> Carga la lista de los elementos según las opciones marcadas "Selección" </summary>
-        private void ObtenerElementosSegunOpciones()
-        {
-            // Agrega todas las zapatas del proyecto a la lista
-            if (this.rbtnTodos.Checked)
-            {
-                // Obtiene todas las zapatas
-                this.elementos = Tools.ObtenerTodosEjemplaresSegunClaseYCategoria(doc, clase, categoria);
-
-                // Asigna todas las zapatas
-                this.listaZapatas = this.elementos;
-            }
-
-            // Agrega las zapatas seleccionadas en el proyecto a la lista
-            if (this.rbtnElementosSeleccionados.Checked)
-            {
-                // Obtiene los elementos seleccionados en el proyecto
-                List<Element> listaSeleccionados = Tools.ObtenerElementosSeleccionadosEnProyecto(this.uiDoc, this.doc, this.elementos);
-                
-                // Obtiene los elementos seleccionados que coinciden con la lista de zapatas
-                this.listaZapatas = Tools.ObtenerElementosCoincidentesConLista(this.elementos, listaSeleccionados);
-            }
-
-            // Agrega las zapatas seleccionadas de la listabox
-            if (this.rbtnConjuntoDeLaLista.Checked)
-            {
-                // Obtiene los elementos seleccionados de la listbox y agrega a la lista
-                this.listaZapatas = Tools.ObtenerElementosDeUnListbox(this.lstElementos, this.doc, this.elementos);
-            }
         }
 
         /// <summary> Crea la vista XX </summary>

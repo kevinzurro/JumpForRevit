@@ -82,6 +82,12 @@
     <Compile Include="Comandos\cmdVigas.cs" />
     <Compile Include="Comandos\cmdLosas.cs" />
     <Compile Include="Comandos\cmdZapatas.cs" />
+    <Compile Include="Formularios\frmOrdenYEnumeracion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmOrdenYEnumeracion.Designer.cs">
+      <DependentUpon>frmOrdenYEnumeracion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\frmBarraProgreso.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -288,6 +294,9 @@
     <Resource Include="Resources\monitor.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Formularios\frmOrdenYEnumeracion.resx">
+      <DependentUpon>frmOrdenYEnumeracion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmBarraProgreso.resx">
       <DependentUpon>frmBarraProgreso.cs</DependentUpon>
     </EmbeddedResource>

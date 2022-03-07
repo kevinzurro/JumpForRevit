@@ -185,7 +185,7 @@
             this.gbxEnumeracion.Size = new System.Drawing.Size(314, 522);
             this.gbxEnumeracion.TabIndex = 7;
             this.gbxEnumeracion.TabStop = false;
-            this.gbxEnumeracion.Text = "Enumeración";
+            this.gbxEnumeracion.Text = "Selección";
             // 
             // tableLayoutPanel3
             // 

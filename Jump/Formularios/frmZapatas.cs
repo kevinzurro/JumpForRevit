@@ -114,7 +114,7 @@ namespace Jump
             // Obtiene el DataGridView con los diámetros y estilos de líneas
             Tools.AgregarDiametrosYEstilos(this.dgvEstiloLinea, this.dgvEstiloLinea.Columns[Tools.nombreColumnaEstilosLineas] as DataGridViewComboBoxColumn, doc);
         }
-
+        
         /// <summary> Carga los combobox de las etiquetas </summary>
         private void CargarComboboxEtiquetas(Document doc)
         {

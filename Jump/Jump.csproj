@@ -67,6 +67,7 @@
     <Compile Include="Comandos\ArmaduraEliminacion.cs" />
     <Compile Include="Comandos\ArmaduraRepresentacion.cs" />
     <Compile Include="Comandos\cmdConfiguraciones.cs" />
+    <Compile Include="Comandos\cmdOrdenYEnumeracion.cs" />
     <Compile Include="Comandos\cmdZapataCorrida.cs" />
     <Compile Include="Comandos\cmdPlatea.cs" />
     <Compile Include="Comandos\cmdPilotes.cs" />

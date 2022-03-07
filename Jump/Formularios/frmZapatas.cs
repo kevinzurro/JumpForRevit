@@ -355,11 +355,11 @@ namespace Jump
                 
                 // Verifica que la lista de zapatas contenga elementos para poder continuar
                 if (this.listaZapatas.Count > 0)
-                {                    
-                    //// Llama al formulario barra de progreso
+                {
+                    // Llama al formulario barra de progreso
                     frmBarraProgreso barraProgreso = new frmBarraProgreso(this.listaZapatas.Count);
 
-                    //// Muestra el formulario
+                    // Muestra el formulario
                     barraProgreso.Show();
 
                     // Recorre todos los elementos de la lista

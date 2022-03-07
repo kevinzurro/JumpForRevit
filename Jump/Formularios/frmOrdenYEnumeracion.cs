@@ -22,13 +22,12 @@ namespace Jump
 
         // Parámetros generales
         List<Element> listaElementosEnumerar = new List<Element>();
-        List<Element> todosElementos = new List<Element>();
+        List<Element> elementos = new List<Element>();
         List<Parameter> parametrosEjemplar = new List<Parameter>();
         List<Category> listaCategorias = new List<Category>();
 
         // Parámetros
-        Type clase = typeof(FamilyInstance);
-        BuiltInCategory categoria = BuiltInCategory.OST_StructuralFoundationTags;
+        BuiltInCategory categoria;
 
         // Constructor del formulario
         public frmOrdenYEnumeracion(Document doc, UIDocument uiDoc)
@@ -43,21 +42,38 @@ namespace Jump
             this.uiDoc = uiDoc;
 
             // Llama a las funciones
-            CargarCategoriasEnumerar();
+            CargarCategoriasEstructurales();
             AgregarElementos();
             AgregarParametros();
         }
 
-        /// <summary> Agrega las categorías a enumerar al combobox </summary>
-        private void CargarCategoriasEnumerar()
+        /// <summary> Carga las categorias estructurales a la lista </summary>
+        private void CargarCategoriasEstructurales()
         {
-            // Completa la lista
-            this.listaCategorias.AddRange(Tools.ObtenerCategorias(doc));
+            // Obtiene todas las categorías del documento
+            Categories categorias = this.doc.Settings.Categories;
+
+            // Agrega las categorías
+            this.listaCategorias.Add(categorias.get_Item(BuiltInCategory.OST_Coupler));
+            this.listaCategorias.Add(categorias.get_Item(BuiltInCategory.OST_Rebar));
+            this.listaCategorias.Add(categorias.get_Item(BuiltInCategory.OST_StructuralFraming));
+            this.listaCategorias.Add(categorias.get_Item(BuiltInCategory.OST_StructuralFoundation));
+            this.listaCategorias.Add(categorias.get_Item(BuiltInCategory.OST_BridgeAbutments));
+            this.listaCategorias.Add(categorias.get_Item(BuiltInCategory.OST_StructuralStiffener));
+            this.listaCategorias.Add(categorias.get_Item(BuiltInCategory.OST_BridgePiers));
+            this.listaCategorias.Add(categorias.get_Item(BuiltInCategory.OST_StructuralColumns));
+            this.listaCategorias.Add(categorias.get_Item(BuiltInCategory.OST_StructuralFramingSystem));
+            this.listaCategorias.Add(categorias.get_Item(BuiltInCategory.OST_StructuralTruss));
+            this.listaCategorias.Add(categorias.get_Item(BuiltInCategory.OST_Floors));
+
+            // Ordena la lista alfabéticamente
+            listaCategorias = listaCategorias.OrderBy(x => x.Name).ToList();
 
             // Limpia y rellena el combobox
             Tools.RellenarComboboxCategorias(this.cmbCategorias, listaCategorias);
 
-            Category categoriaSeleccionada = listaCategorias[this.cmbCategorias.SelectedIndex];
+            // Asigna la categoría
+            this.categoria = (BuiltInCategory)listaCategorias.FirstOrDefault<Category>().Id.IntegerValue;
         }
 
         /// <summary> Agrega los elementos a enumerar a la lista </summary>
@@ -67,13 +83,13 @@ namespace Jump
             this.lstElementos.Items.Clear();
 
             // Asigna todos los elementos a enumerar del proyecto a la lista
-            this.todosElementos = Tools.ObtenerTodosEjemplaresSegunClaseYCategoria(doc, clase, categoria);
+            this.elementos = Tools.ObtenerTodosEjemplaresSegunCategoria(doc, categoria);
 
             // Agrega los elementos a la listbox
-            Tools.RellenarListBoxDeElementos(this.lstElementos, doc, this.todosElementos);
+            Tools.RellenarListBoxDeElementos(this.lstElementos, doc, this.elementos);
         }
         
-        /// <summary> Agrega los parametros de ejemplar a la lista </summary>
+        /// <summary> Agrega los parámetros de ejemplar a la lista </summary>
         private void AgregarParametros()
         {
             // Limpia la lista
@@ -96,28 +112,44 @@ namespace Jump
             if (this.rbtnTodos.Checked)
             {
                 // Obtiene todos los elementos a enumerar
-                this.todosElementos = Tools.ObtenerTodosEjemplaresSegunClaseYCategoria(doc, clase, categoria);
+                this.elementos = Tools.ObtenerTodosEjemplaresSegunCategoria(doc, categoria);
                 
                 // Asigna todos los elementos a enumerar
-                this.listaElementosEnumerar = this.todosElementos;
+                this.listaElementosEnumerar = this.elementos;
             }
 
             // Agrega los elementos a enumerar seleccionadas en el proyecto a la lista
             if (this.rbtnElementosSeleccionados.Checked)
             {
                 // Obtiene los elementos seleccionados en el proyecto
-                List<Element> listaSeleccionados = Tools.ObtenerElementosSeleccionadosEnProyecto(this.uiDoc, this.doc, this.todosElementos);
+                List<Element> listaSeleccionados = Tools.ObtenerElementosSeleccionadosEnProyecto(this.uiDoc, this.doc, this.elementos);
 
                 // Obtiene los elementos seleccionados que coinciden con la lista de elementos a enumerar
-                this.listaElementosEnumerar = Tools.ObtenerElementosCoincidentesConLista(this.todosElementos, listaSeleccionados);
+                this.listaElementosEnumerar = Tools.ObtenerElementosCoincidentesConLista(this.elementos, listaSeleccionados);
             }
 
             // Agrega los elementos a enumerar seleccionadas de la listabox
             if (this.rbtnConjuntoDeLaLista.Checked)
             {
                 // Obtiene los elementos seleccionados de la listbox y agrega a la lista
-                this.listaElementosEnumerar = Tools.ObtenerElementosDeUnListbox(this.lstElementos, this.doc, this.todosElementos);
+                this.listaElementosEnumerar = Tools.ObtenerElementosDeUnListbox(this.lstElementos, this.doc, this.elementos);
             }
+        }
+
+        /// <summary> Cambia los elementos al cambiar la categoría seleccionada </summary>
+        private void cmbCategorias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Obtiene la categoría seleccionada
+            Category categoriaSeleccionada = listaCategorias[this.cmbCategorias.SelectedIndex];
+
+            // Asigna 
+            this.categoria = (BuiltInCategory)categoriaSeleccionada.Id.IntegerValue;
+
+            // Agrega los nuevos elementos
+            AgregarElementos();
+
+            // Agrega los parámetros
+            AgregarParametros();
         }
 
         /// <summary> Carga el formulario </summary>
@@ -191,6 +223,12 @@ namespace Jump
                 // Verifica que la lista de elementos a enumerar contenga elementos para poder continuar
                 if (this.listaElementosEnumerar.Count > 0)
                 {
+                    // Llama al formulario barra de progreso
+                    frmBarraProgreso barraProgreso = new frmBarraProgreso(this.listaElementosEnumerar.Count);
+
+                    // Muestra el formulario
+                    barraProgreso.Show();
+
                     // Crea la variable para enumerar
                     int valorActual = 0;
 
@@ -218,7 +256,7 @@ namespace Jump
                                                                               this.txtPrefijo.Text, valorActual,
                                                                               this.txtSufijo.Text);
                         }
-
+                        
                         try
                         {
                             // Incrementa la enumeración
@@ -226,6 +264,9 @@ namespace Jump
                         }
                         catch (Exception) { }
                     }
+
+                    // Cierra el formulario barra de progreso
+                    barraProgreso.Close();
                 }
 
                 t.Commit();

@@ -51,6 +51,17 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.gbxEtiquetaArmadura = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.lblEtiquetaArmaduraEnSistema = new System.Windows.Forms.Label();
+            this.lblEtiquetaAreaRefuerzo = new System.Windows.Forms.Label();
+            this.lblArmaduraEtiquetaIndependiente = new System.Windows.Forms.Label();
+            this.lblEtiquetaArmadura = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.cmbEtiquetaArmaduraEnSistema = new System.Windows.Forms.ComboBox();
+            this.cmbEtiquetaAreaRefuerzo = new System.Windows.Forms.ComboBox();
+            this.lblArmaduraPosicionEtiqueta = new System.Windows.Forms.Label();
+            this.cmbEtiquetaArmadura = new System.Windows.Forms.ComboBox();
             this.gbxArmaduraEnumeracion = new System.Windows.Forms.GroupBox();
             this.rbtnEnumeracionElemento = new System.Windows.Forms.RadioButton();
             this.rbtnEnumeracionProyecto = new System.Windows.Forms.RadioButton();
@@ -71,15 +82,6 @@
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.gbxEtiquetaIndependiente = new System.Windows.Forms.GroupBox();
-            this.pcbxEtiquetaPosicion = new System.Windows.Forms.PictureBox();
-            this.tbpgCotas = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
-            this.gbxCotasLineal = new System.Windows.Forms.GroupBox();
-            this.gbxCotasProfundidad = new System.Windows.Forms.GroupBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblElementoEtiquetasIdependientes = new System.Windows.Forms.Label();
@@ -92,6 +94,7 @@
             this.lblEtiquetaZapataCorrida = new System.Windows.Forms.Label();
             this.lblEtiquetaPilotes = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.lblPosicionEtiqueta = new System.Windows.Forms.Label();
             this.cmbEtiquetaZapataCorrida = new System.Windows.Forms.ComboBox();
             this.cmbEtiquetaLosas = new System.Windows.Forms.ComboBox();
             this.cmbEtiquetaVigas = new System.Windows.Forms.ComboBox();
@@ -100,18 +103,15 @@
             this.cmbEtiquetaZapatas = new System.Windows.Forms.ComboBox();
             this.cmbEtiquetaPlatea = new System.Windows.Forms.ComboBox();
             this.cmbEtiquetaPilotes = new System.Windows.Forms.ComboBox();
-            this.lblPosicionEtiqueta = new System.Windows.Forms.Label();
-            this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.lblEtiquetaArmadura = new System.Windows.Forms.Label();
-            this.cmbEtiquetaArmadura = new System.Windows.Forms.ComboBox();
-            this.lblArmaduraEtiquetaIndependiente = new System.Windows.Forms.Label();
-            this.lblArmaduraPosicionEtiqueta = new System.Windows.Forms.Label();
-            this.lblEtiquetaAreaRefuerzo = new System.Windows.Forms.Label();
-            this.cmbEtiquetaAreaRefuerzo = new System.Windows.Forms.ComboBox();
-            this.cmbEtiquetaArmaduraEnSistema = new System.Windows.Forms.ComboBox();
-            this.lblEtiquetaArmaduraEnSistema = new System.Windows.Forms.Label();
+            this.pcbxEtiquetaPosicion = new System.Windows.Forms.PictureBox();
+            this.tbpgCotas = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
+            this.gbxCotasLineal = new System.Windows.Forms.GroupBox();
+            this.gbxCotasProfundidad = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabcConfiguraciones.SuspendLayout();
             this.tbpgGeneral.SuspendLayout();
@@ -124,6 +124,9 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.gbxEtiquetaArmadura.SuspendLayout();
+            this.tableLayoutPanel12.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.gbxArmaduraEnumeracion.SuspendLayout();
             this.gbxArmaduraDibujo.SuspendLayout();
             this.gbxPosicionTexto.SuspendLayout();
@@ -135,17 +138,14 @@
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             this.gbxEtiquetaIndependiente.SuspendLayout();
+            this.tableLayoutPanel11.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbxEtiquetaPosicion)).BeginInit();
             this.tbpgCotas.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.tableLayoutPanel11.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.tableLayoutPanel12.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -306,6 +306,77 @@
             this.gbxEtiquetaArmadura.Name = "gbxEtiquetaArmadura";
             this.gbxEtiquetaArmadura.TabStop = false;
             // 
+            // tableLayoutPanel12
+            // 
+            resources.ApplyResources(this.tableLayoutPanel12, "tableLayoutPanel12");
+            this.tableLayoutPanel12.Controls.Add(this.panel4, 0, 0);
+            this.tableLayoutPanel12.Controls.Add(this.panel5, 1, 0);
+            this.tableLayoutPanel12.Name = "tableLayoutPanel12";
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.lblEtiquetaArmaduraEnSistema);
+            this.panel4.Controls.Add(this.lblEtiquetaAreaRefuerzo);
+            this.panel4.Controls.Add(this.lblArmaduraEtiquetaIndependiente);
+            this.panel4.Controls.Add(this.lblEtiquetaArmadura);
+            resources.ApplyResources(this.panel4, "panel4");
+            this.panel4.Name = "panel4";
+            // 
+            // lblEtiquetaArmaduraEnSistema
+            // 
+            resources.ApplyResources(this.lblEtiquetaArmaduraEnSistema, "lblEtiquetaArmaduraEnSistema");
+            this.lblEtiquetaArmaduraEnSistema.Name = "lblEtiquetaArmaduraEnSistema";
+            // 
+            // lblEtiquetaAreaRefuerzo
+            // 
+            resources.ApplyResources(this.lblEtiquetaAreaRefuerzo, "lblEtiquetaAreaRefuerzo");
+            this.lblEtiquetaAreaRefuerzo.Name = "lblEtiquetaAreaRefuerzo";
+            // 
+            // lblArmaduraEtiquetaIndependiente
+            // 
+            resources.ApplyResources(this.lblArmaduraEtiquetaIndependiente, "lblArmaduraEtiquetaIndependiente");
+            this.lblArmaduraEtiquetaIndependiente.Name = "lblArmaduraEtiquetaIndependiente";
+            // 
+            // lblEtiquetaArmadura
+            // 
+            resources.ApplyResources(this.lblEtiquetaArmadura, "lblEtiquetaArmadura");
+            this.lblEtiquetaArmadura.Name = "lblEtiquetaArmadura";
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.cmbEtiquetaArmaduraEnSistema);
+            this.panel5.Controls.Add(this.cmbEtiquetaAreaRefuerzo);
+            this.panel5.Controls.Add(this.lblArmaduraPosicionEtiqueta);
+            this.panel5.Controls.Add(this.cmbEtiquetaArmadura);
+            resources.ApplyResources(this.panel5, "panel5");
+            this.panel5.Name = "panel5";
+            // 
+            // cmbEtiquetaArmaduraEnSistema
+            // 
+            resources.ApplyResources(this.cmbEtiquetaArmaduraEnSistema, "cmbEtiquetaArmaduraEnSistema");
+            this.cmbEtiquetaArmaduraEnSistema.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEtiquetaArmaduraEnSistema.FormattingEnabled = true;
+            this.cmbEtiquetaArmaduraEnSistema.Name = "cmbEtiquetaArmaduraEnSistema";
+            // 
+            // cmbEtiquetaAreaRefuerzo
+            // 
+            resources.ApplyResources(this.cmbEtiquetaAreaRefuerzo, "cmbEtiquetaAreaRefuerzo");
+            this.cmbEtiquetaAreaRefuerzo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEtiquetaAreaRefuerzo.FormattingEnabled = true;
+            this.cmbEtiquetaAreaRefuerzo.Name = "cmbEtiquetaAreaRefuerzo";
+            // 
+            // lblArmaduraPosicionEtiqueta
+            // 
+            resources.ApplyResources(this.lblArmaduraPosicionEtiqueta, "lblArmaduraPosicionEtiqueta");
+            this.lblArmaduraPosicionEtiqueta.Name = "lblArmaduraPosicionEtiqueta";
+            // 
+            // cmbEtiquetaArmadura
+            // 
+            resources.ApplyResources(this.cmbEtiquetaArmadura, "cmbEtiquetaArmadura");
+            this.cmbEtiquetaArmadura.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEtiquetaArmadura.FormattingEnabled = true;
+            this.cmbEtiquetaArmadura.Name = "cmbEtiquetaArmadura";
+            // 
             // gbxArmaduraEnumeracion
             // 
             this.gbxArmaduraEnumeracion.Controls.Add(this.rbtnEnumeracionElemento);
@@ -454,65 +525,6 @@
             this.gbxEtiquetaIndependiente.Name = "gbxEtiquetaIndependiente";
             this.gbxEtiquetaIndependiente.TabStop = false;
             // 
-            // pcbxEtiquetaPosicion
-            // 
-            resources.ApplyResources(this.pcbxEtiquetaPosicion, "pcbxEtiquetaPosicion");
-            this.pcbxEtiquetaPosicion.Name = "pcbxEtiquetaPosicion";
-            this.pcbxEtiquetaPosicion.TabStop = false;
-            // 
-            // tbpgCotas
-            // 
-            this.tbpgCotas.Controls.Add(this.tableLayoutPanel9);
-            resources.ApplyResources(this.tbpgCotas, "tbpgCotas");
-            this.tbpgCotas.Name = "tbpgCotas";
-            this.tbpgCotas.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel9
-            // 
-            resources.ApplyResources(this.tableLayoutPanel9, "tableLayoutPanel9");
-            this.tableLayoutPanel9.Controls.Add(this.tableLayoutPanel10, 0, 0);
-            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
-            // 
-            // tableLayoutPanel10
-            // 
-            resources.ApplyResources(this.tableLayoutPanel10, "tableLayoutPanel10");
-            this.tableLayoutPanel10.Controls.Add(this.gbxCotasLineal, 0, 0);
-            this.tableLayoutPanel10.Controls.Add(this.gbxCotasProfundidad, 0, 1);
-            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
-            // 
-            // gbxCotasLineal
-            // 
-            resources.ApplyResources(this.gbxCotasLineal, "gbxCotasLineal");
-            this.gbxCotasLineal.Name = "gbxCotasLineal";
-            this.gbxCotasLineal.TabStop = false;
-            // 
-            // gbxCotasProfundidad
-            // 
-            resources.ApplyResources(this.gbxCotasProfundidad, "gbxCotasProfundidad");
-            this.gbxCotasProfundidad.Name = "gbxCotasProfundidad";
-            this.gbxCotasProfundidad.TabStop = false;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btnGuardar);
-            this.panel1.Controls.Add(this.btnCancelar);
-            resources.ApplyResources(this.panel1, "panel1");
-            this.panel1.Name = "panel1";
-            // 
-            // btnGuardar
-            // 
-            resources.ApplyResources(this.btnGuardar, "btnGuardar");
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // btnCancelar
-            // 
-            resources.ApplyResources(this.btnCancelar, "btnCancelar");
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
             // tableLayoutPanel11
             // 
             resources.ApplyResources(this.tableLayoutPanel11, "tableLayoutPanel11");
@@ -593,6 +605,11 @@
             resources.ApplyResources(this.panel3, "panel3");
             this.panel3.Name = "panel3";
             // 
+            // lblPosicionEtiqueta
+            // 
+            resources.ApplyResources(this.lblPosicionEtiqueta, "lblPosicionEtiqueta");
+            this.lblPosicionEtiqueta.Name = "lblPosicionEtiqueta";
+            // 
             // cmbEtiquetaZapataCorrida
             // 
             resources.ApplyResources(this.cmbEtiquetaZapataCorrida, "cmbEtiquetaZapataCorrida");
@@ -649,86 +666,70 @@
             this.cmbEtiquetaPilotes.FormattingEnabled = true;
             this.cmbEtiquetaPilotes.Name = "cmbEtiquetaPilotes";
             // 
-            // lblPosicionEtiqueta
+            // pcbxEtiquetaPosicion
             // 
-            resources.ApplyResources(this.lblPosicionEtiqueta, "lblPosicionEtiqueta");
-            this.lblPosicionEtiqueta.Name = "lblPosicionEtiqueta";
+            resources.ApplyResources(this.pcbxEtiquetaPosicion, "pcbxEtiquetaPosicion");
+            this.pcbxEtiquetaPosicion.Name = "pcbxEtiquetaPosicion";
+            this.pcbxEtiquetaPosicion.TabStop = false;
             // 
-            // tableLayoutPanel12
+            // tbpgCotas
             // 
-            resources.ApplyResources(this.tableLayoutPanel12, "tableLayoutPanel12");
-            this.tableLayoutPanel12.Controls.Add(this.panel4, 0, 0);
-            this.tableLayoutPanel12.Controls.Add(this.panel5, 1, 0);
-            this.tableLayoutPanel12.Name = "tableLayoutPanel12";
+            this.tbpgCotas.Controls.Add(this.tableLayoutPanel9);
+            resources.ApplyResources(this.tbpgCotas, "tbpgCotas");
+            this.tbpgCotas.Name = "tbpgCotas";
+            this.tbpgCotas.UseVisualStyleBackColor = true;
             // 
-            // panel4
+            // tableLayoutPanel9
             // 
-            this.panel4.Controls.Add(this.lblEtiquetaArmaduraEnSistema);
-            this.panel4.Controls.Add(this.lblEtiquetaAreaRefuerzo);
-            this.panel4.Controls.Add(this.lblArmaduraEtiquetaIndependiente);
-            this.panel4.Controls.Add(this.lblEtiquetaArmadura);
-            resources.ApplyResources(this.panel4, "panel4");
-            this.panel4.Name = "panel4";
+            resources.ApplyResources(this.tableLayoutPanel9, "tableLayoutPanel9");
+            this.tableLayoutPanel9.Controls.Add(this.tableLayoutPanel10, 0, 0);
+            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             // 
-            // panel5
+            // tableLayoutPanel10
             // 
-            this.panel5.Controls.Add(this.cmbEtiquetaArmaduraEnSistema);
-            this.panel5.Controls.Add(this.cmbEtiquetaAreaRefuerzo);
-            this.panel5.Controls.Add(this.lblArmaduraPosicionEtiqueta);
-            this.panel5.Controls.Add(this.cmbEtiquetaArmadura);
-            resources.ApplyResources(this.panel5, "panel5");
-            this.panel5.Name = "panel5";
+            resources.ApplyResources(this.tableLayoutPanel10, "tableLayoutPanel10");
+            this.tableLayoutPanel10.Controls.Add(this.gbxCotasLineal, 0, 0);
+            this.tableLayoutPanel10.Controls.Add(this.gbxCotasProfundidad, 0, 1);
+            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             // 
-            // lblEtiquetaArmadura
+            // gbxCotasLineal
             // 
-            resources.ApplyResources(this.lblEtiquetaArmadura, "lblEtiquetaArmadura");
-            this.lblEtiquetaArmadura.Name = "lblEtiquetaArmadura";
+            resources.ApplyResources(this.gbxCotasLineal, "gbxCotasLineal");
+            this.gbxCotasLineal.Name = "gbxCotasLineal";
+            this.gbxCotasLineal.TabStop = false;
             // 
-            // cmbEtiquetaArmadura
+            // gbxCotasProfundidad
             // 
-            resources.ApplyResources(this.cmbEtiquetaArmadura, "cmbEtiquetaArmadura");
-            this.cmbEtiquetaArmadura.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbEtiquetaArmadura.FormattingEnabled = true;
-            this.cmbEtiquetaArmadura.Name = "cmbEtiquetaArmadura";
+            resources.ApplyResources(this.gbxCotasProfundidad, "gbxCotasProfundidad");
+            this.gbxCotasProfundidad.Name = "gbxCotasProfundidad";
+            this.gbxCotasProfundidad.TabStop = false;
             // 
-            // lblArmaduraEtiquetaIndependiente
+            // panel1
             // 
-            resources.ApplyResources(this.lblArmaduraEtiquetaIndependiente, "lblArmaduraEtiquetaIndependiente");
-            this.lblArmaduraEtiquetaIndependiente.Name = "lblArmaduraEtiquetaIndependiente";
+            this.panel1.Controls.Add(this.btnGuardar);
+            this.panel1.Controls.Add(this.btnCancelar);
+            resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.Name = "panel1";
             // 
-            // lblArmaduraPosicionEtiqueta
+            // btnGuardar
             // 
-            resources.ApplyResources(this.lblArmaduraPosicionEtiqueta, "lblArmaduraPosicionEtiqueta");
-            this.lblArmaduraPosicionEtiqueta.Name = "lblArmaduraPosicionEtiqueta";
+            resources.ApplyResources(this.btnGuardar, "btnGuardar");
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
-            // lblEtiquetaAreaRefuerzo
+            // btnCancelar
             // 
-            resources.ApplyResources(this.lblEtiquetaAreaRefuerzo, "lblEtiquetaAreaRefuerzo");
-            this.lblEtiquetaAreaRefuerzo.Name = "lblEtiquetaAreaRefuerzo";
-            // 
-            // cmbEtiquetaAreaRefuerzo
-            // 
-            resources.ApplyResources(this.cmbEtiquetaAreaRefuerzo, "cmbEtiquetaAreaRefuerzo");
-            this.cmbEtiquetaAreaRefuerzo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbEtiquetaAreaRefuerzo.FormattingEnabled = true;
-            this.cmbEtiquetaAreaRefuerzo.Name = "cmbEtiquetaAreaRefuerzo";
-            // 
-            // cmbEtiquetaArmaduraEnSistema
-            // 
-            resources.ApplyResources(this.cmbEtiquetaArmaduraEnSistema, "cmbEtiquetaArmaduraEnSistema");
-            this.cmbEtiquetaArmaduraEnSistema.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbEtiquetaArmaduraEnSistema.FormattingEnabled = true;
-            this.cmbEtiquetaArmaduraEnSistema.Name = "cmbEtiquetaArmaduraEnSistema";
-            // 
-            // lblEtiquetaArmaduraEnSistema
-            // 
-            resources.ApplyResources(this.lblEtiquetaArmaduraEnSistema, "lblEtiquetaArmaduraEnSistema");
-            this.lblEtiquetaArmaduraEnSistema.Name = "lblEtiquetaArmaduraEnSistema";
+            resources.ApplyResources(this.btnCancelar, "btnCancelar");
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // frmConfiguraciones
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.Controls.Add(this.tableLayoutPanel1);
             this.KeyPreview = true;
             this.MinimizeBox = false;
@@ -749,6 +750,11 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.gbxEtiquetaArmadura.ResumeLayout(false);
+            this.tableLayoutPanel12.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.gbxArmaduraEnumeracion.ResumeLayout(false);
             this.gbxArmaduraEnumeracion.PerformLayout();
             this.gbxArmaduraDibujo.ResumeLayout(false);
@@ -764,21 +770,16 @@
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
             this.gbxEtiquetaIndependiente.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pcbxEtiquetaPosicion)).EndInit();
-            this.tbpgCotas.ResumeLayout(false);
-            this.tableLayoutPanel9.ResumeLayout(false);
-            this.tableLayoutPanel10.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             this.tableLayoutPanel11.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.tableLayoutPanel12.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbxEtiquetaPosicion)).EndInit();
+            this.tbpgCotas.ResumeLayout(false);
+            this.tableLayoutPanel9.ResumeLayout(false);
+            this.tableLayoutPanel10.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

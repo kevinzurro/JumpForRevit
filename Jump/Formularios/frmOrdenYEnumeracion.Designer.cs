@@ -53,6 +53,7 @@
             this.lblParametroElegido = new System.Windows.Forms.Label();
             this.lblVistaPrevia = new System.Windows.Forms.Label();
             this.gbxOrden = new System.Windows.Forms.GroupBox();
+            this.btnEjecutar = new System.Windows.Forms.Button();
             this.rbtn42 = new System.Windows.Forms.RadioButton();
             this.rbtn41 = new System.Windows.Forms.RadioButton();
             this.rbtn32 = new System.Windows.Forms.RadioButton();
@@ -61,7 +62,6 @@
             this.rbtn21 = new System.Windows.Forms.RadioButton();
             this.rbtn12 = new System.Windows.Forms.RadioButton();
             this.rbtn11 = new System.Windows.Forms.RadioButton();
-            this.btnEjecutar = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.gbxSeleccion.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -140,6 +140,7 @@
             this.cmbCategorias.Name = "cmbCategorias";
             this.cmbCategorias.Size = new System.Drawing.Size(301, 23);
             this.cmbCategorias.TabIndex = 3;
+            this.cmbCategorias.SelectionChangeCommitted += new System.EventHandler(this.cmbCategorias_SelectedIndexChanged);
             // 
             // rbtnConjuntoDeLaLista
             // 
@@ -345,7 +346,7 @@
             // 
             this.lblParametroElegido.AutoSize = true;
             this.lblParametroElegido.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblParametroElegido.Location = new System.Drawing.Point(9, 26);
+            this.lblParametroElegido.Location = new System.Drawing.Point(9, 25);
             this.lblParametroElegido.Name = "lblParametroElegido";
             this.lblParametroElegido.Size = new System.Drawing.Size(65, 15);
             this.lblParametroElegido.TabIndex = 3;
@@ -356,7 +357,7 @@
             this.lblVistaPrevia.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblVistaPrevia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVistaPrevia.Location = new System.Drawing.Point(99, 24);
+            this.lblVistaPrevia.Location = new System.Drawing.Point(99, 25);
             this.lblVistaPrevia.Name = "lblVistaPrevia";
             this.lblVistaPrevia.Size = new System.Drawing.Size(200, 17);
             this.lblVistaPrevia.TabIndex = 2;
@@ -381,6 +382,17 @@
             this.gbxOrden.TabIndex = 9;
             this.gbxOrden.TabStop = false;
             this.gbxOrden.Text = "Orden";
+            // 
+            // btnEjecutar
+            // 
+            this.btnEjecutar.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnEjecutar.Location = new System.Drawing.Point(3, 419);
+            this.btnEjecutar.Name = "btnEjecutar";
+            this.btnEjecutar.Size = new System.Drawing.Size(218, 34);
+            this.btnEjecutar.TabIndex = 14;
+            this.btnEjecutar.Text = "Ejecutar";
+            this.btnEjecutar.UseVisualStyleBackColor = true;
+            this.btnEjecutar.Click += new System.EventHandler(this.btnEjecutar_Click);
             // 
             // rbtn42
             // 
@@ -494,16 +506,6 @@
             this.rbtn11.TabStop = true;
             this.rbtn11.Text = "                     ";
             this.rbtn11.UseVisualStyleBackColor = true;
-            // 
-            // btnEjecutar
-            // 
-            this.btnEjecutar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnEjecutar.Location = new System.Drawing.Point(3, 419);
-            this.btnEjecutar.Name = "btnEjecutar";
-            this.btnEjecutar.Size = new System.Drawing.Size(218, 34);
-            this.btnEjecutar.TabIndex = 14;
-            this.btnEjecutar.Text = "Ejecutar";
-            this.btnEjecutar.UseVisualStyleBackColor = true;
             // 
             // frmOrdenYEnumeracion
             // 

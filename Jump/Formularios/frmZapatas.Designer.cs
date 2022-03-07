@@ -479,18 +479,18 @@
             this.panel2.Controls.Add(this.rbtnElementosSeleccionados);
             this.panel2.Controls.Add(this.rbtnTodos);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(7, 7);
-            this.panel2.Margin = new System.Windows.Forms.Padding(7);
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(7);
-            this.panel2.Size = new System.Drawing.Size(245, 101);
+            this.panel2.Size = new System.Drawing.Size(259, 115);
             this.panel2.TabIndex = 0;
             // 
             // rbtnConjuntoDeLaLista
             // 
             this.rbtnConjuntoDeLaLista.AutoSize = true;
             this.rbtnConjuntoDeLaLista.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnConjuntoDeLaLista.Location = new System.Drawing.Point(2, 69);
+            this.rbtnConjuntoDeLaLista.Location = new System.Drawing.Point(6, 79);
             this.rbtnConjuntoDeLaLista.Margin = new System.Windows.Forms.Padding(6);
             this.rbtnConjuntoDeLaLista.Name = "rbtnConjuntoDeLaLista";
             this.rbtnConjuntoDeLaLista.Size = new System.Drawing.Size(139, 19);
@@ -503,7 +503,7 @@
             // 
             this.rbtnElementosSeleccionados.AutoSize = true;
             this.rbtnElementosSeleccionados.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnElementosSeleccionados.Location = new System.Drawing.Point(2, 39);
+            this.rbtnElementosSeleccionados.Location = new System.Drawing.Point(6, 44);
             this.rbtnElementosSeleccionados.Margin = new System.Windows.Forms.Padding(6);
             this.rbtnElementosSeleccionados.Name = "rbtnElementosSeleccionados";
             this.rbtnElementosSeleccionados.Size = new System.Drawing.Size(166, 19);
@@ -517,7 +517,7 @@
             this.rbtnTodos.AutoSize = true;
             this.rbtnTodos.Checked = true;
             this.rbtnTodos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnTodos.Location = new System.Drawing.Point(2, 9);
+            this.rbtnTodos.Location = new System.Drawing.Point(6, 12);
             this.rbtnTodos.Margin = new System.Windows.Forms.Padding(6);
             this.rbtnTodos.Name = "rbtnTodos";
             this.rbtnTodos.Size = new System.Drawing.Size(59, 19);

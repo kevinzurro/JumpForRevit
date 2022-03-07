@@ -2194,7 +2194,7 @@
     <value>3, 3</value>
   </data>
   <data name="gbxCotasLineal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>390, 309</value>
+    <value>390, 310</value>
   </data>
   <data name="gbxCotasLineal.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -2218,10 +2218,10 @@
     <value>Fill</value>
   </data>
   <data name="gbxCotasProfundidad.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 318</value>
+    <value>3, 319</value>
   </data>
   <data name="gbxCotasProfundidad.Size" type="System.Drawing.Size, System.Drawing">
-    <value>390, 63</value>
+    <value>390, 62</value>
   </data>
   <data name="gbxCotasProfundidad.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>

@@ -1,0 +1,10 @@
+D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Release\Jump.csprojResolveAssemblyReference.cache
+D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Release\Jump.g.resources
+D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Release\Jump.frmBarraProgreso.resources
+D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Release\Jump.Iconos_e_Imagenes.Banderas.resources
+D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Release\Jump.frmIdioma.resources
+D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Release\Jump.frmZapatas.resources
+D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Release\Jump.Iconos_e_Imagenes.Iconos.resources
+D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Release\Jump.Iconos_e_Imagenes.Imagenes.resources
+D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Release\Jump.Properties.Resources.resources
+D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Release\Jump.csproj.GenerateResource.Cache

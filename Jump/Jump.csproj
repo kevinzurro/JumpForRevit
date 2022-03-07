@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0B20D9A4-2E8F-4DC5-BDF7-72AD8F4E3992}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Jump</RootNamespace>
+    <AssemblyName>Jump</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="RevitAPI">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2019\RevitAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="RevitAPIUI">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2019\RevitAPIUI.dll</HintPath>
+    </Reference>
+    <Reference Include="SpreadsheetLight, Version=3.4.7.0, Culture=neutral, PublicKeyToken=32fbb46dc1730c57, processorArchitecture=MSIL">
+      <HintPath>..\packages\SpreadsheetLight.3.4.7\lib\SpreadsheetLight.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Comandos\ArmaduraActualizacion.cs" />
+    <Compile Include="Comandos\ArmaduraEliminacion.cs" />
+    <Compile Include="Comandos\ArmaduraRepresentacion.cs" />
+    <Compile Include="Comandos\cmdConfiguraciones.cs" />
+    <Compile Include="Comandos\cmdZapataCorrida.cs" />
+    <Compile Include="Comandos\cmdPlatea.cs" />
+    <Compile Include="Comandos\cmdPilotes.cs" />
+    <Compile Include="Comandos\cmdVisibilidadAnalitica.cs" />
+    <Compile Include="Comandos\cmdVisibilidadEstructural.cs" />
+    <Compile Include="Comandos\cmdArmadura3Tapada.cs" />
+    <Compile Include="Comandos\cmdArmadura4Filamento.cs" />
+    <Compile Include="Comandos\cmdArmadura2Solido.cs" />
+    <Compile Include="Comandos\cmdArmadura1SinTapar.cs" />
+    <Compile Include="Comandos\cmdColumnas.cs" />
+    <Compile Include="Comandos\cmdIdioma.cs" />
+    <Compile Include="Comandos\cmdMuros.cs" />
+    <Compile Include="Comandos\cmdVigas.cs" />
+    <Compile Include="Comandos\cmdLosas.cs" />
+    <Compile Include="Comandos\cmdZapatas.cs" />
+    <Compile Include="Formularios\frmBarraProgreso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmBarraProgreso.Designer.cs">
+      <DependentUpon>frmBarraProgreso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmIdioma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmIdioma.Designer.cs">
+      <DependentUpon>frmIdioma.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmZapatas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmZapatas.Designer.cs">
+      <DependentUpon>frmZapatas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Comandos\Inicio.cs" />
+    <Compile Include="Comandos\Language.cs" />
+    <Compile Include="Comandos\Pais.cs" />
+    <Compile Include="Formularios\frmConfiguraciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmConfiguraciones.Designer.cs">
+      <DependentUpon>frmConfiguraciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Iconos_e_Imagenes\Banderas.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Banderas.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Iconos_e_Imagenes\Iconos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Iconos.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Iconos_e_Imagenes\Iconos_Botones.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Iconos_Botones.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Iconos_e_Imagenes\Imagenes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Imagenes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Comandos\Tools.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Jump.addin">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\Zapata_Vista_Local.png" />
+    <Resource Include="Resources\Zapata_Vista_Global.png" />
+    <Resource Include="Resources\Boton_Pilote.png" />
+    <Resource Include="Resources\Configuraciones_LineasDeBorde.JPG" />
+    <Resource Include="Resources\Configuraciones_LineasCentrales.JPG" />
+    <Resource Include="Resources\Configuraciones_Precision.JPG" />
+    <Resource Include="Resources\Boton_Zapata_Corrida.png" />
+    <Resource Include="Resources\Boton_Zapata.png" />
+    <Resource Include="Resources\Boton_Viga.png" />
+    <Resource Include="Resources\Boton_Platea.png" />
+    <Resource Include="Resources\Boton_Muro.png" />
+    <Resource Include="Resources\Boton_Losa.png" />
+    <Resource Include="Resources\Boton_Elem_Estructural.png" />
+    <Resource Include="Resources\Boton_Elem_Analitico.png" />
+    <Resource Include="Resources\Boton_Configuracion.png" />
+    <Resource Include="Resources\Boton_Columna.png" />
+    <Resource Include="Resources\4_2.png" />
+    <Resource Include="Resources\4_1.png" />
+    <Resource Include="Resources\3_2.png" />
+    <Resource Include="Resources\3_1.png" />
+    <Resource Include="Resources\2_2.png" />
+    <Resource Include="Resources\2_1.png" />
+    <Resource Include="Resources\1_2.png" />
+    <Resource Include="Resources\1_1.png" />
+    <Resource Include="Resources\Yemen.png" />
+    <Resource Include="Resources\Wales.png" />
+    <Resource Include="Resources\Vietnam.png" />
+    <Resource Include="Resources\Venezuela.png" />
+    <Resource Include="Resources\Uzbekistan.png" />
+    <Resource Include="Resources\Uruguay.png" />
+    <Resource Include="Resources\United States.png" />
+    <Resource Include="Resources\United Arab Emirates.png" />
+    <Resource Include="Resources\Ukraine.png" />
+    <Resource Include="Resources\Uganda.png" />
+    <Resource Include="Resources\Turkey.png" />
+    <Resource Include="Resources\Tunisia.png" />
+    <Resource Include="Resources\Thailand.png" />
+    <Resource Include="Resources\Taiwan.png" />
+    <Resource Include="Resources\Sweden.png" />
+    <Resource Include="Resources\South Korea.png" />
+    <Resource Include="Resources\South Africa.png" />
+    <Resource Include="Resources\Slovenia.png" />
+    <Resource Include="Resources\Slovakia.png" />
+    <Resource Include="Resources\Singapore.png" />
+    <Resource Include="Resources\Serbia.png" />
+    <Resource Include="Resources\Senegal.png" />
+    <Resource Include="Resources\Scotland.png" />
+    <Resource Include="Resources\Saudi Arabia.png" />
+    <Resource Include="Resources\Russia.png" />
+    <Resource Include="Resources\Romania.png" />
+    <Resource Include="Resources\República Dominicana.png" />
+    <Resource Include="Resources\Qatar.png" />
+    <Resource Include="Resources\Puerto Rico.png" />
+    <Resource Include="Resources\Portugal.png" />
+    <Resource Include="Resources\Poland.png" />
+    <Resource Include="Resources\Philippines.png" />
+    <Resource Include="Resources\Perú.png" />
+    <Resource Include="Resources\Paraguay.png" />
+    <Resource Include="Resources\Papua New Guinea.png" />
+    <Resource Include="Resources\Palestine.png" />
+    <Resource Include="Resources\Pakistan.png" />
+    <Resource Include="Resources\Norway.png" />
+    <Resource Include="Resources\Nigeria.png" />
+    <Resource Include="Resources\Niger.png" />
+    <Resource Include="Resources\New Zealand.png" />
+    <Resource Include="Resources\Netherlands.png" />
+    <Resource Include="Resources\Myanmar.png" />
+    <Resource Include="Resources\Morocco.png" />
+    <Resource Include="Resources\Montenegro.png" />
+    <Resource Include="Resources\Moldova.png" />
+    <Resource Include="Resources\México.png" />
+    <Resource Include="Resources\Mauritius.png" />
+    <Resource Include="Resources\Mali.png" />
+    <Resource Include="Resources\Malaysia.png" />
+    <Resource Include="Resources\Madagascar.png" />
+    <Resource Include="Resources\Macau.png" />
+    <Resource Include="Resources\Luxembourg.png" />
+    <Resource Include="Resources\Lithuania.png" />
+    <Resource Include="Resources\Liechtenstein.png" />
+    <Resource Include="Resources\Libya.png" />
+    <Resource Include="Resources\Lebanon.png" />
+    <Resource Include="Resources\Kuwait.png" />
+    <Resource Include="Resources\Kenya.png" />
+    <Resource Include="Resources\Kazakhstan.png" />
+    <Resource Include="Resources\Jordan.png" />
+    <Resource Include="Resources\Japan.png" />
+    <Resource Include="Resources\Italy.png" />
+    <Resource Include="Resources\Israel.png" />
+    <Resource Include="Resources\Ireland.png" />
+    <Resource Include="Resources\Iraq.png" />
+    <Resource Include="Resources\Iran.png" />
+    <Resource Include="Resources\Indonesia.png" />
+    <Resource Include="Resources\India.png" />
+    <Resource Include="Resources\Iceland.png" />
+    <Resource Include="Resources\Hungary.png" />
+    <Resource Include="Resources\Hong Kong.png" />
+    <Resource Include="Resources\Honduras.png" />
+    <Resource Include="Resources\Guinea.png" />
+    <Resource Include="Resources\Guinea Bissau.png" />
+    <Resource Include="Resources\Guernsey.png" />
+    <Resource Include="Resources\Guatemala.png" />
+    <Resource Include="Resources\Greece.png" />
+    <Resource Include="Resources\Ghana.png" />
+    <Resource Include="Resources\Germany.png" />
+    <Resource Include="Resources\Georgia.png" />
+    <Resource Include="Resources\France.png" />
+    <Resource Include="Resources\Finland.png" />
+    <Resource Include="Resources\Estonia.png" />
+    <Resource Include="Resources\España.png" />
+    <Resource Include="Resources\England.png" />
+    <Resource Include="Resources\El Salvador.png" />
+    <Resource Include="Resources\Egypt.png" />
+    <Resource Include="Resources\East Timor.png" />
+    <Resource Include="Resources\Denmark.png" />
+    <Resource Include="Resources\Czech Republic.png" />
+    <Resource Include="Resources\Cyprus.png" />
+    <Resource Include="Resources\Croatia.png" />
+    <Resource Include="Resources\Costa Rica.png" />
+    <Resource Include="Resources\Colombia.png" />
+    <Resource Include="Resources\China.png" />
+    <Resource Include="Resources\Chile.png" />
+    <Resource Include="Resources\Canada.png" />
+    <Resource Include="Resources\Cameroon.png" />
+    <Resource Include="Resources\Cambodia.png" />
+    <Resource Include="Resources\Bulgaria.png" />
+    <Resource Include="Resources\Brasil.png" />
+    <Resource Include="Resources\Botswana.png" />
+    <Resource Include="Resources\Bosnia and Herzegovina.png" />
+    <Resource Include="Resources\Belgium.png" />
+    <Resource Include="Resources\Belarus.png" />
+    <Resource Include="Resources\Barbados.png" />
+    <Resource Include="Resources\Bahrain.png" />
+    <Resource Include="Resources\Austria.png" />
+    <Resource Include="Resources\Australia.png" />
+    <Resource Include="Resources\Armenia.png" />
+    <Resource Include="Resources\Argentina.png" />
+    <Resource Include="Resources\Antigua and Barbuda.png" />
+    <Resource Include="Resources\Afghanistan.png" />
+    <Resource Include="Resources\monitor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Formularios\frmBarraProgreso.resx">
+      <DependentUpon>frmBarraProgreso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmConfiguraciones.resx">
+      <DependentUpon>frmConfiguraciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Iconos_e_Imagenes\Banderas.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Banderas.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmIdioma.resx">
+      <DependentUpon>frmIdioma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmZapatas.resx">
+      <DependentUpon>frmZapatas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Iconos_e_Imagenes\Iconos.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Iconos.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Iconos_e_Imagenes\Iconos_Botones.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Iconos_Botones.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Iconos_e_Imagenes\Imagenes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Imagenes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

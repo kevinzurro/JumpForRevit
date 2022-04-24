@@ -5257,8 +5257,10 @@ namespace Jump
                 slDoc.RenameWorksheet(SLDocument.DefaultFirstSheetName, pestanaExcelDiametros);
 
                 // Ajusta el ancho de las columnas
-                slDoc.AutoFitColumn(1);
-                slDoc.AutoFitColumn(2);
+                for (int i = 1; i <= dgv.Columns.Count; i++)
+                {
+                    slDoc.AutoFitColumn(i);
+                }
 
                 // Guarda el archivo de excel
                 slDoc.SaveAs(rutaArchivo);
@@ -5352,6 +5354,26 @@ namespace Jump
                 dgv.BeginEdit(true);
                 System.Windows.Forms.ComboBox combo = (System.Windows.Forms.ComboBox)dgv.EditingControl;
                 combo.DroppedDown = true;
+            }
+        }
+
+        ///<summary> Rellena un Combobox con una lista de elementos </summary>
+        public static void RellenarComboboxElementos(System.Windows.Forms.ComboBox combo, List<Element> lista)
+        {
+            // Limpia el combobox
+            combo.Items.Clear();
+
+            // Recorre la lista y agrega los elementos al combobox
+            foreach (Element elem in lista)
+            {
+                combo.Items.Add(elem.Name + " <" + elem.Id.ToString() + ">");
+            }
+
+            // Verifica la lista contenga elementos 
+            if (lista.Count > 0)
+            {
+                // Asigna el primer elemento a la lista desplegable
+                combo.SelectedIndex = 0;
             }
         }
 

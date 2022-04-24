@@ -324,9 +324,10 @@
             this.lstParametros.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstParametros.FormattingEnabled = true;
             this.lstParametros.ItemHeight = 15;
-            this.lstParametros.Location = new System.Drawing.Point(3, 223);
+            this.lstParametros.Location = new System.Drawing.Point(1, 221);
+            this.lstParametros.Margin = new System.Windows.Forms.Padding(1);
             this.lstParametros.Name = "lstParametros";
-            this.lstParametros.Size = new System.Drawing.Size(309, 210);
+            this.lstParametros.Size = new System.Drawing.Size(313, 214);
             this.lstParametros.TabIndex = 2;
             this.lstParametros.SelectedIndexChanged += new System.EventHandler(this.lstParametros_SelectedIndexChanged);
             // 
@@ -385,10 +386,11 @@
             // 
             // btnEjecutar
             // 
-            this.btnEjecutar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnEjecutar.Location = new System.Drawing.Point(3, 419);
+            this.btnEjecutar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEjecutar.Location = new System.Drawing.Point(6, 419);
             this.btnEjecutar.Name = "btnEjecutar";
-            this.btnEjecutar.Size = new System.Drawing.Size(218, 34);
+            this.btnEjecutar.Size = new System.Drawing.Size(212, 34);
             this.btnEjecutar.TabIndex = 14;
             this.btnEjecutar.Text = "Ejecutar";
             this.btnEjecutar.UseVisualStyleBackColor = true;

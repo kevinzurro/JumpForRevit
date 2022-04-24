@@ -83,8 +83,11 @@ namespace Jump
             
             // Agrega los elementos a la listbox
             Tools.RellenarListBoxDeElementos(this.lstElementos, doc, this.elementos);
+
+            // Agrega los elementos a la lista desplegable para el preview
+            Tools.RellenarComboboxElementos(this.cmbElementosPreview, this.elementos);
         }
-        
+
         /// <summary> Agrega los diámetros y estilos de lineas al DataGrid </summary>
         private void AgregarDiametrosYEstilos()
         {
@@ -156,13 +159,13 @@ namespace Jump
             }
         }
 
-        /// <summary> Carga las imagenes a sus picturebox </summary>
+        /// <summary> Carga el preview control </summary>
         private void ActivarODesactivarImagenes_CheckedChanged(object sender, EventArgs e)
         {            
             // Verifica que la vista previa no sea nula
             if (this.PreviewEtiquetas.Child != null)
             {
-                // Obtiene a ventana con el preview de la vista
+                // Obtiene una ventana con el preview de la vista
                 PreviewControl pc = this.PreviewEtiquetas.Child as PreviewControl;
 
                 // Obtiene la vista
@@ -261,6 +264,23 @@ namespace Jump
         {
             // Guarda el tipo de texto de las longitudes parciales
             Tools.GuardarZapataIndiceTextoDeBarra(this.cmbEtiquetaLongitud);
+        }
+
+        /// <summary> Cambia la imagen del preview según el elemento seleccionado </summary>
+        private void cmbElementosPreview_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            // Obtiene el indice del elemento seleccionado
+            this.posicionImagenPreview = this.cmbElementosPreview.SelectedIndex;
+
+            // Verifica que exista algo en el PreviewControl
+            if (this.PreviewEtiquetas.Child != null)
+            {
+                // Elimina la vista previa
+                EliminarVistaPrevia();
+
+                // Actualiza la vista previa
+                AsignarPreviewDeImagen();
+            }
         }
 
         /// <summary> Cierra la transacción grupal y deshace los cambios </summary>

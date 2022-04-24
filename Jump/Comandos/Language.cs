@@ -138,7 +138,7 @@ namespace Jump
             Espanol.Add("Zap4-1", "Acciones a realizar");
             Espanol.Add("Zap4-2", "Vista X-X");
             Espanol.Add("Zap4-3", "Vista Y-Y");
-            Espanol.Add("Zap5-1", "Correr");
+            Espanol.Add("Zap5-1", "Ejecutar");
             Espanol.Add("Zap5-2", "Comando de Zapatas");
 
             Espanol.Add("Col1", "Columnas");

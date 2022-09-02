@@ -89,7 +89,7 @@ namespace Jump
         /// <summary> Carga el formulario </summary>
         private void frmConfiguraciones_Load(object sender, EventArgs e)
         {
-            // Pestaña 1
+            // Pestaña General
             tbpgGeneral.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf1-1");
             gbxConfiguraciones.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf1-2-1");
             lblprecisionOrdenar.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf1-2-2");
@@ -106,7 +106,7 @@ namespace Jump
             this.rbtnVistaGlobal.Checked = Properties.Settings.Default.rbtnGeneralVistaGlobal;
             this.rbtnVistaLocal.Checked = Properties.Settings.Default.rbtnGeneralVistaLocal;
 
-            // Pestaña 2
+            // Pestaña Armaduras
             tbpgArmadura.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf2-1");
             gbxArmaduraEnumeracion.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf2-2-1");
             rbtnEnumeracionElemento.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf2-2-2");
@@ -129,11 +129,11 @@ namespace Jump
             this.rbtnTextoArriba.Checked = Properties.Settings.Default.rbtnTextoArmaduraArriba;
             this.rbtnTextoAbajo.Checked = Properties.Settings.Default.rbtnTextoArmaduraAbajo;
 
-            // Pestaña 3
+            // Pestaña Estilos de líneas
             tbpgEstiloLinea.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf3-1");
             lblDiametroEstilo.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf3-4");
 
-            // Pestaña 4
+            // Pestaña Etiquetas de elementos
             tbpgEtiquetas.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1");
             gbxEtiquetaIndependiente.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-1");
             lblElementoEtiquetasIdependientes.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-2");
@@ -147,7 +147,7 @@ namespace Jump
             lblEtiquetaVigas.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-1-7");
             lblEtiquetaLosas.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-1-8");
 
-            // Pestaña 5
+            // Pestaña Cotas
             tbpgCotas.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf5-1");
             gbxCotasLineal.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf5-1-1");
             gbxCotasProfundidad.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf5-2-1");
@@ -269,6 +269,76 @@ namespace Jump
             }
         }
 
+        /// <summary> Cambia la imagen de la posición de las etiquetas de los elementos estructurales </summary>
+        private void cmbCambiarImagenPreview_DropDown(object sender, EventArgs e)
+        {
+            // Verifica que sea etiqueta armadura
+            if (sender == this.cmbEtiquetaArmadura)
+            {
+                //this.pcbxArmaduras.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
+            }
+
+            // Verifica que sea etiqueta área de refuerzo
+            if (sender == this.cmbEtiquetaAreaRefuerzo)
+            {
+                //this.pcbxArmaduras.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
+            }
+
+            // Verifica que sea etiqueta armadura en sistema
+            if (sender == this.cmbEtiquetaArmaduraEnSistema)
+            {
+                //this.pcbxArmaduras.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
+            }
+
+            // Verifica que sea columnas
+            if (sender == this.cmbEtiquetaColumnas)
+            {
+                //this.pcbxEtiquetaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
+            }
+
+            // Verifica que sea losas
+            if (sender == this.cmbEtiquetaLosas)
+            {
+                //this.pcbxEtiquetaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
+            }
+
+            // Verifica que sea muros
+            if (sender == this.cmbEtiquetaMuros)
+            {
+                //this.pcbxEtiquetaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
+            }
+
+            // Verifica que sea pilotes
+            if (sender == this.cmbEtiquetaPilotes)
+            {
+                //this.pcbxEtiquetaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
+            }
+
+            // Verifica que sea plateas
+            if (sender == this.cmbEtiquetaPlatea)
+            {
+                //this.pcbxEtiquetaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
+            }
+
+            // Verifica que sea vigas
+            if (sender == this.cmbEtiquetaVigas)
+            {
+                //this.pcbxEtiquetaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
+            }
+
+            // Verifica que sea zapatas
+            if (sender == this.cmbEtiquetaZapatas)
+            {
+                //this.pcbxEtiquetaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
+            }
+
+            // Verifica que sea zapata corrida
+            if (sender == this.cmbEtiquetaZapataCorrida)
+            {
+                //this.pcbxEtiquetaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
+            }
+        }
+
         /// <summary> Hace que el combobox se despliegue con un solo click </summary>
         private void dgvDesplegarCombobox_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -329,58 +399,6 @@ namespace Jump
             Properties.Settings.Default.Save();
 
             this.Close();
-        }
-
-        /// <summary> Cambia la imagen de la posición de las etiquetas de los elementos estructurales </summary>
-        private void cmbEtiquetaElementosEstructurales_DropDown(object sender, EventArgs e)
-        {
-            // Verifica que sea columnas
-            if (sender == this.cmbEtiquetaColumnas)
-            {
-                //this.pcbxEtiquetaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
-            }
-
-            // Verifica que sea losas
-            if (sender == this.cmbEtiquetaLosas)
-            {
-                //this.pcbxEtiquetaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
-            }
-
-            // Verifica que sea muros
-            if (sender == this.cmbEtiquetaMuros)
-            {
-                //this.pcbxEtiquetaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
-            }
-
-            // Verifica que sea pilotes
-            if (sender == this.cmbEtiquetaPilotes)
-            {
-                //this.pcbxEtiquetaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
-            }
-
-            // Verifica que sea plateas
-            if (sender == this.cmbEtiquetaPlatea)
-            {
-                //this.pcbxEtiquetaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
-            }
-
-            // Verifica que sea vigas
-            if (sender == this.cmbEtiquetaVigas)
-            {
-                //this.pcbxEtiquetaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
-            }
-
-            // Verifica que sea zapatas
-            if (sender == this.cmbEtiquetaZapatas)
-            {
-                //this.pcbxEtiquetaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
-            }
-
-            // Verifica que sea zapata corrida
-            if (sender == this.cmbEtiquetaZapataCorrida)
-            {
-                //this.pcbxEtiquetaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
-            }
         }
     }
 }

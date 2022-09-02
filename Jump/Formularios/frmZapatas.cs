@@ -36,6 +36,9 @@ namespace Jump
         List<DimensionType> cotasLineales = new List<DimensionType>();
         List<SpotDimensionType> cotasElevacion = new List<SpotDimensionType>();
 
+        // Lista de etiquetas creadas en la vista
+        List<Element> listaEtiquetasCreadas = new List<Element>();
+
         // DataGridView de los díametros y estilos de líneas
         DataGridView dgvEstiloLinea = new DataGridView();
 
@@ -148,6 +151,12 @@ namespace Jump
                         vista = CrearVistaYY(this.elementos[posicionImagenPreview]);
                     }
 
+                    // Muestra solamente el elemento y sus armaduras
+                    Tools.MostrarSolamenteElementoYBarrasEnVista(this.doc, vista, this.elementos[posicionImagenPreview]);
+
+                    // Muestra las etiquetas creadas
+                    Tools.MostrarElementosVista(this.doc, vista, listaEtiquetasCreadas);
+
                     // Crea la vista previa
                     PreviewControl vistaPrevia = new PreviewControl(this.doc, vista.Id);
 
@@ -210,6 +219,24 @@ namespace Jump
             // Verifica que no sea nula
             if (pc != null)
             {
+                try
+                {
+                    // Hace zoom y coloca centrado la vista
+                    pc.UIView.ZoomToFit();
+                }
+                catch (Exception) { }
+            }
+        }
+
+        /// <summary> Ajusta la vista para que quede centrado y con zoom </summary>
+        private void AjustarVistaDePreviewControl()
+        {
+            // Obtiene a ventana con el preview de la vista
+            PreviewControl pc = this.PreviewEtiquetas.Child as PreviewControl;
+
+            // Verifica que no sea nula
+            if (pc != null)
+            {                
                 try
                 {
                     // Hace zoom y coloca centrado la vista
@@ -422,7 +449,7 @@ namespace Jump
 
             // Obtiene la vista creada
             vista = Tools.VistaXX(this.doc, elem);
-
+            
             // Cambia las configuraciones de visualización de la vista
             vista = Tools.CambiarConfiguracionVista(this.cmbEscalaVista, this.doc, vista, nivelDetalle);
 
@@ -459,13 +486,13 @@ namespace Jump
         /// <summary> Crea las etiquetas, cotas y despiece de armaduras en una vista dada </summary>
         private void CrearEtiquetas(Autodesk.Revit.DB.View vista, Element elem)
         {
-            // Crea la lista de elementos para hacer un grupo
-            List<Element> listaGrupo = new List<Element>();
-            
+            // Limpia la lista
+            listaEtiquetasCreadas.Clear();
+
             // Crea la lista de Representacion de Armaduras
             List<ArmaduraRepresentacion> listaArmaduraRepresentacion = new List<ArmaduraRepresentacion>();
 
-            // Crea la lista de creadas en la vista
+            // Crea la lista de cotas en la vista
             List<Dimension> listaCotas = new List<Dimension>();
 
             // Obtiene todas las armaduras del elemento
@@ -484,6 +511,9 @@ namespace Jump
                 {
                     // Crea la cota de altura a la izquierda del elemento
                     listaCotas = Tools.CrearCotaParaElemento(this.doc, vista, elem, tipoCota);
+
+                    // Agrega las cotas a la lista
+                    listaEtiquetasCreadas.AddRange(listaCotas);
                 }
                 catch (Exception) { }
             }
@@ -510,6 +540,9 @@ namespace Jump
 
                     // Mueve la etiqueta
                     ElementTransformUtils.MoveElement(this.doc, etiqueta.Id, vector);
+
+                    // Agrega la etiqueta a la lista
+                    listaEtiquetasCreadas.Add(etiqueta);
                 }
                 catch (Exception ) { }
             }
@@ -539,6 +572,9 @@ namespace Jump
 
                     // Mueve la cota
                     ElementTransformUtils.MoveElement(doc, cotaProfundidad.Id, vector);
+
+                    // Agrega la cota de profundidad a la lista
+                    listaEtiquetasCreadas.Add(cotaProfundidad);
                 }
                 catch (Exception) { }
             }
@@ -565,6 +601,9 @@ namespace Jump
 
                         // Asigna la etiqueta
                         etiquetaArmadura = etiqueta;
+
+                        // Agrega la etiqueta de armadura a la lista
+                        listaEtiquetasCreadas.Add(etiquetaArmadura);
                     }
                     catch (Exception) { }
                 }
@@ -604,6 +643,10 @@ namespace Jump
                             // Asigna la etiqueta
                             armadura.EtiquetaArmadura = etiquetaArmadura;
                         }
+
+                        // Agrega la representación de la armadura a la lista
+                        listaEtiquetasCreadas.AddRange(armadura.CurvasDeArmadura);
+                        listaEtiquetasCreadas.AddRange(armadura.TextosDeLongitudesParciales);
                     }
                     catch (Exception) { }
                 }
@@ -611,23 +654,12 @@ namespace Jump
                 // Regenera el documento
                 this.doc.Regenerate();
             }
-            
+
             // Mueve los despieces de Armaduras
             Tools.OrdenarYMoverRepresentacionArmaduraSegunDireccion(this.doc, vista, elem, listaArmaduraRepresentacion);
+
+            // Ajusta el zoom de la vista
+            AjustarVistaDePreviewControl();
         }
-
-        /// <summary> Cambia el formato del TabControl de las etiquetas a horizontal </summary>
-        //private void tabcEtiquetas_DrawItem(object sender, DrawItemEventArgs e)
-        //{
-        //    // Ocurre la magia
-        //    var g = e.Graphics;
-        //    var text = this.tabcEtiquetas.TabPages[e.Index].Text;
-        //    var sizeText = g.MeasureString(text, this.tabcEtiquetas.Font);
-
-        //    var x = e.Bounds.Left + 3;
-        //    var y = e.Bounds.Top + (e.Bounds.Height - sizeText.Height) / 2;
-
-        //    g.DrawString(text, this.tabcEtiquetas.Font, Brushes.Black, x, y);
-        //}
     }
 }

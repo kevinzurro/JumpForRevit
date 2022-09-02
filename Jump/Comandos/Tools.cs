@@ -170,6 +170,9 @@ namespace Jump
         {
             BuiltInCategory.OST_EdgeSlab,
             BuiltInCategory.OST_FloorsStructure,
+            BuiltInCategory.OST_StructConnectionAnchors,
+            BuiltInCategory.OST_StructConnectionPlates,
+            BuiltInCategory.OST_StructConnectionWelds,
             BuiltInCategory.OST_StructuralColumns,
             BuiltInCategory.OST_StructuralFraming,
             BuiltInCategory.OST_StructuralFoundation,
@@ -377,7 +380,7 @@ namespace Jump
             {
                 // Recorre todos los elementos de la lista y obtiene su ID
                 foreach (Element elem in lista)
-                {
+                {                    
                     // Verifica si el elemento se puede ocultar
                     if (elem.CanBeHidden(vista))
                     {
@@ -385,7 +388,6 @@ namespace Jump
                         listaID.Add(elem.Id);
                     }
                 }
-
                 // Verifica que haya elementos en la lista
                 if (listaID.Count > 0)
                 {
@@ -410,8 +412,12 @@ namespace Jump
             // Obtiene todos ElementId de las armaduras
             barrasId = ObtenerIdElemento(barras);
 
-            // Muestra los elementos en la vista actual
-            vistaActual.UnhideElements(barrasId);
+            // Verifica que la lista no esté vacia
+            if (barrasId.Count > 0)
+            {
+                // Muestra los elementos en la vista actual
+                vistaActual.UnhideElements(barrasId);
+            }
         }
 
         #endregion
@@ -4904,8 +4910,8 @@ namespace Jump
             // Cambia el nivel de detalle de la vista
             vista.DetailLevel = nivelDetalle;
 
-            // Desactiva el cuadro de recorte
-            vista.CropBoxActive = false;
+            // Activa el cuadro de recorte
+            vista.CropBoxActive = true;
 
             // Desactiva la visibilidad del cuadro de recorte
             vista.CropBoxVisible = false;

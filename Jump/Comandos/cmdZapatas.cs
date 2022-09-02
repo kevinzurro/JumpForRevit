@@ -23,8 +23,9 @@ namespace Jump
 
             // Muestra el formulario de Zapata
             frmZapatas inicioZapata = new frmZapatas(doc, uiDoc);
-            inicioZapata.ShowDialog();
 
+            inicioZapata.ShowDialog();            
+            
             return Result.Succeeded;
         }
     }

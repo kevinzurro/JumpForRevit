@@ -379,8 +379,6 @@
             // chbCotaElevacion
             // 
             this.chbCotaElevacion.AutoSize = true;
-            this.chbCotaElevacion.Checked = true;
-            this.chbCotaElevacion.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chbCotaElevacion.Location = new System.Drawing.Point(24, 185);
             this.chbCotaElevacion.Margin = new System.Windows.Forms.Padding(0);
             this.chbCotaElevacion.Name = "chbCotaElevacion";
@@ -393,8 +391,6 @@
             // chbEtiquetaBase
             // 
             this.chbEtiquetaBase.AutoSize = true;
-            this.chbEtiquetaBase.Checked = true;
-            this.chbEtiquetaBase.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chbEtiquetaBase.Location = new System.Drawing.Point(24, 45);
             this.chbEtiquetaBase.Margin = new System.Windows.Forms.Padding(0);
             this.chbEtiquetaBase.Name = "chbEtiquetaBase";
@@ -407,8 +403,6 @@
             // chbCotaLineal
             // 
             this.chbCotaLineal.AutoSize = true;
-            this.chbCotaLineal.Checked = true;
-            this.chbCotaLineal.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chbCotaLineal.Location = new System.Drawing.Point(24, 150);
             this.chbCotaLineal.Margin = new System.Windows.Forms.Padding(0);
             this.chbCotaLineal.Name = "chbCotaLineal";
@@ -421,8 +415,6 @@
             // chbEtiquetaArmadura
             // 
             this.chbEtiquetaArmadura.AutoSize = true;
-            this.chbEtiquetaArmadura.Checked = true;
-            this.chbEtiquetaArmadura.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chbEtiquetaArmadura.Location = new System.Drawing.Point(24, 80);
             this.chbEtiquetaArmadura.Margin = new System.Windows.Forms.Padding(0);
             this.chbEtiquetaArmadura.Name = "chbEtiquetaArmadura";

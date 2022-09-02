@@ -106,12 +106,12 @@
             this.pcbxEtiquetaPosicion = new System.Windows.Forms.PictureBox();
             this.tbpgCotas = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
-            this.gbxCotasLineal = new System.Windows.Forms.GroupBox();
-            this.gbxCotasProfundidad = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
+            this.gbxCotasProfundidad = new System.Windows.Forms.GroupBox();
+            this.gbxCotasLineal = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabcConfiguraciones.SuspendLayout();
             this.tbpgGeneral.SuspendLayout();
@@ -144,8 +144,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pcbxEtiquetaPosicion)).BeginInit();
             this.tbpgCotas.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
-            this.tableLayoutPanel10.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.tableLayoutPanel10.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -685,25 +685,6 @@
             this.tableLayoutPanel9.Controls.Add(this.tableLayoutPanel10, 0, 0);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             // 
-            // tableLayoutPanel10
-            // 
-            resources.ApplyResources(this.tableLayoutPanel10, "tableLayoutPanel10");
-            this.tableLayoutPanel10.Controls.Add(this.gbxCotasLineal, 0, 0);
-            this.tableLayoutPanel10.Controls.Add(this.gbxCotasProfundidad, 0, 1);
-            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
-            // 
-            // gbxCotasLineal
-            // 
-            resources.ApplyResources(this.gbxCotasLineal, "gbxCotasLineal");
-            this.gbxCotasLineal.Name = "gbxCotasLineal";
-            this.gbxCotasLineal.TabStop = false;
-            // 
-            // gbxCotasProfundidad
-            // 
-            resources.ApplyResources(this.gbxCotasProfundidad, "gbxCotasProfundidad");
-            this.gbxCotasProfundidad.Name = "gbxCotasProfundidad";
-            this.gbxCotasProfundidad.TabStop = false;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.btnGuardar);
@@ -724,6 +705,25 @@
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // tableLayoutPanel10
+            // 
+            resources.ApplyResources(this.tableLayoutPanel10, "tableLayoutPanel10");
+            this.tableLayoutPanel10.Controls.Add(this.gbxCotasLineal, 0, 0);
+            this.tableLayoutPanel10.Controls.Add(this.gbxCotasProfundidad, 0, 1);
+            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
+            // 
+            // gbxCotasProfundidad
+            // 
+            resources.ApplyResources(this.gbxCotasProfundidad, "gbxCotasProfundidad");
+            this.gbxCotasProfundidad.Name = "gbxCotasProfundidad";
+            this.gbxCotasProfundidad.TabStop = false;
+            // 
+            // gbxCotasLineal
+            // 
+            resources.ApplyResources(this.gbxCotasLineal, "gbxCotasLineal");
+            this.gbxCotasLineal.Name = "gbxCotasLineal";
+            this.gbxCotasLineal.TabStop = false;
             // 
             // frmConfiguraciones
             // 
@@ -778,8 +778,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pcbxEtiquetaPosicion)).EndInit();
             this.tbpgCotas.ResumeLayout(false);
             this.tableLayoutPanel9.ResumeLayout(false);
-            this.tableLayoutPanel10.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.tableLayoutPanel10.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -832,9 +832,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.GroupBox gbxEtiquetaIndependiente;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
-        private System.Windows.Forms.GroupBox gbxCotasLineal;
-        private System.Windows.Forms.GroupBox gbxCotasProfundidad;
         private System.Windows.Forms.GroupBox gbxEtiquetaArmadura;
         private System.Windows.Forms.PictureBox pcbxEtiquetaPosicion;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
@@ -869,5 +866,8 @@
         private System.Windows.Forms.Label lblEtiquetaAreaRefuerzo;
         private System.Windows.Forms.ComboBox cmbEtiquetaArmaduraEnSistema;
         private System.Windows.Forms.ComboBox cmbEtiquetaAreaRefuerzo;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
+        private System.Windows.Forms.GroupBox gbxCotasLineal;
+        private System.Windows.Forms.GroupBox gbxCotasProfundidad;
     }
 }

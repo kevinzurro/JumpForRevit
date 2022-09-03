@@ -36,14 +36,14 @@ namespace Jump
             IdiomasDisponibles.Clear();
 
             // Agregar los idiomas disponibles al vector principal
-            //IdiomasDisponibles.Add("Deutsch");//
-            //IdiomasDisponibles.Add("English");//
-            IdiomasDisponibles.Add("Español");//
-            //IdiomasDisponibles.Add("French");//
-            //IdiomasDisponibles.Add("Italian");//
-            //IdiomasDisponibles.Add("Japanese");//
-            //IdiomasDisponibles.Add("Nederlands");//
-            //IdiomasDisponibles.Add("Português");//
+            //IdiomasDisponibles.Add("Deutsch");
+            //IdiomasDisponibles.Add("English");
+            IdiomasDisponibles.Add("Español");
+            //IdiomasDisponibles.Add("French");
+            //IdiomasDisponibles.Add("Italian");
+            //IdiomasDisponibles.Add("Japanese");
+            //IdiomasDisponibles.Add("Nederlands");
+            //IdiomasDisponibles.Add("Português");
         }
 
         ///<summary> Carga los textos para cada uno de los vectores secundarios </summary>
@@ -99,10 +99,10 @@ namespace Jump
             Espanol.Add("Pla2", "Platea descripción corta");
             Espanol.Add("Pla3", "Platea descripción larga");
 
-            Espanol.Add("OrdYEnu1", "Orden y Enumeración");
-            Espanol.Add("OrdYEnu2", "Orden y Enumeración descripción corta");
-            Espanol.Add("OrdYEnu3", "Orden y Enumeración descripción larga");
-            Espanol.Add("OrdYEnu4", "Orden y Enumeración");
+            Espanol.Add("OrdYEnu1", "Orden \ny enumeración");
+            Espanol.Add("OrdYEnu2", "Orden y enumeración descripción corta");
+            Espanol.Add("OrdYEnu3", "Orden y enumeración descripción larga");
+            Espanol.Add("OrdYEnu4", "Orden y enumeración");
             Espanol.Add("OrdYEnu1-1", "Categoría");
             Espanol.Add("OrdYEnu1-2", "Todos");
             Espanol.Add("OrdYEnu1-3", "Elementos seleccionados");
@@ -158,10 +158,12 @@ namespace Jump
             Espanol.Add("Los3", "Losas descripción larga");
 
             Espanol.Add("VisArm1", "Visibilidad \nde Armadura");
-            Espanol.Add("VisArm2", "Armadura sin tapar");
-            Espanol.Add("VisArm3", "Armadura solida");
-            Espanol.Add("VisArm4", "Armadura tapada");
-            Espanol.Add("VisArm5", "Armadura filamento");
+            Espanol.Add("VisArm2", "Visiblidad de armadura descripción corta");
+            Espanol.Add("VisArm3", "Visiblidad de armadura descripción larga");
+            Espanol.Add("VisArmSol", "Solido");
+            Espanol.Add("VisArmFil", "Filamento");
+            Espanol.Add("VisArmSinTap", "Sin tapar");            
+            Espanol.Add("VisArmTap", "Tapada");            
 
             Espanol.Add("Conf1", "Configuraciones");
             Espanol.Add("Conf2", "Permite cambiar las configuraciones predeterminadas");
@@ -169,7 +171,7 @@ namespace Jump
             Espanol.Add("Conf1-1", "General");
             Espanol.Add("Conf1-2-1", "Configuraciones");
             Espanol.Add("Conf1-2-2", "Precisión para ordenar los elementos");
-            Espanol.Add("Conf1-2-3", "La precisión en X como en Y se utiliza para el Orden de los elementos");
+            Espanol.Add("Conf1-2-3", "La precisión en X como en Y se utiliza para el Orden y enumeración de los elementos");
             Espanol.Add("Conf1-3-1", "Corte transversal");
             Espanol.Add("Conf1-3-2", "Local    -    En las coordenadas de la familia ( X ´ ; Y ´ )");
             Espanol.Add("Conf1-3-3", "Global   -    En las coordenadas del proyecto ( X ; Y )");
@@ -216,11 +218,11 @@ namespace Jump
             Espanol.Add("Idi5", "Idioma");
             Espanol.Add("Idi6", "Guardar");
 
-            Espanol.Add("EleEst1", "Elementos \nEstructurales");
+            Espanol.Add("EleEst1", "Elementos \nestructurales");
             Espanol.Add("EleEst2", "Oculta los elementos que no son estructurales");
             Espanol.Add("EleEst3", "Oculta todos los elementos no estructurales en la vista actual");
 
-            Espanol.Add("EleAna1", "Elementos \nAnalíticos");
+            Espanol.Add("EleAna1", "Elementos \nanalíticos");
             Espanol.Add("EleAna2", "Oculta los elementos que no son análiticos");
             Espanol.Add("EleAna3", "Oculta todos los elementos dejando a los elementos análiticos visibles en la vista");
 

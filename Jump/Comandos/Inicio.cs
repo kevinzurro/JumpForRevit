@@ -57,7 +57,7 @@ namespace Jump
 
             #region Botones
 
-            // Crear los botones
+            // Crea los botones
             PushButton botonPilote = panelDetalleArmado.AddItem(new PushButtonData("botonPilote", Language.ObtenerTexto(IdiomaDelPrograma, "Pil1"), RutaDelEnsamblado, "Jump.cmdPilotes")) as PushButton;
             PushButton botonZapataCorrida = panelDetalleArmado.AddItem(new PushButtonData("botonZapataCorrida", Language.ObtenerTexto(IdiomaDelPrograma, "ZapCor1"), RutaDelEnsamblado, "Jump.cmdZapataCorrida")) as PushButton;
             PushButton botonPlatea = panelDetalleArmado.AddItem(new PushButtonData("botonPlatea", Language.ObtenerTexto(IdiomaDelPrograma, "Pla1"), RutaDelEnsamblado, "Jump.cmdPlatea")) as PushButton;
@@ -68,15 +68,15 @@ namespace Jump
             PushButton botonLosa = panelDetalleArmado.AddItem(new PushButtonData("botonLosa", Language.ObtenerTexto(IdiomaDelPrograma, "Los1"), RutaDelEnsamblado, "Jump.cmdLosas")) as PushButton;
             PushButton botonElemenEstructural = panelVisibilidad.AddItem(new PushButtonData("botonElemenEstructural", Language.ObtenerTexto(IdiomaDelPrograma, "EleEst1"), RutaDelEnsamblado, "Jump.cmdVisibilidadEstructural")) as PushButton;
             PushButton botonElemenAnalitico = panelVisibilidad.AddItem(new PushButtonData("botonElemenAnalitico", Language.ObtenerTexto(IdiomaDelPrograma, "EleAna1"), RutaDelEnsamblado, "Jump.cmdVisibilidadAnalitica")) as PushButton;
-            PushButton botonIdioma = panelHerramienta.AddItem(new PushButtonData("botonIdioma", Language.ObtenerTexto(IdiomaDelPrograma, "Idi1"), RutaDelEnsamblado, "Jump.cmdIdioma")) as PushButton;
             PushButton botonOrdenEnumeracion = panelHerramienta.AddItem(new PushButtonData("botonOrdenEnumeracion", Language.ObtenerTexto(IdiomaDelPrograma, "OrdYEnu1"), RutaDelEnsamblado, "Jump.cmdOrdenYEnumeracion")) as PushButton;
+            PushButton botonIdioma = panelHerramienta.AddItem(new PushButtonData("botonIdioma", Language.ObtenerTexto(IdiomaDelPrograma, "Idi1"), RutaDelEnsamblado, "Jump.cmdIdioma")) as PushButton;            
             PushButton botonConfiguracion = panelHerramienta.AddItem(new PushButtonData("botonConfiguracion", Language.ObtenerTexto(IdiomaDelPrograma, "Conf1"), RutaDelEnsamblado, "Jump.cmdConfiguraciones")) as PushButton;
 
-            // Crear los botones para la visibilidad de la armadura que van en el botón desplegable
-            PushButtonData botonArmaSinTapa = new PushButtonData("botonArmaSinTapa", Language.ObtenerTexto(IdiomaDelPrograma, "VisArm2"), RutaDelEnsamblado, "Jump.cmdArmadura1SinTapar");
-            PushButtonData botonArmaSolido = new PushButtonData("botonArmaSolido", Language.ObtenerTexto(IdiomaDelPrograma, "VisArm3"), RutaDelEnsamblado, "Jump.cmdArmadura2Solido");
-            PushButtonData botonArmaTapada = new PushButtonData("botonArmaTapada", Language.ObtenerTexto(IdiomaDelPrograma, "VisArm4"), RutaDelEnsamblado, "Jump.cmdArmadura3Tapada");
-            PushButtonData botonArmaFilamento = new PushButtonData("botonArmaFilamento", Language.ObtenerTexto(IdiomaDelPrograma, "VisArm5"), RutaDelEnsamblado, "Jump.cmdArmadura4Filamento");
+            // Crea los botones para la visibilidad de la armadura que van en el botón desplegable
+            PushButtonData botonArmaSolido = new PushButtonData("botonArmaSolido", Language.ObtenerTexto(IdiomaDelPrograma, "VisArmSol"), RutaDelEnsamblado, "Jump.cmdArmaduraSolido");
+            PushButtonData botonArmaFilamento = new PushButtonData("botonArmaFilamento", Language.ObtenerTexto(IdiomaDelPrograma, "VisArmFil"), RutaDelEnsamblado, "Jump.cmdArmaduraFilamento");
+            PushButtonData botonArmaSinTapa = new PushButtonData("botonArmaSinTapa", Language.ObtenerTexto(IdiomaDelPrograma, "VisArmSinTap"), RutaDelEnsamblado, "Jump.cmdArmaduraSinTapar");            
+            PushButtonData botonArmaTapada = new PushButtonData("botonArmaTapada", Language.ObtenerTexto(IdiomaDelPrograma, "VisArmTap"), RutaDelEnsamblado, "Jump.cmdArmaduraTapada");            
 
             // Crear el boton desplegable para las armaduras
             PulldownButton botonArmaVisibilidad = panelVisibilidad.AddItem(new PulldownButtonData("botonArmaVisibilidad", Language.ObtenerTexto(IdiomaDelPrograma, "VisArm1"))) as PulldownButton;
@@ -94,15 +94,15 @@ namespace Jump
             botonMuro.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Boton_Muro.png"));
             botonViga.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Boton_Viga.png"));
             botonLosa.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Boton_Losa.png"));
-            botonArmaSinTapa.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/monitor.png"));
-            botonArmaSolido.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/monitor.png"));
-            botonArmaTapada.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/monitor.png"));
-            botonArmaFilamento.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/monitor.png"));
-            botonArmaVisibilidad.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/monitor.png"));
+            botonArmaSolido.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Armadura_solida.png"));
+            botonArmaFilamento.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Armadura_filamento.png"));
+            botonArmaSinTapa.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Armadura_sin_tapar.png"));
+            botonArmaTapada.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Armadura_tapada.png"));
+            botonArmaVisibilidad.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Armadura_visibilidad.png"));
             botonElemenEstructural.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Boton_Elem_Estructural.png"));
             botonElemenAnalitico.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Boton_Elem_Analitico.png"));
-            botonIdioma.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/monitor.png"));
-            botonOrdenEnumeracion.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/.png"));
+            botonOrdenEnumeracion.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Boton_Orden.png"));
+            botonIdioma.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Boton_Idioma.png"));
             botonConfiguracion.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Boton_Configuracion.png"));
 
             #endregion
@@ -110,10 +110,10 @@ namespace Jump
             #region Botones desplegables de visibilidad de armadura
 
             // Agregar los botones de visibilidad al boton desplegable
-            botonArmaVisibilidad.AddPushButton(botonArmaSinTapa);
             botonArmaVisibilidad.AddPushButton(botonArmaSolido);
-            botonArmaVisibilidad.AddPushButton(botonArmaTapada);
             botonArmaVisibilidad.AddPushButton(botonArmaFilamento);
+            botonArmaVisibilidad.AddPushButton(botonArmaSinTapa);            
+            botonArmaVisibilidad.AddPushButton(botonArmaTapada);            
 
             #endregion
 
@@ -130,8 +130,9 @@ namespace Jump
             botonLosa.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "Los2");
             botonElemenEstructural.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "EleEst2");
             botonElemenAnalitico.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "EleAna2");
-            botonIdioma.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "Idi2");
+            botonArmaVisibilidad.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "VisArm2");
             botonOrdenEnumeracion.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "OrdYEnu2");
+            botonIdioma.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "Idi2");
             botonConfiguracion.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "Conf2");
 
             #endregion
@@ -149,8 +150,9 @@ namespace Jump
             botonLosa.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "Los3");
             botonElemenEstructural.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "EleEst3");
             botonElemenAnalitico.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "EleAna3");
-            botonIdioma.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "Idi3");
+            botonArmaVisibilidad.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "VisArm3");
             botonOrdenEnumeracion.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "OrdYEnu3");
+            botonIdioma.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "Idi3");
             botonConfiguracion.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "Conf3");
 
             #endregion

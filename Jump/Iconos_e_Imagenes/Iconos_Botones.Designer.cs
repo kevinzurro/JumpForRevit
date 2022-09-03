@@ -63,6 +63,56 @@ namespace Jump.Iconos_e_Imagenes {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Armadura_filamento {
+            get {
+                object obj = ResourceManager.GetObject("Armadura_filamento", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Armadura_sin_tapar {
+            get {
+                object obj = ResourceManager.GetObject("Armadura_sin_tapar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Armadura_solida {
+            get {
+                object obj = ResourceManager.GetObject("Armadura_solida", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Armadura_tapada {
+            get {
+                object obj = ResourceManager.GetObject("Armadura_tapada", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Armadura_visibilidad {
+            get {
+                object obj = ResourceManager.GetObject("Armadura_visibilidad", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Boton_Columna {
             get {
                 object obj = ResourceManager.GetObject("Boton_Columna", resourceCulture);
@@ -103,6 +153,16 @@ namespace Jump.Iconos_e_Imagenes {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Boton_Idioma {
+            get {
+                object obj = ResourceManager.GetObject("Boton_Idioma", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Boton_Losa {
             get {
                 object obj = ResourceManager.GetObject("Boton_Losa", resourceCulture);
@@ -116,6 +176,16 @@ namespace Jump.Iconos_e_Imagenes {
         internal static System.Drawing.Bitmap Boton_Muro {
             get {
                 object obj = ResourceManager.GetObject("Boton_Muro", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Boton_Orden {
+            get {
+                object obj = ResourceManager.GetObject("Boton_Orden", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

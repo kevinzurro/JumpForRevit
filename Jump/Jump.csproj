@@ -73,10 +73,10 @@
     <Compile Include="Comandos\cmdPilotes.cs" />
     <Compile Include="Comandos\cmdVisibilidadAnalitica.cs" />
     <Compile Include="Comandos\cmdVisibilidadEstructural.cs" />
-    <Compile Include="Comandos\cmdArmadura3Tapada.cs" />
-    <Compile Include="Comandos\cmdArmadura4Filamento.cs" />
-    <Compile Include="Comandos\cmdArmadura2Solido.cs" />
-    <Compile Include="Comandos\cmdArmadura1SinTapar.cs" />
+    <Compile Include="Comandos\cmdArmaduraTapada.cs" />
+    <Compile Include="Comandos\cmdArmaduraFilamento.cs" />
+    <Compile Include="Comandos\cmdArmaduraSolido.cs" />
+    <Compile Include="Comandos\cmdArmaduraSinTapar.cs" />
     <Compile Include="Comandos\cmdColumnas.cs" />
     <Compile Include="Comandos\cmdIdioma.cs" />
     <Compile Include="Comandos\cmdMuros.cs" />
@@ -154,6 +154,13 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Armadura_solida.png" />
+    <Resource Include="Resources\Boton_Orden.png" />
+    <Resource Include="Resources\Boton_Idioma.png" />
+    <Resource Include="Resources\Armadura_visibilidad.png" />
+    <Resource Include="Resources\Armadura_tapada.png" />
+    <Resource Include="Resources\Armadura_sin_tapar.png" />
+    <Resource Include="Resources\Armadura_filamento.png" />
     <Resource Include="Resources\Zapata_Vista_Local.png" />
     <Resource Include="Resources\Zapata_Vista_Global.png" />
     <Resource Include="Resources\Boton_Pilote.png" />

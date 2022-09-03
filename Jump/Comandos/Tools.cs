@@ -4911,7 +4911,7 @@ namespace Jump
             vista.DetailLevel = nivelDetalle;
 
             // Activa el cuadro de recorte
-            vista.CropBoxActive = true;
+            vista.CropBoxActive = false;
 
             // Desactiva la visibilidad del cuadro de recorte
             vista.CropBoxVisible = false;

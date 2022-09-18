@@ -142,20 +142,17 @@ namespace Jump
                 if (this.elementos.Count > 0)
                 {
                     // Crea la vista para la sección
-                    Autodesk.Revit.DB.View vista = CrearVistaXX(this.elementos[posicionImagenPreview]);
+                    Autodesk.Revit.DB.View vista = Tools.VistaXX(this.doc, this.elementos[posicionImagenPreview]);//CrearVistaXX(this.elementos[posicionImagenPreview]);
 
                     //Verifica si la vista es nula
                     if (vista == null)
                     {
                         // Crea otra vista para la sección
-                        vista = CrearVistaYY(this.elementos[posicionImagenPreview]);
+                        vista = Tools.VistaYY(this.doc, this.elementos[posicionImagenPreview]);//CrearVistaYY(this.elementos[posicionImagenPreview]);
                     }
 
-                    // Muestra solamente el elemento y sus armaduras
-                    Tools.MostrarSolamenteElementoYBarrasEnVista(this.doc, vista, this.elementos[posicionImagenPreview]);
-
-                    // Muestra las etiquetas creadas
-                    Tools.MostrarElementosVista(this.doc, vista, listaEtiquetasCreadas);
+                    // Configura la vista y crea las etiquetas
+                    CrearEtiquetasYConfigurarVista(vista, this.elementos[posicionImagenPreview]);
 
                     // Crea la vista previa
                     PreviewControl vistaPrevia = new PreviewControl(this.doc, vista.Id);
@@ -416,14 +413,20 @@ namespace Jump
                         if (this.chbVistaXX.Checked)
                         {
                             // Crea la vista XX
-                            Autodesk.Revit.DB.View vista = CrearVistaXX(elem);
+                            Autodesk.Revit.DB.View vista = Tools.VistaXX(this.doc, elem);
+
+                            // Configura la vista y crea las etiquetas
+                            CrearEtiquetasYConfigurarVista(vista, elem);
                         }
 
                         // Verifica que la vista Y-Y esté activado
                         if (this.chbVistaYY.Checked)
                         {
                             // Crea la vista YY
-                            Autodesk.Revit.DB.View vista = CrearVistaYY(elem);
+                            Autodesk.Revit.DB.View vista = Tools.VistaYY(this.doc, elem);
+
+                            // Configura la vista y crea las etiquetas
+                            CrearEtiquetasYConfigurarVista(vista, elem);
                         }
 
                         // Incrementa la barra de progreso
@@ -442,43 +445,19 @@ namespace Jump
         }
 
         /// <summary> Crea la vista XX </summary>
-        private Autodesk.Revit.DB.View CrearVistaXX(Element elem)
+        private Autodesk.Revit.DB.View CrearEtiquetasYConfigurarVista(Autodesk.Revit.DB.View vista, Element elem)
         {
-            // Crea la vista para la sección
-            Autodesk.Revit.DB.View vista;
-
-            // Obtiene la vista creada
-            vista = Tools.VistaXX(this.doc, elem);
-            
             // Cambia las configuraciones de visualización de la vista
             vista = Tools.CambiarConfiguracionVista(this.cmbEscalaVista, this.doc, vista, nivelDetalle);
-
-            // Muestra solamente el elemento y sus armaduras
-            Tools.MostrarSolamenteElementoYBarrasEnVista(this.doc, vista, elem);
 
             // Crea las etiquetas para la vista
             CrearEtiquetas(vista, elem);
 
-            return vista;
-        }
-
-        /// <summary> Crea la vista YY </summary>
-        private Autodesk.Revit.DB.View CrearVistaYY(Element elem)
-        {
-            // Crea la vista para la sección
-            Autodesk.Revit.DB.View vista;
-
-            // Obtiene la vista creada
-            vista = Tools.VistaYY(this.doc, elem);
-
-            // Cambia las configuraciones de visualización de la vista
-            vista = Tools.CambiarConfiguracionVista(this.cmbEscalaVista, this.doc, vista, nivelDetalle);
-
             // Muestra solamente el elemento y sus armaduras
             Tools.MostrarSolamenteElementoYBarrasEnVista(this.doc, vista, elem);
 
-            // Crea las etiquetas para la vista
-            CrearEtiquetas(vista, elem);
+            // Muestra todos los elementos de la lista
+            Tools.MostrarElementosVista(doc, vista, listaEtiquetasCreadas);
 
             return vista;
         }
@@ -488,6 +467,9 @@ namespace Jump
         {
             // Limpia la lista
             listaEtiquetasCreadas.Clear();
+
+            // Muestra solamente el elemento y sus armaduras
+            Tools.MostrarSolamenteElementoYBarrasEnVista(this.doc, vista, elem);
 
             // Crea la lista de Representacion de Armaduras
             List<ArmaduraRepresentacion> listaArmaduraRepresentacion = new List<ArmaduraRepresentacion>();
@@ -657,6 +639,9 @@ namespace Jump
 
             // Mueve los despieces de Armaduras
             Tools.OrdenarYMoverRepresentacionArmaduraSegunDireccion(this.doc, vista, elem, listaArmaduraRepresentacion);
+            
+            // Ajusta el recuadro de la vista
+            Tools.AjustarRecuadroDeVista(this.doc, vista, listaEtiquetasCreadas);
 
             // Ajusta el zoom de la vista
             AjustarVistaDePreviewControl();

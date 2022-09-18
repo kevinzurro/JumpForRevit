@@ -359,7 +359,7 @@ namespace Jump
                 {
                     // Muestra los elementos en la vista actual
                     vista.UnhideElements(listaID);
-                }    
+                }
             }
         }
 
@@ -368,7 +368,7 @@ namespace Jump
         {
             // Crea una lista de ElementID
             List<ElementId> listaID = new List<ElementId>();
-
+            
             // Verifica que la visibilidad sea en algunas de estas vistas
             if (vista.ViewType == ViewType.CeilingPlan ||
                 vista.ViewType == ViewType.Elevation ||
@@ -3432,7 +3432,7 @@ namespace Jump
             // Agrega las referencias del plano superior e inferior del elemento
             ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, -vista.UpDirection, elem));
             ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, vista.UpDirection, elem));
-
+            
             // Crea una caja de sección de la vista
             BoundingBoxXYZ bb = vista.CropBox;
 
@@ -4911,7 +4911,7 @@ namespace Jump
             vista.DetailLevel = nivelDetalle;
 
             // Activa el cuadro de recorte
-            vista.CropBoxActive = false;
+            vista.CropBoxActive = true;
 
             // Desactiva la visibilidad del cuadro de recorte
             vista.CropBoxVisible = false;
@@ -4975,6 +4975,34 @@ namespace Jump
             lista = filtro.ToElements().ToList();
 
             return lista;
+        }
+
+        ///<summary> Ajusta el recuadro de una vista con todos los elementos </summary>
+        public static View AjustarRecuadroDeVista(Document doc, View vista, List<Element> lista)
+        {
+            // Obtiene el recuadro de la vista
+            BoundingBoxXYZ bbVista = vista.CropBox;
+
+            // Obtiene la transformada inversa de la vista
+            Transform traInv = bbVista.Transform.Inverse;
+
+            // Verifica que existan elementos
+            if (lista.Count > 0)
+            {
+                // Obtiene la mínima coordenada
+                double xMin = Math.Min(bbVista.Min.X, lista.Min(x => traInv.OfPoint(x.get_BoundingBox(vista).Min).X));
+                double yMin = Math.Min(bbVista.Min.Y, lista.Min(x => traInv.OfPoint(x.get_BoundingBox(vista).Min).Y));
+
+                // Obtiene la máxima coordenada
+                double xMax = Math.Max(bbVista.Max.X, lista.Max(x => traInv.OfPoint(x.get_BoundingBox(vista).Max).X));
+                double yMax = Math.Max(bbVista.Max.Y, lista.Max(x => traInv.OfPoint(x.get_BoundingBox(vista).Max).Y));
+
+                // Crea los puntos
+                vista.CropBox.Min = new XYZ(xMin, yMin, bbVista.Min.Z);
+                vista.CropBox.Max = new XYZ(xMax, yMax, bbVista.Max.Z);
+            }
+
+            return vista;
         }
 
         #endregion

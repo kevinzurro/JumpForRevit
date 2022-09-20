@@ -105,7 +105,7 @@ namespace Jump
             get { return this.doc; }
         }
 
-        /// <summary> Asigna u obtiene la posición del conjunto </summary>
+        /// <summary> Asigna u obtiene la posición de la Representación de la armadura en coordenadas globales </summary>
         public XYZ Posicion
         {
             get { return this.posicion; }
@@ -182,7 +182,7 @@ namespace Jump
             return lista;
         }
 
-        /// <summary> Mueve la Representación de la Armadura con la etiqueta independiente una distancia dada </summary>
+        /// <summary> Mueve la Representación de la Armadura con la etiqueta una distancia dada </summary>
         public void MoverArmaduraRepresentacionConEtiqueta(XYZ distancia)
         {
             // Verifica que la etiqueta no sea nula

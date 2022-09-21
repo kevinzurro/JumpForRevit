@@ -712,6 +712,25 @@ namespace Jump
             return lista;
         }
 
+        /// <summary> Obtiene una lista de todos los subelementos que posee un elemento </summary>
+        public static List<Element> ObtenerTodosSubElementos(Document doc, Element elem)
+        {
+            // Crea la lista de los subelementos
+            List<Element> subElementos = new List<Element>();
+
+            // Castea el elemento
+            FamilyInstance fi = elem as FamilyInstance;
+
+            // Verifica que el elemento tenga subelementos
+            if (fi.GetSubComponentIds().Count > 0)
+            {
+                // Agrega a la lista
+                subElementos = ObtenerElementoSegunID(doc, fi.GetSubComponentIds().ToList());
+            }
+
+            return subElementos;
+        }
+
         ///<summary> Obtiene una lista ordenada alfabéticamente de todos los parametros de ejemplar </summary>
         public static List<Parameter> ObtenerParametrosEjemplar(Document doc, Element elem)
         {
@@ -4648,18 +4667,18 @@ namespace Jump
             vista.DetailLevel = nivelDetalle;
 
             // Activa el cuadro de recorte
-            vista.CropBoxActive = false;
+            vista.CropBoxActive = true;
 
             // Desactiva la visibilidad del cuadro de recorte
             vista.CropBoxVisible = false;
 
             // Obtiene las categorías a ocultar
             Category categoriaGrilla = Category.GetCategory(doc, BuiltInCategory.OST_Grids);
-            Category categoriaVista = Category.GetCategory(doc, BuiltInCategory.OST_Sections);
+            Category categoriaSeccion = Category.GetCategory(doc, BuiltInCategory.OST_Sections);
 
             // Oculta las categorías
             vista.SetCategoryHidden(categoriaGrilla.Id, true);
-            vista.SetCategoryHidden(categoriaVista.Id, true);
+            vista.SetCategoryHidden(categoriaSeccion.Id, true);
 
             return vista;
         }
@@ -4682,14 +4701,20 @@ namespace Jump
             // Agrega el elemento a la lista
             ElementosMostar.Add(elem);
 
+            // Crea una lista que contendra los sub elementos
+            List<Element> subElementos = ObtenerTodosSubElementos(doc, elem);
+
+            // Agrega los subelementos
+            ElementosMostar.AddRange(subElementos);
+
             // Recorre todas las barras
             foreach (Rebar barra in armaduras)
             {
                 // Quita la barra de la lista para ocultar
-                todosElementos.Remove(barra as Element);
+                todosElementos.Remove(barra);
 
                 // Agrega la barra a la lista para mostrar
-                ElementosMostar.Add(barra as Element);
+                ElementosMostar.Add(barra);
             }
 
             // Oculta los elementos
@@ -4697,6 +4722,15 @@ namespace Jump
 
             // Muestra todos los elementos de la lista
             Tools.MostrarElementosVista(doc, vista, ElementosMostar);
+        }
+
+        ///<summary> Elimina de la lista los subelementos </summary>
+        public static List<Element> EliminarSubelementos(List<Element> lista)
+        {
+            // Elimina de la lista
+            lista.RemoveAll(x => (x as FamilyInstance).SuperComponent != null);
+
+            return lista;
         }
 
         ///<summary> Obtiene una lista de todos los elementos que se muestran en una vista </summary>

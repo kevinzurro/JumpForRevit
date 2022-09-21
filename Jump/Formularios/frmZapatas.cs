@@ -83,7 +83,10 @@ namespace Jump
 
             // Asigna las zapatas del proyecto a la lista
             this.elementos = Tools.ObtenerTodosEjemplaresSegunClaseYCategoria(doc, clase, categoria);
-            
+
+            // Elimina los subelementos
+            this.elementos = Tools.EliminarSubelementos(this.elementos);
+
             // Agrega los elementos a la listbox
             Tools.RellenarListBoxDeElementos(this.lstElementos, doc, this.elementos);
 
@@ -142,13 +145,13 @@ namespace Jump
                 if (this.elementos.Count > 0)
                 {
                     // Crea la vista para la sección
-                    Autodesk.Revit.DB.View vista = Tools.VistaXX(this.doc, this.elementos[posicionImagenPreview]);//CrearVistaXX(this.elementos[posicionImagenPreview]);
+                    Autodesk.Revit.DB.View vista = Tools.VistaXX(this.doc, this.elementos[posicionImagenPreview]);
 
                     //Verifica si la vista es nula
                     if (vista == null)
                     {
                         // Crea otra vista para la sección
-                        vista = Tools.VistaYY(this.doc, this.elementos[posicionImagenPreview]);//CrearVistaYY(this.elementos[posicionImagenPreview]);
+                        vista = Tools.VistaYY(this.doc, this.elementos[posicionImagenPreview]);
                     }
 
                     // Configura la vista y crea las etiquetas
@@ -378,6 +381,9 @@ namespace Jump
                 {
                     // Obtiene todas las zapatas
                     this.elementos = Tools.ObtenerTodosEjemplaresSegunClaseYCategoria(doc, clase, categoria);
+
+                    // Elimina los subelementos
+                    this.elementos = Tools.EliminarSubelementos(this.elementos);
 
                     // Asigna todas las zapatas
                     this.listaZapatas = this.elementos;

@@ -201,8 +201,6 @@
             // chbVistaYY
             // 
             this.chbVistaYY.AutoSize = true;
-            this.chbVistaYY.Checked = true;
-            this.chbVistaYY.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chbVistaYY.Location = new System.Drawing.Point(10, 48);
             this.chbVistaYY.Name = "chbVistaYY";
             this.chbVistaYY.Size = new System.Drawing.Size(73, 19);

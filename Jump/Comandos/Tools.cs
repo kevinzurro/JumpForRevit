@@ -1377,7 +1377,7 @@ namespace Jump
         {
             // Crea la lista a devolver
             List<Curve> curvas = new List<Curve>();
-
+            
             // Crea las preferencias para analizar la geometría
             Options opcion = new Options();
 
@@ -1416,7 +1416,16 @@ namespace Jump
 
             return curvas;
         }
-        
+
+        ///<summary> Verifica la continuidad de las curvas </summary>
+        public static List<Curve> VerificarContinuidadCurvas (List<Curve> curvas)
+        {
+            // Lista con curvas ordenadas
+            List<Curve> lista = new List<Curve>();
+
+            return lista;
+        }
+
         ///<summary> Dibuja una línea de una barra y cambia el estilo en función del DataGridView </summary>
         public static List<CurveElement> DibujarArmaduraSegunDatagridview(System.Windows.Forms.DataGridView dgv, Document doc, View vista, Rebar barra)
         {
@@ -2075,14 +2084,19 @@ namespace Jump
             XYZ elementoDimensiones = tra.Inverse.OfVector((bbElem.Max - bbElem.Min) / 2);
             XYZ elementoAncho = new XYZ(Math.Abs(elementoDimensiones.X), 0, 0);
             XYZ elementoAlto = new XYZ(0, Math.Abs(elementoDimensiones.Y), 0);
-            
+
             foreach (ArmaduraRepresentacion bar in armaduras)
             {
                 // Obtiene el grupo
                 Group grupo = bar.ObtenerGrupoDeArmadura();
 
+                doc.Regenerate();
+
                 // Recuadro de la barra
-                BoundingBoxXYZ bbBar = ObtenerRecuadroElementoParaleloAVista(doc, vista, grupo);
+                BoundingBoxXYZ bbBar = grupo.get_BoundingBox(vista);//ObtenerRecuadroElementoParaleloAVista(doc, vista, grupo);
+                
+                // Asigna la transformada de la vista al recuadro
+                bbBar.Transform = tra;
 
                 // Desarma el grupo
                 grupo.UngroupMembers();
@@ -4667,7 +4681,7 @@ namespace Jump
             vista.DetailLevel = nivelDetalle;
 
             // Activa el cuadro de recorte
-            vista.CropBoxActive = true;
+            vista.CropBoxActive = false;
 
             // Desactiva la visibilidad del cuadro de recorte
             vista.CropBoxVisible = false;

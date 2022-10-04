@@ -379,12 +379,6 @@ namespace Jump
                 // Agrega todas las zapatas del proyecto a la lista
                 if (this.rbtnTodos.Checked)
                 {
-                    // Obtiene todas las zapatas
-                    this.elementos = Tools.ObtenerTodosEjemplaresSegunClaseYCategoria(doc, clase, categoria);
-
-                    // Elimina los subelementos
-                    this.elementos = Tools.EliminarSubelementos(this.elementos);
-
                     // Asigna todas las zapatas
                     this.listaZapatas = this.elementos;
                 }
@@ -644,8 +638,8 @@ namespace Jump
             }
 
             // Mueve los despieces de Armaduras
-            Tools.OrdenarYMoverRepresentacionArmaduraSegunDireccion(this.doc, vista, elem, listaArmaduraRepresentacion);
-            
+            //Tools.OrdenarYMoverRepresentacionArmaduraSegunDireccion(this.doc, vista, elem, listaArmaduraRepresentacion);
+
             // Ajusta el recuadro de la vista
             Tools.AjustarRecuadroDeVista(this.doc, vista, listaEtiquetasCreadas);
 

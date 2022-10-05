@@ -14,3 +14,5 @@ A section view will be created with the structural element, the texts and the li
 Finally, the problem discussed in the Stackoverflow forum is exposed (https://stackoverflow.com/questions/73942748/revit-api-curves-obtained-from-the-edge?noredirect=1#comment130562807_73942748).
 
 ![image](https://user-images.githubusercontent.com/63598902/193936255-3fd6697c-f18f-4e3c-b828-4b76ff7663bc.png)
+
+The line of code where you create the detail curves is https://github.com/kevinzurro/JumpForRevit/blob/5896b1385d86292117465b6bee00a3d1ebd70874/Jump/Comandos/Tools.cs#L1430

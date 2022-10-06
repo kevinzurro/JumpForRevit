@@ -66,6 +66,7 @@
     <Compile Include="Comandos\ArmaduraActualizacion.cs" />
     <Compile Include="Comandos\ArmaduraEliminacion.cs" />
     <Compile Include="Comandos\ArmaduraRepresentacion.cs" />
+    <Compile Include="Comandos\cmdArmaduraRepresentacion.cs" />
     <Compile Include="Comandos\cmdConfiguraciones.cs" />
     <Compile Include="Comandos\cmdOrdenYEnumeracion.cs" />
     <Compile Include="Comandos\cmdZapataCorrida.cs" />

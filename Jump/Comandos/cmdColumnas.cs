@@ -23,10 +23,9 @@ namespace Jump
             Application app = uiApp.Application;
             Document doc = uiDoc.Document;
 
-            
+
 
             return Result.Succeeded;
         }
-
     }
 }

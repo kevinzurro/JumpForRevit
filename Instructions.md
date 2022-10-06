@@ -15,4 +15,20 @@ Finally, the problem discussed in the Stackoverflow forum is exposed (https://st
 
 ![image](https://user-images.githubusercontent.com/63598902/193936255-3fd6697c-f18f-4e3c-b828-4b76ff7663bc.png)
 
-The line of code where you create the detail curves is https://github.com/kevinzurro/JumpForRevit/blob/5896b1385d86292117465b6bee00a3d1ebd70874/Jump/Comandos/Tools.cs#L1430
+When the "Ejecutar" button is pressed, it performs the method:
+
+https://github.com/kevinzurro/JumpForRevit/blob/e10c7bddc041c322267ad023ff4247f8ef03de08/Jump/Formularios/frmZapatas.cs#L363
+
+Then create and configure all the views and call the method:
+
+https://github.com/kevinzurro/JumpForRevit/blob/e10c7bddc041c322267ad023ff4247f8ef03de08/Jump/Formularios/frmZapatas.cs#L466
+
+The line of code where you create the detail curves is:
+https://github.com/kevinzurro/JumpForRevit/blob/e10c7bddc041c322267ad023ff4247f8ef03de08/Jump/Formularios/frmZapatas.cs#L605
+https://github.com/kevinzurro/JumpForRevit/blob/5896b1385d86292117465b6bee00a3d1ebd70874/Jump/Comandos/Tools.cs#L1430
+
+Obtaining the border lines described in [stackoverflow](https://stackoverflow.com/questions/73942748/revit-api-curves-obtained-from-the-edge) is done with the method:
+https://github.com/kevinzurro/JumpForRevit/blob/e10c7bddc041c322267ad023ff4247f8ef03de08/Jump/Comandos/Tools.cs#L1376
+
+It then performs the projection of the curve onto the view plane.
+https://github.com/kevinzurro/JumpForRevit/blob/e10c7bddc041c322267ad023ff4247f8ef03de08/Jump/Comandos/Tools.cs#L1503

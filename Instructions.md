@@ -31,6 +31,6 @@ Once the edges are selected, the lines and arcs are moved out of their host.
 
 ### 3 - Why when creating a group with the lines and arcs of bar 2 through the api, does it return a null value?
 
-### 4 - Why does this error occur when where is the hook of [rebar 1](https://i.stack.imgur.com/HMr3t.png)?
+### 4 - Why does this error occur where [rebar 1](https://i.stack.imgur.com/HMr3t.png) hook is located?
 
 ### 5 - Why does this error not occur when [rebar 1](https://i.stack.imgur.com/HMr3t.png) is removed?

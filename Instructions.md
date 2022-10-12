@@ -24,7 +24,7 @@ Once the edges are selected, the lines and arcs are moved out of their host.
 ![Moved rebar](https://user-images.githubusercontent.com/63598902/194915536-d6e57c0e-132a-4e70-967f-019b94aece4e.PNG)
 
 ## Questions
-### 1 - Why do lines and arcs meet at points where they do not correspond?
+### 1 - Why do lines and arcs joined at wrong points? Rebar 1 and 2.
 
 ### 2 - Why is it that moving the mouse over the edge of the bar (where the lines are located) and pressing the "Tab" key only selects some of the lines and arcs and not the whole set?
 ![Rebar](https://user-images.githubusercontent.com/63598902/194913522-d0907506-0cfd-4aac-9208-f898e1c97255.PNG)

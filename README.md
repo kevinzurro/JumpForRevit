@@ -6,29 +6,22 @@ Jump For Revit is an add-in for Revit software that automates the detailing of s
 
 ![Result](https://user-images.githubusercontent.com/63598902/198858120-53daf720-9a78-4f5a-9678-253af9f5b80d.PNG)
 
-## Pile caps
+## Functions
+ * Tag by category
+ * Tag for rebar
+ * Rebar detail
+ * Dimensions
+ * Spot elevation
 
-
-## Wall footing
-
-
-## Floating foundation
-
-
-## Isolated footing
-
-
-## Column
-
-
-## Wall
-
-
-## Beam
-
-
-## Slab
-
+## Structural elements
+ * Pile caps
+ * Wall footing
+ * Floating foundation
+ * Isolated footing
+ * Column
+ * Wall
+ * Beam
+ * Slab
 
 ## Language
 The available languages are:
@@ -40,8 +33,11 @@ The available languages are:
   * Japanese
   * Nederlands
   * Português
-  
+
 If you want to add other language, you can do it in the Language class.
 https://github.com/kevinzurro/JumpForRevit/blob/1015d16ce0c64285ea64b4300464cc377ede0220/Jump/Comandos/Language.cs#L14
 
-## Configuration
+## Contribute
+If you find the add-in interesting, it helps you reduce work hours or you simply find it to have potential, you can help in many ways:
+ * (Paypal)[https://paypal.me/kevinzurro]
+ * Edit the code

@@ -7,11 +7,16 @@ Jump For Revit is an add-in for Revit software that automates the detailing of s
 ![Result](https://user-images.githubusercontent.com/63598902/198858120-53daf720-9a78-4f5a-9678-253af9f5b80d.PNG)
 
 ## Functions
+ * Create sections
  * Tag by category
  * Tag for rebar
  * Rebar detail
  * Dimensions
  * Spot elevation
+ * Show structural elements
+ * Show analytical elements
+ * Order and number structural elements
+ * Show solid and unobscured rebar
 
 ## Structural elements
  * Pile caps

@@ -41,7 +41,7 @@ The available languages are:
   * Nederlands
   * Português
   
-If you want to add your language, you can do it in the Language class.
+If you want to add other language, you can do it in the Language class.
 https://github.com/kevinzurro/JumpForRevit/blob/1015d16ce0c64285ea64b4300464cc377ede0220/Jump/Comandos/Language.cs#L14
 
 ## Configuration

@@ -39,5 +39,5 @@ https://github.com/kevinzurro/JumpForRevit/blob/1015d16ce0c64285ea64b4300464cc37
 
 ## Contribute
 If you find the add-in interesting, it helps you reduce work hours or you simply find it to have potential, you can help in many ways:
- * (Paypal)[https://paypal.me/kevinzurro]
+
  * Edit the code

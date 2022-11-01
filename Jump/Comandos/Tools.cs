@@ -1835,24 +1835,28 @@ namespace Jump
             // Recorre la lista de Representación de Armaduras
             foreach (ArmaduraRepresentacion bar in armaduras)
             {
-                // Obtiene el recuadro de la barra
-                BoundingBoxXYZ bbArmadura = ObtenerRecuadroElementoParaleloAVista(doc, vista, bar.Barra);
+                try
+                {
+                    // Obtiene el recuadro de la barra
+                    BoundingBoxXYZ bbArmadura = ObtenerRecuadroElementoParaleloAVista(doc, vista, bar.Barra);
 
-                // Obtiene el baricentro del recuadro de la barra
-                XYZ puntoMedioArmadura = ObtenerBaricentroElemento(bbArmadura);
+                    // Obtiene el baricentro del recuadro de la barra
+                    XYZ puntoMedioArmadura = ObtenerBaricentroElemento(bbArmadura);
 
-                // Obtiene la dirección principal de la barra
-                XYZ direccionPrincipal = ObtenerDireccionPrincipalArmadura(doc, vista, bar);
+                    // Obtiene la dirección principal de la barra
+                    XYZ direccionPrincipal = ObtenerDireccionPrincipalArmadura(doc, vista, bar);
 
-                // Obtiene la distancia desde la armadura al elemento
-                XYZ distancia = puntoMedioArmadura - puntoMedioElem;
+                    // Obtiene la distancia desde la armadura al elemento
+                    XYZ distancia = puntoMedioArmadura - puntoMedioElem;
 
-                // Obtiene la distancia en coordenadas de la vista
-                XYZ distanciaRelativa = tra.Inverse.OfVector(distancia);
+                    // Obtiene la distancia en coordenadas de la vista
+                    XYZ distanciaRelativa = tra.Inverse.OfVector(distancia);
 
-                OrganizarListaSegunDireccionDeBarra(vista, distanciaRelativa, bar,
-                                                    ref listaArmadurasArriba, ref listaArmadurasAbajo,
-                                                    ref listaArmadurasIzquierda, ref listaArmadurasDerecha);
+                    OrganizarListaSegunDireccionDeBarra(vista, distanciaRelativa, bar,
+                                                        ref listaArmadurasArriba, ref listaArmadurasAbajo,
+                                                        ref listaArmadurasIzquierda, ref listaArmadurasDerecha);
+                }
+                catch (Exception) { }
             }
 
             OrdenarYMoverListaConArmadurasRepresentacion(doc, vista, tra, elem,
@@ -2087,126 +2091,123 @@ namespace Jump
 
             foreach (ArmaduraRepresentacion bar in armaduras)
             {
-                // Obtiene el grupo
-                Group grupo = bar.ObtenerGrupoDeArmadura();
-
-                doc.Regenerate();
-
-                // Recuadro de la barra
-                BoundingBoxXYZ bbBar = grupo.get_BoundingBox(vista);//ObtenerRecuadroElementoParaleloAVista(doc, vista, grupo);
-                
-                // Asigna la transformada de la vista al recuadro
-                bbBar.Transform = tra;
-
-                // Desarma el grupo
-                grupo.UngroupMembers();
-
-                // Crea los componentes absolutos
-                double x = Math.Abs(bar.Posicion.X);
-                double y = Math.Abs(bar.Posicion.Y);
-                double z = Math.Abs(bar.Posicion.Z);
-
-                // Lo lleva a coordenadas de la vista
-                bar.Posicion = tra.Inverse.OfVector(new XYZ(x, y, z));
-
-                // Dimensiones de la Representación de Armadura en coordenadas relativas
-                XYZ barDimensiones = tra.Inverse.OfVector(bbBar.Max - bbBar.Min);
-                XYZ barAncho = new XYZ(Math.Abs(barDimensiones.X), 0, 0);
-                XYZ barAlto = new XYZ(0, Math.Abs(barDimensiones.Y), 0);
-
-                // Verifica si la dirección es arriba
-                if (direccion.IsAlmostEqualTo(vista.UpDirection))
+                try
                 {
-                    // Verifica si el la primera pasada
-                    if (banderaArriba)
-                    {
-                        //distancia = elementoAlto - bar.Posicion + barAlto;
-                        distancia = tra.Inverse.OfVector(ProyectarVectorSobreDireccion((bbElem.Max - bbBar.Min), vista.UpDirection)) + barAlto / 2;
 
-                        // Cambia el estado de la bandera
-                        banderaArriba = false;
+                    // Recuadro de la barra
+                    BoundingBoxXYZ bbBar = bar.ObtenerBoundingBoxDeArmadura();//ObtenerRecuadroElementoParaleloAVista(doc, vista, grupo);
+
+                    // Asigna la transformada de la vista al recuadro
+                    bbBar.Transform = tra;
+
+                    // Crea los componentes absolutos
+                    double x = Math.Abs(bar.Posicion.X);
+                    double y = Math.Abs(bar.Posicion.Y);
+                    double z = Math.Abs(bar.Posicion.Z);
+
+                    // Lo lleva a coordenadas de la vista
+                    bar.Posicion = tra.Inverse.OfVector(new XYZ(x, y, z));
+
+                    // Dimensiones de la Representación de Armadura en coordenadas relativas
+                    XYZ barDimensiones = tra.Inverse.OfVector(bbBar.Max - bbBar.Min);
+                    XYZ barAncho = new XYZ(Math.Abs(barDimensiones.X), 0, 0);
+                    XYZ barAlto = new XYZ(0, Math.Abs(barDimensiones.Y), 0);
+
+                    // Verifica si la dirección es arriba
+                    if (direccion.IsAlmostEqualTo(vista.UpDirection))
+                    {
+                        // Verifica si el la primera pasada
+                        if (banderaArriba)
+                        {
+                            //distancia = elementoAlto - bar.Posicion + barAlto;
+                            distancia = tra.Inverse.OfVector(ProyectarVectorSobreDireccion((bbElem.Max - bbBar.Min), vista.UpDirection)) + barAlto / 2;
+
+                            // Cambia el estado de la bandera
+                            banderaArriba = false;
+                        }
+                        else
+                        {
+                            distancia += barAlto / 2;
+                        }
                     }
+
+                    // Verifica si la dirección es abajo
+                    else if (direccion.IsAlmostEqualTo(vista.UpDirection.Negate()))
+                    {
+                        // Verifica si el la primera pasada
+                        if (banderaAbajo)
+                        {
+                            // Obtiene la distancia a mover
+                            //distancia = elementoAlto - bar.Posicion - barAlto;
+                            distancia = tra.Inverse.OfVector(ProyectarVectorSobreDireccion((bbElem.Min - bbBar.Max), vista.UpDirection.Negate())) - barAlto / 2;
+
+                            // Cambia el estado de la bandera
+                            banderaAbajo = false;
+                        }
+                        else
+                        {
+                            distancia -= barAlto;
+                        }
+                    }
+
+                    // Verifica si la dirección es derecha
+                    else if (direccion.IsAlmostEqualTo(vista.RightDirection))
+                    {
+                        // Verifica si el la primera pasada
+                        if (banderaDerecha)
+                        {
+                            distancia = elementoAncho - bar.Posicion + barAncho;
+                            //distancia = tra.Inverse.OfVector(ProyectarVectorSobreDireccion((bbElem.Max - bbBar.Min), vista.RightDirection)) + barAncho;
+
+                            // Cambia el estado de la bandera
+                            banderaDerecha = false;
+                        }
+                        else
+                        {
+                            distancia += barAncho / 2;
+                        }
+                    }
+
+                    // Verifica si la dirección es izquierda
+                    else if (direccion.IsAlmostEqualTo(vista.RightDirection.Negate()))
+                    {
+                        // Verifica si el la primera pasada
+                        if (banderaIzquierda)
+                        {
+                            distancia = elementoAncho.Negate() + bar.Posicion - barAncho;
+                            //distancia = tra.Inverse.OfVector(ProyectarVectorSobreDireccion((bbElem.Min - bbBar.Max), vista.RightDirection.Negate())) - barAncho;
+
+                            // Cambia el estado de la bandera
+                            banderaIzquierda = false;
+                        }
+                        else
+                        {
+                            distancia -= barAncho / 2;
+                        }
+                    }
+
                     else
                     {
-                        distancia += barAlto / 2;
+                        // Verifica si el la primera pasada
+                        if (banderaDerecha)
+                        {
+                            distancia = elementoAncho - bar.Posicion + barAncho;
+
+                            // Cambia el estado de la bandera
+                            banderaDerecha = false;
+                        }
+                        else
+                        {
+                            distancia += barAncho / 2;
+                        }
                     }
+
+                    // Lo lleva a coordenadas globales
+                    bar.Posicion = tra.OfVector(distancia);
+
+                    bar.MoverArmaduraRepresentacionConEtiqueta(bar.Posicion);
                 }
-
-                // Verifica si la dirección es abajo
-                else if (direccion.IsAlmostEqualTo(vista.UpDirection.Negate()))
-                {
-                    // Verifica si el la primera pasada
-                    if (banderaAbajo)
-                    {
-                        // Obtiene la distancia a mover
-                        //distancia = elementoAlto - bar.Posicion - barAlto;
-                        distancia = tra.Inverse.OfVector(ProyectarVectorSobreDireccion((bbElem.Min - bbBar.Max), vista.UpDirection.Negate())) - barAlto / 2;
-
-                        // Cambia el estado de la bandera
-                        banderaAbajo = false;
-                    }
-                    else
-                    {
-                        distancia -= barAlto;
-                    }
-                }
-
-                // Verifica si la dirección es derecha
-                else if (direccion.IsAlmostEqualTo(vista.RightDirection))
-                {
-                    // Verifica si el la primera pasada
-                    if (banderaDerecha)
-                    {
-                        distancia = elementoAncho - bar.Posicion + barAncho;
-                        //distancia = tra.Inverse.OfVector(ProyectarVectorSobreDireccion((bbElem.Max - bbBar.Min), vista.RightDirection)) + barAncho;
-
-                        // Cambia el estado de la bandera
-                        banderaDerecha = false;
-                    }
-                    else
-                    {
-                        distancia += barAncho / 2;
-                    }
-                }
-
-                // Verifica si la dirección es izquierda
-                else if (direccion.IsAlmostEqualTo(vista.RightDirection.Negate()))
-                {
-                    // Verifica si el la primera pasada
-                    if (banderaIzquierda)
-                    {
-                        distancia = elementoAncho.Negate() + bar.Posicion - barAncho;
-                        //distancia = tra.Inverse.OfVector(ProyectarVectorSobreDireccion((bbElem.Min - bbBar.Max), vista.RightDirection.Negate())) - barAncho;
-                        
-                        // Cambia el estado de la bandera
-                        banderaIzquierda = false;
-                    }
-                    else
-                    {
-                        distancia -= barAncho / 2;
-                    }
-                }
-
-                else
-                {
-                    // Verifica si el la primera pasada
-                    if (banderaDerecha)
-                    {
-                        distancia = elementoAncho - bar.Posicion + barAncho;
-
-                        // Cambia el estado de la bandera
-                        banderaDerecha = false;
-                    }
-                    else
-                    {
-                        distancia += barAncho / 2;
-                    }
-                }
-
-                // Lo lleva a coordenadas globales
-                bar.Posicion = tra.OfVector(distancia);
-                
-                bar.MoverArmaduraRepresentacionConEtiqueta(bar.Posicion);
+                catch (Exception) { }
             }
         }
 

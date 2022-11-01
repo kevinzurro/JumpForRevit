@@ -113,6 +113,15 @@ namespace Jump
             set { this.posicion = value; }
         }
 
+        /// <summary> Obtiene el punto medio de la Representación en coordenadas globales </summary>
+        public XYZ PuntoMedio
+        {
+            get
+            {
+                return Tools.ObtenerBaricentroElemento(this.Barra.get_BoundingBox(this.Vista));
+            }
+        }
+
         /// <summary> Obtiene la barra </summary>
         public Rebar Barra
         {
@@ -123,6 +132,16 @@ namespace Jump
         public View Vista
         {
             get { return this.vistaBarra; }
+        }
+
+        /// <summary> Dibuja la armadura junto con su textos </summary>
+        public void DibujarArmaduraSegunDatagridview(System.Windows.Forms.DataGridView dgw)
+        {
+            // Dibuja las armaduras y asigna los estilos de líneas en función de cada diámetro
+            this.CurvasDeArmadura = Tools.DibujarArmaduraSegunDatagridview(dgw, this.doc, this.vistaBarra, this.barraRefuerzo);
+
+            // Crea notas de texto con la longitud parcial de la barra
+            this.TextosDeLongitudesParciales = Tools.CrearTextNoteDeArmadura(this.doc, this.vistaBarra, this.barraRefuerzo, this.TipoDeTexto);
         }
 
         /// <summary> Agrega la lista de ID de las curvas al historial </summary>
@@ -205,14 +224,7 @@ namespace Jump
             // Agrega los textos a la lista
             lista.AddRange(TextosDeLongitudesParciales);
 
-            // Crea el grupo
-            Group grupo = Tools.CrearGrupo(Documento, lista);
-
-            // Mueve el grupo
-            ElementTransformUtils.MoveElement(Documento, grupo.Id, distancia);
-
-            // Desarma el grupo
-            grupo.UngroupMembers();
+            ElementTransformUtils.MoveElements(this.doc, Tools.ObtenerIdElemento(lista), distancia);
         }
 
         /// <summary> Mueve la Representación de la Armadura una distancia dada </summary>
@@ -231,8 +243,8 @@ namespace Jump
             ElementTransformUtils.MoveElements(Documento, Tools.ObtenerIdElemento(lista), distancia);
         }
 
-        /// <summary> Obtiene el grupo con los textos y curvas de detalle </summary>
-        public Group ObtenerGrupoDeArmadura()
+        /// <summary> Obtiene el BoundingBoxXYZ con los textos y curvas de detalle </summary>
+        public BoundingBoxXYZ ObtenerBoundingBoxDeArmadura()
         {
             // Crea la lista
             List<Element> lista = new List<Element>();
@@ -243,10 +255,22 @@ namespace Jump
             // Agrega los textos a la lista
             lista.AddRange(TextosDeLongitudesParciales);
 
-            // Crea el grupo
-            Group grupo = Tools.CrearGrupo(Documento, lista);
+            BoundingBoxXYZ bb = new BoundingBoxXYZ();
 
-            return grupo;
+            bb.Transform = Transform.Identity;
+
+            double xMax = lista.Max(x => x.get_BoundingBox(this.Vista).Max.X);
+            double yMax = lista.Max(x => x.get_BoundingBox(this.Vista).Max.Y);
+            double zMax = lista.Max(x => x.get_BoundingBox(this.Vista).Max.Z);
+
+            double xMin = lista.Min(x => x.get_BoundingBox(this.Vista).Min.X);
+            double yMin = lista.Min(x => x.get_BoundingBox(this.Vista).Min.Y);
+            double zMin = lista.Min(x => x.get_BoundingBox(this.Vista).Min.Z);
+
+            bb.Max = new XYZ(xMax, yMax, zMax);
+            bb.Min = new XYZ(xMin, yMin, zMin);
+
+            return bb;
         }
 
         /// <summary> Elimina la representación de la armadura </summary>

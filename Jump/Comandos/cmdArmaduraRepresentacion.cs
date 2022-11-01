@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Diagnostics;
+using System.Windows.Forms;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.DB.Structure;
-using Autodesk.Revit.ApplicationServices;
 using Autodesk.Revit.UI.Selection;
 
 namespace Jump
@@ -20,137 +21,121 @@ namespace Jump
             // Variables necesarias
             UIApplication uiApp = commandData.Application;
             UIDocument uiDoc = uiApp.ActiveUIDocument;
-            Application app = uiApp.Application;
+            Autodesk.Revit.ApplicationServices.Application app = uiApp.Application;
             Document doc = uiDoc.Document;
 
-            using (Transaction tra = new Transaction(doc, "Detail"))
+            string IdiomaDelPrograma = Tools.ObtenerIdiomaDelPrograma();
+
+            // Muestra el formulario de Detalle de armadura
+            frmDetalleArmadura inicioDetalleArmadura = new frmDetalleArmadura(doc);
+
+            inicioDetalleArmadura.ShowDialog();
+
+            DataGridView dgvEstiloLinea = inicioDetalleArmadura.dgvEstiloLinea;
+
+            // Abre una transacción
+            using (Transaction t = new Transaction(doc, Language.ObtenerTexto(IdiomaDelPrograma, "DetArm1")))
             {
-                tra.Start();
+                t.Start();
+
                 try
                 {
-                    List<Curve> curvas = new List<Curve>();
-                    List<Rebar> barras = new List<Rebar>();
-                    View vista = doc.ActiveView;
-                    Options opcion = new Options();
-                    opcion.View = vista;
-                    List<Reference> referencias = uiDoc.Selection.PickObjects(ObjectType.Element).ToList();
+                    bool bandera = true;
 
-                    foreach (Reference referencia in referencias)
+                    Autodesk.Revit.DB.View vista = doc.ActiveView;
+
+                    if (vista.SketchPlane == null)
                     {
-                        barras.Add(doc.GetElement(referencia) as Rebar);
-                    }
-
-                    foreach (Rebar barra in barras)
-                    {
-                        GeometryElement geoElem = barra.get_Geometry(opcion);
-
-                        foreach (Solid solido in geoElem)
+                        using (SubTransaction st = new SubTransaction(doc))
                         {
-                            foreach (Edge borde in solido.Edges)
-                            {
-                                Curve curva = borde.AsCurve();
+                            st.Start();
 
-                                curvas.Add(curva);
+                            try
+                            {
+                                Plane plano = Plane.CreateByNormalAndOrigin(vista.ViewDirection, vista.Origin);
+
+                                SketchPlane sketch = SketchPlane.Create(doc, plano);
+
+                                vista.SketchPlane = sketch;
                             }
+                            catch (Exception) { }
+
+                            st.Commit();
                         }
                     }
 
-                    foreach (Curve curva in curvas)
+                    do
                     {
-                        Curve curvaProyectada = ProyectarCurvaSobrePlano(vista, curva);
+                        try
+                        {
+                            // Selecciona la barra
+                            Reference referencia = uiDoc.Selection.PickObject(Autodesk.Revit.UI.Selection.ObjectType.Element, Language.ObtenerTexto(IdiomaDelPrograma, "DetArm2"));
 
-                        CurveElement curvaDetalle = doc.Create.NewDetailCurve(vista, curvaProyectada) as CurveElement;
-                    }
+                            // Obtiene el elementos
+                            Element elem = doc.GetElement(referencia);
+
+                            // Verifica que sea una barra
+                            if (elem is Rebar)
+                            {
+                                // Castea el elemento a barra
+                                Rebar barra = elem as Rebar;
+
+                                // Longitud parcial de barra
+                                if (inicioDetalleArmadura.Longitud)
+                                {
+                                    try
+                                    {
+                                        // Crea una representación de barra
+                                        ArmaduraRepresentacion armadura = new ArmaduraRepresentacion(doc, vista, barra);
+
+                                        // Asigna el tipo de texto a la representación de la barra
+                                        armadura.TipoDeTexto = inicioDetalleArmadura.tipoTexto;
+
+                                        // Dibuja las armaduras y asigna los estilos de líneas en función de cada diámetro
+                                        armadura.DibujarArmaduraSegunDatagridview(dgvEstiloLinea);
+
+                                        // Verifica que la opción de etiqueta esté activo
+                                        if (inicioDetalleArmadura.Armadura)
+                                        {
+                                            // Posición de la etiqueta
+                                            int posicion = Jump.Properties.Settings.Default.EtiquetaIndependienteArmadura;
+
+                                            // Asigna el tipo de etiqueta
+                                            armadura.TipoEtiquetaArmadura = inicioDetalleArmadura.tipoEtiqueta;
+
+                                            // Asigna la etiqueta
+                                            armadura.EtiquetaArmadura = Tools.CrearEtiquetaSegunConfiguracion(doc, vista, barra, inicioDetalleArmadura.tipoEtiqueta, posicion);
+                                        }
+
+                                        // Punto donde se coloca el despiece
+                                        XYZ puntoSeleccionado = uiDoc.Selection.PickPoint(Language.ObtenerTexto(IdiomaDelPrograma, "DetArm3"));
+                                        
+                                        // Asigna la posición de la Representación
+                                        armadura.Posicion = puntoSeleccionado - armadura.PuntoMedio;
+
+                                        // Mueve la representación de la armadura
+                                        armadura.MoverArmaduraRepresentacionConEtiqueta(armadura.Posicion);
+
+                                        // Agrega la armadura a la lista de despieces
+                                        Inicio.listaArmaduraRepresentacion.Add(armadura);
+                                    }
+                                    catch (Exception) { }
+                                }
+                            }
+                        }
+                        catch (Exception) 
+                        { 
+                            bandera = false; 
+                        }
+
+                    } while (bandera);
                 }
-                catch (Exception e)
-                {
-                    TaskDialog.Show("0", e.Message + " " + e.StackTrace);
-                }
-                tra.Commit();
+                catch (Exception) { }
+
+                t.Commit();
             }
-
-
 
             return Result.Succeeded;
-        }
-
-        public static Curve ProyectarCurvaSobrePlano(View vista, Curve curva)
-        {
-            // Crea la lista con los puntos de las curvas
-            List<XYZ> puntos = new List<XYZ>();
-
-            // Crea el punto proyectado
-            Curve curvaProyectada = curva;
-
-            // Recorre todos los puntos de la curva                     
-            foreach (XYZ punto in curva.Tessellate().ToList())
-            {
-                // Proyecta los puntos sobre el plano
-                puntos.Add(ProyectarPuntoSobrePlano(vista, punto));
-            }
-
-            // Verifica que sea una linea
-            if (curva is Line)
-            {
-                // Crea la linea
-                curvaProyectada = Line.CreateBound(puntos[0], puntos[1]);
-            }
-
-            //Verifica que sea un arco
-            if (curva is Arc)
-            {
-                // Verifica que tenga 3 o más puntos
-                if (puntos.Count > 2)
-                {
-                    // Crea el arco
-                    curvaProyectada = Arc.Create(puntos[0], puntos[puntos.Count - 1], puntos[1]);
-                }
-            }
-
-            // Verifica si es un HermiteSpline
-            if (curva is HermiteSpline)
-            {
-                // Castea la curva
-                HermiteSpline spline = curva as HermiteSpline;
-
-                // Obtiene si es peridica
-                bool periodo = spline.IsPeriodic;
-
-                // Crea el Spline
-                HermiteSpline Hermite = HermiteSpline.Create(puntos, periodo);
-
-                // Crea el Nurb
-                curvaProyectada = NurbSpline.CreateCurve(Hermite);
-            }
-
-            return curvaProyectada;
-        }
-
-        public static XYZ ProyectarPuntoSobrePlano(View vista, XYZ punto)
-        {
-            // Crea el punto proyectado
-            XYZ puntoProyectado = punto;
-
-            // Obtiene la transformación de la vista
-            Transform traVista = vista.CropBox.Transform;
-
-            // Crea el plano de la vista
-            Plane plano = Plane.CreateByOriginAndBasis(traVista.Origin, traVista.BasisX, traVista.BasisY);
-
-            // Obtiene un vector
-            XYZ vector = punto - plano.Origin;
-
-            // Obtiene la distancia
-            double distancia = plano.Normal.DotProduct(vector);
-
-            // Verifica que el punto esté fuera del plano
-            if (distancia != 1.0e-9)
-            {
-                // Proyecta el punto sobre el plano
-                puntoProyectado = punto - distancia * plano.Normal;
-            }
-
-            return puntoProyectado;
         }
     }
 }

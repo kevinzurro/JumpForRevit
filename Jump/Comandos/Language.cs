@@ -87,6 +87,10 @@ namespace Jump
             Espanol.Add("Tit2", "Visibilidad");
             Espanol.Add("Tit3", "Herramientas");
 
+            Espanol.Add("DetArm1", "Detalle de armadura");
+            Espanol.Add("DetArm2", "Seleccione una barra");
+            Espanol.Add("DetArm3", "Seleccione un punto donde quiere colocar el detalle");
+
             Espanol.Add("Pil1", "Pilotes");
             Espanol.Add("Pil2", "Pilotes descripción corta");
             Espanol.Add("Pil3", "Pilotes descripción larga");

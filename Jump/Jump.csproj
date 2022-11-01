@@ -84,6 +84,12 @@
     <Compile Include="Comandos\cmdVigas.cs" />
     <Compile Include="Comandos\cmdLosas.cs" />
     <Compile Include="Comandos\cmdZapatas.cs" />
+    <Compile Include="Formularios\frmDetalleArmadura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmDetalleArmadura.Designer.cs">
+      <DependentUpon>frmDetalleArmadura.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\frmOrdenYEnumeracion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -303,6 +309,9 @@
     <Resource Include="Resources\monitor.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Formularios\frmDetalleArmadura.resx">
+      <DependentUpon>frmDetalleArmadura.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmOrdenYEnumeracion.resx">
       <DependentUpon>frmOrdenYEnumeracion.cs</DependentUpon>
     </EmbeddedResource>

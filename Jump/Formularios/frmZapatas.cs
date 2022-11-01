@@ -602,16 +602,22 @@ namespace Jump
                         listaArmaduraRepresentacion.Add(armadura);
 
                         // Dibuja las armaduras y asigna los estilos de líneas en función de cada diámetro
-                        armadura.CurvasDeArmadura = Tools.DibujarArmaduraSegunDatagridview(this.dgvEstiloLinea, this.doc, vista, barra);
+                        //armadura.CurvasDeArmadura = Tools.DibujarArmaduraSegunDatagridview(this.dgvEstiloLinea, this.doc, vista, barra);
 
                         // Obtiene el tipo de texto
-                        TextNoteType tipoTexto = this.etiquetasLongitud.FirstOrDefault(x => x.Name == this.cmbEtiquetaLongitud.SelectedItem.ToString());
+                        //TextNoteType tipoTexto = this.etiquetasLongitud.FirstOrDefault(x => x.Name == this.cmbEtiquetaLongitud.SelectedItem.ToString());
 
                         // Asigna el tipo de texto a la representación de la barra
-                        armadura.TipoDeTexto = tipoTexto;
+                        //armadura.TipoDeTexto = tipoTexto;
 
                         // Crea notas de texto con la longitud parcial de la barra
-                        armadura.TextosDeLongitudesParciales = Tools.CrearTextNoteDeArmadura(this.doc, vista, barra, tipoTexto);
+                        //armadura.TextosDeLongitudesParciales = Tools.CrearTextNoteDeArmadura(this.doc, vista, barra, tipoTexto);
+
+                        // Asigna el tipo de texto a la representación de la barra
+                        armadura.TipoDeTexto = this.etiquetasLongitud.FirstOrDefault(x => x.Name == this.cmbEtiquetaLongitud.SelectedItem.ToString());
+
+                        // Dibuja las armaduras y asigna los estilos de líneas en función de cada diámetro
+                        armadura.DibujarArmaduraSegunDatagridview(this.dgvEstiloLinea);
 
                         // Agrega la armadura a la lista de despieces
                         Inicio.listaArmaduraRepresentacion.Add(armadura);
@@ -638,7 +644,7 @@ namespace Jump
             }
 
             // Mueve los despieces de Armaduras
-            //Tools.OrdenarYMoverRepresentacionArmaduraSegunDireccion(this.doc, vista, elem, listaArmaduraRepresentacion);
+            Tools.OrdenarYMoverRepresentacionArmaduraSegunDireccion(this.doc, vista, elem, listaArmaduraRepresentacion);
 
             // Ajusta el recuadro de la vista
             Tools.AjustarRecuadroDeVista(this.doc, vista, listaEtiquetasCreadas);

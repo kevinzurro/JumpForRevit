@@ -94,7 +94,7 @@
             this.chbEtiquetaArmadura.AutoSize = true;
             this.chbEtiquetaArmadura.Checked = true;
             this.chbEtiquetaArmadura.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chbEtiquetaArmadura.Location = new System.Drawing.Point(24, 5);
+            this.chbEtiquetaArmadura.Location = new System.Drawing.Point(24, 10);
             this.chbEtiquetaArmadura.Margin = new System.Windows.Forms.Padding(0);
             this.chbEtiquetaArmadura.Name = "chbEtiquetaArmadura";
             this.chbEtiquetaArmadura.Size = new System.Drawing.Size(127, 17);
@@ -107,7 +107,7 @@
             this.chbEtiquetaLongitud.AutoSize = true;
             this.chbEtiquetaLongitud.Checked = true;
             this.chbEtiquetaLongitud.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chbEtiquetaLongitud.Location = new System.Drawing.Point(24, 40);
+            this.chbEtiquetaLongitud.Location = new System.Drawing.Point(24, 44);
             this.chbEtiquetaLongitud.Margin = new System.Windows.Forms.Padding(0);
             this.chbEtiquetaLongitud.Name = "chbEtiquetaLongitud";
             this.chbEtiquetaLongitud.Size = new System.Drawing.Size(154, 17);
@@ -118,7 +118,7 @@
             // lbl2
             // 
             this.lbl2.AutoSize = true;
-            this.lbl2.Location = new System.Drawing.Point(3, 40);
+            this.lbl2.Location = new System.Drawing.Point(3, 45);
             this.lbl2.Name = "lbl2";
             this.lbl2.Size = new System.Drawing.Size(16, 13);
             this.lbl2.TabIndex = 17;
@@ -127,7 +127,7 @@
             // lbl1
             // 
             this.lbl1.AutoSize = true;
-            this.lbl1.Location = new System.Drawing.Point(3, 5);
+            this.lbl1.Location = new System.Drawing.Point(3, 11);
             this.lbl1.Name = "lbl1";
             this.lbl1.Size = new System.Drawing.Size(16, 13);
             this.lbl1.TabIndex = 16;
@@ -195,7 +195,7 @@
             this.MinimumSize = new System.Drawing.Size(500, 160);
             this.Name = "frmDetalleArmadura";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Despiece de armadura";
+            this.Text = "Jump";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);

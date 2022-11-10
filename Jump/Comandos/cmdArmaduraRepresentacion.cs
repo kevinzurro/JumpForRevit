@@ -23,7 +23,7 @@ namespace Jump
             UIDocument uiDoc = uiApp.ActiveUIDocument;
             Autodesk.Revit.ApplicationServices.Application app = uiApp.Application;
             Document doc = uiDoc.Document;
-
+            
             string IdiomaDelPrograma = Tools.ObtenerIdiomaDelPrograma();
 
             // Muestra el formulario de Detalle de armadura
@@ -33,8 +33,10 @@ namespace Jump
 
             DataGridView dgvEstiloLinea = inicioDetalleArmadura.dgvEstiloLinea;
 
+            //Tools.CrearRegistroArctualizadorArmaduras(uiApp.ActiveAddInId);
+
             // Abre una transacción
-            using (Transaction t = new Transaction(doc, Language.ObtenerTexto(IdiomaDelPrograma, "DetArm1")))
+            using (Transaction t = new Transaction(doc, Language.ObtenerTexto(IdiomaDelPrograma, "DetArm2-1")))
             {
                 t.Start();
 
@@ -69,7 +71,7 @@ namespace Jump
                         try
                         {
                             // Selecciona la barra
-                            Reference referencia = uiDoc.Selection.PickObject(Autodesk.Revit.UI.Selection.ObjectType.Element, Language.ObtenerTexto(IdiomaDelPrograma, "DetArm2"));
+                            Reference referencia = uiDoc.Selection.PickObject(ObjectType.Element, Language.ObtenerTexto(IdiomaDelPrograma, "DetArm2-2"));
 
                             // Obtiene el elementos
                             Element elem = doc.GetElement(referencia);
@@ -81,7 +83,7 @@ namespace Jump
                                 Rebar barra = elem as Rebar;
 
                                 // Longitud parcial de barra
-                                if (inicioDetalleArmadura.Longitud)
+                                if (inicioDetalleArmadura.Longitud && inicioDetalleArmadura.tipoTexto != null)
                                 {
                                     try
                                     {
@@ -108,7 +110,7 @@ namespace Jump
                                         }
 
                                         // Punto donde se coloca el despiece
-                                        XYZ puntoSeleccionado = uiDoc.Selection.PickPoint(Language.ObtenerTexto(IdiomaDelPrograma, "DetArm3"));
+                                        XYZ puntoSeleccionado = uiDoc.Selection.PickPoint(Language.ObtenerTexto(IdiomaDelPrograma, "DetArm2-3"));
                                         
                                         // Asigna la posición de la Representación
                                         armadura.Posicion = puntoSeleccionado - armadura.PuntoMedio;

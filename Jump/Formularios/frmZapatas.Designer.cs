@@ -158,7 +158,7 @@
             // 
             // cmbElementosPreview
             // 
-            this.cmbElementosPreview.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cmbElementosPreview.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbElementosPreview.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbElementosPreview.FormattingEnabled = true;
@@ -222,7 +222,7 @@
             // 
             // btnEjecutar
             // 
-            this.btnEjecutar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnEjecutar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEjecutar.Location = new System.Drawing.Point(216, 23);
             this.btnEjecutar.Name = "btnEjecutar";
@@ -275,7 +275,7 @@
             // 
             // cmbEscalaVista
             // 
-            this.cmbEscalaVista.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cmbEscalaVista.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbEscalaVista.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEscalaVista.FormattingEnabled = true;
@@ -288,7 +288,7 @@
             // 
             // cmbEtiquetaCimentacion
             // 
-            this.cmbEtiquetaCimentacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cmbEtiquetaCimentacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbEtiquetaCimentacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEtiquetaCimentacion.FormattingEnabled = true;
@@ -300,7 +300,7 @@
             // 
             // cmbEstiloCotaProfundidad
             // 
-            this.cmbEstiloCotaProfundidad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cmbEstiloCotaProfundidad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbEstiloCotaProfundidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEstiloCotaProfundidad.FormattingEnabled = true;
@@ -312,7 +312,7 @@
             // 
             // cmbEstiloCota
             // 
-            this.cmbEstiloCota.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cmbEstiloCota.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbEstiloCota.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEstiloCota.FormattingEnabled = true;
@@ -324,7 +324,7 @@
             // 
             // cmbEtiquetaLongitud
             // 
-            this.cmbEtiquetaLongitud.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cmbEtiquetaLongitud.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbEtiquetaLongitud.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEtiquetaLongitud.FormattingEnabled = true;
@@ -336,7 +336,7 @@
             // 
             // cmbEtiquetaArmadura
             // 
-            this.cmbEtiquetaArmadura.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cmbEtiquetaArmadura.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbEtiquetaArmadura.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEtiquetaArmadura.FormattingEnabled = true;

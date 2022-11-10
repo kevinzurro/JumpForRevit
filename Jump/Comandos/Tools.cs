@@ -5311,7 +5311,7 @@ namespace Jump
             }
 
             // Asigna el primer elemento a la lista desplegable
-            combo.SelectedIndex = Properties.Settings.Default.indiceComboboxEscalaVista;
+            combo.SelectedIndex = Properties.Settings.Default.zapataIndiceComboboxEscalaVista;
         }
 
         ///<summary> Rellena un Combobox con las categorias </summary>
@@ -5569,7 +5569,7 @@ namespace Jump
             int indice = combo.SelectedIndex;
 
             // Guarda el indice en las configuraciones
-            Properties.Settings.Default.indiceComboboxEscalaVista = indice;
+            Properties.Settings.Default.zapataIndiceComboboxEscalaVista = indice;
 
             Properties.Settings.Default.Save();
         }

@@ -21,11 +21,25 @@ namespace Jump
             Application app = uiApp.Application;
             Document doc = uiDoc.Document;
 
-            // Muestra el formulario de Zapata
-            frmZapatas inicioZapata = new frmZapatas(doc, uiDoc);
+            frmDetalleAutomatico Zapata = new frmDetalleAutomatico(doc, uiDoc);
 
-            inicioZapata.ShowDialog();            
-            
+            Zapata.clase = typeof(FamilyInstance);
+            Zapata.categoria = BuiltInCategory.OST_StructuralFoundation;
+            Zapata.categoriaEtiqueta = BuiltInCategory.OST_StructuralFoundationTags;
+            Zapata.indiceComboboxTextoBarra = Properties.Settings.Default.zapataIndiceComboboxTextoBarra;
+            Zapata.indiceComboboxEscalaVista = Properties.Settings.Default.zapataIndiceComboboxEscalaVista;
+            Zapata.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.EtiquetaIndependienteZapatas;
+            Zapata.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.EtiquetaCotaProfundidad;
+            Zapata.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.EtiquetaIndependienteArmadura;
+            Zapata.clave = "Zap";
+
+            Zapata.ShowDialog();
+
+            // Guarda el indice en las configuraciones
+            Properties.Settings.Default.zapataIndiceComboboxTextoBarra = Zapata.indiceComboboxTextoBarra;
+            Properties.Settings.Default.zapataIndiceComboboxEscalaVista = Zapata.indiceComboboxEscalaVista;
+            Properties.Settings.Default.Save();
+
             return Result.Succeeded;
         }
     }

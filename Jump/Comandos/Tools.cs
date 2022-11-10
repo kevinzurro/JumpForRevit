@@ -4687,13 +4687,9 @@ namespace Jump
             // Desactiva la visibilidad del cuadro de recorte
             vista.CropBoxVisible = false;
 
-            // Obtiene las categorías a ocultar
-            Category categoriaGrilla = Category.GetCategory(doc, BuiltInCategory.OST_Grids);
-            Category categoriaSeccion = Category.GetCategory(doc, BuiltInCategory.OST_Sections);
-
             // Oculta las categorías
-            vista.SetCategoryHidden(categoriaGrilla.Id, true);
-            vista.SetCategoryHidden(categoriaSeccion.Id, true);
+            vista.SetCategoryHidden(Category.GetCategory(doc, BuiltInCategory.OST_Grids).Id, true);
+            vista.SetCategoryHidden(Category.GetCategory(doc, BuiltInCategory.OST_Sections).Id, true);
 
             return vista;
         }

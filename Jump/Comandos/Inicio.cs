@@ -58,6 +58,7 @@ namespace Jump
             #region Botones
 
             // Crea los botones
+            PushButton botonDespieceArmadura = panelDetalleArmado.AddItem(new PushButtonData("botonDespieceArmadura", Language.ObtenerTexto(IdiomaDelPrograma, "1"), "DesArm1", "Jump.cmdArmaduraRepresentacion")) as PushButton;
             PushButton botonPilote = panelDetalleArmado.AddItem(new PushButtonData("botonPilote", Language.ObtenerTexto(IdiomaDelPrograma, "Pil1"), RutaDelEnsamblado, "Jump.cmdPilotes")) as PushButton;
             PushButton botonZapataCorrida = panelDetalleArmado.AddItem(new PushButtonData("botonZapataCorrida", Language.ObtenerTexto(IdiomaDelPrograma, "ZapCor1"), RutaDelEnsamblado, "Jump.cmdZapataCorrida")) as PushButton;
             PushButton botonPlatea = panelDetalleArmado.AddItem(new PushButtonData("botonPlatea", Language.ObtenerTexto(IdiomaDelPrograma, "Pla1"), RutaDelEnsamblado, "Jump.cmdPlatea")) as PushButton;
@@ -86,6 +87,7 @@ namespace Jump
             #region Imagenes de botones
 
             // Agregar la imagen al botón
+            botonDespieceArmadura.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Boton_Pilote.png"));
             botonPilote.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Boton_Pilote.png"));
             botonZapataCorrida.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Boton_Zapata_Corrida.png"));
             botonPlatea.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Boton_Platea.png"));
@@ -120,6 +122,7 @@ namespace Jump
             #region Descripción corta de los botones
 
             // Crear la descripción corta de los botones
+            botonDespieceArmadura.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "DetArm2");
             botonPilote.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "Pil2");
             botonZapataCorrida.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "ZapCor2");
             botonPlatea.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "Pla2");
@@ -140,6 +143,7 @@ namespace Jump
             #region Descripción larga de los botones
 
             // Crear la descripción larga de los botones
+            botonDespieceArmadura.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "DetArm3");
             botonPilote.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "Pil3");
             botonZapataCorrida.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "ZapCor3");
             botonPlatea.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "Pla3");

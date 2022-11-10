@@ -50,12 +50,12 @@ namespace Jump.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("5")]
-        public int indiceComboboxEscalaVista {
+        public int zapataIndiceComboboxEscalaVista {
             get {
-                return ((int)(this["indiceComboboxEscalaVista"]));
+                return ((int)(this["zapataIndiceComboboxEscalaVista"]));
             }
             set {
-                this["indiceComboboxEscalaVista"] = value;
+                this["zapataIndiceComboboxEscalaVista"] = value;
             }
         }
         
@@ -392,18 +392,6 @@ namespace Jump.Properties {
             }
             set {
                 this["EtiquetaIndependienteArmaduraEnSistema"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Valor {
-            get {
-                return ((string)(this["Valor"]));
-            }
-            set {
-                this["Valor"] = value;
             }
         }
     }

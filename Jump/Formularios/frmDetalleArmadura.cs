@@ -42,6 +42,10 @@ namespace Jump
             this.IdiomaDelPrograma = Tools.ObtenerIdiomaDelPrograma();
             this.doc = doc;
 
+            // Asignación de textos según el idioma
+            this.chbEtiquetaArmadura.Text = Language.ObtenerTexto(IdiomaDelPrograma, "DetArm1-1");
+            this.chbEtiquetaLongitud.Text = Language.ObtenerTexto(IdiomaDelPrograma, "DetArm1-2");
+
             // Agrega los tipos de etiquetas
             this.etiquetasArmaduras.AddRange(Tools.ObtenerEtiquetasIndependientes(doc, categoriaEtiquetaArmadura));
             this.etiquetasLongitud.AddRange(Tools.ObtenerEstilosTexto(doc));

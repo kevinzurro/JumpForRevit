@@ -7,6 +7,7 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.DB.Structure;
 using Autodesk.Revit.ApplicationServices;
+using Autodesk.Revit.DB.ExtensibleStorage;
 
 namespace Jump
 {
@@ -17,9 +18,6 @@ namespace Jump
         AddInId addinID = null;
         UpdaterId updaterID = null;
 
-        // Guid para eliminar los despieces
-        string GuidEliminarBarra = "266bb163-66e6-4cf8-9ceb-54d931521116";
-
         // Contructor de la clase
         public ArmaduraEliminacion(AddInId AddID)
         {
@@ -27,7 +25,7 @@ namespace Jump
             this.addinID = AddID;
 
             // Crea un nuevo UpdaterId
-            this.updaterID = new UpdaterId(addinID, new Guid(GuidEliminarBarra));
+            this.updaterID = new UpdaterId(addinID, AboutJump.GuidEliminarBarra);
         }
 
         /// <summary> Método cada vez que existe alguna eliminación en Revit </summary>
@@ -53,22 +51,32 @@ namespace Jump
             // Obtiene todas las barras eliminadas
             List<ElementId> barrasEliminadas = Tools.ObtenerElementosIDCoincidentesConLista(colectorBarrasId, elementosId);
 
-            // Recorre todas los despieces creados
-            foreach (ArmaduraRepresentacion bar in Inicio.listaArmaduraRepresentacion)
+            // Obtiene los elementos de barras eliminadas
+            List<Element> barras = Tools.ObtenerElementoSegunID(doc, barrasEliminadas);
+
+            // Recorre las barras eliminadas
+            foreach (Rebar barra in barras)
             {
-                try
+                // Obtiene todas las Representaciones de armaduras
+                List<ArmaduraRepresentacion> listaArmaduraRepresentacion = Tools.ObtenerRepresentacionArmaduraDeBarras(barra);
+
+                // Recorre todos los despieces creados
+                foreach (ArmaduraRepresentacion bar in listaArmaduraRepresentacion)
                 {
-                    // Verifica que entre las barras eliminadas haya algun despiece
-                    if (barrasEliminadas.Contains(bar.Barra.Id))
+                    try
                     {
-                        // Elimina todo el despiece
+                        // Verifica que entre las barras eliminadas haya algun despiece
+                        if (barrasEliminadas.Contains(bar.Barra.Id))
+                        {
+                            // Elimina todo el despiece
+                            bar.Eliminar();
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        // Elimina el despiece
                         bar.Eliminar();
                     }
-                }
-                catch (Exception)
-                {
-                    // Elimina el despiece
-                    bar.Eliminar();
                 }
             }
         }

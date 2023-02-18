@@ -14,6 +14,7 @@ using Autodesk.Revit.UI;
 using Autodesk.Revit.DB.Structure;
 using Autodesk.Revit.ApplicationServices;
 using Autodesk.Revit.DB.Events;
+using Autodesk.Revit.DB.ExtensibleStorage;
 
 namespace Jump
 {
@@ -348,10 +349,14 @@ namespace Jump
                 // Recorre todos los elementos de la lista y obtiene su ID
                 foreach (Element elem in lista)
                 {
-                    if (elem.CanBeHidden(vista))
+                    try
                     {
-                        listaID.Add(elem.Id);
-                    }   
+                        if (elem.CanBeHidden(vista))
+                        {
+                            listaID.Add(elem.Id);
+                        }
+                    }
+                    catch (Exception) { }
                 }
 
                 // Verifica que haya elementos en la lista
@@ -2296,10 +2301,47 @@ namespace Jump
             }
         }
 
+        /// <summary> Obtiene todas las Representaciones de armaduras </summary>
+        public static List<ArmaduraRepresentacion> ObtenerRepresentacionArmaduraDeBarras(Rebar barra)
+        {
+            List<ArmaduraRepresentacion> listaArmaduraRepresentacion = new List<ArmaduraRepresentacion>();
+
+            Schema esquema = AboutJump.Esquema(barra.Document);
+
+            Entity entidad = barra.GetEntity(esquema);
+
+            if (entidad.IsValid() && entidad != null)
+            {
+                listaArmaduraRepresentacion = entidad.Get<List<ArmaduraRepresentacion>>(esquema.GetField(AboutJump.AlmacenamientoArmaduraRepresentacion));
+            }
+
+            return listaArmaduraRepresentacion;
+        }
+
+        /// <summary> Obtiene todas las Representaciones de armaduras </summary>
+        public static List<ArmaduraRepresentacion> ObtenerRepresentacionArmaduraDeBarras(List<Rebar> barras)
+        {
+            List<ArmaduraRepresentacion> listaArmaduraRepresentacion = new List<ArmaduraRepresentacion>();
+
+            foreach (Rebar barra in barras)
+            {
+                Schema esquema = AboutJump.Esquema(barra.Document);
+
+                Entity entidad = barra.GetEntity(esquema);
+
+                if (entidad.IsValid() && entidad != null)
+                {
+                    listaArmaduraRepresentacion = entidad.Get<List<ArmaduraRepresentacion>>(esquema.GetField(AboutJump.AlmacenamientoArmaduraRepresentacion));
+                }
+            }
+
+            return listaArmaduraRepresentacion;
+        }
+
         #endregion
 
         #region Etiquetas Independientes
-        
+
         ///<summary> Crea una etiqueta según la configuración del usuario </summary>
         public static IndependentTag CrearEtiquetaSegunConfiguracion(Document doc, View vista, Element elem, FamilySymbol tipoEtiqueta, int posicion)
         {

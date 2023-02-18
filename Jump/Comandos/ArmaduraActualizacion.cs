@@ -20,9 +20,6 @@ namespace Jump
         System.Windows.Forms.ComboBox cmbEtiquetaLongitud = new System.Windows.Forms.ComboBox();
         System.Windows.Forms.DataGridView dgvEstiloLinea = new System.Windows.Forms.DataGridView();
 
-        // Guid para actualizar barras
-        string GuidActualizarBarra = "7907bd48-73fd-457d-acf9-5311d6b2c0f8";
-        
         // Contructor de la clase
         public ArmaduraActualizacion(AddInId AddID)
         {
@@ -30,7 +27,7 @@ namespace Jump
             this.addinID = AddID;
 
             // Crea un nuevo UpdaterId
-            this.updaterID = new UpdaterId(addinID, new Guid(GuidActualizarBarra));
+            this.updaterID = new UpdaterId(addinID, AboutJump.GuidActualizarBarra);
 
             // Configura el DataGridView
             ConfigurarDataGridView();
@@ -94,11 +91,14 @@ namespace Jump
                 // Obtiene todas las barras modificadas
                 List<Element> barrasModificadas = Tools.ObtenerElementosCoincidentesConLista(colectorBarras, elementos);
 
-                // Recorre todas los despieces creados
-                foreach (ArmaduraRepresentacion bar in Inicio.listaArmaduraRepresentacion)
+                // Recorre todas las barras modificadas
+                foreach (Rebar barra in barrasModificadas)
                 {
-                    // Recorre todas las barras modificadas
-                    foreach (Rebar barra in barrasModificadas)
+                    // Obtiene todas las Representaciones de armaduras
+                    List<ArmaduraRepresentacion> listaArmaduraRepresentacion = Tools.ObtenerRepresentacionArmaduraDeBarras(barra);
+
+                    // Recorre las Representaciones de armaduras
+                    foreach (ArmaduraRepresentacion bar in listaArmaduraRepresentacion)
                     {
                         try
                         {

@@ -63,6 +63,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comandos\AboutJump.cs" />
     <Compile Include="Comandos\ArmaduraActualizacion.cs" />
     <Compile Include="Comandos\ArmaduraEliminacion.cs" />
     <Compile Include="Comandos\ArmaduraRepresentacion.cs" />

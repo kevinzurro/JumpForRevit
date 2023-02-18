@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.DB.Structure;
+using Autodesk.Revit.DB.ExtensibleStorage;
 
 namespace Jump
 {
@@ -204,17 +205,6 @@ namespace Jump
         /// <summary> Mueve la Representación de la Armadura con la etiqueta una distancia dada </summary>
         public void MoverArmaduraRepresentacionConEtiqueta(XYZ distancia)
         {
-            // Verifica que la etiqueta no sea nula
-            if (EtiquetaArmadura != null)
-            {
-                try
-                {
-                    // Mueve la etiqueta
-                    ElementTransformUtils.MoveElement(Documento, EtiquetaArmadura.Id, distancia);
-                }
-                catch (Exception) { }
-            }
-
             // Crea la lista
             List<Element> lista = new List<Element>();
 
@@ -225,6 +215,17 @@ namespace Jump
             lista.AddRange(TextosDeLongitudesParciales);
 
             ElementTransformUtils.MoveElements(this.doc, Tools.ObtenerIdElemento(lista), distancia);
+
+            // Verifica que la etiqueta no sea nula
+            if (EtiquetaArmadura != null)
+            {
+                try
+                {
+                    // Mueve la etiqueta
+                    ElementTransformUtils.MoveElement(Documento, EtiquetaArmadura.Id, distancia);
+                }
+                catch (Exception) { }
+            }
         }
 
         /// <summary> Mueve la Representación de la Armadura una distancia dada </summary>
@@ -243,11 +244,17 @@ namespace Jump
             ElementTransformUtils.MoveElements(Documento, Tools.ObtenerIdElemento(lista), distancia);
         }
 
-        /// <summary> Obtiene el BoundingBoxXYZ con los textos y curvas de detalle </summary>
+        /// <summary> Obtiene el BoundingBoxXYZ con los textos y curvas de detalle en coordenadas globales </summary>
         public BoundingBoxXYZ ObtenerBoundingBoxDeArmadura()
         {
             // Crea la lista
             List<Element> lista = new List<Element>();
+
+            // Verifica que la etiqueta no sea nula
+            if (EtiquetaArmadura != null)
+            {
+                lista.Add(EtiquetaArmadura);
+            }
 
             // Agrega las curvas a la lista
             lista.AddRange(CurvasDeArmadura);
@@ -271,6 +278,55 @@ namespace Jump
             bb.Min = new XYZ(xMin, yMin, zMin);
 
             return bb;
+        }
+
+        /// <summary> Obtine la Representación de la armadura de la entidad de la barra </summary>
+        public List<ArmaduraRepresentacion> ObtenerRepresentacionArmaduraDeEntidad()
+        {
+            List<ArmaduraRepresentacion> armaduras = new List<ArmaduraRepresentacion>();
+
+            Schema esquema = AboutJump.Esquema(this.Documento);
+
+            Entity entidad = this.Barra.GetEntity(esquema);
+
+            if (entidad.IsValid() && entidad != null)
+            {
+                armaduras = entidad.Get<IList<ArmaduraRepresentacion>>(esquema.GetField(AboutJump.AlmacenamientoArmaduraRepresentacion)).ToList();
+            }
+            
+            return armaduras;
+        }
+
+        /// <summary> Asigna la Representación de la armadura a la entidad de la barra </summary>
+        public void AsignarRepresentacionArmdauraAEntidad(ArmaduraRepresentacion armaduraNueva)
+        {
+            Schema esquema = AboutJump.Esquema(this.Documento);
+
+            Entity entidad = this.Barra.GetEntity(esquema);
+
+            List<ArmaduraRepresentacion> armadurasEnEntidad = ObtenerRepresentacionArmaduraDeEntidad();
+
+            armadurasEnEntidad.Add(armaduraNueva);
+
+            entidad.Set<IList<ArmaduraRepresentacion>>(esquema.GetField(AboutJump.AlmacenamientoArmaduraRepresentacion), armadurasEnEntidad);
+
+            this.Barra.SetEntity(entidad);
+        }
+
+        /// <summary> Asigna las Representaciones de la armaduras a la entidad de la barra </summary>
+        public void AsignarRepresentacionArmdauraAEntidad(List<ArmaduraRepresentacion> armadurasNuevas)
+        {
+            Schema esquema = AboutJump.Esquema(this.Documento);
+
+            Entity entidad = this.Barra.GetEntity(esquema);
+
+            List<ArmaduraRepresentacion> armadurasEnEntidad = ObtenerRepresentacionArmaduraDeEntidad();
+
+            armadurasEnEntidad.AddRange(armadurasNuevas);
+
+            entidad.Set<IList<ArmaduraRepresentacion>>(esquema.GetField(AboutJump.AlmacenamientoArmaduraRepresentacion), armadurasEnEntidad);
+
+            this.Barra.SetEntity(entidad);
         }
 
         /// <summary> Elimina la representación de la armadura </summary>

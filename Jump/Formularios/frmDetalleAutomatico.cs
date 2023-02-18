@@ -35,6 +35,10 @@ namespace Jump
         public int posicionEtiquetaIndependienteElemento;
         public int posicionEtiquetaCotaProfundidad;
         public int posicionEtiquetaIndependienteArmadura;
+        public bool cotaVerticalIzquierda;
+        public bool cotaVerticalDerecha;
+        public bool cotaHorizontalArriba;
+        public bool cotaHorizontalAbajo;
         public string clave;
 
         // Parámetros generales
@@ -455,14 +459,14 @@ namespace Jump
             // Cambia las configuraciones de visualización de la vista
             vista = Tools.CambiarConfiguracionVista(this.cmbEscalaVista, this.doc, vista, nivelDetalle);
 
-            // Crea las etiquetas para la vista
-            CrearEtiquetas(vista, elem);
-
             // Muestra solamente el elemento y sus armaduras
             Tools.MostrarSolamenteElementoYBarrasEnVista(this.doc, vista, elem);
 
             // Muestra todos los elementos de la lista
             Tools.MostrarElementosVista(doc, vista, listaEtiquetasCreadas);
+
+            // Crea las etiquetas para la vista
+            CrearEtiquetas(vista, elem);
 
             return vista;
         }
@@ -496,8 +500,49 @@ namespace Jump
 
                 try
                 {
-                    // Crea la cota de altura del elemento
-                    listaCotas = Tools.CrearCotaParaElemento(this.doc, vista, elem, tipoCota);
+                    // Verifica que esté activo la cota vertical izquierda
+                    if (this.cotaVerticalIzquierda)
+                    {
+                        try
+                        {
+                            // Crea la cota vertical izquierda
+                            listaCotas.Add(Tools.CrearCotaVerticalIzquierdaParaElemento(doc, vista, elem, tipoCota));
+                        }
+                        catch (Exception) { }
+                    }
+
+                    // Verifica que esté activo la cota vertical derecha
+                    if (this.cotaVerticalDerecha)
+                    {
+                        try
+                        {
+                            // Crea la cota vertical derecha
+                            listaCotas.Add(Tools.CrearCotaVerticalDerechaParaElemento(doc, vista, elem, tipoCota));
+                        }
+                        catch (Exception) { }
+                    }
+
+                    // Verifica que esté activo la cota horizontal arriba
+                    if (this.cotaHorizontalArriba)
+                    {
+                        try
+                        {
+                            // Crea la cota horizontal arriba
+                            listaCotas.Add(Tools.CrearCotaHorizontalArribaParaElemento(doc, vista, elem, tipoCota));
+                        }
+                        catch (Exception) { }
+                    }
+
+                    // Verifica que esté activo la cota horizontal abajo
+                    if (this.cotaHorizontalAbajo)
+                    {
+                        try
+                        {
+                            // Crea la cota horizontal abajo
+                            listaCotas.Add(Tools.CrearCotaHorizontalAbajoParaElemento(doc, vista, elem, tipoCota));
+                        }
+                        catch (Exception) { }
+                    }
 
                     // Agrega las cotas a la lista
                     listaEtiquetasCreadas.AddRange(listaCotas);
@@ -601,10 +646,11 @@ namespace Jump
                         armadura.TipoDeTexto = this.etiquetasLongitud.FirstOrDefault(x => x.Name == this.cmbEtiquetaLongitud.SelectedItem.ToString());
 
                         // Dibuja las armaduras y asigna los estilos de líneas en función de cada diámetro
-                        armadura.DibujarArmaduraSegunDatagridview(this.dgvEstiloLinea);
+                        //armadura.DibujarArmaduraSegunDatagridview(this.dgvEstiloLinea);
 
                         // Agrega la armadura a la lista de despieces
-                        Inicio.listaArmaduraRepresentacion.Add(armadura);
+                        //Inicio.listaArmaduraRepresentacion.Add(armadura);
+                        armadura.AsignarRepresentacionArmdauraAEntidad(armadura);
 
                         // Verifica que la opción de etiqueta esté activo
                         if (this.chbEtiquetaArmadura.Checked)
@@ -628,7 +674,7 @@ namespace Jump
             }
 
             // Mueve los despieces de Armaduras
-            //Tools.OrdenarYMoverRepresentacionArmaduraSegunDireccion(this.doc, vista, elem, listaArmaduraRepresentacion);
+            OrdenarYMoverRepresentacionArmaduraSegunDireccion(this.doc, vista, elem, listaArmaduraRepresentacion);
 
             // Ajusta el recuadro de la vista
             Tools.AjustarRecuadroDeVista(this.doc, vista, listaEtiquetasCreadas);
@@ -636,5 +682,304 @@ namespace Jump
             // Ajusta el zoom de la vista
             AjustarVistaDePreviewControl();
         }
+
+        ///<summary> Ordena y mueve las Represetaciones de Armaduras según las opciones </summary>
+        public void OrdenarYMoverRepresentacionArmaduraSegunDireccion(Document doc, Autodesk.Revit.DB.View vista, Element elem, List<ArmaduraRepresentacion> armaduras)
+        {
+            // Crea las listas
+            List<ArmaduraRepresentacion> listaArmadurasArriba = new List<ArmaduraRepresentacion>();
+            List<ArmaduraRepresentacion> listaArmadurasAbajo = new List<ArmaduraRepresentacion>();
+            List<ArmaduraRepresentacion> listaArmadurasIzquierda = new List<ArmaduraRepresentacion>();
+            List<ArmaduraRepresentacion> listaArmadurasDerecha = new List<ArmaduraRepresentacion>();
+
+            // Crea una transformada de la vista
+            Transform tra = vista.CropBox.Transform;
+
+            // Obtiene el recuadro del elemento
+            BoundingBoxXYZ bbElem = Tools.ObtenerRecuadroElementoParaleloAVista(doc, vista, elem);
+
+            // Obtiene el baricentro del recuadro del elemento
+            XYZ puntoMedioElem = Tools.ObtenerBaricentroElemento(bbElem);
+
+            // Recorre la lista de Representación de Armaduras
+            foreach (ArmaduraRepresentacion bar in armaduras)
+            {
+                try
+                {
+                    // Obtiene el recuadro de la barra
+                    BoundingBoxXYZ bbArmadura = Tools.ObtenerRecuadroElementoParaleloAVista(doc, vista, bar.Barra);
+
+                    // Obtiene el baricentro del recuadro de la barra
+                    XYZ puntoMedioArmadura = Tools.ObtenerBaricentroElemento(bbArmadura);
+
+                    // Obtiene la distancia en coordenadas de la vista
+                    XYZ distanciaRelativa = tra.Inverse.OfVector(puntoMedioArmadura - puntoMedioElem);
+
+                    OrganizarListaSegunDireccionDeBarra(vista, distanciaRelativa, bar,
+                                                        ref listaArmadurasArriba, ref listaArmadurasAbajo,
+                                                        ref listaArmadurasIzquierda, ref listaArmadurasDerecha);
+                }
+                catch (Exception) { }
+            }
+
+            OrdenarYMoverListaConArmadurasRepresentacion(doc, vista, tra, elem,
+                                                         ref listaArmadurasArriba, ref listaArmadurasAbajo,
+                                                         ref listaArmadurasIzquierda, ref listaArmadurasDerecha);
+        }
+
+        ///<summary> Organiza una Representación de Armadura según una dirección </summary>
+        public void OrganizarListaSegunDireccionDeBarra(Autodesk.Revit.DB.View vista, XYZ distanciaRelativa, ArmaduraRepresentacion bar,
+                                                               ref List<ArmaduraRepresentacion> listaArmadurasArriba,
+                                                               ref List<ArmaduraRepresentacion> listaArmadurasAbajo,
+                                                               ref List<ArmaduraRepresentacion> listaArmadurasIzquierda,
+                                                               ref List<ArmaduraRepresentacion> listaArmadurasDerecha)
+        {
+            // Obtiene la transformada inversa de la vista
+            Transform traInv = vista.CropBox.Transform.Inverse;
+
+            // Verifica si la distancia es cero
+            if (distanciaRelativa.IsZeroLength())
+            {
+                // Proyecta y asigna la posición de la armadura en coordenadas relativas
+                bar.Posicion = traInv.Inverse.OfVector(Tools.ProyectarVectorSobreDireccion(distanciaRelativa, traInv.OfVector(vista.RightDirection)));
+
+                // Agrega la armadura a la lista
+                listaArmadurasDerecha.Add(bar);
+            }
+
+            // Verifica si X es mayor a Y
+            else if (Math.Abs(distanciaRelativa.X) >= Math.Abs(distanciaRelativa.Y))
+            {
+                // Verifica si X es positivo
+                if (Tools.ObtenerSignoComponenteDeVector(distanciaRelativa.X) == 1)
+                {
+                    // Proyecta y asigna la posición de la armadura
+                    bar.Posicion = traInv.Inverse.OfVector(Tools.ProyectarVectorSobreDireccion(distanciaRelativa, traInv.OfVector(vista.RightDirection)));
+
+                    // Agrega la armadura a la lista
+                    listaArmadurasDerecha.Add(bar);
+                }
+
+                else
+                {
+                    // Proyecta y asigna la posición de la armadura
+                    bar.Posicion = traInv.Inverse.OfVector(Tools.ProyectarVectorSobreDireccion(distanciaRelativa, traInv.OfVector(vista.RightDirection.Negate())));
+
+                    // Agrega la armadura a la lista
+                    listaArmadurasIzquierda.Add(bar);
+                }
+            }
+
+            // Y es mayor a X
+            else
+            {
+                // Verifica si Y es positivo
+                if (Tools.ObtenerSignoComponenteDeVector(distanciaRelativa.Y) == 1)
+                {
+                    // Proyecta y asigna la posición de la armadura
+                    bar.Posicion = traInv.Inverse.OfVector(Tools.ProyectarVectorSobreDireccion(distanciaRelativa, traInv.OfVector(vista.UpDirection)));
+
+                    // Agrega la armadura a la lista
+                    listaArmadurasArriba.Add(bar);
+                }
+
+                else
+                {
+                    // Proyecta y asigna la posición de la armadura
+                    bar.Posicion = traInv.Inverse.OfVector(Tools.ProyectarVectorSobreDireccion(distanciaRelativa, traInv.OfVector(vista.UpDirection.Negate())));
+
+                    // Agrega la armadura a la lista
+                    listaArmadurasAbajo.Add(bar);
+                }
+            }
+        }
+
+        ///<summary> Ordena y mueve las listas de Representación de Armadura </summary>
+        public void OrdenarYMoverListaConArmadurasRepresentacion(Document doc, Autodesk.Revit.DB.View vista, Transform tra, Element elem,
+                                                                        ref List<ArmaduraRepresentacion> listaArmadurasArriba,
+                                                                        ref List<ArmaduraRepresentacion> listaArmadurasAbajo,
+                                                                        ref List<ArmaduraRepresentacion> listaArmadurasIzquierda,
+                                                                        ref List<ArmaduraRepresentacion> listaArmadurasDerecha)
+        {
+            // Verifica que existan elementos
+            if (listaArmadurasArriba.Count > 0)
+            {
+                // Ordena la lista
+                listaArmadurasArriba = listaArmadurasArriba.OrderBy(x => tra.Inverse.OfVector(x.Posicion).Y).ToList();
+
+                // Mueve los elementos de la lista
+                MoverListaConArmaduras(doc, vista, elem, vista.UpDirection, listaArmadurasArriba);
+            }
+
+            // Verifica que existan elementos
+            if (listaArmadurasAbajo.Count > 0)
+            {
+                // Ordena la lista
+                listaArmadurasAbajo = listaArmadurasAbajo.OrderByDescending(x => tra.Inverse.OfPoint(x.Posicion).Y).ToList();
+
+                // Mueve los elementos de la lista
+                MoverListaConArmaduras(doc, vista, elem, vista.UpDirection.Negate(), listaArmadurasAbajo);
+            }
+
+            // Verifica que existan elementos
+            if (listaArmadurasDerecha.Count > 0)
+            {
+                // Ordena la lista
+                listaArmadurasDerecha = listaArmadurasDerecha.OrderBy(x => tra.Inverse.OfVector(x.Posicion).X).ToList();
+
+                // Mueve los elementos de la lista
+                MoverListaConArmaduras(doc, vista, elem, vista.RightDirection, listaArmadurasDerecha);
+            }
+
+            // Verifica que existan elementos
+            if (listaArmadurasIzquierda.Count > 0)
+            {
+                // Ordena la lista
+                listaArmadurasIzquierda = listaArmadurasIzquierda.OrderByDescending(x => tra.Inverse.OfVector(x.Posicion).X).ToList();
+
+                // Mueve los elementos de la lista
+                MoverListaConArmaduras(doc, vista, elem, vista.RightDirection.Negate(), listaArmadurasIzquierda);
+            }
+        }
+
+        ///<summary> Mueve la lista de Representacion de Armaduras según una dirección </summary>
+        public void MoverListaConArmaduras(Document doc, Autodesk.Revit.DB.View vista, Element elem, XYZ direccion, List<ArmaduraRepresentacion> armaduras)
+        {
+            // Crea las banderas de las direcciones
+            bool banderaArriba = true;
+            bool banderaAbajo = true;
+            bool banderaDerecha = true;
+            bool banderaIzquierda = true;
+
+            // Crea una transformada de la vista
+            Transform tra = vista.CropBox.Transform;
+
+            // Recuadro del elemento
+            BoundingBoxXYZ bbElem = Tools.ObtenerRecuadroElementoParaleloAVista(doc, vista, elem);
+
+            // Distancia a mover
+            XYZ distancia = new XYZ();
+
+            // Dimensiones del elemento en coordenadas relativas
+            XYZ elementoDimensiones = tra.Inverse.OfVector((bbElem.Max - bbElem.Min) / 2);
+            XYZ elementoAncho = new XYZ(Math.Abs(elementoDimensiones.X), 0, 0);
+            XYZ elementoAlto = new XYZ(0, Math.Abs(elementoDimensiones.Y), 0);
+
+            foreach (ArmaduraRepresentacion bar in armaduras)
+            {
+                try
+                {
+                    bar.DibujarArmaduraSegunDatagridview(this.dgvEstiloLinea);
+
+                    // Recuadro de la barra
+                    BoundingBoxXYZ bbBar = bar.ObtenerBoundingBoxDeArmadura();
+
+                    // Asigna la transformada de la vista al recuadro
+                    //bbBar.Transform = tra;
+
+                    // Dimensiones de la Representación de Armadura en coordenadas relativas
+                    XYZ barDimensiones = tra.Inverse.OfVector(bbBar.Max - bbBar.Min);
+                    XYZ barAncho = new XYZ(Math.Abs(barDimensiones.X), 0, 0);
+                    XYZ barAlto = new XYZ(0, Math.Abs(barDimensiones.Y), 0);
+
+                    // Verifica si la dirección es arriba
+                    if (direccion.IsAlmostEqualTo(vista.UpDirection))
+                    {
+                        // Verifica si el la primera pasada
+                        if (banderaArriba)
+                        {
+                            //distancia = elementoAlto - bar.Posicion + barAlto;
+                            distancia = tra.Inverse.OfVector(Tools.ProyectarVectorSobreDireccion((bbElem.Max - bbBar.Min), vista.UpDirection)) + barAlto / 2;
+
+                            // Cambia el estado de la bandera
+                            banderaArriba = false;
+                        }
+                        else
+                        {
+                            distancia += barAlto ;
+                        }
+                    }
+
+                    // Verifica si la dirección es abajo
+                    else if (direccion.IsAlmostEqualTo(vista.UpDirection.Negate()))
+                    {
+                        // Verifica si el la primera pasada
+                        if (banderaAbajo)
+                        {
+                            // Obtiene la distancia a mover
+                            //distancia = elementoAlto - bar.Posicion - barAlto;
+                            distancia = tra.Inverse.OfVector(Tools.ProyectarVectorSobreDireccion((bbElem.Min - bbBar.Max), vista.UpDirection.Negate())) - barAlto / 2;
+
+                            // Cambia el estado de la bandera
+                            banderaAbajo = false;
+                        }
+                        else
+                        {
+                            distancia -= barAlto;
+                        }
+                    }
+
+                    // Verifica si la dirección es derecha
+                    else if (direccion.IsAlmostEqualTo(vista.RightDirection))
+                    {
+                        // Verifica si el la primera pasada
+                        if (banderaDerecha)
+                        {
+                            //distancia = elementoAncho - bar.Posicion + barAncho;
+                            distancia = tra.Inverse.OfVector(Tools.ProyectarVectorSobreDireccion((bbElem.Max - bbBar.Min), vista.RightDirection)) + barAncho;
+
+                            // Cambia el estado de la bandera
+                            banderaDerecha = false;
+                        }
+                        else
+                        {
+                            distancia += barAncho / 2;
+                        }
+                    }
+
+                    // Verifica si la dirección es izquierda
+                    else if (direccion.IsAlmostEqualTo(vista.RightDirection.Negate()))
+                    {
+                        // Verifica si el la primera pasada
+                        if (banderaIzquierda)
+                        {
+                            //distancia = elementoAncho.Negate() + bar.Posicion - barAncho;
+                            distancia = tra.Inverse.OfVector(Tools.ProyectarVectorSobreDireccion((bbElem.Min - bbBar.Max), vista.RightDirection.Negate())) - barAncho;
+
+                            // Cambia el estado de la bandera
+                            banderaIzquierda = false;
+                        }
+                        else
+                        {
+                            distancia -= barAncho / 2;
+                        }
+                    }
+
+                    else
+                    {
+                        // Verifica si el la primera pasada
+                        if (banderaDerecha)
+                        {
+                            //distancia = elementoAncho - bar.Posicion + barAncho;
+                            distancia = tra.Inverse.OfVector(Tools.ProyectarVectorSobreDireccion((bbElem.Max - bbBar.Min), vista.RightDirection)) + barAncho;
+
+                            // Cambia el estado de la bandera
+                            banderaDerecha = false;
+                        }
+                        else
+                        {
+                            distancia += barAncho / 2;
+                        }
+                    }
+
+                    // Lo lleva a coordenadas globales
+                    bar.Posicion = tra.OfVector(distancia);
+                    
+                    bar.MoverArmaduraRepresentacionConEtiqueta(bar.Posicion);
+                }
+                catch (Exception) { }
+            }
+        }
+
     }
 }

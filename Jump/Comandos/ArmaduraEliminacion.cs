@@ -57,11 +57,8 @@ namespace Jump
             // Recorre las barras eliminadas
             foreach (Rebar barra in barras)
             {
-                // Obtiene todas las Representaciones de armaduras
-                List<ArmaduraRepresentacion> listaArmaduraRepresentacion = Tools.ObtenerRepresentacionArmaduraDeBarras(barra);
-
                 // Recorre todos los despieces creados
-                foreach (ArmaduraRepresentacion bar in listaArmaduraRepresentacion)
+                foreach (ArmaduraRepresentacion bar in Inicio.listaArmaduraRepresentacion)
                 {
                     try
                     {

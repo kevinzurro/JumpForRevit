@@ -14,7 +14,7 @@ namespace Jump
     {
         static string version = "1.0";
         static string vendorID = "ZURROKEVIN";
-        public static string AlmacenamientoArmaduraRepresentacion = "Storage rebar representation";
+        public static string AlmacenamientoArmaduraRepresentacion = "StorageRebarRepresentation";
         static string constructorEsquemaNombre = "JumpSchemaRebar";
         static string guidEsquema = "704efbf5-1d59-41e1-a325-012784bb6a64";
         static string campoDocumentacion = "Saves reinforcement representations";
@@ -60,9 +60,9 @@ namespace Jump
                     constructorEsquema.SetWriteAccessLevel(AccessLevel.Vendor);
 
                     constructorEsquema.SetVendorId(vendorID);
-                    TaskDialog.Show("0", "pasa");
+
                     FieldBuilder fb = constructorEsquema.AddArrayField(AlmacenamientoArmaduraRepresentacion, typeof(ArmaduraRepresentacion));
-                    TaskDialog.Show("1", "pasa");
+
                     fb.SetDocumentation(campoDocumentacion);
 
                     constructorEsquema.SetSchemaName(constructorEsquemaNombre);

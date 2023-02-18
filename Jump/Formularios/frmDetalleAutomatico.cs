@@ -649,8 +649,7 @@ namespace Jump
                         //armadura.DibujarArmaduraSegunDatagridview(this.dgvEstiloLinea);
 
                         // Agrega la armadura a la lista de despieces
-                        //Inicio.listaArmaduraRepresentacion.Add(armadura);
-                        armadura.AsignarRepresentacionArmdauraAEntidad(armadura);
+                        Inicio.listaArmaduraRepresentacion.Add(armadura);
 
                         // Verifica que la opción de etiqueta esté activo
                         if (this.chbEtiquetaArmadura.Checked)

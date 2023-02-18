@@ -54,26 +54,22 @@ namespace Jump
             // Obtiene los elementos de barras eliminadas
             List<Element> barras = Tools.ObtenerElementoSegunID(doc, barrasEliminadas);
 
-            // Recorre las barras eliminadas
-            foreach (Rebar barra in barras)
+            // Recorre todos los despieces creados
+            foreach (ArmaduraRepresentacion bar in Inicio.listaArmaduraRepresentacion)
             {
-                // Recorre todos los despieces creados
-                foreach (ArmaduraRepresentacion bar in Inicio.listaArmaduraRepresentacion)
+                try
                 {
-                    try
+                    // Verifica que entre las barras eliminadas haya algun despiece
+                    if (barrasEliminadas.Contains(bar.Barra.Id))
                     {
-                        // Verifica que entre las barras eliminadas haya algun despiece
-                        if (barrasEliminadas.Contains(bar.Barra.Id))
-                        {
-                            // Elimina todo el despiece
-                            bar.Eliminar();
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        // Elimina el despiece
+                        // Elimina todo el despiece
                         bar.Eliminar();
                     }
+                }
+                catch (Exception)
+                {
+                    // Elimina el despiece
+                    bar.Eliminar();
                 }
             }
         }

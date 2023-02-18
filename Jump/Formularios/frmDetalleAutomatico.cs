@@ -645,9 +645,6 @@ namespace Jump
                         // Asigna el tipo de texto a la representación de la barra
                         armadura.TipoDeTexto = this.etiquetasLongitud.FirstOrDefault(x => x.Name == this.cmbEtiquetaLongitud.SelectedItem.ToString());
 
-                        // Dibuja las armaduras y asigna los estilos de líneas en función de cada diámetro
-                        //armadura.DibujarArmaduraSegunDatagridview(this.dgvEstiloLinea);
-
                         // Agrega la armadura a la lista de despieces
                         Inicio.listaArmaduraRepresentacion.Add(armadura);
 

@@ -194,12 +194,8 @@ namespace Jump
         /// <summary> Finalizar la aplicación </summary>
         public Result OnShutdown(UIControlledApplication application)
         {
-            #region Actualizador de barras
-
             // Elimina el actualizador de armaduras
             Tools.EliminarRegistroArctualizadorArmaduras(application.ActiveAddInId);
-
-            #endregion
 
             return Result.Succeeded;
         }
@@ -251,7 +247,7 @@ namespace Jump
             try
             {
                 // Carga las representaciones de las armaduras a la lista
-
+                Inicio.listaArmaduraRepresentacion.AddRange(Tools.ObtenerRepresentacionArmaduraDeJson(doc));
             }
             catch (Exception) { }
 
@@ -284,6 +280,10 @@ namespace Jump
                     Tools.GuardarDiametrosYEstilos(dgv, rutaArchivo);
                 }
                 catch (Exception) { }
+
+                List<ArmaduraRepresentacion> armaduras = listaArmaduraRepresentacion.Where(x => x.Documento == doc).ToList();
+
+                Tools.GuardarRepresentacionArmaduraEnJson(doc, armaduras);
             }
         }
 

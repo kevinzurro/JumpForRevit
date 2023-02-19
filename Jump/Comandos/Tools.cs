@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.IO;
 using SpreadsheetLight;
 using DocumentFormat.OpenXml;
+using Newtonsoft.Json;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.DB.Structure;
@@ -42,12 +43,13 @@ namespace Jump
 
         #region Creación de archivo Excel
 
-        // Ruta del archivo de excel
+        // Ruta del archivo de excel y Json
         public static string formatoArchivoDiametroYEstilo = ".xlsx";
         public static string formatoArchivoArmaduras = "Rebar.xlsx";
         public static string formatoArchivoRevitDocumento = ".rvt";
         public static string formatoArchivoRevitFamilia = ".rfa";
         public static string formatoArchivoRevitPlantilla = ".rte";
+        public static string formatoArchivoJson = ".json";
 
         // Nombre de la pestaña para los diámetros
         private static string pestanaExcelDiametros = "Sheet1";
@@ -2301,41 +2303,124 @@ namespace Jump
             }
         }
 
-        /// <summary> Obtiene todas las Representaciones de armaduras </summary>
-        public static List<ArmaduraRepresentacion> ObtenerRepresentacionArmaduraDeBarras(Rebar barra)
+        /// <summary> Obtiene la ruta del archivo Json con las Representaciones de armaduras </summary>
+        public static string ObtenerRutaJsonConRepresentacionArmadura(Document doc)
         {
-            List<ArmaduraRepresentacion> listaArmaduraRepresentacion = new List<ArmaduraRepresentacion>();
+            // Obtiene la ruta del documento
+            string rutaDocumento = doc.PathName;
 
-            Schema esquema = AboutJump.Esquema(barra.Document);
+            // Crea la dirección de la ruta del archivo
+            string rutaArchivo = null;
 
-            Entity entidad = barra.GetEntity(esquema);
-
-            if (entidad.IsValid() && entidad != null)
+            // Verifica que exista ruta
+            if (rutaDocumento != "" && !doc.IsDetached)
             {
-                listaArmaduraRepresentacion = entidad.Get<List<ArmaduraRepresentacion>>(esquema.GetField(AboutJump.AlmacenamientoArmaduraRepresentacion));
+                // Obtiene la ruta del archivo
+                rutaArchivo = rutaDocumento.Replace(Tools.formatoArchivoRevitDocumento, Tools.formatoArchivoJson);
             }
 
-            return listaArmaduraRepresentacion;
+            else
+            {
+                // Crea la ruta temporal
+                rutaArchivo = Path.GetTempPath() + doc.Title + Tools.formatoArchivoJson; ;
+            }
+
+            return rutaArchivo;
         }
 
-        /// <summary> Obtiene todas las Representaciones de armaduras </summary>
-        public static List<ArmaduraRepresentacion> ObtenerRepresentacionArmaduraDeBarras(List<Rebar> barras)
-        {
-            List<ArmaduraRepresentacion> listaArmaduraRepresentacion = new List<ArmaduraRepresentacion>();
+        /// <summary> Obtiene todas las Representaciones de armaduras de un archivo Json </summary>
+        public static List<ArmaduraRepresentacion> ObtenerRepresentacionArmaduraDeJson(Document doc)
+        {            
+            List<ArmaduraRepresentacion> armaduras = new List<ArmaduraRepresentacion>();
 
-            foreach (Rebar barra in barras)
+            // Texto con los objetos de Representaciones de armaduras
+            string textArmaduraRepresentacion = "";
+
+            // Obtiene la dirección de la ruta del archivo Json
+            string rutaArchivo = ObtenerRutaJsonConRepresentacionArmadura(doc);
+
+            // Verifica que exista el archivo
+            if (File.Exists(rutaArchivo))
             {
-                Schema esquema = AboutJump.Esquema(barra.Document);
+                textArmaduraRepresentacion = File.ReadAllText(rutaArchivo);
 
-                Entity entidad = barra.GetEntity(esquema);
-
-                if (entidad.IsValid() && entidad != null)
-                {
-                    listaArmaduraRepresentacion = entidad.Get<List<ArmaduraRepresentacion>>(esquema.GetField(AboutJump.AlmacenamientoArmaduraRepresentacion));
-                }
+                armaduras = JsonConvert.DeserializeObject<List<ArmaduraRepresentacion>>(textArmaduraRepresentacion);
             }
 
-            return listaArmaduraRepresentacion;
+            else
+            {
+                File.WriteAllText(rutaArchivo, textArmaduraRepresentacion);
+            }
+
+            return armaduras;
+        }
+
+        /// <summary> Guarda todas las Representaciones de armaduras de un archivo Json </summary>
+        public static void GuardarRepresentacionArmaduraEnJson(Document doc, ArmaduraRepresentacion armadura)
+        {
+            List<ArmaduraRepresentacion> armaduras = new List<ArmaduraRepresentacion>();
+
+            // Obtiene la dirección de la ruta del archivo Json
+            string rutaArchivo = ObtenerRutaJsonConRepresentacionArmadura(doc);
+
+            string textArmadura = JsonConvert.SerializeObject(armadura);
+
+            // Verifica que exista el archivo
+            if (File.Exists(rutaArchivo))
+            {
+                string textArmaduraRepresentacion = File.ReadAllText(rutaArchivo);
+
+                armaduras = JsonConvert.DeserializeObject<List<ArmaduraRepresentacion>>(textArmaduraRepresentacion);
+
+                armaduras.Add(armadura);
+
+                textArmaduraRepresentacion = JsonConvert.SerializeObject(armaduras);
+
+                File.WriteAllText(rutaArchivo, textArmaduraRepresentacion);
+            }
+
+            else
+            {
+                armaduras.Add(armadura);
+
+                string textArmaduraRepresentacion = JsonConvert.SerializeObject(armaduras);
+
+                File.WriteAllText(rutaArchivo, textArmaduraRepresentacion);
+            }
+        }
+
+        /// <summary> Guarda todas las Representaciones de armaduras de un archivo Json </summary>
+        public static void GuardarRepresentacionArmaduraEnJson(Document doc, List<ArmaduraRepresentacion> armaduras)
+        {
+            List<ArmaduraRepresentacion> armadurasEnJosn = new List<ArmaduraRepresentacion>();
+
+            // Obtiene la dirección de la ruta del archivo Json
+            string rutaArchivo = ObtenerRutaJsonConRepresentacionArmadura(doc);
+
+            string textArmadura = JsonConvert.SerializeObject(armaduras);
+
+            // Verifica que exista el archivo
+            if (File.Exists(rutaArchivo))
+            {
+                string textArmaduraRepresentacion = File.ReadAllText(rutaArchivo);
+
+                armadurasEnJosn = JsonConvert.DeserializeObject<List<ArmaduraRepresentacion>>(textArmaduraRepresentacion);
+
+                armadurasEnJosn.AddRange(armaduras);
+
+                textArmaduraRepresentacion = JsonConvert.SerializeObject(armaduras);
+
+                File.WriteAllText(rutaArchivo, textArmaduraRepresentacion);
+            }
+
+            else
+            {
+                armadurasEnJosn.AddRange(armaduras);
+
+                string textArmaduraRepresentacion = JsonConvert.SerializeObject(armaduras);
+
+                File.WriteAllText(rutaArchivo, textArmaduraRepresentacion);
+            }
         }
 
         #endregion

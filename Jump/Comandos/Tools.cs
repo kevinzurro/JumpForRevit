@@ -2347,11 +2347,6 @@ namespace Jump
                 armaduras = JsonConvert.DeserializeObject<List<ArmaduraRepresentacion>>(textArmaduraRepresentacion);
             }
 
-            else
-            {
-                File.WriteAllText(rutaArchivo, textArmaduraRepresentacion);
-            }
-
             return armaduras;
         }
 

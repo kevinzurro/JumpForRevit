@@ -31,7 +31,7 @@ namespace Jump
         public Result OnStartup(UIControlledApplication application)
         {
             // Crear la pestaña con el nombre de la addin
-            application.CreateRibbonTab(Language.NombreAddin);
+            application.CreateRibbonTab(AboutJump.NombreAddin);
 
             #region Idioma
 
@@ -49,16 +49,16 @@ namespace Jump
             #region Paneles
 
             //Crear los paneles
-            RibbonPanel panelDetalleArmado = application.CreateRibbonPanel(Language.NombreAddin, Language.ObtenerTexto(IdiomaDelPrograma, "Tit1"));
-            RibbonPanel panelVisibilidad = application.CreateRibbonPanel(Language.NombreAddin, Language.ObtenerTexto(IdiomaDelPrograma, "Tit2"));
-            RibbonPanel panelHerramienta = application.CreateRibbonPanel(Language.NombreAddin, Language.ObtenerTexto(IdiomaDelPrograma, "Tit3"));
+            RibbonPanel panelDetalleArmado = application.CreateRibbonPanel(AboutJump.NombreAddin, Language.ObtenerTexto(IdiomaDelPrograma, "Tit1"));
+            RibbonPanel panelVisibilidad = application.CreateRibbonPanel(AboutJump.NombreAddin, Language.ObtenerTexto(IdiomaDelPrograma, "Tit2"));
+            RibbonPanel panelHerramienta = application.CreateRibbonPanel(AboutJump.NombreAddin, Language.ObtenerTexto(IdiomaDelPrograma, "Tit3"));
 
             #endregion
 
             #region Botones
 
             // Crea los botones
-            PushButton botonDespieceArmadura = panelDetalleArmado.AddItem(new PushButtonData("botonDespieceArmadura", Language.ObtenerTexto(IdiomaDelPrograma, "1"), "DesArm1", "Jump.cmdArmaduraRepresentacion")) as PushButton;
+            PushButton botonDespieceArmadura = panelDetalleArmado.AddItem(new PushButtonData("botonDespieceArmadura", Language.ObtenerTexto(IdiomaDelPrograma, "DetArm1"), RutaDelEnsamblado, "Jump.cmdArmaduraRepresentacion")) as PushButton;
             PushButton botonPilote = panelDetalleArmado.AddItem(new PushButtonData("botonPilote", Language.ObtenerTexto(IdiomaDelPrograma, "Pil1"), RutaDelEnsamblado, "Jump.cmdPilotes")) as PushButton;
             PushButton botonZapataCorrida = panelDetalleArmado.AddItem(new PushButtonData("botonZapataCorrida", Language.ObtenerTexto(IdiomaDelPrograma, "ZapCor1"), RutaDelEnsamblado, "Jump.cmdZapataCorrida")) as PushButton;
             PushButton botonPlatea = panelDetalleArmado.AddItem(new PushButtonData("botonPlatea", Language.ObtenerTexto(IdiomaDelPrograma, "Pla1"), RutaDelEnsamblado, "Jump.cmdPlatea")) as PushButton;
@@ -70,14 +70,14 @@ namespace Jump
             PushButton botonElemenEstructural = panelVisibilidad.AddItem(new PushButtonData("botonElemenEstructural", Language.ObtenerTexto(IdiomaDelPrograma, "EleEst1"), RutaDelEnsamblado, "Jump.cmdVisibilidadEstructural")) as PushButton;
             PushButton botonElemenAnalitico = panelVisibilidad.AddItem(new PushButtonData("botonElemenAnalitico", Language.ObtenerTexto(IdiomaDelPrograma, "EleAna1"), RutaDelEnsamblado, "Jump.cmdVisibilidadAnalitica")) as PushButton;
             PushButton botonOrdenEnumeracion = panelHerramienta.AddItem(new PushButtonData("botonOrdenEnumeracion", Language.ObtenerTexto(IdiomaDelPrograma, "OrdYEnu1"), RutaDelEnsamblado, "Jump.cmdOrdenYEnumeracion")) as PushButton;
-            PushButton botonIdioma = panelHerramienta.AddItem(new PushButtonData("botonIdioma", Language.ObtenerTexto(IdiomaDelPrograma, "Idi1"), RutaDelEnsamblado, "Jump.cmdIdioma")) as PushButton;            
+            PushButton botonIdioma = panelHerramienta.AddItem(new PushButtonData("botonIdioma", Language.ObtenerTexto(IdiomaDelPrograma, "Idi1"), RutaDelEnsamblado, "Jump.cmdIdioma")) as PushButton;
             PushButton botonConfiguracion = panelHerramienta.AddItem(new PushButtonData("botonConfiguracion", Language.ObtenerTexto(IdiomaDelPrograma, "Conf1"), RutaDelEnsamblado, "Jump.cmdConfiguraciones")) as PushButton;
 
             // Crea los botones para la visibilidad de la armadura que van en el botón desplegable
             PushButtonData botonArmaSolido = new PushButtonData("botonArmaSolido", Language.ObtenerTexto(IdiomaDelPrograma, "VisArmSol"), RutaDelEnsamblado, "Jump.cmdArmaduraSolido");
             PushButtonData botonArmaFilamento = new PushButtonData("botonArmaFilamento", Language.ObtenerTexto(IdiomaDelPrograma, "VisArmFil"), RutaDelEnsamblado, "Jump.cmdArmaduraFilamento");
-            PushButtonData botonArmaSinTapa = new PushButtonData("botonArmaSinTapa", Language.ObtenerTexto(IdiomaDelPrograma, "VisArmSinTap"), RutaDelEnsamblado, "Jump.cmdArmaduraSinTapar");            
-            PushButtonData botonArmaTapada = new PushButtonData("botonArmaTapada", Language.ObtenerTexto(IdiomaDelPrograma, "VisArmTap"), RutaDelEnsamblado, "Jump.cmdArmaduraTapada");            
+            PushButtonData botonArmaSinTapa = new PushButtonData("botonArmaSinTapa", Language.ObtenerTexto(IdiomaDelPrograma, "VisArmSinTap"), RutaDelEnsamblado, "Jump.cmdArmaduraSinTapar");
+            PushButtonData botonArmaTapada = new PushButtonData("botonArmaTapada", Language.ObtenerTexto(IdiomaDelPrograma, "VisArmTap"), RutaDelEnsamblado, "Jump.cmdArmaduraTapada");
 
             // Crear el boton desplegable para las armaduras
             PulldownButton botonArmaVisibilidad = panelVisibilidad.AddItem(new PulldownButtonData("botonArmaVisibilidad", Language.ObtenerTexto(IdiomaDelPrograma, "VisArm1"))) as PulldownButton;
@@ -114,8 +114,8 @@ namespace Jump
             // Agregar los botones de visibilidad al boton desplegable
             botonArmaVisibilidad.AddPushButton(botonArmaSolido);
             botonArmaVisibilidad.AddPushButton(botonArmaFilamento);
-            botonArmaVisibilidad.AddPushButton(botonArmaSinTapa);            
-            botonArmaVisibilidad.AddPushButton(botonArmaTapada);            
+            botonArmaVisibilidad.AddPushButton(botonArmaSinTapa);
+            botonArmaVisibilidad.AddPushButton(botonArmaTapada);
 
             #endregion
 
@@ -186,6 +186,14 @@ namespace Jump
             }
             catch (Exception) { }
 
+            try
+            {
+                // Registra el evento cuando se guardó un documento
+                application.ControlledApplication.DocumentSaved += new EventHandler
+                           <Autodesk.Revit.DB.Events.DocumentSavedEventArgs>(application_DocumentSaved);
+            }
+            catch (Exception) { }
+
             #endregion
 
             return Result.Succeeded;
@@ -246,8 +254,13 @@ namespace Jump
 
             try
             {
-                // Carga las representaciones de las armaduras a la lista
-                Inicio.listaArmaduraRepresentacion.AddRange(Tools.ObtenerRepresentacionArmaduraDeJson(doc));
+                List<ArmaduraRepresentacion> armaduras = Tools.ObtenerRepresentacionArmaduraDeJson(doc);
+
+                if (armaduras.Count > 0)
+                {
+                    // Carga las representaciones de las armaduras a la lista
+                    Inicio.listaArmaduraRepresentacion.AddRange(armaduras);
+                }
             }
             catch (Exception) { }
 
@@ -281,10 +294,28 @@ namespace Jump
                 }
                 catch (Exception) { }
 
+                try
+                {
+                    List<ArmaduraRepresentacion> armaduras = listaArmaduraRepresentacion.Where(x => x.Documento == doc).ToList();
+
+                    Tools.GuardarRepresentacionArmaduraEnJson(doc, armaduras);
+                }
+                catch (Exception) { }
+            }
+        }
+
+        /// <summary> Evento cuando se guardó un documento con nombre distinto o por primera vez </summary>
+        public void application_DocumentSaved(object sender, DocumentSavedEventArgs args)
+        {
+            Document doc = args.Document;
+
+            try
+            {
                 List<ArmaduraRepresentacion> armaduras = listaArmaduraRepresentacion.Where(x => x.Documento == doc).ToList();
 
                 Tools.GuardarRepresentacionArmaduraEnJson(doc, armaduras);
             }
+            catch (Exception) { }
         }
 
         #endregion

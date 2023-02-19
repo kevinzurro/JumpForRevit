@@ -12,6 +12,7 @@ namespace Jump
 {
     public static class AboutJump
     {
+        public static string NombreAddin = "Jump";
         static string version = "1.0";
         static string guidEsquema = "704efbf5-1d59-41e1-a325-012784bb6a64";
         static string guidEliminarBarra = "266bb163-66e6-4cf8-9ceb-54d931521116";

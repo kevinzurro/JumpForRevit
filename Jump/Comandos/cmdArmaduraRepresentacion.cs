@@ -120,6 +120,7 @@ namespace Jump
 
                                         // Agrega la armadura a la lista de despieces
                                         Inicio.listaArmaduraRepresentacion.Add(armadura);
+                                        Tools.GuardarRepresentacionArmaduraEnJson(doc, armadura);
                                     }
                                     catch (Exception) { }
                                 }

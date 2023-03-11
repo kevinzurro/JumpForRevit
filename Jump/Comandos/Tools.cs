@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.IO;
 using SpreadsheetLight;
 using DocumentFormat.OpenXml;
-using Newtonsoft.Json;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.DB.Structure;
@@ -254,7 +253,7 @@ namespace Jump
             Language.CargaTextosDeCadaIdioma();
 
             // Carga los paises disponibles
-            Pais.CargarPaisesDisponibles();            
+            Pais.CargarPaisesDisponibles();
         }
 
         #endregion
@@ -1106,7 +1105,7 @@ namespace Jump
         }
 
         #endregion
-
+        
         #region Grupos y elementos anidados
 
         /// <summary> Crea un grupo a partir de una lista de elementos </summary>
@@ -2223,7 +2222,7 @@ namespace Jump
         #region Actualizador de Armaduras
 
         /// <summary> Crea el actualizar de armaduras y agrega al registro </summary>
-        public static void CrearRegistroArctualizadorArmaduras(AddInId AddIn)
+        public static void CrearRegistroActualizadorArmaduras(AddInId AddIn)
         {
             // Obtiene el actualizador para eliminar barras
             ArmaduraEliminacion barraEliminada = new ArmaduraEliminacion(AddIn);
@@ -2260,7 +2259,7 @@ namespace Jump
         }
 
         /// <summary> Elimina el actualizar de armaduras del registro </summary>
-        public static void EliminarRegistroArctualizadorArmaduras(AddInId AddIn)
+        public static void EliminarRegistroActualizadorArmaduras(AddInId AddIn)
         {
             // Obtiene el actualizador para eliminar barras
             ArmaduraEliminacion barraEliminada = new ArmaduraEliminacion(AddIn);
@@ -2333,19 +2332,20 @@ namespace Jump
         {            
             List<ArmaduraRepresentacion> armaduras = new List<ArmaduraRepresentacion>();
 
-            // Texto con los objetos de Representaciones de armaduras
-            string textArmaduraRepresentacion = "";
-
             // Obtiene la dirección de la ruta del archivo Json
             string rutaArchivo = ObtenerRutaJsonConRepresentacionArmadura(doc);
 
-            // Verifica que exista el archivo
-            if (File.Exists(rutaArchivo))
+            try
             {
-                textArmaduraRepresentacion = File.ReadAllText(rutaArchivo);
+                // Verifica que exista el archivo
+                if (File.Exists(rutaArchivo))
+                {
+                    string textArmaduraRepresentacion = File.ReadAllText(rutaArchivo);
 
-                armaduras = JsonConvert.DeserializeObject<List<ArmaduraRepresentacion>>(textArmaduraRepresentacion);
+                    //armaduras = JsonConvert.DeserializeObject<List<ArmaduraRepresentacion>>(textArmaduraRepresentacion);
+                }
             }
+            catch (Exception) { }
 
             return armaduras;
         }
@@ -2358,32 +2358,34 @@ namespace Jump
             // Obtiene la dirección de la ruta del archivo Json
             string rutaArchivo = ObtenerRutaJsonConRepresentacionArmadura(doc);
 
-            string textArmadura = JsonConvert.SerializeObject(armadura);
-
-            // Verifica que exista el archivo
-            if (File.Exists(rutaArchivo))
+            try
             {
-                string textArmaduraRepresentacion = File.ReadAllText(rutaArchivo);
+                // Verifica que exista el archivo
+                if (File.Exists(rutaArchivo))
+                {
+                    string textArmaduraRepresentacion = File.ReadAllText(rutaArchivo);
 
-                armaduras = JsonConvert.DeserializeObject<List<ArmaduraRepresentacion>>(textArmaduraRepresentacion);
+                    //armaduras = JsonConvert.DeserializeObject<List<ArmaduraRepresentacion>>(textArmaduraRepresentacion);
 
-                armaduras.Add(armadura);
+                    armaduras.Add(armadura);
 
-                textArmaduraRepresentacion = JsonConvert.SerializeObject(armaduras);
+                    //textArmaduraRepresentacion = JsonConvert.SerializeObject(armaduras.ToArray(), Formatting.Indented);
 
-                File.WriteAllText(rutaArchivo, textArmaduraRepresentacion);
+                    File.WriteAllText(rutaArchivo, textArmaduraRepresentacion);
+                }
+
+                else
+                {
+                    armaduras.Add(armadura);
+
+                    //string textArmaduraRepresentacion = JsonConvert.SerializeObject(armaduras.ToArray(), Formatting.Indented);
+
+                    //File.WriteAllText(rutaArchivo, textArmaduraRepresentacion);
+                }
             }
-
-            else
-            {
-                armaduras.Add(armadura);
-
-                string textArmaduraRepresentacion = JsonConvert.SerializeObject(armaduras);
-
-                File.WriteAllText(rutaArchivo, textArmaduraRepresentacion);
-            }
+            catch (Exception) { }
         }
-
+        
         /// <summary> Guarda todas las Representaciones de armaduras de un archivo Json </summary>
         public static void GuardarRepresentacionArmaduraEnJson(Document doc, List<ArmaduraRepresentacion> armaduras)
         {
@@ -2392,30 +2394,32 @@ namespace Jump
             // Obtiene la dirección de la ruta del archivo Json
             string rutaArchivo = ObtenerRutaJsonConRepresentacionArmadura(doc);
 
-            string textArmadura = JsonConvert.SerializeObject(armaduras);
-
-            // Verifica que exista el archivo
-            if (File.Exists(rutaArchivo))
+            try
             {
-                string textArmaduraRepresentacion = File.ReadAllText(rutaArchivo);
+                // Verifica que exista el archivo
+                if (File.Exists(rutaArchivo))
+                {
+                    string textArmaduraRepresentacion = File.ReadAllText(rutaArchivo);
 
-                armadurasEnJosn = JsonConvert.DeserializeObject<List<ArmaduraRepresentacion>>(textArmaduraRepresentacion);
+                    //armadurasEnJosn = JsonConvert.DeserializeObject<List<ArmaduraRepresentacion>>(textArmaduraRepresentacion);
 
-                armadurasEnJosn.AddRange(armaduras);
+                    armadurasEnJosn.AddRange(armaduras);
 
-                textArmaduraRepresentacion = JsonConvert.SerializeObject(armaduras);
+                    //textArmaduraRepresentacion = JsonConvert.SerializeObject(armaduras.ToArray(), Formatting.Indented);
 
-                File.WriteAllText(rutaArchivo, textArmaduraRepresentacion);
+                    File.WriteAllText(rutaArchivo, textArmaduraRepresentacion);
+                }
+
+                else
+                {
+                    armadurasEnJosn.AddRange(armaduras);
+
+                    //string textArmaduraRepresentacion = JsonConvert.SerializeObject(armaduras.ToArray(), Formatting.Indented);
+
+                    //File.WriteAllText(rutaArchivo, textArmaduraRepresentacion);
+                }
             }
-
-            else
-            {
-                armadurasEnJosn.AddRange(armaduras);
-
-                string textArmaduraRepresentacion = JsonConvert.SerializeObject(armaduras);
-
-                File.WriteAllText(rutaArchivo, textArmaduraRepresentacion);
-            }
+            catch (Exception) { }
         }
 
         #endregion

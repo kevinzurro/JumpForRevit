@@ -68,7 +68,7 @@ namespace Jump
             InitializeComponent();
             
             Tools.AddinManager();
-            Tools.CrearRegistroArctualizadorArmaduras(doc.Application.ActiveAddInId);
+            Tools.CrearRegistroActualizadorArmaduras(doc.Application.ActiveAddInId);
 
             // Variable necesarias
             this.IdiomaDelPrograma = Tools.ObtenerIdiomaDelPrograma();
@@ -645,9 +645,6 @@ namespace Jump
                         // Asigna el tipo de texto a la representación de la barra
                         armadura.TipoDeTexto = this.etiquetasLongitud.FirstOrDefault(x => x.Name == this.cmbEtiquetaLongitud.SelectedItem.ToString());
 
-                        // Agrega la armadura a la lista de despieces
-                        Inicio.listaArmaduraRepresentacion.Add(armadura);
-
                         // Verifica que la opción de etiqueta esté activo
                         if (this.chbEtiquetaArmadura.Checked)
                         {
@@ -671,10 +668,19 @@ namespace Jump
 
             // Mueve los despieces de Armaduras
             OrdenarYMoverRepresentacionArmaduraSegunDireccion(this.doc, vista, elem, listaArmaduraRepresentacion);
-
+            
             // Ajusta el recuadro de la vista
             Tools.AjustarRecuadroDeVista(this.doc, vista, listaEtiquetasCreadas);
 
+            // Verifica que la transacción grupal finalizó
+            if (this.tg.HasEnded())
+            {
+                // Agrega la armadura a la lista de despieces
+                Inicio.listaArmaduraRepresentacion.AddRange(listaArmaduraRepresentacion);
+
+                Tools.GuardarRepresentacionArmaduraEnJson(this.doc, Inicio.listaArmaduraRepresentacion);
+            }
+            
             // Ajusta el zoom de la vista
             AjustarVistaDePreviewControl();
         }

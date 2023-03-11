@@ -164,7 +164,7 @@ namespace Jump
             #region Actualizador de barras
 
             // Crea el actualizador de armaduras
-            Tools.CrearRegistroArctualizadorArmaduras(application.ActiveAddInId);
+            Tools.CrearRegistroActualizadorArmaduras(application.ActiveAddInId);
 
             #endregion
 
@@ -203,7 +203,7 @@ namespace Jump
         public Result OnShutdown(UIControlledApplication application)
         {
             // Elimina el actualizador de armaduras
-            Tools.EliminarRegistroArctualizadorArmaduras(application.ActiveAddInId);
+            Tools.EliminarRegistroActualizadorArmaduras(application.ActiveAddInId);
 
             return Result.Succeeded;
         }

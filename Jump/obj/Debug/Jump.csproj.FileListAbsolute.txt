@@ -118,5 +118,3 @@ D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump.csproj.Co
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump.csproj.CopyComplete
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump.frmDetalleArmadura.resources
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump.frmDetalleAutomatico.resources
-D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\bin\Debug\Newtonsoft.Json.dll
-D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\bin\Debug\Newtonsoft.Json.xml

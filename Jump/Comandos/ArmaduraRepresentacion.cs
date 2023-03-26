@@ -13,17 +13,18 @@ namespace Jump
     public class ArmaduraRepresentacion
     {
         // Variables necesarias
-        Document doc;        
+        Document doc;
         View vistaBarra;
         Rebar barraRefuerzo;
+        ElementId armaduraID;
         List<CurveElement> listaCurvas;
         List<TextNote> listaTextos;
         IndependentTag etiquetaArmadura;
         TextNoteType tipoEtiquetaTexto;
         FamilySymbol tipoEtiquetaArmadura;
         XYZ posicion;
-        List<Int32> listaCurvasId = new List<int>();
-        List<Int32> listaTextosId = new List<int>();
+        List<ElementId> listaCurvasId = new List<ElementId>();
+        List<ElementId> listaTextosId = new List<ElementId>();
 
         // Constructor la armadura
         public ArmaduraRepresentacion(Document doc, View vista, Rebar barra)
@@ -32,6 +33,33 @@ namespace Jump
             this.doc = doc;            
             this.vistaBarra = vista;
             this.barraRefuerzo = barra;
+            this.armaduraID = barra.Id;
+        }
+
+        /// <summary> Obtiene el documento </summary>
+        public Document Documento
+        {
+            get { return this.doc; }
+        }
+
+        /// <summary> Obtiene la vista de la barra </summary>
+        public View Vista
+        {
+            get { return this.vistaBarra; }
+        }
+
+        /// <summary> Obtiene la barra </summary>
+        public Rebar Barra
+        {
+            get { return this.barraRefuerzo; }
+        }
+
+        /// <summary> ID de la Representación de la armadura, es igual al ID de la Barra </summary>
+        public ElementId Id
+        {
+            get { return this.armaduraID; }
+
+            set { this.armaduraID = value; }
         }
 
         /// <summary> Asigna u obtiene las curvas </summary>
@@ -43,16 +71,15 @@ namespace Jump
             {
                 this.listaCurvas = value;
 
-                AgregarListaCurvasId(value);
+                this.listaCurvasId.Clear();
+
+                // Recorre la lista
+                foreach (CurveElement curva in this.listaCurvas)
+                {
+                    //Agrega el ID a la lista
+                    listaCurvasId.Add(curva.Id);
+                }
             }
-        }
-
-        /// <summary> Asigna u obtiene el historial de ElementId como entero de curvas creadas </summary>
-        public List<Int32> ListaCurvasId
-        {
-            get { return listaCurvasId; }
-
-            set { this.listaCurvasId = value; }
         }
 
         /// <summary> Asigna u obtiene los textos de las longitudes parciales </summary>
@@ -64,12 +91,27 @@ namespace Jump
             {
                 this.listaTextos = value;
 
-                AgregarListaTextosId(value);
+                this.listaTextosId.Clear();
+
+                // Recorre la lista
+                foreach (TextNote texto in this.listaTextos)
+                {
+                    //Agrega el ID a la lista
+                    listaTextosId.Add(texto.Id);
+                }
             }
         }
 
-        /// <summary> Asigna u obtiene el historial de ElementId como entero de textos creados </summary>
-        public List<Int32> ListaTextosId
+        /// <summary> Asigna u obtiene el ElementId de las curvas </summary>
+        public List<ElementId> ListaCurvasId
+        {
+            get { return listaCurvasId; }
+
+            set { this.listaCurvasId = value; }
+        }
+
+        /// <summary> Asigna u obtiene el ElementId de textos de longitudes parciales </summary>
+        public List<ElementId> ListaTextosId
         {
             get { return listaTextosId; }
 
@@ -100,12 +142,6 @@ namespace Jump
             set { this.tipoEtiquetaArmadura = value; }
         }
 
-        /// <summary> Obtiene el documento </summary>
-        public Document Documento
-        {
-            get { return this.doc; }
-        }
-
         /// <summary> Asigna u obtiene la posición de la Representación de la armadura en coordenadas globales </summary>
         public XYZ Posicion
         {
@@ -123,18 +159,6 @@ namespace Jump
             }
         }
 
-        /// <summary> Obtiene la barra </summary>
-        public Rebar Barra
-        {
-            get { return this.barraRefuerzo; }
-        }
-
-        /// <summary> Obtiene la vista de la barra </summary>
-        public View Vista
-        {
-            get { return this.vistaBarra; }
-        }
-
         /// <summary> Dibuja la armadura junto con su textos </summary>
         public void DibujarArmaduraSegunDatagridview(System.Windows.Forms.DataGridView dgw)
         {
@@ -143,63 +167,8 @@ namespace Jump
 
             // Crea notas de texto con la longitud parcial de la barra
             this.TextosDeLongitudesParciales = Tools.CrearTextNoteDeArmadura(this.doc, this.vistaBarra, this.barraRefuerzo, this.TipoDeTexto);
-        }
 
-        /// <summary> Agrega la lista de ID de las curvas al historial </summary>
-        private void AgregarListaCurvasId(List<CurveElement> lista)
-        {
-            // Recorre la lista
-            foreach (CurveElement curva in lista)
-            {
-                //Agrega el ID a la lista
-                listaCurvasId.Add((Int32)curva.Id.IntegerValue);
-            }
-        }
-
-        /// <summary> Agrega la lista de ID de los textos al historial </summary>
-        private void AgregarListaTextosId(List<TextNote> lista)
-        {
-            // Recorre la lista
-            foreach (TextNote texto in lista)
-            {
-                //Agrega el ID a la lista
-                listaTextosId.Add((Int32)texto.Id.IntegerValue);
-            }
-        }
-
-        /// <summary> Obtiene los ElementId de las curvas (bool = true) o de los textos (bool = false) </summary>
-        public List<ElementId> ObtenerElementosCreadas(bool tipo)
-        {
-            // Crea la lista a devolver
-            List<ElementId> lista = new List<ElementId>();
-
-            // Verifica que sean curvas
-            if (tipo)
-            {
-                // Recorre las curvas creadas
-                foreach (Int32 entero in listaCurvasId)
-                {
-                    // Obtiene el ElementId
-                    ElementId elemId = new ElementId(entero);
-
-                    lista.Add(elemId);
-                }
-            }
-
-            // Verifica que sean textos
-            if (tipo)
-            {
-                // Recorre todos los textos creadps
-                foreach (Int32 entero in listaTextosId)
-                {
-                    // Obtiene el ElementId
-                    ElementId elemId = new ElementId(entero);
-
-                    lista.Add(elemId);
-                }
-            }
-
-            return lista;
+            Inicio.listaArmaduraRepresentacion.Add(this);
         }
 
         /// <summary> Mueve la Representación de la Armadura con la etiqueta una distancia dada </summary>
@@ -222,7 +191,7 @@ namespace Jump
                 try
                 {
                     // Mueve la etiqueta
-                    ElementTransformUtils.MoveElement(Documento, EtiquetaArmadura.Id, distancia);
+                    ElementTransformUtils.MoveElement(Documento, EtiquetaArmadura.Id, distancia);                    
                 }
                 catch (Exception) { }
             }
@@ -280,55 +249,6 @@ namespace Jump
             return bb;
         }
 
-        /// <summary> Obtine la Representación de la armadura de la entidad de la barra </summary>
-        public List<ArmaduraRepresentacion> ObtenerRepresentacionArmaduraDeEntidad()
-        {
-            List<ArmaduraRepresentacion> armaduras = new List<ArmaduraRepresentacion>();
-
-            Schema esquema = AboutJump.Esquema(this.Documento);
-
-            Entity entidad = this.Barra.GetEntity(esquema);
-
-            if (entidad.IsValid() && entidad != null)
-            {
-                armaduras = entidad.Get<IList<ArmaduraRepresentacion>>(esquema.GetField(AboutJump.AlmacenamientoArmaduraRepresentacion)).ToList();
-            }
-            
-            return armaduras;
-        }
-
-        /// <summary> Asigna la Representación de la armadura a la entidad de la barra </summary>
-        public void AsignarRepresentacionArmdauraAEntidad(ArmaduraRepresentacion armaduraNueva)
-        {
-            Schema esquema = AboutJump.Esquema(this.Documento);
-
-            Entity entidad = this.Barra.GetEntity(esquema);
-
-            List<ArmaduraRepresentacion> armadurasEnEntidad = ObtenerRepresentacionArmaduraDeEntidad();
-
-            armadurasEnEntidad.Add(armaduraNueva);
-
-            entidad.Set<IList<ArmaduraRepresentacion>>(esquema.GetField(AboutJump.AlmacenamientoArmaduraRepresentacion), armadurasEnEntidad);
-
-            this.Barra.SetEntity(entidad);
-        }
-
-        /// <summary> Asigna las Representaciones de la armaduras a la entidad de la barra </summary>
-        public void AsignarRepresentacionArmdauraAEntidad(List<ArmaduraRepresentacion> armadurasNuevas)
-        {
-            Schema esquema = AboutJump.Esquema(this.Documento);
-
-            Entity entidad = this.Barra.GetEntity(esquema);
-
-            List<ArmaduraRepresentacion> armadurasEnEntidad = ObtenerRepresentacionArmaduraDeEntidad();
-
-            armadurasEnEntidad.AddRange(armadurasNuevas);
-
-            entidad.Set<IList<ArmaduraRepresentacion>>(esquema.GetField(AboutJump.AlmacenamientoArmaduraRepresentacion), armadurasEnEntidad);
-
-            this.Barra.SetEntity(entidad);
-        }
-
         /// <summary> Elimina la representación de la armadura </summary>
         public void Eliminar()
         {
@@ -374,61 +294,50 @@ namespace Jump
                     catch (Exception)
                     {
                         EliminarTextosPorId();
+
                         break;
                     }
                 }
             }
+
+            Tools.EliminarRepresentacionesEnBarra(this.Barra);
         }
 
         /// <summary> Elimina las curvas de la armadura por el Id del historial </summary>
         private void EliminarCurvasPorId()
         {
-            // Obtiene las curvas creadas del historial
-            List<ElementId> curvasId = ObtenerElementosCreadas(true);
-            
-            // Verifica que no sea nulo
-            if (curvasId != null)
+            // Recorre las curvas
+            foreach (ElementId curvaID in this.listaCurvasId)
             {
-                // Recorre las curvas
-                foreach (ElementId curva in curvasId)
+                try
                 {
-                    try
+                    // Verifica que no sea nulo
+                    if (curvaID != null)
                     {
-                        // Verifica que no sea nulo
-                        if (curva != null)
-                        {
-                            // Elimina la curva
-                            doc.Delete(curva);
-                        }
+                        // Elimina la curva
+                        doc.Delete(curvaID);
                     }
-                    catch (Exception) { }
                 }
+                catch (Exception) { }
             }
         }
 
         /// <summary> Elimina los textos de la armadura por el Id del historial </summary>
         private void EliminarTextosPorId()
         {
-            // Obtiene los textos creados del historial
-            List<ElementId> textosId = ObtenerElementosCreadas(false);
-
-            // Verifica que no sea nulo
-            if (textosId != null)
+            // Recorre las curvas
+            foreach (ElementId textoID in this.listaTextosId)
             {
-                // Recorre las curvas
-                foreach (ElementId texto in textosId)
+                try
                 {
-                    try
+                    // Verifica que no sea nulo
+                    if (textoID != null)
                     {
-                        // Verifica que no sea nulo
-                        if (texto != null)
-                        {
-                            // Elimina la curva
-                            doc.Delete(texto);
-                        }
+                        // Elimina la curva
+                        doc.Delete(textoID);
                     }
-                    catch (Exception) { }
                 }
+                catch (Exception) { }
             }
         }
     }

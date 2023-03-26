@@ -13,9 +13,6 @@ namespace Jump
 {
     public class Language
     {
-        // Nombre de la addin
-        public static string NombreAddin = "Jump";
-
         // Crear un vector principal con los idiomas disponibles
         public static List<string> IdiomasDisponibles = new List<string>();
 

@@ -58,7 +58,7 @@ namespace Jump
             InitializeComponent();
             
             Tools.AddinManager();
-            Tools.CrearRegistroArctualizadorArmaduras(doc.Application.ActiveAddInId);
+            Tools.CrearRegistroActualizadorArmaduras(doc.Application.ActiveAddInId);
 
             // Variable necesarias
             this.IdiomaDelPrograma = Tools.ObtenerIdiomaDelPrograma();

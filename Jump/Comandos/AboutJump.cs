@@ -14,10 +14,10 @@ namespace Jump
     {
         public static string NombreAddin = "Jump";
         static string version = "1.0";
-        static string vendorID = "ZURROKEVIN";
-        static string armaduraRepresentacion = "VistaID";
-        static string guidEsquema = "704efbf5-1d59-41e1-a325-012784bb6a64";
-        static string guidEsquemaConstructor = "95ecd22b-dea2-489e-9809-1a03008a2625";
+        public const string nombreEsquema = "RebarRepresentationJumpForRevit";
+        public const string nombreEsquemaArmaduras = "RepresentationsJumpForRevit";
+        public static string armaduraRepresentacion = "RepresentacionDeArmaduras";
+        static string guidEsquema = "2538c87f-9d93-422f-80c8-4c4acdbd634a";
         static string guidEliminarBarra = "266bb163-66e6-4cf8-9ceb-54d931521116";
         static string guidActualizarBarra = "7907bd48-73fd-457d-acf9-5311d6b2c0f8";
 
@@ -40,33 +40,6 @@ namespace Jump
         public static Guid GuidActualizarBarra
         {
             get { return new Guid(guidActualizarBarra); }
-        }
-
-        /// <summary> Obtiene el esquema para la Representación de las armaduras </summary>
-        public static Schema ObtenerEsquemaRepresentacionArmadura()
-        {
-            Schema esquema = Schema.Lookup(GuidEsquema);
-
-            if (esquema == null)
-            {
-                SchemaBuilder sb = new SchemaBuilder(new Guid(guidEsquemaConstructor));
-
-                sb.SetReadAccessLevel(AccessLevel.Vendor);
-
-                sb.SetWriteAccessLevel(AccessLevel.Vendor);
-
-                sb.SetVendorId(vendorID);
-
-                sb.AddSimpleField(armaduraRepresentacion, typeof(ElementId));
-                sb.AddSimpleField(etiquetaID, typeof(ElementId));
-                sb.AddSimpleField(posicion, typeof(XYZ));
-                sb.AddArrayField(curvasID, typeof(ElementId));
-                sb.AddArrayField(textoID, typeof(ElementId));
-
-                esquema = sb.Finish();
-            }
-
-            return esquema;
         }
     }
 }

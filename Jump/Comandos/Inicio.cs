@@ -186,14 +186,6 @@ namespace Jump
             }
             catch (Exception) { }
 
-            try
-            {
-                // Registra el evento cuando se guardó un documento
-                application.ControlledApplication.DocumentSaved += new EventHandler
-                           <Autodesk.Revit.DB.Events.DocumentSavedEventArgs>(application_DocumentSaved);
-            }
-            catch (Exception) { }
-
             #endregion
 
             return Result.Succeeded;
@@ -215,6 +207,24 @@ namespace Jump
         {
             // Obtiene el documento
             Document doc = args.Document;
+
+            List<Element> elementosBarras = Tools.ObtenerTodosEjemplaresSegunClase(doc, typeof(Rebar));
+
+            foreach (Rebar barra in elementosBarras)
+            {
+                List<ArmaduraRepresentacion> armaduras = Tools.ObtenerRepresentacionArmaduraDeBarra(barra);
+
+                if (armaduras != null && armaduras.Count > 0)
+                {
+                    foreach (ArmaduraRepresentacion armadura in armaduras)
+                    {
+                        if (!Inicio.listaArmaduraRepresentacion.Contains(armadura))
+                        {
+                            Inicio.listaArmaduraRepresentacion.Add(armadura);
+                        }
+                    }
+                }
+            }
 
             // Obtiene la ruta del documento
             string rutaDocumento = doc.PathName;
@@ -251,19 +261,6 @@ namespace Jump
                 }
             }
             catch (Exception ) { }
-
-            try
-            {
-                List<ArmaduraRepresentacion> armaduras = Tools.ObtenerRepresentacionArmaduraDeJson(doc);
-
-                if (armaduras.Count > 0)
-                {
-                    // Carga las representaciones de las armaduras a la lista
-                    Inicio.listaArmaduraRepresentacion.AddRange(armaduras);
-                }
-            }
-            catch (Exception) { }
-
         }
 
         /// <summary> Evento cuando se guardó un documento con nombre distinto o por primera vez </summary>
@@ -293,29 +290,7 @@ namespace Jump
                     Tools.GuardarDiametrosYEstilos(dgv, rutaArchivo);
                 }
                 catch (Exception) { }
-
-                try
-                {
-                    List<ArmaduraRepresentacion> armaduras = listaArmaduraRepresentacion.Where(x => x.Documento == doc).ToList();
-
-                    Tools.GuardarRepresentacionArmaduraEnJson(doc, armaduras);
-                }
-                catch (Exception) { }
             }
-        }
-
-        /// <summary> Evento cuando se guardó un documento con nombre distinto o por primera vez </summary>
-        public void application_DocumentSaved(object sender, DocumentSavedEventArgs args)
-        {
-            Document doc = args.Document;
-
-            try
-            {
-                List<ArmaduraRepresentacion> armaduras = listaArmaduraRepresentacion.Where(x => x.Documento == doc).ToList();
-
-                Tools.GuardarRepresentacionArmaduraEnJson(doc, armaduras);
-            }
-            catch (Exception) { }
         }
 
         #endregion

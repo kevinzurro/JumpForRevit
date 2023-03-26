@@ -33,7 +33,7 @@ namespace Jump
 
             DataGridView dgvEstiloLinea = inicioDetalleArmadura.dgvEstiloLinea;
 
-            //Tools.CrearRegistroArctualizadorArmaduras(uiApp.ActiveAddInId);
+            //Tools.CrearRegistroActualizadorArmaduras(uiApp.ActiveAddInId);
 
             // Abre una transacción
             using (Transaction t = new Transaction(doc, Language.ObtenerTexto(IdiomaDelPrograma, "DetArm2-1")))
@@ -118,9 +118,7 @@ namespace Jump
                                         // Mueve la representación de la armadura
                                         armadura.MoverArmaduraRepresentacionConEtiqueta(armadura.Posicion);
 
-                                        // Agrega la armadura a la lista de despieces
-                                        Inicio.listaArmaduraRepresentacion.Add(armadura);
-                                        Tools.GuardarRepresentacionArmaduraEnJson(doc, armadura);
+                                        Tools.GuardarRepresentacionArmaduraDeBarra(barra, armadura);
                                     }
                                     catch (Exception) { }
                                 }

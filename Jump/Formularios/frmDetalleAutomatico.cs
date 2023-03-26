@@ -67,8 +67,8 @@ namespace Jump
         {
             InitializeComponent();
             
-            Tools.AddinManager();
-            Tools.CrearRegistroActualizadorArmaduras(doc.Application.ActiveAddInId);
+            //Tools.AddinManager();
+            //Tools.CrearRegistroActualizadorArmaduras(doc.Application.ActiveAddInId);
 
             // Variable necesarias
             this.IdiomaDelPrograma = Tools.ObtenerIdiomaDelPrograma();
@@ -675,10 +675,8 @@ namespace Jump
             // Verifica que la transacción grupal finalizó
             if (this.tg.HasEnded())
             {
-                // Agrega la armadura a la lista de despieces
-                Inicio.listaArmaduraRepresentacion.AddRange(listaArmaduraRepresentacion);
-
-                Tools.GuardarRepresentacionArmaduraEnJson(this.doc, Inicio.listaArmaduraRepresentacion);
+                // Agrega la representación de armadura la barra
+                Tools.GuardarRepresentacionArmaduraDeBarra(barras, listaArmaduraRepresentacion);
             }
             
             // Ajusta el zoom de la vista

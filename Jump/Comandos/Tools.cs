@@ -15,6 +15,7 @@ using Autodesk.Revit.DB.Structure;
 using Autodesk.Revit.ApplicationServices;
 using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.DB.ExtensibleStorage;
+using Revit.ES.Extension.ElementExtensions;
 
 namespace Jump
 {
@@ -505,7 +506,7 @@ namespace Jump
             return lista;
         }
 
-        /// <summary> Obtiene una lista de todos los ejemplares </summary>
+        /// <summary> Obtiene una lista de todos los ejemplares en el proyecto </summary>
         public static List<Element> ObtenerTodosEjemplares(Document doc)
         {
             // Crea el colector
@@ -536,6 +537,26 @@ namespace Jump
             List<Element> lista = (from elem in elementos
                                    where elem.Category != null
                                    && elem.Category.Id == new ElementId(categoria)
+                                   select elem).ToList();
+
+            // Ordena la lista alfabéticamente
+            lista = lista.OrderBy(x => x.Name).ToList();
+
+            return lista;
+        }
+
+        /// <summary> Obtiene una lista ordenada alfabéticamente de todos los ejemplares según una clase </summary>
+        public static List<Element> ObtenerTodosEjemplaresSegunClase(Document doc, Type clase)
+        {
+            // Crea el colector
+            FilteredElementCollector colector = new FilteredElementCollector(doc);
+
+            // Filtra que los elementos sean de ejemplar
+            List<Element> elementos = colector.WhereElementIsNotElementType().OfClass(clase).ToList();
+
+            // Filtra según sean la categoría asignada
+            List<Element> lista = (from elem in elementos
+                                   where elem.Category != null
                                    select elem).ToList();
 
             // Ordena la lista alfabéticamente
@@ -869,8 +890,11 @@ namespace Jump
             // Recorra la lista
             foreach (ElementId elemId in listaId)
             {
-                // Agrega el elemento
-                lista.Add(doc.GetElement(elemId));
+                if (elemId != ElementId.InvalidElementId)
+                {
+                    // Agrega el elemento
+                    lista.Add(doc.GetElement(elemId));
+                }
             }
 
             return lista;
@@ -1381,6 +1405,8 @@ namespace Jump
         ///<summary> Obtiene las curvas del borde de una barra de armadura </summary>        Verificar BUG
         public static List<Curve> ObtenerCurvaDeBordeDeBarra(View vista, Rebar barra)
         {
+            Document doc = barra.Document;
+
             // Crea la lista a devolver
             List<Curve> curvas = new List<Curve>();
             
@@ -2302,126 +2328,154 @@ namespace Jump
             }
         }
 
-        /// <summary> Obtiene la ruta del archivo Json con las Representaciones de armaduras </summary>
-        public static string ObtenerRutaJsonConRepresentacionArmadura(Document doc)
+        /// <summary> Guarda la Representación de armaduras en la barra </summary>
+        public static void GuardarRepresentacionArmaduraDeBarra(Rebar barra, ArmaduraRepresentacion armadura)
         {
-            // Obtiene la ruta del documento
-            string rutaDocumento = doc.PathName;
+            RepresentacionesEntity representaciones = ObtenerRepresentacionEntityDeBarra(barra);
 
-            // Crea la dirección de la ruta del archivo
-            string rutaArchivo = null;
+            List<ArmaduraRepresentacionEntity> listaEntidades = representaciones.ListaRepresentaciones;
 
-            // Verifica que exista ruta
-            if (rutaDocumento != "" && !doc.IsDetached)
+            ArmaduraRepresentacionEntity armaduraEntity = new ArmaduraRepresentacionEntity();
+
+            armaduraEntity.Vista = armadura.Vista.Id;
+
+            armaduraEntity.ListaCurvas = armadura.ListaCurvasId;
+
+            armaduraEntity.ListaTextos = armadura.ListaTextosId;
+
+            armaduraEntity.TipoDeTexto = armadura.TipoDeTexto.Id;
+
+            if (armadura.EtiquetaArmadura != null)
             {
-                // Obtiene la ruta del archivo
-                rutaArchivo = rutaDocumento.Replace(Tools.formatoArchivoRevitDocumento, Tools.formatoArchivoJson);
+                armaduraEntity.Etiqueta = armadura.EtiquetaArmadura.Id;
             }
 
-            else
-            {
-                // Crea la ruta temporal
-                rutaArchivo = Path.GetTempPath() + doc.Title + Tools.formatoArchivoJson; ;
-            }
+            armaduraEntity.Posicion = armadura.Posicion;
 
-            return rutaArchivo;
+            listaEntidades.Add(armaduraEntity);
+
+            representaciones.ListaRepresentaciones = listaEntidades;
+
+            barra.SetEntity(representaciones);
         }
 
-        /// <summary> Obtiene todas las Representaciones de armaduras de un archivo Json </summary>
-        public static List<ArmaduraRepresentacion> ObtenerRepresentacionArmaduraDeJson(Document doc)
-        {            
+        /// <summary> Guarda la lista de Representación de armaduras en la barra </summary>
+        public static void GuardarRepresentacionArmaduraDeBarra(Rebar barra, List<ArmaduraRepresentacion> armaduras)
+        {
+            // Obtiene las armaduras que son de la barra
+            List<ArmaduraRepresentacion> listaBarras = armaduras.Where(x => x.Barra.Id == barra.Id).ToList();
+
+            foreach (ArmaduraRepresentacion armadura in listaBarras)
+            {
+                Tools.GuardarRepresentacionArmaduraDeBarra(barra, armadura);
+            }
+        }
+
+        /// <summary> Guarda la lista de Representación de armaduras en cada barra correspondiente </summary>
+        public static void GuardarRepresentacionArmaduraDeBarra(List<Rebar> barras, List<ArmaduraRepresentacion> armaduras)
+        {
+            foreach (Rebar barra in barras)
+            {
+                Tools.GuardarRepresentacionArmaduraDeBarra(barra, armaduras);
+            }
+        }
+
+        /// <summary> Obtiene la Representación de armaduras de una barra </summary>
+        public static RepresentacionesEntity ObtenerRepresentacionEntityDeBarra(Rebar barra)
+        {
+            RepresentacionesEntity representaciones = barra.GetEntity<RepresentacionesEntity>();
+
+            if (representaciones == null)
+            {
+                representaciones = new RepresentacionesEntity();
+            }
+
+            if (representaciones.ListaRepresentaciones == null)
+            {
+                representaciones.ListaRepresentaciones = new List<ArmaduraRepresentacionEntity>();
+            }
+
+            return representaciones;
+        }
+
+        /// <summary> Obtiene la lista de Representación de armaduras de una barra </summary>
+        public static List<ArmaduraRepresentacion> ObtenerRepresentacionArmaduraDeBarra(Rebar barra)
+        {
             List<ArmaduraRepresentacion> armaduras = new List<ArmaduraRepresentacion>();
 
-            // Obtiene la dirección de la ruta del archivo Json
-            string rutaArchivo = ObtenerRutaJsonConRepresentacionArmadura(doc);
+            RepresentacionesEntity representaciones = ObtenerRepresentacionEntityDeBarra(barra);
 
-            try
+            if (representaciones != null)
             {
-                // Verifica que exista el archivo
-                if (File.Exists(rutaArchivo))
+                foreach (ArmaduraRepresentacionEntity armRepEnt in representaciones.ListaRepresentaciones)
                 {
-                    string textArmaduraRepresentacion = File.ReadAllText(rutaArchivo);
+                    if (armRepEnt.Vista != ElementId.InvalidElementId)
+                    {
+                        Document doc = barra.Document;
 
-                    //armaduras = JsonConvert.DeserializeObject<List<ArmaduraRepresentacion>>(textArmaduraRepresentacion);
+                        View vista = doc.GetElement(armRepEnt.Vista) as View;
+
+                        ArmaduraRepresentacion armadura = new ArmaduraRepresentacion(doc, vista, barra);
+
+                        armadura.CurvasDeArmadura = (from elemID in armRepEnt.ListaCurvas
+                                                     where elemID != ElementId.InvalidElementId
+                                                     select doc.GetElement(elemID) as CurveElement).ToList();
+
+                        armadura.TextosDeLongitudesParciales = (from elemID in armRepEnt.ListaTextos
+                                                                where elemID != ElementId.InvalidElementId
+                                                                select doc.GetElement(elemID) as TextNote).ToList();
+
+                        if (armRepEnt.TipoDeTexto != ElementId.InvalidElementId)
+                        {
+                            armadura.TipoDeTexto = doc.GetElement(armRepEnt.TipoDeTexto) as TextNoteType;
+                        }                        
+
+                        IndependentTag etiqueta = doc.GetElement(armRepEnt.Etiqueta) as IndependentTag;
+
+                        if (etiqueta != null && etiqueta.GetTypeId() != ElementId.InvalidElementId)
+                        {
+                            armadura.EtiquetaArmadura = etiqueta;
+
+                            armadura.TipoEtiquetaArmadura = doc.GetElement(etiqueta.GetTypeId()) as FamilySymbol;
+                        }
+
+                        if (armRepEnt.Posicion != null)
+                        {
+                            armadura.Posicion = armRepEnt.Posicion;
+                        }
+
+                        armaduras.Add(armadura);
+                    }
                 }
             }
-            catch (Exception) { }
 
             return armaduras;
         }
 
-        /// <summary> Guarda todas las Representaciones de armaduras de un archivo Json </summary>
-        public static void GuardarRepresentacionArmaduraEnJson(Document doc, ArmaduraRepresentacion armadura)
+        /// <summary> Obtiene la lista de Representación de armaduras de una barra </summary>
+        public static List<ArmaduraRepresentacion> ObtenerRepresentacionArmaduraDeBarra(List<Rebar> barras)
         {
             List<ArmaduraRepresentacion> armaduras = new List<ArmaduraRepresentacion>();
 
-            // Obtiene la dirección de la ruta del archivo Json
-            string rutaArchivo = ObtenerRutaJsonConRepresentacionArmadura(doc);
-
-            try
+            foreach (Rebar barra in barras)
             {
-                // Verifica que exista el archivo
-                if (File.Exists(rutaArchivo))
-                {
-                    string textArmaduraRepresentacion = File.ReadAllText(rutaArchivo);
-
-                    //armaduras = JsonConvert.DeserializeObject<List<ArmaduraRepresentacion>>(textArmaduraRepresentacion);
-
-                    armaduras.Add(armadura);
-
-                    //textArmaduraRepresentacion = JsonConvert.SerializeObject(armaduras.ToArray(), Formatting.Indented);
-
-                    File.WriteAllText(rutaArchivo, textArmaduraRepresentacion);
-                }
-
-                else
-                {
-                    armaduras.Add(armadura);
-
-                    //string textArmaduraRepresentacion = JsonConvert.SerializeObject(armaduras.ToArray(), Formatting.Indented);
-
-                    //File.WriteAllText(rutaArchivo, textArmaduraRepresentacion);
-                }
+                armaduras.AddRange(ObtenerRepresentacionArmaduraDeBarra(barra));
             }
-            catch (Exception) { }
+
+            return armaduras;
         }
-        
-        /// <summary> Guarda todas las Representaciones de armaduras de un archivo Json </summary>
-        public static void GuardarRepresentacionArmaduraEnJson(Document doc, List<ArmaduraRepresentacion> armaduras)
+
+        /// <summary> Elimina la Representación de armaduras de la barra </summary>
+        public static void EliminarRepresentacionesEnBarra(Rebar barra)
         {
-            List<ArmaduraRepresentacion> armadurasEnJosn = new List<ArmaduraRepresentacion>();
-
-            // Obtiene la dirección de la ruta del archivo Json
-            string rutaArchivo = ObtenerRutaJsonConRepresentacionArmadura(doc);
+            RepresentacionesEntity representaciones = new RepresentacionesEntity();
 
             try
             {
-                // Verifica que exista el archivo
-                if (File.Exists(rutaArchivo))
-                {
-                    string textArmaduraRepresentacion = File.ReadAllText(rutaArchivo);
-
-                    //armadurasEnJosn = JsonConvert.DeserializeObject<List<ArmaduraRepresentacion>>(textArmaduraRepresentacion);
-
-                    armadurasEnJosn.AddRange(armaduras);
-
-                    //textArmaduraRepresentacion = JsonConvert.SerializeObject(armaduras.ToArray(), Formatting.Indented);
-
-                    File.WriteAllText(rutaArchivo, textArmaduraRepresentacion);
-                }
-
-                else
-                {
-                    armadurasEnJosn.AddRange(armaduras);
-
-                    //string textArmaduraRepresentacion = JsonConvert.SerializeObject(armaduras.ToArray(), Formatting.Indented);
-
-                    //File.WriteAllText(rutaArchivo, textArmaduraRepresentacion);
-                }
+                barra.SetEntity(representaciones);
             }
             catch (Exception) { }
         }
-
         #endregion
 
         #region Etiquetas Independientes
@@ -5065,6 +5119,69 @@ namespace Jump
 
         #region Excel con diámetros de barras y estilos de líneas
 
+        ///<summary> Crea el DataGridView de diámetros y estilos de líneas </summary>
+        public static System.Windows.Forms.DataGridView CrearDataGridViewDeDiametrosYEstilos(string IdiomaDelPrograma)
+        {
+            // Crea el DataGridView
+            System.Windows.Forms.DataGridView dgv = new System.Windows.Forms.DataGridView();
+
+            // Desactiva que el usuario pueda agregar filas
+            dgv.AllowUserToAddRows = false;
+
+            // Crea la columna de los diámetros
+            System.Windows.Forms.DataGridViewTextBoxColumn dgvText = new System.Windows.Forms.DataGridViewTextBoxColumn();
+
+            // Asigna el encabezado de la columna
+            dgvText.HeaderText = Language.ObtenerTexto(IdiomaDelPrograma, "Conf3-2");
+
+            // Asigna el nombre de la columna
+            dgvText.Name = nombreColumnaDiametros;
+
+            // Asigna que sea solo de lectura
+            dgvText.ReadOnly = false;
+
+            // Asigna el ancho mínimo
+            dgvText.MinimumWidth = 50;
+
+            // Crea la columna del combobox de los estilos de líneas
+            System.Windows.Forms.DataGridViewComboBoxColumn dgvCombo = new System.Windows.Forms.DataGridViewComboBoxColumn();
+
+            // Estilo de lista desplegable
+            dgvCombo.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.DropDownButton;
+
+            // Asigna el encabezado de la columna
+            dgvCombo.HeaderText = Language.ObtenerTexto(IdiomaDelPrograma, "Conf3-3");
+
+            // Asigna el nombre de la columna
+            dgvCombo.Name = nombreColumnaEstilosLineas;
+
+            // Asigna que sea solo de lectura
+            dgvCombo.ReadOnly = false;
+
+            // Asigna el ancho mínimo
+            dgvCombo.MinimumWidth = 50;
+
+            // Agrega las columnas al DataGridView
+            dgv.Columns.Add(dgvText);
+            dgv.Columns.Add(dgvCombo);
+
+            return dgv;
+        }
+
+        ///<summary> Hace que el combobox se despliegue con un solo click </summary>
+        public static void DesplegarComboboxConUnClick(System.Windows.Forms.DataGridView dgv,
+                                                       System.Windows.Forms.DataGridViewCellEventArgs e)
+        {
+            // Verifica que no se elija el encabezado y la primera columna
+            if (e.RowIndex != -1 && e.ColumnIndex == 1)
+            {
+                // Ocurre la magia
+                dgv.BeginEdit(true);
+                System.Windows.Forms.ComboBox combo = (System.Windows.Forms.ComboBox)dgv.EditingControl;
+                combo.DroppedDown = true;
+            }
+        }
+
         /// <summary> Obtiene la ruta del archivo de diámetros y estilos de líneas </summary>
         public static string ObtenerRutaArchivoDiametroYEstilo(Document doc)
         {
@@ -5283,21 +5400,7 @@ namespace Jump
 
         #endregion
 
-        #region Rellenar Combobox, DataGridView, ListBox
-
-        ///<summary> Hace que el combobox se despliegue con un solo click </summary>
-        public static void DesplegarComboboxConUnClick(System.Windows.Forms.DataGridView dgv,
-                                                       System.Windows.Forms.DataGridViewCellEventArgs e)
-        {
-            // Verifica que no se elija el encabezado y la primera columna
-            if (e.RowIndex != -1 && e.ColumnIndex == 1)
-            {
-                // Ocurre la magia
-                dgv.BeginEdit(true);
-                System.Windows.Forms.ComboBox combo = (System.Windows.Forms.ComboBox)dgv.EditingControl;
-                combo.DroppedDown = true;
-            }
-        }
+        #region Rellenar Combobox, ListBox, verificar CheckBox
 
         ///<summary> Rellena un Combobox con una lista de elementos </summary>
         public static void RellenarComboboxElementos(System.Windows.Forms.ComboBox combo, List<Element> lista)
@@ -5499,55 +5602,6 @@ namespace Jump
 
             }
             catch (Exception) { }
-        }
-
-        ///<summary> Crea el DataGridView de diámetros y estilos de líneas </summary>
-        public static System.Windows.Forms.DataGridView CrearDataGridViewDeDiametrosYEstilos(string IdiomaDelPrograma)
-        {
-            // Crea el DataGridView
-            System.Windows.Forms.DataGridView dgv = new System.Windows.Forms.DataGridView();
-
-            // Desactiva que el usuario pueda agregar filas
-            dgv.AllowUserToAddRows = false;
-
-            // Crea la columna de los diámetros
-            System.Windows.Forms.DataGridViewTextBoxColumn dgvText = new System.Windows.Forms.DataGridViewTextBoxColumn();
-
-            // Asigna el encabezado de la columna
-            dgvText.HeaderText = Language.ObtenerTexto(IdiomaDelPrograma, "Conf3-2");
-
-            // Asigna el nombre de la columna
-            dgvText.Name = nombreColumnaDiametros;
-
-            // Asigna que sea solo de lectura
-            dgvText.ReadOnly = false;
-
-            // Asigna el ancho mínimo
-            dgvText.MinimumWidth = 50;
-
-            // Crea la columna del combobox de los estilos de líneas
-            System.Windows.Forms.DataGridViewComboBoxColumn dgvCombo = new System.Windows.Forms.DataGridViewComboBoxColumn();
-
-            // Estilo de lista desplegable
-            dgvCombo.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.DropDownButton;
-
-            // Asigna el encabezado de la columna
-            dgvCombo.HeaderText = Language.ObtenerTexto(IdiomaDelPrograma, "Conf3-3");
-
-            // Asigna el nombre de la columna
-            dgvCombo.Name = nombreColumnaEstilosLineas;
-            
-            // Asigna que sea solo de lectura
-            dgvCombo.ReadOnly = false;
-
-            // Asigna el ancho mínimo
-            dgvCombo.MinimumWidth = 50;
-
-            // Agrega las columnas al DataGridView
-            dgv.Columns.Add(dgvText);
-            dgv.Columns.Add(dgvCombo);
-
-            return dgv;
         }
 
         ///<summary> Enumera una lista de elementos en base al parámetro seleccionado, prefijo, n° inicial y sufijo </summary>

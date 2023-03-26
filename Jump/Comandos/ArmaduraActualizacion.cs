@@ -56,15 +56,12 @@ namespace Jump
         /// <summary> Método cada vez que existe algún cambio en Revit </summary>
         public void Execute(UpdaterData data)
         {
-            // Documento del proyecto
-            Document doc;
-
             // Verifica que esté activo la actualización automatica de barras
             if (Jump.Properties.Settings.Default.ActualizarBarrasAutomaticamente)
             {
-                // Obtiene el documento
-                doc = data.GetDocument();
-                
+                // Documento del proyecto
+                Document doc = data.GetDocument();
+
                 // Agregas las filas al DataGridView
                 this.dgvEstiloLinea.Rows.Add(Tools.CrearDataGridViewDeDiametrosYEstilos(IdiomaDelPrograma).Rows);
 
@@ -91,38 +88,43 @@ namespace Jump
                 // Obtiene todas las barras modificadas
                 List<Element> barrasModificadas = Tools.ObtenerElementosCoincidentesConLista(colectorBarras, elementos);
 
+                List<ArmaduraRepresentacion> listaArmaduraRepresentacion = new List<ArmaduraRepresentacion>();
+
                 // Recorre todas las barras modificadas
                 foreach (Rebar barra in barrasModificadas)
                 {
+                    listaArmaduraRepresentacion.Clear();
+
+                    listaArmaduraRepresentacion = Tools.ObtenerRepresentacionArmaduraDeBarra(barra);
+
                     // Recorre las Representaciones de armaduras
-                    foreach (ArmaduraRepresentacion bar in Inicio.listaArmaduraRepresentacion)
+                    foreach (ArmaduraRepresentacion armadura in listaArmaduraRepresentacion)
                     {
                         try
                         {
                             // Verifica que la barra modificada sea igual al del despiece
-                            if (bar.Barra.Id == barra.Id)
+                            if (armadura.Barra.Id == barra.Id)
                             {
                                 // Verifica que las líneas no sean nulas
-                                if (bar.CurvasDeArmadura != null && bar.TextosDeLongitudesParciales != null)
+                                if (armadura.CurvasDeArmadura != null && armadura.TextosDeLongitudesParciales != null)
                                 {
                                     // Elimina el despiece
-                                    bar.Eliminar();
+                                    armadura.Eliminar();
 
                                     // Dibuja las líneas de la nueva geometría y asigna al objeto
-                                    bar.CurvasDeArmadura = Tools.DibujarArmaduraSegunDatagridview(this.dgvEstiloLinea, doc, bar.Vista, bar.Barra);
-
-                                    // Crea el texto de la longitud parcial y asigna al objeto
-                                    bar.TextosDeLongitudesParciales = Tools.CrearTextNoteDeArmadura(doc, bar.Vista, bar.Barra, bar.TipoDeTexto);
+                                    armadura.DibujarArmaduraSegunDatagridview(this.dgvEstiloLinea);
 
                                     // Mueve la Representación de la Armadura
-                                    bar.MoverArmaduraRepresentacion(bar.Posicion);
+                                    armadura.MoverArmaduraRepresentacion(armadura.Posicion);
+
+                                    Tools.GuardarRepresentacionArmaduraDeBarra(barra, armadura);
                                 }
                             }
                         }
                         catch (Exception)
                         {
                             // Elimina las curvas
-                            bar.Eliminar();
+                            armadura.Eliminar();
                         }
                     }
                 }

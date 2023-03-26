@@ -32,45 +32,23 @@ namespace Jump
         public void Execute(UpdaterData data)
         {
             // Documento del proyecto
-            Document doc;
-
-            // Obtiene el documento
-            doc = data.GetDocument();
+            Document doc = data.GetDocument();
 
             // Obtiene todos los ID de los elementos eliminados
-            List<ElementId> elementosId = data.GetDeletedElementIds().ToList();
+            List<ElementId> elementosEliminadosId = data.GetDeletedElementIds().ToList();
 
-            // Obtiene todas las barras del proyecto
-            List<Element> colectorBarras = new FilteredElementCollector(doc).
-                                                OfCategory(BuiltInCategory.OST_Rebar).
-                                                OfClass(typeof(Rebar)).ToList();
-
-            // Obtiene todas ID de las barras del proyecto
-            List<ElementId> colectorBarrasId = Tools.ObtenerIdElemento(colectorBarras);
-
-            // Obtiene todas las barras eliminadas
-            List<ElementId> barrasEliminadas = Tools.ObtenerElementosIDCoincidentesConLista(colectorBarrasId, elementosId);
-
-            // Obtiene los elementos de barras eliminadas
-            List<Element> barras = Tools.ObtenerElementoSegunID(doc, barrasEliminadas);
+            // Compara el ID de los elementos y devuelve los coincidentes
+            List<ArmaduraRepresentacion> lista = Inicio.listaArmaduraRepresentacion.Where(x => elementosEliminadosId.Any(y => y == x.Id)).ToList();
 
             // Recorre todos los despieces creados
-            foreach (ArmaduraRepresentacion bar in Inicio.listaArmaduraRepresentacion)
+            foreach (ArmaduraRepresentacion armadura in lista)
             {
                 try
                 {
-                    // Verifica que entre las barras eliminadas haya algun despiece
-                    if (barrasEliminadas.Contains(bar.Barra.Id))
-                    {
-                        // Elimina todo el despiece
-                        bar.Eliminar();
-                    }
+                    // Elimina todo el despiece
+                    armadura.Eliminar();
                 }
-                catch (Exception)
-                {
-                    // Elimina el despiece
-                    bar.Eliminar();
-                }
+                catch (Exception) { }
             }
         }
 

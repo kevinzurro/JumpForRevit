@@ -16,6 +16,7 @@ namespace Jump
         Document doc;
         View vistaBarra;
         Rebar barraRefuerzo;
+        ElementId armaduraID;
         List<CurveElement> listaCurvas;
         List<TextNote> listaTextos;
         IndependentTag etiquetaArmadura;
@@ -32,6 +33,7 @@ namespace Jump
             this.doc = doc;            
             this.vistaBarra = vista;
             this.barraRefuerzo = barra;
+            this.armaduraID = barra.Id;
         }
 
         /// <summary> Obtiene el documento </summary>
@@ -40,16 +42,24 @@ namespace Jump
             get { return this.doc; }
         }
 
+        /// <summary> Obtiene la vista de la barra </summary>
+        public View Vista
+        {
+            get { return this.vistaBarra; }
+        }
+
         /// <summary> Obtiene la barra </summary>
         public Rebar Barra
         {
             get { return this.barraRefuerzo; }
         }
 
-        /// <summary> Obtiene la vista de la barra </summary>
-        public View Vista
+        /// <summary> ID de la Representación de la armadura, es igual al ID de la Barra </summary>
+        public ElementId Id
         {
-            get { return this.vistaBarra; }
+            get { return this.armaduraID; }
+
+            set { this.armaduraID = value; }
         }
 
         /// <summary> Asigna u obtiene las curvas </summary>
@@ -60,6 +70,8 @@ namespace Jump
             set
             {
                 this.listaCurvas = value;
+
+                this.listaCurvasId.Clear();
 
                 // Recorre la lista
                 foreach (CurveElement curva in this.listaCurvas)
@@ -79,6 +91,8 @@ namespace Jump
             {
                 this.listaTextos = value;
 
+                this.listaTextosId.Clear();
+
                 // Recorre la lista
                 foreach (TextNote texto in this.listaTextos)
                 {
@@ -88,7 +102,7 @@ namespace Jump
             }
         }
 
-        /// <summary> Asigna u obtiene el historial de ElementId como entero de curvas creadas </summary>
+        /// <summary> Asigna u obtiene el ElementId de las curvas </summary>
         public List<ElementId> ListaCurvasId
         {
             get { return listaCurvasId; }
@@ -96,7 +110,7 @@ namespace Jump
             set { this.listaCurvasId = value; }
         }
 
-        /// <summary> Asigna u obtiene el historial de ElementId como entero de textos creados </summary>
+        /// <summary> Asigna u obtiene el ElementId de textos de longitudes parciales </summary>
         public List<ElementId> ListaTextosId
         {
             get { return listaTextosId; }
@@ -153,6 +167,8 @@ namespace Jump
 
             // Crea notas de texto con la longitud parcial de la barra
             this.TextosDeLongitudesParciales = Tools.CrearTextNoteDeArmadura(this.doc, this.vistaBarra, this.barraRefuerzo, this.TipoDeTexto);
+
+            Inicio.listaArmaduraRepresentacion.Add(this);
         }
 
         /// <summary> Mueve la Representación de la Armadura con la etiqueta una distancia dada </summary>
@@ -278,25 +294,28 @@ namespace Jump
                     catch (Exception)
                     {
                         EliminarTextosPorId();
+
                         break;
                     }
                 }
             }
+
+            Tools.EliminarRepresentacionesEnBarra(this.Barra);
         }
 
         /// <summary> Elimina las curvas de la armadura por el Id del historial </summary>
         private void EliminarCurvasPorId()
         {
             // Recorre las curvas
-            foreach (ElementId curva in this.listaCurvasId)
+            foreach (ElementId curvaID in this.listaCurvasId)
             {
                 try
                 {
                     // Verifica que no sea nulo
-                    if (curva != null)
+                    if (curvaID != null)
                     {
                         // Elimina la curva
-                        doc.Delete(curva);
+                        doc.Delete(curvaID);
                     }
                 }
                 catch (Exception) { }
@@ -307,15 +326,15 @@ namespace Jump
         private void EliminarTextosPorId()
         {
             // Recorre las curvas
-            foreach (ElementId texto in this.listaTextosId)
+            foreach (ElementId textoID in this.listaTextosId)
             {
                 try
                 {
                     // Verifica que no sea nulo
-                    if (texto != null)
+                    if (textoID != null)
                     {
                         // Elimina la curva
-                        doc.Delete(texto);
+                        doc.Delete(textoID);
                     }
                 }
                 catch (Exception) { }

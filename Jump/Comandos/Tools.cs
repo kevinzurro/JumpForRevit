@@ -5402,6 +5402,26 @@ namespace Jump
 
         #region Rellenar Combobox, ListBox, verificar CheckBox
 
+        ///<summary> Rellena un Combobox con una lista de Element </summary>
+        public static void RellenarCombobox(System.Windows.Forms.ComboBox combo, List<T> lista)
+        {
+            // Limpia el combobox
+            combo.Items.Clear();
+
+            combo.DataSource = lista;   
+
+            combo.DisplayMember = "Name";
+
+            combo.ValueMember = "Id";
+
+            // Verifica la lista contenga elementos 
+            if (lista.Count > 0)
+            {
+                // Asigna el primer elemento a la lista desplegable
+                combo.SelectedIndex = 0;
+            }
+        }
+
         ///<summary> Rellena un Combobox con una lista de elementos </summary>
         public static void RellenarComboboxElementos(System.Windows.Forms.ComboBox combo, List<Element> lista)
         {

@@ -244,7 +244,7 @@ namespace Jump
                 if (rutaDocumento != "" && !doc.IsDetached)
                 {
                     // Carga el DataGridView
-                    Tools.AgregarDiametrosYEstilos(dgv, dgv.Columns[Tools.nombreColumnaEstilosLineas] as System.Windows.Forms.DataGridViewComboBoxColumn, doc);
+                    Tools.AgregarDiametrosYEstilos(dgv, dgv.Columns[AboutJump.nombreColumnaEstilosLineas] as System.Windows.Forms.DataGridViewComboBoxColumn, doc);
                 }
 
                 // No existe el nombre
@@ -254,7 +254,7 @@ namespace Jump
                     string rutaTemporal = Tools.CrearRutaTemporalArchivoDiametroYEstilo(doc);
 
                     // Completa el DataGridView
-                    Tools.AgregarDiametrosYEstilos(dgv, dgv.Columns[Tools.nombreColumnaEstilosLineas] as System.Windows.Forms.DataGridViewComboBoxColumn, doc);
+                    Tools.AgregarDiametrosYEstilos(dgv, dgv.Columns[AboutJump.nombreColumnaEstilosLineas] as System.Windows.Forms.DataGridViewComboBoxColumn, doc);
 
                     // Guarda el archivo
                     Tools.GuardarDiametrosYEstilos(dgv, rutaTemporal);
@@ -284,7 +284,7 @@ namespace Jump
                     dgv.Rows.Add(Tools.CrearDataGridViewDeDiametrosYEstilos(IdiomaDelPrograma).Rows);
 
                     // Carga el DataGridView
-                    Tools.AgregarDiametrosYEstilos(dgv, dgv.Columns[Tools.nombreColumnaEstilosLineas] as System.Windows.Forms.DataGridViewComboBoxColumn, doc);
+                    Tools.AgregarDiametrosYEstilos(dgv, dgv.Columns[AboutJump.nombreColumnaEstilosLineas] as System.Windows.Forms.DataGridViewComboBoxColumn, doc);
 
                     // Guarda el DataGridView
                     Tools.GuardarDiametrosYEstilos(dgv, rutaArchivo);

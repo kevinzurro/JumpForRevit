@@ -14,7 +14,7 @@ using Autodesk.Revit.UI.Selection;
 namespace Jump
 {
     [Autodesk.Revit.Attributes.Transaction(Autodesk.Revit.Attributes.TransactionMode.Manual)]
-    internal class cmdArmaduraRepresentacion : IExternalCommand
+    public class cmdArmaduraRepresentacion : IExternalCommand
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
@@ -31,6 +31,8 @@ namespace Jump
 
             inicioDetalleArmadura.ShowDialog();
 
+            bool banderaCierre = inicioDetalleArmadura.banderaCierre;
+
             DataGridView dgvEstiloLinea = inicioDetalleArmadura.dgvEstiloLinea;
 
             //Tools.CrearRegistroActualizadorArmaduras(uiApp.ActiveAddInId);
@@ -42,8 +44,6 @@ namespace Jump
 
                 try
                 {
-                    bool bandera = true;
-
                     Autodesk.Revit.DB.View vista = doc.ActiveView;
 
                     if (vista.SketchPlane == null)
@@ -66,7 +66,7 @@ namespace Jump
                         }
                     }
 
-                    do
+                    while (banderaCierre)
                     {
                         try
                         {
@@ -111,7 +111,7 @@ namespace Jump
 
                                         // Punto donde se coloca el despiece
                                         XYZ puntoSeleccionado = uiDoc.Selection.PickPoint(Language.ObtenerTexto(IdiomaDelPrograma, "DetArm2-3"));
-                                        
+
                                         // Asigna la posición de la Representación
                                         armadura.Posicion = puntoSeleccionado - armadura.PuntoMedio;
 
@@ -124,12 +124,11 @@ namespace Jump
                                 }
                             }
                         }
-                        catch (Exception) 
-                        { 
-                            bandera = false; 
+                        catch (Exception)
+                        {
+                            banderaCierre = false;
                         }
-
-                    } while (bandera);
+                    }
                 }
                 catch (Exception) { }
 

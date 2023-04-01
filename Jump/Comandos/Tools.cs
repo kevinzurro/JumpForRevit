@@ -33,12 +33,6 @@ namespace Jump
 
         #region Nombre para el DataGridView de diámetros y estilos de líneas
 
-        // Nombre de la columna de Diámetros
-        public static string nombreColumnaDiametros = "Diametro";
-
-        // Nombre de la columna de estilos de líneas
-        public static string nombreColumnaEstilosLineas = "EstiloLinea";
-
         #endregion
 
         #region Creación de archivo Excel
@@ -1502,7 +1496,7 @@ namespace Jump
                     for (int i = 0; i < dgv.Rows.Count; i++)
                     {
                         // Compara el nombre de la celda con el diámetro de la barra
-                        if (dgv.Rows[i].Cells[0].Value.ToString() == barraDiametro.Name)
+                        if (dgv.Rows[i].Cells[AboutJump.nombreColumnaDiametros].Value.ToString() == barraDiametro.Name)
                         {
                             // Proyecta la curva sobre el plano de la vista
                             curvaFinal = ProyectarCurvaSobrePlano(vista, curva);
@@ -1511,7 +1505,7 @@ namespace Jump
                             CurveElement curvaDetalle = doc.Create.NewDetailCurve(vista, curvaFinal) as CurveElement;
                             
                             // Obtiene la categoría del estilo de línea
-                            cat = estilos.FirstOrDefault(x => x.Name == dgv.Rows[i].Cells[1].Value.ToString());
+                            cat = estilos.FirstOrDefault(x => x.Name == dgv.Rows[i].Cells[AboutJump.nombreColumnaEstilosLineas].Value.ToString());
 
                             // Crea el estilo de gráfico en función del estilo de línea
                             GraphicsStyle gra = cat.GetGraphicsStyle(GraphicsStyleType.Projection);
@@ -5119,6 +5113,174 @@ namespace Jump
 
         #region Excel con diámetros de barras y estilos de líneas
 
+        ///<summary> Obtiene el DataGridViewEntity del proyecto </summary>
+        public static DGVEntity ObtenerEntityDiametrosYEstilos(Document doc)
+        {
+            DGVEntity DGVDiametros = doc.ProjectInformation.GetEntity<DGVEntity>();
+
+            if (DGVDiametros == null)
+            {
+                DGVDiametros = new DGVEntity();
+            }
+
+            if (DGVDiametros.DGVDiametrosYEstilos == null)
+            {
+                DGVDiametros.DGVDiametrosYEstilos = new Dictionary<ElementId, ElementId>();
+            }
+
+            return DGVDiametros;
+        }
+
+        ///<summary> Crea el DataGridView de diámetros y estilos de líneas </summary>
+        public static System.Windows.Forms.DataGridView ObtenerDataGridViewDeDiametrosYEstilos(System.Windows.Forms.DataGridView dgv, Document doc, string IdiomaDelPrograma)
+        {
+            if (dgv.Columns.Count == 0)
+            {
+                dgv = Tools.CrearDataGridViewDeDiametrosYEstilos(IdiomaDelPrograma);
+            }
+
+            Tools.RellenarDataGridViewDeDiametrosYEstilos(dgv, doc);
+
+            DGVEntity dgvEntidad = Tools.ObtenerEntityDiametrosYEstilos(doc);
+
+            Dictionary<ElementId, ElementId> diccionario = dgvEntidad.DGVDiametrosYEstilos;
+
+            if (diccionario.Count > 0)
+            {
+                List<RebarBarType> diametros = Tools.ObtenerTodosTiposSegunClase(doc, typeof(RebarBarType)).Cast<RebarBarType>().ToList();
+                List<Category> estilos = Tools.ObtenerEstilosDeLinea(doc);
+
+                for (int i = 0; i < dgv.Rows.Count; i++)
+                {
+                    try
+                    {
+                        RebarBarType tipoDiametro = diametros.FirstOrDefault(x => x.Name == dgv.Rows[i].Cells[AboutJump.nombreColumnaDiametros].Value.ToString());
+                        Category categEstilo = estilos.FirstOrDefault(x => x.Name == dgv.Rows[i].Cells[AboutJump.nombreColumnaEstilosLineas].Value.ToString());
+
+                        if (diccionario.ContainsKey(tipoDiametro.Id))
+                        {
+                            ElementId elemId = diccionario[tipoDiametro.Id];
+
+                            Category estilo = estilos.FirstOrDefault(x => x.Id == elemId);
+
+                            System.Windows.Forms.DataGridViewComboBoxCell dgvComboCell = dgv.Rows[i].Cells[AboutJump.nombreColumnaEstilosLineas] as System.Windows.Forms.DataGridViewComboBoxCell;
+
+                            if (dgvComboCell.Items.Contains(estilo.Name))
+                            {
+                                dgv.Rows[i].Cells[AboutJump.nombreColumnaEstilosLineas].Value = dgvComboCell.Items[dgvComboCell.Items.IndexOf(estilo.Name)];
+                            }
+                        }
+                    }
+                    catch (Exception) { continue; }
+                }
+            }
+
+            return dgv;
+        }
+
+        ///<summary> Guarda el DataGridView en el documento </summary>
+        public static void GuardarDataGridViewEnDocumento(System.Windows.Forms.DataGridView dgv, Document doc)
+        {
+            if (dgv.Columns.Count > 0 && dgv.Rows.Count > 0)
+            {
+                List<RebarBarType> diametros = Tools.ObtenerTodosTiposSegunClase(doc, typeof(RebarBarType)).Cast<RebarBarType>().ToList();
+                List<Category> estilos = Tools.ObtenerEstilosDeLinea(doc);
+
+                DGVEntity DGVDiametros = new DGVEntity();
+                Dictionary<ElementId, ElementId> diccionario = new Dictionary<ElementId, ElementId>();
+
+                for (int i = 0; i < dgv.Rows.Count; i++)
+                {
+                    try
+                    {
+                        System.Windows.Forms.DataGridViewTextBoxCell dgvTextCell = dgv.Rows[i].Cells[AboutJump.nombreColumnaDiametros] as System.Windows.Forms.DataGridViewTextBoxCell;
+                        System.Windows.Forms.DataGridViewComboBoxCell dgvComboCell = dgv.Rows[i].Cells[AboutJump.nombreColumnaEstilosLineas] as System.Windows.Forms.DataGridViewComboBoxCell;
+
+                        RebarBarType tipoDiametro = diametros.FirstOrDefault(x => x.Name == dgvTextCell.Value.ToString());
+                        Category categEstilo = estilos.FirstOrDefault(x => x.Name == dgvComboCell.Value.ToString());
+
+                        diccionario.Add(tipoDiametro.Id, categEstilo.Id);
+                    }
+                    catch (Exception e) { TaskDialog.Show("0", e.Message + " " + e.StackTrace); }
+                }
+
+                DGVDiametros.DGVDiametrosYEstilos = diccionario;
+
+                doc.ProjectInformation.SetEntity(DGVDiametros);
+            }
+        }
+
+        ///<summary> Rellena un DataGridView con los diámetros de barras ordenados de menor a mayor y estilos de líneas </summary>
+        public static void RellenarDataGridViewDeDiametrosYEstilos(System.Windows.Forms.DataGridView dgv, Document doc)
+        {
+            // Limpia el DataGrid
+            dgv.Rows.Clear();
+            dgv.Refresh();
+
+            System.Windows.Forms.DataGridViewComboBoxColumn dgvCombo = dgv.Columns[AboutJump.nombreColumnaEstilosLineas] as System.Windows.Forms.DataGridViewComboBoxColumn;
+
+            // Crea las clases a buscar
+            Type claseDiametro = typeof(RebarBarType);
+
+            // Crea la lista de los diámetros de barras de acero del proyecto
+            List<Element> diametrosTemp = new List<Element>();
+            List<RebarBarType> diametros = new List<RebarBarType>();
+
+            // Obtiene todos los diámetros de barras del proyecto
+            diametrosTemp = Tools.ObtenerTodosTiposSegunClase(doc, claseDiametro);
+
+            // Recorre la lista de diámetros
+            foreach (Element elem in diametrosTemp)
+            {
+                // Agrega el tipo de barra a la lista
+                diametros.Add(elem as RebarBarType);
+            }
+
+            // Ordena la lista por el diámetro de barra
+            diametros = diametros.OrderBy(x => x.BarDiameter).ToList();
+
+            // Crea la lista de los estilos de lineas del proyecto
+            List<Category> estilos = new List<Category>();
+
+            // Obtiene todos los estilos de lineas del proyecto
+            estilos = Tools.ObtenerEstilosDeLinea(doc).Cast<Category>().ToList();
+
+            // Verifica que tenga diámetros la lista
+            if (diametros.Count > 0)
+            {
+                // Recorre el DataGrid y agrega los valores de diámetros y estilos de linea
+                for (int i = 0; i < diametros.Count; i++)
+                {
+                    // Limpia el combobox
+                    dgvCombo.Items.Clear();
+
+                    // Agrega una fila al Datagrid
+                    dgv.Rows.Add();
+
+                    // Agrega los diámetros a la primera columna
+                    dgv.Rows[i].Cells[AboutJump.nombreColumnaDiametros].Value = diametros[i].Name;
+                    dgv.Rows[i].Cells[AboutJump.nombreColumnaDiametros].ReadOnly = true;
+
+                    // Agrega los estilos de linea al combobox
+                    foreach (Category cat in estilos)
+                    {
+                        // Agrega el estilo al combobox
+                        dgvCombo.Items.Add(cat.Name);
+                    }
+
+                    // Verifica la lista contenga elementos
+                    if (estilos.Count > 0)
+                    {
+                        // Castea el combobox
+                        System.Windows.Forms.DataGridViewComboBoxCell dgvComboCell = dgv.Rows[i].Cells[AboutJump.nombreColumnaEstilosLineas] as System.Windows.Forms.DataGridViewComboBoxCell;
+
+                        // Asigna el primer elemento a la lista desplegable
+                        dgv.Rows[i].Cells[AboutJump.nombreColumnaEstilosLineas].Value = dgvComboCell.Items[0];
+                    }
+                }
+            }
+        }
+
         ///<summary> Crea el DataGridView de diámetros y estilos de líneas </summary>
         public static System.Windows.Forms.DataGridView CrearDataGridViewDeDiametrosYEstilos(string IdiomaDelPrograma)
         {
@@ -5130,12 +5292,12 @@ namespace Jump
 
             // Crea la columna de los diámetros
             System.Windows.Forms.DataGridViewTextBoxColumn dgvText = new System.Windows.Forms.DataGridViewTextBoxColumn();
-
+            
             // Asigna el encabezado de la columna
             dgvText.HeaderText = Language.ObtenerTexto(IdiomaDelPrograma, "Conf3-2");
 
             // Asigna el nombre de la columna
-            dgvText.Name = nombreColumnaDiametros;
+            dgvText.Name = AboutJump.nombreColumnaDiametros;
 
             // Asigna que sea solo de lectura
             dgvText.ReadOnly = false;
@@ -5153,7 +5315,7 @@ namespace Jump
             dgvCombo.HeaderText = Language.ObtenerTexto(IdiomaDelPrograma, "Conf3-3");
 
             // Asigna el nombre de la columna
-            dgvCombo.Name = nombreColumnaEstilosLineas;
+            dgvCombo.Name = AboutJump.nombreColumnaEstilosLineas;
 
             // Asigna que sea solo de lectura
             dgvCombo.ReadOnly = false;
@@ -5167,6 +5329,11 @@ namespace Jump
 
             return dgv;
         }
+
+
+
+
+
 
         ///<summary> Hace que el combobox se despliegue con un solo click </summary>
         public static void DesplegarComboboxConUnClick(System.Windows.Forms.DataGridView dgv,
@@ -5276,7 +5443,7 @@ namespace Jump
                             dgvCombobox.Items.Add(slDoc.GetCellValueAsString(i + 1, j + 2));
 
                             // Asigna el valor al DataGridViewComboboxColumn
-                            dgv.Rows[i].Cells[nombreColumnaEstilosLineas].Value = dgvCombobox.Items[0];
+                            dgv.Rows[i].Cells[AboutJump.nombreColumnaEstilosLineas].Value = dgvCombobox.Items[0];
                         }
 
                         // Aumenta el contador
@@ -5306,7 +5473,7 @@ namespace Jump
                 for (int i = 0; i < dgv.Rows.Count; i++)
                 {
                     // Asigna el valor del DataGridView a la matriz
-                    dt.Rows.Add(dgv.Rows[i].Cells[nombreColumnaDiametros].Value.ToString(), dgv.Rows[i].Cells[nombreColumnaEstilosLineas].Value.ToString());
+                    dt.Rows.Add(dgv.Rows[i].Cells[AboutJump.nombreColumnaDiametros].Value.ToString(), dgv.Rows[i].Cells[AboutJump.nombreColumnaEstilosLineas].Value.ToString());
                 }
 
                 // Asigna la matriz al excel
@@ -5374,8 +5541,8 @@ namespace Jump
                     dgv.Rows.Add();
 
                     // Agrega los diámetros a la primera columna
-                    dgv.Rows[i].Cells[nombreColumnaDiametros].Value = diametros[i].Name;
-                    dgv.Rows[i].Cells[nombreColumnaDiametros].ReadOnly = true;
+                    dgv.Rows[i].Cells[AboutJump.nombreColumnaDiametros].Value = diametros[i].Name;
+                    dgv.Rows[i].Cells[AboutJump.nombreColumnaDiametros].ReadOnly = true;
 
                     // Agrega los estilos de linea al combobox
                     foreach (Category cat in estilos)
@@ -5389,10 +5556,10 @@ namespace Jump
                     if (estilos.Count > 0)
                     {
                         // Castea el combobox
-                        System.Windows.Forms.DataGridViewComboBoxCell dgvComboCell = dgv.Rows[i].Cells[nombreColumnaEstilosLineas] as System.Windows.Forms.DataGridViewComboBoxCell;
+                        System.Windows.Forms.DataGridViewComboBoxCell dgvComboCell = dgv.Rows[i].Cells[AboutJump.nombreColumnaEstilosLineas] as System.Windows.Forms.DataGridViewComboBoxCell;
 
                         // Asigna el primer elemento a la lista desplegable
-                        dgv.Rows[i].Cells[nombreColumnaEstilosLineas].Value = dgvComboCell.Items[0];
+                        dgv.Rows[i].Cells[AboutJump.nombreColumnaEstilosLineas].Value = dgvComboCell.Items[0];
                     }
                 }
             }
@@ -5403,136 +5570,16 @@ namespace Jump
         #region Rellenar Combobox, ListBox, verificar CheckBox
 
         ///<summary> Rellena un Combobox con una lista de Element </summary>
-        public static void RellenarCombobox(System.Windows.Forms.ComboBox combo, List<T> lista)
+        public static void RellenarCombobox<T>(System.Windows.Forms.ComboBox combo, List<T> lista)
         {
             // Limpia el combobox
             combo.Items.Clear();
 
             combo.DataSource = lista;   
 
-            combo.DisplayMember = "Name";
+            combo.DisplayMember = AboutJump.parametroMostrarUsuario;
 
-            combo.ValueMember = "Id";
-
-            // Verifica la lista contenga elementos 
-            if (lista.Count > 0)
-            {
-                // Asigna el primer elemento a la lista desplegable
-                combo.SelectedIndex = 0;
-            }
-        }
-
-        ///<summary> Rellena un Combobox con una lista de elementos </summary>
-        public static void RellenarComboboxElementos(System.Windows.Forms.ComboBox combo, List<Element> lista)
-        {
-            // Limpia el combobox
-            combo.Items.Clear();
-
-            // Recorre la lista y agrega los elementos al combobox
-            foreach (Element elem in lista)
-            {
-                combo.Items.Add(elem.Name + " <" + elem.Id.ToString() + ">");
-            }
-
-            // Verifica la lista contenga elementos 
-            if (lista.Count > 0)
-            {
-                // Asigna el primer elemento a la lista desplegable
-                combo.SelectedIndex = 0;
-            }
-        }
-
-        ///<summary> Rellena un Combobox con las etiquetas independientes </summary>
-        public static void RellenarComboboxEtiquetas(System.Windows.Forms.ComboBox combo, List<FamilySymbol> lista)
-        {
-            // Limpia el combobox
-            combo.Items.Clear();
-
-            // Recorre la lista y agrega las etiquetas al combobox
-            foreach (FamilySymbol tag in lista)
-            {
-                combo.Items.Add(tag.Name);
-            }
-
-            // Verifica la lista contenga elementos 
-            if (lista.Count > 0)
-            {
-                // Asigna el primer elemento a la lista desplegable
-                combo.SelectedIndex = 0;
-            }
-        }
-
-        ///<summary> Rellena un Combobox con los tipos de textos para las longitudes parciales de la barras </summary>
-        public static void RellenarComboboxEtiquetaTexto(System.Windows.Forms.ComboBox combo, List<TextNoteType> lista)
-        {
-            // Limpia el combobox
-            combo.Items.Clear();
-
-            // Recorre la lista y agrega las etiquetas al combobox
-            foreach (TextNoteType elem in lista)
-            {
-                combo.Items.Add(elem.Name);
-            }
-
-            // Verifica la lista contenga elementos 
-            if (lista.Count > 0)
-            {
-                // Asigna el primer elemento a la lista desplegable
-                combo.SelectedIndex = 0;
-            }
-        }
-
-        ///<summary> Rellena un Combobox con los estilos de cotas </summary>
-        public static void RellenarComboboxEstilosCotas(System.Windows.Forms.ComboBox combo, List<DimensionType> lista)
-        {
-            // Limpia el combobox
-            combo.Items.Clear();
-
-            // Recorre la lista y agrega las cotas al combobox
-            foreach (DimensionType dim in lista)
-            {
-                combo.Items.Add(dim.Name);
-            }
-
-            // Verifica la lista contenga elementos 
-            if (lista.Count > 0)
-            {
-                // Asigna el primer elemento a la lista desplegable
-                combo.SelectedIndex = 0;
-            }
-        }
-
-        ///<summary> Rellena un Combobox con los estilos de cotas de profundidad </summary>
-        public static void RellenarComboboxEstilosCotasProfundidad(System.Windows.Forms.ComboBox combo, List<SpotDimensionType> lista)
-        {
-            // Limpia el combobox
-            combo.Items.Clear();
-
-            // Recorre la lista y agrega las cotas de elevación al combobox
-            foreach (SpotDimensionType sp in lista)
-            {
-                combo.Items.Add(sp.Name);
-            }
-
-            // Verifica la lista contenga elementos 
-            if (lista.Count > 0)
-            {
-                // Asigna el primer elemento a la lista desplegable
-                combo.SelectedIndex = 0;
-            }
-        }
-
-        ///<summary> Rellena un Combobox con los elementos </summary>
-        public static void RellenarComboboxConElementos(System.Windows.Forms.ComboBox combo, List<Element> lista)
-        {
-            // Limpia el combobox
-            combo.Items.Clear();
-
-            // Recorre la lista y agrega los elementos al combobox
-            foreach (Element elem in lista)
-            {
-                combo.Items.Add(elem.Name);
-            }
+            combo.ValueMember = AboutJump.parametroId;
 
             // Verifica la lista contenga elementos 
             if (lista.Count > 0)
@@ -5554,9 +5601,6 @@ namespace Jump
                 // Agrega el objeto al combobox
                 combo.Items.Add(escalaInicio + escala);
             }
-
-            // Asigna el primer elemento a la lista desplegable
-            combo.SelectedIndex = Properties.Settings.Default.zapataIndiceComboboxEscalaVista;
         }
 
         ///<summary> Rellena un Combobox con las categorias </summary>
@@ -5688,51 +5732,6 @@ namespace Jump
             
         }
 
-        ///<summary> Devuelve verdadero si por lo menos uno los CheckBox dentro de un GroupBox es verdadero </summary>
-        public static bool VerificarCheckboxGroupboxSeaVerdadero(System.Windows.Forms.GroupBox grupo)
-        {
-            // Crea el booleano a devolver
-            bool estado = false;
-
-            // Recorre el groupbox
-            foreach (System.Windows.Forms.CheckBox chb in grupo.Controls.OfType<System.Windows.Forms.CheckBox>())
-            {
-                // Verifica que el checkbox actual esté activo
-                if (chb.Checked)
-                {
-                    // Cambia el estado y rompe el bucle
-                    estado = true;
-                    break;
-                }
-            }
-
-            return estado;
-        }
-
-        ///<summary> Devuelve verdadero si por lo menos uno los CheckBox dentro de un GroupBox es verdadero exceptuando el primero </summary>
-        public static bool VerificarCheckboxGroupboxSeaVerdaderoExceptoPrimero(System.Windows.Forms.GroupBox grupo)
-        {
-            // Crea el booleano a devolver
-            bool estado = false;
-            
-            // Crea una lista con todos los checkbox 
-            List<System.Windows.Forms.CheckBox> grupos = grupo.Controls.OfType<System.Windows.Forms.CheckBox>().ToList();
-
-            // Recorre el groupbox
-            for (int i = 1; i < grupos.Count(); i++)
-            {
-                // Verifica que el checkbox actual esté activo
-                if (grupos[i].Checked)
-                {
-                    // Cambia el estado y rompe el bucle
-                    estado = true;
-                    break;
-                } 
-            }
-
-            return estado;
-        }
-
         /// <summary> Valida que los textos ingresados en un TexteBox sean solamente números </summary>
         public static void VerificarSoloNumero(System.Windows.Forms.KeyPressEventArgs e)
         {
@@ -5756,30 +5755,6 @@ namespace Jump
                     e.Handled = true;
                 }
             }
-        }
-
-        /// <summary> Guarda la nueva selección de la escala de la vista en las configuraciones </summary>
-        public static void GuardarEscalaDeVistaEnConfiguraciones(System.Windows.Forms.ComboBox combo)
-        {
-            // Obtiene el indice seleccionado del combo
-            int indice = combo.SelectedIndex;
-
-            // Guarda el indice en las configuraciones
-            Properties.Settings.Default.zapataIndiceComboboxEscalaVista = indice;
-
-            Properties.Settings.Default.Save();
-        }
-
-        /// <summary> Guarda la nueva selección del tipo de texto para las barras en las configuraciones </summary>
-        public static void GuardarZapataIndiceTextoDeBarra(System.Windows.Forms.ComboBox combo)
-        {
-            // Obtiene el indice seleccionado del combo
-            int indice = combo.SelectedIndex;
-
-            // Guarda el indice en las configuraciones
-            Properties.Settings.Default.zapataIndiceComboboxTextoBarra = indice;
-
-            Properties.Settings.Default.Save();
         }
 
         #endregion

@@ -73,7 +73,6 @@
     <Compile Include="Comandos\ArmaduraActualizacion.cs" />
     <Compile Include="Comandos\ArmaduraEliminacion.cs" />
     <Compile Include="Comandos\ArmaduraRepresentacion.cs" />
-    <Compile Include="Comandos\ArmaduraRepresentacionEntity.cs" />
     <Compile Include="Comandos\cmdArmaduraRepresentacion.cs" />
     <Compile Include="Comandos\cmdConfiguraciones.cs" />
     <Compile Include="Comandos\cmdOrdenYEnumeracion.cs" />
@@ -121,12 +120,6 @@
     </Compile>
     <Compile Include="Formularios\frmDetalleAutomatico.Designer.cs">
       <DependentUpon>frmDetalleAutomatico.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Formularios\frmZapatas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Formularios\frmZapatas.Designer.cs">
-      <DependentUpon>frmZapatas.cs</DependentUpon>
     </Compile>
     <Compile Include="Comandos\Inicio.cs" />
     <Compile Include="Comandos\Language.cs" />
@@ -344,9 +337,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmIdioma.resx">
       <DependentUpon>frmIdioma.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\frmZapatas.resx">
-      <DependentUpon>frmZapatas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Iconos_e_Imagenes\Iconos.resx">
       <Generator>ResXFileCodeGenerator</Generator>

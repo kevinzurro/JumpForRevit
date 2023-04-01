@@ -191,11 +191,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 121);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.KeyPreview = true;
             this.MaximumSize = new System.Drawing.Size(1000, 160);
             this.MinimumSize = new System.Drawing.Size(500, 160);
             this.Name = "frmDetalleArmadura";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Jump";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmDetalleArmadura_KeyDown);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);

@@ -16,8 +16,6 @@ namespace Jump
         string IdiomaDelPrograma = Tools.ObtenerIdiomaDelPrograma();
         AddInId addinID = null;
         UpdaterId updaterID = null;
-        List<TextNoteType> etiquetasLongitud = new List<TextNoteType>();
-        System.Windows.Forms.ComboBox cmbEtiquetaLongitud = new System.Windows.Forms.ComboBox();
         System.Windows.Forms.DataGridView dgvEstiloLinea = new System.Windows.Forms.DataGridView();
 
         // Contructor de la clase
@@ -40,19 +38,6 @@ namespace Jump
             this.dgvEstiloLinea = Tools.CrearDataGridViewDeDiametrosYEstilos(IdiomaDelPrograma);
         }
 
-        /// <summary> Carga los combobox de las etiquetas </summary>
-        private void CargarComboboxEtiquetas(Document doc)
-        {
-            // Completa la lista           
-            this.etiquetasLongitud.AddRange(Tools.ObtenerEstilosTexto(doc));
-
-            // Rellena el combobox
-            Tools.RellenarComboboxEtiquetaTexto(this.cmbEtiquetaLongitud, etiquetasLongitud);
-
-            // Asigna el texto seleccionado
-            this.cmbEtiquetaLongitud.SelectedIndex = Jump.Properties.Settings.Default.zapataIndiceComboboxTextoBarra;
-        }
-
         /// <summary> Método cada vez que existe algún cambio en Revit </summary>
         public void Execute(UpdaterData data)
         {
@@ -66,13 +51,10 @@ namespace Jump
                 this.dgvEstiloLinea.Rows.Add(Tools.CrearDataGridViewDeDiametrosYEstilos(IdiomaDelPrograma).Rows);
 
                 // Obtiene el ComboboxColumn
-                System.Windows.Forms.DataGridViewComboBoxColumn EstiloLinea = this.dgvEstiloLinea.Columns[Tools.nombreColumnaEstilosLineas] as System.Windows.Forms.DataGridViewComboBoxColumn;
+                System.Windows.Forms.DataGridViewComboBoxColumn EstiloLinea = this.dgvEstiloLinea.Columns[AboutJump.nombreColumnaEstilosLineas] as System.Windows.Forms.DataGridViewComboBoxColumn;
 
                 // Obtiene el DataGridView con los diámetros y estilos de líneas
                 Tools.AgregarDiametrosYEstilos(this.dgvEstiloLinea, EstiloLinea, doc);
-
-                // Carga el combobox de los estilos de textos
-                CargarComboboxEtiquetas(doc);
 
                 // Obtiene todos los ID de los elementos modificados
                 List<ElementId> elementosId = data.GetModifiedElementIds().ToList();

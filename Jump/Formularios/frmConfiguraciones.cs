@@ -44,9 +44,11 @@ namespace Jump
         private void AgregarDiametrosYEstilos()
         {
             // Completa el DataGridView de diámetros y estilos
-            Tools.AgregarDiametrosYEstilos(this.dgvEstiloLinea, this.EstiloLinea, this.doc);
+            //Tools.AgregarDiametrosYEstilos(this.dgvEstiloLinea, this.EstiloLinea, this.doc);
+            //Tools.RellenarDataGridViewDeDiametrosYEstilos(this.dgvEstiloLinea, this.doc);
+            Tools.ObtenerDataGridViewDeDiametrosYEstilos(this.dgvEstiloLinea, doc, IdiomaDelPrograma);
         }
-
+        
         /// <summary> Agrega las posiciones de las etiquetas independientes </summary>
         private void AgregarListaPosicionDeEtiquetas()
         {
@@ -383,8 +385,13 @@ namespace Jump
             Properties.Settings.Default.EtiquetaIndependienteArmaduraEnSistema = Convert.ToInt32(this.cmbEtiquetaArmaduraEnSistema.SelectedItem);
 
             // Pestaña 3
-            Tools.GuardarDiametrosYEstilos(this.dgvEstiloLinea, rutaArchivo);
-
+            //Tools.GuardarDiametrosYEstilos(this.dgvEstiloLinea, rutaArchivo);
+            using (Transaction tra = new Transaction(this.doc, Language.ObtenerTexto(this.IdiomaDelPrograma, "Conf3-5")))
+            {
+                tra.Start();
+                Tools.GuardarDataGridViewEnDocumento(this.dgvEstiloLinea, this.doc);
+                tra.Commit();
+            }
             // Pestaña 4
             Properties.Settings.Default.EtiquetaIndependienteColumnas = Convert.ToInt32(this.cmbEtiquetaColumnas.SelectedItem);
             Properties.Settings.Default.EtiquetaIndependienteLosas = Convert.ToInt32(this.cmbEtiquetaLosas.SelectedItem);

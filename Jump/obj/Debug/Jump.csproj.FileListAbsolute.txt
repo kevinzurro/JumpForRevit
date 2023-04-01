@@ -100,7 +100,6 @@ D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump.g.resourc
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump.frmBarraProgreso.resources
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump.Iconos_e_Imagenes.Banderas.resources
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump.frmIdioma.resources
-D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump.frmZapatas.resources
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump.Iconos_e_Imagenes.Iconos.resources
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump.Iconos_e_Imagenes.Imagenes.resources
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump.Properties.Resources.resources

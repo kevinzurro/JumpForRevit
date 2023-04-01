@@ -24,6 +24,7 @@ namespace Jump
         public bool Armadura;
         public TextNoteType tipoTexto;
         public FamilySymbol tipoEtiqueta;
+        public bool banderaCierre = false;
 
         // Parámetros para las etiquetas y vistas
         BuiltInCategory categoriaEtiquetaArmadura = BuiltInCategory.OST_RebarTags;
@@ -51,8 +52,8 @@ namespace Jump
             this.etiquetasLongitud.AddRange(Tools.ObtenerEstilosTexto(doc));
 
             // Rellena el combobox
-            Tools.RellenarComboboxEtiquetas(this.cmbEtiquetaArmadura, etiquetasArmaduras);
-            Tools.RellenarComboboxEtiquetaTexto(this.cmbEtiquetaLongitud, etiquetasLongitud);
+            Tools.RellenarCombobox(this.cmbEtiquetaArmadura, etiquetasArmaduras);
+            Tools.RellenarCombobox(this.cmbEtiquetaLongitud, etiquetasLongitud);
 
             // Crea el DataGridView de los diámetros y estilos
             this.dgvEstiloLinea = Tools.CrearDataGridViewDeDiametrosYEstilos(IdiomaDelPrograma);
@@ -61,7 +62,18 @@ namespace Jump
             this.dgvEstiloLinea.Rows.Add(Tools.CrearDataGridViewDeDiametrosYEstilos(IdiomaDelPrograma).Rows);
 
             // Obtiene el DataGridView con los diámetros y estilos de líneas
-            Tools.AgregarDiametrosYEstilos(this.dgvEstiloLinea, this.dgvEstiloLinea.Columns[Tools.nombreColumnaEstilosLineas] as DataGridViewComboBoxColumn, doc);
+            Tools.AgregarDiametrosYEstilos(this.dgvEstiloLinea, this.dgvEstiloLinea.Columns[AboutJump.nombreColumnaEstilosLineas] as DataGridViewComboBoxColumn, doc);
+        }
+
+        /// <summary> Cierra el formulario </summary>
+        private void frmDetalleArmadura_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Verifica que sea la tecla Esc
+            if (e.KeyCode == Keys.Escape)
+            {
+                // Cierra el formulario
+                this.Close();
+            }
         }
 
         /// <summary> Ejecuta todas las acciones </summary>
@@ -71,7 +83,9 @@ namespace Jump
             this.Armadura = this.chbEtiquetaArmadura.Checked;
 
             this.tipoTexto = this.etiquetasLongitud.FirstOrDefault(x => x.Name == this.cmbEtiquetaLongitud.SelectedItem.ToString());
-            this.tipoEtiqueta = this.etiquetasArmaduras.FirstOrDefault(eti => eti.Name == this.cmbEtiquetaArmadura.SelectedItem.ToString());            
+            this.tipoEtiqueta = this.etiquetasArmaduras.FirstOrDefault(eti => eti.Name == this.cmbEtiquetaArmadura.SelectedItem.ToString());
+
+            this.banderaCierre = true;
 
             this.Close();
         }

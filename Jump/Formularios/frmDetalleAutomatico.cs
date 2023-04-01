@@ -44,7 +44,6 @@ namespace Jump
         // Parámetros generales
         List<Element> listaElementosEstructurales = new List<Element>();
         List<Element> elementos = new List<Element>();
-        List<Parameter> parametrosEjemplar = new List<Parameter>();
         List<FamilySymbol> etiquetasElemento = new List<FamilySymbol>();
         List<FamilySymbol> etiquetasArmaduras = new List<FamilySymbol>();
         List<TextNoteType> etiquetasLongitud = new List<TextNoteType>();
@@ -67,8 +66,8 @@ namespace Jump
         {
             InitializeComponent();
             
-            //Tools.AddinManager();
-            //Tools.CrearRegistroActualizadorArmaduras(doc.Application.ActiveAddInId);
+            Tools.AddinManager();
+            Tools.CrearRegistroActualizadorArmaduras(doc.Application.ActiveAddInId);
 
             // Variable necesarias
             this.IdiomaDelPrograma = Tools.ObtenerIdiomaDelPrograma();
@@ -77,6 +76,35 @@ namespace Jump
 
             // Crea el grupo de transacciones
             tg = new TransactionGroup(this.doc, transaccionGrupoImagenPreview);
+        }
+
+        /// <summary> Carga el formulario </summary>
+        private void frmDetalleAutomatico_Load(object sender, EventArgs e)
+        {
+            // Llama a las funciones
+            AgregarElementos();
+            AgregarDiametrosYEstilos();
+            CargarComboboxEtiquetas(this.doc);
+            AsignarPreviewDeImagen();
+
+            // Asignación de textos según el idioma
+            this.Name = Language.ObtenerTexto(IdiomaDelPrograma, clave + "4");
+            gbxSeleccion.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "1-2");
+            rbtnTodos.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "1-3");
+            rbtnElementosSeleccionados.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "1-4");
+            rbtnConjuntoDeLaLista.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "1-5");
+            gbxEtiquetas.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "2-1");
+            lblEscala.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "2-2");
+            chbEtiquetaBase.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "2-3");
+            chbEtiquetaArmadura.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "2-4");
+            chbEtiquetaLongitud.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "2-5");
+            chbCotaLineal.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "2-6");
+            chbCotaElevacion.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "2-7");
+            gbxEtiquetaVistaPrevia.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "3-1");
+            gbxEjecutar.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "4-1");
+            chbVistaXX.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "4-2");
+            chbVistaYY.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "4-3");
+            btnEjecutar.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "5-1");
         }
 
         /// <summary> Agrega los elementos estructurales a la lista </summary>
@@ -95,7 +123,7 @@ namespace Jump
             Tools.RellenarListBoxDeElementos(this.lstElementos, doc, this.elementos);
 
             // Agrega los elementos a la lista desplegable para el preview
-            Tools.RellenarComboboxElementos(this.cmbElementosPreview, this.elementos);
+            Tools.RellenarCombobox(this.cmbElementosPreview, this.elementos);
         }
 
         /// <summary> Agrega los diámetros y estilos de lineas al DataGrid </summary>
@@ -108,7 +136,7 @@ namespace Jump
             this.dgvEstiloLinea.Rows.Add(Tools.CrearDataGridViewDeDiametrosYEstilos(IdiomaDelPrograma).Rows);
 
             // Obtiene el DataGridView con los diámetros y estilos de líneas
-            Tools.AgregarDiametrosYEstilos(this.dgvEstiloLinea, this.dgvEstiloLinea.Columns[Tools.nombreColumnaEstilosLineas] as DataGridViewComboBoxColumn, doc);
+            Tools.AgregarDiametrosYEstilos(this.dgvEstiloLinea, this.dgvEstiloLinea.Columns[AboutJump.nombreColumnaEstilosLineas] as DataGridViewComboBoxColumn, doc);
         }
         
         /// <summary> Carga los combobox de las etiquetas </summary>
@@ -122,12 +150,18 @@ namespace Jump
             this.cotasElevacion.AddRange(Tools.ObtenerCotasElevacion(doc));
 
             // Limpia y rellena el combobox
-            Tools.RellenarComboboxEtiquetas(this.cmbEtiquetaElementoEstructural, etiquetasElemento);
-            Tools.RellenarComboboxEtiquetas(this.cmbEtiquetaArmadura, etiquetasArmaduras);
-            Tools.RellenarComboboxEtiquetaTexto(this.cmbEtiquetaLongitud, etiquetasLongitud);
-            Tools.RellenarComboboxEstilosCotas(this.cmbEstiloCota, cotasLineales);
-            Tools.RellenarComboboxEstilosCotasProfundidad(this.cmbEstiloCotaProfundidad, cotasElevacion);
+            Tools.RellenarCombobox(this.cmbEtiquetaElementoEstructural, etiquetasElemento);
+            Tools.RellenarCombobox(this.cmbEtiquetaArmadura, etiquetasArmaduras);
+            Tools.RellenarCombobox(this.cmbEtiquetaLongitud, etiquetasLongitud);
+            Tools.RellenarCombobox(this.cmbEstiloCota, cotasLineales);
+            Tools.RellenarCombobox(this.cmbEstiloCotaProfundidad, cotasElevacion);
             Tools.RellenarComboboxEscalas(this.cmbEscalaVista);
+
+            if (this.cmbEscalaVista.Items.Count > 0 && this.indiceComboboxEscalaVista < this.cmbEscalaVista.Items.Count)
+            {
+                // Asigna el primer elemento a la lista desplegable
+                this.cmbEscalaVista.SelectedIndex = this.indiceComboboxEscalaVista;
+            }
         }
 
         /// <summary> Asigna una imagen de prueba para las etiquetas, cotas y despieces de barras </summary>
@@ -250,35 +284,6 @@ namespace Jump
             }
         }
 
-        /// <summary> Carga el formulario </summary>
-        private void frmDetalleAutomatico_Load(object sender, EventArgs e)
-        {
-            // Llama a las funciones
-            AgregarElementos();
-            AgregarDiametrosYEstilos();
-            CargarComboboxEtiquetas(this.doc);
-            AsignarPreviewDeImagen();
-
-            // Asignación de textos según el idioma
-            this.Name = Language.ObtenerTexto(IdiomaDelPrograma, clave + "4");
-            gbxSeleccion.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "1-2");
-            rbtnTodos.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "1-3");
-            rbtnElementosSeleccionados.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "1-4");
-            rbtnConjuntoDeLaLista.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "1-5");
-            gbxEtiquetas.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "2-1");
-            lblEscala.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "2-2");
-            chbEtiquetaBase.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "2-3");
-            chbEtiquetaArmadura.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "2-4");
-            chbEtiquetaLongitud.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "2-5");
-            chbCotaLineal.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "2-6");
-            chbCotaElevacion.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "2-7");
-            gbxEtiquetaVistaPrevia.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "3-1");
-            gbxEjecutar.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "4-1");
-            chbVistaXX.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "4-2");
-            chbVistaYY.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "4-3");
-            btnEjecutar.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "5-1");
-        }
-
         /// <summary> Cambia la escala de la vista y guarda en las configuraciones </summary>
         private void cmbEscala_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -299,7 +304,7 @@ namespace Jump
         private void cmbEtiquetaLongitud_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Obtiene el indice seleccionado del combo
-            this.indiceComboboxTextoBarra= this.cmbEtiquetaLongitud.SelectedIndex;
+            this.indiceComboboxTextoBarra = this.cmbEtiquetaLongitud.SelectedIndex;
         }
 
         /// <summary> Cambia la imagen del preview según el elemento seleccionado </summary>
@@ -496,8 +501,10 @@ namespace Jump
             if (this.chbCotaLineal.Checked)
             {
                 // Obtiene el DimensionType de la cota seleccionada
-                DimensionType tipoCota = this.cotasLineales.FirstOrDefault(eti => eti.Name == this.cmbEstiloCota.SelectedItem.ToString());
+                DimensionType tipoCota = (DimensionType)this.cmbEstiloCota.SelectedItem;
 
+                //(tipoCota == null) ? (DimensionType)this.cmbEstiloCota.Items[0] , null ;
+                
                 try
                 {
                     // Verifica que esté activo la cota vertical izquierda
@@ -556,7 +563,7 @@ namespace Jump
                 try
                 {
                     // Obtiene el FamilySymbol de la etiqueta seleccionada
-                    FamilySymbol tipoEtiqueta = this.etiquetasElemento.FirstOrDefault(eti => eti.Name == this.cmbEtiquetaElementoEstructural.SelectedItem.ToString());
+                    FamilySymbol tipoEtiqueta = (FamilySymbol)this.cmbEtiquetaElementoEstructural.SelectedItem;
 
                     // Crea una etiqueta independiente del elemento
                     IndependentTag etiqueta = Tools.CrearEtiquetaSegunConfiguracion(this.doc, vista, elem, tipoEtiqueta, this.posicionEtiquetaIndependienteElemento);
@@ -582,8 +589,8 @@ namespace Jump
                 try
                 {
                     // Obtiene el SpotDimensionType de la cota de profundidad seleccionada
-                    SpotDimensionType tipoCotaProfundidad = this.cotasElevacion.FirstOrDefault(eti => eti.Name == this.cmbEstiloCotaProfundidad.SelectedItem.ToString());
-
+                    SpotDimensionType tipoCotaProfundidad = (SpotDimensionType)this.cmbEstiloCotaProfundidad.SelectedItem;
+                   
                     // Crea la cota de profundidad
                     SpotDimension cotaProfundidad = Tools.CrearCotaProfundidad(this.doc, vista, elem, tipoCotaProfundidad, this.posicionEtiquetaCotaProfundidad);
 
@@ -610,14 +617,14 @@ namespace Jump
             {
                 // Crea una etiqueta independiente
                 IndependentTag etiquetaArmadura = null;
-
+                
                 // Etiqueta de armadura
                 if (this.chbEtiquetaArmadura.Checked)
                 {
                     try
                     {
                         // Obtiene el FamilySymbol de la etiqueta seleccionada
-                        FamilySymbol tipoEtiqueta = this.etiquetasArmaduras.FirstOrDefault(eti => eti.Name == this.cmbEtiquetaArmadura.SelectedItem.ToString());
+                        FamilySymbol tipoEtiqueta = (FamilySymbol)this.cmbEtiquetaArmadura.SelectedItem;
 
                         // Crea la etiqueta independiente de la barra
                         IndependentTag etiqueta = Tools.CrearEtiquetaSegunConfiguracion(this.doc, vista, barra, tipoEtiqueta, this.posicionEtiquetaIndependienteArmadura);
@@ -643,13 +650,13 @@ namespace Jump
                         listaArmaduraRepresentacion.Add(armadura);
 
                         // Asigna el tipo de texto a la representación de la barra
-                        armadura.TipoDeTexto = this.etiquetasLongitud.FirstOrDefault(x => x.Name == this.cmbEtiquetaLongitud.SelectedItem.ToString());
+                        armadura.TipoDeTexto = (TextNoteType)this.cmbEtiquetaLongitud.SelectedItem;
 
                         // Verifica que la opción de etiqueta esté activo
                         if (this.chbEtiquetaArmadura.Checked)
                         {
                             // Asigna el tipo de etiqueta
-                            armadura.TipoEtiquetaArmadura = this.etiquetasArmaduras.FirstOrDefault(eti => eti.Name == this.cmbEtiquetaArmadura.SelectedItem.ToString());
+                            armadura.TipoEtiquetaArmadura = (FamilySymbol)this.cmbEtiquetaArmadura.SelectedItem;
 
                             // Asigna la etiqueta
                             armadura.EtiquetaArmadura = etiquetaArmadura;

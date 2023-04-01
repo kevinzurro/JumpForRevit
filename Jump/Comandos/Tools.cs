@@ -5111,27 +5111,9 @@ namespace Jump
 
         #endregion
 
-        #region Excel con diámetros de barras y estilos de líneas
+        #region DataGridView con diámetros de barras y estilos de líneas
 
-        ///<summary> Obtiene el DataGridViewEntity del proyecto </summary>
-        public static DGVEntity ObtenerEntityDiametrosYEstilos(Document doc)
-        {
-            DGVEntity DGVDiametros = doc.ProjectInformation.GetEntity<DGVEntity>();
-
-            if (DGVDiametros == null)
-            {
-                DGVDiametros = new DGVEntity();
-            }
-
-            if (DGVDiametros.DGVDiametrosYEstilos == null)
-            {
-                DGVDiametros.DGVDiametrosYEstilos = new Dictionary<ElementId, ElementId>();
-            }
-
-            return DGVDiametros;
-        }
-
-        ///<summary> Crea el DataGridView de diámetros y estilos de líneas </summary>
+        ///<summary> Crea el DataGridView de diámetros y estilos de líneas y lo rellena con las configuraciones que el usuario hizo </summary>
         public static System.Windows.Forms.DataGridView ObtenerDataGridViewDeDiametrosYEstilos(System.Windows.Forms.DataGridView dgv, Document doc, string IdiomaDelPrograma)
         {
             if (dgv.Columns.Count == 0)
@@ -5178,36 +5160,53 @@ namespace Jump
             return dgv;
         }
 
-        ///<summary> Guarda el DataGridView en el documento </summary>
-        public static void GuardarDataGridViewEnDocumento(System.Windows.Forms.DataGridView dgv, Document doc)
+        ///<summary> Crea el DataGridView de diámetros y estilos de líneas </summary>
+        public static System.Windows.Forms.DataGridView CrearDataGridViewDeDiametrosYEstilos(string IdiomaDelPrograma)
         {
-            if (dgv.Columns.Count > 0 && dgv.Rows.Count > 0)
-            {
-                List<RebarBarType> diametros = Tools.ObtenerTodosTiposSegunClase(doc, typeof(RebarBarType)).Cast<RebarBarType>().ToList();
-                List<Category> estilos = Tools.ObtenerEstilosDeLinea(doc);
+            // Crea el DataGridView
+            System.Windows.Forms.DataGridView dgv = new System.Windows.Forms.DataGridView();
 
-                DGVEntity DGVDiametros = new DGVEntity();
-                Dictionary<ElementId, ElementId> diccionario = new Dictionary<ElementId, ElementId>();
+            // Desactiva que el usuario pueda agregar filas
+            dgv.AllowUserToAddRows = false;
 
-                for (int i = 0; i < dgv.Rows.Count; i++)
-                {
-                    try
-                    {
-                        System.Windows.Forms.DataGridViewTextBoxCell dgvTextCell = dgv.Rows[i].Cells[AboutJump.nombreColumnaDiametros] as System.Windows.Forms.DataGridViewTextBoxCell;
-                        System.Windows.Forms.DataGridViewComboBoxCell dgvComboCell = dgv.Rows[i].Cells[AboutJump.nombreColumnaEstilosLineas] as System.Windows.Forms.DataGridViewComboBoxCell;
+            // Crea la columna de los diámetros
+            System.Windows.Forms.DataGridViewTextBoxColumn dgvText = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            
+            // Asigna el encabezado de la columna
+            dgvText.HeaderText = Language.ObtenerTexto(IdiomaDelPrograma, "Conf3-2");
 
-                        RebarBarType tipoDiametro = diametros.FirstOrDefault(x => x.Name == dgvTextCell.Value.ToString());
-                        Category categEstilo = estilos.FirstOrDefault(x => x.Name == dgvComboCell.Value.ToString());
+            // Asigna el nombre de la columna
+            dgvText.Name = AboutJump.nombreColumnaDiametros;
 
-                        diccionario.Add(tipoDiametro.Id, categEstilo.Id);
-                    }
-                    catch (Exception e) { TaskDialog.Show("0", e.Message + " " + e.StackTrace); }
-                }
+            // Asigna que sea solo de lectura
+            dgvText.ReadOnly = false;
 
-                DGVDiametros.DGVDiametrosYEstilos = diccionario;
+            // Asigna el ancho mínimo
+            dgvText.MinimumWidth = 50;
 
-                doc.ProjectInformation.SetEntity(DGVDiametros);
-            }
+            // Crea la columna del combobox de los estilos de líneas
+            System.Windows.Forms.DataGridViewComboBoxColumn dgvCombo = new System.Windows.Forms.DataGridViewComboBoxColumn();
+
+            // Estilo de lista desplegable
+            dgvCombo.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.DropDownButton;
+
+            // Asigna el encabezado de la columna
+            dgvCombo.HeaderText = Language.ObtenerTexto(IdiomaDelPrograma, "Conf3-3");
+
+            // Asigna el nombre de la columna
+            dgvCombo.Name = AboutJump.nombreColumnaEstilosLineas;
+
+            // Asigna que sea solo de lectura
+            dgvCombo.ReadOnly = false;
+
+            // Asigna el ancho mínimo
+            dgvCombo.MinimumWidth = 50;
+
+            // Agrega las columnas al DataGridView
+            dgv.Columns.Add(dgvText);
+            dgv.Columns.Add(dgvCombo);
+
+            return dgv;
         }
 
         ///<summary> Rellena un DataGridView con los diámetros de barras ordenados de menor a mayor y estilos de líneas </summary>
@@ -5281,53 +5280,54 @@ namespace Jump
             }
         }
 
-        ///<summary> Crea el DataGridView de diámetros y estilos de líneas </summary>
-        public static System.Windows.Forms.DataGridView CrearDataGridViewDeDiametrosYEstilos(string IdiomaDelPrograma)
+        ///<summary> Guarda el DataGridView en el documento </summary>
+        public static void GuardarDataGridViewEnDocumento(System.Windows.Forms.DataGridView dgv, Document doc)
         {
-            // Crea el DataGridView
-            System.Windows.Forms.DataGridView dgv = new System.Windows.Forms.DataGridView();
+            if (dgv.Columns.Count > 0 && dgv.Rows.Count > 0)
+            {
+                List<RebarBarType> diametros = Tools.ObtenerTodosTiposSegunClase(doc, typeof(RebarBarType)).Cast<RebarBarType>().ToList();
+                List<Category> estilos = Tools.ObtenerEstilosDeLinea(doc);
 
-            // Desactiva que el usuario pueda agregar filas
-            dgv.AllowUserToAddRows = false;
+                DGVEntity DGVDiametros = new DGVEntity();
+                Dictionary<ElementId, ElementId> diccionario = new Dictionary<ElementId, ElementId>();
 
-            // Crea la columna de los diámetros
-            System.Windows.Forms.DataGridViewTextBoxColumn dgvText = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            
-            // Asigna el encabezado de la columna
-            dgvText.HeaderText = Language.ObtenerTexto(IdiomaDelPrograma, "Conf3-2");
+                for (int i = 0; i < dgv.Rows.Count; i++)
+                {
+                    try
+                    {
+                        System.Windows.Forms.DataGridViewTextBoxCell dgvTextCell = dgv.Rows[i].Cells[AboutJump.nombreColumnaDiametros] as System.Windows.Forms.DataGridViewTextBoxCell;
+                        System.Windows.Forms.DataGridViewComboBoxCell dgvComboCell = dgv.Rows[i].Cells[AboutJump.nombreColumnaEstilosLineas] as System.Windows.Forms.DataGridViewComboBoxCell;
 
-            // Asigna el nombre de la columna
-            dgvText.Name = AboutJump.nombreColumnaDiametros;
+                        RebarBarType tipoDiametro = diametros.FirstOrDefault(x => x.Name == dgvTextCell.Value.ToString());
+                        Category categEstilo = estilos.FirstOrDefault(x => x.Name == dgvComboCell.Value.ToString());
 
-            // Asigna que sea solo de lectura
-            dgvText.ReadOnly = false;
+                        diccionario.Add(tipoDiametro.Id, categEstilo.Id);
+                    }
+                    catch (Exception e) { TaskDialog.Show("0", e.Message + " " + e.StackTrace); }
+                }
 
-            // Asigna el ancho mínimo
-            dgvText.MinimumWidth = 50;
+                DGVDiametros.DGVDiametrosYEstilos = diccionario;
 
-            // Crea la columna del combobox de los estilos de líneas
-            System.Windows.Forms.DataGridViewComboBoxColumn dgvCombo = new System.Windows.Forms.DataGridViewComboBoxColumn();
+                doc.ProjectInformation.SetEntity(DGVDiametros);
+            }
+        }
 
-            // Estilo de lista desplegable
-            dgvCombo.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.DropDownButton;
+        ///<summary> Obtiene el DataGridViewEntity del proyecto </summary>
+        public static DGVEntity ObtenerEntityDiametrosYEstilos(Document doc)
+        {
+            DGVEntity DGVDiametros = doc.ProjectInformation.GetEntity<DGVEntity>();
 
-            // Asigna el encabezado de la columna
-            dgvCombo.HeaderText = Language.ObtenerTexto(IdiomaDelPrograma, "Conf3-3");
+            if (DGVDiametros == null)
+            {
+                DGVDiametros = new DGVEntity();
+            }
 
-            // Asigna el nombre de la columna
-            dgvCombo.Name = AboutJump.nombreColumnaEstilosLineas;
+            if (DGVDiametros.DGVDiametrosYEstilos == null)
+            {
+                DGVDiametros.DGVDiametrosYEstilos = new Dictionary<ElementId, ElementId>();
+            }
 
-            // Asigna que sea solo de lectura
-            dgvCombo.ReadOnly = false;
-
-            // Asigna el ancho mínimo
-            dgvCombo.MinimumWidth = 50;
-
-            // Agrega las columnas al DataGridView
-            dgv.Columns.Add(dgvText);
-            dgv.Columns.Add(dgvCombo);
-
-            return dgv;
+            return DGVDiametros;
         }
 
         ///<summary> Hace que el combobox se despliegue con un solo click </summary>
@@ -5538,7 +5538,7 @@ namespace Jump
 
         #endregion
 
-        #region Exportar y cargar desde Excel
+        #region Importar y exportar desde Excel
 
         /// <summary> Carga los diámetros y estilos de lineas de un archivo CSV </summary>
         public static void CargarDiametrosYEstilos(System.Windows.Forms.DataGridView dgv,

@@ -232,6 +232,8 @@ namespace Jump
                 System.Windows.Forms.DataGridView dgv = Tools.CrearDataGridViewDeDiametrosYEstilos(IdiomaDelPrograma);
 
                 Tools.ObtenerDataGridViewDeDiametrosYEstilos(dgv, doc, IdiomaDelPrograma);
+
+                Tools.GuardarDataGridViewEnDocumento(dgv, doc);
             }
             catch (Exception) { }
         }

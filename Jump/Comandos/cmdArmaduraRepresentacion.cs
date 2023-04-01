@@ -33,9 +33,11 @@ namespace Jump
 
             bool banderaCierre = inicioDetalleArmadura.banderaCierre;
 
-            DataGridView dgvEstiloLinea = inicioDetalleArmadura.dgvEstiloLinea;
+            DataGridView dgvEstiloLinea = new DataGridView();
 
-            //Tools.CrearRegistroActualizadorArmaduras(uiApp.ActiveAddInId);
+            dgvEstiloLinea = Tools.ObtenerDataGridViewDeDiametrosYEstilos(dgvEstiloLinea, doc, IdiomaDelPrograma);
+
+            Tools.CrearRegistroActualizadorArmaduras(uiApp.ActiveAddInId);
 
             // Abre una transacción
             using (Transaction t = new Transaction(doc, Language.ObtenerTexto(IdiomaDelPrograma, "DetArm2-1")))

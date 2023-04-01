@@ -76,6 +76,9 @@ namespace Jump
 
             // Crea el grupo de transacciones
             tg = new TransactionGroup(this.doc, transaccionGrupoImagenPreview);
+
+            // Crea el DataGridView de los diámetros y estilos
+            this.dgvEstiloLinea = Tools.ObtenerDataGridViewDeDiametrosYEstilos(this.dgvEstiloLinea, doc, this.IdiomaDelPrograma);
         }
 
         /// <summary> Carga el formulario </summary>
@@ -83,7 +86,6 @@ namespace Jump
         {
             // Llama a las funciones
             AgregarElementos();
-            AgregarDiametrosYEstilos();
             CargarComboboxEtiquetas(this.doc);
             AsignarPreviewDeImagen();
 
@@ -126,19 +128,6 @@ namespace Jump
             Tools.RellenarCombobox(this.cmbElementosPreview, this.elementos);
         }
 
-        /// <summary> Agrega los diámetros y estilos de lineas al DataGrid </summary>
-        private void AgregarDiametrosYEstilos()
-        {
-            // Crea el DataGridView de los diámetros y estilos
-            this.dgvEstiloLinea = Tools.CrearDataGridViewDeDiametrosYEstilos(IdiomaDelPrograma);
-
-            // Agregas las filas al DataGridView
-            this.dgvEstiloLinea.Rows.Add(Tools.CrearDataGridViewDeDiametrosYEstilos(IdiomaDelPrograma).Rows);
-
-            // Obtiene el DataGridView con los diámetros y estilos de líneas
-            Tools.AgregarDiametrosYEstilos(this.dgvEstiloLinea, this.dgvEstiloLinea.Columns[AboutJump.nombreColumnaEstilosLineas] as DataGridViewComboBoxColumn, doc);
-        }
-        
         /// <summary> Carga los combobox de las etiquetas </summary>
         private void CargarComboboxEtiquetas(Document doc)
         {

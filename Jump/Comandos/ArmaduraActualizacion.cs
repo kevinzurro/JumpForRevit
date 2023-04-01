@@ -26,19 +26,9 @@ namespace Jump
 
             // Crea un nuevo UpdaterId
             this.updaterID = new UpdaterId(addinID, AboutJump.GuidActualizarBarra);
-
-            // Configura el DataGridView
-            ConfigurarDataGridView();
         }
 
-        /// <summary> Configura el DataGridView </summary>
-        public void ConfigurarDataGridView()
-        {
-            // Crea el DataGridView de los diámetros y estilos
-            this.dgvEstiloLinea = Tools.CrearDataGridViewDeDiametrosYEstilos(IdiomaDelPrograma);
-        }
-
-        /// <summary> Método cada vez que existe algún cambio en Revit </summary>
+        /// <summary> Modifica la Representación de la armadura cuando existe algún cambio en Revit </summary>
         public void Execute(UpdaterData data)
         {
             // Verifica que esté activo la actualización automatica de barras
@@ -47,14 +37,8 @@ namespace Jump
                 // Documento del proyecto
                 Document doc = data.GetDocument();
 
-                // Agregas las filas al DataGridView
-                this.dgvEstiloLinea.Rows.Add(Tools.CrearDataGridViewDeDiametrosYEstilos(IdiomaDelPrograma).Rows);
-
-                // Obtiene el ComboboxColumn
-                System.Windows.Forms.DataGridViewComboBoxColumn EstiloLinea = this.dgvEstiloLinea.Columns[AboutJump.nombreColumnaEstilosLineas] as System.Windows.Forms.DataGridViewComboBoxColumn;
-
-                // Obtiene el DataGridView con los diámetros y estilos de líneas
-                Tools.AgregarDiametrosYEstilos(this.dgvEstiloLinea, EstiloLinea, doc);
+                // Crea el DataGridView con los diámetros y estilos de líneas
+                dgvEstiloLinea = Tools.ObtenerDataGridViewDeDiametrosYEstilos(this.dgvEstiloLinea, doc, this.IdiomaDelPrograma);
 
                 // Obtiene todos los ID de los elementos modificados
                 List<ElementId> elementosId = data.GetModifiedElementIds().ToList();
@@ -64,8 +48,8 @@ namespace Jump
 
                 // Obtiene todas las barras del proyecto
                 List<Element> colectorBarras = new FilteredElementCollector(doc).
-                                                    OfCategory(BuiltInCategory.OST_Rebar).
-                                                    OfClass(typeof(Rebar)).ToList();
+                                                   OfCategory(BuiltInCategory.OST_Rebar).
+                                                   OfClass(typeof(Rebar)).ToList();
 
                 // Obtiene todas las barras modificadas
                 List<Element> barrasModificadas = Tools.ObtenerElementosCoincidentesConLista(colectorBarras, elementos);
@@ -78,6 +62,8 @@ namespace Jump
                     listaArmaduraRepresentacion.Clear();
 
                     listaArmaduraRepresentacion = Tools.ObtenerRepresentacionArmaduraDeBarra(barra);
+
+                    Tools.EliminarRepresentacionesEnBarra(barra);
 
                     // Recorre las Representaciones de armaduras
                     foreach (ArmaduraRepresentacion armadura in listaArmaduraRepresentacion)
@@ -99,7 +85,7 @@ namespace Jump
                                     // Mueve la Representación de la Armadura
                                     armadura.MoverArmaduraRepresentacion(armadura.Posicion);
 
-                                    Tools.GuardarRepresentacionArmaduraDeBarra(barra, armadura);
+                                    Tools.GuardarRepresentacionArmaduraDeBarra(barra, armadura);                                    
                                 }
                             }
                         }

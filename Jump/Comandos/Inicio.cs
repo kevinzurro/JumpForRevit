@@ -218,6 +218,7 @@ namespace Jump
                 {
                     foreach (ArmaduraRepresentacion armadura in armaduras)
                     {
+
                         if (!Inicio.listaArmaduraRepresentacion.Contains(armadura))
                         {
                             Inicio.listaArmaduraRepresentacion.Add(armadura);
@@ -226,41 +227,13 @@ namespace Jump
                 }
             }
 
-            // Obtiene la ruta del documento
-            string rutaDocumento = doc.PathName;
-
-            // Obtiene la ruta del archivo
-            string rutaArchivo = Tools.ObtenerRutaArchivoDiametroYEstilo(doc);
-
             try
             {
-                // Crea el DataGridView
                 System.Windows.Forms.DataGridView dgv = Tools.CrearDataGridViewDeDiametrosYEstilos(IdiomaDelPrograma);
 
-                // Agregas las filas al DataGridView
-                dgv.Rows.Add(Tools.CrearDataGridViewDeDiametrosYEstilos(IdiomaDelPrograma).Rows);
-
-                // Verifica que exista ruta
-                if (rutaDocumento != "" && !doc.IsDetached)
-                {
-                    // Carga el DataGridView
-                    Tools.AgregarDiametrosYEstilos(dgv, dgv.Columns[AboutJump.nombreColumnaEstilosLineas] as System.Windows.Forms.DataGridViewComboBoxColumn, doc);
-                }
-
-                // No existe el nombre
-                else
-                {
-                    // Crea un archivo temporal
-                    string rutaTemporal = Tools.CrearRutaTemporalArchivoDiametroYEstilo(doc);
-
-                    // Completa el DataGridView
-                    Tools.AgregarDiametrosYEstilos(dgv, dgv.Columns[AboutJump.nombreColumnaEstilosLineas] as System.Windows.Forms.DataGridViewComboBoxColumn, doc);
-
-                    // Guarda el archivo
-                    Tools.GuardarDiametrosYEstilos(dgv, rutaTemporal);
-                }
+                Tools.ObtenerDataGridViewDeDiametrosYEstilos(dgv, doc, IdiomaDelPrograma);
             }
-            catch (Exception ) { }
+            catch (Exception) { }
         }
 
         /// <summary> Evento cuando se guardó un documento con nombre distinto o por primera vez </summary>
@@ -272,22 +245,13 @@ namespace Jump
             // Verifica que se guardó correctamente el documento
             if (args.Status == RevitAPIEventStatus.Succeeded)
             {
-                // Obtiene la ruta del archivo
-                string rutaArchivo = Tools.ObtenerRutaArchivoDiametroYEstilo(doc);
-
                 try
                 {
-                    // Crea el DataGridView
                     System.Windows.Forms.DataGridView dgv = Tools.CrearDataGridViewDeDiametrosYEstilos(IdiomaDelPrograma);
 
-                    // Agregas las filas al DataGridView
-                    dgv.Rows.Add(Tools.CrearDataGridViewDeDiametrosYEstilos(IdiomaDelPrograma).Rows);
+                    Tools.ObtenerDataGridViewDeDiametrosYEstilos(dgv, doc, IdiomaDelPrograma);
 
-                    // Carga el DataGridView
-                    Tools.AgregarDiametrosYEstilos(dgv, dgv.Columns[AboutJump.nombreColumnaEstilosLineas] as System.Windows.Forms.DataGridViewComboBoxColumn, doc);
-
-                    // Guarda el DataGridView
-                    Tools.GuardarDiametrosYEstilos(dgv, rutaArchivo);
+                    Tools.GuardarDataGridViewEnDocumento(dgv, doc);
                 }
                 catch (Exception) { }
             }

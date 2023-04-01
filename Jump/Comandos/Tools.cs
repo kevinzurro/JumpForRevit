@@ -5330,11 +5330,6 @@ namespace Jump
             return dgv;
         }
 
-
-
-
-
-
         ///<summary> Hace que el combobox se despliegue con un solo click </summary>
         public static void DesplegarComboboxConUnClick(System.Windows.Forms.DataGridView dgv,
                                                        System.Windows.Forms.DataGridViewCellEventArgs e)
@@ -5346,222 +5341,6 @@ namespace Jump
                 dgv.BeginEdit(true);
                 System.Windows.Forms.ComboBox combo = (System.Windows.Forms.ComboBox)dgv.EditingControl;
                 combo.DroppedDown = true;
-            }
-        }
-
-        /// <summary> Obtiene la ruta del archivo de diámetros y estilos de líneas </summary>
-        public static string ObtenerRutaArchivoDiametroYEstilo(Document doc)
-        {
-            // Obtiene la ruta del documento
-            string rutaDocumento = doc.PathName;
-
-            // Crea la dirección de la ruta del archivo
-            string rutaArchivo = null;
-            
-            // Verifica que exista ruta
-            if (rutaDocumento != "" && !doc.IsDetached)
-            {
-                // Obtiene la ruta del archivo
-                rutaArchivo = rutaDocumento.Replace(Tools.formatoArchivoRevitDocumento, Tools.formatoArchivoDiametroYEstilo);
-            }
-
-            else
-            {
-                // Crea la ruta temporal
-                rutaArchivo = CrearRutaTemporalArchivoDiametroYEstilo(doc);
-            }
-
-            return rutaArchivo;
-        }
-
-        /// <summary> Obtiene la ruta temporal para los diámetros y estilos de líneas </summary>
-        public static string CrearRutaTemporalArchivoDiametroYEstilo(Document doc)
-        {
-            // Crea un archivo temporal
-            string rutaTemporal = Path.GetTempPath() + doc.Title + Tools.formatoArchivoDiametroYEstilo;
-
-            return rutaTemporal;
-        }
-
-        /// <summary> Agrega los diámetros y estilos de lineas al DataGrid </summary>
-        public static void AgregarDiametrosYEstilos(System.Windows.Forms.DataGridView dgv,
-                                                    System.Windows.Forms.DataGridViewComboBoxColumn dgvCombo,
-                                                    Document doc)
-        {
-            // Obtiene la ruta del documento
-            string rutaDocumento = doc.PathName;
-
-            // Obtiene la ruta del archivo
-            string rutaArchivo = ObtenerRutaArchivoDiametroYEstilo(doc);
-
-            // Comprueba que existe el archivos
-            if (File.Exists(rutaArchivo))
-            {
-                // Carga los diámetros y estilos desde un excel
-                Tools.CargarDiametrosYEstilos(dgv, dgvCombo, doc, rutaArchivo);
-            }
-
-            else
-            {
-                // Completa el DataGridView
-                Tools.RellenarDataGridViewDeDiametrosYEstilos(dgv, dgvCombo, doc);
-                
-                // Guarda el archivo
-                Tools.GuardarDiametrosYEstilos(dgv, rutaArchivo);
-            }
-        }
-
-        /// <summary> Carga los diámetros y estilos de lineas de un archivo CSV </summary>
-        public static void CargarDiametrosYEstilos(System.Windows.Forms.DataGridView dgv,
-                                                   System.Windows.Forms.DataGridViewComboBoxColumn dgvCombo,
-                                                   Document doc, string rutaArchivo)
-        {
-            using (SLDocument slDoc = new SLDocument(rutaArchivo))
-            {
-                // Crea un DataGridViewComboboxColumn
-                System.Windows.Forms.DataGridViewComboBoxColumn dgvCombobox = new System.Windows.Forms.DataGridViewComboBoxColumn();
-
-                // Rellena el DataGridView
-                Tools.RellenarDataGridViewDeDiametrosYEstilos(dgv, dgvCombo, doc);
-
-                // Crea los contadores
-                int i = 0;
-                int j = 0;
-
-                // Recorre las filas
-                while (!string.IsNullOrEmpty(slDoc.GetCellValueAsString(i + 1, j + 1)))
-                {
-                    try
-                    {
-                        // Verifica que la celda 
-                        if (dgv.Rows[i].Cells[j].Value.ToString() == slDoc.GetCellValueAsString(i + 1, j + 1))
-                        {
-                            // Limpia el DataGridViewComboboxColumn
-                            dgvCombobox.Items.Clear();
-
-                            // Asigna el valor del excel
-                            dgvCombobox.Items.Add(slDoc.GetCellValueAsString(i + 1, j + 2));
-
-                            // Asigna el valor al DataGridViewComboboxColumn
-                            dgv.Rows[i].Cells[AboutJump.nombreColumnaEstilosLineas].Value = dgvCombobox.Items[0];
-                        }
-
-                        // Aumenta el contador
-                        i++;
-                    }
-                    catch (Exception) { }
-                }
-            }
-        }
-
-        /// <summary> Guarda los diámetros y estilos de lineas en un archivo externo </summary>
-        public static void GuardarDiametrosYEstilos(System.Windows.Forms.DataGridView dgv, string rutaArchivo)
-        {
-            using (SLDocument slDoc = new SLDocument())
-            {
-                // Crea una DataTable
-                DataTable dt = new DataTable();
-
-                // Recorre las columnas
-                for (int i = 0; i < dgv.Columns.Count; i++)
-                {
-                    // Agrega la columna
-                    dt.Columns.Add(dgv.Columns[i].Name);
-                }
-
-                // Recorre las filas
-                for (int i = 0; i < dgv.Rows.Count; i++)
-                {
-                    // Asigna el valor del DataGridView a la matriz
-                    dt.Rows.Add(dgv.Rows[i].Cells[AboutJump.nombreColumnaDiametros].Value.ToString(), dgv.Rows[i].Cells[AboutJump.nombreColumnaEstilosLineas].Value.ToString());
-                }
-
-                // Asigna la matriz al excel
-                slDoc.ImportDataTable(celdaExcelInsertarDiametros, dt, celdaExcelEncabezadoDiametros);
-
-                // Cambia el nombre de la pestaña
-                slDoc.RenameWorksheet(SLDocument.DefaultFirstSheetName, pestanaExcelDiametros);
-
-                // Ajusta el ancho de las columnas
-                for (int i = 1; i <= dgv.Columns.Count; i++)
-                {
-                    slDoc.AutoFitColumn(i);
-                }
-
-                // Guarda el archivo de excel
-                slDoc.SaveAs(rutaArchivo);
-            }
-        }
-
-        ///<summary> Rellena un DataGridView con los diámetros de barras ordenados de menor a mayor y estilos de líneas </summary>
-        public static void RellenarDataGridViewDeDiametrosYEstilos(System.Windows.Forms.DataGridView dgv,
-                                                                   System.Windows.Forms.DataGridViewComboBoxColumn dgvCombo,
-                                                                   Document doc)
-        {
-            // Limpia el DataGrid
-            dgv.Rows.Clear();
-            dgv.Refresh();
-
-            // Crea las clases a buscar
-            Type claseDiametro = typeof(RebarBarType);
-
-            // Crea la lista de los diámetros de barras de acero del proyecto
-            List<Element> diametrosTemp = new List<Element>();
-            List<RebarBarType> diametros = new List<RebarBarType>();
-
-            // Obtiene todos los diámetros de barras del proyecto
-            diametrosTemp = Tools.ObtenerTodosTiposSegunClase(doc, claseDiametro);
-
-            // Recorre la lista de diámetros
-            foreach (Element elem in diametrosTemp)
-            {
-                // Agrega el tipo de barra a la lista
-                diametros.Add(elem as RebarBarType);
-            }
-
-            // Ordena la lista por el diámetro de barra
-            diametros = diametros.OrderBy(x => x.BarDiameter).ToList();
-
-            // Crea la lista de los estilos de lineas del proyecto
-            List<Category> estilos = new List<Category>();
-
-            // Obtiene todos los estilos de lineas del proyecto
-            estilos = Tools.ObtenerEstilosDeLinea(doc);
-
-            // Verifica que tenga diámetros la lista
-            if (diametros.Count > 0)
-            {
-                // Recorre el DataGrid y agrega los valores de diámetros y estilos de linea
-                for (int i = 0; i < diametros.Count; i++)
-                {
-                    // Limpia el combobox
-                    dgvCombo.Items.Clear();
-
-                    // Agrega una fila al Datagrid
-                    dgv.Rows.Add();
-
-                    // Agrega los diámetros a la primera columna
-                    dgv.Rows[i].Cells[AboutJump.nombreColumnaDiametros].Value = diametros[i].Name;
-                    dgv.Rows[i].Cells[AboutJump.nombreColumnaDiametros].ReadOnly = true;
-
-                    // Agrega los estilos de linea al combobox
-                    foreach (Category cat in estilos)
-                    {
-                        // Agrega el estilo al combobox
-                        dgvCombo.Items.Add(cat.Name);
-
-                    }
-
-                    // Verifica la lista contenga elementos
-                    if (estilos.Count > 0)
-                    {
-                        // Castea el combobox
-                        System.Windows.Forms.DataGridViewComboBoxCell dgvComboCell = dgv.Rows[i].Cells[AboutJump.nombreColumnaEstilosLineas] as System.Windows.Forms.DataGridViewComboBoxCell;
-
-                        // Asigna el primer elemento a la lista desplegable
-                        dgv.Rows[i].Cells[AboutJump.nombreColumnaEstilosLineas].Value = dgvComboCell.Items[0];
-                    }
-                }
             }
         }
 
@@ -5754,6 +5533,89 @@ namespace Jump
                 {
                     e.Handled = true;
                 }
+            }
+        }
+
+        #endregion
+
+        #region Exportar y cargar desde Excel
+
+        /// <summary> Carga los diámetros y estilos de lineas de un archivo CSV </summary>
+        public static void CargarDiametrosYEstilos(System.Windows.Forms.DataGridView dgv,
+                                                   System.Windows.Forms.DataGridViewComboBoxColumn dgvCombo,
+                                                   Document doc, string rutaArchivo)
+        {
+            using (SLDocument slDoc = new SLDocument(rutaArchivo))
+            {
+                // Crea un DataGridViewComboboxColumn
+                System.Windows.Forms.DataGridViewComboBoxColumn dgvCombobox = new System.Windows.Forms.DataGridViewComboBoxColumn();
+
+                // Crea los contadores
+                int i = 0;
+                int j = 0;
+
+                // Recorre las filas
+                while (!string.IsNullOrEmpty(slDoc.GetCellValueAsString(i + 1, j + 1)))
+                {
+                    try
+                    {
+                        // Verifica que la celda 
+                        if (dgv.Rows[i].Cells[j].Value.ToString() == slDoc.GetCellValueAsString(i + 1, j + 1))
+                        {
+                            // Limpia el DataGridViewComboboxColumn
+                            dgvCombobox.Items.Clear();
+
+                            // Asigna el valor del excel
+                            dgvCombobox.Items.Add(slDoc.GetCellValueAsString(i + 1, j + 2));
+
+                            // Asigna el valor al DataGridViewComboboxColumn
+                            dgv.Rows[i].Cells[AboutJump.nombreColumnaEstilosLineas].Value = dgvCombobox.Items[0];
+                        }
+
+                        // Aumenta el contador
+                        i++;
+                    }
+                    catch (Exception) { }
+                }
+            }
+        }
+
+        /// <summary> Guarda los diámetros y estilos de lineas en un archivo externo </summary>
+        public static void GuardarDiametrosYEstilos(System.Windows.Forms.DataGridView dgv, string rutaArchivo)
+        {
+            using (SLDocument slDoc = new SLDocument())
+            {
+                // Crea una DataTable
+                DataTable dt = new DataTable();
+
+                // Recorre las columnas
+                for (int i = 0; i < dgv.Columns.Count; i++)
+                {
+                    // Agrega la columna
+                    dt.Columns.Add(dgv.Columns[i].Name);
+                }
+
+                // Recorre las filas
+                for (int i = 0; i < dgv.Rows.Count; i++)
+                {
+                    // Asigna el valor del DataGridView a la matriz
+                    dt.Rows.Add(dgv.Rows[i].Cells[AboutJump.nombreColumnaDiametros].Value.ToString(), dgv.Rows[i].Cells[AboutJump.nombreColumnaEstilosLineas].Value.ToString());
+                }
+
+                // Asigna la matriz al excel
+                slDoc.ImportDataTable(celdaExcelInsertarDiametros, dt, celdaExcelEncabezadoDiametros);
+
+                // Cambia el nombre de la pestaña
+                slDoc.RenameWorksheet(SLDocument.DefaultFirstSheetName, pestanaExcelDiametros);
+
+                // Ajusta el ancho de las columnas
+                for (int i = 1; i <= dgv.Columns.Count; i++)
+                {
+                    slDoc.AutoFitColumn(i);
+                }
+
+                // Guarda el archivo de excel
+                slDoc.SaveAs(rutaArchivo);
             }
         }
 

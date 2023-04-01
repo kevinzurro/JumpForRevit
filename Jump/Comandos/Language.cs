@@ -191,18 +191,15 @@ namespace Jump
             Espanol.Add("Conf2-4-1", "Posición del texto");
             Espanol.Add("Conf2-4-2", "Arriba");
             Espanol.Add("Conf2-4-3", "Abajo");
-
             Espanol.Add("Conf2-5-1", "Etiqueta de armaduras");
             Espanol.Add("Conf2-5-2", "Tipo de armadura");
             Espanol.Add("Conf2-5-3", "Posición de la etiqueta");
             Espanol.Add("Conf2-5-1-1", "Armadura");
-
             Espanol.Add("Conf3-1", "Estilos de líneas");
             Espanol.Add("Conf3-2", "Diámetro");
             Espanol.Add("Conf3-3", "Estilo de línea");
             Espanol.Add("Conf3-4", "Jump representa a las barras de acero como Línea de detalle, permitiendo utilizar distintos estilos de líneas para cada diámetro en particular.");
             Espanol.Add("Conf3-5", "Guardado de estilos de líneas");
-
             Espanol.Add("Conf4-1", "Etiquetas");
             Espanol.Add("Conf4-1-1", "Etiquetas independientes");
             Espanol.Add("Conf4-1-2", "Elemento");

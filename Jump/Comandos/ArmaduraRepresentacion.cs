@@ -299,8 +299,6 @@ namespace Jump
                     }
                 }
             }
-
-            Tools.EliminarRepresentacionesEnBarra(this.Barra);
         }
 
         /// <summary> Elimina las curvas de la armadura por el Id del historial </summary>

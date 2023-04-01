@@ -18,7 +18,6 @@ namespace Jump
     {
         // Variable necesarias
         string IdiomaDelPrograma;
-        string rutaArchivo;
         Document doc;
         UnitType tipoUnidad = UnitType.UT_Length;
         
@@ -32,23 +31,13 @@ namespace Jump
             // Variable necesarias
             this.IdiomaDelPrograma = Tools.ObtenerIdiomaDelPrograma();
             this.doc = doc;
-            this.rutaArchivo = Tools.ObtenerRutaArchivoDiametroYEstilo(doc);
 
             // Llama a las funciones
-            AgregarDiametrosYEstilos();
+            this.dgvEstiloLinea = Tools.ObtenerDataGridViewDeDiametrosYEstilos(this.dgvEstiloLinea, doc, IdiomaDelPrograma);
             AgregarListaPosicionDeEtiquetas();
             CargarImagenesPredeterminadas();
         }
 
-        /// <summary> Agrega los diámetros y estilos de lineas al DataGrid </summary>
-        private void AgregarDiametrosYEstilos()
-        {
-            // Completa el DataGridView de diámetros y estilos
-            //Tools.AgregarDiametrosYEstilos(this.dgvEstiloLinea, this.EstiloLinea, this.doc);
-            //Tools.RellenarDataGridViewDeDiametrosYEstilos(this.dgvEstiloLinea, this.doc);
-            Tools.ObtenerDataGridViewDeDiametrosYEstilos(this.dgvEstiloLinea, doc, IdiomaDelPrograma);
-        }
-        
         /// <summary> Agrega las posiciones de las etiquetas independientes </summary>
         private void AgregarListaPosicionDeEtiquetas()
         {

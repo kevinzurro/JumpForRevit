@@ -29,9 +29,6 @@ namespace Jump
         // Parámetros para las etiquetas y vistas
         BuiltInCategory categoriaEtiquetaArmadura = BuiltInCategory.OST_RebarTags;
 
-        // DataGridView de los díametros y estilos de líneas
-        public DataGridView dgvEstiloLinea = new DataGridView();
-
         // Constructor del formulario
         public frmDetalleArmadura(Document doc)
         {
@@ -54,15 +51,6 @@ namespace Jump
             // Rellena el combobox
             Tools.RellenarCombobox(this.cmbEtiquetaArmadura, etiquetasArmaduras);
             Tools.RellenarCombobox(this.cmbEtiquetaLongitud, etiquetasLongitud);
-
-            // Crea el DataGridView de los diámetros y estilos
-            this.dgvEstiloLinea = Tools.CrearDataGridViewDeDiametrosYEstilos(IdiomaDelPrograma);
-
-            // Agregas las filas al DataGridView
-            this.dgvEstiloLinea.Rows.Add(Tools.CrearDataGridViewDeDiametrosYEstilos(IdiomaDelPrograma).Rows);
-
-            // Obtiene el DataGridView con los diámetros y estilos de líneas
-            Tools.AgregarDiametrosYEstilos(this.dgvEstiloLinea, this.dgvEstiloLinea.Columns[AboutJump.nombreColumnaEstilosLineas] as DataGridViewComboBoxColumn, doc);
         }
 
         /// <summary> Cierra el formulario </summary>
@@ -79,11 +67,11 @@ namespace Jump
         /// <summary> Ejecuta todas las acciones </summary>
         private void btnEjecutar_Click(object sender, EventArgs e)
         {
-            this.Longitud = this.chbEtiquetaLongitud.Checked;
             this.Armadura = this.chbEtiquetaArmadura.Checked;
+            this.Longitud = this.chbEtiquetaLongitud.Checked;
 
-            this.tipoTexto = this.etiquetasLongitud.FirstOrDefault(x => x.Name == this.cmbEtiquetaLongitud.SelectedItem.ToString());
-            this.tipoEtiqueta = this.etiquetasArmaduras.FirstOrDefault(eti => eti.Name == this.cmbEtiquetaArmadura.SelectedItem.ToString());
+            this.tipoEtiqueta = (FamilySymbol)this.cmbEtiquetaArmadura.SelectedItem;
+            this.tipoTexto = (TextNoteType)this.cmbEtiquetaLongitud.SelectedItem;
 
             this.banderaCierre = true;
 

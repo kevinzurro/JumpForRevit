@@ -21,9 +21,28 @@ namespace Jump
             Application app = uiApp.Application;
             Document doc = uiDoc.Document;
 
-            // Muestra el formulario de Configuraciones
-            frmConfiguraciones inicioConfiguraciones = new frmConfiguraciones(doc);
-            inicioConfiguraciones.ShowDialog();
+            Tools.AddinManager();
+            Tools.CrearRegistroActualizadorArmaduras(uiApp.ActiveAddInId);
+
+            string IdiomaDelPrograma = Tools.ObtenerIdiomaDelPrograma();
+
+            using (Transaction tra = new Transaction(doc, Language.ObtenerTexto(IdiomaDelPrograma, "Conf1")))
+            {
+                tra.Start();
+
+                frmConfiguraciones inicioConfiguraciones = new frmConfiguraciones(doc);
+
+                inicioConfiguraciones.ShowDialog();
+
+                if (inicioConfiguraciones.bandera)
+                {
+                    tra.Commit();
+                }
+                else
+                {
+                    tra.RollBack();
+                }
+            }
 
             return Result.Succeeded;
         }

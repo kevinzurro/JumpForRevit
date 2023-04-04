@@ -22,9 +22,9 @@ namespace Jump
         Document doc;
         UIDocument uiDoc;
         string transaccionGrupoImagenPreview = "grupo vista previa";
-        string transaccionImagenPreview = "vista previa";
         int posicionImagenPreview = 0;
-        TransactionGroup tg;
+        Transaction traG;
+        public bool bandera = false;
 
         // Parámetros para los elementos estructurales
         public Type clase;
@@ -75,7 +75,8 @@ namespace Jump
             this.uiDoc = uiDoc;
 
             // Crea el grupo de transacciones
-            tg = new TransactionGroup(this.doc, transaccionGrupoImagenPreview);
+            traG = new Transaction(this.doc, transaccionGrupoImagenPreview);
+            traG.Start();
 
             // Crea el DataGridView de los diámetros y estilos
             this.dgvEstiloLinea = Tools.ObtenerDataGridViewDeDiametrosYEstilos(this.dgvEstiloLinea, doc, this.IdiomaDelPrograma);
@@ -156,42 +157,27 @@ namespace Jump
         /// <summary> Asigna una imagen de prueba para las etiquetas, cotas y despieces de barras </summary>
         private void AsignarPreviewDeImagen()
         {
-            // Verifica que no haya empezado
-            if (!tg.HasStarted())
+            // Verifica que existan elementos
+            if (this.elementos.Count > 0)
             {
-                // Activa el grupos de transacción
-                tg.Start();
-            }
+                // Crea la vista para la sección
+                Autodesk.Revit.DB.View vista = Tools.VistaXX(this.doc, this.elementos[posicionImagenPreview]);
 
-            // Crea una transacción
-            using (Transaction t = new Transaction(this.doc, transaccionImagenPreview))
-            {
-                t.Start();
-
-                // Verifica que existan elementos
-                if (this.elementos.Count > 0)
+                //Verifica si la vista es nula
+                if (vista == null)
                 {
-                    // Crea la vista para la sección
-                    Autodesk.Revit.DB.View vista = Tools.VistaXX(this.doc, this.elementos[posicionImagenPreview]);
-
-                    //Verifica si la vista es nula
-                    if (vista == null)
-                    {
-                        // Crea otra vista para la sección
-                        vista = Tools.VistaYY(this.doc, this.elementos[posicionImagenPreview]);
-                    }
-
-                    // Configura la vista y crea las etiquetas
-                    CrearEtiquetasYConfigurarVista(vista, this.elementos[posicionImagenPreview]);
-
-                    // Crea la vista previa
-                    PreviewControl vistaPrevia = new PreviewControl(this.doc, vista.Id);
-
-                    // Asigna la vista previa para visualizar
-                    this.PreviewEtiquetas.Child = vistaPrevia;
+                    // Crea otra vista para la sección
+                    vista = Tools.VistaYY(this.doc, this.elementos[posicionImagenPreview]);
                 }
 
-                t.Commit();
+                // Configura la vista y crea las etiquetas
+                CrearEtiquetasYConfigurarVista(vista, this.elementos[posicionImagenPreview]);
+
+                // Crea la vista previa
+                PreviewControl vistaPrevia = new PreviewControl(this.doc, vista.Id);
+
+                // Asigna la vista previa para visualizar
+                this.PreviewEtiquetas.Child = vistaPrevia;
             }
         }
 
@@ -207,19 +193,11 @@ namespace Jump
                 // Obtiene la vista
                 Autodesk.Revit.DB.View vista = this.doc.GetElement(pc.ViewId) as Autodesk.Revit.DB.View;
 
-                // Crea una transacción
-                using (Transaction t = new Transaction(this.doc, transaccionGrupoImagenPreview))
-                {
-                    t.Start();
+                // Oculta todo menos el elementos y sus barras
+                Tools.MostrarSolamenteElementoYBarrasEnVista(this.doc, vista, this.elementos[posicionImagenPreview]);
 
-                    // Oculta todo menos el elementos y sus barras
-                    Tools.MostrarSolamenteElementoYBarrasEnVista(this.doc, vista, this.elementos[posicionImagenPreview]);
-
-                    // Crea de nuevo las etiquetas
-                    CrearEtiquetas(vista, this.elementos[posicionImagenPreview]);
-
-                    t.Commit();
-                }
+                // Crea de nuevo las etiquetas
+                CrearEtiquetas(vista, this.elementos[posicionImagenPreview]);
             }
         }
 
@@ -314,23 +292,23 @@ namespace Jump
         }
 
         /// <summary> Cierra la transacción grupal y deshace los cambios </summary>
-        private void CerrarTransacciónGrupo()
+        private void CerrarTransacciónGeneral()
         {
             // Verifica que la transacción comenzó
-            if (tg.HasStarted())
+            if (traG.HasStarted())
             {
                 // Deshace los cambios
-                tg.RollBack();
+                traG.RollBack();
             }
 
             // Verifica que la transacción no finalizó
-            if (!tg.HasEnded())
+            if (!traG.HasEnded())
             {
                 // Verifica que la transacción comenzó
-                if (tg.HasStarted())
+                if (traG.HasStarted())
                 {
                     // Deshace los cambios
-                    tg.RollBack();
+                    traG.RollBack();
                 }
             }
         }
@@ -342,11 +320,11 @@ namespace Jump
             if (e.KeyCode == Keys.Escape)
             {
                 // Elimina las transacción grupal
-                CerrarTransacciónGrupo();
+                CerrarTransacciónGeneral();
 
                 // Elimina las vistas previas
                 EliminarVistaPrevia();
-
+                
                 // Cierra el formulario
                 this.Close();
             }
@@ -356,7 +334,7 @@ namespace Jump
         private void frmDetalleAutomatico_FormClosed(object sender, FormClosedEventArgs e)
         {
             // Elimina las transacción grupal
-            CerrarTransacciónGrupo();
+            CerrarTransacciónGeneral();
 
             // Elimina las vistas previas
             EliminarVistaPrevia();
@@ -369,45 +347,44 @@ namespace Jump
             List<Element> listaSeleccionados = Tools.ObtenerElementosSeleccionadosEnProyecto(this.uiDoc, this.doc, this.elementos);
 
             // Cierra las transacciones grupales
-            CerrarTransacciónGrupo();
+            CerrarTransacciónGeneral();
 
-            // Abre una transacción
-            using (Transaction t = new Transaction(this.doc, Language.ObtenerTexto(IdiomaDelPrograma, "Zap5-2")))
+            // Limpia la lista
+            this.listaElementosEstructurales.Clear();
+
+            // Agrega todos los elementos del proyecto a la lista
+            if (this.rbtnTodos.Checked)
             {
-                t.Start();
-                
-                // Limpia la lista
-                this.listaElementosEstructurales.Clear();
+                // Asigna todas los elementos
+                this.listaElementosEstructurales = this.elementos;
+            }
 
-                // Agrega todos los elementos del proyecto a la lista
-                if (this.rbtnTodos.Checked)
-                {
-                    // Asigna todas los elementos
-                    this.listaElementosEstructurales = this.elementos;
-                }
+            // Agrega los elementos seleccionados en el proyecto a la lista
+            if (this.rbtnElementosSeleccionados.Checked)
+            {
+                // Obtiene los elementos seleccionados que coinciden con la lista de zapatas
+                this.listaElementosEstructurales = Tools.ObtenerElementosCoincidentesConLista(this.elementos, listaSeleccionados);
+            }
 
-                // Agrega los elementos seleccionados en el proyecto a la lista
-                if (this.rbtnElementosSeleccionados.Checked)
-                {
-                    // Obtiene los elementos seleccionados que coinciden con la lista de zapatas
-                    this.listaElementosEstructurales = Tools.ObtenerElementosCoincidentesConLista(this.elementos, listaSeleccionados);
-                }
+            // Agrega los elementos seleccionadas de la listabox
+            if (this.rbtnConjuntoDeLaLista.Checked)
+            {
+                // Obtiene los elementos seleccionados de la listbox y agrega a la lista
+                this.listaElementosEstructurales = Tools.ObtenerElementosDeUnListbox(this.lstElementos, this.doc, this.elementos);
+            }
 
-                // Agrega los elementos seleccionadas de la listabox
-                if (this.rbtnConjuntoDeLaLista.Checked)
-                {
-                    // Obtiene los elementos seleccionados de la listbox y agrega a la lista
-                    this.listaElementosEstructurales = Tools.ObtenerElementosDeUnListbox(this.lstElementos, this.doc, this.elementos);
-                }
-                
-                // Verifica que la lista de elementos estructurales contenga elementos para poder continuar
-                if (this.listaElementosEstructurales.Count > 0)
-                {
-                    // Llama al formulario barra de progreso
-                    frmBarraProgreso barraProgreso = new frmBarraProgreso(this.listaElementosEstructurales.Count);
+            // Verifica que la lista de elementos estructurales contenga elementos para poder continuar
+            if (this.listaElementosEstructurales.Count > 0)
+            {
+                // Llama al formulario barra de progreso
+                frmBarraProgreso barraProgreso = new frmBarraProgreso(this.listaElementosEstructurales.Count);
 
-                    // Muestra el formulario
-                    barraProgreso.Show();
+                // Muestra el formulario
+                barraProgreso.Show();
+
+                using (Transaction tra = new Transaction(this.doc, Language.ObtenerTexto(IdiomaDelPrograma, "Zap5-2")))
+                {
+                    tra.Start();
 
                     // Recorre todos los elementos de la lista
                     foreach (Element elem in this.listaElementosEstructurales)
@@ -436,12 +413,14 @@ namespace Jump
                         barraProgreso.Incrementar();
                     }
 
-                    // Cierra el formulario barra de progreso
-                    barraProgreso.Close();
-
-                    t.Commit();
+                    tra.Commit();
                 }
+
+                // Cierra el formulario barra de progreso
+                barraProgreso.Close();
             }
+
+            this.bandera = true;
 
             // Cierra el formulario
             this.Close();
@@ -492,8 +471,6 @@ namespace Jump
                 // Obtiene el DimensionType de la cota seleccionada
                 DimensionType tipoCota = (DimensionType)this.cmbEstiloCota.SelectedItem;
 
-                //(tipoCota == null) ? (DimensionType)this.cmbEstiloCota.Items[0] , null ;
-                
                 try
                 {
                     // Verifica que esté activo la cota vertical izquierda
@@ -669,7 +646,7 @@ namespace Jump
             Tools.AjustarRecuadroDeVista(this.doc, vista, listaEtiquetasCreadas);
 
             // Verifica que la transacción grupal finalizó
-            if (this.tg.HasEnded())
+            if (this.traG.HasEnded())
             {
                 // Agrega la representación de armadura la barra
                 Tools.GuardarRepresentacionArmaduraDeBarra(barras, listaArmaduraRepresentacion);

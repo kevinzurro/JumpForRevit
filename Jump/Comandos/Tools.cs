@@ -5303,19 +5303,23 @@ namespace Jump
 
                         diccionario.Add(tipoDiametro.Id, categEstilo.Id);
                     }
-                    catch (Exception e) { TaskDialog.Show("0", e.Message + " " + e.StackTrace); }
+                    catch (Exception) { }
                 }
 
                 DGVDiametros.DGVDiametrosYEstilos = diccionario;
 
-                doc.ProjectInformation.SetEntity(DGVDiametros);
+                DataStorage data = Tools.ObtenerDataStorageDGV(doc);
+
+                data.SetEntity(DGVDiametros);
             }
         }
 
         ///<summary> Obtiene el DataGridViewEntity del proyecto </summary>
         public static DGVEntity ObtenerEntityDiametrosYEstilos(Document doc)
         {
-            DGVEntity DGVDiametros = doc.ProjectInformation.GetEntity<DGVEntity>();
+            DataStorage data = Tools.ObtenerDataStorageDGV(doc);
+
+            DGVEntity DGVDiametros = data.GetEntity<DGVEntity>();
 
             if (DGVDiametros == null)
             {
@@ -5328,6 +5332,33 @@ namespace Jump
             }
 
             return DGVDiametros;
+        }
+
+        public static DataStorage ObtenerDataStorageDGV(Document doc)
+        {
+            DataStorage data = null;
+
+            FilteredElementCollector colector = new FilteredElementCollector(doc);
+
+            List<DataStorage> datas = colector.OfClass(typeof(DataStorage)).Cast<DataStorage>().ToList();
+
+            data = datas.Where(x => x.GetEntity<DGVEntity>() != null && x.GetEntity<DGVEntity>().DGVDiametrosYEstilos != null).FirstOrDefault();
+            
+            if (data == null)
+            {
+                using (SubTransaction subT = new SubTransaction(doc))
+                {
+                    subT.Start();
+
+                    data = DataStorage.Create(doc);
+
+                    data.Name = AboutJump.nombreDataStorageDGV;
+
+                    subT.Commit();
+                }
+            }
+
+            return data;
         }
 
         ///<summary> Hace que el combobox se despliegue con un solo click </summary>

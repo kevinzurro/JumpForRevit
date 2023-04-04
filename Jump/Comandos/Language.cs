@@ -84,7 +84,7 @@ namespace Jump
             Espanol.Add("Tit2", "Visibilidad");
             Espanol.Add("Tit3", "Herramientas");
 
-            Espanol.Add("DetArm1", "Despiece de barra");
+            Espanol.Add("DetArm1", "Despiece \nde barra");
             Espanol.Add("DetArm2", "Despiece de barra descripción corta");
             Espanol.Add("DetArm3", "Despiece de barra descripción larga");
             Espanol.Add("DetArm1-1", "Etiqueta de armadura");

@@ -20,14 +20,13 @@ namespace Jump
         string IdiomaDelPrograma;
         Document doc;
         UnitType tipoUnidad = UnitType.UT_Length;
-        
+        public bool bandera = false;
+
         // Constructor del formulario
         public frmConfiguraciones(Document doc)
         {
             InitializeComponent();
 
-            Tools.AddinManager();
-            
             // Variable necesarias
             this.IdiomaDelPrograma = Tools.ObtenerIdiomaDelPrograma();
             this.doc = doc;
@@ -356,6 +355,8 @@ namespace Jump
         /// <summary> Guarda todas las configuraciones echas </summary>
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            bandera = true;
+
             // Pestaña 1
             Properties.Settings.Default.precisionOrdenarX = Convert.ToInt32(this.txtPrecisionOrdenarX.Text);
             Properties.Settings.Default.precisionOrdenarY = Convert.ToInt32(this.txtPrecisionOrdenarY.Text);
@@ -374,13 +375,8 @@ namespace Jump
             Properties.Settings.Default.EtiquetaIndependienteArmaduraEnSistema = Convert.ToInt32(this.cmbEtiquetaArmaduraEnSistema.SelectedItem);
 
             // Pestaña 3
-            //Tools.GuardarDiametrosYEstilos(this.dgvEstiloLinea, rutaArchivo);
-            using (Transaction tra = new Transaction(this.doc, Language.ObtenerTexto(this.IdiomaDelPrograma, "Conf3-5")))
-            {
-                tra.Start();
-                Tools.GuardarDataGridViewEnDocumento(this.dgvEstiloLinea, this.doc);
-                tra.Commit();
-            }
+            Tools.GuardarDataGridViewEnDocumento(this.dgvEstiloLinea, this.doc);
+
             // Pestaña 4
             Properties.Settings.Default.EtiquetaIndependienteColumnas = Convert.ToInt32(this.cmbEtiquetaColumnas.SelectedItem);
             Properties.Settings.Default.EtiquetaIndependienteLosas = Convert.ToInt32(this.cmbEtiquetaLosas.SelectedItem);

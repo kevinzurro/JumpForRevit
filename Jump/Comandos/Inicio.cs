@@ -229,7 +229,7 @@ namespace Jump
 
             try
             {
-                System.Windows.Forms.DataGridView dgv = Tools.CrearDataGridViewDeDiametrosYEstilos(IdiomaDelPrograma);
+                System.Windows.Forms.DataGridView dgv = new System.Windows.Forms.DataGridView();
 
                 Tools.ObtenerDataGridViewDeDiametrosYEstilos(dgv, doc, IdiomaDelPrograma);
 
@@ -249,7 +249,7 @@ namespace Jump
             {
                 try
                 {
-                    System.Windows.Forms.DataGridView dgv = Tools.CrearDataGridViewDeDiametrosYEstilos(IdiomaDelPrograma);
+                    System.Windows.Forms.DataGridView dgv = new System.Windows.Forms.DataGridView();
 
                     Tools.ObtenerDataGridViewDeDiametrosYEstilos(dgv, doc, IdiomaDelPrograma);
 

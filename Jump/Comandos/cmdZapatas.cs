@@ -21,24 +21,41 @@ namespace Jump
             Application app = uiApp.Application;
             Document doc = uiDoc.Document;
 
-            frmDetalleAutomatico Zapata = new frmDetalleAutomatico(doc, uiDoc);
+            Tools.AddinManager();
+            Tools.CrearRegistroActualizadorArmaduras(uiApp.ActiveAddInId);
 
-            Zapata.clase = typeof(FamilyInstance);
-            Zapata.categoria = BuiltInCategory.OST_StructuralFoundation;
-            Zapata.categoriaEtiqueta = BuiltInCategory.OST_StructuralFoundationTags;
-            Zapata.indiceComboboxTextoBarra = Properties.Settings.Default.zapataIndiceComboboxTextoBarra;
-            Zapata.indiceComboboxEscalaVista = Properties.Settings.Default.zapataIndiceComboboxEscalaVista;
-            Zapata.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.EtiquetaIndependienteZapatas;
-            Zapata.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.EtiquetaCotaProfundidad;
-            Zapata.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.EtiquetaIndependienteArmadura;
-            Zapata.clave = "Zap";
+            using (TransactionGroup tra = new TransactionGroup(doc))
+            {
+                tra.Start();
 
-            Zapata.ShowDialog();
+                frmDetalleAutomatico Zapata = new frmDetalleAutomatico(doc, uiDoc);
 
-            // Guarda el indice en las configuraciones
-            Properties.Settings.Default.zapataIndiceComboboxTextoBarra = Zapata.indiceComboboxTextoBarra;
-            Properties.Settings.Default.zapataIndiceComboboxEscalaVista = Zapata.indiceComboboxEscalaVista;
-            Properties.Settings.Default.Save();
+                Zapata.clase = typeof(FamilyInstance);
+                Zapata.categoria = BuiltInCategory.OST_StructuralFoundation;
+                Zapata.categoriaEtiqueta = BuiltInCategory.OST_StructuralFoundationTags;
+                Zapata.indiceComboboxTextoBarra = Properties.Settings.Default.zapataIndiceComboboxTextoBarra;
+                Zapata.indiceComboboxEscalaVista = Properties.Settings.Default.zapataIndiceComboboxEscalaVista;
+                Zapata.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.EtiquetaIndependienteZapatas;
+                Zapata.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.EtiquetaCotaProfundidad;
+                Zapata.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.EtiquetaIndependienteArmadura;
+                Zapata.clave = "Zap";
+
+                Zapata.ShowDialog();
+
+                // Guarda el indice en las configuraciones
+                Properties.Settings.Default.zapataIndiceComboboxTextoBarra = Zapata.indiceComboboxTextoBarra;
+                Properties.Settings.Default.zapataIndiceComboboxEscalaVista = Zapata.indiceComboboxEscalaVista;
+                Properties.Settings.Default.Save();
+
+                if (Zapata.bandera)
+                {
+                    tra.Commit();
+                }
+                else
+                {
+                    tra.RollBack();
+                }
+            }
 
             return Result.Succeeded;
         }

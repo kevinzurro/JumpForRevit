@@ -9,6 +9,7 @@ using Autodesk.Revit.DB.Structure;
 using Autodesk.Revit.DB.ExtensibleStorage;
 using Revit.ES.Extension;
 using Revit.ES.Extension.Attributes;
+using Revit.ES.Extension.ElementExtensions;
 
 namespace Jump
 {
@@ -16,11 +17,17 @@ namespace Jump
     {
         public static string NombreAddin = "Jump";
         static string version = "1.0";
-        public const string nombreEsquema = "RebarRepresentationJumpForRevit";
-        public const string nombreEsquemaArmaduras = "RepresentationsJumpForRevit";
+        static string idiomaDelPrograma = "Español";
+        public const string nombreEsquemaArmaduraRepresentacion = "RebarRepresentationJumpForRevit";
+        public const string nombreEsquemaRepresentaciones = "RepresentationsJumpForRevit";
         public const string nombreEsquemaDataGridView = "DGVDiameterAndStyleJumpForRevit";
-        static string guidEliminarBarra = "266bb163-66e6-4cf8-9ceb-54d931521116";
-        static string guidActualizarBarra = "7907bd48-73fd-457d-acf9-5311d6b2c0f8";
+        public const string nombreDataStorageDGV = "DGVDataStorageJumpForRevit";
+        public const string guidArmaduraRepresentacionEntity = "ed2d5175-56e3-42a2-a433-aedfda1ccedd";
+        public const string guidRepresentacionesEntity = "b8e4e02b-3886-4918-84f0-d8df893fc5a1";
+        public const string guidDGVEntity = "e56579f8-6c73-4fcc-ab1f-c545d2d01163";
+        public const string guidDataStorageDGV = "0020d702-4314-410a-bb89-4ea08707fab4";
+        const string guidEliminarBarra = "266bb163-66e6-4cf8-9ceb-54d931521116";
+        const string guidActualizarBarra = "7907bd48-73fd-457d-acf9-5311d6b2c0f8";
 
         // DataGridView de diámetros y estilos de líneas
         public const string nombreColumnaDiametros = "Diametro";
@@ -29,6 +36,14 @@ namespace Jump
         // DataGridView de diámetros y estilos de líneas
         public const string parametroMostrarUsuario = "Name";
         public const string parametroId = "Id";
+
+        /// <summary> Obtiene o establece el idioma del plugin </summary>
+        public static string Idioma
+        {
+            get { return idiomaDelPrograma; }
+
+            set{ idiomaDelPrograma = value; }
+        }
 
         /// <summary> Obtiene la versión de la addin </summary>
         public static string Version
@@ -47,7 +62,7 @@ namespace Jump
         }
     }
 
-    [Schema("ed2d5175-56e3-42a2-a433-aedfda1ccedd", AboutJump.nombreEsquema)]
+    [Schema(AboutJump.guidArmaduraRepresentacionEntity, AboutJump.nombreEsquemaArmaduraRepresentacion)]
     public class ArmaduraRepresentacionEntity : IRevitEntity
     {
         [Field]
@@ -69,14 +84,14 @@ namespace Jump
         public XYZ Posicion { get; set; }
     }
 
-    [Schema("b8e4e02b-3886-4918-84f0-d8df893fc5a1", AboutJump.nombreEsquemaArmaduras)]
+    [Schema(AboutJump.guidRepresentacionesEntity, AboutJump.nombreEsquemaRepresentaciones)]
     public class RepresentacionesEntity : IRevitEntity
     {
         [Field]
         public List<ArmaduraRepresentacionEntity> ListaRepresentaciones { get; set; }
     }
 
-    [Schema("e56579f8-6c73-4fcc-ab1f-c545d2d01163", AboutJump.nombreEsquemaDataGridView)]
+    [Schema(AboutJump.guidDGVEntity, AboutJump.nombreEsquemaDataGridView)]
     public class DGVEntity : IRevitEntity
     {
         [Field]

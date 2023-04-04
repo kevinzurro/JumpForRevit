@@ -25,19 +25,12 @@ namespace Jump
             Document doc = uiDoc.Document;
             
             string IdiomaDelPrograma = Tools.ObtenerIdiomaDelPrograma();
+            Tools.CrearRegistroActualizadorArmaduras(uiApp.ActiveAddInId);
 
             // Muestra el formulario de Detalle de armadura
             frmDetalleArmadura inicioDetalleArmadura = new frmDetalleArmadura(doc);
 
             inicioDetalleArmadura.ShowDialog();
-
-            bool banderaCierre = inicioDetalleArmadura.banderaCierre;
-
-            DataGridView dgvEstiloLinea = new DataGridView();
-
-            dgvEstiloLinea = Tools.ObtenerDataGridViewDeDiametrosYEstilos(dgvEstiloLinea, doc, IdiomaDelPrograma);
-
-            Tools.CrearRegistroActualizadorArmaduras(uiApp.ActiveAddInId);
 
             // Abre una transacción
             using (Transaction t = new Transaction(doc, Language.ObtenerTexto(IdiomaDelPrograma, "DetArm2-1")))
@@ -67,6 +60,12 @@ namespace Jump
                             st.Commit();
                         }
                     }
+
+                    DataGridView dgvEstiloLinea = new DataGridView();
+
+                    dgvEstiloLinea = Tools.ObtenerDataGridViewDeDiametrosYEstilos(dgvEstiloLinea, doc, IdiomaDelPrograma);
+
+                    bool banderaCierre = inicioDetalleArmadura.banderaCierre;
 
                     while (banderaCierre)
                     {

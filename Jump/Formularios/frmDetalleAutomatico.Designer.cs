@@ -425,8 +425,6 @@
             // chbEtiquetaLongitud
             // 
             this.chbEtiquetaLongitud.AutoSize = true;
-            this.chbEtiquetaLongitud.Checked = true;
-            this.chbEtiquetaLongitud.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chbEtiquetaLongitud.Location = new System.Drawing.Point(24, 115);
             this.chbEtiquetaLongitud.Margin = new System.Windows.Forms.Padding(0);
             this.chbEtiquetaLongitud.Name = "chbEtiquetaLongitud";

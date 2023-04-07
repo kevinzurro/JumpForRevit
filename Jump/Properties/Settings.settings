@@ -75,7 +75,7 @@
       <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="EtiquetaIndependienteVigas" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="EtiquetaIndependienteZapatas" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">2</Value>

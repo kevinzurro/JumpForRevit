@@ -123,11 +123,10 @@
             this.panel2.Controls.Add(this.rbtnElementosSeleccionados);
             this.panel2.Controls.Add(this.rbtnTodos);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(7, 7);
-            this.panel2.Margin = new System.Windows.Forms.Padding(7);
+            this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(7);
-            this.panel2.Size = new System.Drawing.Size(301, 126);
+            this.panel2.Size = new System.Drawing.Size(309, 134);
             this.panel2.TabIndex = 0;
             // 
             // cmbCategorias
@@ -138,7 +137,7 @@
             this.cmbCategorias.FormattingEnabled = true;
             this.cmbCategorias.Location = new System.Drawing.Point(0, 7);
             this.cmbCategorias.Name = "cmbCategorias";
-            this.cmbCategorias.Size = new System.Drawing.Size(301, 23);
+            this.cmbCategorias.Size = new System.Drawing.Size(309, 23);
             this.cmbCategorias.TabIndex = 3;
             this.cmbCategorias.SelectionChangeCommitted += new System.EventHandler(this.cmbCategorias_SelectedIndexChanged);
             // 
@@ -324,10 +323,9 @@
             this.lstParametros.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstParametros.FormattingEnabled = true;
             this.lstParametros.ItemHeight = 15;
-            this.lstParametros.Location = new System.Drawing.Point(1, 221);
-            this.lstParametros.Margin = new System.Windows.Forms.Padding(1);
+            this.lstParametros.Location = new System.Drawing.Point(3, 223);
             this.lstParametros.Name = "lstParametros";
-            this.lstParametros.Size = new System.Drawing.Size(313, 214);
+            this.lstParametros.Size = new System.Drawing.Size(309, 210);
             this.lstParametros.TabIndex = 2;
             this.lstParametros.SelectedIndexChanged += new System.EventHandler(this.lstParametros_SelectedIndexChanged);
             // 

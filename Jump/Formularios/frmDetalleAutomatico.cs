@@ -87,7 +87,7 @@ namespace Jump
         {
             // Llama a las funciones
             AgregarElementos();
-            CargarComboboxEtiquetas(this.doc);
+            CargarCombobox(this.doc);
             AsignarPreviewDeImagen();
 
             // Asignación de textos según el idioma
@@ -124,13 +124,10 @@ namespace Jump
 
             // Agrega los elementos a la listbox
             Tools.RellenarListBoxDeElementos(this.lstElementos, doc, this.elementos);
-
-            // Agrega los elementos a la lista desplegable para el preview
-            Tools.RellenarCombobox(this.cmbElementosPreview, this.elementos);
         }
 
         /// <summary> Carga los combobox de las etiquetas </summary>
-        private void CargarComboboxEtiquetas(Document doc)
+        private void CargarCombobox(Document doc)
         {
             // Completa la lista
             this.etiquetasElemento.AddRange(Tools.ObtenerEtiquetasIndependientes(doc, categoriaEtiqueta));
@@ -145,6 +142,7 @@ namespace Jump
             Tools.RellenarCombobox(this.cmbEtiquetaLongitud, etiquetasLongitud);
             Tools.RellenarCombobox(this.cmbEstiloCota, cotasLineales);
             Tools.RellenarCombobox(this.cmbEstiloCotaProfundidad, cotasElevacion);
+            Tools.RellenarCombobox(this.cmbElementosPreview, this.elementos);
             Tools.RellenarComboboxEscalas(this.cmbEscalaVista);
 
             if (this.cmbEscalaVista.Items.Count > 0 && this.indiceComboboxEscalaVista < this.cmbEscalaVista.Items.Count)
@@ -170,14 +168,17 @@ namespace Jump
                     vista = Tools.VistaYY(this.doc, this.elementos[posicionImagenPreview]);
                 }
 
-                // Configura la vista y crea las etiquetas
-                CrearEtiquetasYConfigurarVista(vista, this.elementos[posicionImagenPreview]);
+                if (vista != null)
+                {
+                    // Configura la vista y crea las etiquetas
+                    CrearEtiquetasYConfigurarVista(vista, this.elementos[posicionImagenPreview]);
 
-                // Crea la vista previa
-                PreviewControl vistaPrevia = new PreviewControl(this.doc, vista.Id);
+                    // Crea la vista previa
+                    PreviewControl vistaPrevia = new PreviewControl(this.doc, vista.Id);
 
-                // Asigna la vista previa para visualizar
-                this.PreviewEtiquetas.Child = vistaPrevia;
+                    // Asigna la vista previa para visualizar
+                    this.PreviewEtiquetas.Child = vistaPrevia;
+                }
             }
         }
 
@@ -343,11 +344,11 @@ namespace Jump
         /// <summary> Ejecuta todas las acciones </summary>
         private void btnEjecutar_Click(object sender, EventArgs e)
         {
-            // Obtiene los elementos seleccionados en el proyecto
-            List<Element> listaSeleccionados = Tools.ObtenerElementosSeleccionadosEnProyecto(this.uiDoc, this.doc, this.elementos);
-
             // Cierra las transacciones grupales
             CerrarTransacciónGeneral();
+
+            // Obtiene los elementos seleccionados en el proyecto
+            List<Element> listaSeleccionados = Tools.ObtenerElementosSeleccionadosEnProyecto(this.uiDoc, this.doc, this.elementos);
 
             // Limpia la lista
             this.listaElementosEstructurales.Clear();
@@ -382,7 +383,7 @@ namespace Jump
                 // Muestra el formulario
                 barraProgreso.Show();
 
-                using (Transaction tra = new Transaction(this.doc, Language.ObtenerTexto(IdiomaDelPrograma, "Zap5-2")))
+                using (Transaction tra = new Transaction(this.doc, Language.ObtenerTexto(IdiomaDelPrograma, clave + "5-2"))) 
                 {
                     tra.Start();
 
@@ -429,17 +430,20 @@ namespace Jump
         /// <summary> Crea la vista </summary>
         private Autodesk.Revit.DB.View CrearEtiquetasYConfigurarVista(Autodesk.Revit.DB.View vista, Element elem)
         {
-            // Cambia las configuraciones de visualización de la vista
-            vista = Tools.CambiarConfiguracionVista(this.cmbEscalaVista, this.doc, vista, nivelDetalle);
+            if (vista != null)
+            {
+                // Cambia las configuraciones de visualización de la vista
+                vista = Tools.CambiarConfiguracionVista(this.cmbEscalaVista, this.doc, vista, nivelDetalle);
 
-            // Muestra solamente el elemento y sus armaduras
-            Tools.MostrarSolamenteElementoYBarrasEnVista(this.doc, vista, elem);
+                // Muestra solamente el elemento y sus armaduras
+                Tools.MostrarSolamenteElementoYBarrasEnVista(this.doc, vista, elem);
 
-            // Muestra todos los elementos de la lista
-            Tools.MostrarElementosVista(doc, vista, listaEtiquetasCreadas);
+                // Muestra todos los elementos de la lista
+                Tools.MostrarElementosVista(doc, vista, listaEtiquetasCreadas);
 
-            // Crea las etiquetas para la vista
-            CrearEtiquetas(vista, elem);
+                // Crea las etiquetas para la vista
+                CrearEtiquetas(vista, elem);
+            }
 
             return vista;
         }
@@ -847,9 +851,6 @@ namespace Jump
                     // Recuadro de la barra
                     BoundingBoxXYZ bbBar = bar.ObtenerBoundingBoxDeArmadura();
 
-                    // Asigna la transformada de la vista al recuadro
-                    //bbBar.Transform = tra;
-
                     // Dimensiones de la Representación de Armadura en coordenadas relativas
                     XYZ barDimensiones = tra.Inverse.OfVector(bbBar.Max - bbBar.Min);
                     XYZ barAncho = new XYZ(Math.Abs(barDimensiones.X), 0, 0);
@@ -861,7 +862,6 @@ namespace Jump
                         // Verifica si el la primera pasada
                         if (banderaArriba)
                         {
-                            //distancia = elementoAlto - bar.Posicion + barAlto;
                             distancia = tra.Inverse.OfVector(Tools.ProyectarVectorSobreDireccion((bbElem.Max - bbBar.Min), vista.UpDirection)) + barAlto / 2;
 
                             // Cambia el estado de la bandera
@@ -880,7 +880,6 @@ namespace Jump
                         if (banderaAbajo)
                         {
                             // Obtiene la distancia a mover
-                            //distancia = elementoAlto - bar.Posicion - barAlto;
                             distancia = tra.Inverse.OfVector(Tools.ProyectarVectorSobreDireccion((bbElem.Min - bbBar.Max), vista.UpDirection.Negate())) - barAlto / 2;
 
                             // Cambia el estado de la bandera
@@ -898,7 +897,6 @@ namespace Jump
                         // Verifica si el la primera pasada
                         if (banderaDerecha)
                         {
-                            //distancia = elementoAncho - bar.Posicion + barAncho;
                             distancia = tra.Inverse.OfVector(Tools.ProyectarVectorSobreDireccion((bbElem.Max - bbBar.Min), vista.RightDirection)) + barAncho;
 
                             // Cambia el estado de la bandera
@@ -916,7 +914,6 @@ namespace Jump
                         // Verifica si el la primera pasada
                         if (banderaIzquierda)
                         {
-                            //distancia = elementoAncho.Negate() + bar.Posicion - barAncho;
                             distancia = tra.Inverse.OfVector(Tools.ProyectarVectorSobreDireccion((bbElem.Min - bbBar.Max), vista.RightDirection.Negate())) - barAncho;
 
                             // Cambia el estado de la bandera
@@ -933,7 +930,6 @@ namespace Jump
                         // Verifica si el la primera pasada
                         if (banderaDerecha)
                         {
-                            //distancia = elementoAncho - bar.Posicion + barAncho;
                             distancia = tra.Inverse.OfVector(Tools.ProyectarVectorSobreDireccion((bbElem.Max - bbBar.Min), vista.RightDirection)) + barAncho;
 
                             // Cambia el estado de la bandera

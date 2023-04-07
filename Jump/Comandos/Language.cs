@@ -158,6 +158,24 @@ namespace Jump
             Espanol.Add("Vig1", "Vigas");
             Espanol.Add("Vig2", "Vigas descripción corta");
             Espanol.Add("Vig3", "Vigas descripción larga");
+            Espanol.Add("Vig4", "Jump");
+            Espanol.Add("Vig1-2", "Selección");
+            Espanol.Add("Vig1-3", "Todos");
+            Espanol.Add("Vig1-4", "Elementos seleccionados");
+            Espanol.Add("Vig1-5", "Elementos de la lista");
+            Espanol.Add("Vig2-1", "Etiquetas");
+            Espanol.Add("Vig2-2", "Escala");
+            Espanol.Add("Vig2-3", "Etiqueta de cimentación");
+            Espanol.Add("Vig2-4", "Etiqueta de armadura");
+            Espanol.Add("Vig2-5", "Longitud parcial de la barra");
+            Espanol.Add("Vig2-6", "Cota lineal");
+            Espanol.Add("Vig2-7", "Cota de elevación");
+            Espanol.Add("Vig3-1", "Vista previa");
+            Espanol.Add("Vig4-1", "Acciones a realizar");
+            Espanol.Add("Vig4-2", "Vista X-X");
+            Espanol.Add("Vig4-3", "Vista Y-Y");
+            Espanol.Add("Vig5-1", "Ejecutar");
+            Espanol.Add("Vig5-2", "Comando de Vigas");
 
             Espanol.Add("Los1", "Losas");
             Espanol.Add("Los2", "Losas descripción corta");

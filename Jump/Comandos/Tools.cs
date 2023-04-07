@@ -1035,40 +1035,6 @@ namespace Jump
             return lista;
         }
 
-        ///<summary> Obtiene una lista de elementos según una selección en un ListBox </summary>
-        public static List<Element> ObtenerElementosDeUnListbox(System.Windows.Forms.ListBox listbox, 
-                                                                Document doc, 
-                                                                List<Element> todosLosElementos)
-        {
-            // Crea la lista a devolver
-            List<Element> elementos = new List<Element>();
-            List<string> elementosSeleccionados = new List<string>();
-
-            elementosSeleccionados = listbox.SelectedItems.Cast<string>().ToList();
-
-            // Recorre la lista de elementos seleccionados
-            for (int i = 0; i < elementosSeleccionados.Count; i++)
-            {
-                for (int j = 0; j < todosLosElementos.Count; j++)
-                {
-                    // Obtiene el FamilySymbol del elemento
-                    FamilySymbol sym = doc.GetElement(todosLosElementos[j].GetTypeId()) as FamilySymbol;
-
-                    // Crea el nombre a mostrar y luego el ID del elemento
-                    string nombre = sym.Family.Name + ": " + todosLosElementos[j].Name + " <" + todosLosElementos[j].Id.ToString() + ">";
-
-                    // Verifica que el nombre del listbox sea igual al del elemento de la lista
-                    if (nombre == elementosSeleccionados[i])
-                    {
-                        // Agrega el elemento a la lista
-                        elementos.Add(todosLosElementos[j]);
-                    }
-                }
-            }
-
-            return elementos;
-        }
-
         ///<summary> Obtiene una lista de ID de los elementos seleccionados en el modelo </summary>
         public static List<ElementId> ObtenerIdElementosDeUnaLista(List<Element> todosLosElementos, List<ElementId> elementosId)
         {
@@ -1396,11 +1362,9 @@ namespace Jump
             return lista;
         }
 
-        ///<summary> Obtiene las curvas del borde de una barra de armadura </summary>        Verificar BUG
+        ///<summary> Obtiene las curvas del borde de una barra de armadura </summary>
         public static List<Curve> ObtenerCurvaDeBordeDeBarra(View vista, Rebar barra)
         {
-            Document doc = barra.Document;
-
             // Crea la lista a devolver
             List<Curve> curvas = new List<Curve>();
             
@@ -1441,15 +1405,6 @@ namespace Jump
             }
 
             return curvas;
-        }
-
-        ///<summary> Verifica la continuidad de las curvas </summary>
-        public static List<Curve> VerificarContinuidadCurvas (List<Curve> curvas)
-        {
-            // Lista con curvas ordenadas
-            List<Curve> lista = new List<Curve>();
-
-            return lista;
         }
 
         ///<summary> Dibuja una línea de una barra y cambia el estilo en función del DataGridView </summary>
@@ -2470,6 +2425,55 @@ namespace Jump
             }
             catch (Exception) { }
         }
+
+        /// <summary> Actualiza la representación de las armaduras </summary>
+        public static void ActualizarRepresentacionArmadura(System.Windows.Forms.DataGridView dgv, List<Element> listaBarras)
+        {
+            List<ArmaduraRepresentacion> listaArmaduraRepresentacion = new List<ArmaduraRepresentacion>();
+
+            // Recorre todas las barras modificadas
+            foreach (Rebar barra in listaBarras)
+            {
+                listaArmaduraRepresentacion.Clear();
+
+                listaArmaduraRepresentacion = Tools.ObtenerRepresentacionArmaduraDeBarra(barra);
+
+                Tools.EliminarRepresentacionesEnBarra(barra);
+
+                // Recorre las Representaciones de armaduras
+                foreach (ArmaduraRepresentacion armadura in listaArmaduraRepresentacion)
+                {
+                    try
+                    {
+                        // Verifica que la barra modificada sea igual al del despiece
+                        if (armadura.Barra.Id == barra.Id)
+                        {
+                            // Verifica que las líneas no sean nulas
+                            if (armadura.CurvasDeArmadura != null && armadura.TextosDeLongitudesParciales != null)
+                            {
+                                // Elimina el despiece
+                                armadura.Eliminar();
+
+                                // Dibuja las líneas de la nueva geometría y asigna al objeto
+                                armadura.DibujarArmaduraSegunDatagridview(dgv);
+
+                                // Mueve la Representación de la Armadura
+                                armadura.MoverArmaduraRepresentacion(armadura.Posicion);
+
+                                // Guarda la Representación de la Armadura en la barra
+                                Tools.GuardarRepresentacionArmaduraDeBarra(barra, armadura);
+                            }
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        // Elimina las curvas
+                        armadura.Eliminar();
+                    }
+                }
+            }
+        }
+
         #endregion
 
         #region Etiquetas Independientes
@@ -4246,39 +4250,46 @@ namespace Jump
             // Crea la vista a devolver
             View vistaXX = null;
 
-            // Verifica que la vista sea Global
-            if (Jump.Properties.Settings.Default.rbtnGeneralVistaGlobal == true)
+            using (SubTransaction subT = new SubTransaction(doc))
             {
-                // Verifica que sea basado en punto
-                if (elem.Location is LocationPoint)
+                subT.Start();
+
+                // Verifica que la vista sea Global
+                if (Jump.Properties.Settings.Default.rbtnGeneralVistaGlobal == true)
                 {
-                    // Crea una sección transversal del elemento
-                    vistaXX = Tools.SeccionXXGlobalBasadoEnPunto(doc, elem);
+                    // Verifica que sea basado en punto
+                    if (elem.Location is LocationPoint)
+                    {
+                        // Crea una sección transversal del elemento
+                        vistaXX = Tools.SeccionXXGlobalBasadoEnPunto(doc, elem);
+                    }
+
+                    // Verifica que sea basado en linea
+                    else
+                    {
+                        vistaXX = Tools.SeccionLongitudinalBasadoEnCurva(doc, elem);
+                    }
                 }
 
-                // Verifica que sea basado en linea
+                // Verifica que la vista sea Local
                 else
                 {
-                    vistaXX = Tools.SeccionLongitudinalBasadoEnCurva(doc, elem);
-                }
-            }
+                    // Verifica que sea basado en punto
+                    if (elem.Location is LocationPoint)
+                    {
+                        // Crea una sección transversal del elemento
+                        vistaXX = Tools.SeccionXXLocalBasadoEnPunto(doc, elem);
+                    }
 
-            // Verifica que la vista sea Local
-            else
-            {
-                // Verifica que sea basado en punto
-                if (elem.Location is LocationPoint)
-                {
-                    // Crea una sección transversal del elemento
-                    vistaXX = Tools.SeccionXXLocalBasadoEnPunto(doc, elem);
+                    // Verifica que sea basado en linea
+                    else
+                    {
+                        vistaXX = Tools.SeccionLongitudinalBasadoEnCurva(doc, elem);
+                    }
                 }
 
-                // Verifica que sea basado en linea
-                else
-                {
-                    vistaXX = Tools.SeccionLongitudinalBasadoEnCurva(doc, elem);
-                }
-            }
+                subT.Commit();
+            }                
 
             return vistaXX;
         }
@@ -4327,6 +4338,146 @@ namespace Jump
 
         ///<summary> Crea una sección longitudinal de un elemento basado en curva o línea </summary>
         public static View SeccionLongitudinalBasadoEnCurva(Document doc, Element elem)
+        {
+            try
+            {
+                // Toma la ubicación del elemento basado en curva
+                LocationCurve lc = elem.Location as LocationCurve;
+
+                // Obtiene la longitud de la linea
+                Curve curva = lc.Curve;
+
+                // Obtiene los puntos iniciales y finales se la sección
+                XYZ inicial = curva.GetEndPoint(0);
+                XYZ final = curva.GetEndPoint(1);
+
+                // Obtiene la longitud de la linea
+                XYZ longitud = new XYZ(inicial.X - final.X, inicial.Y - final.Y ,0);                
+
+                // Determina la vista que se usa
+                ViewFamilyType vft = new FilteredElementCollector(doc)
+                                        .OfClass(typeof(ViewFamilyType))
+                                        .Cast<ViewFamilyType>()
+                                        .FirstOrDefault<ViewFamilyType>(v => ViewFamily.Section == v.ViewFamily);
+
+                // Obtiene la transformación de la curva
+                Transform curvaTransformada = curva.ComputeDerivatives(corteTransversalBasadoLinea, true);
+
+                // Crea los vectores de dirección de la vista
+                XYZ direccion = longitud.Normalize();
+                XYZ arriba = XYZ.BasisZ;
+                XYZ viewDir = direccion.CrossProduct(arriba);
+
+                // Crea la transformación
+                Transform tra = Transform.Identity;
+
+                // Establece el origen de la transformación
+                tra.Origin = curvaTransformada.Origin;
+
+                // Determina la dirección de la vista
+                tra.BasisX = direccion;
+                tra.BasisY = arriba;
+                tra.BasisZ = viewDir;
+                
+                BoundingBoxXYZ bbElem = elem.get_BoundingBox(null);
+
+                double x = (curva.Length) / 2;
+                double y = (bbElem.Max.Y - bbElem.Min.Y) / 2;
+
+                BoundingBoxXYZ cajaSeccion = new BoundingBoxXYZ();
+
+                cajaSeccion.Transform = tra;
+
+                // Asigna los valores a la caja de sección
+                cajaSeccion.Min = new XYZ(-x, bbElem.Min.Z, -y);
+                cajaSeccion.Max = new XYZ(x, bbElem.Max.Z, y);
+
+                // Crear la sección del elemento
+                View seccion = ViewSection.CreateSection(doc, vft.Id, cajaSeccion) as View;
+
+                return seccion;
+            }
+
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        ///<summary> Crea una sección transversal de un elemento basado en curva o línea </summary>
+        public static View SeccionTransversalBasadoEnCurva(Document doc, Element elem)
+        {
+            try
+            {
+                // Toma la ubicación del elemento basado en curva
+                LocationCurve lc = elem.Location as LocationCurve;
+
+                // Obtiene la longitud de la linea
+                Curve curva = lc.Curve;
+
+                // Obtiene los puntos iniciales y finales se la sección
+                XYZ inicial = curva.GetEndPoint(0);
+                XYZ final = curva.GetEndPoint(1);
+
+                // Obtiene la longitud de la linea
+                XYZ longitud = new XYZ(final.X - inicial.X, final.Y - inicial.Y, 0);
+
+                // Determina la vista que se usa
+                ViewFamilyType vft = new FilteredElementCollector(doc)
+                                        .OfClass(typeof(ViewFamilyType))
+                                        .Cast<ViewFamilyType>()
+                                        .FirstOrDefault<ViewFamilyType>(v => ViewFamily.Section == v.ViewFamily);
+
+                // Obtiene la transformación de la curva
+                Transform curvaTransformada = curva.ComputeDerivatives(corteTransversalBasadoLinea, true);
+
+                // Crea los vectores de dirección de la vista
+                XYZ direccion = longitud.Normalize();
+                XYZ arriba = XYZ.BasisZ;
+                XYZ viewDir = arriba.CrossProduct(direccion);
+
+                // Crea la transformación
+                Transform tra = Transform.Identity;
+
+                // Establece el origen de la transformación
+                tra.Origin = curvaTransformada.Origin;
+
+                // Determina la dirección de la vista
+                tra.BasisX = viewDir;
+                tra.BasisY = arriba;
+                tra.BasisZ = direccion;
+
+                // Crea la caja de sección
+                BoundingBoxXYZ bbelem = elem.get_BoundingBox(null);
+
+                // Obtiene el volumen tridimensional del elemento
+                double x = (curva.Length) / 2;
+                double y = (bbelem.Max.Y - bbelem.Min.Y) / 2;
+
+                // Crea la caja de sección
+                BoundingBoxXYZ cajaSeccion = new BoundingBoxXYZ();
+
+                // Cambia la transformacion de la caja de sección
+                cajaSeccion.Transform = tra;
+
+                // Asigna los valores a la caja de sección
+                cajaSeccion.Min = new XYZ(-y, bbelem.Min.Z, -x);//min;
+                cajaSeccion.Max = new XYZ(y, bbelem.Max.Z, x);//max;
+
+                // Crear la sección del elemento
+                View seccion = ViewSection.CreateSection(doc, vft.Id, cajaSeccion) as View;
+
+                return seccion;
+            }
+
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        ///<summary> Crea una sección longitudinal de un elemento basado en curva o línea </summary>
+        public static View SeccionLongitudinalBasadoEnCurvaOriginal(Document doc, Element elem)
         {
             try
             {
@@ -4424,7 +4575,7 @@ namespace Jump
         }
 
         ///<summary> Crea una sección transversal de un elemento basado en curva o línea </summary>
-        public static View SeccionTransversalBasadoEnCurva(Document doc, Element elem)
+        public static View SeccionTransversalBasadoEnCurvaOriginal(Document doc, Element elem)
         {
             try
             {
@@ -5441,17 +5592,75 @@ namespace Jump
             {
                 foreach (Element elem in lista)
                 {
-                    // Obtiene el FamilySymbol del elemento
-                    FamilySymbol sym = doc.GetElement(elem.GetTypeId()) as FamilySymbol;
+                    FamilySymbol sym = null;
+                    string simbolo = "";
+
+                    try
+                    {
+                        // Obtiene el FamilySymbol del elemento
+                        sym = doc.GetElement(elem.GetTypeId()) as FamilySymbol;
+                    }
+                    catch (Exception) { }
+
+                    if (sym != null)
+                    {
+                        simbolo = sym.Family.Name + ": ";
+                    }
 
                     // Crea el nombre a mostrar y luego el ID del elemento
-                    string nombre = sym.Family.Name + ": " + elem.Name + " <" + elem.Id.ToString() + ">";
+                    string nombre = simbolo + elem.Name + " <" + elem.Id.ToString() + ">";
 
                     // Agrega el objeto y asigna el nombre 
                     listbox.Items.Add(nombre);
                 }
             }
             catch (Exception) { }
+        }
+
+        ///<summary> Obtiene una lista de elementos según una selección en un ListBox </summary>
+        public static List<Element> ObtenerElementosDeUnListbox(System.Windows.Forms.ListBox listbox,
+                                                                Document doc,
+                                                                List<Element> todosLosElementos)
+        {
+            // Crea la lista a devolver
+            List<Element> elementos = new List<Element>();
+            List<string> elementosSeleccionados = new List<string>();
+
+            elementosSeleccionados = listbox.SelectedItems.Cast<string>().ToList();
+
+            // Recorre la lista de elementos seleccionados
+            for (int i = 0; i < elementosSeleccionados.Count; i++)
+            {
+                for (int j = 0; j < todosLosElementos.Count; j++)
+                {
+                    // Obtiene el FamilySymbol del elemento
+                    FamilySymbol sym = null;
+                    string simbolo = "";
+
+                    try
+                    {
+                        sym = doc.GetElement(todosLosElementos[j].GetTypeId()) as FamilySymbol;
+                    }
+                    catch (Exception) { }
+
+                    if (sym != null)
+                    {
+                        simbolo = sym.Family.Name + ": ";
+                    }
+
+                    // Crea el nombre a mostrar y luego el ID del elemento
+                    string nombre = simbolo + todosLosElementos[j].Name + " <" + todosLosElementos[j].Id.ToString() + ">";
+
+                    // Verifica que el nombre del listbox sea igual al del elemento de la lista
+                    if (nombre == elementosSeleccionados[i])
+                    {
+                        // Agrega el elemento a la lista
+                        elementos.Add(todosLosElementos[j]);
+                    }
+                }
+            }
+
+            return elementos;
         }
 
         ///<summary> Rellena una ListBox con los elementos de una lista </summary>

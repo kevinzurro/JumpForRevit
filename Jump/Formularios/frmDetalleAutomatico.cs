@@ -98,7 +98,7 @@ namespace Jump
             rbtnConjuntoDeLaLista.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "1-5");
             gbxEtiquetas.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "2-1");
             lblEscala.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "2-2");
-            chbEtiquetaBase.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "2-3");
+            chbEtiquetaElemento.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "2-3");
             chbEtiquetaArmadura.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "2-4");
             chbEtiquetaLongitud.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "2-5");
             chbCotaLineal.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "2-6");
@@ -528,7 +528,7 @@ namespace Jump
             }
 
             // Etiqueta del elemento estructural
-            if (this.chbEtiquetaBase.Checked)
+            if (this.chbEtiquetaElemento.Checked)
             {
                 try
                 {
@@ -676,7 +676,7 @@ namespace Jump
             BoundingBoxXYZ bbElem = Tools.ObtenerRecuadroElementoParaleloAVista(doc, vista, elem);
 
             // Obtiene el baricentro del recuadro del elemento
-            XYZ puntoMedioElem = Tools.ObtenerBaricentroElemento(bbElem);
+            XYZ puntoMedioElem = Tools.ObtenerBaricentroDeRecuadro(bbElem);
 
             // Recorre la lista de Representación de Armaduras
             foreach (ArmaduraRepresentacion bar in armaduras)
@@ -687,7 +687,7 @@ namespace Jump
                     BoundingBoxXYZ bbArmadura = Tools.ObtenerRecuadroElementoParaleloAVista(doc, vista, bar.Barra);
 
                     // Obtiene el baricentro del recuadro de la barra
-                    XYZ puntoMedioArmadura = Tools.ObtenerBaricentroElemento(bbArmadura);
+                    XYZ puntoMedioArmadura = Tools.ObtenerBaricentroDeRecuadro(bbArmadura);
 
                     // Obtiene la distancia en coordenadas de la vista
                     XYZ distanciaRelativa = tra.Inverse.OfVector(puntoMedioArmadura - puntoMedioElem);

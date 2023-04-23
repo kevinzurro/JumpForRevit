@@ -165,7 +165,7 @@ namespace Jump
             Espanol.Add("Vig1-5", "Elementos de la lista");
             Espanol.Add("Vig2-1", "Etiquetas");
             Espanol.Add("Vig2-2", "Escala");
-            Espanol.Add("Vig2-3", "Etiqueta de cimentación");
+            Espanol.Add("Vig2-3", "Etiqueta de viga");
             Espanol.Add("Vig2-4", "Etiqueta de armadura");
             Espanol.Add("Vig2-5", "Longitud parcial de la barra");
             Espanol.Add("Vig2-6", "Cota lineal");

@@ -155,7 +155,7 @@ namespace Jump
         {
             get
             {
-                return Tools.ObtenerBaricentroElemento(this.Barra.get_BoundingBox(this.Vista));
+                return Tools.ObtenerBaricentroDeRecuadro(this.Barra.get_BoundingBox(this.Vista));
             }
         }
 

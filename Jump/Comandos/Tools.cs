@@ -119,10 +119,10 @@ namespace Jump
         private static List<int> listaEscalas = CompletarEscalas();
 
         // Multiplica la distancia a mover para las cotas lineales
-        private static double multiplicadorDistanciaCotasLinealesDerecha = 2;
+        private static double multiplicadorDistanciaCotasLinealesDerechaIzquierda = 2;
 
         // Multiplica la distancia a mover para las cotas lineales
-        private static double multiplicadorDistanciaCotasLinealesAbajo = 1.25;
+        private static double multiplicadorDistanciaCotasLinealesAbajo = 3;
 
         // Punto para realizar el corte transversal para lineas
         private static double corteTransversalBasadoLinea = 0.5;
@@ -1811,7 +1811,7 @@ namespace Jump
             BoundingBoxXYZ bbElem = ObtenerRecuadroElementoParaleloAVista(doc, vista, elem);
 
             // Obtiene el baricentro del recuadro del elemento
-            XYZ puntoMedioElem = ObtenerBaricentroElemento(bbElem);
+            XYZ puntoMedioElem = ObtenerBaricentroDeRecuadro(bbElem);
 
             // Recorre la lista de Representación de Armaduras
             foreach (ArmaduraRepresentacion bar in armaduras)
@@ -1822,7 +1822,7 @@ namespace Jump
                     BoundingBoxXYZ bbArmadura = ObtenerRecuadroElementoParaleloAVista(doc, vista, bar.Barra);
 
                     // Obtiene el baricentro del recuadro de la barra
-                    XYZ puntoMedioArmadura = ObtenerBaricentroElemento(bbArmadura);
+                    XYZ puntoMedioArmadura = ObtenerBaricentroDeRecuadro(bbArmadura);
 
                     // Obtiene la dirección principal de la barra
                     XYZ direccionPrincipal = ObtenerDireccionPrincipalArmadura(doc, vista, bar);
@@ -2990,79 +2990,6 @@ namespace Jump
             return componente;
         }
 
-        ///<summary> Devuelve el máximo o mínimo entre la cota y el punto según la dirección </summary>
-        public static double ComponenteDeVectorMayorOMenorQuePunto(double direccion, double cota, double punto)
-        {
-            // Crea el componente
-            double componente = punto;
-
-            // Verifica que la dirección sea mayor a la tolerancia
-            if (Math.Abs(direccion) > toleranciaComponenteVector)
-            {
-                // Verifica si la dirección es positiva
-                if (direccion > toleranciaComponenteVector)
-                {
-                    // Verifica si la cota es mayor al punto
-                    if (cota > punto)
-                    {
-                        componente = cota;
-                    }
-                }
-
-                // La dirección es negativa
-                else
-                {
-                    // Verifica si la cota es menor al punto
-                    if (cota < punto)
-                    {
-                        componente = cota;
-                    }
-                }
-            }
-
-            return componente;
-        }
-
-        ///<summary> Obtiene el punto máximo dado dos puntos </summary>
-        public static XYZ ObtenerPuntoMaximo(XYZ punto1, XYZ punto2)
-        {
-            // Obtiene los mayores
-            double x = (punto1.X > punto2.X) ? punto1.X : punto2.X;
-            double y = (punto1.Y > punto2.Y) ? punto1.Y : punto2.Y;
-            double z = (punto1.Z > punto2.Z) ? punto1.Z : punto2.Z;
-
-            // Crea el punto
-            XYZ punto = new XYZ(x, y, z);
-
-            return punto;
-        }
-
-        ///<summary> Obtiene el punto mínimo dado dos puntos </summary>
-        public static XYZ ObtenerPuntoMinimo(XYZ punto1, XYZ punto2)
-        {
-            // Obtiene los mayores
-            double x = (punto1.X < punto2.X) ? punto1.X : punto2.X;
-            double y = (punto1.Y < punto2.Y) ? punto1.Y : punto2.Y;
-            double z = (punto1.Z < punto2.Z) ? punto1.Z : punto2.Z;
-
-            // Crea el punto
-            XYZ punto = new XYZ(x, y, z);
-
-            return punto;
-        }
-
-        ///<summary> Proyecta el vector sobre la dirección dada </summary>
-        public static XYZ ProyectarVectorSobreDireccion(XYZ vector, XYZ direccion)
-        {
-            // Obtiene el producto escalar
-            double escalar = vector.DotProduct(direccion) / direccion.GetLength();
-
-            // Obtiene el vector proyectado en la dirección
-            XYZ vectorProyeccion = direccion.Multiply(escalar);
-
-            return vectorProyeccion;
-        }
-
         ///<summary> Obtiene la dirección según la posición de la etiqueta </summary>
         public static XYZ DireccionSegunPosicionDeEtiqueta(View vista, int posicion)
         {
@@ -3316,61 +3243,334 @@ namespace Jump
 
         #region Cotas lineales
 
-        ///<summary> Crea las cotas según las opciones </summary>
-        public static List<Dimension> CrearCotaParaElemento(Document doc, View vista, Element elem, DimensionType tipoCota)
-        {
-            // Crea una lista con las cotas
-            List<Dimension> cotas = new List<Dimension>();
-
-            // Verifica que esté activo la cota vertical izquierda
-            if (Jump.Properties.Settings.Default.CotaVerticalIzquierda)
-            {
-                try
-                {
-                    // Crea la cota vertical izquierda
-                    cotas.Add(CrearCotaVerticalIzquierdaParaElemento(doc, vista, elem, tipoCota));
-                }
-                catch (Exception) { }
-            }
-
-            // Verifica que esté activo la cota vertical derecha
-            if (Jump.Properties.Settings.Default.CotaVerticalDerecha)
-            {
-                try
-                {
-                    // Crea la cota vertical derecha
-                    cotas.Add(CrearCotaVerticalDerechaParaElemento(doc, vista, elem, tipoCota));
-                }
-                catch (Exception) { }
-            }
-
-            // Verifica que esté activo la cota horizontal arriba
-            if (Jump.Properties.Settings.Default.CotaHorizontalArriba)
-            {
-                try
-                {
-                    // Crea la cota horizontal arriba
-                    cotas.Add(CrearCotaHorizontalArribaParaElemento(doc, vista, elem, tipoCota));
-                }
-                catch (Exception) { }
-            }
-
-            // Verifica que esté activo la cota horizontal abajo
-            if (Jump.Properties.Settings.Default.CotaHorizontalAbajo)
-            {
-                try
-                {
-                    // Crea la cota horizontal abajo
-                    cotas.Add(CrearCotaHorizontalAbajoParaElemento(doc, vista, elem, tipoCota));
-                }
-                catch (Exception) { }
-            }
-
-            return cotas;
-        }
-
         ///<summary> Crea una cota vertical a la izquierda de un elemento en una vista particular </summary>
         public static Dimension CrearCotaVerticalIzquierdaParaElemento(Document doc, View vista, Element elem, DimensionType tipoCota)
+        {
+            // Crea la cota
+            Dimension cota = null;
+
+            // Crea un arreglo con las referencias
+            ReferenceArray ArregloRef = new ReferenceArray();
+
+            XYZ direccion = new XYZ();
+            XYZ izquierda = -vista.RightDirection;
+            XYZ puntoInicial = new XYZ();
+            XYZ puntoFinal = new XYZ();
+
+            // Crea una caja de sección de la vista
+            BoundingBoxXYZ bb = vista.CropBox;
+
+            if (elem.Location is LocationCurve)
+            {
+                Curve curva = (elem.Location as LocationCurve).Curve;
+
+                puntoInicial = curva.GetEndPoint(0);
+                puntoFinal = curva.GetEndPoint(1);
+
+                XYZ sentido= (puntoFinal - puntoInicial);
+
+                if (Tools.EsParalelo(sentido, vista.ViewDirection))
+                {
+                    direccion = sentido.CrossProduct(vista.RightDirection).Normalize();
+                }
+                else
+                {
+                    direccion = sentido.CrossProduct(vista.ViewDirection).Normalize();
+                }
+
+                izquierda = direccion.CrossProduct(vista.ViewDirection);
+
+                Face cara;
+                bool geometria = false;
+
+                if (bb.Transform.Inverse.OfVector(izquierda).X < 0)
+                {
+                    cara = ReferenciaCaraExtremaElementoEnVista(vista, izquierda, elem, ref geometria);
+                }
+                else
+                {
+                    cara = ReferenciaCaraExtremaElementoEnVista(vista, -izquierda, elem, ref geometria);
+                }
+
+                XYZ punto = Tools.ObtenerPuntoMedioCara(cara);
+
+                // Verifica si la geometría se recupera de GetSymbolGeometry
+                if (geometria && elem is FamilyInstance)
+                {
+                    Transform tr = (elem as FamilyInstance).GetTotalTransform();
+
+                    punto = tr.OfPoint(punto);
+                }
+
+                puntoInicial = punto;
+                puntoFinal = puntoInicial.Add(direccion);
+            }
+
+            else
+            {
+                direccion = vista.UpDirection;
+                puntoInicial = bb.Transform.OfPoint(bb.Min);
+                puntoFinal = puntoInicial.Add(vista.UpDirection);
+            }
+
+            // Agrega las referencias del plano superior e inferior del elemento
+            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, -direccion, elem).Reference);
+            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, direccion, elem).Reference);
+
+            // Crea la linea
+            Line linea = Line.CreateBound(puntoInicial, puntoInicial.Add(direccion));
+
+            // Crea la cota
+            cota = doc.Create.NewDimension(vista, linea, ArregloRef, tipoCota);
+
+            // Obtiene la distancia a mover
+            XYZ distancia = Tools.multiplicadorDistanciaCotasLinealesDerechaIzquierda * (cota.LeaderEndPosition - cota.Origin);
+            
+            Tools.MoverCotaLineal(cota, Tools.ProyectarVectorSobreDireccionYSentido(distancia, izquierda));
+
+            return cota;
+        }
+
+        ///<summary> Crea una cota vertical a la derecha de un elemento en una vista particular </summary>
+        public static Dimension CrearCotaVerticalDerechaParaElemento(Document doc, View vista, Element elem, DimensionType tipoCota)
+        {
+            // Crea la cota
+            Dimension cota = null;
+
+            // Crea un arreglo con las referencias
+            ReferenceArray ArregloRef = new ReferenceArray();
+
+            XYZ direccion = new XYZ();
+            XYZ derecha = vista.RightDirection;
+            XYZ puntoInicial = new XYZ();
+            XYZ puntoFinal = new XYZ();
+
+            // Crea una caja de sección de la vista
+            BoundingBoxXYZ bb = vista.CropBox;
+
+            if (elem.Location is LocationCurve)
+            {
+                Curve curva = (elem.Location as LocationCurve).Curve;
+
+                puntoInicial = curva.GetEndPoint(0);
+                puntoFinal = curva.GetEndPoint(1);
+
+                XYZ sentido = (puntoFinal - puntoInicial);
+
+                if (Tools.EsParalelo(sentido, vista.ViewDirection))
+                {
+                    direccion = sentido.CrossProduct(vista.RightDirection).Normalize();
+                }
+                else
+                {
+                    direccion = sentido.CrossProduct(vista.ViewDirection).Normalize();
+                }
+                derecha = sentido.Normalize();
+                puntoInicial = curva.GetEndPoint(1);
+                puntoFinal = puntoInicial.Add(direccion);
+            }
+
+            else
+            {
+                direccion = vista.UpDirection;
+                puntoInicial = bb.Transform.OfPoint(bb.Max);
+                puntoFinal = puntoInicial.Subtract(vista.UpDirection);
+            }
+
+            // Agrega las referencias del plano superior e inferior del elemento
+            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, -direccion, elem).Reference);
+            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, direccion, elem).Reference);
+
+            // Crea la linea
+            Line linea = Line.CreateBound(puntoInicial, puntoFinal);
+
+            // Crea la cota
+            cota = doc.Create.NewDimension(vista, linea, ArregloRef, tipoCota);
+
+            // Obtiene la distancia a mover
+            XYZ distancia = Tools.multiplicadorDistanciaCotasLinealesDerechaIzquierda * (cota.Origin - cota.LeaderEndPosition);
+
+            Tools.MoverCotaLineal(cota, Tools.ProyectarVectorSobreDireccionYSentido(distancia, derecha));
+
+            return cota;
+        }
+
+        ///<summary> Crea una cota horizontal arriba de un elemento en una vista particular </summary>
+        public static Dimension CrearCotaHorizontalArribaParaElemento(Document doc, View vista, Element elem, DimensionType tipoCota)
+        {
+            // Crea la cota
+            Dimension cota = null;
+
+            // Crea un arreglo con las referencias
+            ReferenceArray ArregloRef = new ReferenceArray();
+
+            XYZ direccion = new XYZ();
+            XYZ arriba = vista.UpDirection;
+            XYZ puntoInicial = new XYZ();
+            XYZ puntoFinal = new XYZ();
+
+            // Crea una caja de sección de la vista
+            BoundingBoxXYZ bb = vista.CropBox;
+
+            if (elem.Location is LocationCurve)
+            {
+                Curve curva = (elem.Location as LocationCurve).Curve;
+
+                puntoInicial = curva.GetEndPoint(0);
+                puntoFinal = curva.GetEndPoint(1);
+
+                XYZ sentido = (puntoFinal - puntoInicial);
+
+                if (Tools.EsParalelo(sentido, vista.ViewDirection))
+                {
+                    direccion = sentido.CrossProduct(vista.UpDirection).Normalize();
+                }
+                else
+                {
+                    direccion = sentido.Normalize();
+                }
+
+                arriba = direccion.CrossProduct(vista.ViewDirection);
+                arriba = (bb.Transform.Inverse.OfVector(arriba).Y > 0) ? arriba : -arriba;
+
+                bool geometria = false;
+
+                Face cara = ReferenciaCaraExtremaElementoEnVista(vista, arriba, elem, ref geometria);
+                
+                XYZ punto = Tools.ObtenerPuntoMedioCara(cara);
+
+                // Verifica si la geometría se recupera de GetSymbolGeometry
+                if (geometria && elem is FamilyInstance)
+                {
+                    Transform tr = (elem as FamilyInstance).GetTotalTransform();
+
+                    punto = tr.OfPoint(punto);
+                }
+
+                puntoInicial = punto;
+                puntoFinal = puntoInicial.Add(direccion);
+            }
+
+            else
+            {
+                direccion = vista.RightDirection;
+                puntoInicial = bb.Transform.OfPoint(bb.Max);
+                puntoFinal = puntoInicial.Subtract(vista.RightDirection);
+            }
+
+            // Agrega las referencias del plano superior e inferior del elemento
+            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, -direccion, elem).Reference);
+            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, direccion, elem).Reference);
+
+            // Crea la linea
+            Line linea = Line.CreateBound(puntoInicial, puntoFinal);
+
+            // Crea la cota
+            cota = doc.Create.NewDimension(vista, linea, ArregloRef, tipoCota);
+
+            // Obtiene la distancia a mover
+            XYZ distancia = cota.LeaderEndPosition - cota.Origin;
+
+            Tools.MoverCotaLineal(cota, Tools.ProyectarVectorSobreDireccionYSentido(distancia, arriba));
+
+            return cota;
+        }
+
+        ///<summary> Crea una cota horizontal abajo de un elemento en una vista particular </summary>
+        public static Dimension CrearCotaHorizontalAbajoParaElemento(Document doc, View vista, Element elem, DimensionType tipoCota)
+        {
+            // Crea la cota
+            Dimension cota;
+
+            // Crea un arreglo con las referencias
+            ReferenceArray ArregloRef = new ReferenceArray();
+
+            XYZ direccion = new XYZ();
+            XYZ abajo = -vista.UpDirection;
+            XYZ puntoInicial = new XYZ();
+            XYZ puntoFinal = new XYZ();
+
+            // Crea una caja de sección de la vista
+            BoundingBoxXYZ bb = vista.CropBox;
+
+            if (elem.Location is LocationCurve)
+            {
+                Curve curva = (elem.Location as LocationCurve).Curve;
+
+                puntoInicial = curva.GetEndPoint(0);
+                puntoFinal = curva.GetEndPoint(1);
+
+                XYZ sentido = (puntoFinal - puntoInicial);
+
+                if (Tools.EsParalelo(sentido, vista.ViewDirection))
+                {
+                    direccion = sentido.CrossProduct(vista.UpDirection).Normalize();
+                }
+                else
+                {
+                    direccion = sentido.Normalize();
+                }
+
+                abajo = direccion.CrossProduct(vista.ViewDirection);
+                abajo = (bb.Transform.Inverse.OfVector(abajo).Y < 0) ? abajo : -abajo;
+
+                bool geometria = false;
+
+                Face cara = ReferenciaCaraExtremaElementoEnVista(vista, abajo, elem, ref geometria);
+
+                XYZ punto = Tools.ObtenerPuntoMedioCara(cara);
+
+                // Verifica si la geometría se recupera de GetSymbolGeometry
+                if (geometria && elem is FamilyInstance)
+                {
+                    Transform tr = (elem as FamilyInstance).GetTotalTransform();
+
+                    punto = tr.OfPoint(punto);
+                }
+
+                puntoInicial = punto;
+                puntoFinal = puntoInicial.Add(direccion);
+            }
+
+            else
+            {
+                direccion = vista.RightDirection;
+                puntoInicial = bb.Transform.OfPoint(bb.Min);
+                puntoFinal = puntoInicial.Add(vista.RightDirection);
+            }
+
+            // Agrega las referencias del plano superior e inferior del elemento
+            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, -direccion, elem).Reference);
+            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, direccion, elem).Reference);
+
+            // Crea la linea
+            Line linea = Line.CreateBound(puntoInicial, puntoFinal);
+
+            // Crea la cota
+            cota = doc.Create.NewDimension(vista, linea, ArregloRef, tipoCota);
+
+            // Obtiene la distancia a mover
+            XYZ distancia = Tools.multiplicadorDistanciaCotasLinealesAbajo * (cota.TextPosition - cota.LeaderEndPosition);
+
+            Tools.MoverCotaLineal(cota, Tools.ProyectarVectorSobreDireccionYSentido(distancia, abajo));
+
+            return cota;
+        }
+
+        ///<summary> Mueve la cota linear una distancia según una dirección </summary>
+        public static void MoverCotaLineal(Dimension cota, XYZ distancia)
+        {
+            Document doc = cota.Document;
+
+            //Mueve la cota
+            ElementTransformUtils.MoveElement(doc, cota.Id, distancia);            
+        }
+
+
+
+
+        ///<summary> Crea una cota vertical a la izquierda de un elemento en una vista particular </summary>
+        public static Dimension CrearCotaVerticalIzquierdaParaElementoOriginal(Document doc, View vista, Element elem, DimensionType tipoCota)
         {
             // Crea la cota
             Dimension cota;
@@ -3379,8 +3579,8 @@ namespace Jump
             ReferenceArray ArregloRef = new ReferenceArray();
 
             // Agrega las referencias del plano superior e inferior del elemento
-            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, -vista.UpDirection, elem));
-            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, vista.UpDirection, elem));
+            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, -vista.UpDirection, elem).Reference);
+            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, vista.UpDirection, elem).Reference);
             
             // Crea una caja de sección de la vista
             BoundingBoxXYZ bb = vista.CropBox;
@@ -3399,10 +3599,10 @@ namespace Jump
                 cota = doc.Create.NewDimension(vista, linea, ArregloRef, tipoCota);
                 
                 // Obtiene la distancia a mover
-                XYZ direccion = cota.LeaderEndPosition - cota.Origin;
+                XYZ distancia = cota.LeaderEndPosition - cota.Origin;
 
                 // Mueve la cota hacia la izquierda
-                ElementTransformUtils.MoveElement(doc, cota.Id, direccion);
+                ElementTransformUtils.MoveElement(doc, cota.Id, distancia);
             }
 
             // Verifica que sea basado en curva
@@ -3434,17 +3634,17 @@ namespace Jump
                 cota = doc.Create.NewDimension(vista, linea, ArregloRef, tipoCota);
 
                 // Obtiene la distancia a mover
-                XYZ direccion = cota.LeaderEndPosition - cota.Origin;
+                XYZ distancia = cota.LeaderEndPosition - cota.Origin;
 
                 // Mueve la cota hacia la izquierda
-                ElementTransformUtils.MoveElement(doc, cota.Id, direccion);
+                ElementTransformUtils.MoveElement(doc, cota.Id, distancia);
             }
 
             return cota;
         }
 
         ///<summary> Crea una cota vertical a la derecha de un elemento en una vista particular </summary>
-        public static Dimension CrearCotaVerticalDerechaParaElemento(Document doc, View vista, Element elem, DimensionType tipoCota)
+        public static Dimension CrearCotaVerticalDerechaParaElementoOriginal(Document doc, View vista, Element elem, DimensionType tipoCota)
         {
             // Crea la cota
             Dimension cota;
@@ -3453,8 +3653,8 @@ namespace Jump
             ReferenceArray ArregloRef = new ReferenceArray();
 
             // Agrega las referencias del plano superior e inferior del elemento
-            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, -vista.UpDirection, elem));
-            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, vista.UpDirection, elem));
+            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, -vista.UpDirection, elem).Reference);
+            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, vista.UpDirection, elem).Reference);
 
             // Crea una caja de sección del elemento
             BoundingBoxXYZ bb = vista.CropBox;
@@ -3473,10 +3673,10 @@ namespace Jump
                 cota = doc.Create.NewDimension(vista, linea, ArregloRef, tipoCota);
 
                 // Obtiene la distancia a mover
-                XYZ direccion = multiplicadorDistanciaCotasLinealesDerecha * (cota.Origin - cota.LeaderEndPosition);
+                XYZ distancia = multiplicadorDistanciaCotasLinealesDerechaIzquierda * (cota.Origin - cota.LeaderEndPosition);
 
                 // Mueve la cota hacia la derecha
-                ElementTransformUtils.MoveElement(doc, cota.Id, direccion);
+                ElementTransformUtils.MoveElement(doc, cota.Id, distancia);
             }
 
             else
@@ -3507,24 +3707,24 @@ namespace Jump
                 cota = doc.Create.NewDimension(vista, linea, ArregloRef, tipoCota);
 
                 // Obtiene la distancia a mover
-                XYZ direccion = multiplicadorDistanciaCotasLinealesDerecha * (cota.Origin - cota.LeaderEndPosition);
+                XYZ distancia = multiplicadorDistanciaCotasLinealesDerechaIzquierda * (cota.Origin - cota.LeaderEndPosition);
 
                 // Mueve la cota hacia la izquierda
-                ElementTransformUtils.MoveElement(doc, cota.Id, direccion);
+                ElementTransformUtils.MoveElement(doc, cota.Id, distancia);
             }
 
             return cota;
         }
 
         ///<summary> Crea una cota horizontal arriba de un elemento en una vista particular </summary>
-        public static Dimension CrearCotaHorizontalArribaParaElemento(Document doc, View vista, Element elem, DimensionType tipoCota)
+        public static Dimension CrearCotaHorizontalArribaParaElementoOriginal(Document doc, View vista, Element elem, DimensionType tipoCota)
         {
             // Crea un arreglo con las referencias
             ReferenceArray ArregloRef = new ReferenceArray();
 
             // Agrega las referencias del plano
-            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, -vista.RightDirection, elem));
-            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, vista.RightDirection, elem));
+            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, -vista.RightDirection, elem).Reference);
+            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, vista.RightDirection, elem).Reference);
 
             // Crea una caja de sección del elemento
             BoundingBoxXYZ bb = elem.get_BoundingBox(vista);
@@ -3552,14 +3752,14 @@ namespace Jump
         }
 
         ///<summary> Crea una cota horizontal abajo de un elemento en una vista particular </summary>
-        public static Dimension CrearCotaHorizontalAbajoParaElemento(Document doc, View vista, Element elem, DimensionType tipoCota)
+        public static Dimension CrearCotaHorizontalAbajoParaElementoOriginal(Document doc, View vista, Element elem, DimensionType tipoCota)
         {
             // Crea un arreglo con las referencias
             ReferenceArray ArregloRef = new ReferenceArray();
 
             // Agrega las referencias del plano
-            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, -vista.RightDirection, elem));
-            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, vista.RightDirection, elem));
+            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, -vista.RightDirection, elem).Reference);
+            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, vista.RightDirection, elem).Reference);
 
             // Crea una caja de sección del elemento
             BoundingBoxXYZ bb = elem.get_BoundingBox(vista);
@@ -3621,7 +3821,7 @@ namespace Jump
         public static SpotDimension CrearCotaProfundidadAbajoIzquierda(Document doc, View vista, Element elem, SpotDimensionType tipoCotaProfundidad)
         {
             // Obtiene la referencia del elemento
-            Reference referencia = ReferenciaCaraExtremaElementoEnVista(vista, -vista.UpDirection, elem);
+            Reference referencia = ReferenciaCaraExtremaElementoEnVista(vista, -vista.UpDirection, elem).Reference;
             
             // Crea la bandera de la geometría
             bool banderaGeometria = false;
@@ -3703,7 +3903,7 @@ namespace Jump
         public static SpotDimension CrearCotaProfundidadAbajoDerecha(Document doc, View vista, Element elem, SpotDimensionType tipoCotaProfundidad)
         {
             // Obtiene la referencia del elemento
-            Reference referencia = ReferenciaCaraExtremaElementoEnVista(vista, -vista.UpDirection, elem);
+            Reference referencia = ReferenciaCaraExtremaElementoEnVista(vista, -vista.UpDirection, elem).Reference;
 
             // Crea la bandera de la geometría
             bool banderaGeometria = false;
@@ -3778,32 +3978,6 @@ namespace Jump
             return etiquetaProfundidad;
         }
 
-        ///<summary> Obtiene el signo del componente de un vector </summary>
-        public static int ObtenerSignoComponenteDeVector(double componente)
-        {            
-            // Verifica si es cero
-            if (componente == 0)
-            {
-                return 0;
-            }
-
-            // No es cero
-            else
-            {
-                // Verifica que el valor sea mayor a cero
-                if (componente > 0)
-                {
-                    return 1;
-                }
-
-                // Es menor a cero
-                else
-                {
-                    return -1;
-                }
-            }
-        }
-
         ///<summary> Verifica si el vector que mueve la cota de profundiad es mayor que el ancho del elemento </summary>
         public static XYZ VerificarAnchoDeElementoParaMoverCotaProfundidad(View vista, XYZ vector)
         {
@@ -3846,16 +4020,16 @@ namespace Jump
             
             return distancia;
         }
-        
+
         #endregion
 
         #region Referencias 
 
-        ///<summary> Obtiene un string de la referencia del plano más alejado de un elemento en una dirección dada </summary>
-        public static Reference ReferenciaCaraExtremaElementoEnVista(View vista, XYZ direccion, Element elem)
+        ///<summary> Obtiene la cara del plano más alejado de un elemento en una dirección dada </summary>
+        public static Face ReferenciaCaraExtremaElementoEnVista(View vista, XYZ direccion, Element elem)
         {
             // Crea el string de la referencia a devolver
-            Reference referencia = null;
+            Face face = null;
 
             // Crea la bandera de la geometría
             bool banderaGeometria = false;
@@ -3898,16 +4072,66 @@ namespace Jump
                             distancia = distanciaACara;
 
                             // Asigna la referencia de la cara
-                            referencia = cara.Reference;
+                            face = cara;
                         }
                     }
                 }
             }
 
-            // Vuelve al estado original la bandera de geometría
-            banderaGeometria = false;
+            return face;
+        }
 
-            return referencia;
+        ///<summary> Obtiene la cara del plano más alejado de un elemento en una dirección dada, bool es true si la geometría se recupera de GetSymbolGeometry </summary>
+        public static Face ReferenciaCaraExtremaElementoEnVista(View vista, XYZ direccion, Element elem, ref bool banderaGeometria)
+        {
+            // Crea el string de la referencia a devolver
+            Face face = null;
+
+            // Crea la variable distancia
+            double distancia = double.MinValue;
+
+            // Agrega los solidos a la lista
+            List<Solid> solidos = ObtenerGeometriaSolidosDeElemento(elem, ref banderaGeometria);
+
+            // Verifica si la geometría se recupera de GetSymbolGeometry
+            if (banderaGeometria)
+            {
+                // Modifica la dirección a coordenadas de la familia
+                direccion = TransformarDireccionDeVista(elem, direccion);
+            }
+
+            // Recorre todos los solidos de la geometría
+            foreach (Solid solido in solidos.Where(x => x != null && x.Volume > 0))
+            {
+                // Recorre todas las caras del solido
+                foreach (Face cara in solido.Faces)
+                {
+                    // Obtiene las coordenadas 3D de la cara en un punto dado
+                    XYZ puntoMedio = ObtenerPuntoMedioCara(cara);
+
+                    // Obtiene el vector normal de la cara en un punto dado
+                    XYZ normal = ObtenerVectorNormalCara(cara);
+
+                    // Verifica que el vector sea paralelo a la dirección
+                    if (normal.CrossProduct(direccion).IsZeroLength() && normal.IsAlmostEqualTo(direccion))
+                    {
+                        // Distancia del punto medio de la cara al baricentro del elemento en el sentido del vector dirección de la vista
+                        double distanciaACara = DistanciaBaricentroElementoACara(vista, direccion, elem, cara, ref banderaGeometria);
+
+                        // Verifica que la distancia sea mayor
+                        if (distanciaACara > distancia)
+                        {
+                            // Asigna la nueva distancia
+                            distancia = distanciaACara;
+
+                            // Asigna la referencia de la cara
+                            face = cara;
+                        }
+                    }
+                }
+            }
+
+            return face;
         }
 
         ///<summary> Obtiene la geometría del elemento en detalle fino</summary>
@@ -3971,7 +4195,7 @@ namespace Jump
                     {
                         // Castea a solido
                         GeometryInstance geoInst = geoObje as GeometryInstance;
-
+                        
                         // Obtiene la geometría del simbolo
                         GeometryElement geoElemSymb = geoInst.GetSymbolGeometry();
 
@@ -3992,7 +4216,7 @@ namespace Jump
         {
             // Castea el elemento a FamilyInstance
             FamilyInstance fi = elem as FamilyInstance;
-
+            
             // Obtiene la transformación del elemento
             Transform transformada = fi.GetTotalTransform();
 
@@ -4042,7 +4266,7 @@ namespace Jump
             BoundingBoxXYZ bb = elem.get_BoundingBox(vista);
 
             // Obtiene el baricentro del elemento en 3D
-            XYZ baricentroElemento = ObtenerBaricentroElemento(bb);
+            XYZ baricentroElemento = ObtenerBaricentroDeRecuadro(bb);
 
             // Distancia entre el punto medio de la cara y el baricentro del elemento
             XYZ vectorCaraABaricentro = puntoMedioCara - baricentroElemento;
@@ -4056,8 +4280,8 @@ namespace Jump
             return distanciaAbsoluta;
         }
 
-        ///<summary> Obtiene el baricentro de un elemento </summary>
-        public static XYZ ObtenerBaricentroElemento(BoundingBoxXYZ bb)
+        ///<summary> Obtiene el baricentro de un BoundingBox </summary>
+        public static XYZ ObtenerBaricentroDeRecuadro(BoundingBoxXYZ bb)
         {
             // Crea el punto
             XYZ baricentroElemento = new XYZ();
@@ -4238,6 +4462,151 @@ namespace Jump
             }
 
             return volumen;
+        }
+
+        #endregion
+
+        #region Vectores y puntos 
+
+        ///<summary> Devuelve el máximo o mínimo entre la cota y el punto según la dirección </summary>
+        public static double ComponenteDeVectorMayorOMenorQuePunto(double direccion, double cota, double punto)
+        {
+            // Crea el componente
+            double componente = punto;
+
+            // Verifica que la dirección sea mayor a la tolerancia
+            if (Math.Abs(direccion) > toleranciaComponenteVector)
+            {
+                // Verifica si la dirección es positiva
+                if (direccion > toleranciaComponenteVector)
+                {
+                    // Verifica si la cota es mayor al punto
+                    if (cota > punto)
+                    {
+                        componente = cota;
+                    }
+                }
+
+                // La dirección es negativa
+                else
+                {
+                    // Verifica si la cota es menor al punto
+                    if (cota < punto)
+                    {
+                        componente = cota;
+                    }
+                }
+            }
+
+            return componente;
+        }
+
+        ///<summary> Obtiene el punto máximo dado dos puntos </summary>
+        public static XYZ ObtenerPuntoMaximo(XYZ punto1, XYZ punto2)
+        {
+            // Obtiene los mayores
+            double x = (punto1.X > punto2.X) ? punto1.X : punto2.X;
+            double y = (punto1.Y > punto2.Y) ? punto1.Y : punto2.Y;
+            double z = (punto1.Z > punto2.Z) ? punto1.Z : punto2.Z;
+
+            // Crea el punto
+            XYZ punto = new XYZ(x, y, z);
+
+            return punto;
+        }
+
+        ///<summary> Obtiene el punto mínimo dado dos puntos </summary>
+        public static XYZ ObtenerPuntoMinimo(XYZ punto1, XYZ punto2)
+        {
+            // Obtiene los mayores
+            double x = (punto1.X < punto2.X) ? punto1.X : punto2.X;
+            double y = (punto1.Y < punto2.Y) ? punto1.Y : punto2.Y;
+            double z = (punto1.Z < punto2.Z) ? punto1.Z : punto2.Z;
+
+            // Crea el punto
+            XYZ punto = new XYZ(x, y, z);
+
+            return punto;
+        }
+
+        ///<summary> Proyecta el vector sobre la dirección dada </summary>
+        public static XYZ ProyectarVectorSobreDireccion(XYZ vector, XYZ direccion)
+        {
+            // Obtiene el producto escalar
+            double escalar = vector.DotProduct(direccion) / direccion.GetLength();
+
+            // Obtiene el vector proyectado en la dirección
+            XYZ vectorProyeccion = direccion.Multiply(escalar);
+
+            return vectorProyeccion;
+        }
+
+        ///<summary> Proyecta el vector sobre la dirección y con el mismo sentido </summary>
+        public static XYZ ProyectarVectorSobreDireccionYSentido(XYZ vector, XYZ direccion)
+        {
+            // Proyecta el vector en la dirección
+            XYZ vectorPro = Tools.ProyectarVectorSobreDireccion(vector, direccion);
+
+            double x = (ObtenerSignoComponenteDeVector(vectorPro.X) == ObtenerSignoComponenteDeVector(direccion.X)) ? vectorPro.X : -vectorPro.X;
+            double y = (ObtenerSignoComponenteDeVector(vectorPro.Y) == ObtenerSignoComponenteDeVector(direccion.Y)) ? vectorPro.Y : -vectorPro.Y;
+            double z = (ObtenerSignoComponenteDeVector(vectorPro.Z) == ObtenerSignoComponenteDeVector(direccion.Z)) ? vectorPro.Z : -vectorPro.Z;
+
+            vectorPro = new XYZ(x, y, z);
+
+            return vectorPro;
+        }
+
+        ///<summary> Obtiene el signo del componente de un vector </summary>
+        public static int ObtenerSignoComponenteDeVector(double componente)
+        {            
+            // Verifica si es cero
+            if (componente == 0)
+            {
+                return 0;
+            }
+
+            // No es cero
+            else
+            {
+                // Verifica que el valor sea mayor a cero
+                if (componente > 0)
+                {
+                    return 1;
+                }
+
+                // Es menor a cero
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        ///<summary> Devuelve true si el vector1 es paralelo al vector2 </summary>
+        public static bool EsParalelo(XYZ vector1, XYZ vector2)
+        {
+            bool paralelo = vector1.CrossProduct(vector2).IsZeroLength();
+
+            return paralelo;
+        }
+
+        ///<summary> Devuelve true si el vector1 es perpendicular al vector2 </summary>
+        public static bool EsPerpendicular(XYZ vector1, XYZ vector2)
+        {
+            double LVec1 = vector1.GetLength();
+
+            double LVec2 = vector2.GetLength();
+
+            double prod = Math.Abs(vector1.DotProduct(vector2));
+
+            if (LVec1 > Tools.toleranciaComponenteVector && LVec2 > Tools.toleranciaComponenteVector && prod < Tools.toleranciaComponenteVector)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         #endregion
@@ -4461,208 +4830,12 @@ namespace Jump
                 cajaSeccion.Transform = tra;
 
                 // Asigna los valores a la caja de sección
-                cajaSeccion.Min = new XYZ(-y, bbelem.Min.Z, -x);//min;
-                cajaSeccion.Max = new XYZ(y, bbelem.Max.Z, x);//max;
+                cajaSeccion.Min = new XYZ(-y, bbelem.Min.Z, -x);
+                cajaSeccion.Max = new XYZ(y, bbelem.Max.Z, x);
 
                 // Crear la sección del elemento
                 View seccion = ViewSection.CreateSection(doc, vft.Id, cajaSeccion) as View;
 
-                return seccion;
-            }
-
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        ///<summary> Crea una sección longitudinal de un elemento basado en curva o línea </summary>
-        public static View SeccionLongitudinalBasadoEnCurvaOriginal(Document doc, Element elem)
-        {
-            try
-            {
-                // Obtiene al FamilyInstance
-                FamilyInstance fi = elem as FamilyInstance;
-
-                // Obtiene el Family
-                FamilySymbol fs = fi.Symbol;
-
-                // Toma la ubicación del elemento basado en curva
-                LocationCurve lc = elem.Location as LocationCurve;
-
-                // Obtiene la longitud de la linea
-                Curve curva = lc.Curve;
-
-                // Obtiene los puntos iniciales y finales se la sección
-                XYZ inicial = curva.GetEndPoint(0);
-                XYZ final = curva.GetEndPoint(1);
-
-                // Obtiene la longitud de la linea
-                XYZ longitud = inicial - final;
-
-                // Determina la vista que se usa
-                ViewFamilyType vft = new FilteredElementCollector(doc)
-                                        .OfClass(typeof(ViewFamilyType))
-                                        .Cast<ViewFamilyType>()
-                                        .FirstOrDefault<ViewFamilyType>(v => ViewFamily.Section == v.ViewFamily);
-
-                // Obtiene la transformación de la curva
-                Transform curvaTransformada = curva.ComputeDerivatives(corteTransversalBasadoLinea, true);
-
-                // Crea los vectores de dirección de la vista
-                XYZ direccion = longitud.Normalize();
-                XYZ arriba = XYZ.BasisZ;
-                XYZ viewDir = direccion.CrossProduct(arriba);
-
-                // Crea la transformación
-                Transform tra = Transform.Identity;
-
-                // Establece el origen de la transformación
-                tra.Origin = curvaTransformada.Origin;
-
-                // Determina la dirección de la vista
-                tra.BasisX = direccion;
-                tra.BasisY = arriba;
-                tra.BasisZ = viewDir;
-
-                // Crea la caja de sección
-                BoundingBoxXYZ cajaSeccion = new BoundingBoxXYZ();
-
-                // Cambia la transformacion de la caja de sección
-                cajaSeccion.Transform = tra;
-
-                // Crea la caja de sección
-                BoundingBoxXYZ bbelem = elem.get_BoundingBox(null);
-                BoundingBoxXYZ bb = fs.get_BoundingBox(null);
-
-                // Obtiene el volumen tridimensional del elemento
-                double x = (curva.Length) / 2;
-                double y = (bb.Max.Y - bb.Min.Y) / 2;
-                double z = (bb.Max.Z - bb.Min.Z);
-
-                // Obtiene la cota en la parte superior e inferior
-                double cotaSuperior = CotaElevacionParteSuperior(elem);
-                double cotaInferior = CotaElevacionParteInferior(elem);
-
-                // Crea la cota
-                double cota = 0;
-
-                // Verifica que las dos cotas sean negativas
-                if (cotaSuperior < 0 && cotaInferior < 0)
-                {
-                    // Asigna la cota inferior
-                    cota = cotaInferior;
-                }
-
-                // Obtiene las coordenadas máximas y mínimas
-                XYZ min = new XYZ(-x, bbelem.Min.Z - cota, -y);
-                XYZ max = new XYZ(x, bbelem.Max.Z - cota, y);
-
-                // Asigna los valores a la caja de sección
-                cajaSeccion.Min = min;
-                cajaSeccion.Max = max;
-
-                // Crear la sección del elemento
-                View seccion = ViewSection.CreateSection(doc, vft.Id, cajaSeccion) as View;
-
-                return seccion;
-            }
-
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        ///<summary> Crea una sección transversal de un elemento basado en curva o línea </summary>
-        public static View SeccionTransversalBasadoEnCurvaOriginal(Document doc, Element elem)
-        {
-            try
-            {
-                // Obtiene al FamilyInstance
-                FamilyInstance fi = elem as FamilyInstance;
-
-                // Obtiene el Family
-                FamilySymbol fs = fi.Symbol;
-
-                // Toma la ubicación del elemento basado en curva
-                LocationCurve lc = elem.Location as LocationCurve;
-
-                // Obtiene la longitud de la linea
-                Curve curva = lc.Curve;
-
-                // Obtiene los puntos iniciales y finales se la sección
-                XYZ inicial = curva.GetEndPoint(0);
-                XYZ final = curva.GetEndPoint(1);
-
-                // Obtiene la longitud de la linea
-                XYZ longitud = final - inicial;
-
-                // Determina la vista que se usa
-                ViewFamilyType vft = new FilteredElementCollector(doc)
-                                        .OfClass(typeof(ViewFamilyType))
-                                        .Cast<ViewFamilyType>()
-                                        .FirstOrDefault<ViewFamilyType>(v => ViewFamily.Section == v.ViewFamily);
-
-                // Obtiene la transformación de la curva
-                Transform curvaTransformada = curva.ComputeDerivatives(corteTransversalBasadoLinea, true);
-
-                // Crea los vectores de dirección de la vista
-                XYZ direccion = longitud.Normalize();
-                XYZ arriba = XYZ.BasisZ;
-                XYZ viewDir = arriba.CrossProduct(direccion);
-
-                // Crea la transformación
-                Transform tra = Transform.Identity;
-
-                // Establece el origen de la transformación
-                tra.Origin = curvaTransformada.Origin;
-
-                // Determina la dirección de la vista
-                tra.BasisX = viewDir;
-                tra.BasisY = arriba;
-                tra.BasisZ = direccion;
-
-                // Crea la caja de sección
-                BoundingBoxXYZ cajaSeccion = new BoundingBoxXYZ();
-
-                // Cambia la transformacion de la caja de sección
-                cajaSeccion.Transform = tra;
-
-                // Crea la caja de sección
-                BoundingBoxXYZ bbelem = elem.get_BoundingBox(null);
-                BoundingBoxXYZ bb = fs.get_BoundingBox(null);
-
-                // Obtiene el volumen tridimensional del elemento
-                double x = (curva.Length) / 2;
-                double y = (bb.Max.Y - bb.Min.Y) / 2;
-                double z = (bb.Max.Z - bb.Min.Z);
-
-                // Obtiene la cota en la parte superior e inferior
-                double cotaSuperior = CotaElevacionParteSuperior(elem);
-                double cotaInferior = CotaElevacionParteInferior(elem);
-
-                // Crea la cota
-                double cota = 0;
-
-                // Verifica que las dos cotas sean negativas
-                if (cotaSuperior < 0 && cotaInferior < 0)
-                {
-                    // Asigna la cota inferior
-                    cota = cotaInferior;
-                }
-
-                // Obtiene las coordenadas máximas y mínimas
-                XYZ min = new XYZ(-y, bbelem.Min.Z - cota, -x);
-                XYZ max = new XYZ(y, bbelem.Max.Z - cota, x);
-
-                // Asigna los valores a la caja de sección
-                cajaSeccion.Min = min;
-                cajaSeccion.Max = max;
-                
-                // Crear la sección del elemento
-                View seccion = ViewSection.CreateSection(doc, vft.Id, cajaSeccion) as View;
-                
                 return seccion;
             }
 
@@ -5096,17 +5269,21 @@ namespace Jump
             // Verifica que existan elementos
             if (lista.Count > 0)
             {
-                // Obtiene la mínima coordenada
-                double xMin = Math.Min(bbVista.Min.X, lista.Min(x => traInv.OfPoint(x.get_BoundingBox(vista).Min).X));
-                double yMin = Math.Min(bbVista.Min.Y, lista.Min(x => traInv.OfPoint(x.get_BoundingBox(vista).Min).Y));
+                try
+                {                
+                    // Obtiene la mínima coordenada
+                    double xMin = Math.Min(bbVista.Min.X, lista.Min(x => traInv.OfPoint(x.get_BoundingBox(vista).Min).X));
+                    double yMin = Math.Min(bbVista.Min.Y, lista.Min(x => traInv.OfPoint(x.get_BoundingBox(vista).Min).Y));
 
-                // Obtiene la máxima coordenada
-                double xMax = Math.Max(bbVista.Max.X, lista.Max(x => traInv.OfPoint(x.get_BoundingBox(vista).Max).X));
-                double yMax = Math.Max(bbVista.Max.Y, lista.Max(x => traInv.OfPoint(x.get_BoundingBox(vista).Max).Y));
+                    // Obtiene la máxima coordenada
+                    double xMax = Math.Max(bbVista.Max.X, lista.Max(x => traInv.OfPoint(x.get_BoundingBox(vista).Max).X));
+                    double yMax = Math.Max(bbVista.Max.Y, lista.Max(x => traInv.OfPoint(x.get_BoundingBox(vista).Max).Y));
 
-                // Crea los puntos
-                vista.CropBox.Min = new XYZ(xMin, yMin, bbVista.Min.Z);
-                vista.CropBox.Max = new XYZ(xMax, yMax, bbVista.Max.Z);
+                    // Crea los puntos
+                    vista.CropBox.Min = new XYZ(xMin, yMin, bbVista.Min.Z);
+                    vista.CropBox.Max = new XYZ(xMax, yMax, bbVista.Max.Z);
+                }
+                catch (Exception) { }
             }
 
             return vista;

@@ -38,6 +38,10 @@ namespace Jump
                 Viga.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.EtiquetaIndependienteVigas;
                 Viga.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.EtiquetaCotaProfundidad;
                 Viga.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.EtiquetaIndependienteArmadura;
+                Viga.cotaVerticalIzquierda = true;
+                Viga.cotaVerticalDerecha = true;
+                Viga.cotaHorizontalArriba = true;
+                Viga.cotaHorizontalAbajo = true;
                 Viga.clave = "Vig";
 
                 Viga.ShowDialog();

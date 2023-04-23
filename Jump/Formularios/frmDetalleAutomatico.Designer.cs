@@ -52,7 +52,7 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.lblEscala = new System.Windows.Forms.Label();
             this.chbCotaElevacion = new System.Windows.Forms.CheckBox();
-            this.chbEtiquetaBase = new System.Windows.Forms.CheckBox();
+            this.chbEtiquetaElemento = new System.Windows.Forms.CheckBox();
             this.chbCotaLineal = new System.Windows.Forms.CheckBox();
             this.chbEtiquetaArmadura = new System.Windows.Forms.CheckBox();
             this.chbEtiquetaLongitud = new System.Windows.Forms.CheckBox();
@@ -350,7 +350,7 @@
             // 
             this.panel6.Controls.Add(this.lblEscala);
             this.panel6.Controls.Add(this.chbCotaElevacion);
-            this.panel6.Controls.Add(this.chbEtiquetaBase);
+            this.panel6.Controls.Add(this.chbEtiquetaElemento);
             this.panel6.Controls.Add(this.chbCotaLineal);
             this.panel6.Controls.Add(this.chbEtiquetaArmadura);
             this.panel6.Controls.Add(this.chbEtiquetaLongitud);
@@ -386,21 +386,23 @@
             this.chbCotaElevacion.UseVisualStyleBackColor = true;
             this.chbCotaElevacion.CheckedChanged += new System.EventHandler(this.ActivarODesactivarImagenes_CheckedChanged);
             // 
-            // chbEtiquetaBase
+            // chbEtiquetaElemento
             // 
-            this.chbEtiquetaBase.AutoSize = true;
-            this.chbEtiquetaBase.Location = new System.Drawing.Point(24, 45);
-            this.chbEtiquetaBase.Margin = new System.Windows.Forms.Padding(0);
-            this.chbEtiquetaBase.Name = "chbEtiquetaBase";
-            this.chbEtiquetaBase.Size = new System.Drawing.Size(143, 19);
-            this.chbEtiquetaBase.TabIndex = 14;
-            this.chbEtiquetaBase.Text = "Etiqueta de elemento";
-            this.chbEtiquetaBase.UseVisualStyleBackColor = true;
-            this.chbEtiquetaBase.CheckedChanged += new System.EventHandler(this.ActivarODesactivarImagenes_CheckedChanged);
+            this.chbEtiquetaElemento.AutoSize = true;
+            this.chbEtiquetaElemento.Location = new System.Drawing.Point(24, 45);
+            this.chbEtiquetaElemento.Margin = new System.Windows.Forms.Padding(0);
+            this.chbEtiquetaElemento.Name = "chbEtiquetaElemento";
+            this.chbEtiquetaElemento.Size = new System.Drawing.Size(143, 19);
+            this.chbEtiquetaElemento.TabIndex = 14;
+            this.chbEtiquetaElemento.Text = "Etiqueta de elemento";
+            this.chbEtiquetaElemento.UseVisualStyleBackColor = true;
+            this.chbEtiquetaElemento.CheckedChanged += new System.EventHandler(this.ActivarODesactivarImagenes_CheckedChanged);
             // 
             // chbCotaLineal
             // 
             this.chbCotaLineal.AutoSize = true;
+            this.chbCotaLineal.Checked = true;
+            this.chbCotaLineal.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chbCotaLineal.Location = new System.Drawing.Point(24, 150);
             this.chbCotaLineal.Margin = new System.Windows.Forms.Padding(0);
             this.chbCotaLineal.Name = "chbCotaLineal";
@@ -630,7 +632,7 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label lblEscala;
         private System.Windows.Forms.CheckBox chbCotaElevacion;
-        private System.Windows.Forms.CheckBox chbEtiquetaBase;
+        private System.Windows.Forms.CheckBox chbEtiquetaElemento;
         private System.Windows.Forms.CheckBox chbCotaLineal;
         private System.Windows.Forms.CheckBox chbEtiquetaArmadura;
         private System.Windows.Forms.CheckBox chbEtiquetaLongitud;

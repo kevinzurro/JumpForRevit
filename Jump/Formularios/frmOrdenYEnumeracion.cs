@@ -25,8 +25,6 @@ namespace Jump
         List<Element> elementos = new List<Element>();
         List<Parameter> parametrosEjemplar = new List<Parameter>();
         List<Category> listaCategorias = new List<Category>();
-
-        // Parámetros
         BuiltInCategory categoria;
 
         // Constructor del formulario
@@ -54,23 +52,16 @@ namespace Jump
             Categories categorias = this.doc.Settings.Categories;
 
             // Agrega las categorías
-            this.listaCategorias.Add(categorias.get_Item(BuiltInCategory.OST_Coupler));
-            this.listaCategorias.Add(categorias.get_Item(BuiltInCategory.OST_Rebar));
-            this.listaCategorias.Add(categorias.get_Item(BuiltInCategory.OST_StructuralFraming));
-            this.listaCategorias.Add(categorias.get_Item(BuiltInCategory.OST_StructuralFoundation));
-            this.listaCategorias.Add(categorias.get_Item(BuiltInCategory.OST_BridgeAbutments));
-            this.listaCategorias.Add(categorias.get_Item(BuiltInCategory.OST_StructuralStiffener));
-            this.listaCategorias.Add(categorias.get_Item(BuiltInCategory.OST_BridgePiers));
-            this.listaCategorias.Add(categorias.get_Item(BuiltInCategory.OST_StructuralColumns));
-            this.listaCategorias.Add(categorias.get_Item(BuiltInCategory.OST_StructuralFramingSystem));
-            this.listaCategorias.Add(categorias.get_Item(BuiltInCategory.OST_StructuralTruss));
-            this.listaCategorias.Add(categorias.get_Item(BuiltInCategory.OST_Floors));
+            foreach (Category cat in categorias)
+            {
+                this.listaCategorias.Add(cat);
+            }
 
             // Ordena la lista alfabéticamente
             listaCategorias = listaCategorias.OrderBy(x => x.Name).ToList();
 
             // Limpia y rellena el combobox
-            Tools.RellenarComboboxCategorias(this.cmbCategorias, listaCategorias);
+            Tools.RellenarCombobox(this.cmbCategorias, listaCategorias);
 
             // Asigna la categoría
             this.categoria = (BuiltInCategory)listaCategorias.FirstOrDefault<Category>().Id.IntegerValue;
@@ -140,7 +131,7 @@ namespace Jump
         private void cmbCategorias_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Obtiene la categoría seleccionada
-            Category categoriaSeleccionada = listaCategorias[this.cmbCategorias.SelectedIndex];
+            Category categoriaSeleccionada = (Category)this.cmbCategorias.SelectedItem;
 
             // Asigna 
             this.categoria = (BuiltInCategory)categoriaSeleccionada.Id.IntegerValue;

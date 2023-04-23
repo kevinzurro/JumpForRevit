@@ -54,48 +54,7 @@ namespace Jump
                 // Obtiene todas las barras modificadas
                 List<Element> barrasModificadas = Tools.ObtenerElementosCoincidentesConLista(colectorBarras, elementos);
 
-                List<ArmaduraRepresentacion> listaArmaduraRepresentacion = new List<ArmaduraRepresentacion>();
-
-                // Recorre todas las barras modificadas
-                foreach (Rebar barra in barrasModificadas)
-                {
-                    listaArmaduraRepresentacion.Clear();
-
-                    listaArmaduraRepresentacion = Tools.ObtenerRepresentacionArmaduraDeBarra(barra);
-
-                    Tools.EliminarRepresentacionesEnBarra(barra);
-
-                    // Recorre las Representaciones de armaduras
-                    foreach (ArmaduraRepresentacion armadura in listaArmaduraRepresentacion)
-                    {
-                        try
-                        {
-                            // Verifica que la barra modificada sea igual al del despiece
-                            if (armadura.Barra.Id == barra.Id)
-                            {
-                                // Verifica que las líneas no sean nulas
-                                if (armadura.CurvasDeArmadura != null && armadura.TextosDeLongitudesParciales != null)
-                                {
-                                    // Elimina el despiece
-                                    armadura.Eliminar();
-
-                                    // Dibuja las líneas de la nueva geometría y asigna al objeto
-                                    armadura.DibujarArmaduraSegunDatagridview(this.dgvEstiloLinea);
-
-                                    // Mueve la Representación de la Armadura
-                                    armadura.MoverArmaduraRepresentacion(armadura.Posicion);
-
-                                    Tools.GuardarRepresentacionArmaduraDeBarra(barra, armadura);                                    
-                                }
-                            }
-                        }
-                        catch (Exception)
-                        {
-                            // Elimina las curvas
-                            armadura.Eliminar();
-                        }
-                    }
-                }
+                Tools.ActualizarRepresentacionArmadura(this.dgvEstiloLinea, barrasModificadas);
             }
         }
 

@@ -21,6 +21,7 @@ namespace Jump
         Document doc;
         UnitType tipoUnidad = UnitType.UT_Length;
         public bool bandera = false;
+        List<RebarBarType> diametros = new List<RebarBarType>();
 
         // Constructor del formulario
         public frmConfiguraciones(Document doc)
@@ -30,6 +31,7 @@ namespace Jump
             // Variable necesarias
             this.IdiomaDelPrograma = Tools.ObtenerIdiomaDelPrograma();
             this.doc = doc;
+            this.diametros = Tools.ObtenerTodosTiposSegunClase(doc, typeof(RebarBarType)).Cast<RebarBarType>().ToList();
 
             // Llama a las funciones
             this.dgvEstiloLinea = Tools.ObtenerDataGridViewDeDiametrosYEstilos(this.dgvEstiloLinea, doc, IdiomaDelPrograma);
@@ -335,6 +337,42 @@ namespace Jump
             Tools.DesplegarComboboxConUnClick(this.dgvEstiloLinea, e);
         }
 
+        /// <summary> Cambia todas las armaduras en función de los nuevos estilos de líneas </summary>
+        private void CambiarDibujoArmaduras()
+        {
+            if (Jump.Properties.Settings.Default.ActualizarBarrasAutomaticamente)
+            {
+                List<Element> barras = new List<Element>();
+
+                List<Element> elementos = Tools.ObtenerTodosEjemplaresSegunClase(this.doc, typeof(Rebar));
+
+                foreach (RebarBarType tipo in this.diametros)
+                {
+                    barras.AddRange(elementos.Where(x => x.GetTypeId() == tipo.Id));
+                }
+
+                Tools.ActualizarRepresentacionArmadura(this.dgvEstiloLinea, barras);
+            }
+        }
+
+        /// <summary> Guarda los estilos de líneas que el usuario seleccionó </summary>
+        private void dgvEstiloLinea_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                RebarBarType tipoDiametro = (RebarBarType)this.diametros.Where(x => x.Name == this.dgvEstiloLinea[AboutJump.nombreColumnaDiametros, e.RowIndex].Value);
+
+                if (!this.diametros.Exists(x => x.Id == tipoDiametro.Id))
+                {
+                    diametros.Add(tipoDiametro);
+
+                    // Ordena la lista alfabéticamente
+                    diametros = diametros.OrderBy(x => x.BarDiameter).ToList();
+                }
+            }
+            catch (Exception) { }
+        }
+
         /// <summary> Cierra el formulario cuando se presiona la tecla Esc </summary>
         private void frmCerrar_KeyDown(object sender, KeyEventArgs e)
         {
@@ -376,6 +414,7 @@ namespace Jump
 
             // Pestaña 3
             Tools.GuardarDataGridViewEnDocumento(this.dgvEstiloLinea, this.doc);
+            CambiarDibujoArmaduras();
 
             // Pestaña 4
             Properties.Settings.Default.EtiquetaIndependienteColumnas = Convert.ToInt32(this.cmbEtiquetaColumnas.SelectedItem);

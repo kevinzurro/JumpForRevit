@@ -38,6 +38,10 @@ namespace Jump
                 Zapata.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.EtiquetaIndependienteZapatas;
                 Zapata.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.EtiquetaCotaProfundidad;
                 Zapata.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.EtiquetaIndependienteArmadura;
+                Zapata.cotaVerticalIzquierda = true;
+                Zapata.cotaVerticalDerecha = true;
+                Zapata.cotaHorizontalArriba = true;
+                Zapata.cotaHorizontalAbajo = true;
                 Zapata.clave = "Zap";
 
                 Zapata.ShowDialog();

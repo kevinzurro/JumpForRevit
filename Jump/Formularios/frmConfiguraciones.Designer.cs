@@ -484,6 +484,7 @@
             resources.ApplyResources(this.dgvEstiloLinea, "dgvEstiloLinea");
             this.dgvEstiloLinea.Name = "dgvEstiloLinea";
             this.dgvEstiloLinea.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDesplegarCombobox_CellClick);
+            this.dgvEstiloLinea.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEstiloLinea_CellValueChanged);
             // 
             // Diametro
             // 

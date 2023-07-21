@@ -249,6 +249,47 @@ namespace Jump
             return bb;
         }
 
+        /// <summary> Obtiene el el vector perpendicular de la dirección principal de la armadura en coordenadas globales </summary>
+        public XYZ ObtenerVectorPrincipalDeArmadura()
+        {
+            XYZ vector = new XYZ();
+
+            RebarShape sh = doc.GetElement(this.Barra.GetShapeId()) as RebarShape;
+
+            RebarShapeDefinition rsh = sh.GetRebarShapeDefinition();
+
+            int curva = 0;
+
+            if (rsh is RebarShapeDefinitionBySegments)
+            {
+                curva = (rsh as RebarShapeDefinitionBySegments).MajorSegmentIndex;
+
+                List<Curve> shCurvas = sh.GetCurvesForBrowser().ToList();
+
+                XYZ direccion = shCurvas[curva].GetEndPoint(1) - shCurvas[curva].GetEndPoint(0);
+
+                vector = direccion.CrossProduct(this.Vista.ViewDirection);
+            }
+            else
+            {
+                List<Curve> curvas = this.Barra.GetShapeDrivenAccessor().ComputeDrivingCurves().ToList();
+
+                foreach (Curve c in curvas)
+                {
+                    if (c is Arc)
+                    {
+                        Arc arco = c as Arc;
+
+                        vector = arco.XDirection.CrossProduct(this.Vista.ViewDirection);
+
+                        break;
+                    }
+                }
+            }
+            
+            return vector;
+        }
+
         /// <summary> Elimina la representación de la armadura </summary>
         public void Eliminar()
         {

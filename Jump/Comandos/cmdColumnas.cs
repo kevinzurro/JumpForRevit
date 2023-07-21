@@ -23,7 +23,20 @@ namespace Jump
             Application app = uiApp.Application;
             Document doc = uiDoc.Document;
 
+            Reference referencia = uiDoc.Selection.PickObject(ObjectType.Element, "Seleccionar elemento");
 
+            Element elem = doc.GetElement(referencia);
+
+            FamilyInstance fi = elem as FamilyInstance;
+
+            using(Transaction t = new Transaction(doc, "Mueve elemento"))
+            {
+                t.Start();
+
+                ElementTransformUtils.MoveElement(doc, elem.Id, -fi.GetTransform().Origin);
+
+                t.Commit();
+            }
 
             return Result.Succeeded;
         }

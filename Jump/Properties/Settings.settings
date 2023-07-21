@@ -81,7 +81,7 @@
       <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="EtiquetaCotaProfundidad" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">9</Value>
+      <Value Profile="(Default)">7</Value>
     </Setting>
     <Setting Name="EtiquetaIndependienteColumnas" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -93,6 +93,9 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="EtiquetaIndependienteArmaduraEnSistema" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="toleranciaSuperposicionArmadura" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>

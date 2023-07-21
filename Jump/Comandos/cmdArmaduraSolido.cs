@@ -46,7 +46,7 @@ namespace Jump
 
                 t.Commit();
             };
-            
+
             return Result.Succeeded;
         }
     }

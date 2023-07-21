@@ -337,7 +337,7 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("9")]
+        [global::System.Configuration.DefaultSettingValueAttribute("7")]
         public int EtiquetaCotaProfundidad {
             get {
                 return ((int)(this["EtiquetaCotaProfundidad"]));
@@ -392,6 +392,18 @@ namespace Jump.Properties {
             }
             set {
                 this["EtiquetaIndependienteArmaduraEnSistema"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double toleranciaSuperposicionArmadura {
+            get {
+                return ((double)(this["toleranciaSuperposicionArmadura"]));
+            }
+            set {
+                this["toleranciaSuperposicionArmadura"] = value;
             }
         }
     }

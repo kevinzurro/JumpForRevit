@@ -12,6 +12,26 @@ namespace Jump
 {
     internal class Anterior
     {
+        #region Código
+
+        ///<summary> Lleva el elemento al centro de las coordenadas del proyecto </summary>
+        //Reference referencia = uiDoc.Selection.PickObject(ObjectType.Element, "Seleccionar elemento");
+
+        //Element elem = doc.GetElement(referencia);
+
+        //FamilyInstance fi = elem as FamilyInstance;
+
+        //using(Transaction t = new Transaction(doc, "Mueve elemento"))
+        //{
+        //    t.Start();
+
+        //    ElementTransformUtils.MoveElement(doc, elem.Id, -fi.GetTransform().Origin);
+
+        //    t.Commit();
+        //}
+
+        #endregion
+
         #region Cotas
 
         ///<summary> Crea una cota vertical a la izquierda de un elemento en una vista particular </summary>

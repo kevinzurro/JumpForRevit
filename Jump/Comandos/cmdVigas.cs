@@ -33,8 +33,8 @@ namespace Jump
                 Viga.clase = typeof(FamilyInstance);
                 Viga.categoria = BuiltInCategory.OST_StructuralFraming;
                 Viga.categoriaEtiqueta = BuiltInCategory.OST_StructuralFramingTags;
-                Viga.indiceComboboxTextoBarra = Properties.Settings.Default.zapataIndiceComboboxTextoBarra;
-                Viga.indiceComboboxEscalaVista = Properties.Settings.Default.zapataIndiceComboboxEscalaVista;
+                Viga.indiceComboboxTextoBarra = Properties.Settings.Default.indiceComboboxTextoBarra;
+                Viga.indiceComboboxEscalaVista = Properties.Settings.Default.indiceComboboxEscalaVistaViga;
                 Viga.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.EtiquetaIndependienteVigas;
                 Viga.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.EtiquetaCotaProfundidad;
                 Viga.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.EtiquetaIndependienteArmadura;
@@ -47,8 +47,8 @@ namespace Jump
                 Viga.ShowDialog();
 
                 // Guarda el indice en las configuraciones
-                Properties.Settings.Default.zapataIndiceComboboxTextoBarra = Viga.indiceComboboxTextoBarra;
-                Properties.Settings.Default.zapataIndiceComboboxEscalaVista = Viga.indiceComboboxEscalaVista;
+                Properties.Settings.Default.indiceComboboxTextoBarra = Viga.indiceComboboxTextoBarra;
+                Properties.Settings.Default.indiceComboboxEscalaVistaZapata = Viga.indiceComboboxEscalaVista;
                 Properties.Settings.Default.Save();
 
                 if (Viga.bandera)

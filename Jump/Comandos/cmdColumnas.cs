@@ -23,19 +23,44 @@ namespace Jump
             Application app = uiApp.Application;
             Document doc = uiDoc.Document;
 
-            Reference referencia = uiDoc.Selection.PickObject(ObjectType.Element, "Seleccionar elemento");
+            Tools.AddinManager();
+            Tools.CrearRegistroActualizadorArmaduras(uiApp.ActiveAddInId);
 
-            Element elem = doc.GetElement(referencia);
-
-            FamilyInstance fi = elem as FamilyInstance;
-
-            using(Transaction t = new Transaction(doc, "Mueve elemento"))
+            using (TransactionGroup tra = new TransactionGroup(doc))
             {
-                t.Start();
+                tra.Start();
 
-                ElementTransformUtils.MoveElement(doc, elem.Id, -fi.GetTransform().Origin);
+                frmDetalleAutomatico Columna = new frmDetalleAutomatico(doc, uiDoc);
 
-                t.Commit();
+                Columna.clase = typeof(FamilyInstance);
+                Columna.categoria = BuiltInCategory.OST_StructuralColumns;
+                Columna.categoriaEtiqueta = BuiltInCategory.OST_StructuralColumnTags;
+                Columna.indiceComboboxTextoBarra = Properties.Settings.Default.indiceComboboxTextoBarra;
+                Columna.indiceComboboxEscalaVista = Properties.Settings.Default.indiceComboboxEscalaVistaColumna;
+                Columna.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.EtiquetaIndependienteColumnas;
+                Columna.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.EtiquetaCotaProfundidad;
+                Columna.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.EtiquetaIndependienteArmadura;
+                Columna.cotaVerticalIzquierda = true;
+                Columna.cotaVerticalDerecha = true;
+                Columna.cotaHorizontalArriba = true;
+                Columna.cotaHorizontalAbajo = true;
+                Columna.clave = "Col";
+
+                Columna.ShowDialog();
+
+                // Guarda el indice en las configuraciones
+                Properties.Settings.Default.indiceComboboxTextoBarra = Columna.indiceComboboxTextoBarra;
+                Properties.Settings.Default.indiceComboboxEscalaVistaColumna = Columna.indiceComboboxEscalaVista;
+                Properties.Settings.Default.Save();
+
+                if (Columna.bandera)
+                {
+                    tra.Commit();
+                }
+                else
+                {
+                    tra.RollBack();
+                }
             }
 
             return Result.Succeeded;

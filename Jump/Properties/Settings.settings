@@ -8,7 +8,7 @@
     <Setting Name="precisionOrdenarX" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="zapataIndiceComboboxEscalaVista" Type="System.Int32" Scope="User">
+    <Setting Name="indiceComboboxEscalaVistaZapata" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">5</Value>
     </Setting>
     <Setting Name="rbtnArmaduraEnumeracionPorElemento" Type="System.Boolean" Scope="User">
@@ -38,7 +38,7 @@
     <Setting Name="ActualizarBarrasAutomaticamente" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="zapataIndiceComboboxTextoBarra" Type="System.Int32" Scope="User">
+    <Setting Name="indiceComboboxTextoBarra" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="CotaVerticalIzquierda" Type="System.Boolean" Scope="User">
@@ -60,16 +60,16 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="EtiquetaIndependienteZapatasCorrida" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="EtiquetaIndependientePlatea" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="EtiquetaIndependienteMuros" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="EtiquetaIndependientePilotes" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="EtiquetaIndependienteArmadura" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">2</Value>
@@ -84,19 +84,25 @@
       <Value Profile="(Default)">7</Value>
     </Setting>
     <Setting Name="EtiquetaIndependienteColumnas" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="EtiquetaIndependienteLosas" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="EtiquetaIndependienteAreaRefuerzo" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="EtiquetaIndependienteArmaduraEnSistema" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="toleranciaSuperposicionArmadura" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="indiceComboboxEscalaVistaColumna" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="indiceComboboxEscalaVistaViga" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
     </Setting>
   </Settings>
 </SettingsFile>

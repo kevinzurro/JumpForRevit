@@ -92,29 +92,6 @@ namespace Jump
 
         #endregion
 
-        #region Numeración de las posiciones para las etiquetas
-
-        // Posiciones de las etiquetas independientes
-        public const int ArribaIzquierda = 1;
-        public const int ArribaCentro = 2;
-        public const int ArribaDerecha = 3;
-        public const int CentroIzquierda = 4;
-        public const int CentroMedio = 5;
-        public const int CentroDerecha = 6;
-        public const int AbajoIzquierda = 7;
-        public const int AbajoCentro = 8;
-        public const int AbajoDerecha = 9;
-
-        // Lista con las posiciones de las etiquetas
-        public static List<int> listaPosicionEtiquetas = new List<int>()
-        {
-            ArribaIzquierda, ArribaCentro, ArribaDerecha,
-            CentroIzquierda, CentroMedio, CentroDerecha,
-            AbajoIzquierda, AbajoCentro, AbajoDerecha,
-        };
-
-        #endregion
-
         // Lista de escalas para la vista
         private static List<int> listaEscalas = CompletarEscalas();
 
@@ -2488,47 +2465,47 @@ namespace Jump
             switch (posicion)
             {
                 // Arriba a la izquierda
-                case ArribaIzquierda:
+                case (int)Posicion.ArribaIzquierda:
                     etiqueta = CrearEtiquetaIndependienteArribaIzquierda(doc, vista, elem, tipoEtiqueta);
                     break;
 
                 // Arriba centro
-                case ArribaCentro:
+                case (int)Posicion.ArribaCentro:
                     etiqueta = CrearEtiquetaIndependienteArribaMedio(doc, vista, elem, tipoEtiqueta);
                     break;
 
                 // Arriba a la derecha
-                case ArribaDerecha:
+                case (int)Posicion.ArribaDerecha:
                     etiqueta = CrearEtiquetaIndependienteArribaDerecha(doc, vista, elem, tipoEtiqueta);
                     break;
 
                 // Centro a la izquierda
-                case CentroIzquierda:
+                case (int)Posicion.MedioIzquierda:
                     etiqueta = CrearEtiquetaIndependienteCentroIzquierda(doc, vista, elem, tipoEtiqueta);
                     break;
 
                 // Centro medio
-                case CentroMedio:
+                case (int)Posicion.MedioCentro:
                     etiqueta = CrearEtiquetaIndependienteCentroMedio(doc, vista, elem, tipoEtiqueta);
                     break;
 
                 // Centro a la derecha
-                case CentroDerecha:
+                case (int)Posicion.MedioDerecha:
                     etiqueta = CrearEtiquetaIndependienteCentroDerecha(doc, vista, elem, tipoEtiqueta);
                     break;
 
                 // Abajo a la izquierda
-                case AbajoIzquierda:
+                case (int)Posicion.AbajoIzquierda:
                     etiqueta = CrearEtiquetaIndependienteAbajoIzquierda(doc, vista, elem, tipoEtiqueta);
                     break;
 
                 // Abajo centro
-                case AbajoCentro:
+                case (int)Posicion.AbajoCentro:
                     etiqueta = CrearEtiquetaIndependienteAbajoMedio(doc, vista, elem, tipoEtiqueta);
                     break;
 
                 // Abajo a la derecha
-                case AbajoDerecha:
+                case (int)Posicion.AbajoDerecha:
                     etiqueta = CrearEtiquetaIndependienteAbajoDerecha(doc, vista, elem, tipoEtiqueta);
                     break;
 
@@ -3321,47 +3298,47 @@ namespace Jump
             switch (posicion)
             {
                 // Arriba a la izquierda
-                case ArribaIzquierda:
+                case (int)Posicion.ArribaIzquierda:
                     direccion = (vista.UpDirection - vista.RightDirection).Normalize();
                     break;
 
                 // Arriba centro
-                case ArribaCentro:
+                case (int)Posicion.ArribaCentro:
                     direccion = vista.UpDirection;
                     break;
 
                 // Arriba a la derecha
-                case ArribaDerecha:
+                case (int)Posicion.ArribaDerecha:
                     direccion = (vista.UpDirection + vista.RightDirection).Normalize();
                     break;
 
                 // Centro a la izquierda
-                case CentroIzquierda:
+                case (int)Posicion.MedioIzquierda:
                     direccion = -vista.RightDirection;
                     break;
 
                 // Centro medio
-                case CentroMedio:
+                case (int)Posicion.MedioCentro:
                     direccion = new XYZ();
                     break;
 
                 // Centro a la derecha
-                case CentroDerecha:
+                case (int)Posicion.MedioDerecha:
                     direccion = vista.RightDirection;
                     break;
 
                 // Abajo a la izquierda
-                case AbajoIzquierda:
+                case (int)Posicion.AbajoIzquierda:
                     direccion = (-vista.UpDirection - vista.RightDirection).Normalize();
                     break;
 
                 // Abajo centro
-                case AbajoCentro:
+                case (int)Posicion.AbajoCentro:
                     direccion = -vista.UpDirection;
                     break;
 
                 // Abajo a la derecha
-                case AbajoDerecha:
+                case (int)Posicion.AbajoDerecha:
                     direccion = (-vista.UpDirection + vista.RightDirection).Normalize();
                     break;
 
@@ -3901,12 +3878,12 @@ namespace Jump
             switch (posicion)
             {
                 // Crea la cota de profundidad abajo a la izquierda
-                case AbajoIzquierda:
+                case (int)Posicion.AbajoIzquierda:
                     cotaProfundidad = CrearCotaProfundidadAbajoIzquierda(doc, vista, elem, tipoCotaProfundidad);
                     break;
 
                 // Crea la cota de profundidad abajo a la derecha
-                case AbajoDerecha:
+                case (int)Posicion.AbajoDerecha:
                     cotaProfundidad = CrearCotaProfundidadAbajoDerecha(doc, vista, elem, tipoCotaProfundidad);
                     break;
 

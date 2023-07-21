@@ -43,30 +43,30 @@ namespace Jump
         private void AgregarListaPosicionDeEtiquetas()
         {
             // Agrega la lista de posiciones a la lista desplegable
-            this.cmbEtiquetaArmadura.DataSource = new List<int>(Tools.listaPosicionEtiquetas);
-            this.cmbEtiquetaAreaRefuerzo.DataSource = new List<int>(Tools.listaPosicionEtiquetas);
-            this.cmbEtiquetaArmaduraEnSistema.DataSource = new List<int>(Tools.listaPosicionEtiquetas);
-            this.cmbEtiquetaColumnas.DataSource = new List<int>(Tools.listaPosicionEtiquetas);
-            this.cmbEtiquetaLosas.DataSource = new List<int>(Tools.listaPosicionEtiquetas);
-            this.cmbEtiquetaMuros.DataSource = new List<int>(Tools.listaPosicionEtiquetas);
-            this.cmbEtiquetaPilotes.DataSource = new List<int>(Tools.listaPosicionEtiquetas);
-            this.cmbEtiquetaPlatea.DataSource = new List<int>(Tools.listaPosicionEtiquetas);
-            this.cmbEtiquetaVigas.DataSource = new List<int>(Tools.listaPosicionEtiquetas);            
-            this.cmbEtiquetaZapatas.DataSource = new List<int>(Tools.listaPosicionEtiquetas);
-            this.cmbEtiquetaZapataCorrida.DataSource = new List<int>(Tools.listaPosicionEtiquetas);
+            this.cmbEtiquetaArmadura.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
+            this.cmbEtiquetaAreaRefuerzo.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
+            this.cmbEtiquetaArmaduraEnSistema.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
+            this.cmbEtiquetaColumnas.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
+            this.cmbEtiquetaLosas.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
+            this.cmbEtiquetaMuros.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
+            this.cmbEtiquetaPilotes.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
+            this.cmbEtiquetaPlatea.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
+            this.cmbEtiquetaVigas.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
+            this.cmbEtiquetaZapatas.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
+            this.cmbEtiquetaZapataCorrida.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
 
             // Asigna el indice de la lista desplegable
-            this.cmbEtiquetaArmadura.SelectedItem = Properties.Settings.Default.EtiquetaIndependienteArmadura;
-            this.cmbEtiquetaAreaRefuerzo.SelectedItem = Properties.Settings.Default.EtiquetaIndependienteAreaRefuerzo;
-            this.cmbEtiquetaArmaduraEnSistema.SelectedItem = Properties.Settings.Default.EtiquetaIndependienteArmaduraEnSistema;
-            this.cmbEtiquetaColumnas.SelectedItem = Properties.Settings.Default.EtiquetaIndependienteColumnas;
-            this.cmbEtiquetaLosas.SelectedItem = Properties.Settings.Default.EtiquetaIndependienteLosas;
-            this.cmbEtiquetaMuros.SelectedItem = Properties.Settings.Default.EtiquetaIndependienteMuros;
-            this.cmbEtiquetaPilotes.SelectedItem = Properties.Settings.Default.EtiquetaIndependientePilotes;
-            this.cmbEtiquetaPlatea.SelectedItem = Properties.Settings.Default.EtiquetaIndependientePlatea;
-            this.cmbEtiquetaVigas.SelectedItem = Properties.Settings.Default.EtiquetaIndependienteVigas;            
-            this.cmbEtiquetaZapatas.SelectedItem = Properties.Settings.Default.EtiquetaIndependienteZapatas;
-            this.cmbEtiquetaZapataCorrida.SelectedItem = Properties.Settings.Default.EtiquetaIndependienteZapatasCorrida;
+            this.cmbEtiquetaArmadura.SelectedIndex = Properties.Settings.Default.EtiquetaIndependienteArmadura;
+            this.cmbEtiquetaAreaRefuerzo.SelectedIndex = Properties.Settings.Default.EtiquetaIndependienteAreaRefuerzo;
+            this.cmbEtiquetaArmaduraEnSistema.SelectedIndex = Properties.Settings.Default.EtiquetaIndependienteArmaduraEnSistema;
+            this.cmbEtiquetaColumnas.SelectedIndex = Properties.Settings.Default.EtiquetaIndependienteColumnas;
+            this.cmbEtiquetaLosas.SelectedIndex = Properties.Settings.Default.EtiquetaIndependienteLosas;
+            this.cmbEtiquetaMuros.SelectedIndex = Properties.Settings.Default.EtiquetaIndependienteMuros;
+            this.cmbEtiquetaPilotes.SelectedIndex = Properties.Settings.Default.EtiquetaIndependientePilotes;
+            this.cmbEtiquetaPlatea.SelectedIndex = Properties.Settings.Default.EtiquetaIndependientePlatea;
+            this.cmbEtiquetaVigas.SelectedIndex = Properties.Settings.Default.EtiquetaIndependienteVigas;            
+            this.cmbEtiquetaZapatas.SelectedIndex = Properties.Settings.Default.EtiquetaIndependienteZapatas;
+            this.cmbEtiquetaZapataCorrida.SelectedIndex = Properties.Settings.Default.EtiquetaIndependienteZapatasCorrida;            
         }
 
         /// <summary> Asigna las imagenes predeterminadas cuando carga el formulario </summary>
@@ -408,23 +408,23 @@ namespace Jump
             Properties.Settings.Default.rbtnArmaduraDibujoLineasBorde = this.rbtnLineasBorde.Checked;
             Properties.Settings.Default.rbtnTextoArmaduraArriba = this.rbtnTextoArriba.Checked;
             Properties.Settings.Default.rbtnTextoArmaduraAbajo = this.rbtnTextoAbajo.Checked;
-            Properties.Settings.Default.EtiquetaIndependienteArmadura = Convert.ToInt32(this.cmbEtiquetaArmadura.SelectedItem);
-            Properties.Settings.Default.EtiquetaIndependienteAreaRefuerzo = Convert.ToInt32(this.cmbEtiquetaAreaRefuerzo.SelectedItem);
-            Properties.Settings.Default.EtiquetaIndependienteArmaduraEnSistema = Convert.ToInt32(this.cmbEtiquetaArmaduraEnSistema.SelectedItem);
+            Properties.Settings.Default.EtiquetaIndependienteArmadura = this.cmbEtiquetaArmadura.SelectedIndex;
+            Properties.Settings.Default.EtiquetaIndependienteAreaRefuerzo = this.cmbEtiquetaAreaRefuerzo.SelectedIndex;
+            Properties.Settings.Default.EtiquetaIndependienteArmaduraEnSistema = this.cmbEtiquetaArmaduraEnSistema.SelectedIndex;
 
             // Pestaña 3
             Tools.GuardarDataGridViewEnDocumento(this.dgvEstiloLinea, this.doc);
             CambiarDibujoArmaduras();
 
             // Pestaña 4
-            Properties.Settings.Default.EtiquetaIndependienteColumnas = Convert.ToInt32(this.cmbEtiquetaColumnas.SelectedItem);
-            Properties.Settings.Default.EtiquetaIndependienteLosas = Convert.ToInt32(this.cmbEtiquetaLosas.SelectedItem);
-            Properties.Settings.Default.EtiquetaIndependienteMuros = Convert.ToInt32(this.cmbEtiquetaMuros.SelectedItem);
-            Properties.Settings.Default.EtiquetaIndependientePilotes = Convert.ToInt32(this.cmbEtiquetaPilotes.SelectedItem);
-            Properties.Settings.Default.EtiquetaIndependientePlatea = Convert.ToInt32(this.cmbEtiquetaPlatea.SelectedItem);
-            Properties.Settings.Default.EtiquetaIndependienteVigas = Convert.ToInt32(this.cmbEtiquetaVigas.SelectedItem);
-            Properties.Settings.Default.EtiquetaIndependienteZapatas = Convert.ToInt32(this.cmbEtiquetaZapatas.SelectedItem);
-            Properties.Settings.Default.EtiquetaIndependienteZapatasCorrida = Convert.ToInt32(this.cmbEtiquetaZapataCorrida.SelectedItem);
+            Properties.Settings.Default.EtiquetaIndependienteColumnas = this.cmbEtiquetaColumnas.SelectedIndex;
+            Properties.Settings.Default.EtiquetaIndependienteLosas = this.cmbEtiquetaLosas.SelectedIndex;
+            Properties.Settings.Default.EtiquetaIndependienteMuros = this.cmbEtiquetaMuros.SelectedIndex;
+            Properties.Settings.Default.EtiquetaIndependientePilotes = this.cmbEtiquetaPilotes.SelectedIndex;
+            Properties.Settings.Default.EtiquetaIndependientePlatea = this.cmbEtiquetaPlatea.SelectedIndex;
+            Properties.Settings.Default.EtiquetaIndependienteVigas = this.cmbEtiquetaVigas.SelectedIndex;
+            Properties.Settings.Default.EtiquetaIndependienteZapatas = this.cmbEtiquetaZapatas.SelectedIndex;
+            Properties.Settings.Default.EtiquetaIndependienteZapatasCorrida = this.cmbEtiquetaZapataCorrida.SelectedIndex;
 
             // Guarda las configuraciones
             Properties.Settings.Default.Save();

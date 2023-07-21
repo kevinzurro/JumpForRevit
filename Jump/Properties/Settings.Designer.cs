@@ -50,12 +50,12 @@ namespace Jump.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("5")]
-        public int zapataIndiceComboboxEscalaVista {
+        public int indiceComboboxEscalaVistaZapata {
             get {
-                return ((int)(this["zapataIndiceComboboxEscalaVista"]));
+                return ((int)(this["indiceComboboxEscalaVistaZapata"]));
             }
             set {
-                this["zapataIndiceComboboxEscalaVista"] = value;
+                this["indiceComboboxEscalaVistaZapata"] = value;
             }
         }
         
@@ -170,12 +170,12 @@ namespace Jump.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int zapataIndiceComboboxTextoBarra {
+        public int indiceComboboxTextoBarra {
             get {
-                return ((int)(this["zapataIndiceComboboxTextoBarra"]));
+                return ((int)(this["indiceComboboxTextoBarra"]));
             }
             set {
-                this["zapataIndiceComboboxTextoBarra"] = value;
+                this["indiceComboboxTextoBarra"] = value;
             }
         }
         
@@ -253,7 +253,7 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public int EtiquetaIndependienteZapatasCorrida {
             get {
                 return ((int)(this["EtiquetaIndependienteZapatasCorrida"]));
@@ -265,7 +265,7 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public int EtiquetaIndependientePlatea {
             get {
                 return ((int)(this["EtiquetaIndependientePlatea"]));
@@ -277,7 +277,7 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public int EtiquetaIndependienteMuros {
             get {
                 return ((int)(this["EtiquetaIndependienteMuros"]));
@@ -289,7 +289,7 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public int EtiquetaIndependientePilotes {
             get {
                 return ((int)(this["EtiquetaIndependientePilotes"]));
@@ -349,7 +349,7 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public int EtiquetaIndependienteColumnas {
             get {
                 return ((int)(this["EtiquetaIndependienteColumnas"]));
@@ -361,7 +361,7 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public int EtiquetaIndependienteLosas {
             get {
                 return ((int)(this["EtiquetaIndependienteLosas"]));
@@ -373,7 +373,7 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public int EtiquetaIndependienteAreaRefuerzo {
             get {
                 return ((int)(this["EtiquetaIndependienteAreaRefuerzo"]));
@@ -385,7 +385,7 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public int EtiquetaIndependienteArmaduraEnSistema {
             get {
                 return ((int)(this["EtiquetaIndependienteArmaduraEnSistema"]));
@@ -404,6 +404,30 @@ namespace Jump.Properties {
             }
             set {
                 this["toleranciaSuperposicionArmadura"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int indiceComboboxEscalaVistaColumna {
+            get {
+                return ((int)(this["indiceComboboxEscalaVistaColumna"]));
+            }
+            set {
+                this["indiceComboboxEscalaVistaColumna"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int indiceComboboxEscalaVistaViga {
+            get {
+                return ((int)(this["indiceComboboxEscalaVistaViga"]));
+            }
+            set {
+                this["indiceComboboxEscalaVistaViga"] = value;
             }
         }
     }

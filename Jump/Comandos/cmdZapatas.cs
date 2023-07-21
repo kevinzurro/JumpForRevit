@@ -33,8 +33,8 @@ namespace Jump
                 Zapata.clase = typeof(FamilyInstance);
                 Zapata.categoria = BuiltInCategory.OST_StructuralFoundation;
                 Zapata.categoriaEtiqueta = BuiltInCategory.OST_StructuralFoundationTags;
-                Zapata.indiceComboboxTextoBarra = Properties.Settings.Default.zapataIndiceComboboxTextoBarra;
-                Zapata.indiceComboboxEscalaVista = Properties.Settings.Default.zapataIndiceComboboxEscalaVista;
+                Zapata.indiceComboboxTextoBarra = Properties.Settings.Default.indiceComboboxTextoBarra;
+                Zapata.indiceComboboxEscalaVista = Properties.Settings.Default.indiceComboboxEscalaVistaZapata;
                 Zapata.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.EtiquetaIndependienteZapatas;
                 Zapata.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.EtiquetaCotaProfundidad;
                 Zapata.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.EtiquetaIndependienteArmadura;
@@ -47,8 +47,8 @@ namespace Jump
                 Zapata.ShowDialog();
 
                 // Guarda el indice en las configuraciones
-                Properties.Settings.Default.zapataIndiceComboboxTextoBarra = Zapata.indiceComboboxTextoBarra;
-                Properties.Settings.Default.zapataIndiceComboboxEscalaVista = Zapata.indiceComboboxEscalaVista;
+                Properties.Settings.Default.indiceComboboxTextoBarra = Zapata.indiceComboboxTextoBarra;
+                Properties.Settings.Default.indiceComboboxEscalaVistaZapata = Zapata.indiceComboboxEscalaVista;
                 Properties.Settings.Default.Save();
 
                 if (Zapata.bandera)

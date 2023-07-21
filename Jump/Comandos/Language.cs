@@ -150,6 +150,24 @@ namespace Jump
             Espanol.Add("Col1", "Columnas");
             Espanol.Add("Col2", "Columnas descripción corta");
             Espanol.Add("Col3", "Columnas descripción larga");
+            Espanol.Add("Col4", "Jump");
+            Espanol.Add("Col1-2", "Selección");
+            Espanol.Add("Col1-3", "Todos");
+            Espanol.Add("Col1-4", "Elementos seleccionados");
+            Espanol.Add("Col1-5", "Elementos de la lista");
+            Espanol.Add("Col2-1", "Etiquetas");
+            Espanol.Add("Col2-2", "Escala");
+            Espanol.Add("Col2-3", "Etiqueta de columna");
+            Espanol.Add("Col2-4", "Etiqueta de armadura");
+            Espanol.Add("Col2-5", "Longitud parcial de la barra");
+            Espanol.Add("Col2-6", "Cota lineal");
+            Espanol.Add("Col2-7", "Cota de elevación");
+            Espanol.Add("Col3-1", "Vista previa");
+            Espanol.Add("Col4-1", "Acciones a realizar");
+            Espanol.Add("Col4-2", "Vista X-X");
+            Espanol.Add("Col4-3", "Vista Y-Y");
+            Espanol.Add("Col5-1", "Ejecutar");
+            Espanol.Add("Col5-2", "Comando de Columnas");
 
             Espanol.Add("Mur1", "Muros");
             Espanol.Add("Mur2", "Muros descripción corta");
@@ -257,6 +275,16 @@ namespace Jump
 
             Espanol.Add("BarPro1", "Procesando ");
             Espanol.Add("BarPro2", " elementos de ");
+
+            Espanol.Add("Pos0", "Arriba Izquierda");            
+            Espanol.Add("Pos1", "Arriba Centro");
+            Espanol.Add("Pos2", "Arriba Derecha");
+            Espanol.Add("Pos3", "Medio Izquierda");
+            Espanol.Add("Pos4", "Medio Centro");
+            Espanol.Add("Pos5", "Medio Derecha");
+            Espanol.Add("Pos6", "Abajo Izquierda");
+            Espanol.Add("Pos7", "Abajo Centro");
+            Espanol.Add("Pos8", "Abajo Derecha");
         }
 
         ///<summary> Carga el idioma Frances </summary>

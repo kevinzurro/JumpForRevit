@@ -39,7 +39,6 @@
             this.gbxEjecutar = new System.Windows.Forms.GroupBox();
             this.chbVistaYY = new System.Windows.Forms.CheckBox();
             this.chbVistaXX = new System.Windows.Forms.CheckBox();
-            this.btnEjecutar = new System.Windows.Forms.Button();
             this.gbxEtiquetas = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -68,6 +67,9 @@
             this.rbtnElementosSeleccionados = new System.Windows.Forms.RadioButton();
             this.rbtnTodos = new System.Windows.Forms.RadioButton();
             this.lstElementos = new System.Windows.Forms.ListBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnAceptar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.gbxEtiquetaVistaPrevia.SuspendLayout();
@@ -82,6 +84,7 @@
             this.gbxSeleccion.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -90,7 +93,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1084, 562);
+            this.panel1.Size = new System.Drawing.Size(1084, 561);
             this.panel1.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -103,12 +106,14 @@
             this.tableLayoutPanel1.Controls.Add(this.gbxEtiquetaVistaPrevia, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.gbxSeleccion, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel4, 2, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1084, 562);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1084, 561);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // gbxEtiquetaVistaPrevia
@@ -117,7 +122,7 @@
             this.gbxEtiquetaVistaPrevia.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbxEtiquetaVistaPrevia.Location = new System.Drawing.Point(761, 3);
             this.gbxEtiquetaVistaPrevia.Name = "gbxEtiquetaVistaPrevia";
-            this.gbxEtiquetaVistaPrevia.Size = new System.Drawing.Size(320, 556);
+            this.gbxEtiquetaVistaPrevia.Size = new System.Drawing.Size(320, 515);
             this.gbxEtiquetaVistaPrevia.TabIndex = 8;
             this.gbxEtiquetaVistaPrevia.TabStop = false;
             this.gbxEtiquetaVistaPrevia.Text = "Vista previa";
@@ -134,7 +139,7 @@
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(314, 536);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(314, 495);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // PreviewEtiquetas
@@ -142,7 +147,7 @@
             this.PreviewEtiquetas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PreviewEtiquetas.Location = new System.Drawing.Point(3, 48);
             this.PreviewEtiquetas.Name = "PreviewEtiquetas";
-            this.PreviewEtiquetas.Size = new System.Drawing.Size(308, 485);
+            this.PreviewEtiquetas.Size = new System.Drawing.Size(308, 444);
             this.PreviewEtiquetas.TabIndex = 2;
             this.PreviewEtiquetas.Text = "Vista Previa";
             this.PreviewEtiquetas.Child = null;
@@ -181,16 +186,15 @@
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(487, 562);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(487, 521);
             this.tableLayoutPanel4.TabIndex = 7;
             // 
             // gbxEjecutar
             // 
             this.gbxEjecutar.Controls.Add(this.chbVistaYY);
             this.gbxEjecutar.Controls.Add(this.chbVistaXX);
-            this.gbxEjecutar.Controls.Add(this.btnEjecutar);
             this.gbxEjecutar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbxEjecutar.Location = new System.Drawing.Point(3, 485);
+            this.gbxEjecutar.Location = new System.Drawing.Point(3, 444);
             this.gbxEjecutar.Name = "gbxEjecutar";
             this.gbxEjecutar.Padding = new System.Windows.Forms.Padding(6);
             this.gbxEjecutar.Size = new System.Drawing.Size(481, 74);
@@ -220,25 +224,13 @@
             this.chbVistaXX.Text = "Vista X-X";
             this.chbVistaXX.UseVisualStyleBackColor = true;
             // 
-            // btnEjecutar
-            // 
-            this.btnEjecutar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEjecutar.Location = new System.Drawing.Point(216, 23);
-            this.btnEjecutar.Name = "btnEjecutar";
-            this.btnEjecutar.Size = new System.Drawing.Size(256, 44);
-            this.btnEjecutar.TabIndex = 12;
-            this.btnEjecutar.Text = "Ejecutar";
-            this.btnEjecutar.UseVisualStyleBackColor = true;
-            this.btnEjecutar.Click += new System.EventHandler(this.btnEjecutar_Click);
-            // 
             // gbxEtiquetas
             // 
             this.gbxEtiquetas.Controls.Add(this.tableLayoutPanel6);
             this.gbxEtiquetas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbxEtiquetas.Location = new System.Drawing.Point(3, 3);
             this.gbxEtiquetas.Name = "gbxEtiquetas";
-            this.gbxEtiquetas.Size = new System.Drawing.Size(481, 476);
+            this.gbxEtiquetas.Size = new System.Drawing.Size(481, 435);
             this.gbxEtiquetas.TabIndex = 2;
             this.gbxEtiquetas.TabStop = false;
             this.gbxEtiquetas.Text = "Etiquetas y cotas";
@@ -256,7 +248,7 @@
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(475, 456);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(475, 415);
             this.tableLayoutPanel6.TabIndex = 2;
             // 
             // panel7
@@ -270,7 +262,7 @@
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel7.Location = new System.Drawing.Point(213, 3);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(259, 450);
+            this.panel7.Size = new System.Drawing.Size(259, 409);
             this.panel7.TabIndex = 5;
             // 
             // cmbEscalaVista
@@ -362,7 +354,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(3, 3);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(204, 450);
+            this.panel6.Size = new System.Drawing.Size(204, 409);
             this.panel6.TabIndex = 4;
             // 
             // lblEscala
@@ -487,7 +479,7 @@
             this.gbxSeleccion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbxSeleccion.Location = new System.Drawing.Point(3, 3);
             this.gbxSeleccion.Name = "gbxSeleccion";
-            this.gbxSeleccion.Size = new System.Drawing.Size(265, 556);
+            this.gbxSeleccion.Size = new System.Drawing.Size(265, 515);
             this.gbxSeleccion.TabIndex = 6;
             this.gbxSeleccion.TabStop = false;
             this.gbxSeleccion.Text = "Selección";
@@ -504,7 +496,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 115F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(259, 536);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(259, 495);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // panel2
@@ -568,14 +560,46 @@
             this.lstElementos.Location = new System.Drawing.Point(3, 118);
             this.lstElementos.Name = "lstElementos";
             this.lstElementos.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lstElementos.Size = new System.Drawing.Size(253, 415);
+            this.lstElementos.Size = new System.Drawing.Size(253, 374);
             this.lstElementos.TabIndex = 1;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.btnCancelar);
+            this.panel4.Controls.Add(this.btnAceptar);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(761, 524);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(320, 34);
+            this.panel4.TabIndex = 9;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.Location = new System.Drawing.Point(227, 3);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(90, 28);
+            this.btnCancelar.TabIndex = 13;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnAceptar
+            // 
+            this.btnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAceptar.Location = new System.Drawing.Point(131, 3);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(90, 28);
+            this.btnAceptar.TabIndex = 12;
+            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnEjecutar_Click);
             // 
             // frmDetalleAutomatico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1084, 562);
+            this.ClientSize = new System.Drawing.Size(1084, 561);
             this.Controls.Add(this.panel1);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -606,6 +630,7 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -619,7 +644,7 @@
         private System.Windows.Forms.GroupBox gbxEjecutar;
         private System.Windows.Forms.CheckBox chbVistaYY;
         private System.Windows.Forms.CheckBox chbVistaXX;
-        private System.Windows.Forms.Button btnEjecutar;
+        private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.GroupBox gbxEtiquetas;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.Panel panel7;
@@ -652,5 +677,7 @@
         private System.Windows.Forms.Integration.ElementHost PreviewEtiquetas;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.ComboBox cmbElementosPreview;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }

@@ -2453,6 +2453,369 @@ namespace Jump
 
         #endregion
 
+        #region Etiqueta de Armaduras
+
+        ///<summary> Crea una etiqueta para la armadura según la configuración del usuario </summary>
+        public static IndependentTag CrearEtiquetaArmaduraSegunConfiguracion(Document doc, View vista, Element elem, FamilySymbol tipoEtiqueta, int posicion)
+        {
+            // Crea la etiqueta a devolver
+            IndependentTag etiqueta = null;
+
+            // Verifica que posición sea
+            switch (posicion)
+            {
+                // Arriba a la izquierda
+                case (int)Posicion.ArribaIzquierda:
+                    etiqueta = CrearEtiquetaArmaduraArribaIzquierda(doc, vista, elem, tipoEtiqueta);
+                    break;
+
+                // Arriba centro
+                case (int)Posicion.ArribaCentro:
+                    etiqueta = CrearEtiquetaArmaduraArribaMedio(doc, vista, elem, tipoEtiqueta);
+                    break;
+
+                // Arriba a la derecha
+                case (int)Posicion.ArribaDerecha:
+                    etiqueta = CrearEtiquetaArmaduraArribaDerecha(doc, vista, elem, tipoEtiqueta);
+                    break;
+
+                // Centro a la izquierda
+                case (int)Posicion.MedioIzquierda:
+                    etiqueta = CrearEtiquetaArmaduraCentroIzquierda(doc, vista, elem, tipoEtiqueta);
+                    break;
+
+                // Centro medio
+                case (int)Posicion.MedioCentro:
+                    etiqueta = CrearEtiquetaArmaduraCentroMedio(doc, vista, elem, tipoEtiqueta);
+                    break;
+
+                // Centro a la derecha
+                case (int)Posicion.MedioDerecha:
+                    etiqueta = CrearEtiquetaArmaduraCentroDerecha(doc, vista, elem, tipoEtiqueta);
+                    break;
+
+                // Abajo a la izquierda
+                case (int)Posicion.AbajoIzquierda:
+                    etiqueta = CrearEtiquetaArmaduraAbajoIzquierda(doc, vista, elem, tipoEtiqueta);
+                    break;
+
+                // Abajo centro
+                case (int)Posicion.AbajoCentro:
+                    etiqueta = CrearEtiquetaArmaduraAbajoMedio(doc, vista, elem, tipoEtiqueta);
+                    break;
+
+                // Abajo a la derecha
+                case (int)Posicion.AbajoDerecha:
+                    etiqueta = CrearEtiquetaArmaduraAbajoDerecha(doc, vista, elem, tipoEtiqueta);
+                    break;
+
+                default:
+                    break;
+            }
+
+            return etiqueta;
+        }
+
+        ///<summary> Crea una etiqueta horizontal en la parte superior izquierda sin guía en una vista particular </summary>
+        public static IndependentTag CrearEtiquetaArmaduraArribaIzquierda(Document doc, View vista, Element elem, FamilySymbol tipoEtiqueta)
+        {
+            // Obtiene la referencia del elemento
+            Reference referencia = new Reference(elem);
+
+            // Crea la caja que contiene al elemento
+            BoundingBoxXYZ bb = ObtenerRecuadroElementoParaleloAVista(doc, vista, elem);
+
+            // Obtiene la ubicación del punto superior izquierdo
+            double x = bb.Min.X;
+            double y = bb.Min.Y;
+            double z = bb.Max.Z;
+
+            // Asigna donde se colocará la etiqueta
+            XYZ punto = new XYZ(x, y, z);
+
+            // Crea la etiqueta
+            IndependentTag etiqueta = IndependentTag.Create(doc, tipoEtiqueta.Id, vista.Id, referencia, false, TagOrientation.Horizontal, punto);
+
+            // Obtiene la caja que contiene a la etiqueta
+            BoundingBoxXYZ bbetiqueta = etiqueta.get_BoundingBox(vista);
+
+            // Obtiene mitad de la altura de la etiqueta
+            double altura = (bbetiqueta.Max.Z - bbetiqueta.Min.Z) / 2;
+
+            // Asigna la nueva ubicación a la etiqueta
+            XYZ puntoFinal = new XYZ(x, y, (z + altura));
+
+            // Coloca la etiqueta correctamente
+            etiqueta.TagHeadPosition = puntoFinal;
+
+            return etiqueta;
+        }
+
+        ///<summary> Crea una etiqueta horizontal en la parte superior central sin guía en una vista particular </summary>
+        public static IndependentTag CrearEtiquetaArmaduraArribaMedio(Document doc, View vista, Element elem, FamilySymbol tipoEtiqueta)
+        {
+            // Obtiene la referencia del elemento
+            Reference referencia = new Reference(elem);
+
+            // Crea la caja que contiene al elemento
+            BoundingBoxXYZ bb = ObtenerRecuadroElementoParaleloAVista(doc, vista, elem);
+
+            // Obtiene el volumen tridimensional del elemento
+            double xMedio = (bb.Max.X - bb.Min.X) / 2;
+            double yMedio = (bb.Max.Y - bb.Min.Y) / 2;
+
+            // Obtiene la ubicación del punto medio superior
+            double x = (bb.Min.X + xMedio);
+            double y = (bb.Min.Y + yMedio);
+            double z = bb.Max.Z;
+
+            // Asigna donde se colocará la etiqueta
+            XYZ punto = new XYZ(x, y, z);
+
+            // Crea la etiqueta
+            IndependentTag etiqueta = IndependentTag.Create(doc, tipoEtiqueta.Id, vista.Id, referencia, false, TagOrientation.Horizontal, punto);
+
+            // Obtiene la caja que contiene a la etiqueta
+            BoundingBoxXYZ bbetiqueta = etiqueta.get_BoundingBox(vista);
+
+            // Obtiene mitad de la altura de la etiqueta
+            double altura = (bbetiqueta.Max.Z - bbetiqueta.Min.Z) / 2;
+
+            // Asigna la nueva ubicación a la etiqueta
+            XYZ puntoFinal = new XYZ(x, y, (z + altura));
+
+            // Coloca la etiqueta correctamente
+            etiqueta.TagHeadPosition = puntoFinal;
+
+            return etiqueta;
+        }
+
+        ///<summary> Crea una etiqueta horizontal en la parte superior derecha sin guía en una vista particular</summary>
+        public static IndependentTag CrearEtiquetaArmaduraArribaDerecha(Document doc, View vista, Element elem, FamilySymbol tipoEtiqueta)
+        {
+            // Obtiene la referencia del elemento
+            Reference referencia = new Reference(elem);
+
+            // Crea la caja que contiene al elemento
+            BoundingBoxXYZ bb = ObtenerRecuadroElementoParaleloAVista(doc, vista, elem);
+
+            // Obtiene la ubicación del punto superior derecho
+            double x = bb.Max.X;
+            double y = bb.Max.Y;
+            double z = bb.Max.Z;
+
+            // Asigna donde se colocará la etiqueta
+            XYZ punto = new XYZ(x, y, z);
+
+            // Crea la etiqueta
+            IndependentTag etiqueta = IndependentTag.Create(doc, tipoEtiqueta.Id, vista.Id, referencia, false, TagOrientation.Horizontal, punto);
+
+            // Obtiene la caja que contiene a la etiqueta
+            BoundingBoxXYZ bbetiqueta = etiqueta.get_BoundingBox(vista);
+
+            // Obtiene mitad de la altura de la etiqueta
+            double altura = (bbetiqueta.Max.Z - bbetiqueta.Min.Z) / 2;
+
+            // Asigna la nueva ubicación a la etiqueta
+            XYZ puntoFinal = new XYZ(x, y, (z + altura));
+
+            // Coloca la etiqueta correctamente
+            etiqueta.TagHeadPosition = puntoFinal;
+
+            return etiqueta;
+        }
+
+        ///<summary> Crea una etiqueta horizontal en la parte media izquierda sin guía en una vista particular </summary>
+        public static IndependentTag CrearEtiquetaArmaduraCentroIzquierda(Document doc, View vista, Element elem, FamilySymbol tipoEtiqueta)
+        {
+            // Obtiene la referencia del elemento
+            Reference referencia = new Reference(elem);
+
+            // Crea la caja que contiene al elemento
+            BoundingBoxXYZ bb = ObtenerRecuadroElementoParaleloAVista(doc, vista, elem);
+
+            // Obtiene el volumen tridimensional del elemento
+            double zMedio = (bb.Max.Z - bb.Min.Z) / 2;
+
+            // Obtiene la ubicación del punto central izquierdo
+            double x = bb.Min.X;
+            double y = bb.Min.Y;
+            double z = (bb.Min.Z + zMedio);
+
+            // Asigna donde se colocará la etiqueta
+            XYZ punto = new XYZ(x, y, z);
+
+            // Crea la etiqueta
+            IndependentTag etiqueta = IndependentTag.Create(doc, tipoEtiqueta.Id, vista.Id, referencia, false, TagOrientation.Horizontal, punto);
+
+            return etiqueta;
+        }
+
+        ///<summary> Crea una etiqueta horizontal en la parte media central sin guía en una vista particular </summary>
+        public static IndependentTag CrearEtiquetaArmaduraCentroMedio(Document doc, View vista, Element elem, FamilySymbol tipoEtiqueta)
+        {
+            // Obtiene la referencia del elemento
+            Reference referencia = new Reference(elem);
+
+            // Crea la caja que contiene al elemento
+            BoundingBoxXYZ bb = ObtenerRecuadroElementoParaleloAVista(doc, vista, elem);
+
+            // Obtiene el volumen tridimensional del elemento
+            double xMedio = (bb.Max.X - bb.Min.X) / 2;
+            double yMedio = (bb.Max.Y - bb.Min.Y) / 2;
+            double zMedio = (bb.Max.Z - bb.Min.Z) / 2;
+
+            // Obtiene la ubicación del punto central medio
+            double x = (bb.Min.X + xMedio);
+            double y = (bb.Min.Y + yMedio);
+            double z = (bb.Min.Z + zMedio);
+
+            // Asigna donde se colocará la etiqueta
+            XYZ punto = new XYZ(x, y, z);
+
+            // Crea la etiqueta
+            IndependentTag etiqueta = IndependentTag.Create(doc, tipoEtiqueta.Id, vista.Id, referencia, false, TagOrientation.Horizontal, punto);
+
+            return etiqueta;
+        }
+
+        ///<summary> Crea una etiqueta horizontal en la parte media derecha sin guía en una vista particular </summary>
+        public static IndependentTag CrearEtiquetaArmaduraCentroDerecha(Document doc, View vista, Element elem, FamilySymbol tipoEtiqueta)
+        {
+            // Obtiene la referencia del elemento
+            Reference referencia = new Reference(elem);
+
+            // Crea la caja que contiene al elemento
+            BoundingBoxXYZ bb = ObtenerRecuadroElementoParaleloAVista(doc, vista, elem);
+
+            // Obtiene el volumen tridimensional del elemento
+            double zMedio = (bb.Max.Z - bb.Min.Z) / 2;
+
+            // Obtiene la ubicación del punto central derecho
+            double x = bb.Max.X;
+            double y = bb.Max.Y;
+            double z = (bb.Min.Z + zMedio);
+
+            // Asigna donde se colocará la etiqueta
+            XYZ punto = new XYZ(x, y, z);
+
+            // Crea la etiqueta
+            IndependentTag etiqueta = IndependentTag.Create(doc, tipoEtiqueta.Id, vista.Id, referencia, false, TagOrientation.Horizontal, punto);
+
+            return etiqueta;
+        }
+
+        ///<summary> Crea una etiqueta horizontal en la parte inferior izquierda sin guía en una vista particular </summary>
+        public static IndependentTag CrearEtiquetaArmaduraAbajoIzquierda(Document doc, View vista, Element elem, FamilySymbol tipoEtiqueta)
+        {
+            // Obtiene la referencia del elemento
+            Reference referencia = new Reference(elem);
+
+            // Crea la caja que contiene al elemento
+            BoundingBoxXYZ bb = ObtenerRecuadroElementoParaleloAVista(doc, vista, elem);
+
+            // Obtiene la ubicación del punto inferior izquierdo
+            double x = bb.Min.X;
+            double y = bb.Min.Y;
+            double z = bb.Min.Z;
+
+            // Asigna donde se colocará la etiqueta
+            XYZ punto = new XYZ(x, y, z);
+
+            // Crea la etiqueta
+            IndependentTag etiqueta = IndependentTag.Create(doc, tipoEtiqueta.Id, vista.Id, referencia, false, TagOrientation.Horizontal, punto);
+
+            // Obtiene la caja que contiene a la etiqueta
+            BoundingBoxXYZ bbetiqueta = etiqueta.get_BoundingBox(vista);
+
+            // Obtiene mitad de la altura de la etiqueta
+            double altura = (bbetiqueta.Max.Z - bbetiqueta.Min.Z) / 2;
+
+            // Asigna la nueva ubicación a la etiqueta
+            XYZ puntoFinal = new XYZ(x, y, (z - altura));
+
+            // Coloca la etiqueta correctamente
+            etiqueta.TagHeadPosition = puntoFinal;
+
+            return etiqueta;
+        }
+
+        ///<summary> Crea una etiqueta horizontal en la parte inferior central sin guía en una vista particular </summary>
+        public static IndependentTag CrearEtiquetaArmaduraAbajoMedio(Document doc, View vista, Element elem, FamilySymbol tipoEtiqueta)
+        {
+            // Obtiene la referencia del elemento
+            Reference referencia = new Reference(elem);
+
+            // Crea la caja que contiene al elemento
+            BoundingBoxXYZ bb = ObtenerRecuadroElementoParaleloAVista(doc, vista, elem);
+
+            // Obtiene el volumen tridimensional del elemento
+            double xMedio = (bb.Max.X - bb.Min.X) / 2;
+            double yMedio = (bb.Max.Y - bb.Min.Y) / 2;
+
+            // Obtiene la ubicación del punto medio inferior
+            double x = (bb.Min.X + xMedio);
+            double y = (bb.Min.Y + yMedio);
+            double z = bb.Min.Z;
+
+            // Asigna donde se colocará la etiqueta
+            XYZ punto = new XYZ(x, y, z);
+
+            // Crea la etiqueta
+            IndependentTag etiqueta = IndependentTag.Create(doc, tipoEtiqueta.Id, vista.Id, referencia, false, TagOrientation.Horizontal, punto);
+
+            // Obtiene la caja que contiene a la etiqueta
+            BoundingBoxXYZ bbetiqueta = etiqueta.get_BoundingBox(vista);
+
+            // Obtiene mitad de la altura de la etiqueta
+            double altura = bbetiqueta.Max.Z - bbetiqueta.Min.Z;
+
+            // Asigna la nueva ubicación a la etiqueta
+            XYZ puntoFinal = new XYZ(x, y, (z - altura));
+
+            // Coloca la etiqueta correctamente
+            etiqueta.TagHeadPosition = puntoFinal;
+
+            return etiqueta;
+        }
+
+        ///<summary> Crea una etiqueta horizontal en la parte inferior derecha sin guía en una vista particular </summary>
+        public static IndependentTag CrearEtiquetaArmaduraAbajoDerecha(Document doc, View vista, Element elem, FamilySymbol tipoEtiqueta)
+        {
+            // Obtiene la referencia del elemento
+            Reference referencia = new Reference(elem);
+
+            // Crea la caja que contiene al elemento
+            BoundingBoxXYZ bb = ObtenerRecuadroElementoParaleloAVista(doc, vista, elem);
+
+            // Obtiene la ubicación del punto inferior derecho
+            double x = bb.Max.X;
+            double y = bb.Max.Y;
+            double z = bb.Min.Z;
+
+            // Asigna donde se colocará la etiqueta
+            XYZ punto = new XYZ(x, y, z);
+
+            // Crea la etiqueta
+            IndependentTag etiqueta = IndependentTag.Create(doc, tipoEtiqueta.Id, vista.Id, referencia, false, TagOrientation.Horizontal, punto);
+
+            // Obtiene la caja que contiene a la etiqueta
+            BoundingBoxXYZ bbetiqueta = etiqueta.get_BoundingBox(vista);
+
+            // Obtiene mitad de la altura de la etiqueta
+            double altura = (bbetiqueta.Max.Z - bbetiqueta.Min.Z) / 2;
+
+            // Asigna la nueva ubicación a la etiqueta
+            XYZ puntoFinal = new XYZ(x, y, (z - altura));
+
+            // Coloca la etiqueta correctamente
+            etiqueta.TagHeadPosition = puntoFinal;
+
+            return etiqueta;
+        }
+
+        #endregion
+
         #region Etiquetas Independientes
 
         ///<summary> Crea una etiqueta según la configuración del usuario </summary>
@@ -2555,7 +2918,7 @@ namespace Jump
             bool geometria = false;
 
             Face cara = ReferenciaCaraExtremaElementoEnVista(vista, arriba, elem, ref geometria);
-
+            
             // Obtiene las coordenadas 3D de la cara en un punto dado
             XYZ punto1 = cara.Evaluate(cara.GetBoundingBox().Min);
             XYZ punto2 = cara.Evaluate(cara.GetBoundingBox().Max);
@@ -3286,6 +3649,28 @@ namespace Jump
             }
 
             return componente;
+        }
+
+        ///<summary> Obtiene la dirección según la posición de la etiqueta </summary>
+        public static XYZ DireccionSegunPosicionDeEtiqueta(View vista, Element elem, IndependentTag etiqueta)
+        {
+            // Crea la dirección
+            XYZ direccion = new XYZ();
+
+            BoundingBoxXYZ bbEtiqueta = etiqueta.get_BoundingBox(vista);
+
+            XYZ baricentroEtiqueta = Tools.ObtenerBaricentroDeRecuadro(bbEtiqueta);
+
+            if (elem.Location is LocationCurve)
+            {
+                Curve curva = (elem.Location as LocationCurve).Curve;
+
+                IntersectionResult inter = curva.Project(baricentroEtiqueta);
+
+                direccion = baricentroEtiqueta - inter.XYZPoint;
+            }
+
+            return direccion;
         }
 
         ///<summary> Obtiene la dirección según la posición de la etiqueta </summary>

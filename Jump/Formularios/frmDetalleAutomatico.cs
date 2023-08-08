@@ -91,7 +91,9 @@ namespace Jump
             AsignarPreviewDeImagen();
 
             // Asignación de textos según el idioma
-            this.Name = Language.ObtenerTexto(IdiomaDelPrograma, clave + "4");
+            this.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "4");
+            btnAceptar.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "5");
+            btnCancelar.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "6");
             gbxSeleccion.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "1-2");
             rbtnTodos.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "1-3");
             rbtnElementosSeleccionados.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "1-4");
@@ -107,7 +109,6 @@ namespace Jump
             gbxEjecutar.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "4-1");
             chbVistaXX.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "4-2");
             chbVistaYY.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "4-3");
-            btnEjecutar.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "5-1");
         }
 
         /// <summary> Agrega los elementos estructurales a la lista </summary>
@@ -341,6 +342,19 @@ namespace Jump
             EliminarVistaPrevia();
         }
 
+        /// <summary> Botón cancelar del formulario </summary>
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            // Elimina las transacción grupal
+            CerrarTransacciónGeneral();
+
+            // Elimina las vistas previas
+            EliminarVistaPrevia();
+
+            // Cierra el formulario
+            this.Close();
+        }
+
         /// <summary> Ejecuta todas las acciones </summary>
         private void btnEjecutar_Click(object sender, EventArgs e)
         {
@@ -383,7 +397,7 @@ namespace Jump
                 // Muestra el formulario
                 barraProgreso.Show();
 
-                using (Transaction tra = new Transaction(this.doc, Language.ObtenerTexto(IdiomaDelPrograma, clave + "5-2"))) 
+                using (Transaction tra = new Transaction(this.doc, Language.ObtenerTexto(IdiomaDelPrograma, clave + "5-1"))) 
                 {
                     tra.Start();
 
@@ -539,13 +553,13 @@ namespace Jump
                     IndependentTag etiqueta = Tools.CrearEtiquetaSegunConfiguracion(this.doc, vista, elem, tipoEtiqueta, this.posicionEtiquetaIndependienteElemento);
 
                     // Obtiene la dirección según las configuraciones
-                    XYZ direccion = Tools.DireccionSegunPosicionDeEtiqueta(vista, this.posicionEtiquetaIndependienteElemento);
+                    XYZ direccion = Tools.DireccionSegunPosicionDeEtiqueta(vista, elem, etiqueta);//Tools.DireccionSegunPosicionDeEtiqueta(vista, this.posicionEtiquetaIndependienteElemento);
                     
                     // Obtiene el vector para mover la etiqueta
                     XYZ vector = Tools.ObtenerVectorParaMoverEtiqueta(vista, direccion, etiqueta, listaCotas);
                     
                     // Mueve la etiqueta
-                    //ElementTransformUtils.MoveElement(this.doc, etiqueta.Id, vector);
+                    ElementTransformUtils.MoveElement(this.doc, etiqueta.Id, vector);
 
                     // Agrega la etiqueta a la lista
                     listaEtiquetasCreadas.Add(etiqueta);
@@ -597,7 +611,7 @@ namespace Jump
                         FamilySymbol tipoEtiqueta = (FamilySymbol)this.cmbEtiquetaArmadura.SelectedItem;
 
                         // Crea la etiqueta independiente de la barra
-                        IndependentTag etiqueta = Tools.CrearEtiquetaSegunConfiguracion(this.doc, vista, barra, tipoEtiqueta, this.posicionEtiquetaIndependienteArmadura);
+                        IndependentTag etiqueta = Tools.CrearEtiquetaArmaduraSegunConfiguracion(this.doc, vista, barra, tipoEtiqueta, this.posicionEtiquetaIndependienteArmadura);
 
                         // Asigna la etiqueta
                         etiquetaArmadura = etiqueta;

@@ -338,12 +338,12 @@ namespace Jump.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("7")]
-        public int EtiquetaCotaProfundidad {
+        public int EtiquetaCotaProfundidadColumnas {
             get {
-                return ((int)(this["EtiquetaCotaProfundidad"]));
+                return ((int)(this["EtiquetaCotaProfundidadColumnas"]));
             }
             set {
-                this["EtiquetaCotaProfundidad"] = value;
+                this["EtiquetaCotaProfundidadColumnas"] = value;
             }
         }
         
@@ -428,6 +428,78 @@ namespace Jump.Properties {
             }
             set {
                 this["indiceComboboxEscalaVistaViga"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int EtiquetaCotaProfundidadLosas {
+            get {
+                return ((int)(this["EtiquetaCotaProfundidadLosas"]));
+            }
+            set {
+                this["EtiquetaCotaProfundidadLosas"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int EtiquetaCotaProfundidadMuros {
+            get {
+                return ((int)(this["EtiquetaCotaProfundidadMuros"]));
+            }
+            set {
+                this["EtiquetaCotaProfundidadMuros"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int EtiquetaCotaProfundidadPlatea {
+            get {
+                return ((int)(this["EtiquetaCotaProfundidadPlatea"]));
+            }
+            set {
+                this["EtiquetaCotaProfundidadPlatea"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("8")]
+        public int EtiquetaCotaProfundidadVigas {
+            get {
+                return ((int)(this["EtiquetaCotaProfundidadVigas"]));
+            }
+            set {
+                this["EtiquetaCotaProfundidadVigas"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int EtiquetaCotaProfundidadZapatas {
+            get {
+                return ((int)(this["EtiquetaCotaProfundidadZapatas"]));
+            }
+            set {
+                this["EtiquetaCotaProfundidadZapatas"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int EtiquetaCotaProfundidadZapatasCorrida {
+            get {
+                return ((int)(this["EtiquetaCotaProfundidadZapatasCorrida"]));
+            }
+            set {
+                this["EtiquetaCotaProfundidadZapatasCorrida"] = value;
             }
         }
     }

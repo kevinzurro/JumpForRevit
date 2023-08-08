@@ -87,6 +87,7 @@ namespace Jump
             Espanol.Add("DetArm1", "Despiece \nde barra");
             Espanol.Add("DetArm2", "Despiece de barra descripción corta");
             Espanol.Add("DetArm3", "Despiece de barra descripción larga");
+            Espanol.Add("DetArm4", "Despiece de barra");
             Espanol.Add("DetArm1-1", "Etiqueta de armadura");
             Espanol.Add("DetArm1-2", "Longitud parcial de la barra");
             Espanol.Add("DetArm2-1", "Despiece de armadura");
@@ -96,19 +97,30 @@ namespace Jump
             Espanol.Add("Pil1", "Pilotes");
             Espanol.Add("Pil2", "Pilotes descripción corta");
             Espanol.Add("Pil3", "Pilotes descripción larga");
+            Espanol.Add("Pil4", "Pilotes");
+            Espanol.Add("Pil5", "Aceptar");
+            Espanol.Add("Pil6", "Cancelar");
 
             Espanol.Add("ZapCor1", "Zapata \nCorrida");
             Espanol.Add("ZapCor2", "Zapata Corrida descripción corta");
             Espanol.Add("ZapCor3", "Zapata Corrida descripción larga");
+            Espanol.Add("ZapCor4", "Zapata Corrida");
+            Espanol.Add("ZapCor5", "Aceptar");
+            Espanol.Add("ZapCor6", "Cancelar");
 
             Espanol.Add("Pla1", "Platea");
             Espanol.Add("Pla2", "Platea descripción corta");
             Espanol.Add("Pla3", "Platea descripción larga");
+            Espanol.Add("Pla4", "Platea");
+            Espanol.Add("Pla5", "Aceptar");
+            Espanol.Add("Pla6", "Cancelar");
 
             Espanol.Add("OrdYEnu1", "Orden \ny enumeración");
             Espanol.Add("OrdYEnu2", "Orden y enumeración descripción corta");
             Espanol.Add("OrdYEnu3", "Orden y enumeración descripción larga");
             Espanol.Add("OrdYEnu4", "Orden y enumeración");
+            Espanol.Add("OrdYEnu5", "Aceptar");
+            Espanol.Add("OrdYEnu6", "Cancelar");
             Espanol.Add("OrdYEnu1-1", "Categoría");
             Espanol.Add("OrdYEnu1-2", "Todos");
             Espanol.Add("OrdYEnu1-3", "Elementos seleccionados");
@@ -122,13 +134,14 @@ namespace Jump
             Espanol.Add("OrdYEnu3-6", "Vista previa");
             Espanol.Add("OrdYEnu3-7", "Parámetro");
             Espanol.Add("OrdYEnu3-8", "Enumeración");
-            Espanol.Add("OrdYEnu4-1", "Ejecutar");
-            Espanol.Add("OrdYEnu4-2", "Comando de orden y enumeración");
+            Espanol.Add("OrdYEnu4-1", "Comando de enumeración");
 
             Espanol.Add("Zap1", "Zapatas");
             Espanol.Add("Zap2", "Zapatas descripción corta");
             Espanol.Add("Zap3", "Zapatas descripción larga");
-            Espanol.Add("Zap4", "Jump");
+            Espanol.Add("Zap4", "Zapatas");
+            Espanol.Add("Zap5", "Aceptar");
+            Espanol.Add("Zap6", "Cancelar");
             Espanol.Add("Zap1-2", "Selección");
             Espanol.Add("Zap1-3", "Todos");
             Espanol.Add("Zap1-4", "Elementos seleccionados");
@@ -144,13 +157,14 @@ namespace Jump
             Espanol.Add("Zap4-1", "Acciones a realizar");
             Espanol.Add("Zap4-2", "Vista X-X");
             Espanol.Add("Zap4-3", "Vista Y-Y");
-            Espanol.Add("Zap5-1", "Ejecutar");
-            Espanol.Add("Zap5-2", "Comando de Zapatas");
+            Espanol.Add("Zap5-1", "Comando de Zapatas");
 
             Espanol.Add("Col1", "Columnas");
             Espanol.Add("Col2", "Columnas descripción corta");
             Espanol.Add("Col3", "Columnas descripción larga");
-            Espanol.Add("Col4", "Jump");
+            Espanol.Add("Col4", "Columnas");
+            Espanol.Add("Col5", "Aceptar");
+            Espanol.Add("Col6", "Cancelar");
             Espanol.Add("Col1-2", "Selección");
             Espanol.Add("Col1-3", "Todos");
             Espanol.Add("Col1-4", "Elementos seleccionados");
@@ -166,17 +180,21 @@ namespace Jump
             Espanol.Add("Col4-1", "Acciones a realizar");
             Espanol.Add("Col4-2", "Vista X-X");
             Espanol.Add("Col4-3", "Vista Y-Y");
-            Espanol.Add("Col5-1", "Ejecutar");
-            Espanol.Add("Col5-2", "Comando de Columnas");
+            Espanol.Add("Col5-1", "Comando de Columnas");
 
             Espanol.Add("Mur1", "Muros");
             Espanol.Add("Mur2", "Muros descripción corta");
             Espanol.Add("Mur3", "Muros descripción larga");
+            Espanol.Add("Mur4", "Muros");
+            Espanol.Add("Mur5", "Aceptar");
+            Espanol.Add("Mur6", "Cancelar");
 
             Espanol.Add("Vig1", "Vigas");
             Espanol.Add("Vig2", "Vigas descripción corta");
             Espanol.Add("Vig3", "Vigas descripción larga");
-            Espanol.Add("Vig4", "Jump");
+            Espanol.Add("Vig4", "Vigas");
+            Espanol.Add("Vig5", "Aceptar");
+            Espanol.Add("Vig6", "Cancelar");
             Espanol.Add("Vig1-2", "Selección");
             Espanol.Add("Vig1-3", "Todos");
             Espanol.Add("Vig1-4", "Elementos seleccionados");
@@ -192,12 +210,14 @@ namespace Jump
             Espanol.Add("Vig4-1", "Acciones a realizar");
             Espanol.Add("Vig4-2", "Vista X-X");
             Espanol.Add("Vig4-3", "Vista Y-Y");
-            Espanol.Add("Vig5-1", "Ejecutar");
-            Espanol.Add("Vig5-2", "Comando de Vigas");
+            Espanol.Add("Vig5-1", "Comando de Vigas");
 
             Espanol.Add("Los1", "Losas");
             Espanol.Add("Los2", "Losas descripción corta");
             Espanol.Add("Los3", "Losas descripción larga");
+            Espanol.Add("Los4", "Losas");
+            Espanol.Add("Los5", "Aceptar");
+            Espanol.Add("Los6", "Cancelar");
 
             Espanol.Add("VisArm1", "Visibilidad \nde Armadura");
             Espanol.Add("VisArm2", "Visiblidad de armadura descripción corta");
@@ -210,6 +230,9 @@ namespace Jump
             Espanol.Add("Conf1", "Configuraciones");
             Espanol.Add("Conf2", "Permite cambiar las configuraciones predeterminadas");
             Espanol.Add("Conf3", "Abre la ventana de configuraciones que permite cambiar los parámetros predeterminados");
+            Espanol.Add("Conf4", "Configuraciones");
+            Espanol.Add("Conf5", "Aceptar");
+            Espanol.Add("Conf6", "Cancelar");
             Espanol.Add("Conf1-1", "General");
             Espanol.Add("Conf1-2-1", "Configuraciones");
             Espanol.Add("Conf1-2-2", "Precisión para ordenar los elementos");
@@ -227,10 +250,6 @@ namespace Jump
             Espanol.Add("Conf2-4-1", "Posición del texto");
             Espanol.Add("Conf2-4-2", "Arriba");
             Espanol.Add("Conf2-4-3", "Abajo");
-            Espanol.Add("Conf2-5-1", "Etiqueta de armaduras");
-            Espanol.Add("Conf2-5-2", "Tipo de armadura");
-            Espanol.Add("Conf2-5-3", "Posición de la etiqueta");
-            Espanol.Add("Conf2-5-1-1", "Armadura");
             Espanol.Add("Conf3-1", "Estilos de líneas");
             Espanol.Add("Conf3-2", "Diámetro");
             Espanol.Add("Conf3-3", "Estilo de línea");
@@ -248,6 +267,12 @@ namespace Jump
             Espanol.Add("Conf4-1-1-6", "Muros");
             Espanol.Add("Conf4-1-1-7", "Vigas");
             Espanol.Add("Conf4-1-1-8", "Losas");
+            Espanol.Add("Conf4-2-1", "Etiqueta de armaduras");
+            Espanol.Add("Conf4-2-2", "Tipo de armadura");
+            Espanol.Add("Conf4-2-3", "Posición de la etiqueta");
+            Espanol.Add("Conf4-2-1-1", "Armadura");
+            Espanol.Add("Conf4-2-1-2", "Área de refuerzo");
+            Espanol.Add("Conf4-2-1-3", "Armadura en sistema");
             Espanol.Add("Conf5-1", "Cotas");
             Espanol.Add("Conf5-1-1", "Cotas lineales");
             Espanol.Add("Conf5-2-1", "Cotas de profundidad");
@@ -255,9 +280,11 @@ namespace Jump
             Espanol.Add("Idi1", "Idioma");
             Espanol.Add("Idi2", "Permite cambiar el idioma");
             Espanol.Add("Idi3", "Abre una ventana que permite cambiar el idioma de la interfaz");
-            Espanol.Add("Idi4", "Seleccione el idioma");
-            Espanol.Add("Idi5", "Idioma");
-            Espanol.Add("Idi6", "Guardar");
+            Espanol.Add("Idi4", "Idioma");
+            Espanol.Add("Idi5", "Aceptar");
+            Espanol.Add("Idi6", "Cancelar");
+            Espanol.Add("Idi1-1", "Seleccione el idioma");
+            Espanol.Add("Idi1-2", "Idioma");
 
             Espanol.Add("EleEst1", "Elementos \nestructurales");
             Espanol.Add("EleEst2", "Oculta los elementos que no son estructurales");
@@ -276,15 +303,19 @@ namespace Jump
             Espanol.Add("BarPro1", "Procesando ");
             Espanol.Add("BarPro2", " elementos de ");
 
-            Espanol.Add("Pos0", "Arriba Izquierda");            
-            Espanol.Add("Pos1", "Arriba Centro");
-            Espanol.Add("Pos2", "Arriba Derecha");
-            Espanol.Add("Pos3", "Medio Izquierda");
-            Espanol.Add("Pos4", "Medio Centro");
-            Espanol.Add("Pos5", "Medio Derecha");
-            Espanol.Add("Pos6", "Abajo Izquierda");
-            Espanol.Add("Pos7", "Abajo Centro");
-            Espanol.Add("Pos8", "Abajo Derecha");
+            Espanol.Add("Pos0", "1 - Arriba Izquierda");            
+            Espanol.Add("Pos1", "2 - Arriba Centro");
+            Espanol.Add("Pos2", "3 - Arriba Derecha");
+            Espanol.Add("Pos3", "4 - Medio Izquierda");
+            Espanol.Add("Pos4", "5 - Medio Centro");
+            Espanol.Add("Pos5", "6 - Medio Derecha");
+            Espanol.Add("Pos6", "7 - Abajo Izquierda");
+            Espanol.Add("Pos7", "8 - Abajo Centro");
+            Espanol.Add("Pos8", "9 - Abajo Derecha");
+            Espanol.Add("Pos10", "Arriba");
+            Espanol.Add("Pos11", "Abajo");
+            Espanol.Add("Pos12", "Izquierda");
+            Espanol.Add("Pos13", "Derecha");
         }
 
         ///<summary> Carga el idioma Frances </summary>

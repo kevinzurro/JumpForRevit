@@ -60,10 +60,11 @@ namespace Jump
         private void frmIdioma_Load(object sender, EventArgs e)
         {
             // Asignación de textos según el idioma
-            txtTituloIdioma.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Idi4");
-            gbxSeleccionIdioma.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Idi5");
-            btnGuardar.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Idi6");
-
+            this.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Idi4");
+            btnAceptar.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Idi5");
+            btnCancelar.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Idi6");
+            txtTituloIdioma.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Idi1-1");
+            gbxSeleccionIdioma.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Idi1-2");
         }
 
         ///<summary> Cambia el idioma por el seleccionado </summary>
@@ -116,5 +117,10 @@ namespace Jump
             }
         }
 
+        /// <summary> Cierra el formulario </summary>
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

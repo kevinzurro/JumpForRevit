@@ -36,7 +36,7 @@ namespace Jump
                 Viga.indiceComboboxTextoBarra = Properties.Settings.Default.indiceComboboxTextoBarra;
                 Viga.indiceComboboxEscalaVista = Properties.Settings.Default.indiceComboboxEscalaVistaViga;
                 Viga.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.EtiquetaIndependienteVigas;
-                Viga.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.EtiquetaCotaProfundidad;
+                Viga.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.EtiquetaCotaProfundidadVigas;
                 Viga.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.EtiquetaIndependienteArmadura;
                 Viga.cotaVerticalIzquierda = true;
                 Viga.cotaVerticalDerecha = true;

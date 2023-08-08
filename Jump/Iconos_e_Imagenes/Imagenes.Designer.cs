@@ -93,9 +93,9 @@ namespace Jump.Iconos_e_Imagenes {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Zapata_Vista_Global {
+        internal static System.Drawing.Bitmap Configuraciones_TextoAbajo {
             get {
-                object obj = ResourceManager.GetObject("Zapata_Vista_Global", resourceCulture);
+                object obj = ResourceManager.GetObject("Configuraciones_TextoAbajo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,39 @@ namespace Jump.Iconos_e_Imagenes {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Zapata_Vista_Local {
+        internal static System.Drawing.Bitmap Configuraciones_TextoArriba {
             get {
-                object obj = ResourceManager.GetObject("Zapata_Vista_Local", resourceCulture);
+                object obj = ResourceManager.GetObject("Configuraciones_TextoArriba", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Configuraciones_Viga {
+            get {
+                object obj = ResourceManager.GetObject("Configuraciones_Viga", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Configuraciones_Vista_Global {
+            get {
+                object obj = ResourceManager.GetObject("Configuraciones_Vista_Global", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Configuraciones_Vista_Local {
+            get {
+                object obj = ResourceManager.GetObject("Configuraciones_Vista_Local", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

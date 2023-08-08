@@ -36,7 +36,7 @@ namespace Jump
                 Zapata.indiceComboboxTextoBarra = Properties.Settings.Default.indiceComboboxTextoBarra;
                 Zapata.indiceComboboxEscalaVista = Properties.Settings.Default.indiceComboboxEscalaVistaZapata;
                 Zapata.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.EtiquetaIndependienteZapatas;
-                Zapata.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.EtiquetaCotaProfundidad;
+                Zapata.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.EtiquetaCotaProfundidadZapatas;
                 Zapata.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.EtiquetaIndependienteArmadura;
                 Zapata.cotaVerticalIzquierda = true;
                 Zapata.cotaVerticalDerecha = true;

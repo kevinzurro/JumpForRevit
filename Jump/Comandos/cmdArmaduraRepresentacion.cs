@@ -23,6 +23,8 @@ namespace Jump
             UIDocument uiDoc = uiApp.ActiveUIDocument;
             Autodesk.Revit.ApplicationServices.Application app = uiApp.Application;
             Document doc = uiDoc.Document;
+
+            Tools.AddinManager();
             
             string IdiomaDelPrograma = Tools.ObtenerIdiomaDelPrograma();
             Tools.CrearRegistroActualizadorArmaduras(uiApp.ActiveAddInId);
@@ -107,7 +109,7 @@ namespace Jump
                                             armadura.TipoEtiquetaArmadura = inicioDetalleArmadura.tipoEtiqueta;
 
                                             // Asigna la etiqueta
-                                            armadura.EtiquetaArmadura = Tools.CrearEtiquetaSegunConfiguracion(doc, vista, barra, inicioDetalleArmadura.tipoEtiqueta, posicion);
+                                            armadura.EtiquetaArmadura = Tools.CrearEtiquetaArmaduraSegunConfiguracion(doc, vista, barra, inicioDetalleArmadura.tipoEtiqueta, posicion);
                                         }
 
                                         // Punto donde se coloca el despiece

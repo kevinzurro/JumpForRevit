@@ -35,6 +35,20 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.pcbxGeneral = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.gbxArmadura = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.lblArmaduraEnumeracion = new System.Windows.Forms.Label();
+            this.rbtnEnumeracionElemento = new System.Windows.Forms.RadioButton();
+            this.rbtnEnumeracionProyecto = new System.Windows.Forms.RadioButton();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.lblArmaduraDibujo = new System.Windows.Forms.Label();
+            this.rbtnLineasBorde = new System.Windows.Forms.RadioButton();
+            this.rbtnLineasCentrales = new System.Windows.Forms.RadioButton();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.lblArmaduraPosicionTexto = new System.Windows.Forms.Label();
+            this.rbtnTextoAbajo = new System.Windows.Forms.RadioButton();
+            this.rbtnTextoArriba = new System.Windows.Forms.RadioButton();
             this.gbxConfiguraciones = new System.Windows.Forms.GroupBox();
             this.lblPrecisionOrdenarDescripcion = new System.Windows.Forms.Label();
             this.lblY = new System.Windows.Forms.Label();
@@ -47,9 +61,15 @@
             this.gbxVista = new System.Windows.Forms.GroupBox();
             this.rbtnVistaGlobal = new System.Windows.Forms.RadioButton();
             this.rbtnVistaLocal = new System.Windows.Forms.RadioButton();
-            this.tbpgArmadura = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.tbpgEstiloLinea = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblDiametroEstilo = new System.Windows.Forms.Label();
+            this.dgvEstiloLinea = new System.Windows.Forms.DataGridView();
+            this.Diametro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EstiloLinea = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.tbpgEtiquetas = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.gbxEtiquetaArmadura = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -62,25 +82,6 @@
             this.cmbEtiquetaAreaRefuerzo = new System.Windows.Forms.ComboBox();
             this.lblArmaduraPosicionEtiqueta = new System.Windows.Forms.Label();
             this.cmbEtiquetaArmadura = new System.Windows.Forms.ComboBox();
-            this.gbxArmaduraEnumeracion = new System.Windows.Forms.GroupBox();
-            this.rbtnEnumeracionElemento = new System.Windows.Forms.RadioButton();
-            this.rbtnEnumeracionProyecto = new System.Windows.Forms.RadioButton();
-            this.gbxArmaduraDibujo = new System.Windows.Forms.GroupBox();
-            this.rbtnLineasBorde = new System.Windows.Forms.RadioButton();
-            this.rbtnLineasCentrales = new System.Windows.Forms.RadioButton();
-            this.gbxPosicionTexto = new System.Windows.Forms.GroupBox();
-            this.rbtnTextoAbajo = new System.Windows.Forms.RadioButton();
-            this.rbtnTextoArriba = new System.Windows.Forms.RadioButton();
-            this.pcbxArmaduras = new System.Windows.Forms.PictureBox();
-            this.tbpgEstiloLinea = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblDiametroEstilo = new System.Windows.Forms.Label();
-            this.dgvEstiloLinea = new System.Windows.Forms.DataGridView();
-            this.Diametro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EstiloLinea = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.tbpgEtiquetas = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.gbxEtiquetaIndependiente = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -110,7 +111,7 @@
             this.gbxCotasLineal = new System.Windows.Forms.GroupBox();
             this.gbxCotasProfundidad = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabcConfiguraciones.SuspendLayout();
@@ -118,25 +119,23 @@
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbxGeneral)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
+            this.gbxArmadura.SuspendLayout();
+            this.tableLayoutPanel13.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.panel8.SuspendLayout();
             this.gbxConfiguraciones.SuspendLayout();
             this.gbxVista.SuspendLayout();
-            this.tbpgArmadura.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            this.tableLayoutPanel5.SuspendLayout();
-            this.gbxEtiquetaArmadura.SuspendLayout();
-            this.tableLayoutPanel12.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.gbxArmaduraEnumeracion.SuspendLayout();
-            this.gbxArmaduraDibujo.SuspendLayout();
-            this.gbxPosicionTexto.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbxArmaduras)).BeginInit();
             this.tbpgEstiloLinea.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEstiloLinea)).BeginInit();
             this.tbpgEtiquetas.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
+            this.gbxEtiquetaArmadura.SuspendLayout();
+            this.tableLayoutPanel12.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.gbxEtiquetaIndependiente.SuspendLayout();
             this.tableLayoutPanel11.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -158,7 +157,6 @@
             // tabcConfiguraciones
             // 
             this.tabcConfiguraciones.Controls.Add(this.tbpgGeneral);
-            this.tabcConfiguraciones.Controls.Add(this.tbpgArmadura);
             this.tabcConfiguraciones.Controls.Add(this.tbpgEstiloLinea);
             this.tabcConfiguraciones.Controls.Add(this.tbpgEtiquetas);
             this.tabcConfiguraciones.Controls.Add(this.tbpgCotas);
@@ -189,9 +187,112 @@
             // tableLayoutPanel4
             // 
             resources.ApplyResources(this.tableLayoutPanel4, "tableLayoutPanel4");
+            this.tableLayoutPanel4.Controls.Add(this.gbxArmadura, 0, 2);
             this.tableLayoutPanel4.Controls.Add(this.gbxConfiguraciones, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.gbxVista, 0, 1);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            // 
+            // gbxArmadura
+            // 
+            this.gbxArmadura.Controls.Add(this.tableLayoutPanel13);
+            resources.ApplyResources(this.gbxArmadura, "gbxArmadura");
+            this.gbxArmadura.Name = "gbxArmadura";
+            this.gbxArmadura.TabStop = false;
+            // 
+            // tableLayoutPanel13
+            // 
+            resources.ApplyResources(this.tableLayoutPanel13, "tableLayoutPanel13");
+            this.tableLayoutPanel13.Controls.Add(this.panel6, 0, 0);
+            this.tableLayoutPanel13.Controls.Add(this.panel7, 0, 1);
+            this.tableLayoutPanel13.Controls.Add(this.panel8, 0, 2);
+            this.tableLayoutPanel13.Name = "tableLayoutPanel13";
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.lblArmaduraEnumeracion);
+            this.panel6.Controls.Add(this.rbtnEnumeracionElemento);
+            this.panel6.Controls.Add(this.rbtnEnumeracionProyecto);
+            resources.ApplyResources(this.panel6, "panel6");
+            this.panel6.Name = "panel6";
+            // 
+            // lblArmaduraEnumeracion
+            // 
+            resources.ApplyResources(this.lblArmaduraEnumeracion, "lblArmaduraEnumeracion");
+            this.lblArmaduraEnumeracion.Name = "lblArmaduraEnumeracion";
+            // 
+            // rbtnEnumeracionElemento
+            // 
+            resources.ApplyResources(this.rbtnEnumeracionElemento, "rbtnEnumeracionElemento");
+            this.rbtnEnumeracionElemento.Checked = true;
+            this.rbtnEnumeracionElemento.Name = "rbtnEnumeracionElemento";
+            this.rbtnEnumeracionElemento.TabStop = true;
+            this.rbtnEnumeracionElemento.UseVisualStyleBackColor = true;
+            this.rbtnEnumeracionElemento.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CambiarImagen_MouseMove);
+            // 
+            // rbtnEnumeracionProyecto
+            // 
+            resources.ApplyResources(this.rbtnEnumeracionProyecto, "rbtnEnumeracionProyecto");
+            this.rbtnEnumeracionProyecto.Name = "rbtnEnumeracionProyecto";
+            this.rbtnEnumeracionProyecto.UseVisualStyleBackColor = true;
+            this.rbtnEnumeracionProyecto.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CambiarImagen_MouseMove);
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.lblArmaduraDibujo);
+            this.panel7.Controls.Add(this.rbtnLineasBorde);
+            this.panel7.Controls.Add(this.rbtnLineasCentrales);
+            resources.ApplyResources(this.panel7, "panel7");
+            this.panel7.Name = "panel7";
+            // 
+            // lblArmaduraDibujo
+            // 
+            resources.ApplyResources(this.lblArmaduraDibujo, "lblArmaduraDibujo");
+            this.lblArmaduraDibujo.Name = "lblArmaduraDibujo";
+            // 
+            // rbtnLineasBorde
+            // 
+            resources.ApplyResources(this.rbtnLineasBorde, "rbtnLineasBorde");
+            this.rbtnLineasBorde.Name = "rbtnLineasBorde";
+            this.rbtnLineasBorde.UseVisualStyleBackColor = true;
+            this.rbtnLineasBorde.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CambiarImagen_MouseMove);
+            // 
+            // rbtnLineasCentrales
+            // 
+            resources.ApplyResources(this.rbtnLineasCentrales, "rbtnLineasCentrales");
+            this.rbtnLineasCentrales.Checked = true;
+            this.rbtnLineasCentrales.Name = "rbtnLineasCentrales";
+            this.rbtnLineasCentrales.TabStop = true;
+            this.rbtnLineasCentrales.UseVisualStyleBackColor = true;
+            this.rbtnLineasCentrales.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CambiarImagen_MouseMove);
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.lblArmaduraPosicionTexto);
+            this.panel8.Controls.Add(this.rbtnTextoAbajo);
+            this.panel8.Controls.Add(this.rbtnTextoArriba);
+            resources.ApplyResources(this.panel8, "panel8");
+            this.panel8.Name = "panel8";
+            // 
+            // lblArmaduraPosicionTexto
+            // 
+            resources.ApplyResources(this.lblArmaduraPosicionTexto, "lblArmaduraPosicionTexto");
+            this.lblArmaduraPosicionTexto.Name = "lblArmaduraPosicionTexto";
+            // 
+            // rbtnTextoAbajo
+            // 
+            resources.ApplyResources(this.rbtnTextoAbajo, "rbtnTextoAbajo");
+            this.rbtnTextoAbajo.Name = "rbtnTextoAbajo";
+            this.rbtnTextoAbajo.UseVisualStyleBackColor = true;
+            this.rbtnTextoAbajo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CambiarImagen_MouseMove);
+            // 
+            // rbtnTextoArriba
+            // 
+            resources.ApplyResources(this.rbtnTextoArriba, "rbtnTextoArriba");
+            this.rbtnTextoArriba.Checked = true;
+            this.rbtnTextoArriba.Name = "rbtnTextoArriba";
+            this.rbtnTextoArriba.TabStop = true;
+            this.rbtnTextoArriba.UseVisualStyleBackColor = true;
+            this.rbtnTextoArriba.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CambiarImagen_MouseMove);
             // 
             // gbxConfiguraciones
             // 
@@ -265,7 +366,7 @@
             resources.ApplyResources(this.rbtnVistaGlobal, "rbtnVistaGlobal");
             this.rbtnVistaGlobal.Name = "rbtnVistaGlobal";
             this.rbtnVistaGlobal.UseVisualStyleBackColor = true;
-            this.rbtnVistaGlobal.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CambiarImagenVistaGlobal_MouseMove);
+            this.rbtnVistaGlobal.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CambiarImagen_MouseMove);
             // 
             // rbtnVistaLocal
             // 
@@ -274,30 +375,74 @@
             this.rbtnVistaLocal.Name = "rbtnVistaLocal";
             this.rbtnVistaLocal.TabStop = true;
             this.rbtnVistaLocal.UseVisualStyleBackColor = true;
-            this.rbtnVistaLocal.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CambiarImagenVistaLocal_MouseMove);
+            this.rbtnVistaLocal.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CambiarImagen_MouseMove);
             // 
-            // tbpgArmadura
+            // tbpgEstiloLinea
             // 
-            this.tbpgArmadura.Controls.Add(this.tableLayoutPanel2);
-            resources.ApplyResources(this.tbpgArmadura, "tbpgArmadura");
-            this.tbpgArmadura.Name = "tbpgArmadura";
-            this.tbpgArmadura.UseVisualStyleBackColor = true;
+            this.tbpgEstiloLinea.Controls.Add(this.tableLayoutPanel6);
+            resources.ApplyResources(this.tbpgEstiloLinea, "tbpgEstiloLinea");
+            this.tbpgEstiloLinea.Name = "tbpgEstiloLinea";
+            this.tbpgEstiloLinea.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel2
+            // tableLayoutPanel6
             // 
-            resources.ApplyResources(this.tableLayoutPanel2, "tableLayoutPanel2");
-            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel5, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.pcbxArmaduras, 1, 0);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            resources.ApplyResources(this.tableLayoutPanel6, "tableLayoutPanel6");
+            this.tableLayoutPanel6.Controls.Add(this.lblDiametroEstilo, 0, 1);
+            this.tableLayoutPanel6.Controls.Add(this.dgvEstiloLinea, 0, 0);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             // 
-            // tableLayoutPanel5
+            // lblDiametroEstilo
             // 
-            resources.ApplyResources(this.tableLayoutPanel5, "tableLayoutPanel5");
-            this.tableLayoutPanel5.Controls.Add(this.gbxEtiquetaArmadura, 0, 3);
-            this.tableLayoutPanel5.Controls.Add(this.gbxArmaduraEnumeracion, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.gbxArmaduraDibujo, 0, 1);
-            this.tableLayoutPanel5.Controls.Add(this.gbxPosicionTexto, 0, 2);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            resources.ApplyResources(this.lblDiametroEstilo, "lblDiametroEstilo");
+            this.lblDiametroEstilo.Name = "lblDiametroEstilo";
+            // 
+            // dgvEstiloLinea
+            // 
+            this.dgvEstiloLinea.AllowUserToAddRows = false;
+            this.dgvEstiloLinea.AllowUserToDeleteRows = false;
+            this.dgvEstiloLinea.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvEstiloLinea.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEstiloLinea.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Diametro,
+            this.EstiloLinea});
+            resources.ApplyResources(this.dgvEstiloLinea, "dgvEstiloLinea");
+            this.dgvEstiloLinea.Name = "dgvEstiloLinea";
+            this.dgvEstiloLinea.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDesplegarCombobox_CellClick);
+            this.dgvEstiloLinea.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEstiloLinea_CellValueChanged);
+            // 
+            // Diametro
+            // 
+            resources.ApplyResources(this.Diametro, "Diametro");
+            this.Diametro.Name = "Diametro";
+            // 
+            // EstiloLinea
+            // 
+            resources.ApplyResources(this.EstiloLinea, "EstiloLinea");
+            this.EstiloLinea.MaxDropDownItems = 100;
+            this.EstiloLinea.Name = "EstiloLinea";
+            this.EstiloLinea.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.EstiloLinea.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // tbpgEtiquetas
+            // 
+            this.tbpgEtiquetas.Controls.Add(this.tableLayoutPanel7);
+            resources.ApplyResources(this.tbpgEtiquetas, "tbpgEtiquetas");
+            this.tbpgEtiquetas.Name = "tbpgEtiquetas";
+            this.tbpgEtiquetas.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel7
+            // 
+            resources.ApplyResources(this.tableLayoutPanel7, "tableLayoutPanel7");
+            this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel8, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.pcbxEtiquetaPosicion, 1, 0);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            // 
+            // tableLayoutPanel8
+            // 
+            resources.ApplyResources(this.tableLayoutPanel8, "tableLayoutPanel8");
+            this.tableLayoutPanel8.Controls.Add(this.gbxEtiquetaArmadura, 0, 1);
+            this.tableLayoutPanel8.Controls.Add(this.gbxEtiquetaIndependiente, 0, 0);
+            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             // 
             // gbxEtiquetaArmadura
             // 
@@ -376,148 +521,6 @@
             this.cmbEtiquetaArmadura.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEtiquetaArmadura.FormattingEnabled = true;
             this.cmbEtiquetaArmadura.Name = "cmbEtiquetaArmadura";
-            // 
-            // gbxArmaduraEnumeracion
-            // 
-            this.gbxArmaduraEnumeracion.Controls.Add(this.rbtnEnumeracionElemento);
-            this.gbxArmaduraEnumeracion.Controls.Add(this.rbtnEnumeracionProyecto);
-            resources.ApplyResources(this.gbxArmaduraEnumeracion, "gbxArmaduraEnumeracion");
-            this.gbxArmaduraEnumeracion.Name = "gbxArmaduraEnumeracion";
-            this.gbxArmaduraEnumeracion.TabStop = false;
-            this.gbxArmaduraEnumeracion.MouseHover += new System.EventHandler(this.gbxCambiarImagenArmadura_MouseHover);
-            // 
-            // rbtnEnumeracionElemento
-            // 
-            resources.ApplyResources(this.rbtnEnumeracionElemento, "rbtnEnumeracionElemento");
-            this.rbtnEnumeracionElemento.Checked = true;
-            this.rbtnEnumeracionElemento.Name = "rbtnEnumeracionElemento";
-            this.rbtnEnumeracionElemento.TabStop = true;
-            this.rbtnEnumeracionElemento.UseVisualStyleBackColor = true;
-            // 
-            // rbtnEnumeracionProyecto
-            // 
-            resources.ApplyResources(this.rbtnEnumeracionProyecto, "rbtnEnumeracionProyecto");
-            this.rbtnEnumeracionProyecto.Name = "rbtnEnumeracionProyecto";
-            this.rbtnEnumeracionProyecto.UseVisualStyleBackColor = true;
-            // 
-            // gbxArmaduraDibujo
-            // 
-            this.gbxArmaduraDibujo.Controls.Add(this.rbtnLineasBorde);
-            this.gbxArmaduraDibujo.Controls.Add(this.rbtnLineasCentrales);
-            resources.ApplyResources(this.gbxArmaduraDibujo, "gbxArmaduraDibujo");
-            this.gbxArmaduraDibujo.Name = "gbxArmaduraDibujo";
-            this.gbxArmaduraDibujo.TabStop = false;
-            this.gbxArmaduraDibujo.MouseHover += new System.EventHandler(this.gbxCambiarImagenArmadura_MouseHover);
-            // 
-            // rbtnLineasBorde
-            // 
-            resources.ApplyResources(this.rbtnLineasBorde, "rbtnLineasBorde");
-            this.rbtnLineasBorde.Name = "rbtnLineasBorde";
-            this.rbtnLineasBorde.UseVisualStyleBackColor = true;
-            this.rbtnLineasBorde.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CambiarImagenArmadura_MouseMove);
-            // 
-            // rbtnLineasCentrales
-            // 
-            resources.ApplyResources(this.rbtnLineasCentrales, "rbtnLineasCentrales");
-            this.rbtnLineasCentrales.Checked = true;
-            this.rbtnLineasCentrales.Name = "rbtnLineasCentrales";
-            this.rbtnLineasCentrales.TabStop = true;
-            this.rbtnLineasCentrales.UseVisualStyleBackColor = true;
-            this.rbtnLineasCentrales.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CambiarImagenArmadura_MouseMove);
-            // 
-            // gbxPosicionTexto
-            // 
-            this.gbxPosicionTexto.Controls.Add(this.rbtnTextoAbajo);
-            this.gbxPosicionTexto.Controls.Add(this.rbtnTextoArriba);
-            resources.ApplyResources(this.gbxPosicionTexto, "gbxPosicionTexto");
-            this.gbxPosicionTexto.Name = "gbxPosicionTexto";
-            this.gbxPosicionTexto.TabStop = false;
-            // 
-            // rbtnTextoAbajo
-            // 
-            resources.ApplyResources(this.rbtnTextoAbajo, "rbtnTextoAbajo");
-            this.rbtnTextoAbajo.Name = "rbtnTextoAbajo";
-            this.rbtnTextoAbajo.UseVisualStyleBackColor = true;
-            // 
-            // rbtnTextoArriba
-            // 
-            resources.ApplyResources(this.rbtnTextoArriba, "rbtnTextoArriba");
-            this.rbtnTextoArriba.Checked = true;
-            this.rbtnTextoArriba.Name = "rbtnTextoArriba";
-            this.rbtnTextoArriba.TabStop = true;
-            this.rbtnTextoArriba.UseVisualStyleBackColor = true;
-            // 
-            // pcbxArmaduras
-            // 
-            resources.ApplyResources(this.pcbxArmaduras, "pcbxArmaduras");
-            this.pcbxArmaduras.Name = "pcbxArmaduras";
-            this.pcbxArmaduras.TabStop = false;
-            // 
-            // tbpgEstiloLinea
-            // 
-            this.tbpgEstiloLinea.Controls.Add(this.tableLayoutPanel6);
-            resources.ApplyResources(this.tbpgEstiloLinea, "tbpgEstiloLinea");
-            this.tbpgEstiloLinea.Name = "tbpgEstiloLinea";
-            this.tbpgEstiloLinea.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel6
-            // 
-            resources.ApplyResources(this.tableLayoutPanel6, "tableLayoutPanel6");
-            this.tableLayoutPanel6.Controls.Add(this.lblDiametroEstilo, 0, 1);
-            this.tableLayoutPanel6.Controls.Add(this.dgvEstiloLinea, 0, 0);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            // 
-            // lblDiametroEstilo
-            // 
-            resources.ApplyResources(this.lblDiametroEstilo, "lblDiametroEstilo");
-            this.lblDiametroEstilo.Name = "lblDiametroEstilo";
-            // 
-            // dgvEstiloLinea
-            // 
-            this.dgvEstiloLinea.AllowUserToAddRows = false;
-            this.dgvEstiloLinea.AllowUserToDeleteRows = false;
-            this.dgvEstiloLinea.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvEstiloLinea.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEstiloLinea.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Diametro,
-            this.EstiloLinea});
-            resources.ApplyResources(this.dgvEstiloLinea, "dgvEstiloLinea");
-            this.dgvEstiloLinea.Name = "dgvEstiloLinea";
-            this.dgvEstiloLinea.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDesplegarCombobox_CellClick);
-            this.dgvEstiloLinea.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEstiloLinea_CellValueChanged);
-            // 
-            // Diametro
-            // 
-            resources.ApplyResources(this.Diametro, "Diametro");
-            this.Diametro.Name = "Diametro";
-            // 
-            // EstiloLinea
-            // 
-            resources.ApplyResources(this.EstiloLinea, "EstiloLinea");
-            this.EstiloLinea.MaxDropDownItems = 100;
-            this.EstiloLinea.Name = "EstiloLinea";
-            this.EstiloLinea.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.EstiloLinea.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // tbpgEtiquetas
-            // 
-            this.tbpgEtiquetas.Controls.Add(this.tableLayoutPanel7);
-            resources.ApplyResources(this.tbpgEtiquetas, "tbpgEtiquetas");
-            this.tbpgEtiquetas.Name = "tbpgEtiquetas";
-            this.tbpgEtiquetas.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel7
-            // 
-            resources.ApplyResources(this.tableLayoutPanel7, "tableLayoutPanel7");
-            this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel8, 0, 0);
-            this.tableLayoutPanel7.Controls.Add(this.pcbxEtiquetaPosicion, 1, 0);
-            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
-            // 
-            // tableLayoutPanel8
-            // 
-            resources.ApplyResources(this.tableLayoutPanel8, "tableLayoutPanel8");
-            this.tableLayoutPanel8.Controls.Add(this.gbxEtiquetaIndependiente, 0, 0);
-            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             // 
             // gbxEtiquetaIndependiente
             // 
@@ -707,17 +710,17 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnGuardar);
+            this.panel1.Controls.Add(this.btnAceptar);
             this.panel1.Controls.Add(this.btnCancelar);
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
             // 
-            // btnGuardar
+            // btnAceptar
             // 
-            resources.ApplyResources(this.btnGuardar, "btnGuardar");
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            resources.ApplyResources(this.btnAceptar, "btnAceptar");
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnCancelar
             // 
@@ -743,26 +746,18 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pcbxGeneral)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
+            this.gbxArmadura.ResumeLayout(false);
+            this.tableLayoutPanel13.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
             this.gbxConfiguraciones.ResumeLayout(false);
             this.gbxConfiguraciones.PerformLayout();
             this.gbxVista.ResumeLayout(false);
             this.gbxVista.PerformLayout();
-            this.tbpgArmadura.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel5.ResumeLayout(false);
-            this.gbxEtiquetaArmadura.ResumeLayout(false);
-            this.tableLayoutPanel12.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            this.gbxArmaduraEnumeracion.ResumeLayout(false);
-            this.gbxArmaduraEnumeracion.PerformLayout();
-            this.gbxArmaduraDibujo.ResumeLayout(false);
-            this.gbxArmaduraDibujo.PerformLayout();
-            this.gbxPosicionTexto.ResumeLayout(false);
-            this.gbxPosicionTexto.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbxArmaduras)).EndInit();
             this.tbpgEstiloLinea.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
@@ -770,6 +765,12 @@
             this.tbpgEtiquetas.ResumeLayout(false);
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
+            this.gbxEtiquetaArmadura.ResumeLayout(false);
+            this.tableLayoutPanel12.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.gbxEtiquetaIndependiente.ResumeLayout(false);
             this.tableLayoutPanel11.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -790,11 +791,10 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TabControl tabcConfiguraciones;
         private System.Windows.Forms.TabPage tbpgGeneral;
-        private System.Windows.Forms.TabPage tbpgArmadura;
         private System.Windows.Forms.TabPage tbpgEstiloLinea;
         private System.Windows.Forms.TabPage tbpgEtiquetas;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
@@ -802,38 +802,22 @@
         private System.Windows.Forms.Label lblPresicionOrdenarUnidadX;
         private System.Windows.Forms.TextBox txtPrecisionOrdenarX;
         private System.Windows.Forms.Label lblprecisionOrdenar;
-        private System.Windows.Forms.GroupBox gbxVista;
-        private System.Windows.Forms.RadioButton rbtnVistaGlobal;
-        private System.Windows.Forms.RadioButton rbtnVistaLocal;
         private System.Windows.Forms.Label lblY;
         private System.Windows.Forms.Label lblX;
         private System.Windows.Forms.Label lblPresicionOrdenarUnidadY;
         private System.Windows.Forms.TextBox txtPrecisionOrdenarY;
         private System.Windows.Forms.PictureBox pcbxGeneral;
         private System.Windows.Forms.Label lblPrecisionOrdenarDescripcion;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.GroupBox gbxArmaduraEnumeracion;
-        private System.Windows.Forms.RadioButton rbtnEnumeracionElemento;
-        private System.Windows.Forms.RadioButton rbtnEnumeracionProyecto;
-        private System.Windows.Forms.GroupBox gbxArmaduraDibujo;
-        private System.Windows.Forms.RadioButton rbtnLineasBorde;
-        private System.Windows.Forms.RadioButton rbtnLineasCentrales;
-        private System.Windows.Forms.PictureBox pcbxArmaduras;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.Label lblDiametroEstilo;
         private System.Windows.Forms.DataGridView dgvEstiloLinea;
         private System.Windows.Forms.DataGridViewTextBoxColumn Diametro;
         private System.Windows.Forms.DataGridViewComboBoxColumn EstiloLinea;
-        private System.Windows.Forms.GroupBox gbxPosicionTexto;
-        private System.Windows.Forms.RadioButton rbtnTextoAbajo;
-        private System.Windows.Forms.RadioButton rbtnTextoArriba;
         private System.Windows.Forms.TabPage tbpgCotas;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.GroupBox gbxEtiquetaIndependiente;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
-        private System.Windows.Forms.GroupBox gbxEtiquetaArmadura;
         private System.Windows.Forms.PictureBox pcbxEtiquetaPosicion;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
         private System.Windows.Forms.Panel panel2;
@@ -856,19 +840,37 @@
         private System.Windows.Forms.ComboBox cmbEtiquetaPlatea;
         private System.Windows.Forms.ComboBox cmbEtiquetaPilotes;
         private System.Windows.Forms.Label lblPosicionEtiqueta;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label lblEtiquetaArmadura;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.ComboBox cmbEtiquetaArmadura;
-        private System.Windows.Forms.Label lblArmaduraEtiquetaIndependiente;
-        private System.Windows.Forms.Label lblArmaduraPosicionEtiqueta;
-        private System.Windows.Forms.Label lblEtiquetaArmaduraEnSistema;
-        private System.Windows.Forms.Label lblEtiquetaAreaRefuerzo;
-        private System.Windows.Forms.ComboBox cmbEtiquetaArmaduraEnSistema;
-        private System.Windows.Forms.ComboBox cmbEtiquetaAreaRefuerzo;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
         private System.Windows.Forms.GroupBox gbxCotasLineal;
         private System.Windows.Forms.GroupBox gbxCotasProfundidad;
+        private System.Windows.Forms.GroupBox gbxEtiquetaArmadura;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label lblEtiquetaArmaduraEnSistema;
+        private System.Windows.Forms.Label lblEtiquetaAreaRefuerzo;
+        private System.Windows.Forms.Label lblArmaduraEtiquetaIndependiente;
+        private System.Windows.Forms.Label lblEtiquetaArmadura;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.ComboBox cmbEtiquetaArmaduraEnSistema;
+        private System.Windows.Forms.ComboBox cmbEtiquetaAreaRefuerzo;
+        private System.Windows.Forms.Label lblArmaduraPosicionEtiqueta;
+        private System.Windows.Forms.ComboBox cmbEtiquetaArmadura;
+        private System.Windows.Forms.GroupBox gbxArmadura;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel13;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label lblArmaduraEnumeracion;
+        private System.Windows.Forms.RadioButton rbtnEnumeracionElemento;
+        private System.Windows.Forms.RadioButton rbtnEnumeracionProyecto;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Label lblArmaduraDibujo;
+        private System.Windows.Forms.RadioButton rbtnLineasBorde;
+        private System.Windows.Forms.RadioButton rbtnLineasCentrales;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Label lblArmaduraPosicionTexto;
+        private System.Windows.Forms.RadioButton rbtnTextoAbajo;
+        private System.Windows.Forms.RadioButton rbtnTextoArriba;
+        private System.Windows.Forms.GroupBox gbxVista;
+        private System.Windows.Forms.RadioButton rbtnVistaGlobal;
+        private System.Windows.Forms.RadioButton rbtnVistaLocal;
     }
 }

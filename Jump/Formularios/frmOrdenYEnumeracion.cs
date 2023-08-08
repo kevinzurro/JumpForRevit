@@ -147,7 +147,9 @@ namespace Jump
         private void frmOrdenYEnumeracion_Load(object sender, EventArgs e)
         {
             // Asignación de textos según el idioma
-            this.Name = Language.ObtenerTexto(IdiomaDelPrograma, "OrdYEnu4");
+            this.Text = Language.ObtenerTexto(IdiomaDelPrograma, "OrdYEnu4");
+            btnAceptar.Text = Language.ObtenerTexto(IdiomaDelPrograma, "OrdYEnu5");
+            btnCancelar.Text = Language.ObtenerTexto(IdiomaDelPrograma, "OrdYEnu6");
             gbxSeleccion.Text = Language.ObtenerTexto(IdiomaDelPrograma, "OrdYEnu1-1");
             rbtnTodos.Text = Language.ObtenerTexto(IdiomaDelPrograma, "OrdYEnu1-2");
             rbtnElementosSeleccionados.Text = Language.ObtenerTexto(IdiomaDelPrograma, "OrdYEnu1-3");
@@ -161,7 +163,6 @@ namespace Jump
             gbxPreview.Text = Language.ObtenerTexto(IdiomaDelPrograma, "OrdYEnu3-6");
             lblParametroElegido.Text = Language.ObtenerTexto(IdiomaDelPrograma, "OrdYEnu3-7");
             lblVistaPrevia.Text = Language.ObtenerTexto(IdiomaDelPrograma, "OrdYEnu3-8");
-            btnEjecutar.Text = Language.ObtenerTexto(IdiomaDelPrograma, "OrdYEnu4-1");
         }
         
         /// <summary> Cambia el texto del label según los datos ingresados </summary>
@@ -201,7 +202,7 @@ namespace Jump
         private void btnEjecutar_Click(object sender, EventArgs e)
         {
             // Abre una transacción
-            using (Transaction t = new Transaction(this.doc, Language.ObtenerTexto(IdiomaDelPrograma, "OrdYEnu4-2")))
+            using (Transaction t = new Transaction(this.doc, Language.ObtenerTexto(IdiomaDelPrograma, "OrdYEnu4-1")))
             {
                 t.Start();
 

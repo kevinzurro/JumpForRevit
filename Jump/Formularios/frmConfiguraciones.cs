@@ -54,7 +54,7 @@ namespace Jump
             this.cmbEtiquetaVigas.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
             this.cmbEtiquetaZapatas.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
             this.cmbEtiquetaZapataCorrida.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
-
+            
             // Asigna el indice de la lista desplegable
             this.cmbEtiquetaArmadura.SelectedIndex = Properties.Settings.Default.EtiquetaIndependienteArmadura;
             this.cmbEtiquetaAreaRefuerzo.SelectedIndex = Properties.Settings.Default.EtiquetaIndependienteAreaRefuerzo;
@@ -66,7 +66,7 @@ namespace Jump
             this.cmbEtiquetaPlatea.SelectedIndex = Properties.Settings.Default.EtiquetaIndependientePlatea;
             this.cmbEtiquetaVigas.SelectedIndex = Properties.Settings.Default.EtiquetaIndependienteVigas;            
             this.cmbEtiquetaZapatas.SelectedIndex = Properties.Settings.Default.EtiquetaIndependienteZapatas;
-            this.cmbEtiquetaZapataCorrida.SelectedIndex = Properties.Settings.Default.EtiquetaIndependienteZapatasCorrida;            
+            this.cmbEtiquetaZapataCorrida.SelectedIndex = Properties.Settings.Default.EtiquetaIndependienteZapatasCorrida;
         }
 
         /// <summary> Asigna las imagenes predeterminadas cuando carga el formulario </summary>
@@ -75,12 +75,16 @@ namespace Jump
             // Asigna la imagen
             this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_Precision;
             //this.pcbxArmaduras.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
-            //this.pcbxEtiquetaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
+            this.pcbxEtiquetaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_Viga;
         }
 
         /// <summary> Carga el formulario </summary>
         private void frmConfiguraciones_Load(object sender, EventArgs e)
         {
+            this.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4");
+            btnAceptar.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf5");
+            btnCancelar.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf6");
+
             // Pestaña General
             tbpgGeneral.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf1-1");
             gbxConfiguraciones.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf1-2-1");
@@ -91,28 +95,23 @@ namespace Jump
             gbxVista.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf1-3-1");
             rbtnVistaLocal.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf1-3-2");
             rbtnVistaGlobal.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf1-3-3");
-
+            
             this.pcbxGeneral.BackgroundImage = Iconos_e_Imagenes.Imagenes.Configuraciones_Precision;
             this.txtPrecisionOrdenarX.Text = Properties.Settings.Default.precisionOrdenarX.ToString();
             this.txtPrecisionOrdenarY.Text = Properties.Settings.Default.precisionOrdenarY.ToString();
             this.rbtnVistaGlobal.Checked = Properties.Settings.Default.rbtnGeneralVistaGlobal;
             this.rbtnVistaLocal.Checked = Properties.Settings.Default.rbtnGeneralVistaLocal;
 
-            // Pestaña Armaduras
-            tbpgArmadura.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf2-1");
-            gbxArmaduraEnumeracion.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf2-2-1");
+            gbxArmadura.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf2-1");
+            lblArmaduraEnumeracion.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf2-2-1");
             rbtnEnumeracionElemento.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf2-2-2");
             rbtnEnumeracionProyecto.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf2-2-3");
-            gbxArmaduraDibujo.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf2-3-1");
+            lblArmaduraDibujo.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf2-3-1");
             rbtnLineasCentrales.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf2-3-2");
             rbtnLineasBorde.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf2-3-3");
-            gbxPosicionTexto.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf2-4-1");
+            lblArmaduraPosicionTexto.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf2-4-1");
             rbtnTextoArriba.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf2-4-2");
             rbtnTextoAbajo.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf2-4-3");
-            gbxEtiquetaArmadura.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf2-5-1");
-            lblArmaduraEtiquetaIndependiente.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf2-5-2");
-            lblArmaduraPosicionEtiqueta.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf2-5-3");
-            lblEtiquetaArmadura.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf2-5-1-1");
 
             this.rbtnEnumeracionElemento.Checked = Properties.Settings.Default.rbtnArmaduraEnumeracionPorElemento;
             this.rbtnEnumeracionProyecto.Checked = Properties.Settings.Default.rbtnArmaduraEnumeracionPorProyecto;
@@ -130,7 +129,7 @@ namespace Jump
             gbxEtiquetaIndependiente.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-1");
             lblElementoEtiquetasIdependientes.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-2");
             lblPosicionEtiqueta.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-3");
-            lblEtiquetaPilotes.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-1-1");          
+            lblEtiquetaPilotes.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-1-1");
             lblEtiquetaZapataCorrida.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-1-2");
             lblEtiquetaPlatea.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-1-3");
             lblEtiquetaZapatas.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-1-4");
@@ -138,6 +137,12 @@ namespace Jump
             lblEtiquetaMuros.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-1-6");
             lblEtiquetaVigas.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-1-7");
             lblEtiquetaLosas.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-1-8");
+            gbxEtiquetaArmadura.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-2-1");
+            lblArmaduraEtiquetaIndependiente.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-2-2");
+            lblArmaduraPosicionEtiqueta.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-2-3");
+            lblEtiquetaArmadura.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-2-1-1");
+            lblEtiquetaAreaRefuerzo.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-2-1-2");
+            lblEtiquetaArmaduraEnSistema.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-2-1-3");
 
             // Pestaña Cotas
             tbpgCotas.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf5-1");
@@ -171,20 +176,58 @@ namespace Jump
             this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_Precision;
         }
 
-        /// <summary> Cambia la imagen cuando el mouse pasa por arriba del radiobutton Local </summary>
-        private void CambiarImagenVistaLocal_MouseMove(object sender, MouseEventArgs e)
+        /// <summary> Cambia la imagen cuando el mouse pasa por arriba del radiobutton </summary>
+        private void CambiarImagen_MouseMove(object sender, MouseEventArgs e)
         {
-            // Asigna la imagen
-            this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Zapata_Vista_Local;
-        }
+            // Verifica que sea el radiobutton enumeración por proyecto
+            if (sender == this.rbtnEnumeracionProyecto)
+            {
+                //this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
+            }
 
-        /// <summary> Cambia la imagen cuando el mouse pasa por arriba del radiobutton Global </summary>
-        private void CambiarImagenVistaGlobal_MouseMove(object sender, MouseEventArgs e)
-        {
-            // Asigna la imagen
-            this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Zapata_Vista_Global;
-        }
+            // Verifica que sea el radiobutton enumeración por elemento
+            else if (sender == this.rbtnEnumeracionElemento)
+            {
+                //this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
+            }
 
+            // Verifica que sea el radiobutton de corte local
+            else if (sender == this.rbtnVistaLocal)
+            {
+                this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_Vista_Local;
+            }
+
+            // Verifica que sea el radiobutton de corte global
+            else if (sender == this.rbtnVistaGlobal)
+            {
+                this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_Vista_Global;
+            }
+
+            // Verifica que sea el radiobutton lineas centrales
+            else if (sender == this.rbtnLineasCentrales)
+            {
+                this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_LineasCentrales;
+            }
+
+            // Verifica que sea el radiobutton lineas de borde
+            else if (sender == this.rbtnLineasBorde)
+            {
+                this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_LineasDeBorde;
+            }
+
+            // Verifica que sea el radiobutton de texto de armaduras arriba
+            else if (sender == this.rbtnTextoArriba)
+            {
+                this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_TextoArriba;
+            }
+
+            // Verifica que sea el radiobutton de texto de armaduras abajo
+            else if (sender == this.rbtnTextoAbajo)
+            {
+                this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_TextoAbajo;
+            }
+        }
+        
         /// <summary> Cambia la imagen cuando el mouse queda dentro del groupbox </summary>
         private void gbxCambiarImagenGeneral_MouseHover(object sender, EventArgs e)
         {
@@ -192,7 +235,7 @@ namespace Jump
             if (sender == this.gbxConfiguraciones)
             {
                 // Asigna la imagen
-                this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_Precision;
+                this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_Precision;                
             }
 
             // Verifica que sea el groupbox corte transversal
@@ -202,132 +245,15 @@ namespace Jump
                 if (this.rbtnVistaLocal.Checked == true)
                 {
                     // Asigna la imagen
-                    this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Zapata_Vista_Local;
+                    this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_Vista_Local;
                 }
 
                 // Verifica que sea la vista global 
                 if (this.rbtnVistaGlobal.Checked == true)
                 {
                     // Asigna la imagen
-                    this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Zapata_Vista_Global;
+                    this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_Vista_Global;
                 }
-            }
-        }
-
-        /// <summary> Cambia la imagen cuando el mouse pasa por arriba del radiobutton </summary>
-        private void CambiarImagenArmadura_MouseMove(object sender, MouseEventArgs e)
-        {
-            // Verifica que sea el radiobutton lineas centrales
-            if (sender == this.rbtnLineasCentrales)
-            {
-                // Asigna la imagen
-                this.pcbxArmaduras.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_LineasCentrales;
-            }
-
-            // Verifica que sea el radiobutton lineas de borde
-            if (sender == this.rbtnLineasBorde)
-            {
-                // Asigna la imagen
-                this.pcbxArmaduras.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_LineasDeBorde;
-            }
-        }
-        
-        /// <summary> Cambia la imagen cuando el mouse queda dentro del groupbox </summary>
-        private void gbxCambiarImagenArmadura_MouseHover(object sender, EventArgs e)
-        {
-            // Verifica que sea el groupbox precisión
-            if (sender == this.gbxArmaduraEnumeracion)
-            {
-                // Asigna la imagen
-                //this.pcbxArmaduras.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
-            }
-
-            // Verifica que sea el groupbox corte transversal
-            if (sender == this.gbxArmaduraDibujo)
-            {
-                // Verifica que sea la vista local 
-                if (this.rbtnLineasCentrales.Checked == true)
-                {
-                    // Asigna la imagen
-                    this.pcbxArmaduras.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_LineasCentrales;
-                }
-
-                // Verifica que sea la vista global 
-                if (this.rbtnLineasBorde.Checked == true)
-                {
-                    // Asigna la imagen
-                    this.pcbxArmaduras.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_LineasDeBorde;
-                }
-            }
-        }
-
-        /// <summary> Cambia la imagen de la posición de las etiquetas de los elementos estructurales </summary>
-        private void cmbCambiarImagenPreview_DropDown(object sender, EventArgs e)
-        {
-            // Verifica que sea etiqueta armadura
-            if (sender == this.cmbEtiquetaArmadura)
-            {
-                //this.pcbxArmaduras.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
-            }
-
-            // Verifica que sea etiqueta área de refuerzo
-            if (sender == this.cmbEtiquetaAreaRefuerzo)
-            {
-                //this.pcbxArmaduras.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
-            }
-
-            // Verifica que sea etiqueta armadura en sistema
-            if (sender == this.cmbEtiquetaArmaduraEnSistema)
-            {
-                //this.pcbxArmaduras.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
-            }
-
-            // Verifica que sea columnas
-            if (sender == this.cmbEtiquetaColumnas)
-            {
-                //this.pcbxEtiquetaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
-            }
-
-            // Verifica que sea losas
-            if (sender == this.cmbEtiquetaLosas)
-            {
-                //this.pcbxEtiquetaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
-            }
-
-            // Verifica que sea muros
-            if (sender == this.cmbEtiquetaMuros)
-            {
-                //this.pcbxEtiquetaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
-            }
-
-            // Verifica que sea pilotes
-            if (sender == this.cmbEtiquetaPilotes)
-            {
-                //this.pcbxEtiquetaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
-            }
-
-            // Verifica que sea plateas
-            if (sender == this.cmbEtiquetaPlatea)
-            {
-                //this.pcbxEtiquetaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
-            }
-
-            // Verifica que sea vigas
-            if (sender == this.cmbEtiquetaVigas)
-            {
-                //this.pcbxEtiquetaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
-            }
-
-            // Verifica que sea zapatas
-            if (sender == this.cmbEtiquetaZapatas)
-            {
-                //this.pcbxEtiquetaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
-            }
-
-            // Verifica que sea zapata corrida
-            if (sender == this.cmbEtiquetaZapataCorrida)
-            {
-                //this.pcbxEtiquetaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
             }
         }
 
@@ -395,13 +321,13 @@ namespace Jump
         {
             bandera = true;
 
-            // Pestaña 1
+            // Pestaña General
             Properties.Settings.Default.precisionOrdenarX = Convert.ToInt32(this.txtPrecisionOrdenarX.Text);
             Properties.Settings.Default.precisionOrdenarY = Convert.ToInt32(this.txtPrecisionOrdenarY.Text);
             Properties.Settings.Default.rbtnGeneralVistaGlobal = this.rbtnVistaGlobal.Checked;
             Properties.Settings.Default.rbtnGeneralVistaLocal = this.rbtnVistaLocal.Checked;
 
-            // Pestaña 2
+            // Pestaña Armaduras
             Properties.Settings.Default.rbtnArmaduraEnumeracionPorElemento = this.rbtnEnumeracionElemento.Checked;
             Properties.Settings.Default.rbtnArmaduraEnumeracionPorProyecto = this.rbtnEnumeracionProyecto.Checked;
             Properties.Settings.Default.rbtnArmaduraDibujoLineasCentrales = this.rbtnLineasCentrales.Checked;
@@ -412,11 +338,11 @@ namespace Jump
             Properties.Settings.Default.EtiquetaIndependienteAreaRefuerzo = this.cmbEtiquetaAreaRefuerzo.SelectedIndex;
             Properties.Settings.Default.EtiquetaIndependienteArmaduraEnSistema = this.cmbEtiquetaArmaduraEnSistema.SelectedIndex;
 
-            // Pestaña 3
+            // Pestaña Estilos de líneas
             Tools.GuardarDataGridViewEnDocumento(this.dgvEstiloLinea, this.doc);
             CambiarDibujoArmaduras();
 
-            // Pestaña 4
+            // Pestaña Etiquetas de elementos
             Properties.Settings.Default.EtiquetaIndependienteColumnas = this.cmbEtiquetaColumnas.SelectedIndex;
             Properties.Settings.Default.EtiquetaIndependienteLosas = this.cmbEtiquetaLosas.SelectedIndex;
             Properties.Settings.Default.EtiquetaIndependienteMuros = this.cmbEtiquetaMuros.SelectedIndex;

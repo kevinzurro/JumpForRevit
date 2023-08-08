@@ -169,6 +169,13 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\Configuraciones_LineasDeBorde.png" />
+    <None Include="Resources\Configuraciones_LineasCentrales.png" />
+    <Resource Include="Resources\Configuraciones_TextoArriba.png" />
+    <Resource Include="Resources\Configuraciones_TextoAbajo.png" />
+    <Resource Include="Resources\Zapata_Vista_Local.png" />
+    <Resource Include="Resources\Zapata_Vista_Global.png" />
+    <Resource Include="Resources\Configuraciones_Viga.png" />
     <Resource Include="Resources\Armadura_solida.png" />
     <Resource Include="Resources\Boton_Orden.png" />
     <Resource Include="Resources\Boton_Idioma.png" />
@@ -176,11 +183,7 @@
     <Resource Include="Resources\Armadura_tapada.png" />
     <Resource Include="Resources\Armadura_sin_tapar.png" />
     <Resource Include="Resources\Armadura_filamento.png" />
-    <Resource Include="Resources\Zapata_Vista_Local.png" />
-    <Resource Include="Resources\Zapata_Vista_Global.png" />
     <Resource Include="Resources\Boton_Pilote.png" />
-    <Resource Include="Resources\Configuraciones_LineasDeBorde.JPG" />
-    <Resource Include="Resources\Configuraciones_LineasCentrales.JPG" />
     <Resource Include="Resources\Configuraciones_Precision.JPG" />
     <Resource Include="Resources\Boton_Zapata_Corrida.png" />
     <Resource Include="Resources\Boton_Zapata.png" />

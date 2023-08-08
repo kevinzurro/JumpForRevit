@@ -38,7 +38,7 @@ namespace Jump
                 Columna.indiceComboboxTextoBarra = Properties.Settings.Default.indiceComboboxTextoBarra;
                 Columna.indiceComboboxEscalaVista = Properties.Settings.Default.indiceComboboxEscalaVistaColumna;
                 Columna.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.EtiquetaIndependienteColumnas;
-                Columna.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.EtiquetaCotaProfundidad;
+                Columna.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.EtiquetaCotaProfundidadColumnas;
                 Columna.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.EtiquetaIndependienteArmadura;
                 Columna.cotaVerticalIzquierda = true;
                 Columna.cotaVerticalDerecha = true;

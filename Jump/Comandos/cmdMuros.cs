@@ -21,18 +21,6 @@ namespace Jump
             Application app = uiApp.Application;
             Document doc = uiDoc.Document;
 
-            // 
-            List<Element> muros = new List<Element>();
-            muros = Tools.ObtenerTodosEjemplaresSegunCategoria(doc, BuiltInCategory.OST_Walls);
-            using (Transaction t = new Transaction(doc, "seccion muro"))
-            {
-                t.Start();
-                foreach (Element elem in muros)
-                {
-                    View vista = Tools.SeccionLongitudinalBasadoEnCurva(doc, elem);
-                }
-                t.Commit();
-            };
             return Result.Succeeded;
         }
     }

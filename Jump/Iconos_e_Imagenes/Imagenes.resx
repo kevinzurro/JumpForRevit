@@ -119,18 +119,27 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Configuraciones_LineasCentrales" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Configuraciones_LineasCentrales.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Configuraciones_LineasCentrales.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Configuraciones_LineasDeBorde" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Configuraciones_LineasDeBorde.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Configuraciones_LineasDeBorde.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Configuraciones_Precision" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Configuraciones_Precision.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Zapata_Vista_Global" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Configuraciones_TextoAbajo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Configuraciones_TextoAbajo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Configuraciones_TextoArriba" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Configuraciones_TextoArriba.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Configuraciones_Viga" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Configuraciones_Viga.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Configuraciones_Vista_Global" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Zapata_Vista_Global.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Zapata_Vista_Local" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="Configuraciones_Vista_Local" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Zapata_Vista_Local.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

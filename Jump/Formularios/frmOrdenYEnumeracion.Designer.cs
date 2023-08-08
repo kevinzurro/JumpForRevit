@@ -53,7 +53,6 @@
             this.lblParametroElegido = new System.Windows.Forms.Label();
             this.lblVistaPrevia = new System.Windows.Forms.Label();
             this.gbxOrden = new System.Windows.Forms.GroupBox();
-            this.btnEjecutar = new System.Windows.Forms.Button();
             this.rbtn42 = new System.Windows.Forms.RadioButton();
             this.rbtn41 = new System.Windows.Forms.RadioButton();
             this.rbtn32 = new System.Windows.Forms.RadioButton();
@@ -62,6 +61,9 @@
             this.rbtn21 = new System.Windows.Forms.RadioButton();
             this.rbtn12 = new System.Windows.Forms.RadioButton();
             this.rbtn11 = new System.Windows.Forms.RadioButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnAceptar = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.gbxSeleccion.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -71,6 +73,7 @@
             this.panel3.SuspendLayout();
             this.gbxPreview.SuspendLayout();
             this.gbxOrden.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -82,12 +85,14 @@
             this.tableLayoutPanel1.Controls.Add(this.gbxSeleccion, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.gbxEnumeracion, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.gbxOrden, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 2, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(884, 462);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(884, 461);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // gbxSeleccion
@@ -96,7 +101,7 @@
             this.gbxSeleccion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbxSeleccion.Location = new System.Drawing.Point(3, 3);
             this.gbxSeleccion.Name = "gbxSeleccion";
-            this.gbxSeleccion.Size = new System.Drawing.Size(321, 456);
+            this.gbxSeleccion.Size = new System.Drawing.Size(321, 415);
             this.gbxSeleccion.TabIndex = 12;
             this.gbxSeleccion.TabStop = false;
             this.gbxSeleccion.Text = "Categoría";
@@ -113,7 +118,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 140F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(315, 436);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(315, 395);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // panel2
@@ -189,7 +194,7 @@
             this.lstElementos.Location = new System.Drawing.Point(3, 143);
             this.lstElementos.Name = "lstElementos";
             this.lstElementos.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lstElementos.Size = new System.Drawing.Size(309, 290);
+            this.lstElementos.Size = new System.Drawing.Size(309, 249);
             this.lstElementos.TabIndex = 1;
             // 
             // gbxEnumeracion
@@ -198,7 +203,7 @@
             this.gbxEnumeracion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbxEnumeracion.Location = new System.Drawing.Point(560, 3);
             this.gbxEnumeracion.Name = "gbxEnumeracion";
-            this.gbxEnumeracion.Size = new System.Drawing.Size(321, 456);
+            this.gbxEnumeracion.Size = new System.Drawing.Size(321, 415);
             this.gbxEnumeracion.TabIndex = 11;
             this.gbxEnumeracion.TabStop = false;
             this.gbxEnumeracion.Text = "Enumeración";
@@ -217,7 +222,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(315, 436);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(315, 395);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // panel3
@@ -325,7 +330,7 @@
             this.lstParametros.ItemHeight = 15;
             this.lstParametros.Location = new System.Drawing.Point(3, 223);
             this.lstParametros.Name = "lstParametros";
-            this.lstParametros.Size = new System.Drawing.Size(309, 210);
+            this.lstParametros.Size = new System.Drawing.Size(309, 169);
             this.lstParametros.TabIndex = 2;
             this.lstParametros.SelectedIndexChanged += new System.EventHandler(this.lstParametros_SelectedIndexChanged);
             // 
@@ -365,7 +370,6 @@
             // 
             // gbxOrden
             // 
-            this.gbxOrden.Controls.Add(this.btnEjecutar);
             this.gbxOrden.Controls.Add(this.rbtn42);
             this.gbxOrden.Controls.Add(this.rbtn41);
             this.gbxOrden.Controls.Add(this.rbtn32);
@@ -377,22 +381,10 @@
             this.gbxOrden.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbxOrden.Location = new System.Drawing.Point(330, 3);
             this.gbxOrden.Name = "gbxOrden";
-            this.gbxOrden.Size = new System.Drawing.Size(224, 456);
+            this.gbxOrden.Size = new System.Drawing.Size(224, 415);
             this.gbxOrden.TabIndex = 9;
             this.gbxOrden.TabStop = false;
             this.gbxOrden.Text = "Orden";
-            // 
-            // btnEjecutar
-            // 
-            this.btnEjecutar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEjecutar.Location = new System.Drawing.Point(6, 419);
-            this.btnEjecutar.Name = "btnEjecutar";
-            this.btnEjecutar.Size = new System.Drawing.Size(212, 34);
-            this.btnEjecutar.TabIndex = 14;
-            this.btnEjecutar.Text = "Ejecutar";
-            this.btnEjecutar.UseVisualStyleBackColor = true;
-            this.btnEjecutar.Click += new System.EventHandler(this.btnEjecutar_Click);
             // 
             // rbtn42
             // 
@@ -507,12 +499,43 @@
             this.rbtn11.Text = "                     ";
             this.rbtn11.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnCancelar);
+            this.panel1.Controls.Add(this.btnAceptar);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(560, 424);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(321, 34);
+            this.panel1.TabIndex = 13;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.Location = new System.Drawing.Point(228, 3);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(90, 28);
+            this.btnCancelar.TabIndex = 15;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            // 
+            // btnAceptar
+            // 
+            this.btnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAceptar.Location = new System.Drawing.Point(132, 3);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(90, 28);
+            this.btnAceptar.TabIndex = 14;
+            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnEjecutar_Click);
+            // 
             // frmOrdenYEnumeracion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(884, 462);
+            this.ClientSize = new System.Drawing.Size(884, 461);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.KeyPreview = true;
@@ -536,6 +559,7 @@
             this.gbxPreview.PerformLayout();
             this.gbxOrden.ResumeLayout(false);
             this.gbxOrden.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -575,6 +599,8 @@
         private System.Windows.Forms.RadioButton rbtnTodos;
         private System.Windows.Forms.ListBox lstElementos;
         private System.Windows.Forms.ComboBox cmbCategorias;
-        private System.Windows.Forms.Button btnEjecutar;
+        private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }

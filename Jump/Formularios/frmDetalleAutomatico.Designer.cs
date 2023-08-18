@@ -395,6 +395,8 @@
             // chbCotaLineal
             // 
             this.chbCotaLineal.AutoSize = true;
+            this.chbCotaLineal.Checked = true;
+            this.chbCotaLineal.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chbCotaLineal.Location = new System.Drawing.Point(24, 150);
             this.chbCotaLineal.Margin = new System.Windows.Forms.Padding(0);
             this.chbCotaLineal.Name = "chbCotaLineal";

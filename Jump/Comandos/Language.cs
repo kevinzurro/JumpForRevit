@@ -33,14 +33,21 @@ namespace Jump
             IdiomasDisponibles.Clear();
 
             // Agregar los idiomas disponibles al vector principal
-            //IdiomasDisponibles.Add("Deutsch");
-            //IdiomasDisponibles.Add("English");
+
+            //IdiomasDisponibles.Add("English);
             IdiomasDisponibles.Add("Español");
             //IdiomasDisponibles.Add("French");
+            //IdiomasDisponibles.Add("German");
             //IdiomasDisponibles.Add("Italian");
             //IdiomasDisponibles.Add("Japanese");
-            //IdiomasDisponibles.Add("Nederlands");
+            //IdiomasDisponibles.Add("Korean");
+            //IdiomasDisponibles.Add("Polish");
+            //IdiomasDisponibles.Add("Simplified Chinese");
+            //IdiomasDisponibles.Add("Traditional Chinese");
             //IdiomasDisponibles.Add("Português");
+            //IdiomasDisponibles.Add("Russian");
+            //IdiomasDisponibles.Add("Czech");
+            //IdiomasDisponibles.Add("Nederlands");
         }
 
         ///<summary> Carga los textos para cada uno de los vectores secundarios </summary>
@@ -84,16 +91,6 @@ namespace Jump
             Espanol.Add("Tit2", "Visibilidad");
             Espanol.Add("Tit3", "Herramientas");
 
-            Espanol.Add("DetArm1", "Despiece \nde barra");
-            Espanol.Add("DetArm2", "Despiece de barra descripción corta");
-            Espanol.Add("DetArm3", "Despiece de barra descripción larga");
-            Espanol.Add("DetArm4", "Despiece de barra");
-            Espanol.Add("DetArm1-1", "Etiqueta de armadura");
-            Espanol.Add("DetArm1-2", "Longitud parcial de la barra");
-            Espanol.Add("DetArm2-1", "Despiece de armadura");
-            Espanol.Add("DetArm2-2", "Seleccione una barra");
-            Espanol.Add("DetArm2-3", "Seleccione un punto donde quiere colocar el detalle");
-
             Espanol.Add("Pil1", "Pilotes");
             Espanol.Add("Pil2", "Pilotes descripción corta");
             Espanol.Add("Pil3", "Pilotes descripción larga");
@@ -114,27 +111,6 @@ namespace Jump
             Espanol.Add("Pla4", "Platea");
             Espanol.Add("Pla5", "Aceptar");
             Espanol.Add("Pla6", "Cancelar");
-
-            Espanol.Add("OrdYEnu1", "Orden \ny enumeración");
-            Espanol.Add("OrdYEnu2", "Orden y enumeración descripción corta");
-            Espanol.Add("OrdYEnu3", "Orden y enumeración descripción larga");
-            Espanol.Add("OrdYEnu4", "Orden y enumeración");
-            Espanol.Add("OrdYEnu5", "Aceptar");
-            Espanol.Add("OrdYEnu6", "Cancelar");
-            Espanol.Add("OrdYEnu1-1", "Categoría");
-            Espanol.Add("OrdYEnu1-2", "Todos");
-            Espanol.Add("OrdYEnu1-3", "Elementos seleccionados");
-            Espanol.Add("OrdYEnu1-4", "Elementos de la lista");
-            Espanol.Add("OrdYEnu2-1", "Orden");
-            Espanol.Add("OrdYEnu3-1", "Enumeración");
-            Espanol.Add("OrdYEnu3-2", "Prefijo");
-            Espanol.Add("OrdYEnu3-3", "Número inicial");
-            Espanol.Add("OrdYEnu3-4", "Incremento");
-            Espanol.Add("OrdYEnu3-5", "Sufijo");
-            Espanol.Add("OrdYEnu3-6", "Vista previa");
-            Espanol.Add("OrdYEnu3-7", "Parámetro");
-            Espanol.Add("OrdYEnu3-8", "Enumeración");
-            Espanol.Add("OrdYEnu4-1", "Comando de enumeración");
 
             Espanol.Add("Zap1", "Zapatas");
             Espanol.Add("Zap2", "Zapatas descripción corta");
@@ -188,6 +164,22 @@ namespace Jump
             Espanol.Add("Mur4", "Muros");
             Espanol.Add("Mur5", "Aceptar");
             Espanol.Add("Mur6", "Cancelar");
+            Espanol.Add("Mur1-2", "Selección");
+            Espanol.Add("Mur1-3", "Todos");
+            Espanol.Add("Mur1-4", "Elementos seleccionados");
+            Espanol.Add("Mur1-5", "Elementos de la lista");
+            Espanol.Add("Mur2-1", "Etiquetas");
+            Espanol.Add("Mur2-2", "Escala");
+            Espanol.Add("Mur2-3", "Etiqueta de muro");
+            Espanol.Add("Mur2-4", "Etiqueta de armadura");
+            Espanol.Add("Mur2-5", "Longitud parcial de la barra");
+            Espanol.Add("Mur2-6", "Cota lineal");
+            Espanol.Add("Mur2-7", "Cota de elevación");
+            Espanol.Add("Mur3-1", "Vista previa");
+            Espanol.Add("Mur4-1", "Acciones a realizar");
+            Espanol.Add("Mur4-2", "Vista X-X");
+            Espanol.Add("Mur4-3", "Vista Y-Y");
+            Espanol.Add("Mur5-1", "Comando de Muros");
 
             Espanol.Add("Vig1", "Vigas");
             Espanol.Add("Vig2", "Vigas descripción corta");
@@ -225,7 +217,17 @@ namespace Jump
             Espanol.Add("VisArmSol", "Solido");
             Espanol.Add("VisArmFil", "Filamento");
             Espanol.Add("VisArmSinTap", "Sin tapar");            
-            Espanol.Add("VisArmTap", "Tapada");            
+            Espanol.Add("VisArmTap", "Tapada");
+
+            Espanol.Add("DetArm1", "Despiece \nde barra");
+            Espanol.Add("DetArm2", "Despiece de barra descripción corta");
+            Espanol.Add("DetArm3", "Despiece de barra descripción larga");
+            Espanol.Add("DetArm4", "Despiece de barra");
+            Espanol.Add("DetArm1-1", "Etiqueta de armadura");
+            Espanol.Add("DetArm1-2", "Longitud parcial de la barra");
+            Espanol.Add("DetArm2-1", "Despiece de armadura");
+            Espanol.Add("DetArm2-2", "Seleccione una barra");
+            Espanol.Add("DetArm2-3", "Seleccione un punto donde quiere colocar el detalle");
 
             Espanol.Add("Conf1", "Configuraciones");
             Espanol.Add("Conf2", "Permite cambiar las configuraciones predeterminadas");
@@ -276,6 +278,27 @@ namespace Jump
             Espanol.Add("Conf5-1", "Cotas");
             Espanol.Add("Conf5-1-1", "Cotas lineales");
             Espanol.Add("Conf5-2-1", "Cotas de profundidad");
+
+            Espanol.Add("OrdYEnu1", "Orden \ny enumeración");
+            Espanol.Add("OrdYEnu2", "Orden y enumeración descripción corta");
+            Espanol.Add("OrdYEnu3", "Orden y enumeración descripción larga");
+            Espanol.Add("OrdYEnu4", "Orden y enumeración");
+            Espanol.Add("OrdYEnu5", "Aceptar");
+            Espanol.Add("OrdYEnu6", "Cancelar");
+            Espanol.Add("OrdYEnu1-1", "Categoría");
+            Espanol.Add("OrdYEnu1-2", "Todos");
+            Espanol.Add("OrdYEnu1-3", "Elementos seleccionados");
+            Espanol.Add("OrdYEnu1-4", "Elementos de la lista");
+            Espanol.Add("OrdYEnu2-1", "Orden");
+            Espanol.Add("OrdYEnu3-1", "Enumeración");
+            Espanol.Add("OrdYEnu3-2", "Prefijo");
+            Espanol.Add("OrdYEnu3-3", "Número inicial");
+            Espanol.Add("OrdYEnu3-4", "Incremento");
+            Espanol.Add("OrdYEnu3-5", "Sufijo");
+            Espanol.Add("OrdYEnu3-6", "Vista previa");
+            Espanol.Add("OrdYEnu3-7", "Parámetro");
+            Espanol.Add("OrdYEnu3-8", "Enumeración");
+            Espanol.Add("OrdYEnu4-1", "Comando de enumeración");
 
             Espanol.Add("Idi1", "Idioma");
             Espanol.Add("Idi2", "Permite cambiar el idioma");

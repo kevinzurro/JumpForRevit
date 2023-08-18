@@ -337,7 +337,7 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("7")]
+        [global::System.Configuration.DefaultSettingValueAttribute("8")]
         public int EtiquetaCotaProfundidadColumnas {
             get {
                 return ((int)(this["EtiquetaCotaProfundidadColumnas"]));
@@ -433,7 +433,7 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("8")]
         public int EtiquetaCotaProfundidadLosas {
             get {
                 return ((int)(this["EtiquetaCotaProfundidadLosas"]));
@@ -445,7 +445,7 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("8")]
         public int EtiquetaCotaProfundidadMuros {
             get {
                 return ((int)(this["EtiquetaCotaProfundidadMuros"]));
@@ -457,7 +457,7 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("8")]
         public int EtiquetaCotaProfundidadPlatea {
             get {
                 return ((int)(this["EtiquetaCotaProfundidadPlatea"]));
@@ -469,7 +469,7 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("8")]
+        [global::System.Configuration.DefaultSettingValueAttribute("6")]
         public int EtiquetaCotaProfundidadVigas {
             get {
                 return ((int)(this["EtiquetaCotaProfundidadVigas"]));
@@ -481,7 +481,7 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("6")]
         public int EtiquetaCotaProfundidadZapatas {
             get {
                 return ((int)(this["EtiquetaCotaProfundidadZapatas"]));
@@ -493,13 +493,25 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("8")]
         public int EtiquetaCotaProfundidadZapatasCorrida {
             get {
                 return ((int)(this["EtiquetaCotaProfundidadZapatasCorrida"]));
             }
             set {
                 this["EtiquetaCotaProfundidadZapatasCorrida"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int indiceComboboxEscalaVistaMuro {
+            get {
+                return ((int)(this["indiceComboboxEscalaVistaMuro"]));
+            }
+            set {
+                this["indiceComboboxEscalaVistaMuro"] = value;
             }
         }
     }

@@ -102,7 +102,6 @@ D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump.Iconos_e_
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump.frmIdioma.resources
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump.Iconos_e_Imagenes.Iconos.resources
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump.Iconos_e_Imagenes.Imagenes.resources
-D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump.Properties.Resources.resources
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump.csproj.GenerateResource.Cache
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump.dll
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump.pdb
@@ -119,3 +118,4 @@ D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump.frmDetall
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump.frmDetalleAutomatico.resources
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\bin\Debug\Revit.ES.Extension.dll
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\bin\Debug\Revit.ES.Extension.pdb
+D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump.Properties.Resources.resources

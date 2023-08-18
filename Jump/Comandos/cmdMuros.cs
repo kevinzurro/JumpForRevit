@@ -21,7 +21,46 @@ namespace Jump
             Application app = uiApp.Application;
             Document doc = uiDoc.Document;
 
-            return Result.Succeeded;
+            Tools.AddinManager();
+            Tools.CrearRegistroActualizadorArmaduras(uiApp.ActiveAddInId);
+
+            using (TransactionGroup tra = new TransactionGroup(doc))
+            {
+                tra.Start();
+
+                frmDetalleAutomatico Muro = new frmDetalleAutomatico(doc, uiDoc);
+
+                Muro.clase = typeof(Wall);
+                Muro.categoria = BuiltInCategory.OST_Walls;
+                Muro.categoriaEtiqueta = BuiltInCategory.OST_StructuralFramingTags;
+                Muro.indiceComboboxTextoBarra = Properties.Settings.Default.indiceComboboxTextoBarra;
+                Muro.indiceComboboxEscalaVista = Properties.Settings.Default.indiceComboboxEscalaVistaMuro;
+                Muro.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.EtiquetaIndependienteMuros;
+                Muro.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.EtiquetaCotaProfundidadMuros;
+                Muro.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.EtiquetaIndependienteArmadura;
+                Muro.cotaVerticalIzquierda = true;
+                Muro.cotaVerticalDerecha = true;
+                Muro.cotaHorizontalArriba = true;
+                Muro.cotaHorizontalAbajo = true;
+                Muro.clave = "Mur";
+
+                Muro.ShowDialog();
+
+                // Guarda el indice en las configuraciones
+                Properties.Settings.Default.indiceComboboxTextoBarra = Muro.indiceComboboxTextoBarra;
+                Properties.Settings.Default.indiceComboboxEscalaVistaMuro = Muro.indiceComboboxEscalaVista;
+                Properties.Settings.Default.Save();
+
+                if (Muro.bandera)
+                {
+                    tra.Commit();
+                }
+                else
+                {
+                    tra.RollBack();
+                }
+            }
+                return Result.Succeeded;
         }
     }
 }

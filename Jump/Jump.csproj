@@ -92,6 +92,7 @@
     <Compile Include="Comandos\cmdVigas.cs" />
     <Compile Include="Comandos\cmdLosas.cs" />
     <Compile Include="Comandos\cmdZapatas.cs" />
+    <Compile Include="Comandos\Test.cs" />
     <Compile Include="Formularios\frmDetalleArmadura.cs">
       <SubType>Form</SubType>
     </Compile>

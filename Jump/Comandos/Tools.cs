@@ -101,6 +101,10 @@ namespace Jump
         // Multiplica la distancia a mover para las cotas lineales
         private static double multiplicadorDistanciaCotasLinealesAbajo = 3;
 
+        // Multiplica la distancia a mover para las cotas lineales
+        private static double multiplicadorCotasProfundidadPliegue = 2;
+        private static double multiplicadorCotasProfundidadFin = 1.5;
+
         // Punto para realizar el corte transversal para lineas
         private static double corteTransversalBasadoLinea = 0.5;
 
@@ -716,14 +720,17 @@ namespace Jump
             // Crea la lista de los subelementos
             List<Element> subElementos = new List<Element>();
 
-            // Castea el elemento
-            FamilyInstance fi = elem as FamilyInstance;
-
-            // Verifica que el elemento tenga subelementos
-            if (fi.GetSubComponentIds().Count > 0)
+            if (elem is FamilyInstance)
             {
-                // Agrega a la lista
-                subElementos = ObtenerElementoSegunID(doc, fi.GetSubComponentIds().ToList());
+                // Castea el elemento
+                FamilyInstance fi = elem as FamilyInstance;
+
+                // Verifica que el elemento tenga subelementos
+                if (fi.GetSubComponentIds().Count > 0)
+                {
+                    // Agrega a la lista
+                    subElementos = ObtenerElementoSegunID(doc, fi.GetSubComponentIds().ToList());
+                }
             }
 
             return subElementos;
@@ -3504,7 +3511,61 @@ namespace Jump
             // Crea el vector
             XYZ vector = new XYZ();
 
-            // Obtiene la transformada de la vista
+            Document doc = vista.Document;
+
+            Element elem = etiqueta.GetTaggedLocalElement();
+
+            if (elem.Location is LocationCurve)
+            {
+                XYZ inicio = (elem.Location as LocationCurve).Curve.GetEndPoint(0);
+                XYZ final = (elem.Location as LocationCurve).Curve.GetEndPoint(1);
+
+                XYZ sentido = (final - inicio).Normalize();
+
+                if (!Tools.EsParalelo(sentido, vista.RightDirection))
+                {
+                    using (SubTransaction subT = new SubTransaction(doc))
+                    {
+                        subT.Start();
+
+                        double angulo = vista.RightDirection.AngleTo(sentido);
+
+                        Line linea = Line.CreateBound(inicio, inicio + vista.ViewDirection);
+
+                        ElementTransformUtils.RotateElement(vista.Document, elem.Id, linea, -angulo);
+
+                        vector = ObtenerVectorParaEtiqueta(vista, direccion, etiqueta, cotas);
+
+                        vector = Tools.ProyectarVectorSobreDireccionYSentido(vector, direccion);
+
+                        BoundingBoxXYZ bbEtiqueta = etiqueta.get_BoundingBox(vista);
+
+                        XYZ etiquetaDimension = bbEtiqueta.Max - bbEtiqueta.Min;
+
+                        vector = Tools.ProyectarVectorSobreDireccionYSentido(etiquetaDimension, vector);
+
+                        subT.RollBack();
+                    }
+                }
+                else
+                {
+                    vector = ObtenerVectorParaEtiqueta(vista, direccion, etiqueta, cotas);
+                }
+            }
+            else
+            {
+                vector = ObtenerVectorParaEtiqueta(vista, direccion, etiqueta, cotas);
+            }
+
+            return vector;
+        }
+
+        ///<summary> Obtiene el vector para mover la etiqueta según la dirección dada </summary>
+        private static XYZ ObtenerVectorParaEtiqueta(View vista, XYZ direccion, IndependentTag etiqueta, List<Dimension> cotas)
+        {
+            // Crea el vector
+            XYZ vector = new XYZ();
+
             Transform tra = vista.CropBox.Transform;
 
             // Obtiene la dirección en coordenadas de la vista
@@ -3518,14 +3579,10 @@ namespace Jump
             // Obtiene el recuadro de la etiqueta
             BoundingBoxXYZ bbEtiqueta = etiqueta.get_BoundingBox(vista);
 
-            // Obtiene los bordes en coordenadas de la vista
-            XYZ etiqueta1 = tra.Inverse.OfPoint(bbEtiqueta.Max);
-            XYZ etiqueta2 = tra.Inverse.OfPoint(bbEtiqueta.Min);
-
             // Obtiene los puntos máximos y mínimos en coordenadas de la vista
-            XYZ etiquetaMax = ObtenerPuntoMaximo(etiqueta1, etiqueta2);
-            XYZ etiquetaMin = ObtenerPuntoMinimo(etiqueta1, etiqueta2);
-
+            XYZ etiquetaMax = ObtenerPuntoMaximo(tra.Inverse.OfPoint(bbEtiqueta.Max), tra.Inverse.OfPoint(bbEtiqueta.Min));
+            XYZ etiquetaMin = ObtenerPuntoMinimo(tra.Inverse.OfPoint(bbEtiqueta.Max), tra.Inverse.OfPoint(bbEtiqueta.Min));
+            
             // Recorre todas las cotas
             foreach (Dimension cota in cotas)
             {
@@ -3534,33 +3591,29 @@ namespace Jump
                 {
                     // Obtiene el recuadro de la cota
                     BoundingBoxXYZ bbCota = cota.get_BoundingBox(vista);
-                    
-                    // Obtiene los bordes en coordenadas de la vista
-                    XYZ cota1 = tra.Inverse.OfPoint(bbCota.Max);
-                    XYZ cota2 = tra.Inverse.OfPoint(bbCota.Min);
 
                     // Obtiene los puntos máximos y mínimos en coordenadas de la vista
-                    XYZ cotaMax = ObtenerPuntoMaximo(cota1, cota2);
-                    XYZ cotaMin = ObtenerPuntoMinimo(cota1, cota2);
+                    XYZ cotaMax = ObtenerPuntoMaximo(tra.Inverse.OfPoint(bbCota.Max), tra.Inverse.OfPoint(bbCota.Min));
+                    XYZ cotaMin = ObtenerPuntoMinimo(tra.Inverse.OfPoint(bbCota.Max), tra.Inverse.OfPoint(bbCota.Min));
 
                     // Obtiene los componentes del vector
                     double xCota = ComponenteDeVectorParaEtiqueta(direccionModificada.X, etiquetaMax.X, etiquetaMin.X, cotaMax.X, cotaMin.X);
                     double yCota = ComponenteDeVectorParaEtiqueta(direccionModificada.Y, etiquetaMax.Y, etiquetaMin.Y, cotaMax.Y, cotaMin.Y);
                     double zCota = ComponenteDeVectorParaEtiqueta(direccionModificada.Z, etiquetaMax.Z, etiquetaMin.Z, cotaMax.Z, cotaMin.Z);
-                    
+
                     // Verifica si los componentes van en la misma dirección 
                     x = ComponenteDeVectorMayorOMenorQuePunto(direccionModificada.X, xCota, x);
                     y = ComponenteDeVectorMayorOMenorQuePunto(direccionModificada.Y, yCota, y);
                     z = ComponenteDeVectorMayorOMenorQuePunto(direccionModificada.Z, zCota, z);
                 }
             }
-            
+
             // Transforma el vector de las coordenadas de la vista a coordenadas globales
             vector = tra.OfVector(new XYZ(x, y, z));
 
             return vector;
         }
-        
+
         ///<summary> Obtiene el vector para mover la etiqueta de profundidad según la dirección dada </summary>
         public static XYZ ObtenerVectorParaMoverEtiqueta(View vista, XYZ direccion, SpotDimension cotaProfundidad, List<Dimension> cotas)
         {
@@ -3652,7 +3705,7 @@ namespace Jump
         }
 
         ///<summary> Obtiene la dirección según la posición de la etiqueta </summary>
-        public static XYZ DireccionSegunPosicionDeEtiqueta(View vista, Element elem, IndependentTag etiqueta)
+        public static XYZ DireccionSegunPosicionDeEtiqueta(View vista, Element elem, IndependentTag etiqueta, int posicion)
         {
             // Crea la dirección
             XYZ direccion = new XYZ();
@@ -3668,6 +3721,10 @@ namespace Jump
                 IntersectionResult inter = curva.Project(baricentroEtiqueta);
 
                 direccion = baricentroEtiqueta - inter.XYZPoint;
+            }
+            else
+            {
+                direccion = DireccionSegunPosicionDeEtiqueta(vista, posicion);
             }
 
             return direccion;
@@ -3920,6 +3977,39 @@ namespace Jump
             }
 
             return bb;
+        }
+
+        ///<summary> Devuelve verdadero si el recuadro secuandario se encuentra dentro del principal </summary>
+        public static bool RecuadroDentroDeOtro(Outline principal, Outline secundario)
+        {
+            bool bandera = false;
+            bool banderaMin = false;
+            bool banderaMax = false;
+
+            bool xMin = principal.MinimumPoint.X < secundario.MinimumPoint.X;
+            bool yMin = principal.MinimumPoint.Y < secundario.MinimumPoint.Y;
+            bool zMin = principal.MinimumPoint.Z < secundario.MinimumPoint.Z;
+
+            bool xMax = principal.MaximumPoint.X > secundario.MaximumPoint.X;
+            bool yMax = principal.MaximumPoint.Y > secundario.MaximumPoint.Y;
+            bool zMax = principal.MaximumPoint.Z > secundario.MaximumPoint.Z;
+
+            if (xMin && yMin && zMin)
+            {
+                banderaMin = true;
+            }
+
+            if (xMax && yMax && zMax)
+            {
+                banderaMax = true;
+            }
+
+            if (banderaMin || banderaMax)
+            {
+                bandera = true;
+            }
+
+            return bandera;
         }
 
         #endregion
@@ -4338,13 +4428,9 @@ namespace Jump
 
                 puntoMin = tr.OfPoint(puntoMin);
                 puntoMax = tr.OfPoint(puntoMax);
+            }
 
-                punto = (tra.Inverse.OfPoint(puntoMin).X < tra.Inverse.OfPoint(puntoMax).X) ? puntoMin : puntoMax;
-            }
-            else
-            {
-                punto = puntoMin;
-            }
+            punto = (tra.Inverse.OfPoint(puntoMin).X < tra.Inverse.OfPoint(puntoMax).X) ? puntoMin : puntoMax;
 
             XYZ puntoEnCara = punto;
 
@@ -4369,19 +4455,19 @@ namespace Jump
                 BoundingBoxXYZ bbEtiqueta = etiquetaTemporal.get_BoundingBox(vista);
 
                 // Obtiene el volumen tridimensional de la etiqueta temporal
-                double xEtiMedio = (bbEtiqueta.Max.X - bbEtiqueta.Min.X);
-                double yEtiMedio = (bbEtiqueta.Max.Y - bbEtiqueta.Min.Y);
+                double xEtiMedio = (bbEtiqueta.Max.X - bbEtiqueta.Min.X)/2;
+                double yEtiMedio = (bbEtiqueta.Max.Y - bbEtiqueta.Min.Y)/2;
 
                 // Obtiene el punto del pliegue
-                double xPliegue = puntoPliegue.X - xEtiMedio * ObtenerSignoComponenteDeVector(vista.RightDirection.X);
-                double yPliegue = puntoPliegue.Y - yEtiMedio * ObtenerSignoComponenteDeVector(vista.RightDirection.Y);
+                double xPliegue = puntoPliegue.X - multiplicadorCotasProfundidadPliegue * xEtiMedio * ObtenerSignoComponenteDeVector(vista.RightDirection.X);
+                double yPliegue = puntoPliegue.Y - multiplicadorCotasProfundidadPliegue * yEtiMedio * ObtenerSignoComponenteDeVector(vista.RightDirection.Y);
 
                 // Reemplaza las nuevas coordenadas del pliegue
                 puntoPliegue = new XYZ(xPliegue, yPliegue, puntoPliegue.Z);
 
                 // Obtiene el punto final
-                double xFin = puntoFin.X - xEtiMedio * ObtenerSignoComponenteDeVector(vista.RightDirection.X);
-                double yFin = puntoFin.Y - yEtiMedio * ObtenerSignoComponenteDeVector(vista.RightDirection.Y);
+                double xFin = puntoFin.X - multiplicadorCotasProfundidadFin * xEtiMedio * ObtenerSignoComponenteDeVector(vista.RightDirection.X);
+                double yFin = puntoFin.Y - multiplicadorCotasProfundidadFin * yEtiMedio * ObtenerSignoComponenteDeVector(vista.RightDirection.Y);
 
                 // Reemplaza las nuevas coordenadas después del pliegue
                 puntoFin = new XYZ(xFin, yFin, puntoFin.Z);
@@ -4454,13 +4540,9 @@ namespace Jump
 
                 puntoMin = tr.OfPoint(puntoMin);
                 puntoMax = tr.OfPoint(puntoMax);
+            }
 
-                punto = (tra.Inverse.OfPoint(puntoMin).X > tra.Inverse.OfPoint(puntoMax).X) ? puntoMin : puntoMax;
-            }
-            else
-            {
-                punto = puntoMin;
-            }
+            punto = (tra.Inverse.OfPoint(puntoMin).X > tra.Inverse.OfPoint(puntoMax).X) ? puntoMin : puntoMax;
 
             XYZ puntoEnCara = punto;
 
@@ -4485,19 +4567,19 @@ namespace Jump
                 BoundingBoxXYZ bbEtiqueta = etiquetaTemporal.get_BoundingBox(vista);
 
                 // Obtiene el volumen tridimensional de la etiqueta temporal
-                double xEtiMedio = (bbEtiqueta.Max.X - bbEtiqueta.Min.X) / 4;
-                double yEtiMedio = (bbEtiqueta.Max.Y - bbEtiqueta.Min.Y) / 4;
+                double xEtiMedio = (bbEtiqueta.Max.X - bbEtiqueta.Min.X) / 2;
+                double yEtiMedio = (bbEtiqueta.Max.Y - bbEtiqueta.Min.Y) / 2;
 
                 // Obtiene el punto del pliegue
-                double xPliegue = puntoPliegue.X + xEtiMedio * ObtenerSignoComponenteDeVector(vista.RightDirection.X);
-                double yPliegue = puntoPliegue.Y + yEtiMedio * ObtenerSignoComponenteDeVector(vista.RightDirection.Y);
+                double xPliegue = puntoPliegue.X + multiplicadorCotasProfundidadPliegue * xEtiMedio * ObtenerSignoComponenteDeVector(vista.RightDirection.X);
+                double yPliegue = puntoPliegue.Y + multiplicadorCotasProfundidadPliegue * yEtiMedio * ObtenerSignoComponenteDeVector(vista.RightDirection.Y);
 
                 // Reemplaza las nuevas coordenadas del pliegue
                 puntoPliegue = new XYZ(xPliegue, yPliegue, puntoPliegue.Z);
 
                 // Obtiene el punto final
-                double xFin = puntoFin.X + xEtiMedio * ObtenerSignoComponenteDeVector(vista.RightDirection.X);
-                double yFin = puntoFin.Y + yEtiMedio * ObtenerSignoComponenteDeVector(vista.RightDirection.Y);
+                double xFin = puntoFin.X + multiplicadorCotasProfundidadFin * xEtiMedio * ObtenerSignoComponenteDeVector(vista.RightDirection.X);
+                double yFin = puntoFin.Y + multiplicadorCotasProfundidadFin * yEtiMedio * ObtenerSignoComponenteDeVector(vista.RightDirection.Y);
 
                 // Reemplaza las nuevas coordenadas después del pliegue
                 puntoFin = new XYZ(xFin, yFin, puntoFin.Z);
@@ -4701,7 +4783,7 @@ namespace Jump
             bool bandera = false;
             
             // Crea la lista a devolver
-            List <Solid> solidos = new List<Solid>();
+            List<Solid> solidos = new List<Solid>();
 
             // Recorre todos las geometrías primitivas
             foreach (GeometryObject geoObje in geoElem)
@@ -5013,10 +5095,10 @@ namespace Jump
             // Verifica que la dirección sea mayor a la tolerancia
             if (Math.Abs(direccion) > toleranciaComponenteVector)
             {
-                // Verifica si la dirección es positiva
+                // La dirección es positiva
                 if (direccion > toleranciaComponenteVector)
                 {
-                    // Verifica si la cota es mayor al punto
+                    // La cota es mayor al punto
                     if (cota > punto)
                     {
                         componente = cota;
@@ -5026,7 +5108,7 @@ namespace Jump
                 // La dirección es negativa
                 else
                 {
-                    // Verifica si la cota es menor al punto
+                    // La cota es menor al punto
                     if (cota < punto)
                     {
                         componente = cota;

@@ -514,7 +514,7 @@ namespace Jump
                     try
                     {
                         // Crea la cota vertical derecha
-                        //listaCotas.Add(Tools.CrearCotaVerticalDerechaParaElemento(doc, vista, elem, tipoCota));
+                        listaCotas.Add(Tools.CrearCotaVerticalDerechaParaElemento(doc, vista, elem, tipoCota));
                     }
                     catch (Exception) { }
                 }
@@ -525,7 +525,7 @@ namespace Jump
                     try
                     {
                         // Crea la cota horizontal arriba
-                        //listaCotas.Add(Tools.CrearCotaHorizontalArribaParaElemento(doc, vista, elem, tipoCota));
+                        listaCotas.Add(Tools.CrearCotaHorizontalArribaParaElemento(doc, vista, elem, tipoCota));
                     }
                     catch (Exception) { }
                 }
@@ -536,7 +536,7 @@ namespace Jump
                     try
                     {
                         // Crea la cota horizontal abajo
-                        //listaCotas.Add(Tools.CrearCotaHorizontalAbajoParaElemento(doc, vista, elem, tipoCota));
+                        listaCotas.Add(Tools.CrearCotaHorizontalAbajoParaElemento(doc, vista, elem, tipoCota));
                     }
                     catch (Exception) { }
                 }

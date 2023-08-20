@@ -121,7 +121,7 @@ namespace Jump
             this.elementos = Tools.ObtenerTodosEjemplaresSegunClaseYCategoria(doc, clase, categoria);
 
             // Elimina los subelementos
-            try{ this.elementos = Tools.EliminarSubelementos(this.elementos); } catch (Exception) { }
+            try { this.elementos = Tools.EliminarSubelementos(this.elementos); } catch (Exception) { }
 
             // Agrega los elementos a la listbox
             Tools.RellenarListBoxDeElementos(this.lstElementos, doc, this.elementos);
@@ -168,6 +168,8 @@ namespace Jump
                     // Crea otra vista para la sección
                     vista = Tools.VistaYY(this.doc, this.elementos[posicionImagenPreview]);
                 }
+
+                doc.Regenerate();
 
                 if (vista != null)
                 {
@@ -387,7 +389,7 @@ namespace Jump
                 // Obtiene los elementos seleccionados de la listbox y agrega a la lista
                 this.listaElementosEstructurales = Tools.ObtenerElementosDeUnListbox(this.lstElementos, this.doc, this.elementos);
             }
-
+            
             // Verifica que la lista de elementos estructurales contenga elementos para poder continuar
             if (this.listaElementosEstructurales.Count > 0)
             {
@@ -410,6 +412,8 @@ namespace Jump
                             // Crea la vista XX
                             Autodesk.Revit.DB.View vista = Tools.VistaXX(this.doc, elem);
 
+                            doc.Regenerate();
+
                             // Configura la vista y crea las etiquetas
                             CrearEtiquetasYConfigurarVista(vista, elem);
                         }
@@ -419,6 +423,8 @@ namespace Jump
                         {
                             // Crea la vista YY
                             Autodesk.Revit.DB.View vista = Tools.VistaYY(this.doc, elem);
+
+                            doc.Regenerate();
 
                             // Configura la vista y crea las etiquetas
                             CrearEtiquetasYConfigurarVista(vista, elem);
@@ -457,6 +463,8 @@ namespace Jump
 
                 // Crea las etiquetas para la vista
                 CrearEtiquetas(vista, elem);
+
+                doc.Regenerate();
             }
 
             return vista;
@@ -506,7 +514,7 @@ namespace Jump
                     try
                     {
                         // Crea la cota vertical derecha
-                        listaCotas.Add(Tools.CrearCotaVerticalDerechaParaElemento(doc, vista, elem, tipoCota));
+                        //listaCotas.Add(Tools.CrearCotaVerticalDerechaParaElemento(doc, vista, elem, tipoCota));
                     }
                     catch (Exception) { }
                 }
@@ -517,7 +525,7 @@ namespace Jump
                     try
                     {
                         // Crea la cota horizontal arriba
-                        listaCotas.Add(Tools.CrearCotaHorizontalArribaParaElemento(doc, vista, elem, tipoCota));
+                        //listaCotas.Add(Tools.CrearCotaHorizontalArribaParaElemento(doc, vista, elem, tipoCota));
                     }
                     catch (Exception) { }
                 }
@@ -528,13 +536,16 @@ namespace Jump
                     try
                     {
                         // Crea la cota horizontal abajo
-                        listaCotas.Add(Tools.CrearCotaHorizontalAbajoParaElemento(doc, vista, elem, tipoCota));
+                        //listaCotas.Add(Tools.CrearCotaHorizontalAbajoParaElemento(doc, vista, elem, tipoCota));
                     }
                     catch (Exception) { }
                 }
 
-                // Agrega las cotas a la lista
-                listaEtiquetasCreadas.AddRange(listaCotas);
+                if (listaCotas.Count > 0)
+                {
+                    // Agrega las cotas a la lista
+                    listaEtiquetasCreadas.AddRange(listaCotas);
+                }
             }
 
             // Etiqueta del elemento estructural
@@ -548,14 +559,17 @@ namespace Jump
                     // Crea una etiqueta independiente del elemento
                     IndependentTag etiqueta = Tools.CrearEtiquetaSegunConfiguracion(this.doc, vista, elem, tipoEtiqueta, this.posicionEtiquetaIndependienteElemento);
 
-                    // Obtiene la dirección según las configuraciones
-                    XYZ direccion = Tools.DireccionSegunPosicionDeEtiqueta(vista, elem, etiqueta, this.posicionEtiquetaIndependienteElemento);
-                    
-                    // Obtiene el vector para mover la etiqueta
-                    XYZ vector = Tools.ObtenerVectorParaMoverEtiqueta(vista, direccion, etiqueta, listaCotas);
-                    
-                    // Mueve la etiqueta
-                    ElementTransformUtils.MoveElement(this.doc, etiqueta.Id, vector);
+                    if (listaCotas.Count > 0)
+                    {
+                        // Obtiene la dirección según las configuraciones
+                        XYZ direccion = Tools.DireccionSegunPosicionDeEtiqueta(vista, elem, etiqueta, this.posicionEtiquetaIndependienteElemento);
+
+                        // Obtiene el vector para mover la etiqueta
+                        XYZ vector = Tools.ObtenerVectorParaMoverEtiqueta(vista, direccion, etiqueta, listaCotas);
+
+                        // Mueve la etiqueta
+                        ElementTransformUtils.MoveElement(this.doc, etiqueta.Id, vector);
+                    }
 
                     // Agrega la etiqueta a la lista
                     listaEtiquetasCreadas.Add(etiqueta);

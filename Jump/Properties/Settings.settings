@@ -8,8 +8,8 @@
     <Setting Name="precisionOrdenarX" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="indiceComboboxEscalaVistaZapata" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">5</Value>
+    <Setting Name="ZapatasIndiceComboboxEscalaVista" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="rbtnArmaduraEnumeracionPorElemento" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -59,34 +59,34 @@
     <Setting Name="rbtnTextoArmaduraAbajo" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="EtiquetaIndependienteZapatasCorrida" Type="System.Int32" Scope="User">
+    <Setting Name="ZapatasCorridaEtiquetaIndependiente" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="EtiquetaIndependientePlatea" Type="System.Int32" Scope="User">
+    <Setting Name="PlateaEtiquetaIndependiente" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="EtiquetaIndependienteMuros" Type="System.Int32" Scope="User">
+    <Setting Name="MurosEtiquetaIndependiente" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="EtiquetaIndependientePilotes" Type="System.Int32" Scope="User">
+    <Setting Name="PilotesEtiquetaIndependiente" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="EtiquetaIndependienteArmadura" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
-    <Setting Name="EtiquetaIndependienteVigas" Type="System.Int32" Scope="User">
+    <Setting Name="VigasEtiquetaIndependiente" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
-    <Setting Name="EtiquetaIndependienteZapatas" Type="System.Int32" Scope="User">
+    <Setting Name="ZapatasEtiquetaIndependiente" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
-    <Setting Name="EtiquetaCotaProfundidadColumnas" Type="System.Int32" Scope="User">
+    <Setting Name="ColumnasEtiquetaCotaProfundidad" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">8</Value>
     </Setting>
-    <Setting Name="EtiquetaIndependienteColumnas" Type="System.Int32" Scope="User">
+    <Setting Name="ColumnasEtiquetaIndependiente" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="EtiquetaIndependienteLosas" Type="System.Int32" Scope="User">
+    <Setting Name="LosasEtiquetaIndependiente" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="EtiquetaIndependienteAreaRefuerzo" Type="System.Int32" Scope="User">
@@ -98,32 +98,32 @@
     <Setting Name="toleranciaSuperposicionArmadura" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="indiceComboboxEscalaVistaColumna" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">5</Value>
+    <Setting Name="ColumnaIndiceComboboxEscalaVista" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="indiceComboboxEscalaVistaViga" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">5</Value>
+    <Setting Name="VigasIndiceComboboxEscalaVista" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="EtiquetaCotaProfundidadLosas" Type="System.Int32" Scope="User">
+    <Setting Name="LosasEtiquetaCotaProfundidad" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">8</Value>
     </Setting>
-    <Setting Name="EtiquetaCotaProfundidadMuros" Type="System.Int32" Scope="User">
+    <Setting Name="MurosEtiquetaCotaProfundidad" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">8</Value>
     </Setting>
-    <Setting Name="EtiquetaCotaProfundidadPlatea" Type="System.Int32" Scope="User">
+    <Setting Name="PlateaEtiquetaCotaProfundidad" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">8</Value>
     </Setting>
-    <Setting Name="EtiquetaCotaProfundidadVigas" Type="System.Int32" Scope="User">
+    <Setting Name="VigasEtiquetaCotaProfundidad" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">6</Value>
     </Setting>
-    <Setting Name="EtiquetaCotaProfundidadZapatas" Type="System.Int32" Scope="User">
+    <Setting Name="ZapatasEtiquetaCotaProfundidad" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">6</Value>
     </Setting>
-    <Setting Name="EtiquetaCotaProfundidadZapatasCorrida" Type="System.Int32" Scope="User">
+    <Setting Name="ZapatasCorridaEtiquetaCotaProfundidad" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">8</Value>
     </Setting>
-    <Setting Name="indiceComboboxEscalaVistaMuro" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">5</Value>
+    <Setting Name="MurosIndiceComboboxEscalaVista" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
 </SettingsFile>

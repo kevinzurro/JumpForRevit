@@ -49,13 +49,13 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("5")]
-        public int indiceComboboxEscalaVistaZapata {
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ZapatasIndiceComboboxEscalaVista {
             get {
-                return ((int)(this["indiceComboboxEscalaVistaZapata"]));
+                return ((int)(this["ZapatasIndiceComboboxEscalaVista"]));
             }
             set {
-                this["indiceComboboxEscalaVistaZapata"] = value;
+                this["ZapatasIndiceComboboxEscalaVista"] = value;
             }
         }
         
@@ -254,48 +254,48 @@ namespace Jump.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int EtiquetaIndependienteZapatasCorrida {
+        public int ZapatasCorridaEtiquetaIndependiente {
             get {
-                return ((int)(this["EtiquetaIndependienteZapatasCorrida"]));
+                return ((int)(this["ZapatasCorridaEtiquetaIndependiente"]));
             }
             set {
-                this["EtiquetaIndependienteZapatasCorrida"] = value;
+                this["ZapatasCorridaEtiquetaIndependiente"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int EtiquetaIndependientePlatea {
+        public int PlateaEtiquetaIndependiente {
             get {
-                return ((int)(this["EtiquetaIndependientePlatea"]));
+                return ((int)(this["PlateaEtiquetaIndependiente"]));
             }
             set {
-                this["EtiquetaIndependientePlatea"] = value;
+                this["PlateaEtiquetaIndependiente"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int EtiquetaIndependienteMuros {
+        public int MurosEtiquetaIndependiente {
             get {
-                return ((int)(this["EtiquetaIndependienteMuros"]));
+                return ((int)(this["MurosEtiquetaIndependiente"]));
             }
             set {
-                this["EtiquetaIndependienteMuros"] = value;
+                this["MurosEtiquetaIndependiente"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int EtiquetaIndependientePilotes {
+        public int PilotesEtiquetaIndependiente {
             get {
-                return ((int)(this["EtiquetaIndependientePilotes"]));
+                return ((int)(this["PilotesEtiquetaIndependiente"]));
             }
             set {
-                this["EtiquetaIndependientePilotes"] = value;
+                this["PilotesEtiquetaIndependiente"] = value;
             }
         }
         
@@ -314,60 +314,60 @@ namespace Jump.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("2")]
-        public int EtiquetaIndependienteVigas {
+        public int VigasEtiquetaIndependiente {
             get {
-                return ((int)(this["EtiquetaIndependienteVigas"]));
+                return ((int)(this["VigasEtiquetaIndependiente"]));
             }
             set {
-                this["EtiquetaIndependienteVigas"] = value;
+                this["VigasEtiquetaIndependiente"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("2")]
-        public int EtiquetaIndependienteZapatas {
+        public int ZapatasEtiquetaIndependiente {
             get {
-                return ((int)(this["EtiquetaIndependienteZapatas"]));
+                return ((int)(this["ZapatasEtiquetaIndependiente"]));
             }
             set {
-                this["EtiquetaIndependienteZapatas"] = value;
+                this["ZapatasEtiquetaIndependiente"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("8")]
-        public int EtiquetaCotaProfundidadColumnas {
+        public int ColumnasEtiquetaCotaProfundidad {
             get {
-                return ((int)(this["EtiquetaCotaProfundidadColumnas"]));
+                return ((int)(this["ColumnasEtiquetaCotaProfundidad"]));
             }
             set {
-                this["EtiquetaCotaProfundidadColumnas"] = value;
+                this["ColumnasEtiquetaCotaProfundidad"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int EtiquetaIndependienteColumnas {
+        public int ColumnasEtiquetaIndependiente {
             get {
-                return ((int)(this["EtiquetaIndependienteColumnas"]));
+                return ((int)(this["ColumnasEtiquetaIndependiente"]));
             }
             set {
-                this["EtiquetaIndependienteColumnas"] = value;
+                this["ColumnasEtiquetaIndependiente"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int EtiquetaIndependienteLosas {
+        public int LosasEtiquetaIndependiente {
             get {
-                return ((int)(this["EtiquetaIndependienteLosas"]));
+                return ((int)(this["LosasEtiquetaIndependiente"]));
             }
             set {
-                this["EtiquetaIndependienteLosas"] = value;
+                this["LosasEtiquetaIndependiente"] = value;
             }
         }
         
@@ -409,109 +409,109 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("5")]
-        public int indiceComboboxEscalaVistaColumna {
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ColumnaIndiceComboboxEscalaVista {
             get {
-                return ((int)(this["indiceComboboxEscalaVistaColumna"]));
+                return ((int)(this["ColumnaIndiceComboboxEscalaVista"]));
             }
             set {
-                this["indiceComboboxEscalaVistaColumna"] = value;
+                this["ColumnaIndiceComboboxEscalaVista"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("5")]
-        public int indiceComboboxEscalaVistaViga {
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int VigasIndiceComboboxEscalaVista {
             get {
-                return ((int)(this["indiceComboboxEscalaVistaViga"]));
+                return ((int)(this["VigasIndiceComboboxEscalaVista"]));
             }
             set {
-                this["indiceComboboxEscalaVistaViga"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("8")]
-        public int EtiquetaCotaProfundidadLosas {
-            get {
-                return ((int)(this["EtiquetaCotaProfundidadLosas"]));
-            }
-            set {
-                this["EtiquetaCotaProfundidadLosas"] = value;
+                this["VigasIndiceComboboxEscalaVista"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("8")]
-        public int EtiquetaCotaProfundidadMuros {
+        public int LosasEtiquetaCotaProfundidad {
             get {
-                return ((int)(this["EtiquetaCotaProfundidadMuros"]));
+                return ((int)(this["LosasEtiquetaCotaProfundidad"]));
             }
             set {
-                this["EtiquetaCotaProfundidadMuros"] = value;
+                this["LosasEtiquetaCotaProfundidad"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("8")]
-        public int EtiquetaCotaProfundidadPlatea {
+        public int MurosEtiquetaCotaProfundidad {
             get {
-                return ((int)(this["EtiquetaCotaProfundidadPlatea"]));
+                return ((int)(this["MurosEtiquetaCotaProfundidad"]));
             }
             set {
-                this["EtiquetaCotaProfundidadPlatea"] = value;
+                this["MurosEtiquetaCotaProfundidad"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("8")]
+        public int PlateaEtiquetaCotaProfundidad {
+            get {
+                return ((int)(this["PlateaEtiquetaCotaProfundidad"]));
+            }
+            set {
+                this["PlateaEtiquetaCotaProfundidad"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("6")]
-        public int EtiquetaCotaProfundidadVigas {
+        public int VigasEtiquetaCotaProfundidad {
             get {
-                return ((int)(this["EtiquetaCotaProfundidadVigas"]));
+                return ((int)(this["VigasEtiquetaCotaProfundidad"]));
             }
             set {
-                this["EtiquetaCotaProfundidadVigas"] = value;
+                this["VigasEtiquetaCotaProfundidad"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("6")]
-        public int EtiquetaCotaProfundidadZapatas {
+        public int ZapatasEtiquetaCotaProfundidad {
             get {
-                return ((int)(this["EtiquetaCotaProfundidadZapatas"]));
+                return ((int)(this["ZapatasEtiquetaCotaProfundidad"]));
             }
             set {
-                this["EtiquetaCotaProfundidadZapatas"] = value;
+                this["ZapatasEtiquetaCotaProfundidad"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("8")]
-        public int EtiquetaCotaProfundidadZapatasCorrida {
+        public int ZapatasCorridaEtiquetaCotaProfundidad {
             get {
-                return ((int)(this["EtiquetaCotaProfundidadZapatasCorrida"]));
+                return ((int)(this["ZapatasCorridaEtiquetaCotaProfundidad"]));
             }
             set {
-                this["EtiquetaCotaProfundidadZapatasCorrida"] = value;
+                this["ZapatasCorridaEtiquetaCotaProfundidad"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("5")]
-        public int indiceComboboxEscalaVistaMuro {
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int MurosIndiceComboboxEscalaVista {
             get {
-                return ((int)(this["indiceComboboxEscalaVistaMuro"]));
+                return ((int)(this["MurosIndiceComboboxEscalaVista"]));
             }
             set {
-                this["indiceComboboxEscalaVistaMuro"] = value;
+                this["MurosIndiceComboboxEscalaVista"] = value;
             }
         }
     }

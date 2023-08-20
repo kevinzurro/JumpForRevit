@@ -36,9 +36,9 @@ namespace Jump
                 Columna.categoria = BuiltInCategory.OST_StructuralColumns;
                 Columna.categoriaEtiqueta = BuiltInCategory.OST_StructuralColumnTags;
                 Columna.indiceComboboxTextoBarra = Properties.Settings.Default.indiceComboboxTextoBarra;
-                Columna.indiceComboboxEscalaVista = Properties.Settings.Default.indiceComboboxEscalaVistaColumna;
-                Columna.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.EtiquetaIndependienteColumnas;
-                Columna.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.EtiquetaCotaProfundidadColumnas;
+                Columna.indiceComboboxEscalaVista = Properties.Settings.Default.ColumnaIndiceComboboxEscalaVista;
+                Columna.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.ColumnasEtiquetaIndependiente;
+                Columna.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.ColumnasEtiquetaCotaProfundidad;
                 Columna.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.EtiquetaIndependienteArmadura;
                 Columna.cotaVerticalIzquierda = true;
                 Columna.cotaVerticalDerecha = true;
@@ -50,7 +50,7 @@ namespace Jump
 
                 // Guarda el indice en las configuraciones
                 Properties.Settings.Default.indiceComboboxTextoBarra = Columna.indiceComboboxTextoBarra;
-                Properties.Settings.Default.indiceComboboxEscalaVistaColumna = Columna.indiceComboboxEscalaVista;
+                Properties.Settings.Default.ColumnaIndiceComboboxEscalaVista = Columna.indiceComboboxEscalaVista;
                 Properties.Settings.Default.Save();
 
                 if (Columna.bandera)

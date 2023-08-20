@@ -104,6 +104,22 @@ namespace Jump
             Espanol.Add("ZapCor4", "Zapata Corrida");
             Espanol.Add("ZapCor5", "Aceptar");
             Espanol.Add("ZapCor6", "Cancelar");
+            Espanol.Add("ZapCor1-2", "Selección");
+            Espanol.Add("ZapCor1-3", "Todos");
+            Espanol.Add("ZapCor1-4", "Elementos seleccionados");
+            Espanol.Add("ZapCor1-5", "Elementos de la lista");
+            Espanol.Add("ZapCor2-1", "Etiquetas");
+            Espanol.Add("ZapCor2-2", "Escala");
+            Espanol.Add("ZapCor2-3", "Etiqueta de zapata corrida");
+            Espanol.Add("ZapCor2-4", "Etiqueta de armadura");
+            Espanol.Add("ZapCor2-5", "Longitud parcial de la barra");
+            Espanol.Add("ZapCor2-6", "Cota lineal");
+            Espanol.Add("ZapCor2-7", "Cota de elevación");
+            Espanol.Add("ZapCor3-1", "Vista previa");
+            Espanol.Add("ZapCor4-1", "Sección");
+            Espanol.Add("ZapCor4-2", "Vista X-X");
+            Espanol.Add("ZapCor4-3", "Vista Y-Y");
+            Espanol.Add("ZapCor5-1", "Detalle de zapatas corridas");
 
             Espanol.Add("Pla1", "Platea");
             Espanol.Add("Pla2", "Platea descripción corta");
@@ -111,6 +127,22 @@ namespace Jump
             Espanol.Add("Pla4", "Platea");
             Espanol.Add("Pla5", "Aceptar");
             Espanol.Add("Pla6", "Cancelar");
+            Espanol.Add("Pla1-2", "Selección");
+            Espanol.Add("Pla1-3", "Todos");
+            Espanol.Add("Pla1-4", "Elementos seleccionados");
+            Espanol.Add("Pla1-5", "Elementos de la lista");
+            Espanol.Add("Pla2-1", "Etiquetas");
+            Espanol.Add("Pla2-2", "Escala");
+            Espanol.Add("Pla2-3", "Etiqueta de platea");
+            Espanol.Add("Pla2-4", "Etiqueta de armadura");
+            Espanol.Add("Pla2-5", "Longitud parcial de la barra");
+            Espanol.Add("Pla2-6", "Cota lineal");
+            Espanol.Add("Pla2-7", "Cota de elevación");
+            Espanol.Add("Pla3-1", "Vista previa");
+            Espanol.Add("Pla4-1", "Sección");
+            Espanol.Add("Pla4-2", "Vista X-X");
+            Espanol.Add("Pla4-3", "Vista Y-Y");
+            Espanol.Add("Pla5-1", "Detalle de plateas");
 
             Espanol.Add("Zap1", "Zapatas");
             Espanol.Add("Zap2", "Zapatas descripción corta");
@@ -130,10 +162,10 @@ namespace Jump
             Espanol.Add("Zap2-6", "Cota lineal");
             Espanol.Add("Zap2-7", "Cota de elevación");
             Espanol.Add("Zap3-1", "Vista previa");
-            Espanol.Add("Zap4-1", "Acciones a realizar");
+            Espanol.Add("Zap4-1", "Sección");
             Espanol.Add("Zap4-2", "Vista X-X");
             Espanol.Add("Zap4-3", "Vista Y-Y");
-            Espanol.Add("Zap5-1", "Comando de Zapatas");
+            Espanol.Add("Zap5-1", "Detalle de zapatas");
 
             Espanol.Add("Col1", "Columnas");
             Espanol.Add("Col2", "Columnas descripción corta");
@@ -153,10 +185,10 @@ namespace Jump
             Espanol.Add("Col2-6", "Cota lineal");
             Espanol.Add("Col2-7", "Cota de elevación");
             Espanol.Add("Col3-1", "Vista previa");
-            Espanol.Add("Col4-1", "Acciones a realizar");
+            Espanol.Add("Col4-1", "Sección");
             Espanol.Add("Col4-2", "Vista X-X");
             Espanol.Add("Col4-3", "Vista Y-Y");
-            Espanol.Add("Col5-1", "Comando de Columnas");
+            Espanol.Add("Col5-1", "Detalle de columnas");
 
             Espanol.Add("Mur1", "Muros");
             Espanol.Add("Mur2", "Muros descripción corta");
@@ -176,10 +208,10 @@ namespace Jump
             Espanol.Add("Mur2-6", "Cota lineal");
             Espanol.Add("Mur2-7", "Cota de elevación");
             Espanol.Add("Mur3-1", "Vista previa");
-            Espanol.Add("Mur4-1", "Acciones a realizar");
+            Espanol.Add("Mur4-1", "Sección");
             Espanol.Add("Mur4-2", "Vista X-X");
             Espanol.Add("Mur4-3", "Vista Y-Y");
-            Espanol.Add("Mur5-1", "Comando de Muros");
+            Espanol.Add("Mur5-1", "Detalle de muros");
 
             Espanol.Add("Vig1", "Vigas");
             Espanol.Add("Vig2", "Vigas descripción corta");
@@ -199,10 +231,10 @@ namespace Jump
             Espanol.Add("Vig2-6", "Cota lineal");
             Espanol.Add("Vig2-7", "Cota de elevación");
             Espanol.Add("Vig3-1", "Vista previa");
-            Espanol.Add("Vig4-1", "Acciones a realizar");
+            Espanol.Add("Vig4-1", "Sección");
             Espanol.Add("Vig4-2", "Vista X-X");
             Espanol.Add("Vig4-3", "Vista Y-Y");
-            Espanol.Add("Vig5-1", "Comando de Vigas");
+            Espanol.Add("Vig5-1", "Detalle de vigas");
 
             Espanol.Add("Los1", "Losas");
             Espanol.Add("Los2", "Losas descripción corta");

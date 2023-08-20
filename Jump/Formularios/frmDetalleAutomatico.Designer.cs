@@ -205,7 +205,7 @@
             // chbVistaYY
             // 
             this.chbVistaYY.AutoSize = true;
-            this.chbVistaYY.Location = new System.Drawing.Point(10, 48);
+            this.chbVistaYY.Location = new System.Drawing.Point(30, 48);
             this.chbVistaYY.Name = "chbVistaYY";
             this.chbVistaYY.Size = new System.Drawing.Size(73, 19);
             this.chbVistaYY.TabIndex = 14;
@@ -217,7 +217,7 @@
             this.chbVistaXX.AutoSize = true;
             this.chbVistaXX.Checked = true;
             this.chbVistaXX.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chbVistaXX.Location = new System.Drawing.Point(10, 23);
+            this.chbVistaXX.Location = new System.Drawing.Point(30, 23);
             this.chbVistaXX.Name = "chbVistaXX";
             this.chbVistaXX.Size = new System.Drawing.Size(75, 19);
             this.chbVistaXX.TabIndex = 13;
@@ -381,8 +381,6 @@
             // chbEtiquetaElemento
             // 
             this.chbEtiquetaElemento.AutoSize = true;
-            this.chbEtiquetaElemento.Checked = true;
-            this.chbEtiquetaElemento.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chbEtiquetaElemento.Location = new System.Drawing.Point(24, 45);
             this.chbEtiquetaElemento.Margin = new System.Windows.Forms.Padding(0);
             this.chbEtiquetaElemento.Name = "chbEtiquetaElemento";
@@ -395,8 +393,6 @@
             // chbCotaLineal
             // 
             this.chbCotaLineal.AutoSize = true;
-            this.chbCotaLineal.Checked = true;
-            this.chbCotaLineal.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chbCotaLineal.Location = new System.Drawing.Point(24, 150);
             this.chbCotaLineal.Margin = new System.Windows.Forms.Padding(0);
             this.chbCotaLineal.Name = "chbCotaLineal";

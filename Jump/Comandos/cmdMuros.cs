@@ -29,14 +29,14 @@ namespace Jump
                 tra.Start();
 
                 frmDetalleAutomatico Muro = new frmDetalleAutomatico(doc, uiDoc);
-
+                
                 Muro.clase = typeof(Wall);
                 Muro.categoria = BuiltInCategory.OST_Walls;
                 Muro.categoriaEtiqueta = BuiltInCategory.OST_StructuralFramingTags;
                 Muro.indiceComboboxTextoBarra = Properties.Settings.Default.indiceComboboxTextoBarra;
-                Muro.indiceComboboxEscalaVista = Properties.Settings.Default.indiceComboboxEscalaVistaMuro;
-                Muro.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.EtiquetaIndependienteMuros;
-                Muro.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.EtiquetaCotaProfundidadMuros;
+                Muro.indiceComboboxEscalaVista = Properties.Settings.Default.MurosIndiceComboboxEscalaVista;
+                Muro.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.MurosEtiquetaIndependiente;
+                Muro.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.MurosEtiquetaCotaProfundidad;
                 Muro.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.EtiquetaIndependienteArmadura;
                 Muro.cotaVerticalIzquierda = true;
                 Muro.cotaVerticalDerecha = true;
@@ -48,7 +48,7 @@ namespace Jump
 
                 // Guarda el indice en las configuraciones
                 Properties.Settings.Default.indiceComboboxTextoBarra = Muro.indiceComboboxTextoBarra;
-                Properties.Settings.Default.indiceComboboxEscalaVistaMuro = Muro.indiceComboboxEscalaVista;
+                Properties.Settings.Default.MurosIndiceComboboxEscalaVista = Muro.indiceComboboxEscalaVista;
                 Properties.Settings.Default.Save();
 
                 if (Muro.bandera)
@@ -60,7 +60,8 @@ namespace Jump
                     tra.RollBack();
                 }
             }
-                return Result.Succeeded;
+
+            return Result.Succeeded;
         }
     }
 }

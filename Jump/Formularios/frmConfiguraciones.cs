@@ -59,14 +59,14 @@ namespace Jump
             this.cmbEtiquetaArmadura.SelectedIndex = Properties.Settings.Default.EtiquetaIndependienteArmadura;
             this.cmbEtiquetaAreaRefuerzo.SelectedIndex = Properties.Settings.Default.EtiquetaIndependienteAreaRefuerzo;
             this.cmbEtiquetaArmaduraEnSistema.SelectedIndex = Properties.Settings.Default.EtiquetaIndependienteArmaduraEnSistema;
-            this.cmbEtiquetaColumnas.SelectedIndex = Properties.Settings.Default.EtiquetaIndependienteColumnas;
-            this.cmbEtiquetaLosas.SelectedIndex = Properties.Settings.Default.EtiquetaIndependienteLosas;
-            this.cmbEtiquetaMuros.SelectedIndex = Properties.Settings.Default.EtiquetaIndependienteMuros;
-            this.cmbEtiquetaPilotes.SelectedIndex = Properties.Settings.Default.EtiquetaIndependientePilotes;
-            this.cmbEtiquetaPlatea.SelectedIndex = Properties.Settings.Default.EtiquetaIndependientePlatea;
-            this.cmbEtiquetaVigas.SelectedIndex = Properties.Settings.Default.EtiquetaIndependienteVigas;            
-            this.cmbEtiquetaZapatas.SelectedIndex = Properties.Settings.Default.EtiquetaIndependienteZapatas;
-            this.cmbEtiquetaZapataCorrida.SelectedIndex = Properties.Settings.Default.EtiquetaIndependienteZapatasCorrida;
+            this.cmbEtiquetaColumnas.SelectedIndex = Properties.Settings.Default.ColumnasEtiquetaIndependiente;
+            this.cmbEtiquetaLosas.SelectedIndex = Properties.Settings.Default.LosasEtiquetaIndependiente;
+            this.cmbEtiquetaMuros.SelectedIndex = Properties.Settings.Default.MurosEtiquetaIndependiente;
+            this.cmbEtiquetaPilotes.SelectedIndex = Properties.Settings.Default.PilotesEtiquetaIndependiente;
+            this.cmbEtiquetaPlatea.SelectedIndex = Properties.Settings.Default.PlateaEtiquetaIndependiente;
+            this.cmbEtiquetaVigas.SelectedIndex = Properties.Settings.Default.VigasEtiquetaIndependiente;            
+            this.cmbEtiquetaZapatas.SelectedIndex = Properties.Settings.Default.ZapatasEtiquetaIndependiente;
+            this.cmbEtiquetaZapataCorrida.SelectedIndex = Properties.Settings.Default.ZapatasCorridaEtiquetaIndependiente;
         }
 
         /// <summary> Asigna las imagenes predeterminadas cuando carga el formulario </summary>
@@ -343,14 +343,14 @@ namespace Jump
             CambiarDibujoArmaduras();
 
             // Pestaña Etiquetas de elementos
-            Properties.Settings.Default.EtiquetaIndependienteColumnas = this.cmbEtiquetaColumnas.SelectedIndex;
-            Properties.Settings.Default.EtiquetaIndependienteLosas = this.cmbEtiquetaLosas.SelectedIndex;
-            Properties.Settings.Default.EtiquetaIndependienteMuros = this.cmbEtiquetaMuros.SelectedIndex;
-            Properties.Settings.Default.EtiquetaIndependientePilotes = this.cmbEtiquetaPilotes.SelectedIndex;
-            Properties.Settings.Default.EtiquetaIndependientePlatea = this.cmbEtiquetaPlatea.SelectedIndex;
-            Properties.Settings.Default.EtiquetaIndependienteVigas = this.cmbEtiquetaVigas.SelectedIndex;
-            Properties.Settings.Default.EtiquetaIndependienteZapatas = this.cmbEtiquetaZapatas.SelectedIndex;
-            Properties.Settings.Default.EtiquetaIndependienteZapatasCorrida = this.cmbEtiquetaZapataCorrida.SelectedIndex;
+            Properties.Settings.Default.ColumnasEtiquetaIndependiente = this.cmbEtiquetaColumnas.SelectedIndex;
+            Properties.Settings.Default.LosasEtiquetaIndependiente = this.cmbEtiquetaLosas.SelectedIndex;
+            Properties.Settings.Default.MurosEtiquetaIndependiente = this.cmbEtiquetaMuros.SelectedIndex;
+            Properties.Settings.Default.PilotesEtiquetaIndependiente = this.cmbEtiquetaPilotes.SelectedIndex;
+            Properties.Settings.Default.PlateaEtiquetaIndependiente = this.cmbEtiquetaPlatea.SelectedIndex;
+            Properties.Settings.Default.VigasEtiquetaIndependiente = this.cmbEtiquetaVigas.SelectedIndex;
+            Properties.Settings.Default.ZapatasEtiquetaIndependiente = this.cmbEtiquetaZapatas.SelectedIndex;
+            Properties.Settings.Default.ZapatasCorridaEtiquetaIndependiente = this.cmbEtiquetaZapataCorrida.SelectedIndex;
 
             // Guarda las configuraciones
             Properties.Settings.Default.Save();

@@ -2955,6 +2955,8 @@ namespace Jump
             // Crea la etiqueta
             IndependentTag etiqueta = IndependentTag.Create(doc, tipoEtiqueta.Id, vista.Id, referencia, false, TagOrientation.Horizontal, punto);
 
+            doc.Regenerate();
+
             // Obtiene la caja que contiene a la etiqueta
             BoundingBoxXYZ bbetiqueta = etiqueta.get_BoundingBox(vista);
 
@@ -3018,6 +3020,8 @@ namespace Jump
 
             // Crea la etiqueta
             IndependentTag etiqueta = IndependentTag.Create(doc, tipoEtiqueta.Id, vista.Id, referencia, false, TagOrientation.Horizontal, punto);
+
+            doc.Regenerate();
 
             // Obtiene la caja que contiene a la etiqueta
             BoundingBoxXYZ bbetiqueta = etiqueta.get_BoundingBox(vista);
@@ -3098,6 +3102,8 @@ namespace Jump
             // Crea la etiqueta
             IndependentTag etiqueta = IndependentTag.Create(doc, tipoEtiqueta.Id, vista.Id, referencia, false, TagOrientation.Horizontal, punto);
 
+            doc.Regenerate();
+
             // Obtiene la caja que contiene a la etiqueta
             BoundingBoxXYZ bbetiqueta = etiqueta.get_BoundingBox(vista);
 
@@ -3170,6 +3176,8 @@ namespace Jump
 
             // Crea la etiqueta
             IndependentTag etiqueta = IndependentTag.Create(doc, tipoEtiqueta.Id, vista.Id, referencia, false, TagOrientation.Horizontal, punto);
+
+            doc.Regenerate();
 
             // Obtiene la caja que contiene a la etiqueta
             BoundingBoxXYZ bbetiqueta = etiqueta.get_BoundingBox(vista);
@@ -3273,6 +3281,8 @@ namespace Jump
             // Crea la etiqueta
             IndependentTag etiqueta = IndependentTag.Create(doc, tipoEtiqueta.Id, vista.Id, referencia, false, TagOrientation.Horizontal, punto);
 
+            doc.Regenerate();
+
             // Obtiene la caja que contiene a la etiqueta
             BoundingBoxXYZ bbetiqueta = etiqueta.get_BoundingBox(vista);
 
@@ -3352,6 +3362,8 @@ namespace Jump
             // Crea la etiqueta
             IndependentTag etiqueta = IndependentTag.Create(doc, tipoEtiqueta.Id, vista.Id, referencia, false, TagOrientation.Horizontal, punto);
 
+            doc.Regenerate();
+
             // Obtiene la caja que contiene a la etiqueta
             BoundingBoxXYZ bbetiqueta = etiqueta.get_BoundingBox(vista);
 
@@ -3415,6 +3427,8 @@ namespace Jump
 
             // Crea la etiqueta
             IndependentTag etiqueta = IndependentTag.Create(doc, tipoEtiqueta.Id, vista.Id, referencia, false, TagOrientation.Horizontal, punto);
+
+            doc.Regenerate();
 
             // Obtiene la caja que contiene a la etiqueta
             BoundingBoxXYZ bbetiqueta = etiqueta.get_BoundingBox(vista);
@@ -3494,6 +3508,8 @@ namespace Jump
 
             // Crea la etiqueta
             IndependentTag etiqueta = IndependentTag.Create(doc, tipoEtiqueta.Id, vista.Id, referencia, false, TagOrientation.Horizontal, punto);
+
+            doc.Regenerate();
 
             // Obtiene la caja que contiene a la etiqueta
             BoundingBoxXYZ bbetiqueta = etiqueta.get_BoundingBox(vista);
@@ -4794,11 +4810,14 @@ namespace Jump
                     // Castea a solido
                     Solid solido = geoObje as Solid;
 
-                    // Agrega a la lista
-                    solidos.Add(solido);
+                    if (solido.Volume != 0)
+                    {                        
+                        // Agrega a la lista
+                        solidos.Add(solido);
 
-                    // Cambia el estado de la bandera
-                    bandera = true;
+                        // Cambia el estado de la bandera
+                        bandera = true;
+                    }
                 }
             }
 

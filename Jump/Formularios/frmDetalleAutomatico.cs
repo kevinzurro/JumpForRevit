@@ -25,12 +25,13 @@ namespace Jump
         int posicionImagenPreview = 0;
         Transaction traGeneral;
         public bool bandera = false;
+        Type claseDetalleBarra = typeof(RebarBendingDetailType); 
+        BuiltInCategory categoriaDetalleBarra = BuiltInCategory.OST_RebarBendingDetails;
 
         // Parámetros para los elementos estructurales
         public Type clase;
         public BuiltInCategory categoria;
         public BuiltInCategory categoriaEtiqueta;
-        public int indiceComboboxTextoBarra;
         public int indiceComboboxEscalaVista;
         public int posicionEtiquetaIndependienteElemento;
         public int posicionEtiquetaCotaProfundidad;
@@ -46,7 +47,7 @@ namespace Jump
         List<Element> elementos = new List<Element>();
         List<FamilySymbol> etiquetasElemento = new List<FamilySymbol>();
         List<FamilySymbol> etiquetasArmaduras = new List<FamilySymbol>();
-        List<TextNoteType> etiquetasLongitud = new List<TextNoteType>();
+        List<Element> etiquetasLongitud = new List<Element>();
         List<DimensionType> cotasLineales = new List<DimensionType>();
         List<SpotDimensionType> cotasElevacion = new List<SpotDimensionType>();
 
@@ -67,7 +68,6 @@ namespace Jump
             InitializeComponent();
             
             Tools.AddinManager();
-            Tools.CrearRegistroActualizadorArmaduras(doc.Application.ActiveAddInId);
 
             // Variable necesarias
             this.IdiomaDelPrograma = Tools.ObtenerIdiomaDelPrograma();
@@ -77,9 +77,6 @@ namespace Jump
             // Crea el grupo de transacciones
             traGeneral = new Transaction(this.doc, transaccionGrupoImagenPreview);
             traGeneral.Start();
-
-            // Crea el DataGridView de los diámetros y estilos
-            this.dgvEstiloLinea = Tools.ObtenerDataGridViewDeDiametrosYEstilos(this.dgvEstiloLinea, doc, this.IdiomaDelPrograma);
         }
 
         /// <summary> Carga el formulario </summary>
@@ -133,10 +130,10 @@ namespace Jump
             // Completa la lista
             this.etiquetasElemento.AddRange(Tools.ObtenerEtiquetasIndependientes(doc, categoriaEtiqueta));
             this.etiquetasArmaduras.AddRange(Tools.ObtenerEtiquetasIndependientes(doc, categoriaEtiquetaArmadura));
-            this.etiquetasLongitud.AddRange(Tools.ObtenerEstilosTexto(doc));
+            this.etiquetasLongitud.AddRange(Tools.ObtenerTodosTiposSegunClaseYCategoria(doc, claseDetalleBarra, categoriaDetalleBarra));
             this.cotasLineales.AddRange(Tools.ObtenerCotas(doc, cotaEstiloLineal));
             this.cotasElevacion.AddRange(Tools.ObtenerCotasElevacion(doc));
-
+            
             // Limpia y rellena el combobox
             Tools.RellenarCombobox(this.cmbEtiquetaElementoEstructural, etiquetasElemento);
             Tools.RellenarCombobox(this.cmbEtiquetaArmadura, etiquetasArmaduras);
@@ -160,13 +157,23 @@ namespace Jump
             if (this.elementos.Count > 0)
             {
                 // Crea la vista para la sección
-                Autodesk.Revit.DB.View vista = Tools.VistaXX(this.doc, this.elementos[posicionImagenPreview]);
+                Autodesk.Revit.DB.View vista = null;
 
-                //Verifica si la vista es nula
-                if (vista == null)
+                if (this.chbVistaXX.Checked)
+                {
+                    // Crea la vista para la sección
+                    vista = Tools.VistaXX(this.doc, this.elementos[posicionImagenPreview]);
+                }
+
+                else if (this.chbVistaYY.Checked)
+                {
+                    vista = Tools.VistaYY(this.doc, this.elementos[posicionImagenPreview]);
+                }
+
+                else
                 {
                     // Crea otra vista para la sección
-                    vista = Tools.VistaYY(this.doc, this.elementos[posicionImagenPreview]);
+                    vista = null;
                 }
 
                 doc.Regenerate();
@@ -269,13 +276,6 @@ namespace Jump
                 // Actualiza la vista previa
                 AsignarPreviewDeImagen();
             }
-        }
-
-        /// <summary> Cambia el tipo de texto y guarda en las configuraciones </summary>
-        private void cmbEtiquetaLongitud_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Obtiene el indice seleccionado del combo
-            this.indiceComboboxTextoBarra = this.cmbEtiquetaLongitud.SelectedIndex;
         }
 
         /// <summary> Cambia la imagen del preview según el elemento seleccionado </summary>
@@ -563,10 +563,10 @@ namespace Jump
                     {
                         // Obtiene la dirección según las configuraciones
                         XYZ direccion = Tools.DireccionSegunPosicionDeEtiqueta(vista, elem, etiqueta, this.posicionEtiquetaIndependienteElemento);
-
+                        
                         // Obtiene el vector para mover la etiqueta
                         XYZ vector = Tools.ObtenerVectorParaMoverEtiqueta(vista, direccion, etiqueta, listaCotas);
-
+                        
                         // Mueve la etiqueta
                         ElementTransformUtils.MoveElement(this.doc, etiqueta.Id, vector);
                     }
@@ -588,18 +588,6 @@ namespace Jump
                     // Crea la cota de profundidad
                     SpotDimension cotaProfundidad = Tools.CrearCotaProfundidad(this.doc, vista, elem, tipoCotaProfundidad, this.posicionEtiquetaCotaProfundidad);
 
-                    // Obtiene la dirección según las configuraciones
-                    //XYZ direccion = Tools.DireccionSegunPosicionDeEtiqueta(vista, this.posicionEtiquetaCotaProfundidad);
-
-                    // Obtiene el vector a mover
-                    //XYZ vector = Tools.ObtenerVectorParaMoverEtiqueta(vista, direccion, cotaProfundidad, listaCotas);
-
-                    // Verifica que el vector sea menor al ancho del elemento
-                    //vector = Tools.VerificarAnchoDeElementoParaMoverCotaProfundidad(vista, vector);
-
-                    // Mueve la cota
-                    //ElementTransformUtils.MoveElement(doc, cotaProfundidad.Id, vector);
-
                     // Agrega la cota de profundidad a la lista
                     listaEtiquetasCreadas.Add(cotaProfundidad);
                 }
@@ -609,9 +597,8 @@ namespace Jump
             // Recorre todas las armaduras que posee el elemento
             foreach (Rebar barra in barras)
             {
-                // Crea una etiqueta independiente
                 IndependentTag etiquetaArmadura = null;
-                
+
                 // Etiqueta de armadura
                 if (this.chbEtiquetaArmadura.Checked)
                 {
@@ -621,10 +608,7 @@ namespace Jump
                         FamilySymbol tipoEtiqueta = (FamilySymbol)this.cmbEtiquetaArmadura.SelectedItem;
 
                         // Crea la etiqueta independiente de la barra
-                        IndependentTag etiqueta = Tools.CrearEtiquetaArmaduraSegunConfiguracion(this.doc, vista, barra, tipoEtiqueta, this.posicionEtiquetaIndependienteArmadura);
-
-                        // Asigna la etiqueta
-                        etiquetaArmadura = etiqueta;
+                        etiquetaArmadura = Tools.CrearEtiquetaArmaduraSegunConfiguracion(this.doc, vista, barra, tipoEtiqueta, this.posicionEtiquetaIndependienteArmadura);
 
                         // Agrega la etiqueta de armadura a la lista
                         listaEtiquetasCreadas.Add(etiquetaArmadura);
@@ -637,28 +621,19 @@ namespace Jump
                 {
                     try
                     {
-                        // Crea una representación de barra
-                        ArmaduraRepresentacion armadura = new ArmaduraRepresentacion(this.doc, vista, barra);
+                        RebarBendingDetailType tipoBarra = (RebarBendingDetailType)this.cmbEtiquetaLongitud.SelectedItem;
 
-                        // Agrega la Armadura a la lista
+                        XYZ baricentro = Tools.ObtenerBaricentroDeRecuadro(barra.get_BoundingBox(vista));
+
+                        IndependentTag representacionArmadura = RebarBendingDetail.Create(doc, vista.Id, barra.Id, Jump.Properties.Settings.Default.PosicionBarraADibujar, tipoBarra, baricentro, 0) as IndependentTag;
+
+                        this.doc.Regenerate();
+
+                        listaEtiquetasCreadas.Add(representacionArmadura);
+
+                        ArmaduraRepresentacion armadura = new ArmaduraRepresentacion(representacionArmadura, etiquetaArmadura, this.posicionEtiquetaIndependienteArmadura);
+
                         listaArmaduraRepresentacion.Add(armadura);
-
-                        // Asigna el tipo de texto a la representación de la barra
-                        armadura.TipoDeTexto = (TextNoteType)this.cmbEtiquetaLongitud.SelectedItem;
-
-                        // Verifica que la opción de etiqueta esté activo
-                        if (this.chbEtiquetaArmadura.Checked)
-                        {
-                            // Asigna el tipo de etiqueta
-                            armadura.TipoEtiquetaArmadura = (FamilySymbol)this.cmbEtiquetaArmadura.SelectedItem;
-
-                            // Asigna la etiqueta
-                            armadura.EtiquetaArmadura = etiquetaArmadura;
-                        }
-
-                        // Agrega la representación de la armadura a la lista
-                        listaEtiquetasCreadas.AddRange(armadura.CurvasDeArmadura);
-                        listaEtiquetasCreadas.AddRange(armadura.TextosDeLongitudesParciales);
                     }
                     catch (Exception) { }
                 }
@@ -673,13 +648,6 @@ namespace Jump
             // Ajusta el recuadro de la vista
             Tools.AjustarRecuadroDeVista(this.doc, vista, listaEtiquetasCreadas);
 
-            // Verifica que la transacción grupal finalizó
-            if (this.traGeneral.HasEnded())
-            {
-                // Agrega la representación de armadura la barra
-                Tools.GuardarRepresentacionArmaduraDeBarra(barras, listaArmaduraRepresentacion);
-            }
-            
             // Ajusta el zoom de la vista
             AjustarVistaDePreviewControl();
         }
@@ -697,29 +665,23 @@ namespace Jump
             Transform tra = vista.CropBox.Transform;
 
             // Obtiene el recuadro del elemento
-            BoundingBoxXYZ bbElem = Tools.ObtenerRecuadroElementoParaleloAVista(doc, vista, elem);
+            BoundingBoxXYZ bbElem = elem.get_BoundingBox(null);
 
             // Obtiene el baricentro del recuadro del elemento
             XYZ puntoMedioElem = Tools.ObtenerBaricentroDeRecuadro(bbElem);
 
             // Recorre la lista de Representación de Armaduras
-            foreach (ArmaduraRepresentacion bar in armaduras)
+            foreach (ArmaduraRepresentacion representacion in armaduras)
             {
                 try
                 {
-                    // Obtiene el baricentro del recuadro de la barra
-                    XYZ puntoMedioArmadura = bar.PuntoMedio;
+                    XYZ direccion = tra.Inverse.OfVector(representacion.Representacion.TagHeadPosition - puntoMedioElem);
 
-                    XYZ direccion = tra.Inverse.OfVector(puntoMedioArmadura - puntoMedioElem);
+                    XYZ direccionPrincipal = tra.Inverse.OfVector(Tools.ObtenerNormalADireccionPrincipalArmadura(this.doc, vista, representacion.Representacion.GetTaggedLocalElements().FirstOrDefault() as Rebar));
+
+                    XYZ distanciaRelativa = Tools.ProyectarVectorSobreDireccion(direccion, direccionPrincipal);
                     
-                    // Obtiene la distancia en coordenadas de la vista
-                    XYZ direccionPrincipal = tra.Inverse.OfVector(bar.ObtenerVectorPrincipalDeArmadura());
-                    
-                    XYZ direccionProyectada = Tools.ProyectarVectorSobreDireccion(direccion, direccionPrincipal);
-                    
-                    XYZ distanciaRelativa = Tools.ProyectarVectorSobreDireccionYSentido(direccionPrincipal, direccionProyectada);
-                    
-                    OrganizarListaSegunDireccionDeBarra(vista, distanciaRelativa, bar,
+                    OrganizarListaSegunDireccionDeBarra(vista, distanciaRelativa, representacion,
                                                         ref listaArmadurasArriba, ref listaArmadurasAbajo,
                                                         ref listaArmadurasIzquierda, ref listaArmadurasDerecha);
                 }
@@ -732,23 +694,17 @@ namespace Jump
         }
 
         ///<summary> Organiza una Representación de Armadura según una dirección </summary>
-        public void OrganizarListaSegunDireccionDeBarra(Autodesk.Revit.DB.View vista, XYZ distanciaRelativa, ArmaduraRepresentacion bar,
+        public void OrganizarListaSegunDireccionDeBarra(Autodesk.Revit.DB.View vista, XYZ distanciaRelativa, ArmaduraRepresentacion representacion,
                                                                ref List<ArmaduraRepresentacion> listaArmadurasArriba,
                                                                ref List<ArmaduraRepresentacion> listaArmadurasAbajo,
                                                                ref List<ArmaduraRepresentacion> listaArmadurasIzquierda,
                                                                ref List<ArmaduraRepresentacion> listaArmadurasDerecha)
         {
-            // Obtiene la transformada inversa de la vista
-            Transform traInv = vista.CropBox.Transform.Inverse;
-
             // Verifica si la distancia es cero
             if (distanciaRelativa.IsZeroLength())
             {
-                // Proyecta y asigna la posición de la armadura en coordenadas relativas
-                bar.Posicion = traInv.Inverse.OfVector(Tools.ProyectarVectorSobreDireccion(distanciaRelativa, traInv.OfVector(vista.RightDirection)));
-
                 // Agrega la armadura a la lista
-                listaArmadurasDerecha.Add(bar);
+                listaArmadurasDerecha.Add(representacion);
             }
 
             // Verifica si X es mayor a Y
@@ -757,20 +713,14 @@ namespace Jump
                 // Verifica si X es positivo
                 if (Tools.ObtenerSignoComponenteDeVector(distanciaRelativa.X) == 1)
                 {
-                    // Proyecta y asigna la posición de la armadura
-                    bar.Posicion = traInv.Inverse.OfVector(Tools.ProyectarVectorSobreDireccion(distanciaRelativa, traInv.OfVector(vista.RightDirection)));
-
                     // Agrega la armadura a la lista
-                    listaArmadurasDerecha.Add(bar);
+                    listaArmadurasDerecha.Add(representacion);
                 }
 
                 else
                 {
-                    // Proyecta y asigna la posición de la armadura
-                    bar.Posicion = traInv.Inverse.OfVector(Tools.ProyectarVectorSobreDireccion(distanciaRelativa, traInv.OfVector(vista.RightDirection.Negate())));
-
                     // Agrega la armadura a la lista
-                    listaArmadurasIzquierda.Add(bar);
+                    listaArmadurasIzquierda.Add(representacion);
                 }
             }
 
@@ -780,20 +730,14 @@ namespace Jump
                 // Verifica si Y es positivo
                 if (Tools.ObtenerSignoComponenteDeVector(distanciaRelativa.Y) == 1)
                 {
-                    // Proyecta y asigna la posición de la armadura
-                    bar.Posicion = traInv.Inverse.OfVector(Tools.ProyectarVectorSobreDireccion(distanciaRelativa, traInv.OfVector(vista.UpDirection)));
-
                     // Agrega la armadura a la lista
-                    listaArmadurasArriba.Add(bar);
+                    listaArmadurasArriba.Add(representacion);
                 }
 
                 else
                 {
-                    // Proyecta y asigna la posición de la armadura
-                    bar.Posicion = traInv.Inverse.OfVector(Tools.ProyectarVectorSobreDireccion(distanciaRelativa, traInv.OfVector(vista.UpDirection.Negate())));
-
                     // Agrega la armadura a la lista
-                    listaArmadurasAbajo.Add(bar);
+                    listaArmadurasAbajo.Add(representacion);
                 }
             }
         }
@@ -809,7 +753,7 @@ namespace Jump
             if (listaArmadurasArriba.Count > 0)
             {
                 // Ordena la lista
-                listaArmadurasArriba = listaArmadurasArriba.OrderBy(x => tra.Inverse.OfVector(x.Posicion).Y).ToList();
+                listaArmadurasArriba = listaArmadurasArriba.OrderBy(x => tra.Inverse.OfVector(x.Representacion.TagHeadPosition).Y).ToList();
 
                 // Mueve los elementos de la lista
                 MoverListaConArmaduras(doc, vista, elem, vista.UpDirection, listaArmadurasArriba);
@@ -819,7 +763,7 @@ namespace Jump
             if (listaArmadurasAbajo.Count > 0)
             {
                 // Ordena la lista
-                listaArmadurasAbajo = listaArmadurasAbajo.OrderByDescending(x => tra.Inverse.OfPoint(x.Posicion).Y).ToList();
+                listaArmadurasAbajo = listaArmadurasAbajo.OrderByDescending(x => tra.Inverse.OfPoint(x.Representacion.TagHeadPosition).Y).ToList();
 
                 // Mueve los elementos de la lista
                 MoverListaConArmaduras(doc, vista, elem, vista.UpDirection.Negate(), listaArmadurasAbajo);
@@ -829,7 +773,7 @@ namespace Jump
             if (listaArmadurasDerecha.Count > 0)
             {
                 // Ordena la lista
-                listaArmadurasDerecha = listaArmadurasDerecha.OrderBy(x => tra.Inverse.OfVector(x.Posicion).X).ToList();
+                listaArmadurasDerecha = listaArmadurasDerecha.OrderBy(x => tra.Inverse.OfVector(x.Representacion.TagHeadPosition).X).ToList();
 
                 // Mueve los elementos de la lista
                 MoverListaConArmaduras(doc, vista, elem, vista.RightDirection, listaArmadurasDerecha);
@@ -839,7 +783,7 @@ namespace Jump
             if (listaArmadurasIzquierda.Count > 0)
             {
                 // Ordena la lista
-                listaArmadurasIzquierda = listaArmadurasIzquierda.OrderByDescending(x => tra.Inverse.OfVector(x.Posicion).X).ToList();
+                listaArmadurasIzquierda = listaArmadurasIzquierda.OrderByDescending(x => tra.Inverse.OfVector(x.Representacion.TagHeadPosition).X).ToList();
 
                 // Mueve los elementos de la lista
                 MoverListaConArmaduras(doc, vista, elem, vista.RightDirection.Negate(), listaArmadurasIzquierda);
@@ -859,29 +803,33 @@ namespace Jump
             Transform tra = vista.CropBox.Transform;
 
             // Recuadro del elemento
-            BoundingBoxXYZ bbElem = Tools.ObtenerRecuadroElementoParaleloAVista(doc, vista, elem);
+            BoundingBoxXYZ bbElem = elem.get_BoundingBox(vista);
 
             // Distancia a mover
             XYZ distancia = new XYZ();
 
-            // Dimensiones del elemento en coordenadas relativas
-            XYZ elementoDimensiones = tra.Inverse.OfVector((bbElem.Max - bbElem.Min) / 2);
-            XYZ elementoAncho = new XYZ(Math.Abs(elementoDimensiones.X), 0, 0);
-            XYZ elementoAlto = new XYZ(0, Math.Abs(elementoDimensiones.Y), 0);
-
-            foreach (ArmaduraRepresentacion bar in armaduras)
+            foreach (ArmaduraRepresentacion representacion in armaduras)
             {
                 try
                 {
-                    bar.DibujarArmaduraSegunDatagridview(this.dgvEstiloLinea);
-
                     // Recuadro de la barra
-                    BoundingBoxXYZ bbBar = Tools.ObtenerRecuadroElementoParaleloAVista(doc, vista, bar.Barra);//bar.ObtenerBoundingBoxDeArmadura();
+                    BoundingBoxXYZ bbBar = representacion.Representacion.get_BoundingBox(vista);
 
                     // Dimensiones de la Representación de Armadura en coordenadas relativas
                     XYZ barDimensiones = tra.Inverse.OfVector(bbBar.Max - bbBar.Min);
                     XYZ barAncho = new XYZ(Math.Abs(barDimensiones.X), 0, 0);
                     XYZ barAlto = new XYZ(0, Math.Abs(barDimensiones.Y), 0);
+
+                    XYZ etiquetaDimension = new XYZ();
+                    XYZ etiquetaAncho = new XYZ();
+                    XYZ etiquetaAlto = new XYZ();
+
+                    if (representacion.Etiqueta != null)
+                    {
+                        etiquetaDimension = tra.Inverse.OfVector(representacion.Etiqueta.get_BoundingBox(vista).Max - representacion.Etiqueta.get_BoundingBox(vista).Min);
+                        etiquetaAncho = new XYZ(Math.Abs(etiquetaDimension.X), 0, 0);
+                        etiquetaAlto = new XYZ(0, Math.Abs(etiquetaDimension.Y), 0);
+                    }
 
                     // Verifica si la dirección es arriba
                     if (direccion.IsAlmostEqualTo(vista.UpDirection))
@@ -889,15 +837,17 @@ namespace Jump
                         // Verifica si el la primera pasada
                         if (banderaArriba)
                         {
-                            distancia = tra.Inverse.OfVector(Tools.ProyectarVectorSobreDireccion((bbElem.Max - bbBar.Min), vista.UpDirection)) + barAlto / 2;
-
+                            //distancia = tra.Inverse.OfVector(Tools.ProyectarVectorSobreDireccionYSentido((bbElem.Max - bbBar.Min), vista.UpDirection)) / 2 + barAlto;
+                            XYZ proyectado = Tools.ProyectarVectorSobreDireccionYSentido(bbElem.Max - representacion.Representacion.get_BoundingBox(vista).Min, vista.UpDirection);
+                            distancia = tra.Inverse.OfVector(proyectado) + barAlto + etiquetaAlto;
+                            
                             // Cambia el estado de la bandera
                             banderaArriba = false;
                         }
                         else
                         {
-                            distancia += barAlto;
-                        }
+                            distancia += barAlto + etiquetaAlto;
+                        }                     
                     }
 
                     // Verifica si la dirección es abajo
@@ -907,14 +857,16 @@ namespace Jump
                         if (banderaAbajo)
                         {
                             // Obtiene la distancia a mover
-                            distancia = tra.Inverse.OfVector(Tools.ProyectarVectorSobreDireccion((bbElem.Min - bbBar.Max), vista.UpDirection.Negate())) - barAlto / 2;
+                            //distancia = tra.Inverse.OfVector(Tools.ProyectarVectorSobreDireccionYSentido((bbElem.Min - bbBar.Max), vista.UpDirection.Negate())) / 2 - barAlto;
+                            XYZ proyectado = Tools.ProyectarVectorSobreDireccionYSentido(bbElem.Min - representacion.Representacion.get_BoundingBox(vista).Max, vista.UpDirection.Negate());
+                            distancia = tra.Inverse.OfVector(proyectado) - barAlto - etiquetaAlto;
 
                             // Cambia el estado de la bandera
                             banderaAbajo = false;
                         }
                         else
                         {
-                            distancia -= barAlto;
+                            distancia -= (barAlto + etiquetaAlto);
                         }
                     }
 
@@ -924,40 +876,57 @@ namespace Jump
                         // Verifica si el la primera pasada
                         if (banderaDerecha)
                         {
-                            distancia = tra.Inverse.OfVector(Tools.ProyectarVectorSobreDireccion((bbElem.Max - bbBar.Min), vista.RightDirection)) + barAncho;
+                            //distancia = tra.Inverse.OfVector(Tools.ProyectarVectorSobreDireccionYSentido((bbElem.Max - bbBar.Min), vista.RightDirection))/2 + barAncho;
+                            XYZ proyectado = Tools.ProyectarVectorSobreDireccionYSentido(bbElem.Max - representacion.Representacion.get_BoundingBox(vista).Min, vista.RightDirection);
+                            distancia = tra.Inverse.OfVector(proyectado) + barAncho + etiquetaAncho;
 
                             // Cambia el estado de la bandera
                             banderaDerecha = false;
                         }
                         else
                         {
-                            distancia += barAncho / 2;
+                            distancia += barAncho + etiquetaAncho;
                         }
                     }
 
                     // Verifica si la dirección es izquierda
-                    else //(direccion.IsAlmostEqualTo(vista.RightDirection.Negate()))
+                    else
                     {
                         // Verifica si el la primera pasada
                         if (banderaIzquierda)
                         {
-                            distancia = tra.Inverse.OfVector(Tools.ProyectarVectorSobreDireccion((bbElem.Min - bbBar.Max), vista.RightDirection.Negate())) - barAncho;
+                            //distancia = tra.Inverse.OfVector(Tools.ProyectarVectorSobreDireccionYSentido((bbElem.Min - bbBar.Max), vista.RightDirection.Negate()))/2 - barAncho;
+                            XYZ proyectado = Tools.ProyectarVectorSobreDireccionYSentido(bbElem.Min - representacion.Representacion.get_BoundingBox(vista).Max, vista.RightDirection.Negate());
+                            distancia = tra.Inverse.OfVector(proyectado) - barAncho - etiquetaAncho;
 
                             // Cambia el estado de la bandera
                             banderaIzquierda = false;
                         }
                         else
                         {
-                            distancia -= barAncho / 2;
+                            distancia -= (barAlto + etiquetaAlto);
                         }
                     }
 
                     // Lo lleva a coordenadas globales
-                    bar.Posicion = tra.OfVector(distancia);
+                    ElementTransformUtils.MoveElement(this.doc, representacion.Representacion.Id, tra.OfVector(distancia));
 
-                    bar.MoverArmaduraRepresentacionConEtiqueta(bar.Posicion);
+                    if (representacion.Etiqueta != null)
+                    {
+                        try
+                        {
+                            ElementTransformUtils.MoveElement(this.doc, representacion.Etiqueta.Id, tra.OfVector(distancia));
+
+                            XYZ distanciaEtiqueta = Tools.ProyectarVectorSobreDireccionYSentido(tra.OfVector(etiquetaDimension), representacion.PosicionEtiqueta);
+
+                            ElementTransformUtils.MoveElement(this.doc, representacion.Etiqueta.Id, distanciaEtiqueta);
+                        }
+                        catch (Exception) { }
+                    }
                 }
                 catch (Exception) { }
+
+                this.doc.Regenerate();
             }
         }
     }

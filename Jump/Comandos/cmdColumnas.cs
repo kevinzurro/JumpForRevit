@@ -24,7 +24,6 @@ namespace Jump
             Document doc = uiDoc.Document;
 
             Tools.AddinManager();
-            Tools.CrearRegistroActualizadorArmaduras(uiApp.ActiveAddInId);
 
             using (TransactionGroup tra = new TransactionGroup(doc))
             {
@@ -35,21 +34,19 @@ namespace Jump
                 Columna.clase = typeof(FamilyInstance);
                 Columna.categoria = BuiltInCategory.OST_StructuralColumns;
                 Columna.categoriaEtiqueta = BuiltInCategory.OST_StructuralColumnTags;
-                Columna.indiceComboboxTextoBarra = Properties.Settings.Default.indiceComboboxTextoBarra;
                 Columna.indiceComboboxEscalaVista = Properties.Settings.Default.ColumnaIndiceComboboxEscalaVista;
-                Columna.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.ColumnasEtiquetaIndependiente;
-                Columna.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.ColumnasEtiquetaCotaProfundidad;
-                Columna.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.EtiquetaIndependienteArmadura;
-                Columna.cotaVerticalIzquierda = true;
-                Columna.cotaVerticalDerecha = true;
-                Columna.cotaHorizontalArriba = true;
-                Columna.cotaHorizontalAbajo = true;
+                Columna.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.ColumnaEtiquetaIndependiente;
+                Columna.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.ColumnaEtiquetaCotaProfundidad;
+                Columna.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.ArmaduraEtiquetaIndependiente;
+                Columna.cotaHorizontalArriba = Jump.Properties.Settings.Default.ColumnaCotaLinealArriba;
+                Columna.cotaHorizontalAbajo = Jump.Properties.Settings.Default.ColumnaCotaLinealAbajo;
+                Columna.cotaVerticalIzquierda = Jump.Properties.Settings.Default.ColumnaCotaLinealIzquierda;
+                Columna.cotaVerticalDerecha = Jump.Properties.Settings.Default.ColumnaCotaLinealDerecha;
                 Columna.clave = "Col";
 
                 Columna.ShowDialog();
 
                 // Guarda el indice en las configuraciones
-                Properties.Settings.Default.indiceComboboxTextoBarra = Columna.indiceComboboxTextoBarra;
                 Properties.Settings.Default.ColumnaIndiceComboboxEscalaVista = Columna.indiceComboboxEscalaVista;
                 Properties.Settings.Default.Save();
 

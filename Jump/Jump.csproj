@@ -38,15 +38,14 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="Revit.ES.Extension">
-      <HintPath>..\packages\Revit.ES.Extension.2021.0.7721.26852\Revit.ES.Extension.dll</HintPath>
-    </Reference>
-    <Reference Include="RevitAPI">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2019\RevitAPI.dll</HintPath>
+    <Reference Include="RevitAPI, Version=19.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Autodesk\Revit 2024\RevitAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="RevitAPIUI">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2019\RevitAPIUI.dll</HintPath>
+    <Reference Include="RevitAPIUI, Version=19.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Autodesk\Revit 2024\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="SpreadsheetLight, Version=3.4.7.0, Culture=neutral, PublicKeyToken=32fbb46dc1730c57, processorArchitecture=MSIL">
@@ -71,10 +70,7 @@
   <ItemGroup>
     <Compile Include="Comandos\AboutJump.cs" />
     <Compile Include="Comandos\Anterior.cs" />
-    <Compile Include="Comandos\ArmaduraActualizacion.cs" />
-    <Compile Include="Comandos\ArmaduraEliminacion.cs" />
     <Compile Include="Comandos\ArmaduraRepresentacion.cs" />
-    <Compile Include="Comandos\cmdArmaduraRepresentacion.cs" />
     <Compile Include="Comandos\cmdConfiguraciones.cs" />
     <Compile Include="Comandos\cmdOrdenYEnumeracion.cs" />
     <Compile Include="Comandos\cmdZapataCorrida.cs" />

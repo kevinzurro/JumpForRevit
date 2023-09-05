@@ -37,6 +37,8 @@
             this.cmbElementosPreview = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.gbxEjecutar = new System.Windows.Forms.GroupBox();
+            this.lbl12 = new System.Windows.Forms.Label();
+            this.lbl11 = new System.Windows.Forms.Label();
             this.chbVistaYY = new System.Windows.Forms.CheckBox();
             this.chbVistaXX = new System.Windows.Forms.CheckBox();
             this.gbxEtiquetas = new System.Windows.Forms.GroupBox();
@@ -191,6 +193,8 @@
             // 
             // gbxEjecutar
             // 
+            this.gbxEjecutar.Controls.Add(this.lbl12);
+            this.gbxEjecutar.Controls.Add(this.lbl11);
             this.gbxEjecutar.Controls.Add(this.chbVistaYY);
             this.gbxEjecutar.Controls.Add(this.chbVistaXX);
             this.gbxEjecutar.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -202,27 +206,47 @@
             this.gbxEjecutar.TabStop = false;
             this.gbxEjecutar.Text = "Acciones a realizar";
             // 
+            // lbl12
+            // 
+            this.lbl12.AutoSize = true;
+            this.lbl12.Location = new System.Drawing.Point(9, 48);
+            this.lbl12.Name = "lbl12";
+            this.lbl12.Size = new System.Drawing.Size(17, 15);
+            this.lbl12.TabIndex = 16;
+            this.lbl12.Text = "2.";
+            // 
+            // lbl11
+            // 
+            this.lbl11.AutoSize = true;
+            this.lbl11.Location = new System.Drawing.Point(9, 22);
+            this.lbl11.Name = "lbl11";
+            this.lbl11.Size = new System.Drawing.Size(17, 15);
+            this.lbl11.TabIndex = 15;
+            this.lbl11.Text = "1.";
+            // 
             // chbVistaYY
             // 
             this.chbVistaYY.AutoSize = true;
+            this.chbVistaYY.Checked = true;
+            this.chbVistaYY.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chbVistaYY.Location = new System.Drawing.Point(30, 48);
             this.chbVistaYY.Name = "chbVistaYY";
             this.chbVistaYY.Size = new System.Drawing.Size(73, 19);
             this.chbVistaYY.TabIndex = 14;
             this.chbVistaYY.Text = "Vista Y-Y";
             this.chbVistaYY.UseVisualStyleBackColor = true;
+            this.chbVistaYY.CheckedChanged += new System.EventHandler(this.cmbEscala_SelectedIndexChanged);
             // 
             // chbVistaXX
             // 
             this.chbVistaXX.AutoSize = true;
-            this.chbVistaXX.Checked = true;
-            this.chbVistaXX.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chbVistaXX.Location = new System.Drawing.Point(30, 23);
+            this.chbVistaXX.Location = new System.Drawing.Point(30, 22);
             this.chbVistaXX.Name = "chbVistaXX";
             this.chbVistaXX.Size = new System.Drawing.Size(75, 19);
             this.chbVistaXX.TabIndex = 13;
             this.chbVistaXX.Text = "Vista X-X";
             this.chbVistaXX.UseVisualStyleBackColor = true;
+            this.chbVistaXX.CheckedChanged += new System.EventHandler(this.cmbEscala_SelectedIndexChanged);
             // 
             // gbxEtiquetas
             // 
@@ -677,5 +701,7 @@
         private System.Windows.Forms.ComboBox cmbElementosPreview;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Label lbl12;
+        private System.Windows.Forms.Label lbl11;
     }
 }

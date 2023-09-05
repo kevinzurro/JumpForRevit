@@ -22,7 +22,6 @@ namespace Jump
             Document doc = uiDoc.Document;
 
             Tools.AddinManager();
-            Tools.CrearRegistroActualizadorArmaduras(uiApp.ActiveAddInId);
 
             using (TransactionGroup tra = new TransactionGroup(doc))
             {
@@ -33,22 +32,20 @@ namespace Jump
                 Muro.clase = typeof(Wall);
                 Muro.categoria = BuiltInCategory.OST_Walls;
                 Muro.categoriaEtiqueta = BuiltInCategory.OST_StructuralFramingTags;
-                Muro.indiceComboboxTextoBarra = Properties.Settings.Default.indiceComboboxTextoBarra;
-                Muro.indiceComboboxEscalaVista = Properties.Settings.Default.MurosIndiceComboboxEscalaVista;
-                Muro.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.MurosEtiquetaIndependiente;
-                Muro.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.MurosEtiquetaCotaProfundidad;
-                Muro.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.EtiquetaIndependienteArmadura;
-                Muro.cotaVerticalIzquierda = true;
-                Muro.cotaVerticalDerecha = true;
-                Muro.cotaHorizontalArriba = true;
-                Muro.cotaHorizontalAbajo = true;
+                Muro.indiceComboboxEscalaVista = Properties.Settings.Default.MuroIndiceComboboxEscalaVista;
+                Muro.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.MuroEtiquetaIndependiente;
+                Muro.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.MuroEtiquetaCotaProfundidad;
+                Muro.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.ArmaduraEtiquetaIndependiente;
+                Muro.cotaHorizontalArriba = Jump.Properties.Settings.Default.MuroCotaLinealArriba;
+                Muro.cotaHorizontalAbajo = Jump.Properties.Settings.Default.MuroCotaLinealAbajo;
+                Muro.cotaVerticalIzquierda = Jump.Properties.Settings.Default.MuroCotaLinealIzquierda;
+                Muro.cotaVerticalDerecha = Jump.Properties.Settings.Default.MuroCotaLinealDerecha;
                 Muro.clave = "Mur";
 
                 Muro.ShowDialog();
 
                 // Guarda el indice en las configuraciones
-                Properties.Settings.Default.indiceComboboxTextoBarra = Muro.indiceComboboxTextoBarra;
-                Properties.Settings.Default.MurosIndiceComboboxEscalaVista = Muro.indiceComboboxEscalaVista;
+                Properties.Settings.Default.MuroIndiceComboboxEscalaVista = Muro.indiceComboboxEscalaVista;
                 Properties.Settings.Default.Save();
 
                 if (Muro.bandera)

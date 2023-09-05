@@ -25,7 +25,7 @@ namespace Jump
         public static string RutaDelEnsamblado = System.Reflection.Assembly.GetExecutingAssembly().Location;
 
         // Lista de representaciones de armaduras
-        public static List<ArmaduraRepresentacion> listaArmaduraRepresentacion = new List<ArmaduraRepresentacion>();
+        //public static List<ArmaduraRepresentacion> listaArmaduraRepresentacion = new List<ArmaduraRepresentacion>();
         
         /// <summary> Inicio de la aplicación </summary>
         public Result OnStartup(UIControlledApplication application)
@@ -58,15 +58,15 @@ namespace Jump
             #region Botones
 
             // Crea los botones
-            PushButton botonDespieceArmadura = panelDetalleArmado.AddItem(new PushButtonData("botonDespieceArmadura", Language.ObtenerTexto(IdiomaDelPrograma, "DetArm1"), RutaDelEnsamblado, "Jump.cmdArmaduraRepresentacion")) as PushButton;
-            PushButton botonPilote = panelDetalleArmado.AddItem(new PushButtonData("botonPilote", Language.ObtenerTexto(IdiomaDelPrograma, "Pil1"), RutaDelEnsamblado, "Jump.cmdPilotes")) as PushButton;
-            PushButton botonZapataCorrida = panelDetalleArmado.AddItem(new PushButtonData("botonZapataCorrida", Language.ObtenerTexto(IdiomaDelPrograma, "ZapCor1"), RutaDelEnsamblado, "Jump.cmdZapataCorrida")) as PushButton;
-            PushButton botonPlatea = panelDetalleArmado.AddItem(new PushButtonData("botonPlatea", Language.ObtenerTexto(IdiomaDelPrograma, "Pla1"), RutaDelEnsamblado, "Jump.cmdPlatea")) as PushButton;
+            //PushButton botonDespieceArmadura = panelDetalleArmado.AddItem(new PushButtonData("botonDespieceArmadura", Language.ObtenerTexto(IdiomaDelPrograma, "DetArm1"), RutaDelEnsamblado, "Jump.cmdArmaduraRepresentacion")) as PushButton;
+            //PushButton botonPilote = panelDetalleArmado.AddItem(new PushButtonData("botonPilote", Language.ObtenerTexto(IdiomaDelPrograma, "Pil1"), RutaDelEnsamblado, "Jump.cmdPilotes")) as PushButton;
+            //PushButton botonZapataCorrida = panelDetalleArmado.AddItem(new PushButtonData("botonZapataCorrida", Language.ObtenerTexto(IdiomaDelPrograma, "ZapCor1"), RutaDelEnsamblado, "Jump.cmdZapataCorrida")) as PushButton;
+            //PushButton botonPlatea = panelDetalleArmado.AddItem(new PushButtonData("botonPlatea", Language.ObtenerTexto(IdiomaDelPrograma, "Pla1"), RutaDelEnsamblado, "Jump.cmdPlatea")) as PushButton;
             PushButton botonZapata = panelDetalleArmado.AddItem(new PushButtonData("botonZapata", Language.ObtenerTexto(IdiomaDelPrograma, "Zap1"), RutaDelEnsamblado, "Jump.cmdZapatas")) as PushButton;
             PushButton botonColumna = panelDetalleArmado.AddItem(new PushButtonData("botonColumna", Language.ObtenerTexto(IdiomaDelPrograma, "Col1"), RutaDelEnsamblado, "Jump.cmdColumnas")) as PushButton;
             PushButton botonMuro = panelDetalleArmado.AddItem(new PushButtonData("botonMuro", Language.ObtenerTexto(IdiomaDelPrograma, "Mur1"), RutaDelEnsamblado, "Jump.cmdMuros")) as PushButton;
             PushButton botonViga = panelDetalleArmado.AddItem(new PushButtonData("botonViga", Language.ObtenerTexto(IdiomaDelPrograma, "Vig1"), RutaDelEnsamblado, "Jump.cmdVigas")) as PushButton;
-            PushButton botonLosa = panelDetalleArmado.AddItem(new PushButtonData("botonLosa", Language.ObtenerTexto(IdiomaDelPrograma, "Los1"), RutaDelEnsamblado, "Jump.cmdLosas")) as PushButton;
+            //PushButton botonLosa = panelDetalleArmado.AddItem(new PushButtonData("botonLosa", Language.ObtenerTexto(IdiomaDelPrograma, "Los1"), RutaDelEnsamblado, "Jump.cmdLosas")) as PushButton;
             PushButton botonElemenEstructural = panelVisibilidad.AddItem(new PushButtonData("botonElemenEstructural", Language.ObtenerTexto(IdiomaDelPrograma, "EleEst1"), RutaDelEnsamblado, "Jump.cmdVisibilidadEstructural")) as PushButton;
             PushButton botonElemenAnalitico = panelVisibilidad.AddItem(new PushButtonData("botonElemenAnalitico", Language.ObtenerTexto(IdiomaDelPrograma, "EleAna1"), RutaDelEnsamblado, "Jump.cmdVisibilidadAnalitica")) as PushButton;
             PushButton botonOrdenEnumeracion = panelHerramienta.AddItem(new PushButtonData("botonOrdenEnumeracion", Language.ObtenerTexto(IdiomaDelPrograma, "OrdYEnu1"), RutaDelEnsamblado, "Jump.cmdOrdenYEnumeracion")) as PushButton;
@@ -87,15 +87,15 @@ namespace Jump
             #region Imagenes de botones
 
             // Agregar la imagen al botón
-            botonDespieceArmadura.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Boton_Pilote.png"));
-            botonPilote.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Boton_Pilote.png"));
-            botonZapataCorrida.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Boton_Zapata_Corrida.png"));
-            botonPlatea.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Boton_Platea.png"));
+            //botonDespieceArmadura.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Boton_Pilote.png"));
+            //botonPilote.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Boton_Pilote.png"));
+            //botonZapataCorrida.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Boton_Zapata_Corrida.png"));
+            //botonPlatea.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Boton_Platea.png"));
             botonZapata.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Boton_Zapata.png"));
             botonColumna.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Boton_Columna.png"));
             botonMuro.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Boton_Muro.png"));
             botonViga.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Boton_Viga.png"));
-            botonLosa.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Boton_Losa.png"));
+            //botonLosa.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Boton_Losa.png"));
             botonArmaSolido.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Armadura_solida.png"));
             botonArmaFilamento.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Armadura_filamento.png"));
             botonArmaSinTapa.LargeImage = new BitmapImage(new Uri("pack://application:,,,/Jump;component/Resources/Armadura_sin_tapar.png"));
@@ -122,15 +122,15 @@ namespace Jump
             #region Descripción corta de los botones
 
             // Crear la descripción corta de los botones
-            botonDespieceArmadura.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "DetArm2");
-            botonPilote.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "Pil2");
-            botonZapataCorrida.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "ZapCor2");
-            botonPlatea.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "Pla2");
+            //botonDespieceArmadura.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "DetArm2");
+            //botonPilote.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "Pil2");
+            //botonZapataCorrida.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "ZapCor2");
+            //botonPlatea.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "Pla2");
             botonZapata.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "Zap2");
             botonColumna.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "Col2");
             botonMuro.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "Mur2");
             botonViga.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "Vig2");
-            botonLosa.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "Los2");
+            //botonLosa.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "Los2");
             botonElemenEstructural.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "EleEst2");
             botonElemenAnalitico.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "EleAna2");
             botonArmaVisibilidad.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "VisArm2");
@@ -143,15 +143,15 @@ namespace Jump
             #region Descripción larga de los botones
 
             // Crear la descripción larga de los botones
-            botonDespieceArmadura.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "DetArm3");
-            botonPilote.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "Pil3");
-            botonZapataCorrida.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "ZapCor3");
-            botonPlatea.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "Pla3");
+            //botonDespieceArmadura.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "DetArm3");
+            //botonPilote.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "Pil3");
+            //botonZapataCorrida.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "ZapCor3");
+            //botonPlatea.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "Pla3");
             botonZapata.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "Zap3");
             botonColumna.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "Col3");
             botonMuro.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "Mur3");
             botonViga.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "Vig3");
-            botonLosa.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "Los3");
+            //botonLosa.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "Los3");
             botonElemenEstructural.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "EleEst3");
             botonElemenAnalitico.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "EleAna3");
             botonArmaVisibilidad.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "VisArm3");
@@ -161,104 +161,13 @@ namespace Jump
 
             #endregion
 
-            #region Actualizador de barras
-
-            // Crea el actualizador de armaduras
-            Tools.CrearRegistroActualizadorArmaduras(application.ActiveAddInId);
-
-            #endregion
-
-            #region Eventos de Revit
-
-            try
-            {
-                // Registra el evento cuando se abre un documento
-                application.ControlledApplication.DocumentOpened += new EventHandler
-                           <Autodesk.Revit.DB.Events.DocumentOpenedEventArgs>(application_DocumentOpened);
-            }
-            catch (Exception) { }
-
-            try
-            {
-                // Registra el evento cuando se guardó un documento
-                application.ControlledApplication.DocumentSavedAs += new EventHandler
-                           <Autodesk.Revit.DB.Events.DocumentSavedAsEventArgs>(application_DocumentSavedAs);
-            }
-            catch (Exception) { }
-
-            #endregion
-
             return Result.Succeeded;
         }
         
         /// <summary> Finalizar la aplicación </summary>
         public Result OnShutdown(UIControlledApplication application)
         {
-            // Elimina el actualizador de armaduras
-            Tools.EliminarRegistroActualizadorArmaduras(application.ActiveAddInId);
-
             return Result.Succeeded;
         }
-
-        #region Eventos de Revit
-
-        /// <summary> Evento cuando se terminó de abrir un documento </summary>
-        public void application_DocumentOpened(object sender, DocumentOpenedEventArgs args)
-        {
-            // Obtiene el documento
-            Document doc = args.Document;
-
-            List<Element> elementosBarras = Tools.ObtenerTodosEjemplaresSegunClase(doc, typeof(Rebar));
-
-            foreach (Rebar barra in elementosBarras)
-            {
-                List<ArmaduraRepresentacion> armaduras = Tools.ObtenerRepresentacionArmaduraDeBarra(barra);
-
-                if (armaduras != null && armaduras.Count > 0)
-                {
-                    foreach (ArmaduraRepresentacion armadura in armaduras)
-                    {
-
-                        if (!Inicio.listaArmaduraRepresentacion.Contains(armadura))
-                        {
-                            Inicio.listaArmaduraRepresentacion.Add(armadura);
-                        }
-                    }
-                }
-            }
-
-            try
-            {
-                System.Windows.Forms.DataGridView dgv = new System.Windows.Forms.DataGridView();
-
-                Tools.ObtenerDataGridViewDeDiametrosYEstilos(dgv, doc, IdiomaDelPrograma);
-
-                Tools.GuardarDataGridViewEnDocumento(dgv, doc);
-            }
-            catch (Exception) { }
-        }
-
-        /// <summary> Evento cuando se guardó un documento con nombre distinto o por primera vez </summary>
-        public void application_DocumentSavedAs(object sender, DocumentSavedAsEventArgs args)
-        {
-            // Obtiene el documento
-            Document doc = args.Document;
-
-            // Verifica que se guardó correctamente el documento
-            if (args.Status == RevitAPIEventStatus.Succeeded)
-            {
-                try
-                {
-                    System.Windows.Forms.DataGridView dgv = new System.Windows.Forms.DataGridView();
-
-                    Tools.ObtenerDataGridViewDeDiametrosYEstilos(dgv, doc, IdiomaDelPrograma);
-
-                    Tools.GuardarDataGridViewEnDocumento(dgv, doc);
-                }
-                catch (Exception) { }
-            }
-        }
-
-        #endregion
     }
 }

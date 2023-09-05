@@ -22,7 +22,6 @@ namespace Jump
             Document doc = uiDoc.Document;
 
             Tools.AddinManager();
-            Tools.CrearRegistroActualizadorArmaduras(uiApp.ActiveAddInId);
 
             using (TransactionGroup tra = new TransactionGroup(doc))
             {
@@ -33,22 +32,20 @@ namespace Jump
                 Viga.clase = typeof(FamilyInstance);
                 Viga.categoria = BuiltInCategory.OST_StructuralFraming;
                 Viga.categoriaEtiqueta = BuiltInCategory.OST_StructuralFramingTags;
-                Viga.indiceComboboxTextoBarra = Properties.Settings.Default.indiceComboboxTextoBarra;
-                Viga.indiceComboboxEscalaVista = Properties.Settings.Default.VigasIndiceComboboxEscalaVista;
-                Viga.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.VigasEtiquetaIndependiente;
-                Viga.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.VigasEtiquetaCotaProfundidad;
-                Viga.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.EtiquetaIndependienteArmadura;
-                Viga.cotaVerticalIzquierda = true;
-                Viga.cotaVerticalDerecha = true;
-                Viga.cotaHorizontalArriba = true;
-                Viga.cotaHorizontalAbajo = true;
+                Viga.indiceComboboxEscalaVista = Properties.Settings.Default.VigaIndiceComboboxEscalaVista;
+                Viga.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.VigaEtiquetaIndependiente;
+                Viga.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.VigaEtiquetaCotaProfundidad;
+                Viga.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.ArmaduraEtiquetaIndependiente;
+                Viga.cotaHorizontalArriba = Jump.Properties.Settings.Default.VigaCotaLinealArriba;
+                Viga.cotaHorizontalAbajo = Jump.Properties.Settings.Default.VigaCotaLinealAbajo;
+                Viga.cotaVerticalIzquierda = Jump.Properties.Settings.Default.VigaCotaLinealIzquierda;
+                Viga.cotaVerticalDerecha = Jump.Properties.Settings.Default.VigaCotaLinealDerecha;
                 Viga.clave = "Vig";
 
                 Viga.ShowDialog();
 
                 // Guarda el indice en las configuraciones
-                Properties.Settings.Default.indiceComboboxTextoBarra = Viga.indiceComboboxTextoBarra;
-                Properties.Settings.Default.VigasIndiceComboboxEscalaVista = Viga.indiceComboboxEscalaVista;
+                Properties.Settings.Default.VigaIndiceComboboxEscalaVista = Viga.indiceComboboxEscalaVista;
                 Properties.Settings.Default.Save();
 
                 if (Viga.bandera)

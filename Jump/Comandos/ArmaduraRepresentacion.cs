@@ -6,378 +6,107 @@ using System.Threading.Tasks;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.DB.Structure;
-using Autodesk.Revit.DB.ExtensibleStorage;
+using System.Windows.Controls;
 
 namespace Jump
 {
-    public class ArmaduraRepresentacion
+    public  class ArmaduraRepresentacion
     {
-        // Variables necesarias
-        Document doc;
-        View vistaBarra;
-        Rebar barraRefuerzo;
-        ElementId armaduraID;
-        List<CurveElement> listaCurvas;
-        List<TextNote> listaTextos;
-        IndependentTag etiquetaArmadura;
-        TextNoteType tipoEtiquetaTexto;
-        FamilySymbol tipoEtiquetaArmadura;
+        IndependentTag representacion;
+        IndependentTag etiqueta;
         XYZ posicion;
-        List<ElementId> listaCurvasId = new List<ElementId>();
-        List<ElementId> listaTextosId = new List<ElementId>();
 
-        // Constructor la armadura
-        public ArmaduraRepresentacion(Document doc, View vista, Rebar barra)
+        public ArmaduraRepresentacion(IndependentTag representacion, IndependentTag etiqueta, int posicionEtiqueta)
         {
-            // Variable necesarias
-            this.doc = doc;            
-            this.vistaBarra = vista;
-            this.barraRefuerzo = barra;
-            this.armaduraID = barra.Id;
-        }
+            Document doc = representacion.Document;
+            View vista = doc.GetElement(representacion.OwnerViewId) as View;
 
-        /// <summary> Obtiene el documento </summary>
-        public Document Documento
-        {
-            get { return this.doc; }
-        }
+            this.representacion = representacion;
+            this.etiqueta = etiqueta;
 
-        /// <summary> Obtiene la vista de la barra </summary>
-        public View Vista
-        {
-            get { return this.vistaBarra; }
-        }
-
-        /// <summary> Obtiene la barra </summary>
-        public Rebar Barra
-        {
-            get { return this.barraRefuerzo; }
-        }
-
-        /// <summary> ID de la Representación de la armadura, es igual al ID de la Barra </summary>
-        public ElementId Id
-        {
-            get { return this.armaduraID; }
-
-            set { this.armaduraID = value; }
-        }
-
-        /// <summary> Asigna u obtiene las curvas </summary>
-        public List<CurveElement> CurvasDeArmadura
-        {
-            get { return this.listaCurvas; }
-
-            set
+            try
             {
-                this.listaCurvas = value;
-
-                this.listaCurvasId.Clear();
-
-                // Recorre la lista
-                foreach (CurveElement curva in this.listaCurvas)
+                // Verifica que la posición sea
+                switch (posicionEtiqueta)
                 {
-                    //Agrega el ID a la lista
-                    listaCurvasId.Add(curva.Id);
-                }
-            }
-        }
-
-        /// <summary> Asigna u obtiene los textos de las longitudes parciales </summary>
-        public List<TextNote> TextosDeLongitudesParciales
-        {
-            get { return this.listaTextos; }
-
-            set
-            {
-                this.listaTextos = value;
-
-                this.listaTextosId.Clear();
-
-                // Recorre la lista
-                foreach (TextNote texto in this.listaTextos)
-                {
-                    //Agrega el ID a la lista
-                    listaTextosId.Add(texto.Id);
-                }
-            }
-        }
-
-        /// <summary> Asigna u obtiene el ElementId de las curvas </summary>
-        public List<ElementId> ListaCurvasId
-        {
-            get { return listaCurvasId; }
-
-            set { this.listaCurvasId = value; }
-        }
-
-        /// <summary> Asigna u obtiene el ElementId de textos de longitudes parciales </summary>
-        public List<ElementId> ListaTextosId
-        {
-            get { return listaTextosId; }
-
-            set { this.listaTextosId = value; }
-        }
-
-        /// <summary> Asigna u obtiene la etiqueta para la armadura </summary>
-        public IndependentTag EtiquetaArmadura
-        {
-            get { return this.etiquetaArmadura; }
-
-            set { this.etiquetaArmadura = value; }
-        }
-
-        /// <summary> Asigna u obtiene el tipo de texto </summary>
-        public TextNoteType TipoDeTexto
-        {
-            get { return this.tipoEtiquetaTexto; }
-
-            set { this.tipoEtiquetaTexto = value; }
-        }
-
-        /// <summary> Asigna u obtiene el tipo de etiqueta para la armadura </summary>
-        public FamilySymbol TipoEtiquetaArmadura
-        {
-            get { return this.tipoEtiquetaArmadura; }
-
-            set { this.tipoEtiquetaArmadura = value; }
-        }
-
-        /// <summary> Asigna u obtiene la posición de la Representación de la armadura en coordenadas globales </summary>
-        public XYZ Posicion
-        {
-            get { return this.posicion; }
-
-            set { this.posicion = value; }
-        }
-
-        /// <summary> Obtiene el punto medio de la Representación en coordenadas globales </summary>
-        public XYZ PuntoMedio
-        {
-            get
-            {
-                return Tools.ObtenerBaricentroDeRecuadro(this.Barra.get_BoundingBox(this.Vista));
-            }
-        }
-
-        /// <summary> Dibuja la armadura junto con su textos </summary>
-        public void DibujarArmaduraSegunDatagridview(System.Windows.Forms.DataGridView dgw)
-        {
-            // Dibuja las armaduras y asigna los estilos de líneas en función de cada diámetro
-            this.CurvasDeArmadura = Tools.DibujarArmaduraSegunDatagridview(dgw, this.doc, this.vistaBarra, this.barraRefuerzo);
-
-            // Crea notas de texto con la longitud parcial de la barra
-            this.TextosDeLongitudesParciales = Tools.CrearTextNoteDeArmadura(this.doc, this.vistaBarra, this.barraRefuerzo, this.TipoDeTexto);
-
-            Inicio.listaArmaduraRepresentacion.Add(this);
-        }
-
-        /// <summary> Mueve la Representación de la Armadura con la etiqueta una distancia dada </summary>
-        public void MoverArmaduraRepresentacionConEtiqueta(XYZ distancia)
-        {
-            // Crea la lista
-            List<Element> lista = new List<Element>();
-
-            // Agrega las curvas a la lista
-            lista.AddRange(CurvasDeArmadura);
-
-            // Agrega los textos a la lista
-            lista.AddRange(TextosDeLongitudesParciales);
-
-            ElementTransformUtils.MoveElements(this.doc, Tools.ObtenerIdElemento(lista), distancia);
-
-            // Verifica que la etiqueta no sea nula
-            if (EtiquetaArmadura != null)
-            {
-                try
-                {
-                    // Mueve la etiqueta
-                    ElementTransformUtils.MoveElement(Documento, EtiquetaArmadura.Id, distancia);                    
-                }
-                catch (Exception) { }
-            }
-        }
-
-        /// <summary> Mueve la Representación de la Armadura una distancia dada </summary>
-        public void MoverArmaduraRepresentacion(XYZ distancia)
-        {
-            // Crea la lista
-            List<Element> lista = new List<Element>();
-
-            // Agrega las curvas a la lista
-            lista.AddRange(CurvasDeArmadura);
-
-            // Agrega los textos a la lista
-            lista.AddRange(TextosDeLongitudesParciales);
-
-            // Mueve el grupo
-            ElementTransformUtils.MoveElements(Documento, Tools.ObtenerIdElemento(lista), distancia);
-        }
-
-        /// <summary> Obtiene el BoundingBoxXYZ con los textos y curvas de detalle en coordenadas globales </summary>
-        public BoundingBoxXYZ ObtenerBoundingBoxDeArmadura()
-        {
-            // Crea la lista
-            List<Element> lista = new List<Element>();
-
-            // Verifica que la etiqueta no sea nula
-            if (EtiquetaArmadura != null)
-            {
-                lista.Add(EtiquetaArmadura);
-            }
-
-            // Agrega las curvas a la lista
-            lista.AddRange(CurvasDeArmadura);
-
-            // Agrega los textos a la lista
-            lista.AddRange(TextosDeLongitudesParciales);
-
-            BoundingBoxXYZ bb = new BoundingBoxXYZ();
-
-            bb.Transform = Transform.Identity;
-
-            double xMax = lista.Max(x => x.get_BoundingBox(this.Vista).Max.X);
-            double yMax = lista.Max(x => x.get_BoundingBox(this.Vista).Max.Y);
-            double zMax = lista.Max(x => x.get_BoundingBox(this.Vista).Max.Z);
-
-            double xMin = lista.Min(x => x.get_BoundingBox(this.Vista).Min.X);
-            double yMin = lista.Min(x => x.get_BoundingBox(this.Vista).Min.Y);
-            double zMin = lista.Min(x => x.get_BoundingBox(this.Vista).Min.Z);
-
-            bb.Max = new XYZ(xMax, yMax, zMax);
-            bb.Min = new XYZ(xMin, yMin, zMin);
-
-            return bb;
-        }
-
-        /// <summary> Obtiene el el vector perpendicular de la dirección principal de la armadura en coordenadas globales </summary>
-        public XYZ ObtenerVectorPrincipalDeArmadura()
-        {
-            XYZ vector = new XYZ();
-
-            RebarShape sh = doc.GetElement(this.Barra.GetShapeId()) as RebarShape;
-
-            RebarShapeDefinition rsh = sh.GetRebarShapeDefinition();
-
-            int curva = 0;
-
-            if (rsh is RebarShapeDefinitionBySegments)
-            {
-                curva = (rsh as RebarShapeDefinitionBySegments).MajorSegmentIndex;
-
-                List<Curve> shCurvas = sh.GetCurvesForBrowser().ToList();
-
-                XYZ direccion = shCurvas[curva].GetEndPoint(1) - shCurvas[curva].GetEndPoint(0);
-
-                vector = direccion.CrossProduct(this.Vista.ViewDirection);
-            }
-            else
-            {
-                List<Curve> curvas = this.Barra.GetShapeDrivenAccessor().ComputeDrivingCurves().ToList();
-
-                foreach (Curve c in curvas)
-                {
-                    if (c is Arc)
-                    {
-                        Arc arco = c as Arc;
-
-                        vector = arco.XDirection.CrossProduct(this.Vista.ViewDirection);
-
+                    // Arriba a la izquierda
+                    case (int)Posicion.ArribaIzquierda:
+                        this.posicion = vista.UpDirection;
                         break;
-                    }
-                }
-            }
-            
-            return vector;
-        }
 
-        /// <summary> Elimina la representación de la armadura </summary>
-        public void Eliminar()
-        {
-            // Verifica que no sea nulo
-            if (this.listaCurvas != null)
-            {
-                // Recorre las curvas
-                foreach (CurveElement curva in this.listaCurvas)
-                {
-                    try
-                    {
-                        // Verifica que no sea nulo
-                        if (curva != null)
-                        {
-                            // Elimina la curva
-                            doc.Delete(curva.Id);
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        EliminarCurvasPorId();
-
+                    // Arriba centro
+                    case (int)Posicion.ArribaCentro:
+                        this.posicion = vista.UpDirection;
                         break;
-                    }
-                }
-            }
 
-            // Verifica que no sea nulo
-            if (this.listaTextos != null)
-            {
-                // Recorre los textos
-                foreach (TextNote texto in this.listaTextos)
-                {
-                    try
-                    {
-                        // Verifica que no sea nulo
-                        if (texto != null)
-                        {
-                            // Elimina el texto
-                            doc.Delete(texto.Id);
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        EliminarTextosPorId();
-
+                    // Arriba a la derecha
+                    case (int)Posicion.ArribaDerecha:
+                        this.posicion = vista.UpDirection;
                         break;
-                    }
+
+                    // Centro a la izquierda
+                    case (int)Posicion.MedioIzquierda:
+                        this.posicion = vista.RightDirection.Negate();
+                        break;
+
+                    // Centro medio
+                    case (int)Posicion.MedioCentro:
+                        this.posicion = new XYZ();
+                        break;
+
+                    // Centro a la derecha
+                    case (int)Posicion.MedioDerecha:
+                        this.posicion = vista.RightDirection;
+                        break;
+
+                    // Abajo a la izquierda
+                    case (int)Posicion.AbajoIzquierda:
+                        this.posicion = vista.UpDirection.Negate();
+                        break;
+
+                    // Abajo centro
+                    case (int)Posicion.AbajoCentro:
+                        this.posicion = vista.UpDirection.Negate();
+                        break;
+
+                    // Abajo a la derecha
+                    case (int)Posicion.AbajoDerecha:
+                        this.posicion = vista.UpDirection.Negate();
+                        break;
+
+                    default:
+                        break;
                 }
+            }
+            catch (Exception)
+            {
+                this.posicion = new XYZ();
+            }
+
+            if (Etiqueta != null)
+            {
+                XYZ distancia = this.Etiqueta.get_BoundingBox(vista).Max - this.Etiqueta.get_BoundingBox(vista).Min;
+
+                ElementTransformUtils.MoveElement(doc, this.Etiqueta.Id, Tools.ProyectarVectorSobreDireccionYSentido(distancia, PosicionEtiqueta));
             }
         }
 
-        /// <summary> Elimina las curvas de la armadura por el Id del historial </summary>
-        private void EliminarCurvasPorId()
+        /// <summary> Obtiene la etiqueta individual de la armadura </summary>
+        public IndependentTag Etiqueta
         {
-            // Recorre las curvas
-            foreach (ElementId curvaID in this.listaCurvasId)
-            {
-                try
-                {
-                    // Verifica que no sea nulo
-                    if (curvaID != null)
-                    {
-                        // Elimina la curva
-                        doc.Delete(curvaID);
-                    }
-                }
-                catch (Exception) { }
-            }
+            get { return etiqueta; }
         }
 
-        /// <summary> Elimina los textos de la armadura por el Id del historial </summary>
-        private void EliminarTextosPorId()
+        /// <summary> Obtiene la representación de la armadura </summary>
+        public IndependentTag Representacion
         {
-            // Recorre las curvas
-            foreach (ElementId textoID in this.listaTextosId)
-            {
-                try
-                {
-                    // Verifica que no sea nulo
-                    if (textoID != null)
-                    {
-                        // Elimina la curva
-                        doc.Delete(textoID);
-                    }
-                }
-                catch (Exception) { }
-            }
+            get { return representacion; }
+        }
+
+        /// <summary> Obtiene la dirección de la etiqueta en coordenadas globales </summary>
+        public XYZ PosicionEtiqueta
+        {
+            get { return posicion; }
         }
     }
 }

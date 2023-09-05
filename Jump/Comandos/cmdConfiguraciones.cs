@@ -22,7 +22,6 @@ namespace Jump
             Document doc = uiDoc.Document;
 
             Tools.AddinManager();
-            Tools.CrearRegistroActualizadorArmaduras(uiApp.ActiveAddInId);
 
             string IdiomaDelPrograma = Tools.ObtenerIdiomaDelPrograma();
 

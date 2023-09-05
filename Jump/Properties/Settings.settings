@@ -5,11 +5,11 @@
     <Setting Name="IdiomaDelPrograma" Type="System.String" Scope="User">
       <Value Profile="(Default)">Español</Value>
     </Setting>
-    <Setting Name="precisionOrdenarX" Type="System.Int32" Scope="User">
+    <Setting Name="precisionOrdenarX" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="ZapatasIndiceComboboxEscalaVista" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+    <Setting Name="ZapataIndiceComboboxEscalaVista" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
     </Setting>
     <Setting Name="rbtnArmaduraEnumeracionPorElemento" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -29,28 +29,13 @@
     <Setting Name="rbtnGeneralVistaGlobal" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="precisionOrdenarY" Type="System.Int32" Scope="User">
+    <Setting Name="precisionOrdenarY" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="posicionBarraADibujar" Type="System.Int32" Scope="User">
+    <Setting Name="PosicionBarraADibujar" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="ActualizarBarrasAutomaticamente" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="indiceComboboxTextoBarra" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="CotaVerticalIzquierda" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="CotaVerticalDerecha" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="CotaHorizontalAbajo" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="CotaHorizontalArriba" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="rbtnTextoArmaduraArriba" Type="System.Boolean" Scope="User">
@@ -59,71 +44,173 @@
     <Setting Name="rbtnTextoArmaduraAbajo" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="ZapatasCorridaEtiquetaIndependiente" Type="System.Int32" Scope="User">
+    <Setting Name="ZapataCorridaEtiquetaIndependiente" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="PlateaEtiquetaIndependiente" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="MurosEtiquetaIndependiente" Type="System.Int32" Scope="User">
+    <Setting Name="MuroEtiquetaIndependiente" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="PilotesEtiquetaIndependiente" Type="System.Int32" Scope="User">
+    <Setting Name="PiloteEtiquetaIndependiente" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="EtiquetaIndependienteArmadura" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">2</Value>
+    <Setting Name="ArmaduraEtiquetaIndependiente" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="VigasEtiquetaIndependiente" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">2</Value>
+    <Setting Name="VigaEtiquetaIndependiente" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="ZapatasEtiquetaIndependiente" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">2</Value>
+    <Setting Name="ZapataEtiquetaIndependiente" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="ColumnasEtiquetaCotaProfundidad" Type="System.Int32" Scope="User">
+    <Setting Name="ColumnaEtiquetaCotaProfundidad" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">8</Value>
     </Setting>
-    <Setting Name="ColumnasEtiquetaIndependiente" Type="System.Int32" Scope="User">
+    <Setting Name="ColumnaEtiquetaIndependiente" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="LosasEtiquetaIndependiente" Type="System.Int32" Scope="User">
+    <Setting Name="LosaEtiquetaIndependiente" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="EtiquetaIndependienteAreaRefuerzo" Type="System.Int32" Scope="User">
+    <Setting Name="AreaRefuerzoEtiquetaIndependiente" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="EtiquetaIndependienteArmaduraEnSistema" Type="System.Int32" Scope="User">
+    <Setting Name="ArmaduraEnSistemaEtiquetaIndependiente" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="toleranciaSuperposicionArmadura" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="ColumnaIndiceComboboxEscalaVista" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">5</Value>
     </Setting>
-    <Setting Name="VigasIndiceComboboxEscalaVista" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+    <Setting Name="VigaIndiceComboboxEscalaVista" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
     </Setting>
-    <Setting Name="LosasEtiquetaCotaProfundidad" Type="System.Int32" Scope="User">
+    <Setting Name="LosaEtiquetaCotaProfundidad" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">8</Value>
     </Setting>
-    <Setting Name="MurosEtiquetaCotaProfundidad" Type="System.Int32" Scope="User">
+    <Setting Name="MuroEtiquetaCotaProfundidad" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">8</Value>
     </Setting>
     <Setting Name="PlateaEtiquetaCotaProfundidad" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">8</Value>
     </Setting>
-    <Setting Name="VigasEtiquetaCotaProfundidad" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">6</Value>
-    </Setting>
-    <Setting Name="ZapatasEtiquetaCotaProfundidad" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">6</Value>
-    </Setting>
-    <Setting Name="ZapatasCorridaEtiquetaCotaProfundidad" Type="System.Int32" Scope="User">
+    <Setting Name="VigaEtiquetaCotaProfundidad" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">8</Value>
     </Setting>
-    <Setting Name="MurosIndiceComboboxEscalaVista" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+    <Setting Name="ZapataEtiquetaCotaProfundidad" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">8</Value>
+    </Setting>
+    <Setting Name="ZapataCorridaEtiquetaCotaProfundidad" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">8</Value>
+    </Setting>
+    <Setting Name="MuroIndiceComboboxEscalaVista" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="ZapataCorridaIndiceComboboxEscalaVista" Type="System.String" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="PiloteEtiquetaCotaProfundidad" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">8</Value>
+    </Setting>
+    <Setting Name="PiloteCotaLinealArriba" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="PiloteCotaLinealAbajo" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="PiloteCotaLinealIzquierda" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="PiloteCotaLinealDerecha" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="VigaCotaLinealArriba" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="VigaCotaLinealAbajo" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="VigaCotaLinealIzquierda" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="VigaCotaLinealDerecha" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ColumnaCotaLinealArriba" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ColumnaCotaLinealAbajo" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ColumnaCotaLinealIzquierda" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ColumnaCotaLinealDerecha" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="MuroCotaLinealArriba" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="MuroCotaLinealAbajo" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="MuroCotaLinealIzquierda" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="MuroCotaLinealDerecha" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="LosaCotaLinealArriba" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="LosaCotaLinealAbajo" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="LosaCotaLinealIzquierda" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="LosaCotaLinealDerecha" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ZapataCotaLinealArriba" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ZapataCotaLinealAbajo" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ZapataCotaLinealIzquierda" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ZapataCotaLinealDerecha" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ZapataCorridaCotaLinealArriba" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ZapataCorridaCotaLinealAbajo" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ZapataCorridaCotaLinealIzquierda" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ZapataCorridaCotaLinealDerecha" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="PlateaCotaLinealArriba" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="PlateaCotaLinealAbajo" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="PlateaCotaLinealIzquierda" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="PlateaCotaLinealDerecha" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

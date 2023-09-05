@@ -270,7 +270,7 @@ namespace Jump
             Espanol.Add("Conf1-1", "General");
             Espanol.Add("Conf1-2-1", "Configuraciones");
             Espanol.Add("Conf1-2-2", "Precisión para ordenar los elementos");
-            Espanol.Add("Conf1-2-3", "La precisión en X como en Y se utiliza para el Orden y enumeración de los elementos");
+            Espanol.Add("Conf1-2-3", "La precisión en 'X' como en 'Y' se utiliza para el Orden y Enumeración de los elementos");
             Espanol.Add("Conf1-3-1", "Corte transversal");
             Espanol.Add("Conf1-3-2", "Local    -    En las coordenadas de la familia ( X ´ ; Y ´ )");
             Espanol.Add("Conf1-3-3", "Global   -    En las coordenadas del proyecto ( X ; Y )");
@@ -308,8 +308,17 @@ namespace Jump
             Espanol.Add("Conf4-2-1-2", "Área de refuerzo");
             Espanol.Add("Conf4-2-1-3", "Armadura en sistema");
             Espanol.Add("Conf5-1", "Cotas");
-            Espanol.Add("Conf5-1-1", "Cotas lineales");
-            Espanol.Add("Conf5-2-1", "Cotas de profundidad");
+            Espanol.Add("Conf5-1-1", "Posición de las cotas");
+            Espanol.Add("Conf5-1-2", "Cotas lineales");
+            Espanol.Add("Conf5-1-3", "Cota de profundidad");
+            Espanol.Add("Conf5-1-1-1", "Pilotes");
+            Espanol.Add("Conf5-1-1-2", "Zapata corrida");
+            Espanol.Add("Conf5-1-1-3", "Platea");
+            Espanol.Add("Conf5-1-1-4", "Zapatas");
+            Espanol.Add("Conf5-1-1-5", "Columnas");
+            Espanol.Add("Conf5-1-1-6", "Muros");
+            Espanol.Add("Conf5-1-1-7", "Vigas");
+            Espanol.Add("Conf5-1-1-8", "Losas");
 
             Espanol.Add("OrdYEnu1", "Orden \ny enumeración");
             Espanol.Add("OrdYEnu2", "Orden y enumeración descripción corta");

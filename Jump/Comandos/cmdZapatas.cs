@@ -22,7 +22,6 @@ namespace Jump
             Document doc = uiDoc.Document;
 
             Tools.AddinManager();
-            Tools.CrearRegistroActualizadorArmaduras(uiApp.ActiveAddInId);
 
             using (TransactionGroup tra = new TransactionGroup(doc))
             {
@@ -33,22 +32,20 @@ namespace Jump
                 Zapata.clase = typeof(FamilyInstance);
                 Zapata.categoria = BuiltInCategory.OST_StructuralFoundation;
                 Zapata.categoriaEtiqueta = BuiltInCategory.OST_StructuralFoundationTags;
-                Zapata.indiceComboboxTextoBarra = Properties.Settings.Default.indiceComboboxTextoBarra;
-                Zapata.indiceComboboxEscalaVista = Properties.Settings.Default.ZapatasIndiceComboboxEscalaVista;
-                Zapata.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.ZapatasEtiquetaIndependiente;
-                Zapata.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.ZapatasEtiquetaCotaProfundidad;
-                Zapata.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.EtiquetaIndependienteArmadura;
-                Zapata.cotaVerticalIzquierda = true;
-                Zapata.cotaVerticalDerecha = true;
-                Zapata.cotaHorizontalArriba = true;
-                Zapata.cotaHorizontalAbajo = true;
+                Zapata.indiceComboboxEscalaVista = Properties.Settings.Default.ZapataIndiceComboboxEscalaVista;
+                Zapata.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.ZapataEtiquetaIndependiente;
+                Zapata.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.ZapataEtiquetaCotaProfundidad;
+                Zapata.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.ArmaduraEtiquetaIndependiente;
+                Zapata.cotaHorizontalArriba = Jump.Properties.Settings.Default.ZapataCotaLinealArriba;
+                Zapata.cotaHorizontalAbajo = Jump.Properties.Settings.Default.ZapataCotaLinealAbajo;
+                Zapata.cotaVerticalIzquierda = Jump.Properties.Settings.Default.ZapataCotaLinealIzquierda;
+                Zapata.cotaVerticalDerecha = Jump.Properties.Settings.Default.ZapataCotaLinealDerecha;
                 Zapata.clave = "Zap";
 
                 Zapata.ShowDialog();
 
                 // Guarda el indice en las configuraciones
-                Properties.Settings.Default.indiceComboboxTextoBarra = Zapata.indiceComboboxTextoBarra;
-                Properties.Settings.Default.ZapatasIndiceComboboxEscalaVista = Zapata.indiceComboboxEscalaVista;
+                Properties.Settings.Default.ZapataIndiceComboboxEscalaVista = Zapata.indiceComboboxEscalaVista;
                 Properties.Settings.Default.Save();
 
                 if (Zapata.bandera)

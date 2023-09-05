@@ -15,7 +15,6 @@ using Autodesk.Revit.DB.Structure;
 using Autodesk.Revit.ApplicationServices;
 using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.DB.ExtensibleStorage;
-using Revit.ES.Extension.ElementExtensions;
 
 namespace Jump
 {
@@ -26,8 +25,10 @@ namespace Jump
         #region Precisión para ordenar los elementos
 
         // Precisión para el orden
-        private static int precisionOrdenarX = Properties.Settings.Default.precisionOrdenarX;
-        private static int precisionOrdenarY = Properties.Settings.Default.precisionOrdenarY;
+        //private static double precisionOrdenarX = Properties.Settings.Default.precisionOrdenarX;
+        //private static double precisionOrdenarY = Properties.Settings.Default.precisionOrdenarY;
+        private static int precisionOrdenarX = 0;//Properties.Settings.Default.precisionOrdenarX;
+        private static int precisionOrdenarY = 0;//Properties.Settings.Default.precisionOrdenarY;
 
         #endregion
 
@@ -64,7 +65,7 @@ namespace Jump
         #region Parámetros para el dibujo de las armaduras
 
         // Tipo de unidad para el texto de las barras
-        private static UnitType tipoUnidadTexto = UnitType.UT_Reinforcement_Length;
+        //private static UnitType tipoUnidadTexto = UnitType.UT_Reinforcement_Length;
 
         // Ajustar las curvas si se superponen
         private static bool superposicion = false;
@@ -285,7 +286,7 @@ namespace Jump
                 try
                 {
                     // Activa o desactiva el solido de la armadura
-                    r.SetSolidInView(vista3D, visibilidad);
+                    //r.SetSolidInView(vista3D, visibilidad);
                 }
                 catch (Exception)
                 {
@@ -299,7 +300,7 @@ namespace Jump
                 try
                 {
                     // Activa o desactiva el solido de la armadura
-                    r.SetSolidInView(vista3D, visibilidad);
+                    //r.SetSolidInView(vista3D, visibilidad);
                 }
                 catch (Exception)
                 {
@@ -473,6 +474,27 @@ namespace Jump
             // Filtra según sean la categoría asignada
             List<Element> lista = (from elem in tipos
                                    where elem.Category != null
+                                   select elem).ToList();
+
+            // Ordena la lista alfabéticamente
+            lista = lista.OrderBy(x => x.Name).ToList();
+
+            return lista;
+        }
+
+        /// <summary> Obtiene una lista ordenada alfabéticamente de todos los tipos según una clase y categoría </summary>
+        public static List<Element> ObtenerTodosTiposSegunClaseYCategoria(Document doc, Type clase, BuiltInCategory categoria)
+        {
+            // Crea el colector
+            FilteredElementCollector colector = new FilteredElementCollector(doc);
+
+            // Filtra que los elementos sean de ejemplar
+            List<Element> elementos = colector.WhereElementIsElementType().OfClass(clase).ToList();
+
+            // Filtra según sean la categoría asignada
+            List<Element> lista = (from elem in elementos
+                                   where elem.Category != null
+                                   && elem.Category.Id == new ElementId(categoria)
                                    select elem).ToList();
 
             // Ordena la lista alfabéticamente
@@ -976,7 +998,7 @@ namespace Jump
 
             return lista;
         }
-
+        
         ///<summary> Obtiene una lista de elementos según una selección en un ListBox </summary>
         public static List<Element> ObtenerElementosSeleccionadosEnProyecto(UIDocument uiDoc, Document doc, List<Element> todosLosElementos)
         {
@@ -1200,70 +1222,70 @@ namespace Jump
         }
 
         ///<summary> Obtiene el FormatOptions de un parámetro </summary>
-        public static FormatOptions UnidadesObtenerFormatOptions(Document doc, UnitType UT)
-        {
-            // Obtiene las unidades del proyecto
-            Units unidades = doc.GetUnits();
+        //public static FormatOptions UnidadesObtenerFormatOptions(Document doc, UnitType UT)
+        //{
+        //    // Obtiene las unidades del proyecto
+        //    Units unidades = doc.GetUnits();
 
-            // Obtiene las opciones de formato
-            FormatOptions FO = unidades.GetFormatOptions(UT);
+        //    // Obtiene las opciones de formato
+        //    FormatOptions FO = unidades.GetFormatOptions(UT);
             
-            return FO;
-        }
+        //    return FO;
+        //}
 
         ///<summary> Obtiene la unidad específica del proyecto </summary>
-        public static DisplayUnitType ObtenerUnidadDelProyecto(Document doc, UnitType tipoUnidad)
-        {
-            // Obtiene las unidades del proyecto
-            Units Unidades = doc.GetUnits();
-            
-            // Obtiene las opciones de números con unidades
-            FormatOptions formato = Unidades.GetFormatOptions(tipoUnidad);
+        //public static DisplayUnitType ObtenerUnidadDelProyecto(Document doc, ForgeTypeId tipoUnidad)
+        //{
+        //    // Obtiene las unidades del proyecto
+        //    Units Unidades = doc.GetUnits();
 
-            // Obtiene el simbolo de la unidad
-            return formato.DisplayUnits;
-        }
+        //    // Obtiene las opciones de números con unidades
+        //    //FormatOptions formato = Unidades.GetFormatOptions(tipoUnidad);
+
+        //    // Obtiene el simbolo de la unidad
+        //    return formato.DisplayUnits;
+        //}
 
         ///<summary> Obtiene el separador decimal punto "." o coma "," </summary>
-        public static DecimalSymbol UnidadesObtenerSeparadorDecimal(Document doc)
-        {
-            // Crea el string
-            DecimalSymbol separador;
+        //public static DecimalSymbol UnidadesObtenerSeparadorDecimal(Document doc)
+        //{
+        //    // Crea el string
+        //    DecimalSymbol separador;
 
-            // Obtiene las unidades del proyecto
-            Units uni = doc.GetUnits();
+        //    // Obtiene las unidades del proyecto
+        //    Units uni = doc.GetUnits();
 
-            separador = uni.DecimalSymbol;
+        //    separador = uni.DecimalSymbol;
 
-            return separador;
-        }
+        //    return separador;
+        //}
 
         ///<summary> Obtiene el DisplayUnitType de un parámetro </summary>
-        public static DisplayUnitType UnidadesObtenerDisplayUnitTypeParametro(Parameter param)
-        {
-            // Obtiene el DisplayUnitType
-            return param.DisplayUnitType;
-        }
+        //public static DisplayUnitType UnidadesObtenerDisplayUnitTypeParametro(Parameter param)
+        //{
+        //    // Obtiene el DisplayUnitType
+        //    return param.DisplayUnitType;
+        //}
 
         ///<summary> Obtiene el UnitSymbolType de un parámetro </summary>
-        public static UnitSymbolType UnidadesObtenerUnitSymbolTypeParametro(Document doc, Parameter param)
-        {
-            // Obtiene las unidades del proyecto
-            Units unidades = doc.GetUnits();
+        //public static UnitSymbolType UnidadesObtenerUnitSymbolTypeParametro(Document doc, Parameter param)
+        //{
+        //    // Obtiene las unidades del proyecto
+        //    Units unidades = doc.GetUnits();
 
-            // Obtiene las opciones de formato
-            FormatOptions formato = unidades.GetFormatOptions(param.Definition.UnitType);
+        //    // Obtiene las opciones de formato
+        //    FormatOptions formato = unidades.GetFormatOptions(param.Definition.UnitType);
 
-            // Obtiene el UnitSymbolType
-            return formato.UnitSymbol;
-        }
+        //    // Obtiene el UnitSymbolType
+        //    return formato.UnitSymbol;
+        //}
 
         ///<summary> Obtiene el UnitType de un parámetro </summary>
-        public static UnitType UnidadesObtenerUnitTypeParametro(Parameter param)
-        {
-            // Obtiene el UnitType
-            return param.Definition.UnitType;
-        }
+        //public static UnitType UnidadesObtenerUnitTypeParametro(Parameter param)
+        //{
+        //    // Obtiene el UnitType
+        //    return param.Definition.UnitType;
+        //}
 
         #endregion
 
@@ -1368,7 +1390,7 @@ namespace Jump
             foreach (Solid solido in geoElem)
             {
                 // Verifica que sea menor a la posición elegida
-                if (i > Jump.Properties.Settings.Default.posicionBarraADibujar)
+                if (i > Jump.Properties.Settings.Default.PosicionBarraADibujar)
                 {
                     // Cierra el bucle de solido
                     break;
@@ -1546,71 +1568,71 @@ namespace Jump
         }
 
         ///<summary> Coloca una nota de texto con la longitud parcial de una armadura en una vista dada, true = arriba o false = abajo </summary>
-        public static List<TextNote> CrearTextNoteDeArmadura(Document doc, View vista, Rebar barra, TextNoteType tipoTexto)
-        {
-            // Crea la lista a devolver
-            List<TextNote> listaTexto = new List<TextNote>();
+        //public static List<TextNote> CrearTextNoteDeArmadura(Document doc, View vista, Rebar barra, TextNoteType tipoTexto)
+        //{
+        //    // Crea la lista a devolver
+        //    List<TextNote> listaTexto = new List<TextNote>();
 
-            // Crea el texto que mostrará el TextNote
-            string nombre = null;
+        //    // Crea el texto que mostrará el TextNote
+        //    string nombre = null;
 
-            // Crea la posición donde se colocará
-            XYZ ubicacion = new XYZ();
+        //    // Crea la posición donde se colocará
+        //    XYZ ubicacion = new XYZ();
 
-            // Obtiene las curvas centrales de la armadura
-            List<Curve> listaCurvas = ObtenerCurvasCentralesArmadura(vista, barra);
+        //    // Obtiene las curvas centrales de la armadura
+        //    List<Curve> listaCurvas = ObtenerCurvasCentralesArmadura(vista, barra);
 
-            // Recorre todas las curvas
-            foreach (Curve curva in listaCurvas)
-            {
-                // Obtiene el UnitType de las barras de refuerzo
-                UnitType UT = tipoUnidadTexto;
+        //    // Recorre todas las curvas
+        //    foreach (Curve curva in listaCurvas)
+        //    {
+        //        // Obtiene el UnitType de las barras de refuerzo
+        //        UnitType UT = tipoUnidadTexto;                
 
-                // Obtiene las unidades
-                Units unidades = UnidadesObtenerUnits(doc);
+        //        // Obtiene las unidades
+        //        Units unidades = UnidadesObtenerUnits(doc);
 
-                // Verifica que la curvaDetalle sea de la clase Line
-                if (curva.GetType() == typeof(Line))
-                {
-                    try
-                    {
-                        // Crea las opciones para el formato de valores
-                        FormatValueOptions opcionesValorFormato = new FormatValueOptions();
+        //        // Verifica que la curvaDetalle sea de la clase Line
+        //        if (curva.GetType() == typeof(Line))
+        //        {
+        //            try
+        //            {
+        //                // Crea las opciones para el formato de valores
+        //                FormatValueOptions opcionesValorFormato = new FormatValueOptions();
 
-                        // Asigna las opciones del proyecto
-                        opcionesValorFormato.SetFormatOptions(unidades.GetFormatOptions(UT));
+        //                // Asigna las opciones del proyecto
+        //                opcionesValorFormato.SetFormatOptions(unidades.GetFormatOptions(UT));
                         
-                        // Obtiene la longitud de la curva
-                        double longitud = curva.ApproximateLength;
+        //                // Obtiene la longitud de la curva
+        //                double longitud = curva.ApproximateLength;
 
-                        // Obtiene la longitud de la curva
-                        nombre = UnitFormatUtils.Format(unidades, UT, longitud, false, false, opcionesValorFormato);
+        //                // Obtiene la longitud de la curva
+        //                nombre = UnitFormatUtils.Format(unidades, UT, longitud, false, false, opcionesValorFormato);
                         
-                        // Obtiene el punto inicial de la curva
-                        XYZ puntoInicial = curva.GetEndPoint(0);
+        //                // Obtiene el punto inicial de la curva
+        //                XYZ puntoInicial = curva.GetEndPoint(0);
 
-                        // Obtiene el punto final de la curva
-                        XYZ puntoFinal = curva.GetEndPoint(1);
+        //                // Obtiene el punto final de la curva
+        //                XYZ puntoFinal = curva.GetEndPoint(1);
 
-                        // Obtiene el punto medio de la curva
-                        XYZ puntoMedio = (puntoInicial + puntoFinal) / 2;
+        //                // Obtiene el punto medio de la curva
+        //                XYZ puntoMedio = (puntoInicial + puntoFinal) / 2;
 
-                        // Crea el texto
-                        TextNote texto = TextNote.Create(doc, vista.Id, puntoMedio, nombre, tipoTexto.Id);
+        //                // Crea el texto
+        //                TextNote texto = TextNote.Create(doc, vista.Id, puntoMedio, nombre, tipoTexto.Id);
                         
-                        // Mueve y rota el TextNote a su posición final
-                        MoverYRotarTextNote(doc, vista, barra, curva, texto);
+        //                // Mueve y rota el TextNote a su posición final
+        //                MoverYRotarTextNote(doc, vista, barra, curva, texto);
 
-                        // Agrega el texto a la lista
-                        listaTexto.Add(texto);
-                    }
+        //                // Agrega el texto a la lista
+        //                listaTexto.Add(texto);
+        //            }
 
-                    catch (Exception) { }
-                }
-            }
+        //            catch (Exception) { }
+        //        }
+        //    }
 
-            return listaTexto;
-        }
+        //    return listaTexto;
+        //}
 
         ///<summary> Rota el TextNote según la dirección de la curva </summary>
         public static void MoverYRotarTextNote(Document doc, View vista, Rebar barra, Curve curva, TextNote texto)
@@ -1683,10 +1705,10 @@ namespace Jump
             XYZ textoDistancia = new XYZ(anchoTexto, alturaTexto, 0);
 
             // Obtiene el margen del TextNote en coordenadas de la vista
-            XYZ margen = (diagonal - textoDistancia) / 2; 
+            XYZ margen = (diagonal - textoDistancia) / 2;
 
             // Obtiene el diámetro de la barra
-            double diametro = barra.GetBendData().BarDiameter;
+            double diametro = barra.GetBendData().BarModelDiameter;//BarDiameter;
 
             // Crea la distancia a mover
             distancia = new XYZ(diametro, diametro, diametro) + margen;
@@ -1779,17 +1801,17 @@ namespace Jump
 
         #region Mover las representaciones de Armaduras
         
-        ///<summary> Obtiene la dirección principal de la armadura </summary>
-        public static XYZ ObtenerDireccionPrincipalArmadura(Document doc, View vista, ArmaduraRepresentacion bar)
+        ///<summary> Obtiene el vector normal a la dirección principal de la armadura </summary>
+        public static XYZ ObtenerNormalADireccionPrincipalArmadura(Document doc, View vista, Rebar barra)
         {
             // Crea la dirección
             XYZ direccion = new XYZ();
 
             // Obtiene la forma de la armadura
-            RebarShape formaArmadura = doc.GetElement(bar.Barra.GetShapeId()) as RebarShape;
+            RebarShape formaArmadura = doc.GetElement(barra.GetShapeId()) as RebarShape;
 
             // Obtiene una lista con las curvas de la armadura
-            List<Curve> listaDirecciones = bar.Barra.GetShapeDrivenAccessor().ComputeDrivingCurves().ToList();//formaArmadura.GetCurvesForBrowser().ToList();
+            List<Curve> listaDirecciones = barra.GetShapeDrivenAccessor().ComputeDrivingCurves().ToList();
 
             // Obtiene la definición de la armadura
             RebarShapeDefinition definicionDeFormaArmadura = formaArmadura.GetRebarShapeDefinition();
@@ -1805,6 +1827,10 @@ namespace Jump
 
                 // Obtiene la dirección según el tipo
                 direccion = ObtenerVectorNormalDeLaDireccionPrincipal(vista, curva);
+
+                Element elem = doc.GetElement(barra.GetHostId());
+
+                direccion = VerificarDireccionYSentidoConElemento(elem, curva, direccion);
             }
 
             // Está basado en arco
@@ -1866,596 +1892,26 @@ namespace Jump
             return direccion;
         }
 
-        ///<summary> Ordena y mueve las Represetaciones de Armaduras según las opciones </summary>
-        public static void OrdenarYMoverRepresentacionArmaduraSegunDireccion(Document doc, View vista, Element elem, List<ArmaduraRepresentacion> armaduras)
+        ///<summary> Verifica que la dirección es paralela y en el mismo sentido de la Location del elemento </summary>
+        public static XYZ VerificarDireccionYSentidoConElemento(Element elem, Curve curva, XYZ direccion)
         {
-            // Crea las listas
-            List<ArmaduraRepresentacion> listaArmadurasArriba = new List<ArmaduraRepresentacion>();
-            List<ArmaduraRepresentacion> listaArmadurasAbajo = new List<ArmaduraRepresentacion>();
-            List<ArmaduraRepresentacion> listaArmadurasIzquierda = new List<ArmaduraRepresentacion>();
-            List<ArmaduraRepresentacion> listaArmadurasDerecha = new List<ArmaduraRepresentacion>();
-
-            // Crea una transformada de la vista
-            Transform tra = vista.CropBox.Transform;
-
-            // Obtiene el recuadro del elemento
-            BoundingBoxXYZ bbElem = ObtenerRecuadroElementoParaleloAVista(doc, vista, elem);
-
-            // Obtiene el baricentro del recuadro del elemento
-            XYZ puntoMedioElem = ObtenerBaricentroDeRecuadro(bbElem);
-
-            // Recorre la lista de Representación de Armaduras
-            foreach (ArmaduraRepresentacion bar in armaduras)
+            if (elem.Location is LocationCurve)
             {
-                try
-                {
-                    // Obtiene el recuadro de la barra
-                    BoundingBoxXYZ bbArmadura = ObtenerRecuadroElementoParaleloAVista(doc, vista, bar.Barra);
-
-                    // Obtiene el baricentro del recuadro de la barra
-                    XYZ puntoMedioArmadura = ObtenerBaricentroDeRecuadro(bbArmadura);
-
-                    // Obtiene la dirección principal de la barra
-                    XYZ direccionPrincipal = ObtenerDireccionPrincipalArmadura(doc, vista, bar);
-
-                    // Obtiene la distancia desde la armadura al elemento
-                    XYZ distancia = puntoMedioArmadura - puntoMedioElem;
-
-                    // Obtiene la distancia en coordenadas de la vista
-                    XYZ distanciaRelativa = tra.Inverse.OfVector(distancia);
-
-                    OrganizarListaSegunDireccionDeBarra(vista, distanciaRelativa, bar,
-                                                        ref listaArmadurasArriba, ref listaArmadurasAbajo,
-                                                        ref listaArmadurasIzquierda, ref listaArmadurasDerecha);
-                }
-                catch (Exception) { }
-            }
-
-            OrdenarYMoverListaConArmadurasRepresentacion(doc, vista, tra, elem,
-                                                         ref listaArmadurasArriba, ref listaArmadurasAbajo,
-                                                         ref listaArmadurasIzquierda, ref listaArmadurasDerecha);
-        }
-
-        ///<summary> Organiza una Representación de Armadura según una dirección </summary>
-        public static void OrganizarListaSegunDireccionDeBarra(View vista, XYZ distanciaRelativa, ArmaduraRepresentacion bar,
-                                                               ref List<ArmaduraRepresentacion> listaArmadurasArriba,
-                                                               ref List<ArmaduraRepresentacion> listaArmadurasAbajo,
-                                                               ref List<ArmaduraRepresentacion> listaArmadurasIzquierda,
-                                                               ref List<ArmaduraRepresentacion> listaArmadurasDerecha)
-        {
-            // Obtiene la transformada inversa de la vista
-            Transform traInv = vista.CropBox.Transform.Inverse;
-
-            // Verifica si la distancia es cero
-            if (distanciaRelativa.IsZeroLength())
-            {
-                // Proyecta y asigna la posición de la armadura en coordenadas relativas
-                bar.Posicion = traInv.Inverse.OfVector(ProyectarVectorSobreDireccion(distanciaRelativa, traInv.OfVector(vista.RightDirection)));
-
-                // Agrega la armadura a la lista
-                listaArmadurasDerecha.Add(bar);
-            }
-
-            // Verifica si X es mayor a Y
-            else if (Math.Abs(distanciaRelativa.X) >= Math.Abs(distanciaRelativa.Y))
-            {
-                // Verifica si X es positivo
-                if (ObtenerSignoComponenteDeVector(distanciaRelativa.X) == 1)
-                {
-                    // Proyecta y asigna la posición de la armadura
-                    bar.Posicion = traInv.Inverse.OfVector(ProyectarVectorSobreDireccion(distanciaRelativa, traInv.OfVector(vista.RightDirection)));
-                    
-                    // Agrega la armadura a la lista
-                    listaArmadurasDerecha.Add(bar);
-                }
-
-                else
-                {
-                    // Proyecta y asigna la posición de la armadura
-                    bar.Posicion = traInv.Inverse.OfVector(ProyectarVectorSobreDireccion(distanciaRelativa, traInv.OfVector(vista.RightDirection.Negate())));
-                    
-                    // Agrega la armadura a la lista
-                    listaArmadurasIzquierda.Add(bar);
-                }
-            }
-
-            // Y es mayor a X
-            else
-            {
-                // Verifica si Y es positivo
-                if (ObtenerSignoComponenteDeVector(distanciaRelativa.Y) == 1)
-                {
-                    // Proyecta y asigna la posición de la armadura
-                    bar.Posicion = traInv.Inverse.OfVector(ProyectarVectorSobreDireccion(distanciaRelativa, traInv.OfVector(vista.UpDirection)));
-                    
-                    // Agrega la armadura a la lista
-                    listaArmadurasArriba.Add(bar);
-                }
-
-                else
-                {
-                    // Proyecta y asigna la posición de la armadura
-                    bar.Posicion = traInv.Inverse.OfVector(ProyectarVectorSobreDireccion(distanciaRelativa, traInv.OfVector(vista.UpDirection.Negate())));
-
-                    // Agrega la armadura a la lista
-                    listaArmadurasAbajo.Add(bar);
-                }
-            }
-        }
-
-        ///<summary> Ordena y mueve las listas de Representación de Armadura </summary>
-        public static void OrdenarYMoverListaConArmadurasRepresentacion(Document doc, View vista, Transform tra, Element elem,
-                                                                        ref List<ArmaduraRepresentacion> listaArmadurasArriba,
-                                                                        ref List<ArmaduraRepresentacion> listaArmadurasAbajo,
-                                                                        ref List<ArmaduraRepresentacion> listaArmadurasIzquierda,
-                                                                        ref List<ArmaduraRepresentacion> listaArmadurasDerecha)
-        {
-            // Verifica que existan elementos
-            if (listaArmadurasArriba.Count > 0)
-            {
-                // Ordena la lista
-                listaArmadurasArriba = listaArmadurasArriba.OrderBy(x => tra.Inverse.OfVector(x.Posicion).Y).ToList();
-
-                // Mueve los elementos de la lista
-                MoverListaConArmaduras(doc, vista, elem, vista.UpDirection, listaArmadurasArriba);
-            }
-
-            // Verifica que existan elementos
-            if (listaArmadurasAbajo.Count > 0)
-            {
-                // Ordena la lista
-                listaArmadurasAbajo = listaArmadurasAbajo.OrderByDescending(x => tra.Inverse.OfPoint(x.Posicion).Y).ToList();
-
-                // Mueve los elementos de la lista
-                MoverListaConArmaduras(doc, vista, elem, vista.UpDirection.Negate(), listaArmadurasAbajo);
-            }
-
-            // Verifica que existan elementos
-            if (listaArmadurasDerecha.Count > 0)
-            {
-                // Ordena la lista
-                listaArmadurasDerecha = listaArmadurasDerecha.OrderBy(x => tra.Inverse.OfVector(x.Posicion).X).ToList();
+                Curve curvaElem = (elem.Location as LocationCurve).Curve;
                 
-                // Mueve los elementos de la lista
-                MoverListaConArmaduras(doc, vista, elem, vista.RightDirection, listaArmadurasDerecha);
-            }
+                XYZ direccionElem = curvaElem.GetEndPoint(1) - curvaElem.GetEndPoint(0);                
+                XYZ direccionCurva = curva.GetEndPoint(1) - curva.GetEndPoint(0);
 
-            // Verifica que existan elementos
-            if (listaArmadurasIzquierda.Count > 0)
-            {
-                // Ordena la lista
-                listaArmadurasIzquierda = listaArmadurasIzquierda.OrderByDescending(x => tra.Inverse.OfVector(x.Posicion).X).ToList();
-
-                // Mueve los elementos de la lista
-                MoverListaConArmaduras(doc, vista, elem, vista.RightDirection.Negate(), listaArmadurasIzquierda);
-            }
-        }
-
-        ///<summary> Mueve la lista de Representacion de Armaduras según una dirección </summary>
-        public static void MoverListaConArmaduras(Document doc, View vista, Element elem, XYZ direccion, List<ArmaduraRepresentacion> armaduras)
-        {
-            // Crea las banderas de las direcciones
-            bool banderaArriba = true;
-            bool banderaAbajo = true;
-            bool banderaDerecha = true;
-            bool banderaIzquierda = true;
-
-            // Crea una transformada de la vista
-            Transform tra = vista.CropBox.Transform;
-
-            // Recuadro del elemento
-            BoundingBoxXYZ bbElem = ObtenerRecuadroElementoParaleloAVista(doc, vista, elem);
-
-            // Distancia a mover
-            XYZ distancia = new XYZ();
-
-            // Dimensiones del elemento en coordenadas relativas
-            XYZ elementoDimensiones = tra.Inverse.OfVector((bbElem.Max - bbElem.Min) / 2);
-            XYZ elementoAncho = new XYZ(Math.Abs(elementoDimensiones.X), 0, 0);
-            XYZ elementoAlto = new XYZ(0, Math.Abs(elementoDimensiones.Y), 0);
-
-            foreach (ArmaduraRepresentacion bar in armaduras)
-            {
-                try
+                if (Tools.EsParalelo(direccionCurva, direccionElem))
                 {
-
-                    // Recuadro de la barra
-                    BoundingBoxXYZ bbBar = bar.ObtenerBoundingBoxDeArmadura();//ObtenerRecuadroElementoParaleloAVista(doc, vista, grupo);
-
-                    // Asigna la transformada de la vista al recuadro
-                    bbBar.Transform = tra;
-
-                    // Crea los componentes absolutos
-                    double x = Math.Abs(bar.Posicion.X);
-                    double y = Math.Abs(bar.Posicion.Y);
-                    double z = Math.Abs(bar.Posicion.Z);
-
-                    // Lo lleva a coordenadas de la vista
-                    bar.Posicion = tra.Inverse.OfVector(new XYZ(x, y, z));
-
-                    // Dimensiones de la Representación de Armadura en coordenadas relativas
-                    XYZ barDimensiones = tra.Inverse.OfVector(bbBar.Max - bbBar.Min);
-                    XYZ barAncho = new XYZ(Math.Abs(barDimensiones.X), 0, 0);
-                    XYZ barAlto = new XYZ(0, Math.Abs(barDimensiones.Y), 0);
-
-                    // Verifica si la dirección es arriba
-                    if (direccion.IsAlmostEqualTo(vista.UpDirection))
+                    if (!Tools.EsParaleloYMismaDireccion(direccionCurva, direccionElem))
                     {
-                        // Verifica si el la primera pasada
-                        if (banderaArriba)
-                        {
-                            //distancia = elementoAlto - bar.Posicion + barAlto;
-                            distancia = tra.Inverse.OfVector(ProyectarVectorSobreDireccion((bbElem.Max - bbBar.Min), vista.UpDirection)) + barAlto / 2;
-
-                            // Cambia el estado de la bandera
-                            banderaArriba = false;
-                        }
-                        else
-                        {
-                            distancia += barAlto / 2;
-                        }
-                    }
-
-                    // Verifica si la dirección es abajo
-                    else if (direccion.IsAlmostEqualTo(vista.UpDirection.Negate()))
-                    {
-                        // Verifica si el la primera pasada
-                        if (banderaAbajo)
-                        {
-                            // Obtiene la distancia a mover
-                            //distancia = elementoAlto - bar.Posicion - barAlto;
-                            distancia = tra.Inverse.OfVector(ProyectarVectorSobreDireccion((bbElem.Min - bbBar.Max), vista.UpDirection.Negate())) - barAlto / 2;
-
-                            // Cambia el estado de la bandera
-                            banderaAbajo = false;
-                        }
-                        else
-                        {
-                            distancia -= barAlto;
-                        }
-                    }
-
-                    // Verifica si la dirección es derecha
-                    else if (direccion.IsAlmostEqualTo(vista.RightDirection))
-                    {
-                        // Verifica si el la primera pasada
-                        if (banderaDerecha)
-                        {
-                            distancia = elementoAncho - bar.Posicion + barAncho;
-                            //distancia = tra.Inverse.OfVector(ProyectarVectorSobreDireccion((bbElem.Max - bbBar.Min), vista.RightDirection)) + barAncho;
-
-                            // Cambia el estado de la bandera
-                            banderaDerecha = false;
-                        }
-                        else
-                        {
-                            distancia += barAncho / 2;
-                        }
-                    }
-
-                    // Verifica si la dirección es izquierda
-                    else if (direccion.IsAlmostEqualTo(vista.RightDirection.Negate()))
-                    {
-                        // Verifica si el la primera pasada
-                        if (banderaIzquierda)
-                        {
-                            distancia = elementoAncho.Negate() + bar.Posicion - barAncho;
-                            //distancia = tra.Inverse.OfVector(ProyectarVectorSobreDireccion((bbElem.Min - bbBar.Max), vista.RightDirection.Negate())) - barAncho;
-
-                            // Cambia el estado de la bandera
-                            banderaIzquierda = false;
-                        }
-                        else
-                        {
-                            distancia -= barAncho / 2;
-                        }
-                    }
-
-                    else
-                    {
-                        // Verifica si el la primera pasada
-                        if (banderaDerecha)
-                        {
-                            distancia = elementoAncho - bar.Posicion + barAncho;
-
-                            // Cambia el estado de la bandera
-                            banderaDerecha = false;
-                        }
-                        else
-                        {
-                            distancia += barAncho / 2;
-                        }
-                    }
-
-                    // Lo lleva a coordenadas globales
-                    bar.Posicion = tra.OfVector(distancia);
-
-                    bar.MoverArmaduraRepresentacionConEtiqueta(bar.Posicion);
-                }
-                catch (Exception) { }
-            }
-        }
-
-        #endregion
-
-        #region Actualizador de Armaduras
-
-        /// <summary> Crea el actualizar de armaduras y agrega al registro </summary>
-        public static void CrearRegistroActualizadorArmaduras(AddInId AddIn)
-        {
-            // Obtiene el actualizador para eliminar barras
-            ArmaduraEliminacion barraEliminada = new ArmaduraEliminacion(AddIn);
-
-            // Obtiene el actualizador de barras
-            ArmaduraActualizacion barraActualizada = new ArmaduraActualizacion(AddIn);
-
-            // Verifica que el actualizador para eliminar barras existe en el registro
-            if (UpdaterRegistry.IsUpdaterRegistered(barraEliminada.GetUpdaterId()))
-            {
-                // Elimina el actualizador
-                UpdaterRegistry.UnregisterUpdater(barraEliminada.GetUpdaterId());
-            }
-
-            // Verifica que el actualizar existe en el registro
-            if (UpdaterRegistry.IsUpdaterRegistered(barraActualizada.GetUpdaterId()))
-            {
-                // Elimina el actualizador
-                UpdaterRegistry.UnregisterUpdater(barraActualizada.GetUpdaterId());
-            }
-
-            // Agrega el actualizador para eliminar barras al registro
-            UpdaterRegistry.RegisterUpdater(barraEliminada);
-
-            // Agrega el actualizador de barras al registro
-            UpdaterRegistry.RegisterUpdater(barraActualizada);
-
-            // Obtiene un filtro de categoría para barras
-            ElementCategoryFilter filtro = new ElementCategoryFilter(BuiltInCategory.OST_Rebar);
-
-            // Agrega al disparador
-            UpdaterRegistry.AddTrigger(barraEliminada.GetUpdaterId(), filtro, Element.GetChangeTypeElementDeletion());
-            UpdaterRegistry.AddTrigger(barraActualizada.GetUpdaterId(), filtro, Element.GetChangeTypeGeometry());
-        }
-
-        /// <summary> Elimina el actualizar de armaduras del registro </summary>
-        public static void EliminarRegistroActualizadorArmaduras(AddInId AddIn)
-        {
-            // Obtiene el actualizador para eliminar barras
-            ArmaduraEliminacion barraEliminada = new ArmaduraEliminacion(AddIn);
-
-            // Obtiene el actualizador de barras
-            ArmaduraActualizacion barraActualizada = new ArmaduraActualizacion(AddIn);
-
-            // Quita del actualizador de barras al registro
-            UpdaterRegistry.UnregisterUpdater(barraEliminada.GetUpdaterId());
-            UpdaterRegistry.UnregisterUpdater(barraActualizada.GetUpdaterId());
-
-            // Recorre todas los despieces
-            foreach (ArmaduraRepresentacion bar in Inicio.listaArmaduraRepresentacion)
-            {
-                // Obtiene la cantidad de curvas
-                int i = bar.CurvasDeArmadura.Count;
-
-                // Obtiene la cantidad de textos
-                int j = bar.TextosDeLongitudesParciales.Count;
-
-                // Verifica que existan líneas
-                if (i > 0)
-                {
-                    // Obtiene el total de curvas del historial
-                    int total = bar.ListaCurvasId.Count;
-
-                    // Elimina el historial de líneas creadas
-                    bar.ListaCurvasId.RemoveRange(0, total - i);
-                }
-
-                // Verifica que existan textos
-                if (j > 0)
-                {
-                    // Obtiene el total de textos del historial
-                    int total = bar.ListaTextosId.Count;
-
-                    // Elimina el historial de textos creadas
-                    bar.ListaTextosId.RemoveRange(0, total - j);
-                }
-            }
-        }
-
-        /// <summary> Guarda la Representación de armaduras en la barra </summary>
-        public static void GuardarRepresentacionArmaduraDeBarra(Rebar barra, ArmaduraRepresentacion armadura)
-        {
-            RepresentacionesEntity representaciones = ObtenerRepresentacionEntityDeBarra(barra);
-
-            List<ArmaduraRepresentacionEntity> listaEntidades = representaciones.ListaRepresentaciones;
-
-            ArmaduraRepresentacionEntity armaduraEntity = new ArmaduraRepresentacionEntity();
-
-            armaduraEntity.Vista = armadura.Vista.Id;
-
-            armaduraEntity.ListaCurvas = armadura.ListaCurvasId;
-
-            armaduraEntity.ListaTextos = armadura.ListaTextosId;
-
-            armaduraEntity.TipoDeTexto = armadura.TipoDeTexto.Id;
-
-            if (armadura.EtiquetaArmadura != null)
-            {
-                armaduraEntity.Etiqueta = armadura.EtiquetaArmadura.Id;
-            }
-
-            armaduraEntity.Posicion = armadura.Posicion;
-
-            listaEntidades.Add(armaduraEntity);
-
-            representaciones.ListaRepresentaciones = listaEntidades;
-
-            barra.SetEntity(representaciones);
-        }
-
-        /// <summary> Guarda la lista de Representación de armaduras en la barra </summary>
-        public static void GuardarRepresentacionArmaduraDeBarra(Rebar barra, List<ArmaduraRepresentacion> armaduras)
-        {
-            // Obtiene las armaduras que son de la barra
-            List<ArmaduraRepresentacion> listaBarras = armaduras.Where(x => x.Barra.Id == barra.Id).ToList();
-
-            foreach (ArmaduraRepresentacion armadura in listaBarras)
-            {
-                Tools.GuardarRepresentacionArmaduraDeBarra(barra, armadura);
-            }
-        }
-
-        /// <summary> Guarda la lista de Representación de armaduras en cada barra correspondiente </summary>
-        public static void GuardarRepresentacionArmaduraDeBarra(List<Rebar> barras, List<ArmaduraRepresentacion> armaduras)
-        {
-            foreach (Rebar barra in barras)
-            {
-                Tools.GuardarRepresentacionArmaduraDeBarra(barra, armaduras);
-            }
-        }
-
-        /// <summary> Obtiene la Representación de armaduras de una barra </summary>
-        public static RepresentacionesEntity ObtenerRepresentacionEntityDeBarra(Rebar barra)
-        {
-            RepresentacionesEntity representaciones = barra.GetEntity<RepresentacionesEntity>();
-
-            if (representaciones == null)
-            {
-                representaciones = new RepresentacionesEntity();
-            }
-
-            if (representaciones.ListaRepresentaciones == null)
-            {
-                representaciones.ListaRepresentaciones = new List<ArmaduraRepresentacionEntity>();
-            }
-
-            return representaciones;
-        }
-
-        /// <summary> Obtiene la lista de Representación de armaduras de una barra </summary>
-        public static List<ArmaduraRepresentacion> ObtenerRepresentacionArmaduraDeBarra(Rebar barra)
-        {
-            List<ArmaduraRepresentacion> armaduras = new List<ArmaduraRepresentacion>();
-
-            RepresentacionesEntity representaciones = ObtenerRepresentacionEntityDeBarra(barra);
-
-            if (representaciones != null)
-            {
-                foreach (ArmaduraRepresentacionEntity armRepEnt in representaciones.ListaRepresentaciones)
-                {
-                    if (armRepEnt.Vista != ElementId.InvalidElementId)
-                    {
-                        Document doc = barra.Document;
-
-                        View vista = doc.GetElement(armRepEnt.Vista) as View;
-
-                        ArmaduraRepresentacion armadura = new ArmaduraRepresentacion(doc, vista, barra);
-
-                        armadura.CurvasDeArmadura = (from elemID in armRepEnt.ListaCurvas
-                                                     where elemID != ElementId.InvalidElementId
-                                                     select doc.GetElement(elemID) as CurveElement).ToList();
-
-                        armadura.TextosDeLongitudesParciales = (from elemID in armRepEnt.ListaTextos
-                                                                where elemID != ElementId.InvalidElementId
-                                                                select doc.GetElement(elemID) as TextNote).ToList();
-
-                        if (armRepEnt.TipoDeTexto != ElementId.InvalidElementId)
-                        {
-                            armadura.TipoDeTexto = doc.GetElement(armRepEnt.TipoDeTexto) as TextNoteType;
-                        }                        
-
-                        IndependentTag etiqueta = doc.GetElement(armRepEnt.Etiqueta) as IndependentTag;
-
-                        if (etiqueta != null && etiqueta.GetTypeId() != ElementId.InvalidElementId)
-                        {
-                            armadura.EtiquetaArmadura = etiqueta;
-
-                            armadura.TipoEtiquetaArmadura = doc.GetElement(etiqueta.GetTypeId()) as FamilySymbol;
-                        }
-
-                        if (armRepEnt.Posicion != null)
-                        {
-                            armadura.Posicion = armRepEnt.Posicion;
-                        }
-
-                        armaduras.Add(armadura);
+                        direccion = direccion.Negate();
                     }
                 }
             }
 
-            return armaduras;
-        }
-
-        /// <summary> Obtiene la lista de Representación de armaduras de una barra </summary>
-        public static List<ArmaduraRepresentacion> ObtenerRepresentacionArmaduraDeBarra(List<Rebar> barras)
-        {
-            List<ArmaduraRepresentacion> armaduras = new List<ArmaduraRepresentacion>();
-
-            foreach (Rebar barra in barras)
-            {
-                armaduras.AddRange(ObtenerRepresentacionArmaduraDeBarra(barra));
-            }
-
-            return armaduras;
-        }
-
-        /// <summary> Elimina la Representación de armaduras de la barra </summary>
-        public static void EliminarRepresentacionesEnBarra(Rebar barra)
-        {
-            RepresentacionesEntity representaciones = new RepresentacionesEntity();
-
-            try
-            {
-                barra.SetEntity(representaciones);
-            }
-            catch (Exception) { }
-        }
-
-        /// <summary> Actualiza la representación de las armaduras </summary>
-        public static void ActualizarRepresentacionArmadura(System.Windows.Forms.DataGridView dgv, List<Element> listaBarras)
-        {
-            List<ArmaduraRepresentacion> listaArmaduraRepresentacion = new List<ArmaduraRepresentacion>();
-
-            // Recorre todas las barras modificadas
-            foreach (Rebar barra in listaBarras)
-            {
-                listaArmaduraRepresentacion.Clear();
-
-                listaArmaduraRepresentacion = Tools.ObtenerRepresentacionArmaduraDeBarra(barra);
-
-                Tools.EliminarRepresentacionesEnBarra(barra);
-
-                // Recorre las Representaciones de armaduras
-                foreach (ArmaduraRepresentacion armadura in listaArmaduraRepresentacion)
-                {
-                    try
-                    {
-                        // Verifica que la barra modificada sea igual al del despiece
-                        if (armadura.Barra.Id == barra.Id)
-                        {
-                            // Verifica que las líneas no sean nulas
-                            if (armadura.CurvasDeArmadura != null && armadura.TextosDeLongitudesParciales != null)
-                            {
-                                // Elimina el despiece
-                                armadura.Eliminar();
-
-                                // Dibuja las líneas de la nueva geometría y asigna al objeto
-                                armadura.DibujarArmaduraSegunDatagridview(dgv);
-
-                                // Mueve la Representación de la Armadura
-                                armadura.MoverArmaduraRepresentacion(armadura.Posicion);
-
-                                // Guarda la Representación de la Armadura en la barra
-                                Tools.GuardarRepresentacionArmaduraDeBarra(barra, armadura);
-                            }
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        // Elimina las curvas
-                        armadura.Eliminar();
-                    }
-                }
-            }
+            return direccion;
         }
 
         #endregion
@@ -2527,7 +1983,7 @@ namespace Jump
         public static IndependentTag CrearEtiquetaArmaduraArribaIzquierda(Document doc, View vista, Element elem, FamilySymbol tipoEtiqueta)
         {
             // Obtiene la referencia del elemento
-            Reference referencia = new Reference(elem);
+            Reference referencia = Tools.ObtenerSubElementDeElemento(elem)[Jump.Properties.Settings.Default.PosicionBarraADibujar].GetReference();
 
             // Crea la caja que contiene al elemento
             BoundingBoxXYZ bb = ObtenerRecuadroElementoParaleloAVista(doc, vista, elem);
@@ -2542,6 +1998,8 @@ namespace Jump
 
             // Crea la etiqueta
             IndependentTag etiqueta = IndependentTag.Create(doc, tipoEtiqueta.Id, vista.Id, referencia, false, TagOrientation.Horizontal, punto);
+
+            doc.Regenerate();
 
             // Obtiene la caja que contiene a la etiqueta
             BoundingBoxXYZ bbetiqueta = etiqueta.get_BoundingBox(vista);
@@ -2562,11 +2020,11 @@ namespace Jump
         public static IndependentTag CrearEtiquetaArmaduraArribaMedio(Document doc, View vista, Element elem, FamilySymbol tipoEtiqueta)
         {
             // Obtiene la referencia del elemento
-            Reference referencia = new Reference(elem);
+            Reference referencia = Tools.ObtenerSubElementDeElemento(elem)[Jump.Properties.Settings.Default.PosicionBarraADibujar].GetReference();
 
             // Crea la caja que contiene al elemento
             BoundingBoxXYZ bb = ObtenerRecuadroElementoParaleloAVista(doc, vista, elem);
-
+            
             // Obtiene el volumen tridimensional del elemento
             double xMedio = (bb.Max.X - bb.Min.X) / 2;
             double yMedio = (bb.Max.Y - bb.Min.Y) / 2;
@@ -2581,6 +2039,8 @@ namespace Jump
 
             // Crea la etiqueta
             IndependentTag etiqueta = IndependentTag.Create(doc, tipoEtiqueta.Id, vista.Id, referencia, false, TagOrientation.Horizontal, punto);
+
+            doc.Regenerate();
 
             // Obtiene la caja que contiene a la etiqueta
             BoundingBoxXYZ bbetiqueta = etiqueta.get_BoundingBox(vista);
@@ -2601,7 +2061,7 @@ namespace Jump
         public static IndependentTag CrearEtiquetaArmaduraArribaDerecha(Document doc, View vista, Element elem, FamilySymbol tipoEtiqueta)
         {
             // Obtiene la referencia del elemento
-            Reference referencia = new Reference(elem);
+            Reference referencia = Tools.ObtenerSubElementDeElemento(elem)[Jump.Properties.Settings.Default.PosicionBarraADibujar].GetReference();
 
             // Crea la caja que contiene al elemento
             BoundingBoxXYZ bb = ObtenerRecuadroElementoParaleloAVista(doc, vista, elem);
@@ -2616,6 +2076,8 @@ namespace Jump
 
             // Crea la etiqueta
             IndependentTag etiqueta = IndependentTag.Create(doc, tipoEtiqueta.Id, vista.Id, referencia, false, TagOrientation.Horizontal, punto);
+
+            doc.Regenerate();
 
             // Obtiene la caja que contiene a la etiqueta
             BoundingBoxXYZ bbetiqueta = etiqueta.get_BoundingBox(vista);
@@ -2636,7 +2098,7 @@ namespace Jump
         public static IndependentTag CrearEtiquetaArmaduraCentroIzquierda(Document doc, View vista, Element elem, FamilySymbol tipoEtiqueta)
         {
             // Obtiene la referencia del elemento
-            Reference referencia = new Reference(elem);
+            Reference referencia = Tools.ObtenerSubElementDeElemento(elem)[Jump.Properties.Settings.Default.PosicionBarraADibujar].GetReference();
 
             // Crea la caja que contiene al elemento
             BoundingBoxXYZ bb = ObtenerRecuadroElementoParaleloAVista(doc, vista, elem);
@@ -2655,6 +2117,8 @@ namespace Jump
             // Crea la etiqueta
             IndependentTag etiqueta = IndependentTag.Create(doc, tipoEtiqueta.Id, vista.Id, referencia, false, TagOrientation.Horizontal, punto);
 
+            doc.Regenerate();
+
             return etiqueta;
         }
 
@@ -2662,7 +2126,7 @@ namespace Jump
         public static IndependentTag CrearEtiquetaArmaduraCentroMedio(Document doc, View vista, Element elem, FamilySymbol tipoEtiqueta)
         {
             // Obtiene la referencia del elemento
-            Reference referencia = new Reference(elem);
+            Reference referencia = Tools.ObtenerSubElementDeElemento(elem)[Jump.Properties.Settings.Default.PosicionBarraADibujar].GetReference();
 
             // Crea la caja que contiene al elemento
             BoundingBoxXYZ bb = ObtenerRecuadroElementoParaleloAVista(doc, vista, elem);
@@ -2683,6 +2147,8 @@ namespace Jump
             // Crea la etiqueta
             IndependentTag etiqueta = IndependentTag.Create(doc, tipoEtiqueta.Id, vista.Id, referencia, false, TagOrientation.Horizontal, punto);
 
+            doc.Regenerate();
+
             return etiqueta;
         }
 
@@ -2690,7 +2156,7 @@ namespace Jump
         public static IndependentTag CrearEtiquetaArmaduraCentroDerecha(Document doc, View vista, Element elem, FamilySymbol tipoEtiqueta)
         {
             // Obtiene la referencia del elemento
-            Reference referencia = new Reference(elem);
+            Reference referencia = Tools.ObtenerSubElementDeElemento(elem)[Jump.Properties.Settings.Default.PosicionBarraADibujar].GetReference();
 
             // Crea la caja que contiene al elemento
             BoundingBoxXYZ bb = ObtenerRecuadroElementoParaleloAVista(doc, vista, elem);
@@ -2709,6 +2175,8 @@ namespace Jump
             // Crea la etiqueta
             IndependentTag etiqueta = IndependentTag.Create(doc, tipoEtiqueta.Id, vista.Id, referencia, false, TagOrientation.Horizontal, punto);
 
+            doc.Regenerate();
+
             return etiqueta;
         }
 
@@ -2716,7 +2184,7 @@ namespace Jump
         public static IndependentTag CrearEtiquetaArmaduraAbajoIzquierda(Document doc, View vista, Element elem, FamilySymbol tipoEtiqueta)
         {
             // Obtiene la referencia del elemento
-            Reference referencia = new Reference(elem);
+            Reference referencia = Tools.ObtenerSubElementDeElemento(elem)[Jump.Properties.Settings.Default.PosicionBarraADibujar].GetReference();
 
             // Crea la caja que contiene al elemento
             BoundingBoxXYZ bb = ObtenerRecuadroElementoParaleloAVista(doc, vista, elem);
@@ -2731,6 +2199,8 @@ namespace Jump
 
             // Crea la etiqueta
             IndependentTag etiqueta = IndependentTag.Create(doc, tipoEtiqueta.Id, vista.Id, referencia, false, TagOrientation.Horizontal, punto);
+
+            doc.Regenerate();
 
             // Obtiene la caja que contiene a la etiqueta
             BoundingBoxXYZ bbetiqueta = etiqueta.get_BoundingBox(vista);
@@ -2751,7 +2221,7 @@ namespace Jump
         public static IndependentTag CrearEtiquetaArmaduraAbajoMedio(Document doc, View vista, Element elem, FamilySymbol tipoEtiqueta)
         {
             // Obtiene la referencia del elemento
-            Reference referencia = new Reference(elem);
+            Reference referencia = Tools.ObtenerSubElementDeElemento(elem)[Jump.Properties.Settings.Default.PosicionBarraADibujar].GetReference();
 
             // Crea la caja que contiene al elemento
             BoundingBoxXYZ bb = ObtenerRecuadroElementoParaleloAVista(doc, vista, elem);
@@ -2770,6 +2240,8 @@ namespace Jump
 
             // Crea la etiqueta
             IndependentTag etiqueta = IndependentTag.Create(doc, tipoEtiqueta.Id, vista.Id, referencia, false, TagOrientation.Horizontal, punto);
+
+            doc.Regenerate();
 
             // Obtiene la caja que contiene a la etiqueta
             BoundingBoxXYZ bbetiqueta = etiqueta.get_BoundingBox(vista);
@@ -2790,7 +2262,7 @@ namespace Jump
         public static IndependentTag CrearEtiquetaArmaduraAbajoDerecha(Document doc, View vista, Element elem, FamilySymbol tipoEtiqueta)
         {
             // Obtiene la referencia del elemento
-            Reference referencia = new Reference(elem);
+            Reference referencia = Tools.ObtenerSubElementDeElemento(elem)[Jump.Properties.Settings.Default.PosicionBarraADibujar].GetReference();
 
             // Crea la caja que contiene al elemento
             BoundingBoxXYZ bb = ObtenerRecuadroElementoParaleloAVista(doc, vista, elem);
@@ -2806,6 +2278,8 @@ namespace Jump
             // Crea la etiqueta
             IndependentTag etiqueta = IndependentTag.Create(doc, tipoEtiqueta.Id, vista.Id, referencia, false, TagOrientation.Horizontal, punto);
 
+            doc.Regenerate();
+
             // Obtiene la caja que contiene a la etiqueta
             BoundingBoxXYZ bbetiqueta = etiqueta.get_BoundingBox(vista);
 
@@ -2819,6 +2293,16 @@ namespace Jump
             etiqueta.TagHeadPosition = puntoFinal;
 
             return etiqueta;
+        }
+
+        ///<summary> Obtiene una lista de los sub elementos que contiene el elemento, se utiliza para crear etiquetas independientes </summary>
+        public static List<Subelement> ObtenerSubElementDeElemento(Element elem)
+        {
+            List<Subelement> elementos = new List<Subelement>();
+
+            elementos = elem.GetSubelements().ToList();
+
+            return elementos;
         }
 
         #endregion
@@ -3529,7 +3013,7 @@ namespace Jump
 
             Document doc = vista.Document;
 
-            Element elem = etiqueta.GetTaggedLocalElement();
+            Element elem = etiqueta.GetTaggedLocalElements().FirstOrDefault();
 
             if (elem.Location is LocationCurve)
             {
@@ -3537,8 +3021,13 @@ namespace Jump
                 XYZ final = (elem.Location as LocationCurve).Curve.GetEndPoint(1);
 
                 XYZ sentido = (final - inicio).Normalize();
+                
+                if (Tools.EsParalelo(sentido, vista.ViewDirection))
+                {
+                    vector = ObtenerVectorParaEtiqueta(vista, direccion, etiqueta, cotas);
+                }
 
-                if (!Tools.EsParalelo(sentido, vista.RightDirection))
+                else if (!Tools.EsParalelo(sentido, vista.RightDirection))
                 {
                     using (SubTransaction subT = new SubTransaction(doc))
                     {
@@ -3735,7 +3224,7 @@ namespace Jump
                 Curve curva = (elem.Location as LocationCurve).Curve;
 
                 IntersectionResult inter = curva.Project(baricentroEtiqueta);
-
+                
                 direccion = baricentroEtiqueta - inter.XYZPoint;
             }
             else
@@ -4042,7 +3531,7 @@ namespace Jump
             ReferenceArray ArregloRef = new ReferenceArray();
 
             XYZ direccion = new XYZ();
-            XYZ izquierda = -vista.RightDirection;
+            XYZ izquierda = vista.RightDirection.Negate();
             XYZ puntoInicial = new XYZ();
             XYZ puntoFinal = new XYZ();
 
@@ -4056,7 +3545,7 @@ namespace Jump
                 puntoInicial = curva.GetEndPoint(0);
                 puntoFinal = curva.GetEndPoint(1);
 
-                XYZ sentido= (puntoFinal - puntoInicial);
+                XYZ sentido = (puntoFinal - puntoInicial);
 
                 if (Tools.EsParalelo(sentido, vista.ViewDirection))
                 {
@@ -4149,13 +3638,39 @@ namespace Jump
                 if (Tools.EsParalelo(sentido, vista.ViewDirection))
                 {
                     direccion = sentido.CrossProduct(vista.RightDirection).Normalize();
+
+                    derecha = sentido.CrossProduct(vista.UpDirection).Normalize();
                 }
                 else
                 {
                     direccion = sentido.CrossProduct(vista.ViewDirection).Normalize();
+
+                    derecha = sentido.Normalize();
                 }
-                derecha = sentido.Normalize();
-                puntoInicial = curva.GetEndPoint(1);
+
+                Face cara;
+                bool geometria = false;
+
+                if (bb.Transform.Inverse.OfVector(derecha).X > 0)
+                {
+                    cara = ReferenciaCaraExtremaElementoEnVista(vista, derecha, elem, ref geometria);
+                }
+                else
+                {
+                    cara = ReferenciaCaraExtremaElementoEnVista(vista, -derecha, elem, ref geometria);
+                }
+
+                XYZ punto = Tools.ObtenerPuntoMedioCara(cara);
+
+                // Verifica si la geometría se recupera de GetSymbolGeometry
+                if (geometria && elem is FamilyInstance)
+                {
+                    Transform tr = (elem as FamilyInstance).GetTotalTransform();
+
+                    punto = tr.OfPoint(punto);
+                }
+
+                puntoInicial = punto;
                 puntoFinal = puntoInicial.Add(direccion);
             }
 
@@ -4424,9 +3939,6 @@ namespace Jump
 
             Face cara = ReferenciaCaraExtremaElementoEnVista(vista, direccion, elem, ref banderaGeometria);
 
-            // Obtiene el cuadro de la vista
-            BoundingBoxXYZ bbox = vista.get_BoundingBox(null);
-
             // Obtiene la transformación de la vista
             Transform tra = vista.CropBox.Transform;
 
@@ -4467,6 +3979,8 @@ namespace Jump
                 // Crea la etiqueta temporal
                 SpotDimension etiquetaTemporal = doc.Create.NewSpotElevation(vista, referencia, puntoOrigen, puntoPliegue, puntoFin, puntoOrigen, false);
 
+                doc.Regenerate();
+
                 // Crea la caja que contiene a la etiqueta temporal
                 BoundingBoxXYZ bbEtiqueta = etiquetaTemporal.get_BoundingBox(vista);
 
@@ -4493,6 +4007,8 @@ namespace Jump
 
             // Crea la etiqueta
             SpotDimension etiquetaProfundidad = doc.Create.NewSpotElevation(vista, referencia, puntoOrigen, puntoPliegue, puntoFin, puntoOrigen, true);
+
+            doc.Regenerate();
 
             // Cambia el estilo de etiqueta
             etiquetaProfundidad.DimensionType = tipoCotaProfundidad;
@@ -4579,6 +4095,8 @@ namespace Jump
                 // Crea la etiqueta temporal
                 SpotDimension etiquetaTemporal = doc.Create.NewSpotElevation(vista, referencia, puntoOrigen, puntoPliegue, puntoFin, puntoOrigen, false);
 
+                doc.Regenerate();
+
                 // Crea la caja que contiene a la etiqueta temporal
                 BoundingBoxXYZ bbEtiqueta = etiquetaTemporal.get_BoundingBox(vista);
 
@@ -4605,6 +4123,8 @@ namespace Jump
 
             // Crea la etiqueta
             SpotDimension etiquetaProfundidad = doc.Create.NewSpotElevation(vista, referencia, puntoOrigen, puntoPliegue, puntoFin, puntoOrigen, true);
+
+            doc.Regenerate();
 
             // Cambia el estilo de etiqueta
             etiquetaProfundidad.DimensionType = tipoCotaProfundidad;
@@ -5227,6 +4747,14 @@ namespace Jump
             return paralelo;
         }
 
+        ///<summary> Devuelve true si el vector1 es paralelo y en la misma dirección al vector2 </summary>
+        public static bool EsParaleloYMismaDireccion(XYZ vector1, XYZ vector2)
+        {
+            bool paralelo = ((vector1.DotProduct(vector2)) > (1 - Tools.toleranciaComponenteVector)) ? true : false;
+
+            return paralelo;
+        }
+
         ///<summary> Devuelve true si el vector1 es perpendicular al vector2 </summary>
         public static bool EsPerpendicular(XYZ vector1, XYZ vector2)
         {
@@ -5436,7 +4964,7 @@ namespace Jump
 
                 // Obtiene la transformación de la curva
                 Transform curvaTransformada = curva.ComputeDerivatives(corteTransversalBasadoLinea, true);
-
+                
                 // Crea los vectores de dirección de la vista
                 XYZ direccion = longitud.Normalize();
                 XYZ arriba = XYZ.BasisZ;
@@ -6078,53 +5606,6 @@ namespace Jump
 
         #region DataGridView con diámetros de barras y estilos de líneas
 
-        ///<summary> Crea el DataGridView de diámetros y estilos de líneas y lo rellena con las configuraciones que el usuario hizo </summary>
-        public static System.Windows.Forms.DataGridView ObtenerDataGridViewDeDiametrosYEstilos(System.Windows.Forms.DataGridView dgv, Document doc, string IdiomaDelPrograma)
-        {
-            if (dgv.Columns.Count == 0)
-            {
-                dgv = Tools.CrearDataGridViewDeDiametrosYEstilos(IdiomaDelPrograma);
-            }
-
-            Tools.RellenarDataGridViewDeDiametrosYEstilos(dgv, doc);
-
-            DGVEntity dgvEntidad = Tools.ObtenerEntityDiametrosYEstilos(doc);
-
-            Dictionary<ElementId, ElementId> diccionario = dgvEntidad.DGVDiametrosYEstilos;
-
-            if (diccionario.Count > 0)
-            {
-                List<RebarBarType> diametros = Tools.ObtenerTodosTiposSegunClase(doc, typeof(RebarBarType)).Cast<RebarBarType>().ToList();
-                List<Category> estilos = Tools.ObtenerEstilosDeLinea(doc);
-
-                for (int i = 0; i < dgv.Rows.Count; i++)
-                {
-                    try
-                    {
-                        RebarBarType tipoDiametro = diametros.FirstOrDefault(x => x.Name == dgv.Rows[i].Cells[AboutJump.nombreColumnaDiametros].Value.ToString());
-                        Category categEstilo = estilos.FirstOrDefault(x => x.Name == dgv.Rows[i].Cells[AboutJump.nombreColumnaEstilosLineas].Value.ToString());
-
-                        if (diccionario.ContainsKey(tipoDiametro.Id))
-                        {
-                            ElementId elemId = diccionario[tipoDiametro.Id];
-
-                            Category estilo = estilos.FirstOrDefault(x => x.Id == elemId);
-
-                            System.Windows.Forms.DataGridViewComboBoxCell dgvComboCell = dgv.Rows[i].Cells[AboutJump.nombreColumnaEstilosLineas] as System.Windows.Forms.DataGridViewComboBoxCell;
-
-                            if (dgvComboCell.Items.Contains(estilo.Name))
-                            {
-                                dgv.Rows[i].Cells[AboutJump.nombreColumnaEstilosLineas].Value = dgvComboCell.Items[dgvComboCell.Items.IndexOf(estilo.Name)];
-                            }
-                        }
-                    }
-                    catch (Exception) { continue; }
-                }
-            }
-
-            return dgv;
-        }
-
         ///<summary> Crea el DataGridView de diámetros y estilos de líneas </summary>
         public static System.Windows.Forms.DataGridView CrearDataGridViewDeDiametrosYEstilos(string IdiomaDelPrograma)
         {
@@ -6201,7 +5682,7 @@ namespace Jump
             }
 
             // Ordena la lista por el diámetro de barra
-            diametros = diametros.OrderBy(x => x.BarDiameter).ToList();
+            diametros = diametros.OrderBy(x => x.BarModelDiameter).ToList();
 
             // Crea la lista de los estilos de lineas del proyecto
             List<Category> estilos = new List<Category>();
@@ -6245,87 +5726,6 @@ namespace Jump
             }
         }
 
-        ///<summary> Guarda el DataGridView en el documento </summary>
-        public static void GuardarDataGridViewEnDocumento(System.Windows.Forms.DataGridView dgv, Document doc)
-        {
-            if (dgv.Columns.Count > 0 && dgv.Rows.Count > 0)
-            {
-                List<RebarBarType> diametros = Tools.ObtenerTodosTiposSegunClase(doc, typeof(RebarBarType)).Cast<RebarBarType>().ToList();
-                List<Category> estilos = Tools.ObtenerEstilosDeLinea(doc);
-
-                DGVEntity DGVDiametros = new DGVEntity();
-                Dictionary<ElementId, ElementId> diccionario = new Dictionary<ElementId, ElementId>();
-
-                for (int i = 0; i < dgv.Rows.Count; i++)
-                {
-                    try
-                    {
-                        System.Windows.Forms.DataGridViewTextBoxCell dgvTextCell = dgv.Rows[i].Cells[AboutJump.nombreColumnaDiametros] as System.Windows.Forms.DataGridViewTextBoxCell;
-                        System.Windows.Forms.DataGridViewComboBoxCell dgvComboCell = dgv.Rows[i].Cells[AboutJump.nombreColumnaEstilosLineas] as System.Windows.Forms.DataGridViewComboBoxCell;
-
-                        RebarBarType tipoDiametro = diametros.FirstOrDefault(x => x.Name == dgvTextCell.Value.ToString());
-                        Category categEstilo = estilos.FirstOrDefault(x => x.Name == dgvComboCell.Value.ToString());
-
-                        diccionario.Add(tipoDiametro.Id, categEstilo.Id);
-                    }
-                    catch (Exception) { }
-                }
-
-                DGVDiametros.DGVDiametrosYEstilos = diccionario;
-
-                DataStorage data = Tools.ObtenerDataStorageDGV(doc);
-
-                data.SetEntity(DGVDiametros);
-            }
-        }
-
-        ///<summary> Obtiene el DataGridViewEntity del proyecto </summary>
-        public static DGVEntity ObtenerEntityDiametrosYEstilos(Document doc)
-        {
-            DataStorage data = Tools.ObtenerDataStorageDGV(doc);
-
-            DGVEntity DGVDiametros = data.GetEntity<DGVEntity>();
-
-            if (DGVDiametros == null)
-            {
-                DGVDiametros = new DGVEntity();
-            }
-
-            if (DGVDiametros.DGVDiametrosYEstilos == null)
-            {
-                DGVDiametros.DGVDiametrosYEstilos = new Dictionary<ElementId, ElementId>();
-            }
-
-            return DGVDiametros;
-        }
-
-        public static DataStorage ObtenerDataStorageDGV(Document doc)
-        {
-            DataStorage data = null;
-
-            FilteredElementCollector colector = new FilteredElementCollector(doc);
-
-            List<DataStorage> datas = colector.OfClass(typeof(DataStorage)).Cast<DataStorage>().ToList();
-
-            data = datas.Where(x => x.GetEntity<DGVEntity>() != null && x.GetEntity<DGVEntity>().DGVDiametrosYEstilos != null).FirstOrDefault();
-            
-            if (data == null)
-            {
-                using (SubTransaction subT = new SubTransaction(doc))
-                {
-                    subT.Start();
-
-                    data = DataStorage.Create(doc);
-
-                    data.Name = AboutJump.nombreDataStorageDGV;
-
-                    subT.Commit();
-                }
-            }
-
-            return data;
-        }
-
         ///<summary> Hace que el combobox se despliegue con un solo click </summary>
         public static void DesplegarComboboxConUnClick(System.Windows.Forms.DataGridView dgv,
                                                        System.Windows.Forms.DataGridViewCellEventArgs e)
@@ -6350,15 +5750,15 @@ namespace Jump
             // Limpia el combobox
             combo.Items.Clear();
 
-            combo.DataSource = lista;   
-
-            combo.DisplayMember = AboutJump.parametroMostrarUsuario;
-
-            combo.ValueMember = AboutJump.parametroId;
-
-            // Verifica la lista contenga elementos 
+            // Verifica que la lista contenga elementos 
             if (lista.Count > 0)
             {
+                combo.DataSource = lista;
+
+                combo.DisplayMember = AboutJump.parametroMostrarUsuario;
+
+                combo.ValueMember = AboutJump.parametroId;
+
                 // Asigna el primer elemento a la lista desplegable
                 combo.SelectedIndex = 0;
             }
@@ -6565,28 +5965,18 @@ namespace Jump
             
         }
 
-        /// <summary> Valida que los textos ingresados en un TexteBox sean solamente números </summary>
+        /// <summary> Valida que los textos ingresados en un TextBox sean solamente números o tecla borrar </summary>
         public static void VerificarSoloNumero(System.Windows.Forms.KeyPressEventArgs e)
         {
-            // Verifica que sólo se introduzcan números
-            if (Char.IsDigit(e.KeyChar))
+            // Verifica que sólo se introduzcan números, puntos, coma o borrar
+            if (Char.IsDigit(e.KeyChar) || Char.IsControl(e.KeyChar))
             {
                 e.Handled = false;
             }
 
             else
             {
-                // Permite teclas de control como borrar
-                if (Char.IsControl(e.KeyChar))
-                {
-                    e.Handled = false;
-                }
-
-                // Desactiva el resto de teclas
-                else
-                {
-                    e.Handled = true;
-                }
+                e.Handled = true;
             }
         }
 

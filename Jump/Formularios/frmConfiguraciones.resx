@@ -235,7 +235,7 @@
     <value>NoControl</value>
   </data>
   <data name="rbtnEnumeracionProyecto.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 26</value>
+    <value>167, 26</value>
   </data>
   <data name="rbtnEnumeracionProyecto.Size" type="System.Drawing.Size, System.Drawing">
     <value>85, 17</value>
@@ -268,7 +268,7 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="panel6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>380, 50</value>
+    <value>386, 50</value>
   </data>
   <data name="panel6.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -328,7 +328,7 @@
     <value>NoControl</value>
   </data>
   <data name="rbtnLineasBorde.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 26</value>
+    <value>167, 26</value>
   </data>
   <data name="rbtnLineasBorde.Size" type="System.Drawing.Size, System.Drawing">
     <value>103, 17</value>
@@ -391,7 +391,7 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="panel7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>380, 50</value>
+    <value>386, 50</value>
   </data>
   <data name="panel7.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -451,7 +451,7 @@
     <value>NoControl</value>
   </data>
   <data name="rbtnTextoAbajo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 26</value>
+    <value>167, 26</value>
   </data>
   <data name="rbtnTextoAbajo.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 17</value>
@@ -514,7 +514,7 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="panel8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>380, 97</value>
+    <value>386, 103</value>
   </data>
   <data name="panel8.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -541,7 +541,7 @@
     <value>3</value>
   </data>
   <data name="tableLayoutPanel13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>380, 197</value>
+    <value>386, 203</value>
   </data>
   <data name="tableLayoutPanel13.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -568,7 +568,7 @@
     <value>3, 238</value>
   </data>
   <data name="gbxArmadura.Size" type="System.Drawing.Size, System.Drawing">
-    <value>386, 216</value>
+    <value>392, 222</value>
   </data>
   <data name="gbxArmadura.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -598,7 +598,7 @@
     <value>7, 105</value>
   </data>
   <data name="lblPrecisionOrdenarDescripcion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>376, 38</value>
+    <value>379, 38</value>
   </data>
   <data name="lblPrecisionOrdenarDescripcion.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -817,7 +817,7 @@
     <value>3, 3</value>
   </data>
   <data name="gbxConfiguraciones.Size" type="System.Drawing.Size, System.Drawing">
-    <value>386, 144</value>
+    <value>392, 144</value>
   </data>
   <data name="gbxConfiguraciones.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -904,7 +904,7 @@
     <value>3, 153</value>
   </data>
   <data name="gbxVista.Size" type="System.Drawing.Size, System.Drawing">
-    <value>386, 79</value>
+    <value>392, 79</value>
   </data>
   <data name="gbxVista.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -928,13 +928,16 @@
     <value>Fill</value>
   </data>
   <data name="tableLayoutPanel4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
+    <value>0, 0</value>
+  </data>
+  <data name="tableLayoutPanel4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
   </data>
   <data name="tableLayoutPanel4.RowCount" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
   <data name="tableLayoutPanel4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>392, 457</value>
+    <value>398, 463</value>
   </data>
   <data name="tableLayoutPanel4.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -1011,138 +1014,6 @@
   <data name="&gt;&gt;tbpgGeneral.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="tableLayoutPanel6.ColumnCount" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="lblDiametroEstilo.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblDiametroEstilo.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="lblDiametroEstilo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblDiametroEstilo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 429</value>
-  </data>
-  <data name="lblDiametroEstilo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>664, 13</value>
-  </data>
-  <data name="lblDiametroEstilo.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="lblDiametroEstilo.Text" xml:space="preserve">
-    <value>Descripción de los estilos de líneas</value>
-  </data>
-  <data name="&gt;&gt;lblDiametroEstilo.Name" xml:space="preserve">
-    <value>lblDiametroEstilo</value>
-  </data>
-  <data name="&gt;&gt;lblDiametroEstilo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblDiametroEstilo.Parent" xml:space="preserve">
-    <value>tableLayoutPanel6</value>
-  </data>
-  <data name="&gt;&gt;lblDiametroEstilo.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <metadata name="Diametro.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="Diametro.HeaderText" xml:space="preserve">
-    <value>Diámetro</value>
-  </data>
-  <data name="Diametro.MinimumWidth" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <metadata name="EstiloLinea.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="EstiloLinea.HeaderText" xml:space="preserve">
-    <value>Estilo de línea</value>
-  </data>
-  <data name="EstiloLinea.MinimumWidth" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="dgvEstiloLinea.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="dgvEstiloLinea.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="dgvEstiloLinea.Size" type="System.Drawing.Size, System.Drawing">
-    <value>664, 423</value>
-  </data>
-  <data name="dgvEstiloLinea.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;dgvEstiloLinea.Name" xml:space="preserve">
-    <value>dgvEstiloLinea</value>
-  </data>
-  <data name="&gt;&gt;dgvEstiloLinea.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dgvEstiloLinea.Parent" xml:space="preserve">
-    <value>tableLayoutPanel6</value>
-  </data>
-  <data name="&gt;&gt;dgvEstiloLinea.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="tableLayoutPanel6.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="tableLayoutPanel6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="tableLayoutPanel6.RowCount" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="tableLayoutPanel6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>670, 469</value>
-  </data>
-  <data name="tableLayoutPanel6.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel6.Name" xml:space="preserve">
-    <value>tableLayoutPanel6</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel6.Parent" xml:space="preserve">
-    <value>tbpgEstiloLinea</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel6.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tableLayoutPanel6.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="lblDiametroEstilo" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="dgvEstiloLinea" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100,Absolute,20" /&gt;&lt;Rows Styles="Percent,100,Absolute,40,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="tbpgEstiloLinea.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="tbpgEstiloLinea.Size" type="System.Drawing.Size, System.Drawing">
-    <value>670, 469</value>
-  </data>
-  <data name="tbpgEstiloLinea.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="tbpgEstiloLinea.Text" xml:space="preserve">
-    <value>Estilo de línea</value>
-  </data>
-  <data name="&gt;&gt;tbpgEstiloLinea.Name" xml:space="preserve">
-    <value>tbpgEstiloLinea</value>
-  </data>
-  <data name="&gt;&gt;tbpgEstiloLinea.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tbpgEstiloLinea.Parent" xml:space="preserve">
-    <value>tabcConfiguraciones</value>
-  </data>
-  <data name="&gt;&gt;tbpgEstiloLinea.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="tableLayoutPanel7.ColumnCount" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
@@ -1152,70 +1023,70 @@
   <data name="tableLayoutPanel12.ColumnCount" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="lblEtiquetaArmaduraEnSistema.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblArmaduraEnSistemaEtiqueta.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblEtiquetaArmaduraEnSistema.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="lblArmaduraEnSistemaEtiqueta.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="lblEtiquetaArmaduraEnSistema.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 88</value>
+  <data name="lblArmaduraEnSistemaEtiqueta.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 88</value>
   </data>
-  <data name="lblEtiquetaArmaduraEnSistema.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="lblArmaduraEnSistemaEtiqueta.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
   </data>
-  <data name="lblEtiquetaArmaduraEnSistema.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="lblArmaduraEnSistemaEtiqueta.Size" type="System.Drawing.Size, System.Drawing">
     <value>105, 13</value>
   </data>
-  <data name="lblEtiquetaArmaduraEnSistema.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblArmaduraEnSistemaEtiqueta.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="lblEtiquetaArmaduraEnSistema.Text" xml:space="preserve">
+  <data name="lblArmaduraEnSistemaEtiqueta.Text" xml:space="preserve">
     <value>Armadura en sistema</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaArmaduraEnSistema.Name" xml:space="preserve">
-    <value>lblEtiquetaArmaduraEnSistema</value>
+  <data name="&gt;&gt;lblArmaduraEnSistemaEtiqueta.Name" xml:space="preserve">
+    <value>lblArmaduraEnSistemaEtiqueta</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaArmaduraEnSistema.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblArmaduraEnSistemaEtiqueta.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaArmaduraEnSistema.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblArmaduraEnSistemaEtiqueta.Parent" xml:space="preserve">
     <value>panel4</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaArmaduraEnSistema.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblArmaduraEnSistemaEtiqueta.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="lblEtiquetaAreaRefuerzo.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblAreaRefuerzoEtiqueta.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblEtiquetaAreaRefuerzo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="lblAreaRefuerzoEtiqueta.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="lblEtiquetaAreaRefuerzo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 58</value>
+  <data name="lblAreaRefuerzoEtiqueta.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 58</value>
   </data>
-  <data name="lblEtiquetaAreaRefuerzo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="lblAreaRefuerzoEtiqueta.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
   </data>
-  <data name="lblEtiquetaAreaRefuerzo.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="lblAreaRefuerzoEtiqueta.Size" type="System.Drawing.Size, System.Drawing">
     <value>85, 13</value>
   </data>
-  <data name="lblEtiquetaAreaRefuerzo.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblAreaRefuerzoEtiqueta.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="lblEtiquetaAreaRefuerzo.Text" xml:space="preserve">
+  <data name="lblAreaRefuerzoEtiqueta.Text" xml:space="preserve">
     <value>Área de refuerzo</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaAreaRefuerzo.Name" xml:space="preserve">
-    <value>lblEtiquetaAreaRefuerzo</value>
+  <data name="&gt;&gt;lblAreaRefuerzoEtiqueta.Name" xml:space="preserve">
+    <value>lblAreaRefuerzoEtiqueta</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaAreaRefuerzo.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblAreaRefuerzoEtiqueta.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaAreaRefuerzo.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblAreaRefuerzoEtiqueta.Parent" xml:space="preserve">
     <value>panel4</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaAreaRefuerzo.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblAreaRefuerzoEtiqueta.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="lblArmaduraEtiquetaIndependiente.AutoSize" type="System.Boolean, mscorlib">
@@ -1251,37 +1122,37 @@
   <data name="&gt;&gt;lblArmaduraEtiquetaIndependiente.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="lblEtiquetaArmadura.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblArmaduraEtiqueta.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblEtiquetaArmadura.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="lblArmaduraEtiqueta.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="lblEtiquetaArmadura.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 28</value>
+  <data name="lblArmaduraEtiqueta.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 28</value>
   </data>
-  <data name="lblEtiquetaArmadura.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="lblArmaduraEtiqueta.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
   </data>
-  <data name="lblEtiquetaArmadura.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="lblArmaduraEtiqueta.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 13</value>
   </data>
-  <data name="lblEtiquetaArmadura.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblArmaduraEtiqueta.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="lblEtiquetaArmadura.Text" xml:space="preserve">
+  <data name="lblArmaduraEtiqueta.Text" xml:space="preserve">
     <value>Armadura</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaArmadura.Name" xml:space="preserve">
-    <value>lblEtiquetaArmadura</value>
+  <data name="&gt;&gt;lblArmaduraEtiqueta.Name" xml:space="preserve">
+    <value>lblArmaduraEtiqueta</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaArmadura.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblArmaduraEtiqueta.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaArmadura.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblArmaduraEtiqueta.Parent" xml:space="preserve">
     <value>panel4</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaArmadura.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblArmaduraEtiqueta.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
   <data name="panel4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -1291,7 +1162,7 @@
     <value>3, 3</value>
   </data>
   <data name="panel4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 119</value>
+    <value>139, 119</value>
   </data>
   <data name="panel4.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1308,52 +1179,52 @@
   <data name="&gt;&gt;panel4.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="cmbEtiquetaArmaduraEnSistema.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="cmbArmaduraEnSistemaEtiqueta.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <data name="cmbEtiquetaArmaduraEnSistema.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="cmbArmaduraEnSistemaEtiqueta.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 85</value>
   </data>
-  <data name="cmbEtiquetaArmaduraEnSistema.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 21</value>
+  <data name="cmbArmaduraEnSistemaEtiqueta.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 21</value>
   </data>
-  <data name="cmbEtiquetaArmaduraEnSistema.TabIndex" type="System.Int32, mscorlib">
+  <data name="cmbArmaduraEnSistemaEtiqueta.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="&gt;&gt;cmbEtiquetaArmaduraEnSistema.Name" xml:space="preserve">
-    <value>cmbEtiquetaArmaduraEnSistema</value>
+  <data name="&gt;&gt;cmbArmaduraEnSistemaEtiqueta.Name" xml:space="preserve">
+    <value>cmbArmaduraEnSistemaEtiqueta</value>
   </data>
-  <data name="&gt;&gt;cmbEtiquetaArmaduraEnSistema.Type" xml:space="preserve">
+  <data name="&gt;&gt;cmbArmaduraEnSistemaEtiqueta.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cmbEtiquetaArmaduraEnSistema.Parent" xml:space="preserve">
+  <data name="&gt;&gt;cmbArmaduraEnSistemaEtiqueta.Parent" xml:space="preserve">
     <value>panel5</value>
   </data>
-  <data name="&gt;&gt;cmbEtiquetaArmaduraEnSistema.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;cmbArmaduraEnSistemaEtiqueta.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="cmbEtiquetaAreaRefuerzo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="cmbAreaRefuerzoEtiqueta.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <data name="cmbEtiquetaAreaRefuerzo.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="cmbAreaRefuerzoEtiqueta.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 55</value>
   </data>
-  <data name="cmbEtiquetaAreaRefuerzo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 21</value>
+  <data name="cmbAreaRefuerzoEtiqueta.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 21</value>
   </data>
-  <data name="cmbEtiquetaAreaRefuerzo.TabIndex" type="System.Int32, mscorlib">
+  <data name="cmbAreaRefuerzoEtiqueta.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
-  <data name="&gt;&gt;cmbEtiquetaAreaRefuerzo.Name" xml:space="preserve">
-    <value>cmbEtiquetaAreaRefuerzo</value>
+  <data name="&gt;&gt;cmbAreaRefuerzoEtiqueta.Name" xml:space="preserve">
+    <value>cmbAreaRefuerzoEtiqueta</value>
   </data>
-  <data name="&gt;&gt;cmbEtiquetaAreaRefuerzo.Type" xml:space="preserve">
+  <data name="&gt;&gt;cmbAreaRefuerzoEtiqueta.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cmbEtiquetaAreaRefuerzo.Parent" xml:space="preserve">
+  <data name="&gt;&gt;cmbAreaRefuerzoEtiqueta.Parent" xml:space="preserve">
     <value>panel5</value>
   </data>
-  <data name="&gt;&gt;cmbEtiquetaAreaRefuerzo.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;cmbAreaRefuerzoEtiqueta.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="lblArmaduraPosicionEtiqueta.AutoSize" type="System.Boolean, mscorlib">
@@ -1389,38 +1260,38 @@
   <data name="&gt;&gt;lblArmaduraPosicionEtiqueta.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="cmbEtiquetaArmadura.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="cmbArmaduraEtiqueta.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <data name="cmbEtiquetaArmadura.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="cmbArmaduraEtiqueta.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 25</value>
   </data>
-  <data name="cmbEtiquetaArmadura.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 21</value>
+  <data name="cmbArmaduraEtiqueta.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 21</value>
   </data>
-  <data name="cmbEtiquetaArmadura.TabIndex" type="System.Int32, mscorlib">
+  <data name="cmbArmaduraEtiqueta.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="&gt;&gt;cmbEtiquetaArmadura.Name" xml:space="preserve">
-    <value>cmbEtiquetaArmadura</value>
+  <data name="&gt;&gt;cmbArmaduraEtiqueta.Name" xml:space="preserve">
+    <value>cmbArmaduraEtiqueta</value>
   </data>
-  <data name="&gt;&gt;cmbEtiquetaArmadura.Type" xml:space="preserve">
+  <data name="&gt;&gt;cmbArmaduraEtiqueta.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cmbEtiquetaArmadura.Parent" xml:space="preserve">
+  <data name="&gt;&gt;cmbArmaduraEtiqueta.Parent" xml:space="preserve">
     <value>panel5</value>
   </data>
-  <data name="&gt;&gt;cmbEtiquetaArmadura.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;cmbArmaduraEtiqueta.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
   <data name="panel5.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="panel5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>174, 3</value>
+    <value>148, 3</value>
   </data>
   <data name="panel5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 119</value>
+    <value>233, 119</value>
   </data>
   <data name="panel5.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1447,7 +1318,7 @@
     <value>1</value>
   </data>
   <data name="tableLayoutPanel12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>451, 125</value>
+    <value>384, 125</value>
   </data>
   <data name="tableLayoutPanel12.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1474,7 +1345,7 @@
     <value>3, 316</value>
   </data>
   <data name="gbxEtiquetaArmadura.Size" type="System.Drawing.Size, System.Drawing">
-    <value>457, 144</value>
+    <value>390, 144</value>
   </data>
   <data name="gbxEtiquetaArmadura.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -1507,7 +1378,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblElementoEtiquetasIdependientes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
+    <value>3, 5</value>
   </data>
   <data name="lblElementoEtiquetasIdependientes.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 13</value>
@@ -1530,268 +1401,268 @@
   <data name="&gt;&gt;lblElementoEtiquetasIdependientes.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="lblEtiquetaLosas.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblLosaEtiqueta.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblEtiquetaLosas.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="lblLosaEtiqueta.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="lblEtiquetaLosas.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 238</value>
+  <data name="lblLosaEtiqueta.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 118</value>
   </data>
-  <data name="lblEtiquetaLosas.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="lblLosaEtiqueta.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
   </data>
-  <data name="lblEtiquetaLosas.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="lblLosaEtiqueta.Size" type="System.Drawing.Size, System.Drawing">
     <value>35, 13</value>
   </data>
-  <data name="lblEtiquetaLosas.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblLosaEtiqueta.TabIndex" type="System.Int32, mscorlib">
     <value>42</value>
   </data>
-  <data name="lblEtiquetaLosas.Text" xml:space="preserve">
+  <data name="lblLosaEtiqueta.Text" xml:space="preserve">
     <value>Losas</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaLosas.Name" xml:space="preserve">
-    <value>lblEtiquetaLosas</value>
+  <data name="&gt;&gt;lblLosaEtiqueta.Name" xml:space="preserve">
+    <value>lblLosaEtiqueta</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaLosas.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblLosaEtiqueta.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaLosas.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblLosaEtiqueta.Parent" xml:space="preserve">
     <value>panel2</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaLosas.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblLosaEtiqueta.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="lblEtiquetaVigas.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblVigaEtiqueta.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblEtiquetaVigas.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="lblVigaEtiqueta.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="lblEtiquetaVigas.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 208</value>
+  <data name="lblVigaEtiqueta.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 28</value>
   </data>
-  <data name="lblEtiquetaVigas.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="lblVigaEtiqueta.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
   </data>
-  <data name="lblEtiquetaVigas.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="lblVigaEtiqueta.Size" type="System.Drawing.Size, System.Drawing">
     <value>33, 13</value>
   </data>
-  <data name="lblEtiquetaVigas.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblVigaEtiqueta.TabIndex" type="System.Int32, mscorlib">
     <value>41</value>
   </data>
-  <data name="lblEtiquetaVigas.Text" xml:space="preserve">
+  <data name="lblVigaEtiqueta.Text" xml:space="preserve">
     <value>Vigas</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaVigas.Name" xml:space="preserve">
-    <value>lblEtiquetaVigas</value>
+  <data name="&gt;&gt;lblVigaEtiqueta.Name" xml:space="preserve">
+    <value>lblVigaEtiqueta</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaVigas.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblVigaEtiqueta.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaVigas.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblVigaEtiqueta.Parent" xml:space="preserve">
     <value>panel2</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaVigas.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblVigaEtiqueta.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="lblEtiquetaMuros.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblMuroEtiqueta.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblEtiquetaMuros.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="lblMuroEtiqueta.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="lblEtiquetaMuros.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 178</value>
+  <data name="lblMuroEtiqueta.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 58</value>
   </data>
-  <data name="lblEtiquetaMuros.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="lblMuroEtiqueta.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
   </data>
-  <data name="lblEtiquetaMuros.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="lblMuroEtiqueta.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 13</value>
   </data>
-  <data name="lblEtiquetaMuros.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblMuroEtiqueta.TabIndex" type="System.Int32, mscorlib">
     <value>40</value>
   </data>
-  <data name="lblEtiquetaMuros.Text" xml:space="preserve">
+  <data name="lblMuroEtiqueta.Text" xml:space="preserve">
     <value>Muros</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaMuros.Name" xml:space="preserve">
-    <value>lblEtiquetaMuros</value>
+  <data name="&gt;&gt;lblMuroEtiqueta.Name" xml:space="preserve">
+    <value>lblMuroEtiqueta</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaMuros.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblMuroEtiqueta.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaMuros.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblMuroEtiqueta.Parent" xml:space="preserve">
     <value>panel2</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaMuros.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblMuroEtiqueta.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="lblEtiquetaColumnas.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblColumnaEtiqueta.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblEtiquetaColumnas.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="lblColumnaEtiqueta.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="lblEtiquetaColumnas.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 148</value>
+  <data name="lblColumnaEtiqueta.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 88</value>
   </data>
-  <data name="lblEtiquetaColumnas.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="lblColumnaEtiqueta.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
   </data>
-  <data name="lblEtiquetaColumnas.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="lblColumnaEtiqueta.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 13</value>
   </data>
-  <data name="lblEtiquetaColumnas.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblColumnaEtiqueta.TabIndex" type="System.Int32, mscorlib">
     <value>39</value>
   </data>
-  <data name="lblEtiquetaColumnas.Text" xml:space="preserve">
+  <data name="lblColumnaEtiqueta.Text" xml:space="preserve">
     <value>Columnas</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaColumnas.Name" xml:space="preserve">
-    <value>lblEtiquetaColumnas</value>
+  <data name="&gt;&gt;lblColumnaEtiqueta.Name" xml:space="preserve">
+    <value>lblColumnaEtiqueta</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaColumnas.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblColumnaEtiqueta.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaColumnas.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblColumnaEtiqueta.Parent" xml:space="preserve">
     <value>panel2</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaColumnas.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblColumnaEtiqueta.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="lblEtiquetaZapatas.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblZapataEtiqueta.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblEtiquetaZapatas.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="lblZapataEtiqueta.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="lblEtiquetaZapatas.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 118</value>
+  <data name="lblZapataEtiqueta.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 148</value>
   </data>
-  <data name="lblEtiquetaZapatas.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="lblZapataEtiqueta.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
   </data>
-  <data name="lblEtiquetaZapatas.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="lblZapataEtiqueta.Size" type="System.Drawing.Size, System.Drawing">
     <value>46, 13</value>
   </data>
-  <data name="lblEtiquetaZapatas.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblZapataEtiqueta.TabIndex" type="System.Int32, mscorlib">
     <value>38</value>
   </data>
-  <data name="lblEtiquetaZapatas.Text" xml:space="preserve">
+  <data name="lblZapataEtiqueta.Text" xml:space="preserve">
     <value>Zapatas</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaZapatas.Name" xml:space="preserve">
-    <value>lblEtiquetaZapatas</value>
+  <data name="&gt;&gt;lblZapataEtiqueta.Name" xml:space="preserve">
+    <value>lblZapataEtiqueta</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaZapatas.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblZapataEtiqueta.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaZapatas.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblZapataEtiqueta.Parent" xml:space="preserve">
     <value>panel2</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaZapatas.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblZapataEtiqueta.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="lblEtiquetaPlatea.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblPlateaEtiqueta.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblEtiquetaPlatea.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="lblPlateaEtiqueta.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="lblEtiquetaPlatea.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 88</value>
+  <data name="lblPlateaEtiqueta.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 208</value>
   </data>
-  <data name="lblEtiquetaPlatea.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="lblPlateaEtiqueta.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
   </data>
-  <data name="lblEtiquetaPlatea.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="lblPlateaEtiqueta.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 13</value>
   </data>
-  <data name="lblEtiquetaPlatea.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblPlateaEtiqueta.TabIndex" type="System.Int32, mscorlib">
     <value>37</value>
   </data>
-  <data name="lblEtiquetaPlatea.Text" xml:space="preserve">
+  <data name="lblPlateaEtiqueta.Text" xml:space="preserve">
     <value>Platea</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaPlatea.Name" xml:space="preserve">
-    <value>lblEtiquetaPlatea</value>
+  <data name="&gt;&gt;lblPlateaEtiqueta.Name" xml:space="preserve">
+    <value>lblPlateaEtiqueta</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaPlatea.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblPlateaEtiqueta.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaPlatea.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblPlateaEtiqueta.Parent" xml:space="preserve">
     <value>panel2</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaPlatea.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblPlateaEtiqueta.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="lblEtiquetaZapataCorrida.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblZapataCorridaEtiqueta.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblEtiquetaZapataCorrida.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="lblZapataCorridaEtiqueta.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="lblEtiquetaZapataCorrida.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 58</value>
+  <data name="lblZapataCorridaEtiqueta.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 178</value>
   </data>
-  <data name="lblEtiquetaZapataCorrida.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="lblZapataCorridaEtiqueta.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
   </data>
-  <data name="lblEtiquetaZapataCorrida.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="lblZapataCorridaEtiqueta.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 13</value>
   </data>
-  <data name="lblEtiquetaZapataCorrida.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblZapataCorridaEtiqueta.TabIndex" type="System.Int32, mscorlib">
     <value>36</value>
   </data>
-  <data name="lblEtiquetaZapataCorrida.Text" xml:space="preserve">
+  <data name="lblZapataCorridaEtiqueta.Text" xml:space="preserve">
     <value>Zapata Corrida</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaZapataCorrida.Name" xml:space="preserve">
-    <value>lblEtiquetaZapataCorrida</value>
+  <data name="&gt;&gt;lblZapataCorridaEtiqueta.Name" xml:space="preserve">
+    <value>lblZapataCorridaEtiqueta</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaZapataCorrida.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblZapataCorridaEtiqueta.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaZapataCorrida.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblZapataCorridaEtiqueta.Parent" xml:space="preserve">
     <value>panel2</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaZapataCorrida.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblZapataCorridaEtiqueta.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="lblEtiquetaPilotes.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblPiloteEtiqueta.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblEtiquetaPilotes.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="lblPiloteEtiqueta.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="lblEtiquetaPilotes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 28</value>
+  <data name="lblPiloteEtiqueta.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 238</value>
   </data>
-  <data name="lblEtiquetaPilotes.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="lblPiloteEtiqueta.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
   </data>
-  <data name="lblEtiquetaPilotes.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="lblPiloteEtiqueta.Size" type="System.Drawing.Size, System.Drawing">
     <value>38, 13</value>
   </data>
-  <data name="lblEtiquetaPilotes.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblPiloteEtiqueta.TabIndex" type="System.Int32, mscorlib">
     <value>35</value>
   </data>
-  <data name="lblEtiquetaPilotes.Text" xml:space="preserve">
+  <data name="lblPiloteEtiqueta.Text" xml:space="preserve">
     <value>Pilotes</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaPilotes.Name" xml:space="preserve">
-    <value>lblEtiquetaPilotes</value>
+  <data name="&gt;&gt;lblPiloteEtiqueta.Name" xml:space="preserve">
+    <value>lblPiloteEtiqueta</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaPilotes.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblPiloteEtiqueta.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaPilotes.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblPiloteEtiqueta.Parent" xml:space="preserve">
     <value>panel2</value>
   </data>
-  <data name="&gt;&gt;lblEtiquetaPilotes.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblPiloteEtiqueta.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
   <data name="panel2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -1801,7 +1672,7 @@
     <value>3, 3</value>
   </data>
   <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 282</value>
+    <value>139, 282</value>
   </data>
   <data name="panel2.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1851,209 +1722,209 @@
   <data name="&gt;&gt;lblPosicionEtiqueta.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="cmbEtiquetaZapataCorrida.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="cmbZapataCorridaEtiqueta.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <data name="cmbEtiquetaZapataCorrida.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 55</value>
-  </data>
-  <data name="cmbEtiquetaZapataCorrida.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 21</value>
-  </data>
-  <data name="cmbEtiquetaZapataCorrida.TabIndex" type="System.Int32, mscorlib">
-    <value>41</value>
-  </data>
-  <data name="&gt;&gt;cmbEtiquetaZapataCorrida.Name" xml:space="preserve">
-    <value>cmbEtiquetaZapataCorrida</value>
-  </data>
-  <data name="&gt;&gt;cmbEtiquetaZapataCorrida.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cmbEtiquetaZapataCorrida.Parent" xml:space="preserve">
-    <value>panel3</value>
-  </data>
-  <data name="&gt;&gt;cmbEtiquetaZapataCorrida.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="cmbEtiquetaLosas.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="cmbEtiquetaLosas.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 235</value>
-  </data>
-  <data name="cmbEtiquetaLosas.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 21</value>
-  </data>
-  <data name="cmbEtiquetaLosas.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
-  </data>
-  <data name="&gt;&gt;cmbEtiquetaLosas.Name" xml:space="preserve">
-    <value>cmbEtiquetaLosas</value>
-  </data>
-  <data name="&gt;&gt;cmbEtiquetaLosas.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cmbEtiquetaLosas.Parent" xml:space="preserve">
-    <value>panel3</value>
-  </data>
-  <data name="&gt;&gt;cmbEtiquetaLosas.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="cmbEtiquetaVigas.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="cmbEtiquetaVigas.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 205</value>
-  </data>
-  <data name="cmbEtiquetaVigas.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 21</value>
-  </data>
-  <data name="cmbEtiquetaVigas.TabIndex" type="System.Int32, mscorlib">
-    <value>39</value>
-  </data>
-  <data name="&gt;&gt;cmbEtiquetaVigas.Name" xml:space="preserve">
-    <value>cmbEtiquetaVigas</value>
-  </data>
-  <data name="&gt;&gt;cmbEtiquetaVigas.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cmbEtiquetaVigas.Parent" xml:space="preserve">
-    <value>panel3</value>
-  </data>
-  <data name="&gt;&gt;cmbEtiquetaVigas.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="cmbEtiquetaMuros.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="cmbEtiquetaMuros.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="cmbZapataCorridaEtiqueta.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 175</value>
   </data>
-  <data name="cmbEtiquetaMuros.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 21</value>
+  <data name="cmbZapataCorridaEtiqueta.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 21</value>
   </data>
-  <data name="cmbEtiquetaMuros.TabIndex" type="System.Int32, mscorlib">
-    <value>38</value>
+  <data name="cmbZapataCorridaEtiqueta.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
   </data>
-  <data name="&gt;&gt;cmbEtiquetaMuros.Name" xml:space="preserve">
-    <value>cmbEtiquetaMuros</value>
+  <data name="&gt;&gt;cmbZapataCorridaEtiqueta.Name" xml:space="preserve">
+    <value>cmbZapataCorridaEtiqueta</value>
   </data>
-  <data name="&gt;&gt;cmbEtiquetaMuros.Type" xml:space="preserve">
+  <data name="&gt;&gt;cmbZapataCorridaEtiqueta.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cmbEtiquetaMuros.Parent" xml:space="preserve">
+  <data name="&gt;&gt;cmbZapataCorridaEtiqueta.Parent" xml:space="preserve">
     <value>panel3</value>
   </data>
-  <data name="&gt;&gt;cmbEtiquetaMuros.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="&gt;&gt;cmbZapataCorridaEtiqueta.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="cmbEtiquetaColumnas.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="cmbLosaEtiqueta.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <data name="cmbEtiquetaColumnas.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 145</value>
-  </data>
-  <data name="cmbEtiquetaColumnas.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 21</value>
-  </data>
-  <data name="cmbEtiquetaColumnas.TabIndex" type="System.Int32, mscorlib">
-    <value>37</value>
-  </data>
-  <data name="&gt;&gt;cmbEtiquetaColumnas.Name" xml:space="preserve">
-    <value>cmbEtiquetaColumnas</value>
-  </data>
-  <data name="&gt;&gt;cmbEtiquetaColumnas.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cmbEtiquetaColumnas.Parent" xml:space="preserve">
-    <value>panel3</value>
-  </data>
-  <data name="&gt;&gt;cmbEtiquetaColumnas.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="cmbEtiquetaZapatas.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="cmbEtiquetaZapatas.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="cmbLosaEtiqueta.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 115</value>
   </data>
-  <data name="cmbEtiquetaZapatas.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 21</value>
+  <data name="cmbLosaEtiqueta.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 21</value>
   </data>
-  <data name="cmbEtiquetaZapatas.TabIndex" type="System.Int32, mscorlib">
-    <value>36</value>
+  <data name="cmbLosaEtiqueta.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
   </data>
-  <data name="&gt;&gt;cmbEtiquetaZapatas.Name" xml:space="preserve">
-    <value>cmbEtiquetaZapatas</value>
+  <data name="&gt;&gt;cmbLosaEtiqueta.Name" xml:space="preserve">
+    <value>cmbLosaEtiqueta</value>
   </data>
-  <data name="&gt;&gt;cmbEtiquetaZapatas.Type" xml:space="preserve">
+  <data name="&gt;&gt;cmbLosaEtiqueta.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cmbEtiquetaZapatas.Parent" xml:space="preserve">
+  <data name="&gt;&gt;cmbLosaEtiqueta.Parent" xml:space="preserve">
     <value>panel3</value>
   </data>
-  <data name="&gt;&gt;cmbEtiquetaZapatas.ZOrder" xml:space="preserve">
-    <value>6</value>
+  <data name="&gt;&gt;cmbLosaEtiqueta.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
-  <data name="cmbEtiquetaPlatea.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="cmbVigaEtiqueta.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <data name="cmbEtiquetaPlatea.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 85</value>
-  </data>
-  <data name="cmbEtiquetaPlatea.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 21</value>
-  </data>
-  <data name="cmbEtiquetaPlatea.TabIndex" type="System.Int32, mscorlib">
-    <value>35</value>
-  </data>
-  <data name="&gt;&gt;cmbEtiquetaPlatea.Name" xml:space="preserve">
-    <value>cmbEtiquetaPlatea</value>
-  </data>
-  <data name="&gt;&gt;cmbEtiquetaPlatea.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cmbEtiquetaPlatea.Parent" xml:space="preserve">
-    <value>panel3</value>
-  </data>
-  <data name="&gt;&gt;cmbEtiquetaPlatea.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="cmbEtiquetaPilotes.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="cmbEtiquetaPilotes.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="cmbVigaEtiqueta.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 25</value>
   </data>
-  <data name="cmbEtiquetaPilotes.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>No</value>
+  <data name="cmbVigaEtiqueta.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 21</value>
   </data>
-  <data name="cmbEtiquetaPilotes.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 21</value>
+  <data name="cmbVigaEtiqueta.TabIndex" type="System.Int32, mscorlib">
+    <value>39</value>
   </data>
-  <data name="cmbEtiquetaPilotes.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
+  <data name="&gt;&gt;cmbVigaEtiqueta.Name" xml:space="preserve">
+    <value>cmbVigaEtiqueta</value>
   </data>
-  <data name="&gt;&gt;cmbEtiquetaPilotes.Name" xml:space="preserve">
-    <value>cmbEtiquetaPilotes</value>
-  </data>
-  <data name="&gt;&gt;cmbEtiquetaPilotes.Type" xml:space="preserve">
+  <data name="&gt;&gt;cmbVigaEtiqueta.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cmbEtiquetaPilotes.Parent" xml:space="preserve">
+  <data name="&gt;&gt;cmbVigaEtiqueta.Parent" xml:space="preserve">
     <value>panel3</value>
   </data>
-  <data name="&gt;&gt;cmbEtiquetaPilotes.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;cmbVigaEtiqueta.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="cmbMuroEtiqueta.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="cmbMuroEtiqueta.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 55</value>
+  </data>
+  <data name="cmbMuroEtiqueta.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 21</value>
+  </data>
+  <data name="cmbMuroEtiqueta.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="&gt;&gt;cmbMuroEtiqueta.Name" xml:space="preserve">
+    <value>cmbMuroEtiqueta</value>
+  </data>
+  <data name="&gt;&gt;cmbMuroEtiqueta.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmbMuroEtiqueta.Parent" xml:space="preserve">
+    <value>panel3</value>
+  </data>
+  <data name="&gt;&gt;cmbMuroEtiqueta.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="cmbColumnaEtiqueta.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="cmbColumnaEtiqueta.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 85</value>
+  </data>
+  <data name="cmbColumnaEtiqueta.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 21</value>
+  </data>
+  <data name="cmbColumnaEtiqueta.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
+  </data>
+  <data name="&gt;&gt;cmbColumnaEtiqueta.Name" xml:space="preserve">
+    <value>cmbColumnaEtiqueta</value>
+  </data>
+  <data name="&gt;&gt;cmbColumnaEtiqueta.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmbColumnaEtiqueta.Parent" xml:space="preserve">
+    <value>panel3</value>
+  </data>
+  <data name="&gt;&gt;cmbColumnaEtiqueta.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="cmbZapataEtiqueta.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="cmbZapataEtiqueta.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 145</value>
+  </data>
+  <data name="cmbZapataEtiqueta.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 21</value>
+  </data>
+  <data name="cmbZapataEtiqueta.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
+  </data>
+  <data name="&gt;&gt;cmbZapataEtiqueta.Name" xml:space="preserve">
+    <value>cmbZapataEtiqueta</value>
+  </data>
+  <data name="&gt;&gt;cmbZapataEtiqueta.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmbZapataEtiqueta.Parent" xml:space="preserve">
+    <value>panel3</value>
+  </data>
+  <data name="&gt;&gt;cmbZapataEtiqueta.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="cmbPlateaEtiqueta.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="cmbPlateaEtiqueta.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 205</value>
+  </data>
+  <data name="cmbPlateaEtiqueta.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 21</value>
+  </data>
+  <data name="cmbPlateaEtiqueta.TabIndex" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
+  <data name="&gt;&gt;cmbPlateaEtiqueta.Name" xml:space="preserve">
+    <value>cmbPlateaEtiqueta</value>
+  </data>
+  <data name="&gt;&gt;cmbPlateaEtiqueta.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmbPlateaEtiqueta.Parent" xml:space="preserve">
+    <value>panel3</value>
+  </data>
+  <data name="&gt;&gt;cmbPlateaEtiqueta.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="cmbPiloteEtiqueta.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="cmbPiloteEtiqueta.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 235</value>
+  </data>
+  <data name="cmbPiloteEtiqueta.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="cmbPiloteEtiqueta.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 21</value>
+  </data>
+  <data name="cmbPiloteEtiqueta.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
+  </data>
+  <data name="&gt;&gt;cmbPiloteEtiqueta.Name" xml:space="preserve">
+    <value>cmbPiloteEtiqueta</value>
+  </data>
+  <data name="&gt;&gt;cmbPiloteEtiqueta.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmbPiloteEtiqueta.Parent" xml:space="preserve">
+    <value>panel3</value>
+  </data>
+  <data name="&gt;&gt;cmbPiloteEtiqueta.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
   <data name="panel3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="panel3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>174, 3</value>
+    <value>148, 3</value>
   </data>
   <data name="panel3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 282</value>
+    <value>233, 282</value>
   </data>
   <data name="panel3.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -2080,7 +1951,7 @@
     <value>1</value>
   </data>
   <data name="tableLayoutPanel11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>451, 288</value>
+    <value>384, 288</value>
   </data>
   <data name="tableLayoutPanel11.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -2107,7 +1978,7 @@
     <value>3, 3</value>
   </data>
   <data name="gbxEtiquetaIndependiente.Size" type="System.Drawing.Size, System.Drawing">
-    <value>457, 307</value>
+    <value>390, 307</value>
   </data>
   <data name="gbxEtiquetaIndependiente.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -2137,7 +2008,7 @@
     <value>2</value>
   </data>
   <data name="tableLayoutPanel8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>463, 463</value>
+    <value>396, 463</value>
   </data>
   <data name="tableLayoutPanel8.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -2167,10 +2038,10 @@
     <value>NoControl</value>
   </data>
   <data name="pcbxEtiquetaPosicion.Location" type="System.Drawing.Point, System.Drawing">
-    <value>472, 3</value>
+    <value>405, 3</value>
   </data>
   <data name="pcbxEtiquetaPosicion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 463</value>
+    <value>262, 463</value>
   </data>
   <data name="pcbxEtiquetaPosicion.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -2215,7 +2086,7 @@
     <value>0</value>
   </data>
   <data name="tableLayoutPanel7.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="tableLayoutPanel8" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="pcbxEtiquetaPosicion" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,70,Percent,30" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="tableLayoutPanel8" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="pcbxEtiquetaPosicion" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,60,Percent,40" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="tbpgEtiquetas.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -2239,28 +2110,2029 @@
     <value>tabcConfiguraciones</value>
   </data>
   <data name="&gt;&gt;tbpgEtiquetas.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="tableLayoutPanel9.ColumnCount" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="tableLayoutPanel10.ColumnCount" type="System.Int32, mscorlib">
+  <data name="tableLayoutPanel2.ColumnCount" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="cmbPiloteCotaProfundidad.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="cmbPiloteCotaProfundidad.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 19</value>
+  </data>
+  <data name="cmbPiloteCotaProfundidad.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="cmbPiloteCotaProfundidad.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 21</value>
+  </data>
+  <data name="cmbPiloteCotaProfundidad.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="&gt;&gt;cmbPiloteCotaProfundidad.Name" xml:space="preserve">
+    <value>cmbPiloteCotaProfundidad</value>
+  </data>
+  <data name="&gt;&gt;cmbPiloteCotaProfundidad.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmbPiloteCotaProfundidad.Parent" xml:space="preserve">
+    <value>panel26</value>
+  </data>
+  <data name="&gt;&gt;cmbPiloteCotaProfundidad.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel26.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="panel26.Location" type="System.Drawing.Point, System.Drawing">
+    <value>333, 385</value>
+  </data>
+  <data name="panel26.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 50</value>
+  </data>
+  <data name="panel26.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;panel26.Name" xml:space="preserve">
+    <value>panel26</value>
+  </data>
+  <data name="&gt;&gt;panel26.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel26.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;panel26.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="lblPiloteCotaLineal.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblPiloteCotaLineal.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="lblPiloteCotaLineal.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblPiloteCotaLineal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 3</value>
+  </data>
+  <data name="lblPiloteCotaLineal.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="lblPiloteCotaLineal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 13</value>
+  </data>
+  <data name="lblPiloteCotaLineal.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="lblPiloteCotaLineal.Text" xml:space="preserve">
+    <value>Pilotes</value>
+  </data>
+  <data name="&gt;&gt;lblPiloteCotaLineal.Name" xml:space="preserve">
+    <value>lblPiloteCotaLineal</value>
+  </data>
+  <data name="&gt;&gt;lblPiloteCotaLineal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblPiloteCotaLineal.Parent" xml:space="preserve">
+    <value>panel25</value>
+  </data>
+  <data name="&gt;&gt;lblPiloteCotaLineal.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="chbPiloteCotaAbajo.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbPiloteCotaAbajo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbPiloteCotaAbajo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 23</value>
+  </data>
+  <data name="chbPiloteCotaAbajo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 17</value>
+  </data>
+  <data name="chbPiloteCotaAbajo.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="chbPiloteCotaAbajo.Text" xml:space="preserve">
+    <value>Abajo</value>
+  </data>
+  <data name="&gt;&gt;chbPiloteCotaAbajo.Name" xml:space="preserve">
+    <value>chbPiloteCotaAbajo</value>
+  </data>
+  <data name="&gt;&gt;chbPiloteCotaAbajo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbPiloteCotaAbajo.Parent" xml:space="preserve">
+    <value>panel25</value>
+  </data>
+  <data name="&gt;&gt;chbPiloteCotaAbajo.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="chbPiloteCotaArriba.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbPiloteCotaArriba.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbPiloteCotaArriba.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 23</value>
+  </data>
+  <data name="chbPiloteCotaArriba.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 17</value>
+  </data>
+  <data name="chbPiloteCotaArriba.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="chbPiloteCotaArriba.Text" xml:space="preserve">
+    <value>Arriba</value>
+  </data>
+  <data name="&gt;&gt;chbPiloteCotaArriba.Name" xml:space="preserve">
+    <value>chbPiloteCotaArriba</value>
+  </data>
+  <data name="&gt;&gt;chbPiloteCotaArriba.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbPiloteCotaArriba.Parent" xml:space="preserve">
+    <value>panel25</value>
+  </data>
+  <data name="&gt;&gt;chbPiloteCotaArriba.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="chbPiloteCotaDerecha.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbPiloteCotaDerecha.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbPiloteCotaDerecha.Location" type="System.Drawing.Point, System.Drawing">
+    <value>242, 23</value>
+  </data>
+  <data name="chbPiloteCotaDerecha.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 17</value>
+  </data>
+  <data name="chbPiloteCotaDerecha.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="chbPiloteCotaDerecha.Text" xml:space="preserve">
+    <value>Derecha</value>
+  </data>
+  <data name="&gt;&gt;chbPiloteCotaDerecha.Name" xml:space="preserve">
+    <value>chbPiloteCotaDerecha</value>
+  </data>
+  <data name="&gt;&gt;chbPiloteCotaDerecha.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbPiloteCotaDerecha.Parent" xml:space="preserve">
+    <value>panel25</value>
+  </data>
+  <data name="&gt;&gt;chbPiloteCotaDerecha.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="chbPiloteCotaIzquierda.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbPiloteCotaIzquierda.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbPiloteCotaIzquierda.Location" type="System.Drawing.Point, System.Drawing">
+    <value>156, 23</value>
+  </data>
+  <data name="chbPiloteCotaIzquierda.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 17</value>
+  </data>
+  <data name="chbPiloteCotaIzquierda.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="chbPiloteCotaIzquierda.Text" xml:space="preserve">
+    <value>Izquierda</value>
+  </data>
+  <data name="&gt;&gt;chbPiloteCotaIzquierda.Name" xml:space="preserve">
+    <value>chbPiloteCotaIzquierda</value>
+  </data>
+  <data name="&gt;&gt;chbPiloteCotaIzquierda.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbPiloteCotaIzquierda.Parent" xml:space="preserve">
+    <value>panel25</value>
+  </data>
+  <data name="&gt;&gt;chbPiloteCotaIzquierda.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="panel25.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="panel25.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 385</value>
+  </data>
+  <data name="panel25.Size" type="System.Drawing.Size, System.Drawing">
+    <value>324, 50</value>
+  </data>
+  <data name="panel25.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;panel25.Name" xml:space="preserve">
+    <value>panel25</value>
+  </data>
+  <data name="&gt;&gt;panel25.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel25.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;panel25.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="cmbPlateaCotaProfundidad.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="cmbPlateaCotaProfundidad.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 19</value>
+  </data>
+  <data name="cmbPlateaCotaProfundidad.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="cmbPlateaCotaProfundidad.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 21</value>
+  </data>
+  <data name="cmbPlateaCotaProfundidad.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="&gt;&gt;cmbPlateaCotaProfundidad.Name" xml:space="preserve">
+    <value>cmbPlateaCotaProfundidad</value>
+  </data>
+  <data name="&gt;&gt;cmbPlateaCotaProfundidad.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmbPlateaCotaProfundidad.Parent" xml:space="preserve">
+    <value>panel24</value>
+  </data>
+  <data name="&gt;&gt;cmbPlateaCotaProfundidad.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel24.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="panel24.Location" type="System.Drawing.Point, System.Drawing">
+    <value>333, 334</value>
+  </data>
+  <data name="panel24.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 45</value>
+  </data>
+  <data name="panel24.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;panel24.Name" xml:space="preserve">
+    <value>panel24</value>
+  </data>
+  <data name="&gt;&gt;panel24.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel24.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;panel24.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="chbPlateaCotaAbajo.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbPlateaCotaAbajo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbPlateaCotaAbajo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 23</value>
+  </data>
+  <data name="chbPlateaCotaAbajo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 17</value>
+  </data>
+  <data name="chbPlateaCotaAbajo.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="chbPlateaCotaAbajo.Text" xml:space="preserve">
+    <value>Abajo</value>
+  </data>
+  <data name="&gt;&gt;chbPlateaCotaAbajo.Name" xml:space="preserve">
+    <value>chbPlateaCotaAbajo</value>
+  </data>
+  <data name="&gt;&gt;chbPlateaCotaAbajo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbPlateaCotaAbajo.Parent" xml:space="preserve">
+    <value>panel23</value>
+  </data>
+  <data name="&gt;&gt;chbPlateaCotaAbajo.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="chbPlateaCotaArriba.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbPlateaCotaArriba.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbPlateaCotaArriba.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 23</value>
+  </data>
+  <data name="chbPlateaCotaArriba.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 17</value>
+  </data>
+  <data name="chbPlateaCotaArriba.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="chbPlateaCotaArriba.Text" xml:space="preserve">
+    <value>Arriba</value>
+  </data>
+  <data name="&gt;&gt;chbPlateaCotaArriba.Name" xml:space="preserve">
+    <value>chbPlateaCotaArriba</value>
+  </data>
+  <data name="&gt;&gt;chbPlateaCotaArriba.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbPlateaCotaArriba.Parent" xml:space="preserve">
+    <value>panel23</value>
+  </data>
+  <data name="&gt;&gt;chbPlateaCotaArriba.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="chbPlateaCotaDerecha.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbPlateaCotaDerecha.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbPlateaCotaDerecha.Location" type="System.Drawing.Point, System.Drawing">
+    <value>242, 23</value>
+  </data>
+  <data name="chbPlateaCotaDerecha.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 17</value>
+  </data>
+  <data name="chbPlateaCotaDerecha.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="chbPlateaCotaDerecha.Text" xml:space="preserve">
+    <value>Derecha</value>
+  </data>
+  <data name="&gt;&gt;chbPlateaCotaDerecha.Name" xml:space="preserve">
+    <value>chbPlateaCotaDerecha</value>
+  </data>
+  <data name="&gt;&gt;chbPlateaCotaDerecha.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbPlateaCotaDerecha.Parent" xml:space="preserve">
+    <value>panel23</value>
+  </data>
+  <data name="&gt;&gt;chbPlateaCotaDerecha.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="chbPlateaCotaIzquierda.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbPlateaCotaIzquierda.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbPlateaCotaIzquierda.Location" type="System.Drawing.Point, System.Drawing">
+    <value>156, 23</value>
+  </data>
+  <data name="chbPlateaCotaIzquierda.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 17</value>
+  </data>
+  <data name="chbPlateaCotaIzquierda.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="chbPlateaCotaIzquierda.Text" xml:space="preserve">
+    <value>Izquierda</value>
+  </data>
+  <data name="&gt;&gt;chbPlateaCotaIzquierda.Name" xml:space="preserve">
+    <value>chbPlateaCotaIzquierda</value>
+  </data>
+  <data name="&gt;&gt;chbPlateaCotaIzquierda.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbPlateaCotaIzquierda.Parent" xml:space="preserve">
+    <value>panel23</value>
+  </data>
+  <data name="&gt;&gt;chbPlateaCotaIzquierda.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="lblPlateaCotaLineal.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblPlateaCotaLineal.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="lblPlateaCotaLineal.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblPlateaCotaLineal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 3</value>
+  </data>
+  <data name="lblPlateaCotaLineal.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="lblPlateaCotaLineal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 13</value>
+  </data>
+  <data name="lblPlateaCotaLineal.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="lblPlateaCotaLineal.Text" xml:space="preserve">
+    <value>Plateas</value>
+  </data>
+  <data name="&gt;&gt;lblPlateaCotaLineal.Name" xml:space="preserve">
+    <value>lblPlateaCotaLineal</value>
+  </data>
+  <data name="&gt;&gt;lblPlateaCotaLineal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblPlateaCotaLineal.Parent" xml:space="preserve">
+    <value>panel23</value>
+  </data>
+  <data name="&gt;&gt;lblPlateaCotaLineal.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="panel23.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="panel23.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 334</value>
+  </data>
+  <data name="panel23.Size" type="System.Drawing.Size, System.Drawing">
+    <value>324, 45</value>
+  </data>
+  <data name="panel23.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;panel23.Name" xml:space="preserve">
+    <value>panel23</value>
+  </data>
+  <data name="&gt;&gt;panel23.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel23.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;panel23.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="cmbZapataCorridaCotaProfundidad.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="cmbZapataCorridaCotaProfundidad.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 19</value>
+  </data>
+  <data name="cmbZapataCorridaCotaProfundidad.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="cmbZapataCorridaCotaProfundidad.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 21</value>
+  </data>
+  <data name="cmbZapataCorridaCotaProfundidad.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="&gt;&gt;cmbZapataCorridaCotaProfundidad.Name" xml:space="preserve">
+    <value>cmbZapataCorridaCotaProfundidad</value>
+  </data>
+  <data name="&gt;&gt;cmbZapataCorridaCotaProfundidad.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmbZapataCorridaCotaProfundidad.Parent" xml:space="preserve">
+    <value>panel22</value>
+  </data>
+  <data name="&gt;&gt;cmbZapataCorridaCotaProfundidad.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel22.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="panel22.Location" type="System.Drawing.Point, System.Drawing">
+    <value>333, 283</value>
+  </data>
+  <data name="panel22.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 45</value>
+  </data>
+  <data name="panel22.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;panel22.Name" xml:space="preserve">
+    <value>panel22</value>
+  </data>
+  <data name="&gt;&gt;panel22.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel22.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;panel22.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="chbZapataCorridaCotaAbajo.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbZapataCorridaCotaAbajo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbZapataCorridaCotaAbajo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 23</value>
+  </data>
+  <data name="chbZapataCorridaCotaAbajo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 17</value>
+  </data>
+  <data name="chbZapataCorridaCotaAbajo.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="chbZapataCorridaCotaAbajo.Text" xml:space="preserve">
+    <value>Abajo</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCorridaCotaAbajo.Name" xml:space="preserve">
+    <value>chbZapataCorridaCotaAbajo</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCorridaCotaAbajo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCorridaCotaAbajo.Parent" xml:space="preserve">
+    <value>panel21</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCorridaCotaAbajo.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="chbZapataCorridaCotaArriba.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbZapataCorridaCotaArriba.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbZapataCorridaCotaArriba.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 23</value>
+  </data>
+  <data name="chbZapataCorridaCotaArriba.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 17</value>
+  </data>
+  <data name="chbZapataCorridaCotaArriba.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="chbZapataCorridaCotaArriba.Text" xml:space="preserve">
+    <value>Arriba</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCorridaCotaArriba.Name" xml:space="preserve">
+    <value>chbZapataCorridaCotaArriba</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCorridaCotaArriba.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCorridaCotaArriba.Parent" xml:space="preserve">
+    <value>panel21</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCorridaCotaArriba.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="chbZapataCorridaCotaDerecha.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbZapataCorridaCotaDerecha.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbZapataCorridaCotaDerecha.Location" type="System.Drawing.Point, System.Drawing">
+    <value>242, 23</value>
+  </data>
+  <data name="chbZapataCorridaCotaDerecha.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 17</value>
+  </data>
+  <data name="chbZapataCorridaCotaDerecha.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="chbZapataCorridaCotaDerecha.Text" xml:space="preserve">
+    <value>Derecha</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCorridaCotaDerecha.Name" xml:space="preserve">
+    <value>chbZapataCorridaCotaDerecha</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCorridaCotaDerecha.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCorridaCotaDerecha.Parent" xml:space="preserve">
+    <value>panel21</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCorridaCotaDerecha.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="chbZapataCorridaCotaIzquierda.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbZapataCorridaCotaIzquierda.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbZapataCorridaCotaIzquierda.Location" type="System.Drawing.Point, System.Drawing">
+    <value>156, 23</value>
+  </data>
+  <data name="chbZapataCorridaCotaIzquierda.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 17</value>
+  </data>
+  <data name="chbZapataCorridaCotaIzquierda.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="chbZapataCorridaCotaIzquierda.Text" xml:space="preserve">
+    <value>Izquierda</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCorridaCotaIzquierda.Name" xml:space="preserve">
+    <value>chbZapataCorridaCotaIzquierda</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCorridaCotaIzquierda.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCorridaCotaIzquierda.Parent" xml:space="preserve">
+    <value>panel21</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCorridaCotaIzquierda.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="lblZapataCorridaCotaLineal.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblZapataCorridaCotaLineal.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="lblZapataCorridaCotaLineal.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblZapataCorridaCotaLineal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 3</value>
+  </data>
+  <data name="lblZapataCorridaCotaLineal.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="lblZapataCorridaCotaLineal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 13</value>
+  </data>
+  <data name="lblZapataCorridaCotaLineal.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="lblZapataCorridaCotaLineal.Text" xml:space="preserve">
+    <value>Zapata corrida</value>
+  </data>
+  <data name="&gt;&gt;lblZapataCorridaCotaLineal.Name" xml:space="preserve">
+    <value>lblZapataCorridaCotaLineal</value>
+  </data>
+  <data name="&gt;&gt;lblZapataCorridaCotaLineal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblZapataCorridaCotaLineal.Parent" xml:space="preserve">
+    <value>panel21</value>
+  </data>
+  <data name="&gt;&gt;lblZapataCorridaCotaLineal.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="panel21.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="panel21.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 283</value>
+  </data>
+  <data name="panel21.Size" type="System.Drawing.Size, System.Drawing">
+    <value>324, 45</value>
+  </data>
+  <data name="panel21.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;panel21.Name" xml:space="preserve">
+    <value>panel21</value>
+  </data>
+  <data name="&gt;&gt;panel21.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel21.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;panel21.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="cmbZapataCotaProfundidad.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="cmbZapataCotaProfundidad.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 19</value>
+  </data>
+  <data name="cmbZapataCotaProfundidad.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="cmbZapataCotaProfundidad.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 21</value>
+  </data>
+  <data name="cmbZapataCotaProfundidad.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
+  </data>
+  <data name="&gt;&gt;cmbZapataCotaProfundidad.Name" xml:space="preserve">
+    <value>cmbZapataCotaProfundidad</value>
+  </data>
+  <data name="&gt;&gt;cmbZapataCotaProfundidad.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmbZapataCotaProfundidad.Parent" xml:space="preserve">
+    <value>panel20</value>
+  </data>
+  <data name="&gt;&gt;cmbZapataCotaProfundidad.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel20.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="panel20.Location" type="System.Drawing.Point, System.Drawing">
+    <value>333, 232</value>
+  </data>
+  <data name="panel20.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 45</value>
+  </data>
+  <data name="panel20.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;panel20.Name" xml:space="preserve">
+    <value>panel20</value>
+  </data>
+  <data name="&gt;&gt;panel20.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel20.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;panel20.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="chbZapataCotaAbajo.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbZapataCotaAbajo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbZapataCotaAbajo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 23</value>
+  </data>
+  <data name="chbZapataCotaAbajo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 17</value>
+  </data>
+  <data name="chbZapataCotaAbajo.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="chbZapataCotaAbajo.Text" xml:space="preserve">
+    <value>Abajo</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCotaAbajo.Name" xml:space="preserve">
+    <value>chbZapataCotaAbajo</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCotaAbajo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCotaAbajo.Parent" xml:space="preserve">
+    <value>panel19</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCotaAbajo.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="chbZapataCotaArriba.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbZapataCotaArriba.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbZapataCotaArriba.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 23</value>
+  </data>
+  <data name="chbZapataCotaArriba.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 17</value>
+  </data>
+  <data name="chbZapataCotaArriba.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
+  </data>
+  <data name="chbZapataCotaArriba.Text" xml:space="preserve">
+    <value>Arriba</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCotaArriba.Name" xml:space="preserve">
+    <value>chbZapataCotaArriba</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCotaArriba.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCotaArriba.Parent" xml:space="preserve">
+    <value>panel19</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCotaArriba.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="chbZapataCotaDerecha.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbZapataCotaDerecha.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbZapataCotaDerecha.Location" type="System.Drawing.Point, System.Drawing">
+    <value>242, 23</value>
+  </data>
+  <data name="chbZapataCotaDerecha.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 17</value>
+  </data>
+  <data name="chbZapataCotaDerecha.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
+  </data>
+  <data name="chbZapataCotaDerecha.Text" xml:space="preserve">
+    <value>Derecha</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCotaDerecha.Name" xml:space="preserve">
+    <value>chbZapataCotaDerecha</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCotaDerecha.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCotaDerecha.Parent" xml:space="preserve">
+    <value>panel19</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCotaDerecha.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="chbZapataCotaIzquierda.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbZapataCotaIzquierda.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbZapataCotaIzquierda.Location" type="System.Drawing.Point, System.Drawing">
+    <value>156, 23</value>
+  </data>
+  <data name="chbZapataCotaIzquierda.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 17</value>
+  </data>
+  <data name="chbZapataCotaIzquierda.TabIndex" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
+  <data name="chbZapataCotaIzquierda.Text" xml:space="preserve">
+    <value>Izquierda</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCotaIzquierda.Name" xml:space="preserve">
+    <value>chbZapataCotaIzquierda</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCotaIzquierda.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCotaIzquierda.Parent" xml:space="preserve">
+    <value>panel19</value>
+  </data>
+  <data name="&gt;&gt;chbZapataCotaIzquierda.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="lblZapataCotaLineal.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblZapataCotaLineal.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="lblZapataCotaLineal.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblZapataCotaLineal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 3</value>
+  </data>
+  <data name="lblZapataCotaLineal.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="lblZapataCotaLineal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 13</value>
+  </data>
+  <data name="lblZapataCotaLineal.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
+  </data>
+  <data name="lblZapataCotaLineal.Text" xml:space="preserve">
+    <value>Zapatas</value>
+  </data>
+  <data name="&gt;&gt;lblZapataCotaLineal.Name" xml:space="preserve">
+    <value>lblZapataCotaLineal</value>
+  </data>
+  <data name="&gt;&gt;lblZapataCotaLineal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblZapataCotaLineal.Parent" xml:space="preserve">
+    <value>panel19</value>
+  </data>
+  <data name="&gt;&gt;lblZapataCotaLineal.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="panel19.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="panel19.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 232</value>
+  </data>
+  <data name="panel19.Size" type="System.Drawing.Size, System.Drawing">
+    <value>324, 45</value>
+  </data>
+  <data name="panel19.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;panel19.Name" xml:space="preserve">
+    <value>panel19</value>
+  </data>
+  <data name="&gt;&gt;panel19.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel19.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;panel19.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="cmbLosaCotaProfundidad.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="cmbLosaCotaProfundidad.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 19</value>
+  </data>
+  <data name="cmbLosaCotaProfundidad.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="cmbLosaCotaProfundidad.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 21</value>
+  </data>
+  <data name="cmbLosaCotaProfundidad.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
+  </data>
+  <data name="&gt;&gt;cmbLosaCotaProfundidad.Name" xml:space="preserve">
+    <value>cmbLosaCotaProfundidad</value>
+  </data>
+  <data name="&gt;&gt;cmbLosaCotaProfundidad.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmbLosaCotaProfundidad.Parent" xml:space="preserve">
+    <value>panel18</value>
+  </data>
+  <data name="&gt;&gt;cmbLosaCotaProfundidad.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel18.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="panel18.Location" type="System.Drawing.Point, System.Drawing">
+    <value>333, 181</value>
+  </data>
+  <data name="panel18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 45</value>
+  </data>
+  <data name="panel18.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;panel18.Name" xml:space="preserve">
+    <value>panel18</value>
+  </data>
+  <data name="&gt;&gt;panel18.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel18.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;panel18.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="cmbColumnaCotaProfundidad.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="cmbColumnaCotaProfundidad.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 19</value>
+  </data>
+  <data name="cmbColumnaCotaProfundidad.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="cmbColumnaCotaProfundidad.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 21</value>
+  </data>
+  <data name="cmbColumnaCotaProfundidad.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="&gt;&gt;cmbColumnaCotaProfundidad.Name" xml:space="preserve">
+    <value>cmbColumnaCotaProfundidad</value>
+  </data>
+  <data name="&gt;&gt;cmbColumnaCotaProfundidad.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmbColumnaCotaProfundidad.Parent" xml:space="preserve">
+    <value>panel16</value>
+  </data>
+  <data name="&gt;&gt;cmbColumnaCotaProfundidad.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel16.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="panel16.Location" type="System.Drawing.Point, System.Drawing">
+    <value>333, 130</value>
+  </data>
+  <data name="panel16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 45</value>
+  </data>
+  <data name="panel16.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;panel16.Name" xml:space="preserve">
+    <value>panel16</value>
+  </data>
+  <data name="&gt;&gt;panel16.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel16.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;panel16.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="chbColumnaCotaAbajo.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbColumnaCotaAbajo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbColumnaCotaAbajo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 23</value>
+  </data>
+  <data name="chbColumnaCotaAbajo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 17</value>
+  </data>
+  <data name="chbColumnaCotaAbajo.TabIndex" type="System.Int32, mscorlib">
+    <value>33</value>
+  </data>
+  <data name="chbColumnaCotaAbajo.Text" xml:space="preserve">
+    <value>Abajo</value>
+  </data>
+  <data name="&gt;&gt;chbColumnaCotaAbajo.Name" xml:space="preserve">
+    <value>chbColumnaCotaAbajo</value>
+  </data>
+  <data name="&gt;&gt;chbColumnaCotaAbajo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbColumnaCotaAbajo.Parent" xml:space="preserve">
+    <value>panel15</value>
+  </data>
+  <data name="&gt;&gt;chbColumnaCotaAbajo.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="chbColumnaCotaArriba.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbColumnaCotaArriba.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbColumnaCotaArriba.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 23</value>
+  </data>
+  <data name="chbColumnaCotaArriba.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 17</value>
+  </data>
+  <data name="chbColumnaCotaArriba.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
+  </data>
+  <data name="chbColumnaCotaArriba.Text" xml:space="preserve">
+    <value>Arriba</value>
+  </data>
+  <data name="&gt;&gt;chbColumnaCotaArriba.Name" xml:space="preserve">
+    <value>chbColumnaCotaArriba</value>
+  </data>
+  <data name="&gt;&gt;chbColumnaCotaArriba.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbColumnaCotaArriba.Parent" xml:space="preserve">
+    <value>panel15</value>
+  </data>
+  <data name="&gt;&gt;chbColumnaCotaArriba.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="chbColumnaCotaDerecha.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbColumnaCotaDerecha.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbColumnaCotaDerecha.Location" type="System.Drawing.Point, System.Drawing">
+    <value>242, 23</value>
+  </data>
+  <data name="chbColumnaCotaDerecha.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 17</value>
+  </data>
+  <data name="chbColumnaCotaDerecha.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="chbColumnaCotaDerecha.Text" xml:space="preserve">
+    <value>Derecha</value>
+  </data>
+  <data name="&gt;&gt;chbColumnaCotaDerecha.Name" xml:space="preserve">
+    <value>chbColumnaCotaDerecha</value>
+  </data>
+  <data name="&gt;&gt;chbColumnaCotaDerecha.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbColumnaCotaDerecha.Parent" xml:space="preserve">
+    <value>panel15</value>
+  </data>
+  <data name="&gt;&gt;chbColumnaCotaDerecha.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="chbColumnaCotaIzquierda.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbColumnaCotaIzquierda.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbColumnaCotaIzquierda.Location" type="System.Drawing.Point, System.Drawing">
+    <value>156, 23</value>
+  </data>
+  <data name="chbColumnaCotaIzquierda.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 17</value>
+  </data>
+  <data name="chbColumnaCotaIzquierda.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="chbColumnaCotaIzquierda.Text" xml:space="preserve">
+    <value>Izquierda</value>
+  </data>
+  <data name="&gt;&gt;chbColumnaCotaIzquierda.Name" xml:space="preserve">
+    <value>chbColumnaCotaIzquierda</value>
+  </data>
+  <data name="&gt;&gt;chbColumnaCotaIzquierda.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbColumnaCotaIzquierda.Parent" xml:space="preserve">
+    <value>panel15</value>
+  </data>
+  <data name="&gt;&gt;chbColumnaCotaIzquierda.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="lblColumnaCotaLineal.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblColumnaCotaLineal.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="lblColumnaCotaLineal.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblColumnaCotaLineal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 3</value>
+  </data>
+  <data name="lblColumnaCotaLineal.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="lblColumnaCotaLineal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 13</value>
+  </data>
+  <data name="lblColumnaCotaLineal.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="lblColumnaCotaLineal.Text" xml:space="preserve">
+    <value>Columnas</value>
+  </data>
+  <data name="&gt;&gt;lblColumnaCotaLineal.Name" xml:space="preserve">
+    <value>lblColumnaCotaLineal</value>
+  </data>
+  <data name="&gt;&gt;lblColumnaCotaLineal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblColumnaCotaLineal.Parent" xml:space="preserve">
+    <value>panel15</value>
+  </data>
+  <data name="&gt;&gt;lblColumnaCotaLineal.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="panel15.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="panel15.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 130</value>
+  </data>
+  <data name="panel15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>324, 45</value>
+  </data>
+  <data name="panel15.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;panel15.Name" xml:space="preserve">
+    <value>panel15</value>
+  </data>
+  <data name="&gt;&gt;panel15.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel15.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;panel15.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="cmbMuroCotaProfundidad.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="cmbMuroCotaProfundidad.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 19</value>
+  </data>
+  <data name="cmbMuroCotaProfundidad.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="cmbMuroCotaProfundidad.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 21</value>
+  </data>
+  <data name="cmbMuroCotaProfundidad.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="&gt;&gt;cmbMuroCotaProfundidad.Name" xml:space="preserve">
+    <value>cmbMuroCotaProfundidad</value>
+  </data>
+  <data name="&gt;&gt;cmbMuroCotaProfundidad.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmbMuroCotaProfundidad.Parent" xml:space="preserve">
+    <value>panel14</value>
+  </data>
+  <data name="&gt;&gt;cmbMuroCotaProfundidad.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel14.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="panel14.Location" type="System.Drawing.Point, System.Drawing">
+    <value>333, 79</value>
+  </data>
+  <data name="panel14.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 45</value>
+  </data>
+  <data name="panel14.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;panel14.Name" xml:space="preserve">
+    <value>panel14</value>
+  </data>
+  <data name="&gt;&gt;panel14.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel14.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;panel14.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="chbMuroCotaAbajo.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbMuroCotaAbajo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbMuroCotaAbajo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 23</value>
+  </data>
+  <data name="chbMuroCotaAbajo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 17</value>
+  </data>
+  <data name="chbMuroCotaAbajo.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="chbMuroCotaAbajo.Text" xml:space="preserve">
+    <value>Abajo</value>
+  </data>
+  <data name="&gt;&gt;chbMuroCotaAbajo.Name" xml:space="preserve">
+    <value>chbMuroCotaAbajo</value>
+  </data>
+  <data name="&gt;&gt;chbMuroCotaAbajo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbMuroCotaAbajo.Parent" xml:space="preserve">
+    <value>panel13</value>
+  </data>
+  <data name="&gt;&gt;chbMuroCotaAbajo.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="chbMuroCotaArriba.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbMuroCotaArriba.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbMuroCotaArriba.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 23</value>
+  </data>
+  <data name="chbMuroCotaArriba.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 17</value>
+  </data>
+  <data name="chbMuroCotaArriba.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="chbMuroCotaArriba.Text" xml:space="preserve">
+    <value>Arriba</value>
+  </data>
+  <data name="&gt;&gt;chbMuroCotaArriba.Name" xml:space="preserve">
+    <value>chbMuroCotaArriba</value>
+  </data>
+  <data name="&gt;&gt;chbMuroCotaArriba.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbMuroCotaArriba.Parent" xml:space="preserve">
+    <value>panel13</value>
+  </data>
+  <data name="&gt;&gt;chbMuroCotaArriba.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="chbMuroCotaDerecha.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbMuroCotaDerecha.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbMuroCotaDerecha.Location" type="System.Drawing.Point, System.Drawing">
+    <value>242, 23</value>
+  </data>
+  <data name="chbMuroCotaDerecha.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 17</value>
+  </data>
+  <data name="chbMuroCotaDerecha.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="chbMuroCotaDerecha.Text" xml:space="preserve">
+    <value>Derecha</value>
+  </data>
+  <data name="&gt;&gt;chbMuroCotaDerecha.Name" xml:space="preserve">
+    <value>chbMuroCotaDerecha</value>
+  </data>
+  <data name="&gt;&gt;chbMuroCotaDerecha.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbMuroCotaDerecha.Parent" xml:space="preserve">
+    <value>panel13</value>
+  </data>
+  <data name="&gt;&gt;chbMuroCotaDerecha.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="chbMuroCotaIzquierda.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbMuroCotaIzquierda.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbMuroCotaIzquierda.Location" type="System.Drawing.Point, System.Drawing">
+    <value>156, 23</value>
+  </data>
+  <data name="chbMuroCotaIzquierda.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 17</value>
+  </data>
+  <data name="chbMuroCotaIzquierda.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="chbMuroCotaIzquierda.Text" xml:space="preserve">
+    <value>Izquierda</value>
+  </data>
+  <data name="&gt;&gt;chbMuroCotaIzquierda.Name" xml:space="preserve">
+    <value>chbMuroCotaIzquierda</value>
+  </data>
+  <data name="&gt;&gt;chbMuroCotaIzquierda.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbMuroCotaIzquierda.Parent" xml:space="preserve">
+    <value>panel13</value>
+  </data>
+  <data name="&gt;&gt;chbMuroCotaIzquierda.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="lblMuroCotaLineal.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblMuroCotaLineal.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="lblMuroCotaLineal.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblMuroCotaLineal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 3</value>
+  </data>
+  <data name="lblMuroCotaLineal.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="lblMuroCotaLineal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 13</value>
+  </data>
+  <data name="lblMuroCotaLineal.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="lblMuroCotaLineal.Text" xml:space="preserve">
+    <value>Muros</value>
+  </data>
+  <data name="&gt;&gt;lblMuroCotaLineal.Name" xml:space="preserve">
+    <value>lblMuroCotaLineal</value>
+  </data>
+  <data name="&gt;&gt;lblMuroCotaLineal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblMuroCotaLineal.Parent" xml:space="preserve">
+    <value>panel13</value>
+  </data>
+  <data name="&gt;&gt;lblMuroCotaLineal.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="panel13.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="panel13.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 79</value>
+  </data>
+  <data name="panel13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>324, 45</value>
+  </data>
+  <data name="panel13.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;panel13.Name" xml:space="preserve">
+    <value>panel13</value>
+  </data>
+  <data name="&gt;&gt;panel13.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel13.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;panel13.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="cmbVigaCotaProfundidad.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="cmbVigaCotaProfundidad.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 19</value>
+  </data>
+  <data name="cmbVigaCotaProfundidad.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="cmbVigaCotaProfundidad.Size" type="System.Drawing.Size, System.Drawing">
+    <value>142, 21</value>
+  </data>
+  <data name="cmbVigaCotaProfundidad.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="&gt;&gt;cmbVigaCotaProfundidad.Name" xml:space="preserve">
+    <value>cmbVigaCotaProfundidad</value>
+  </data>
+  <data name="&gt;&gt;cmbVigaCotaProfundidad.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmbVigaCotaProfundidad.Parent" xml:space="preserve">
+    <value>panel12</value>
+  </data>
+  <data name="&gt;&gt;cmbVigaCotaProfundidad.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel12.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="panel12.Location" type="System.Drawing.Point, System.Drawing">
+    <value>333, 28</value>
+  </data>
+  <data name="panel12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 45</value>
+  </data>
+  <data name="panel12.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;panel12.Name" xml:space="preserve">
+    <value>panel12</value>
+  </data>
+  <data name="&gt;&gt;panel12.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel12.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;panel12.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="lblCotasLineales.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblCotasLineales.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
+  </data>
+  <data name="lblCotasLineales.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblCotasLineales.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 5</value>
+  </data>
+  <data name="lblCotasLineales.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="lblCotasLineales.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 13</value>
+  </data>
+  <data name="lblCotasLineales.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblCotasLineales.Text" xml:space="preserve">
+    <value>Cotas lineales</value>
+  </data>
+  <data name="&gt;&gt;lblCotasLineales.Name" xml:space="preserve">
+    <value>lblCotasLineales</value>
+  </data>
+  <data name="&gt;&gt;lblCotasLineales.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblCotasLineales.Parent" xml:space="preserve">
+    <value>panel9</value>
+  </data>
+  <data name="&gt;&gt;lblCotasLineales.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel9.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="panel9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="panel9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>324, 19</value>
+  </data>
+  <data name="panel9.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;panel9.Name" xml:space="preserve">
+    <value>panel9</value>
+  </data>
+  <data name="&gt;&gt;panel9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel9.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;panel9.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="lblCotasProfundidad.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblCotasProfundidad.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
+  </data>
+  <data name="lblCotasProfundidad.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblCotasProfundidad.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 5</value>
+  </data>
+  <data name="lblCotasProfundidad.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="lblCotasProfundidad.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 13</value>
+  </data>
+  <data name="lblCotasProfundidad.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
+  </data>
+  <data name="lblCotasProfundidad.Text" xml:space="preserve">
+    <value>Cotas de profundidad</value>
+  </data>
+  <data name="&gt;&gt;lblCotasProfundidad.Name" xml:space="preserve">
+    <value>lblCotasProfundidad</value>
+  </data>
+  <data name="&gt;&gt;lblCotasProfundidad.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblCotasProfundidad.Parent" xml:space="preserve">
+    <value>panel10</value>
+  </data>
+  <data name="&gt;&gt;lblCotasProfundidad.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panel10.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="panel10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>333, 3</value>
+  </data>
+  <data name="panel10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 19</value>
+  </data>
+  <data name="panel10.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;panel10.Name" xml:space="preserve">
+    <value>panel10</value>
+  </data>
+  <data name="&gt;&gt;panel10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel10.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;panel10.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="chbVigaCotaAbajo.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbVigaCotaAbajo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbVigaCotaAbajo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 23</value>
+  </data>
+  <data name="chbVigaCotaAbajo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 17</value>
+  </data>
+  <data name="chbVigaCotaAbajo.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="chbVigaCotaAbajo.Text" xml:space="preserve">
+    <value>Abajo</value>
+  </data>
+  <data name="&gt;&gt;chbVigaCotaAbajo.Name" xml:space="preserve">
+    <value>chbVigaCotaAbajo</value>
+  </data>
+  <data name="&gt;&gt;chbVigaCotaAbajo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbVigaCotaAbajo.Parent" xml:space="preserve">
+    <value>panel11</value>
+  </data>
+  <data name="&gt;&gt;chbVigaCotaAbajo.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="chbVigaCotaArriba.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbVigaCotaArriba.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbVigaCotaArriba.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 23</value>
+  </data>
+  <data name="chbVigaCotaArriba.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 17</value>
+  </data>
+  <data name="chbVigaCotaArriba.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="chbVigaCotaArriba.Text" xml:space="preserve">
+    <value>Arriba</value>
+  </data>
+  <data name="&gt;&gt;chbVigaCotaArriba.Name" xml:space="preserve">
+    <value>chbVigaCotaArriba</value>
+  </data>
+  <data name="&gt;&gt;chbVigaCotaArriba.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbVigaCotaArriba.Parent" xml:space="preserve">
+    <value>panel11</value>
+  </data>
+  <data name="&gt;&gt;chbVigaCotaArriba.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="chbVigaCotaDerecha.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbVigaCotaDerecha.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbVigaCotaDerecha.Location" type="System.Drawing.Point, System.Drawing">
+    <value>242, 23</value>
+  </data>
+  <data name="chbVigaCotaDerecha.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 17</value>
+  </data>
+  <data name="chbVigaCotaDerecha.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="chbVigaCotaDerecha.Text" xml:space="preserve">
+    <value>Derecha</value>
+  </data>
+  <data name="&gt;&gt;chbVigaCotaDerecha.Name" xml:space="preserve">
+    <value>chbVigaCotaDerecha</value>
+  </data>
+  <data name="&gt;&gt;chbVigaCotaDerecha.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbVigaCotaDerecha.Parent" xml:space="preserve">
+    <value>panel11</value>
+  </data>
+  <data name="&gt;&gt;chbVigaCotaDerecha.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="chbVigaCotaIzquierda.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbVigaCotaIzquierda.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbVigaCotaIzquierda.Location" type="System.Drawing.Point, System.Drawing">
+    <value>156, 23</value>
+  </data>
+  <data name="chbVigaCotaIzquierda.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 17</value>
+  </data>
+  <data name="chbVigaCotaIzquierda.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="chbVigaCotaIzquierda.Text" xml:space="preserve">
+    <value>Izquierda</value>
+  </data>
+  <data name="&gt;&gt;chbVigaCotaIzquierda.Name" xml:space="preserve">
+    <value>chbVigaCotaIzquierda</value>
+  </data>
+  <data name="&gt;&gt;chbVigaCotaIzquierda.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbVigaCotaIzquierda.Parent" xml:space="preserve">
+    <value>panel11</value>
+  </data>
+  <data name="&gt;&gt;chbVigaCotaIzquierda.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="lblVigaCotaLineal.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblVigaCotaLineal.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="lblVigaCotaLineal.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblVigaCotaLineal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 3</value>
+  </data>
+  <data name="lblVigaCotaLineal.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="lblVigaCotaLineal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 13</value>
+  </data>
+  <data name="lblVigaCotaLineal.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="lblVigaCotaLineal.Text" xml:space="preserve">
+    <value>Vigas</value>
+  </data>
+  <data name="&gt;&gt;lblVigaCotaLineal.Name" xml:space="preserve">
+    <value>lblVigaCotaLineal</value>
+  </data>
+  <data name="&gt;&gt;lblVigaCotaLineal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblVigaCotaLineal.Parent" xml:space="preserve">
+    <value>panel11</value>
+  </data>
+  <data name="&gt;&gt;lblVigaCotaLineal.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="panel11.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="panel11.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 28</value>
+  </data>
+  <data name="panel11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>324, 45</value>
+  </data>
+  <data name="panel11.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;panel11.Name" xml:space="preserve">
+    <value>panel11</value>
+  </data>
+  <data name="&gt;&gt;panel11.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel11.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;panel11.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="chbLosaCotaAbajo.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbLosaCotaAbajo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbLosaCotaAbajo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 23</value>
+  </data>
+  <data name="chbLosaCotaAbajo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 17</value>
+  </data>
+  <data name="chbLosaCotaAbajo.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="chbLosaCotaAbajo.Text" xml:space="preserve">
+    <value>Abajo</value>
+  </data>
+  <data name="&gt;&gt;chbLosaCotaAbajo.Name" xml:space="preserve">
+    <value>chbLosaCotaAbajo</value>
+  </data>
+  <data name="&gt;&gt;chbLosaCotaAbajo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbLosaCotaAbajo.Parent" xml:space="preserve">
+    <value>panel17</value>
+  </data>
+  <data name="&gt;&gt;chbLosaCotaAbajo.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="chbLosaCotaArriba.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbLosaCotaArriba.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbLosaCotaArriba.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 23</value>
+  </data>
+  <data name="chbLosaCotaArriba.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 17</value>
+  </data>
+  <data name="chbLosaCotaArriba.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
+  </data>
+  <data name="chbLosaCotaArriba.Text" xml:space="preserve">
+    <value>Arriba</value>
+  </data>
+  <data name="&gt;&gt;chbLosaCotaArriba.Name" xml:space="preserve">
+    <value>chbLosaCotaArriba</value>
+  </data>
+  <data name="&gt;&gt;chbLosaCotaArriba.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbLosaCotaArriba.Parent" xml:space="preserve">
+    <value>panel17</value>
+  </data>
+  <data name="&gt;&gt;chbLosaCotaArriba.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="chbLosaCotaDerecha.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbLosaCotaDerecha.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbLosaCotaDerecha.Location" type="System.Drawing.Point, System.Drawing">
+    <value>242, 23</value>
+  </data>
+  <data name="chbLosaCotaDerecha.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 17</value>
+  </data>
+  <data name="chbLosaCotaDerecha.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
+  </data>
+  <data name="chbLosaCotaDerecha.Text" xml:space="preserve">
+    <value>Derecha</value>
+  </data>
+  <data name="&gt;&gt;chbLosaCotaDerecha.Name" xml:space="preserve">
+    <value>chbLosaCotaDerecha</value>
+  </data>
+  <data name="&gt;&gt;chbLosaCotaDerecha.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbLosaCotaDerecha.Parent" xml:space="preserve">
+    <value>panel17</value>
+  </data>
+  <data name="&gt;&gt;chbLosaCotaDerecha.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="chbLosaCotaIzquierda.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chbLosaCotaIzquierda.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chbLosaCotaIzquierda.Location" type="System.Drawing.Point, System.Drawing">
+    <value>156, 23</value>
+  </data>
+  <data name="chbLosaCotaIzquierda.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 17</value>
+  </data>
+  <data name="chbLosaCotaIzquierda.TabIndex" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
+  <data name="chbLosaCotaIzquierda.Text" xml:space="preserve">
+    <value>Izquierda</value>
+  </data>
+  <data name="&gt;&gt;chbLosaCotaIzquierda.Name" xml:space="preserve">
+    <value>chbLosaCotaIzquierda</value>
+  </data>
+  <data name="&gt;&gt;chbLosaCotaIzquierda.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chbLosaCotaIzquierda.Parent" xml:space="preserve">
+    <value>panel17</value>
+  </data>
+  <data name="&gt;&gt;chbLosaCotaIzquierda.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="lblLosaCotaLineal.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblLosaCotaLineal.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="lblLosaCotaLineal.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblLosaCotaLineal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 3</value>
+  </data>
+  <data name="lblLosaCotaLineal.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="lblLosaCotaLineal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 13</value>
+  </data>
+  <data name="lblLosaCotaLineal.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
+  </data>
+  <data name="lblLosaCotaLineal.Text" xml:space="preserve">
+    <value>Losas</value>
+  </data>
+  <data name="&gt;&gt;lblLosaCotaLineal.Name" xml:space="preserve">
+    <value>lblLosaCotaLineal</value>
+  </data>
+  <data name="&gt;&gt;lblLosaCotaLineal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblLosaCotaLineal.Parent" xml:space="preserve">
+    <value>panel17</value>
+  </data>
+  <data name="&gt;&gt;lblLosaCotaLineal.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="panel17.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="panel17.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 181</value>
+  </data>
+  <data name="panel17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>324, 45</value>
+  </data>
+  <data name="panel17.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;panel17.Name" xml:space="preserve">
+    <value>panel17</value>
+  </data>
+  <data name="&gt;&gt;panel17.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel17.Parent" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;panel17.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="tableLayoutPanel2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="tableLayoutPanel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 16</value>
+  </data>
+  <data name="tableLayoutPanel2.RowCount" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="tableLayoutPanel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>484, 438</value>
+  </data>
+  <data name="tableLayoutPanel2.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel2.Name" xml:space="preserve">
+    <value>tableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel2.Parent" xml:space="preserve">
+    <value>gbxCotasLineal</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tableLayoutPanel2.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="panel26" Row="8" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="panel25" Row="8" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel24" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="panel23" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel22" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="panel21" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel20" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="panel19" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel18" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="panel16" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="panel15" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel14" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="panel13" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel12" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="panel9" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel10" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="panel11" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel17" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,330,Percent,100" /&gt;&lt;Rows Styles="Absolute,25,Percent,12,5,Percent,12,5,Percent,12,5,Percent,12,5,Percent,12,5,Percent,12,5,Percent,12,5,Percent,12,5" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="gbxCotasLineal.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="gbxCotasLineal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
+    <value>6, 6</value>
+  </data>
+  <data name="gbxCotasLineal.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>6, 6, 6, 6</value>
   </data>
   <data name="gbxCotasLineal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>390, 375</value>
+    <value>490, 457</value>
   </data>
   <data name="gbxCotasLineal.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="gbxCotasLineal.Text" xml:space="preserve">
-    <value>Cotas Lineales</value>
+    <value>Posición de las cotas</value>
   </data>
   <data name="&gt;&gt;gbxCotasLineal.Name" xml:space="preserve">
     <value>gbxCotasLineal</value>
@@ -2269,67 +4141,37 @@
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;gbxCotasLineal.Parent" xml:space="preserve">
-    <value>tableLayoutPanel10</value>
+    <value>tableLayoutPanel9</value>
   </data>
   <data name="&gt;&gt;gbxCotasLineal.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="gbxCotasProfundidad.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="pcbxCotaPosicion.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="pcbxCotaPosicion.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="gbxCotasProfundidad.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 384</value>
+  <data name="pcbxCotaPosicion.Location" type="System.Drawing.Point, System.Drawing">
+    <value>505, 3</value>
   </data>
-  <data name="gbxCotasProfundidad.Size" type="System.Drawing.Size, System.Drawing">
-    <value>390, 76</value>
+  <data name="pcbxCotaPosicion.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 463</value>
   </data>
-  <data name="gbxCotasProfundidad.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="gbxCotasProfundidad.Text" xml:space="preserve">
-    <value>Cotas profundidad</value>
-  </data>
-  <data name="&gt;&gt;gbxCotasProfundidad.Name" xml:space="preserve">
-    <value>gbxCotasProfundidad</value>
-  </data>
-  <data name="&gt;&gt;gbxCotasProfundidad.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gbxCotasProfundidad.Parent" xml:space="preserve">
-    <value>tableLayoutPanel10</value>
-  </data>
-  <data name="&gt;&gt;gbxCotasProfundidad.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="tableLayoutPanel10.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="tableLayoutPanel10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="tableLayoutPanel10.RowCount" type="System.Int32, mscorlib">
+  <data name="pcbxCotaPosicion.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="tableLayoutPanel10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>396, 463</value>
+  <data name="&gt;&gt;pcbxCotaPosicion.Name" xml:space="preserve">
+    <value>pcbxCotaPosicion</value>
   </data>
-  <data name="tableLayoutPanel10.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="&gt;&gt;pcbxCotaPosicion.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tableLayoutPanel10.Name" xml:space="preserve">
-    <value>tableLayoutPanel10</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel10.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel10.Parent" xml:space="preserve">
+  <data name="&gt;&gt;pcbxCotaPosicion.Parent" xml:space="preserve">
     <value>tableLayoutPanel9</value>
   </data>
-  <data name="&gt;&gt;tableLayoutPanel10.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tableLayoutPanel10.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="gbxCotasLineal" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="gbxCotasProfundidad" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50" /&gt;&lt;Rows Styles="Percent,82,29166,Percent,17,70833" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  <data name="&gt;&gt;pcbxCotaPosicion.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="tableLayoutPanel9.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -2359,7 +4201,7 @@
     <value>0</value>
   </data>
   <data name="tableLayoutPanel9.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="tableLayoutPanel10" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,60,Percent,40" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="gbxCotasLineal" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="pcbxCotaPosicion" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,75,Percent,25" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="tbpgCotas.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -2383,7 +4225,7 @@
     <value>tabcConfiguraciones</value>
   </data>
   <data name="&gt;&gt;tbpgCotas.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="tabcConfiguraciones.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -2523,6 +4365,66 @@
   <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
     <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="tabcConfiguraciones" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="panel1" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Percent,100,Absolute,40" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
+  <data name="dgvEstiloLinea.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="dgvEstiloLinea.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="dgvEstiloLinea.Size" type="System.Drawing.Size, System.Drawing">
+    <value>664, 423</value>
+  </data>
+  <data name="dgvEstiloLinea.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;dgvEstiloLinea.Name" xml:space="preserve">
+    <value>dgvEstiloLinea</value>
+  </data>
+  <data name="&gt;&gt;dgvEstiloLinea.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <metadata name="EstiloLinea.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="EstiloLinea.HeaderText" xml:space="preserve">
+    <value>Estilo de línea</value>
+  </data>
+  <data name="EstiloLinea.MinimumWidth" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <metadata name="Diametro.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="Diametro.HeaderText" xml:space="preserve">
+    <value>Diámetro</value>
+  </data>
+  <data name="Diametro.MinimumWidth" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="lblDiametroEstilo.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblDiametroEstilo.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="lblDiametroEstilo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblDiametroEstilo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 429</value>
+  </data>
+  <data name="lblDiametroEstilo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>664, 13</value>
+  </data>
+  <data name="lblDiametroEstilo.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;lblDiametroEstilo.Name" xml:space="preserve">
+    <value>lblDiametroEstilo</value>
+  </data>
+  <data name="&gt;&gt;lblDiametroEstilo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -2541,17 +4443,17 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Jump</value>
   </data>
-  <data name="&gt;&gt;Diametro.Name" xml:space="preserve">
-    <value>Diametro</value>
-  </data>
-  <data name="&gt;&gt;Diametro.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;EstiloLinea.Name" xml:space="preserve">
     <value>EstiloLinea</value>
   </data>
   <data name="&gt;&gt;EstiloLinea.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewComboBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Diametro.Name" xml:space="preserve">
+    <value>Diametro</value>
+  </data>
+  <data name="&gt;&gt;Diametro.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>frmConfiguraciones</value>

@@ -19,9 +19,11 @@ namespace Jump
         // Variable necesarias
         string IdiomaDelPrograma;
         Document doc;
-        UnitType tipoUnidad = UnitType.UT_Length;
+        ForgeTypeId tipoUnidad;
         public bool bandera = false;
         List<RebarBarType> diametros = new List<RebarBarType>();
+        List<string> posiciones;
+        string coma = ",";
 
         // Constructor del formulario
         public frmConfiguraciones(Document doc)
@@ -32,41 +34,46 @@ namespace Jump
             this.IdiomaDelPrograma = Tools.ObtenerIdiomaDelPrograma();
             this.doc = doc;
             this.diametros = Tools.ObtenerTodosTiposSegunClase(doc, typeof(RebarBarType)).Cast<RebarBarType>().ToList();
+            FormatOptions forOpt = doc.GetUnits().GetFormatOptions(SpecTypeId.Length);
+            this.tipoUnidad = forOpt.GetUnitTypeId();
+            this.posiciones = AboutJump.Posiciones(this.IdiomaDelPrograma);
 
             // Llama a las funciones
-            this.dgvEstiloLinea = Tools.ObtenerDataGridViewDeDiametrosYEstilos(this.dgvEstiloLinea, doc, IdiomaDelPrograma);
-            AgregarListaPosicionDeEtiquetas();
+            //this.dgvEstiloLinea = Tools.ObtenerDataGridViewDeDiametrosYEstilos(this.dgvEstiloLinea, doc, IdiomaDelPrograma);
             CargarImagenesPredeterminadas();
         }
 
-        /// <summary> Agrega las posiciones de las etiquetas independientes </summary>
-        private void AgregarListaPosicionDeEtiquetas()
+        /// <summary> Carga las posiciones para etiquetas profundidad </summary>
+        private void CargarCotaProfundidad(System.Windows.Forms.ComboBox combo, int posicion)
         {
-            // Agrega la lista de posiciones a la lista desplegable
-            this.cmbEtiquetaArmadura.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
-            this.cmbEtiquetaAreaRefuerzo.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
-            this.cmbEtiquetaArmaduraEnSistema.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
-            this.cmbEtiquetaColumnas.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
-            this.cmbEtiquetaLosas.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
-            this.cmbEtiquetaMuros.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
-            this.cmbEtiquetaPilotes.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
-            this.cmbEtiquetaPlatea.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
-            this.cmbEtiquetaVigas.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
-            this.cmbEtiquetaZapatas.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
-            this.cmbEtiquetaZapataCorrida.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
-            
-            // Asigna el indice de la lista desplegable
-            this.cmbEtiquetaArmadura.SelectedIndex = Properties.Settings.Default.EtiquetaIndependienteArmadura;
-            this.cmbEtiquetaAreaRefuerzo.SelectedIndex = Properties.Settings.Default.EtiquetaIndependienteAreaRefuerzo;
-            this.cmbEtiquetaArmaduraEnSistema.SelectedIndex = Properties.Settings.Default.EtiquetaIndependienteArmaduraEnSistema;
-            this.cmbEtiquetaColumnas.SelectedIndex = Properties.Settings.Default.ColumnasEtiquetaIndependiente;
-            this.cmbEtiquetaLosas.SelectedIndex = Properties.Settings.Default.LosasEtiquetaIndependiente;
-            this.cmbEtiquetaMuros.SelectedIndex = Properties.Settings.Default.MurosEtiquetaIndependiente;
-            this.cmbEtiquetaPilotes.SelectedIndex = Properties.Settings.Default.PilotesEtiquetaIndependiente;
-            this.cmbEtiquetaPlatea.SelectedIndex = Properties.Settings.Default.PlateaEtiquetaIndependiente;
-            this.cmbEtiquetaVigas.SelectedIndex = Properties.Settings.Default.VigasEtiquetaIndependiente;            
-            this.cmbEtiquetaZapatas.SelectedIndex = Properties.Settings.Default.ZapatasEtiquetaIndependiente;
-            this.cmbEtiquetaZapataCorrida.SelectedIndex = Properties.Settings.Default.ZapatasCorridaEtiquetaIndependiente;
+            combo.Items.Add(Language.ObtenerTexto(this.IdiomaDelPrograma, "Pos" + ((int)Posicion.AbajoIzquierda).ToString()));
+            combo.Items.Add(Language.ObtenerTexto(this.IdiomaDelPrograma, "Pos" + ((int)Posicion.AbajoDerecha).ToString()));
+
+            string seleccion = posiciones[posicion];
+
+            combo.SelectedItem = seleccion;
+        }
+
+        /// <summary> Obtiene la posición para etiquetas profundidad </summary>
+        private int ObtenerPosicionCotaProfundidad(System.Windows.Forms.ComboBox combo)
+        {
+            int posicion = 0;
+
+            for (int i = 0; i < posiciones.Count; i++)
+            {
+                try
+                {
+                    if (posiciones[i].ToString() == combo.SelectedItem.ToString())
+                    {
+                        posicion = i;
+
+                        break;
+                    }
+                }
+                catch (Exception) { continue; }
+            }
+
+            return posicion;
         }
 
         /// <summary> Asigna las imagenes predeterminadas cuando carga el formulario </summary>
@@ -74,8 +81,8 @@ namespace Jump
         {
             // Asigna la imagen
             this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_Precision;
-            //this.pcbxArmaduras.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.;
             this.pcbxEtiquetaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_Viga;
+            this.pcbxCotaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_Viga;
         }
 
         /// <summary> Carga el formulario </summary>
@@ -90,15 +97,18 @@ namespace Jump
             gbxConfiguraciones.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf1-2-1");
             lblprecisionOrdenar.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf1-2-2");
             lblPrecisionOrdenarDescripcion.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf1-2-3");
-            lblPresicionOrdenarUnidadX.Text = ObtenerSimboloUnidad(tipoUnidad);
-            lblPresicionOrdenarUnidadY.Text = ObtenerSimboloUnidad(tipoUnidad);
+            lblPresicionOrdenarUnidadX.Text = LabelUtils.GetLabelForUnit(this.tipoUnidad);
+            lblPresicionOrdenarUnidadY.Text = LabelUtils.GetLabelForUnit(this.tipoUnidad);
             gbxVista.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf1-3-1");
             rbtnVistaLocal.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf1-3-2");
             rbtnVistaGlobal.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf1-3-3");
-            
+
+            double precisionX = Properties.Settings.Default.precisionOrdenarX;
+            double precisionY = Properties.Settings.Default.precisionOrdenarY;
+
             this.pcbxGeneral.BackgroundImage = Iconos_e_Imagenes.Imagenes.Configuraciones_Precision;
-            this.txtPrecisionOrdenarX.Text = Properties.Settings.Default.precisionOrdenarX.ToString();
-            this.txtPrecisionOrdenarY.Text = Properties.Settings.Default.precisionOrdenarY.ToString();
+            this.txtPrecisionOrdenarX.Text = UnitUtils.ConvertFromInternalUnits(precisionX, this.tipoUnidad).ToString();
+            this.txtPrecisionOrdenarY.Text = UnitUtils.ConvertFromInternalUnits(precisionY, this.tipoUnidad).ToString();
             this.rbtnVistaGlobal.Checked = Properties.Settings.Default.rbtnGeneralVistaGlobal;
             this.rbtnVistaLocal.Checked = Properties.Settings.Default.rbtnGeneralVistaLocal;
 
@@ -121,45 +131,139 @@ namespace Jump
             this.rbtnTextoAbajo.Checked = Properties.Settings.Default.rbtnTextoArmaduraAbajo;
 
             // Pestaña Estilos de líneas
-            tbpgEstiloLinea.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf3-1");
-            lblDiametroEstilo.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf3-4");
+            //tbpgEstiloLinea.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf3-1");
+            //lblDiametroEstilo.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf3-4");
 
             // Pestaña Etiquetas de elementos
             tbpgEtiquetas.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1");
             gbxEtiquetaIndependiente.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-1");
             lblElementoEtiquetasIdependientes.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-2");
             lblPosicionEtiqueta.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-3");
-            lblEtiquetaPilotes.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-1-1");
-            lblEtiquetaZapataCorrida.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-1-2");
-            lblEtiquetaPlatea.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-1-3");
-            lblEtiquetaZapatas.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-1-4");
-            lblEtiquetaColumnas.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-1-5");
-            lblEtiquetaMuros.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-1-6");
-            lblEtiquetaVigas.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-1-7");
-            lblEtiquetaLosas.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-1-8");
+            lblPiloteEtiqueta.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-1-1");
+            lblZapataCorridaEtiqueta.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-1-2");
+            lblPlateaEtiqueta.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-1-3");
+            lblZapataEtiqueta.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-1-4");
+            lblColumnaEtiqueta.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-1-5");
+            lblMuroEtiqueta.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-1-6");
+            lblVigaEtiqueta.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-1-7");
+            lblLosaEtiqueta.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-1-1-8");
             gbxEtiquetaArmadura.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-2-1");
             lblArmaduraEtiquetaIndependiente.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-2-2");
             lblArmaduraPosicionEtiqueta.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-2-3");
-            lblEtiquetaArmadura.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-2-1-1");
-            lblEtiquetaAreaRefuerzo.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-2-1-2");
-            lblEtiquetaArmaduraEnSistema.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-2-1-3");
+            lblArmaduraEtiqueta.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-2-1-1");
+            lblAreaRefuerzoEtiqueta.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-2-1-2");
+            lblArmaduraEnSistemaEtiqueta.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-2-1-3");
+
+            // Agrega la lista de posiciones a la lista desplegable
+            this.cmbArmaduraEtiqueta.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
+            this.cmbAreaRefuerzoEtiqueta.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
+            this.cmbArmaduraEnSistemaEtiqueta.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
+            this.cmbColumnaEtiqueta.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
+            this.cmbLosaEtiqueta.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
+            this.cmbMuroEtiqueta.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
+            this.cmbPiloteEtiqueta.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
+            this.cmbPlateaEtiqueta.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
+            this.cmbVigaEtiqueta.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
+            this.cmbZapataEtiqueta.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
+            this.cmbZapataCorridaEtiqueta.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
+
+            // Asigna el indice de la lista desplegable
+            this.cmbArmaduraEtiqueta.SelectedIndex = Properties.Settings.Default.ArmaduraEtiquetaIndependiente;
+            this.cmbAreaRefuerzoEtiqueta.SelectedIndex = Properties.Settings.Default.AreaRefuerzoEtiquetaIndependiente;
+            this.cmbArmaduraEnSistemaEtiqueta.SelectedIndex = Properties.Settings.Default.ArmaduraEnSistemaEtiquetaIndependiente;
+            this.cmbColumnaEtiqueta.SelectedIndex = Properties.Settings.Default.ColumnaEtiquetaIndependiente;
+            this.cmbLosaEtiqueta.SelectedIndex = Properties.Settings.Default.LosaEtiquetaIndependiente;
+            this.cmbMuroEtiqueta.SelectedIndex = Properties.Settings.Default.MuroEtiquetaIndependiente;
+            this.cmbPiloteEtiqueta.SelectedIndex = Properties.Settings.Default.PiloteEtiquetaIndependiente;
+            this.cmbPlateaEtiqueta.SelectedIndex = Properties.Settings.Default.PlateaEtiquetaIndependiente;
+            this.cmbVigaEtiqueta.SelectedIndex = Properties.Settings.Default.VigaEtiquetaIndependiente;
+            this.cmbZapataEtiqueta.SelectedIndex = Properties.Settings.Default.ZapataEtiquetaIndependiente;
+            this.cmbZapataCorridaEtiqueta.SelectedIndex = Properties.Settings.Default.ZapataCorridaEtiquetaIndependiente;
 
             // Pestaña Cotas
             tbpgCotas.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf5-1");
             gbxCotasLineal.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf5-1-1");
-            gbxCotasProfundidad.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf5-2-1");
-        }
+            lblCotasLineales.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf5-1-2");
+            lblCotasProfundidad.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf5-1-3");
+            lblPiloteCotaLineal.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf5-1-1-1");
 
-        /// <summary> Valida que los textos ingresados sean solamente números </summary>
-        private string ObtenerSimboloUnidad(UnitType tipo)
-        {
-            // Obtiene la unidad
-            DisplayUnitType DUT = Tools.ObtenerUnidadDelProyecto(doc, tipo);
+            // Asigna los textos a las posiciones de las cotas lineales
+            this.chbVigaCotaArriba.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos10");
+            this.chbVigaCotaAbajo.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos11");
+            this.chbVigaCotaIzquierda.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos12");
+            this.chbVigaCotaDerecha.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos13");
+            this.chbMuroCotaArriba.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos10");
+            this.chbMuroCotaAbajo.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos11");
+            this.chbMuroCotaIzquierda.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos12");
+            this.chbMuroCotaDerecha.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos13");
+            this.chbColumnaCotaArriba.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos10");
+            this.chbColumnaCotaAbajo.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos11");
+            this.chbColumnaCotaIzquierda.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos12");
+            this.chbColumnaCotaDerecha.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos13");
+            this.chbLosaCotaArriba.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos10");
+            this.chbLosaCotaAbajo.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos11");
+            this.chbLosaCotaIzquierda.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos12");
+            this.chbLosaCotaDerecha.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos13");
+            this.chbZapataCotaArriba.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos10");
+            this.chbZapataCotaAbajo.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos11");
+            this.chbZapataCotaIzquierda.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos12");
+            this.chbZapataCotaDerecha.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos13");
+            this.chbZapataCorridaCotaArriba.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos10");
+            this.chbZapataCorridaCotaAbajo.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos11");
+            this.chbZapataCorridaCotaIzquierda.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos12");
+            this.chbZapataCorridaCotaDerecha.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos13");
+            this.chbPlateaCotaArriba.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos10");
+            this.chbPlateaCotaAbajo.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos11");
+            this.chbPlateaCotaIzquierda.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos12");
+            this.chbPlateaCotaDerecha.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos13");
+            this.chbPiloteCotaArriba.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos10");
+            this.chbPiloteCotaAbajo.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos11");
+            this.chbPiloteCotaIzquierda.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos12");
+            this.chbPiloteCotaDerecha.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Pos13");
 
-            // Obtiene el símbolo de la unidad
-            string unidad = LabelUtils.GetLabelFor(DUT);
+            // Asigna los estados de Check a las cotas lineales
+            this.chbVigaCotaArriba.Checked = Properties.Settings.Default.VigaCotaLinealArriba;
+            this.chbVigaCotaAbajo.Checked = Properties.Settings.Default.VigaCotaLinealAbajo;
+            this.chbVigaCotaIzquierda.Checked = Properties.Settings.Default.VigaCotaLinealIzquierda;
+            this.chbVigaCotaDerecha.Checked = Properties.Settings.Default.VigaCotaLinealDerecha;
+            this.chbMuroCotaArriba.Checked = Properties.Settings.Default.MuroCotaLinealArriba;
+            this.chbMuroCotaAbajo.Checked = Properties.Settings.Default.MuroCotaLinealAbajo;
+            this.chbMuroCotaIzquierda.Checked = Properties.Settings.Default.MuroCotaLinealIzquierda;
+            this.chbMuroCotaDerecha.Checked = Properties.Settings.Default.MuroCotaLinealDerecha;
+            this.chbColumnaCotaArriba.Checked = Properties.Settings.Default.ColumnaCotaLinealArriba;
+            this.chbColumnaCotaAbajo.Checked = Properties.Settings.Default.ColumnaCotaLinealAbajo;
+            this.chbColumnaCotaIzquierda.Checked = Properties.Settings.Default.ColumnaCotaLinealIzquierda;
+            this.chbColumnaCotaDerecha.Checked = Properties.Settings.Default.ColumnaCotaLinealDerecha;
+            this.chbLosaCotaArriba.Checked = Properties.Settings.Default.LosaCotaLinealArriba;
+            this.chbLosaCotaAbajo.Checked = Properties.Settings.Default.LosaCotaLinealAbajo;
+            this.chbLosaCotaIzquierda.Checked = Properties.Settings.Default.LosaCotaLinealIzquierda;
+            this.chbLosaCotaDerecha.Checked = Properties.Settings.Default.LosaCotaLinealDerecha;
+            this.chbZapataCotaArriba.Checked = Properties.Settings.Default.ZapataCotaLinealArriba;
+            this.chbZapataCotaAbajo.Checked = Properties.Settings.Default.ZapataCotaLinealAbajo;
+            this.chbZapataCotaIzquierda.Checked = Properties.Settings.Default.ZapataCotaLinealIzquierda;
+            this.chbZapataCotaDerecha.Checked = Properties.Settings.Default.ZapataCotaLinealDerecha;
+            this.chbZapataCorridaCotaArriba.Checked = Properties.Settings.Default.ZapataCorridaCotaLinealArriba;
+            this.chbZapataCorridaCotaAbajo.Checked = Properties.Settings.Default.ZapataCorridaCotaLinealAbajo;
+            this.chbZapataCorridaCotaIzquierda.Checked = Properties.Settings.Default.ZapataCorridaCotaLinealIzquierda;
+            this.chbZapataCorridaCotaDerecha.Checked = Properties.Settings.Default.ZapataCorridaCotaLinealDerecha;
+            this.chbPlateaCotaArriba.Checked = Properties.Settings.Default.PlateaCotaLinealArriba;
+            this.chbPlateaCotaAbajo.Checked = Properties.Settings.Default.PlateaCotaLinealAbajo;
+            this.chbPlateaCotaIzquierda.Checked = Properties.Settings.Default.PlateaCotaLinealIzquierda;
+            this.chbPlateaCotaDerecha.Checked = Properties.Settings.Default.PlateaCotaLinealDerecha;
+            this.chbPiloteCotaArriba.Checked = Properties.Settings.Default.PiloteCotaLinealArriba;
+            this.chbPiloteCotaAbajo.Checked = Properties.Settings.Default.PiloteCotaLinealAbajo;
+            this.chbPiloteCotaIzquierda.Checked = Properties.Settings.Default.PiloteCotaLinealIzquierda;
+            this.chbPiloteCotaDerecha.Checked = Properties.Settings.Default.PiloteCotaLinealDerecha;
 
-            return unidad;
+            // Agrega las posiciones de cota profundidad
+            CargarCotaProfundidad(this.cmbVigaCotaProfundidad, Properties.Settings.Default.VigaEtiquetaCotaProfundidad);
+            CargarCotaProfundidad(this.cmbMuroCotaProfundidad, Properties.Settings.Default.MuroEtiquetaCotaProfundidad);
+            CargarCotaProfundidad(this.cmbColumnaCotaProfundidad, Properties.Settings.Default.ColumnaEtiquetaCotaProfundidad);
+            CargarCotaProfundidad(this.cmbLosaCotaProfundidad, Properties.Settings.Default.LosaEtiquetaCotaProfundidad);
+            CargarCotaProfundidad(this.cmbZapataCotaProfundidad, Properties.Settings.Default.ZapataEtiquetaCotaProfundidad);
+            CargarCotaProfundidad(this.cmbZapataCorridaCotaProfundidad, Properties.Settings.Default.ZapataCorridaEtiquetaCotaProfundidad);
+            CargarCotaProfundidad(this.cmbPlateaCotaProfundidad, Properties.Settings.Default.PlateaEtiquetaCotaProfundidad);
+            CargarCotaProfundidad(this.cmbPiloteCotaProfundidad, Properties.Settings.Default.PiloteEtiquetaCotaProfundidad);
         }
 
         /// <summary> Valida que los textos ingresados sean solamente números </summary>
@@ -167,6 +271,15 @@ namespace Jump
         {
             // Verifica que solo se ingresen numeros en el TextBox
             Tools.VerificarSoloNumero(e);
+
+            string caracter = (doc.GetUnits().DecimalSymbol.ToString() == "Dot") ? ".": coma;
+
+            if (e.KeyChar.ToString() == caracter && !(sender as System.Windows.Forms.TextBox).Text.Contains(coma))
+            {
+                e.KeyChar = Char.Parse(coma);
+
+                e.Handled = false;
+            }
         }
 
         /// <summary> Cambia la imagen cuando el mouse pasa por arriba del radiobutton </summary>
@@ -263,24 +376,6 @@ namespace Jump
             Tools.DesplegarComboboxConUnClick(this.dgvEstiloLinea, e);
         }
 
-        /// <summary> Cambia todas las armaduras en función de los nuevos estilos de líneas </summary>
-        private void CambiarDibujoArmaduras()
-        {
-            if (Jump.Properties.Settings.Default.ActualizarBarrasAutomaticamente)
-            {
-                List<Element> barras = new List<Element>();
-
-                List<Element> elementos = Tools.ObtenerTodosEjemplaresSegunClase(this.doc, typeof(Rebar));
-
-                foreach (RebarBarType tipo in this.diametros)
-                {
-                    barras.AddRange(elementos.Where(x => x.GetTypeId() == tipo.Id));
-                }
-
-                Tools.ActualizarRepresentacionArmadura(this.dgvEstiloLinea, barras);
-            }
-        }
-
         /// <summary> Guarda los estilos de líneas que el usuario seleccionó </summary>
         private void dgvEstiloLinea_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
@@ -293,7 +388,14 @@ namespace Jump
                     diametros.Add(tipoDiametro);
 
                     // Ordena la lista alfabéticamente
-                    diametros = diametros.OrderBy(x => x.BarDiameter).ToList();
+                    try
+                    {
+                        diametros = diametros.OrderBy(x => x.BarModelDiameter).ToList();
+                    }
+                    catch (Exception)
+                    {
+                        diametros = diametros.OrderBy(x => x.BarNominalDiameter).ToList();
+                    }
                 }
             }
             catch (Exception) { }
@@ -321,9 +423,12 @@ namespace Jump
         {
             bandera = true;
 
+            double precisionX = Convert.ToDouble(this.txtPrecisionOrdenarX.Text);
+            double precisionY = Convert.ToDouble(this.txtPrecisionOrdenarY.Text);
+            
             // Pestaña General
-            Properties.Settings.Default.precisionOrdenarX = Convert.ToInt32(this.txtPrecisionOrdenarX.Text);
-            Properties.Settings.Default.precisionOrdenarY = Convert.ToInt32(this.txtPrecisionOrdenarY.Text);
+            Properties.Settings.Default.precisionOrdenarX = UnitUtils.ConvertToInternalUnits(precisionX, this.tipoUnidad);
+            Properties.Settings.Default.precisionOrdenarY = UnitUtils.ConvertToInternalUnits(precisionY, this.tipoUnidad);
             Properties.Settings.Default.rbtnGeneralVistaGlobal = this.rbtnVistaGlobal.Checked;
             Properties.Settings.Default.rbtnGeneralVistaLocal = this.rbtnVistaLocal.Checked;
 
@@ -334,24 +439,68 @@ namespace Jump
             Properties.Settings.Default.rbtnArmaduraDibujoLineasBorde = this.rbtnLineasBorde.Checked;
             Properties.Settings.Default.rbtnTextoArmaduraArriba = this.rbtnTextoArriba.Checked;
             Properties.Settings.Default.rbtnTextoArmaduraAbajo = this.rbtnTextoAbajo.Checked;
-            Properties.Settings.Default.EtiquetaIndependienteArmadura = this.cmbEtiquetaArmadura.SelectedIndex;
-            Properties.Settings.Default.EtiquetaIndependienteAreaRefuerzo = this.cmbEtiquetaAreaRefuerzo.SelectedIndex;
-            Properties.Settings.Default.EtiquetaIndependienteArmaduraEnSistema = this.cmbEtiquetaArmaduraEnSistema.SelectedIndex;
+            Properties.Settings.Default.ArmaduraEtiquetaIndependiente = this.cmbArmaduraEtiqueta.SelectedIndex;
+            Properties.Settings.Default.AreaRefuerzoEtiquetaIndependiente = this.cmbAreaRefuerzoEtiqueta.SelectedIndex;
+            Properties.Settings.Default.ArmaduraEnSistemaEtiquetaIndependiente = this.cmbArmaduraEnSistemaEtiqueta.SelectedIndex;
 
             // Pestaña Estilos de líneas
-            Tools.GuardarDataGridViewEnDocumento(this.dgvEstiloLinea, this.doc);
-            CambiarDibujoArmaduras();
+            //Tools.GuardarDataGridViewEnDocumento(this.dgvEstiloLinea, this.doc);
+            //CambiarDibujoArmaduras();
 
             // Pestaña Etiquetas de elementos
-            Properties.Settings.Default.ColumnasEtiquetaIndependiente = this.cmbEtiquetaColumnas.SelectedIndex;
-            Properties.Settings.Default.LosasEtiquetaIndependiente = this.cmbEtiquetaLosas.SelectedIndex;
-            Properties.Settings.Default.MurosEtiquetaIndependiente = this.cmbEtiquetaMuros.SelectedIndex;
-            Properties.Settings.Default.PilotesEtiquetaIndependiente = this.cmbEtiquetaPilotes.SelectedIndex;
-            Properties.Settings.Default.PlateaEtiquetaIndependiente = this.cmbEtiquetaPlatea.SelectedIndex;
-            Properties.Settings.Default.VigasEtiquetaIndependiente = this.cmbEtiquetaVigas.SelectedIndex;
-            Properties.Settings.Default.ZapatasEtiquetaIndependiente = this.cmbEtiquetaZapatas.SelectedIndex;
-            Properties.Settings.Default.ZapatasCorridaEtiquetaIndependiente = this.cmbEtiquetaZapataCorrida.SelectedIndex;
+            Properties.Settings.Default.ColumnaEtiquetaIndependiente = this.cmbColumnaEtiqueta.SelectedIndex;
+            Properties.Settings.Default.LosaEtiquetaIndependiente = this.cmbLosaEtiqueta.SelectedIndex;
+            Properties.Settings.Default.MuroEtiquetaIndependiente = this.cmbMuroEtiqueta.SelectedIndex;
+            Properties.Settings.Default.PiloteEtiquetaIndependiente = this.cmbPiloteEtiqueta.SelectedIndex;
+            Properties.Settings.Default.PlateaEtiquetaIndependiente = this.cmbPlateaEtiqueta.SelectedIndex;
+            Properties.Settings.Default.VigaEtiquetaIndependiente = this.cmbVigaEtiqueta.SelectedIndex;
+            Properties.Settings.Default.ZapataEtiquetaIndependiente = this.cmbZapataEtiqueta.SelectedIndex;
+            Properties.Settings.Default.ZapataCorridaEtiquetaIndependiente = this.cmbZapataCorridaEtiqueta.SelectedIndex;
 
+            // Pestaña cotas lineales
+            Properties.Settings.Default.VigaCotaLinealArriba = this.chbVigaCotaArriba.Checked;
+            Properties.Settings.Default.VigaCotaLinealAbajo = this.chbVigaCotaAbajo.Checked;
+            Properties.Settings.Default.VigaCotaLinealIzquierda = this.chbVigaCotaIzquierda.Checked;
+            Properties.Settings.Default.VigaCotaLinealDerecha = this.chbVigaCotaDerecha.Checked;
+            Properties.Settings.Default.MuroCotaLinealArriba = this.chbMuroCotaArriba.Checked;
+            Properties.Settings.Default.MuroCotaLinealAbajo = this.chbMuroCotaAbajo.Checked;
+            Properties.Settings.Default.MuroCotaLinealIzquierda = this.chbMuroCotaIzquierda.Checked;
+            Properties.Settings.Default.MuroCotaLinealDerecha = this.chbMuroCotaDerecha.Checked;
+            Properties.Settings.Default.ColumnaCotaLinealArriba = this.chbColumnaCotaArriba.Checked;
+            Properties.Settings.Default.ColumnaCotaLinealAbajo = this.chbColumnaCotaAbajo.Checked;
+            Properties.Settings.Default.ColumnaCotaLinealIzquierda = this.chbColumnaCotaIzquierda.Checked;
+            Properties.Settings.Default.ColumnaCotaLinealDerecha = this.chbColumnaCotaDerecha.Checked;
+            Properties.Settings.Default.LosaCotaLinealArriba = this.chbLosaCotaArriba.Checked;
+            Properties.Settings.Default.LosaCotaLinealAbajo = this.chbLosaCotaAbajo.Checked;
+            Properties.Settings.Default.LosaCotaLinealIzquierda = this.chbLosaCotaIzquierda.Checked;
+            Properties.Settings.Default.LosaCotaLinealDerecha = this.chbLosaCotaDerecha.Checked;
+            Properties.Settings.Default.ZapataCotaLinealArriba = this.chbZapataCotaArriba.Checked;
+            Properties.Settings.Default.ZapataCotaLinealAbajo = this.chbZapataCotaAbajo.Checked;
+            Properties.Settings.Default.ZapataCotaLinealIzquierda = this.chbZapataCotaIzquierda.Checked;
+            Properties.Settings.Default.ZapataCotaLinealDerecha = this.chbZapataCotaDerecha.Checked;
+            Properties.Settings.Default.ZapataCorridaCotaLinealArriba = this.chbZapataCorridaCotaArriba.Checked;
+            Properties.Settings.Default.ZapataCorridaCotaLinealAbajo = this.chbZapataCorridaCotaAbajo.Checked;
+            Properties.Settings.Default.ZapataCorridaCotaLinealIzquierda = this.chbZapataCorridaCotaIzquierda.Checked;
+            Properties.Settings.Default.ZapataCorridaCotaLinealDerecha = this.chbZapataCorridaCotaDerecha.Checked;
+            Properties.Settings.Default.PlateaCotaLinealArriba = this.chbPlateaCotaArriba.Checked;
+            Properties.Settings.Default.PlateaCotaLinealAbajo = this.chbPlateaCotaAbajo.Checked;
+            Properties.Settings.Default.PlateaCotaLinealIzquierda = this.chbPlateaCotaIzquierda.Checked;
+            Properties.Settings.Default.PlateaCotaLinealDerecha = this.chbPlateaCotaDerecha.Checked;
+            Properties.Settings.Default.PiloteCotaLinealArriba = this.chbPiloteCotaArriba.Checked;
+            Properties.Settings.Default.PiloteCotaLinealAbajo = this.chbPiloteCotaAbajo.Checked;
+            Properties.Settings.Default.PiloteCotaLinealIzquierda = this.chbPiloteCotaIzquierda.Checked;
+            Properties.Settings.Default.PiloteCotaLinealDerecha = this.chbPiloteCotaDerecha.Checked;
+
+            // Cotas de profundidad
+            Properties.Settings.Default.VigaEtiquetaCotaProfundidad = ObtenerPosicionCotaProfundidad(this.cmbVigaCotaProfundidad);
+            Properties.Settings.Default.MuroEtiquetaCotaProfundidad = ObtenerPosicionCotaProfundidad(this.cmbMuroCotaProfundidad);
+            Properties.Settings.Default.ColumnaEtiquetaCotaProfundidad = ObtenerPosicionCotaProfundidad(this.cmbColumnaCotaProfundidad);
+            Properties.Settings.Default.LosaEtiquetaCotaProfundidad = ObtenerPosicionCotaProfundidad(this.cmbLosaCotaProfundidad);
+            Properties.Settings.Default.ZapataEtiquetaCotaProfundidad = ObtenerPosicionCotaProfundidad(this.cmbZapataCotaProfundidad);
+            Properties.Settings.Default.ZapataCorridaEtiquetaCotaProfundidad = ObtenerPosicionCotaProfundidad(this.cmbZapataCorridaCotaProfundidad);
+            Properties.Settings.Default.PlateaEtiquetaCotaProfundidad = ObtenerPosicionCotaProfundidad(this.cmbPlateaCotaProfundidad);
+            Properties.Settings.Default.PiloteEtiquetaCotaProfundidad = ObtenerPosicionCotaProfundidad(this.cmbPiloteCotaProfundidad);
+            
             // Guarda las configuraciones
             Properties.Settings.Default.Save();
 

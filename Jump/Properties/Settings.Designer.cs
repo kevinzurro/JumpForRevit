@@ -12,7 +12,7 @@ namespace Jump.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.2.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.7.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -38,9 +38,9 @@ namespace Jump.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int precisionOrdenarX {
+        public double precisionOrdenarX {
             get {
-                return ((int)(this["precisionOrdenarX"]));
+                return ((double)(this["precisionOrdenarX"]));
             }
             set {
                 this["precisionOrdenarX"] = value;
@@ -49,13 +49,13 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int ZapatasIndiceComboboxEscalaVista {
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int ZapataIndiceComboboxEscalaVista {
             get {
-                return ((int)(this["ZapatasIndiceComboboxEscalaVista"]));
+                return ((int)(this["ZapataIndiceComboboxEscalaVista"]));
             }
             set {
-                this["ZapatasIndiceComboboxEscalaVista"] = value;
+                this["ZapataIndiceComboboxEscalaVista"] = value;
             }
         }
         
@@ -134,9 +134,9 @@ namespace Jump.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int precisionOrdenarY {
+        public double precisionOrdenarY {
             get {
-                return ((int)(this["precisionOrdenarY"]));
+                return ((double)(this["precisionOrdenarY"]));
             }
             set {
                 this["precisionOrdenarY"] = value;
@@ -146,12 +146,12 @@ namespace Jump.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int posicionBarraADibujar {
+        public int PosicionBarraADibujar {
             get {
-                return ((int)(this["posicionBarraADibujar"]));
+                return ((int)(this["PosicionBarraADibujar"]));
             }
             set {
-                this["posicionBarraADibujar"] = value;
+                this["PosicionBarraADibujar"] = value;
             }
         }
         
@@ -164,66 +164,6 @@ namespace Jump.Properties {
             }
             set {
                 this["ActualizarBarrasAutomaticamente"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int indiceComboboxTextoBarra {
-            get {
-                return ((int)(this["indiceComboboxTextoBarra"]));
-            }
-            set {
-                this["indiceComboboxTextoBarra"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool CotaVerticalIzquierda {
-            get {
-                return ((bool)(this["CotaVerticalIzquierda"]));
-            }
-            set {
-                this["CotaVerticalIzquierda"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool CotaVerticalDerecha {
-            get {
-                return ((bool)(this["CotaVerticalDerecha"]));
-            }
-            set {
-                this["CotaVerticalDerecha"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool CotaHorizontalAbajo {
-            get {
-                return ((bool)(this["CotaHorizontalAbajo"]));
-            }
-            set {
-                this["CotaHorizontalAbajo"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool CotaHorizontalArriba {
-            get {
-                return ((bool)(this["CotaHorizontalArriba"]));
-            }
-            set {
-                this["CotaHorizontalArriba"] = value;
             }
         }
         
@@ -254,12 +194,12 @@ namespace Jump.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int ZapatasCorridaEtiquetaIndependiente {
+        public int ZapataCorridaEtiquetaIndependiente {
             get {
-                return ((int)(this["ZapatasCorridaEtiquetaIndependiente"]));
+                return ((int)(this["ZapataCorridaEtiquetaIndependiente"]));
             }
             set {
-                this["ZapatasCorridaEtiquetaIndependiente"] = value;
+                this["ZapataCorridaEtiquetaIndependiente"] = value;
             }
         }
         
@@ -278,120 +218,120 @@ namespace Jump.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int MurosEtiquetaIndependiente {
+        public int MuroEtiquetaIndependiente {
             get {
-                return ((int)(this["MurosEtiquetaIndependiente"]));
+                return ((int)(this["MuroEtiquetaIndependiente"]));
             }
             set {
-                this["MurosEtiquetaIndependiente"] = value;
+                this["MuroEtiquetaIndependiente"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int PilotesEtiquetaIndependiente {
+        public int PiloteEtiquetaIndependiente {
             get {
-                return ((int)(this["PilotesEtiquetaIndependiente"]));
+                return ((int)(this["PiloteEtiquetaIndependiente"]));
             }
             set {
-                this["PilotesEtiquetaIndependiente"] = value;
+                this["PiloteEtiquetaIndependiente"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2")]
-        public int EtiquetaIndependienteArmadura {
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int ArmaduraEtiquetaIndependiente {
             get {
-                return ((int)(this["EtiquetaIndependienteArmadura"]));
+                return ((int)(this["ArmaduraEtiquetaIndependiente"]));
             }
             set {
-                this["EtiquetaIndependienteArmadura"] = value;
+                this["ArmaduraEtiquetaIndependiente"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2")]
-        public int VigasEtiquetaIndependiente {
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int VigaEtiquetaIndependiente {
             get {
-                return ((int)(this["VigasEtiquetaIndependiente"]));
+                return ((int)(this["VigaEtiquetaIndependiente"]));
             }
             set {
-                this["VigasEtiquetaIndependiente"] = value;
+                this["VigaEtiquetaIndependiente"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2")]
-        public int ZapatasEtiquetaIndependiente {
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int ZapataEtiquetaIndependiente {
             get {
-                return ((int)(this["ZapatasEtiquetaIndependiente"]));
+                return ((int)(this["ZapataEtiquetaIndependiente"]));
             }
             set {
-                this["ZapatasEtiquetaIndependiente"] = value;
+                this["ZapataEtiquetaIndependiente"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("8")]
-        public int ColumnasEtiquetaCotaProfundidad {
+        public int ColumnaEtiquetaCotaProfundidad {
             get {
-                return ((int)(this["ColumnasEtiquetaCotaProfundidad"]));
+                return ((int)(this["ColumnaEtiquetaCotaProfundidad"]));
             }
             set {
-                this["ColumnasEtiquetaCotaProfundidad"] = value;
+                this["ColumnaEtiquetaCotaProfundidad"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int ColumnasEtiquetaIndependiente {
+        public int ColumnaEtiquetaIndependiente {
             get {
-                return ((int)(this["ColumnasEtiquetaIndependiente"]));
+                return ((int)(this["ColumnaEtiquetaIndependiente"]));
             }
             set {
-                this["ColumnasEtiquetaIndependiente"] = value;
+                this["ColumnaEtiquetaIndependiente"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int LosasEtiquetaIndependiente {
+        public int LosaEtiquetaIndependiente {
             get {
-                return ((int)(this["LosasEtiquetaIndependiente"]));
+                return ((int)(this["LosaEtiquetaIndependiente"]));
             }
             set {
-                this["LosasEtiquetaIndependiente"] = value;
+                this["LosaEtiquetaIndependiente"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int EtiquetaIndependienteAreaRefuerzo {
+        public int AreaRefuerzoEtiquetaIndependiente {
             get {
-                return ((int)(this["EtiquetaIndependienteAreaRefuerzo"]));
+                return ((int)(this["AreaRefuerzoEtiquetaIndependiente"]));
             }
             set {
-                this["EtiquetaIndependienteAreaRefuerzo"] = value;
+                this["AreaRefuerzoEtiquetaIndependiente"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int EtiquetaIndependienteArmaduraEnSistema {
+        public int ArmaduraEnSistemaEtiquetaIndependiente {
             get {
-                return ((int)(this["EtiquetaIndependienteArmaduraEnSistema"]));
+                return ((int)(this["ArmaduraEnSistemaEtiquetaIndependiente"]));
             }
             set {
-                this["EtiquetaIndependienteArmaduraEnSistema"] = value;
+                this["ArmaduraEnSistemaEtiquetaIndependiente"] = value;
             }
         }
         
@@ -409,7 +349,7 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
         public int ColumnaIndiceComboboxEscalaVista {
             get {
                 return ((int)(this["ColumnaIndiceComboboxEscalaVista"]));
@@ -421,37 +361,37 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int VigasIndiceComboboxEscalaVista {
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int VigaIndiceComboboxEscalaVista {
             get {
-                return ((int)(this["VigasIndiceComboboxEscalaVista"]));
+                return ((int)(this["VigaIndiceComboboxEscalaVista"]));
             }
             set {
-                this["VigasIndiceComboboxEscalaVista"] = value;
+                this["VigaIndiceComboboxEscalaVista"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("8")]
-        public int LosasEtiquetaCotaProfundidad {
+        public int LosaEtiquetaCotaProfundidad {
             get {
-                return ((int)(this["LosasEtiquetaCotaProfundidad"]));
+                return ((int)(this["LosaEtiquetaCotaProfundidad"]));
             }
             set {
-                this["LosasEtiquetaCotaProfundidad"] = value;
+                this["LosaEtiquetaCotaProfundidad"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("8")]
-        public int MurosEtiquetaCotaProfundidad {
+        public int MuroEtiquetaCotaProfundidad {
             get {
-                return ((int)(this["MurosEtiquetaCotaProfundidad"]));
+                return ((int)(this["MuroEtiquetaCotaProfundidad"]));
             }
             set {
-                this["MurosEtiquetaCotaProfundidad"] = value;
+                this["MuroEtiquetaCotaProfundidad"] = value;
             }
         }
         
@@ -469,49 +409,457 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("6")]
-        public int VigasEtiquetaCotaProfundidad {
+        [global::System.Configuration.DefaultSettingValueAttribute("8")]
+        public int VigaEtiquetaCotaProfundidad {
             get {
-                return ((int)(this["VigasEtiquetaCotaProfundidad"]));
+                return ((int)(this["VigaEtiquetaCotaProfundidad"]));
             }
             set {
-                this["VigasEtiquetaCotaProfundidad"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("6")]
-        public int ZapatasEtiquetaCotaProfundidad {
-            get {
-                return ((int)(this["ZapatasEtiquetaCotaProfundidad"]));
-            }
-            set {
-                this["ZapatasEtiquetaCotaProfundidad"] = value;
+                this["VigaEtiquetaCotaProfundidad"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("8")]
-        public int ZapatasCorridaEtiquetaCotaProfundidad {
+        public int ZapataEtiquetaCotaProfundidad {
             get {
-                return ((int)(this["ZapatasCorridaEtiquetaCotaProfundidad"]));
+                return ((int)(this["ZapataEtiquetaCotaProfundidad"]));
             }
             set {
-                this["ZapatasCorridaEtiquetaCotaProfundidad"] = value;
+                this["ZapataEtiquetaCotaProfundidad"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int MurosIndiceComboboxEscalaVista {
+        [global::System.Configuration.DefaultSettingValueAttribute("8")]
+        public int ZapataCorridaEtiquetaCotaProfundidad {
             get {
-                return ((int)(this["MurosIndiceComboboxEscalaVista"]));
+                return ((int)(this["ZapataCorridaEtiquetaCotaProfundidad"]));
             }
             set {
-                this["MurosIndiceComboboxEscalaVista"] = value;
+                this["ZapataCorridaEtiquetaCotaProfundidad"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int MuroIndiceComboboxEscalaVista {
+            get {
+                return ((int)(this["MuroIndiceComboboxEscalaVista"]));
+            }
+            set {
+                this["MuroIndiceComboboxEscalaVista"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public string ZapataCorridaIndiceComboboxEscalaVista {
+            get {
+                return ((string)(this["ZapataCorridaIndiceComboboxEscalaVista"]));
+            }
+            set {
+                this["ZapataCorridaIndiceComboboxEscalaVista"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("8")]
+        public int PiloteEtiquetaCotaProfundidad {
+            get {
+                return ((int)(this["PiloteEtiquetaCotaProfundidad"]));
+            }
+            set {
+                this["PiloteEtiquetaCotaProfundidad"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool PiloteCotaLinealArriba {
+            get {
+                return ((bool)(this["PiloteCotaLinealArriba"]));
+            }
+            set {
+                this["PiloteCotaLinealArriba"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PiloteCotaLinealAbajo {
+            get {
+                return ((bool)(this["PiloteCotaLinealAbajo"]));
+            }
+            set {
+                this["PiloteCotaLinealAbajo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PiloteCotaLinealIzquierda {
+            get {
+                return ((bool)(this["PiloteCotaLinealIzquierda"]));
+            }
+            set {
+                this["PiloteCotaLinealIzquierda"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool PiloteCotaLinealDerecha {
+            get {
+                return ((bool)(this["PiloteCotaLinealDerecha"]));
+            }
+            set {
+                this["PiloteCotaLinealDerecha"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool VigaCotaLinealArriba {
+            get {
+                return ((bool)(this["VigaCotaLinealArriba"]));
+            }
+            set {
+                this["VigaCotaLinealArriba"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool VigaCotaLinealAbajo {
+            get {
+                return ((bool)(this["VigaCotaLinealAbajo"]));
+            }
+            set {
+                this["VigaCotaLinealAbajo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool VigaCotaLinealIzquierda {
+            get {
+                return ((bool)(this["VigaCotaLinealIzquierda"]));
+            }
+            set {
+                this["VigaCotaLinealIzquierda"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool VigaCotaLinealDerecha {
+            get {
+                return ((bool)(this["VigaCotaLinealDerecha"]));
+            }
+            set {
+                this["VigaCotaLinealDerecha"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ColumnaCotaLinealArriba {
+            get {
+                return ((bool)(this["ColumnaCotaLinealArriba"]));
+            }
+            set {
+                this["ColumnaCotaLinealArriba"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ColumnaCotaLinealAbajo {
+            get {
+                return ((bool)(this["ColumnaCotaLinealAbajo"]));
+            }
+            set {
+                this["ColumnaCotaLinealAbajo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ColumnaCotaLinealIzquierda {
+            get {
+                return ((bool)(this["ColumnaCotaLinealIzquierda"]));
+            }
+            set {
+                this["ColumnaCotaLinealIzquierda"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ColumnaCotaLinealDerecha {
+            get {
+                return ((bool)(this["ColumnaCotaLinealDerecha"]));
+            }
+            set {
+                this["ColumnaCotaLinealDerecha"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool MuroCotaLinealArriba {
+            get {
+                return ((bool)(this["MuroCotaLinealArriba"]));
+            }
+            set {
+                this["MuroCotaLinealArriba"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool MuroCotaLinealAbajo {
+            get {
+                return ((bool)(this["MuroCotaLinealAbajo"]));
+            }
+            set {
+                this["MuroCotaLinealAbajo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool MuroCotaLinealIzquierda {
+            get {
+                return ((bool)(this["MuroCotaLinealIzquierda"]));
+            }
+            set {
+                this["MuroCotaLinealIzquierda"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool MuroCotaLinealDerecha {
+            get {
+                return ((bool)(this["MuroCotaLinealDerecha"]));
+            }
+            set {
+                this["MuroCotaLinealDerecha"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool LosaCotaLinealArriba {
+            get {
+                return ((bool)(this["LosaCotaLinealArriba"]));
+            }
+            set {
+                this["LosaCotaLinealArriba"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool LosaCotaLinealAbajo {
+            get {
+                return ((bool)(this["LosaCotaLinealAbajo"]));
+            }
+            set {
+                this["LosaCotaLinealAbajo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool LosaCotaLinealIzquierda {
+            get {
+                return ((bool)(this["LosaCotaLinealIzquierda"]));
+            }
+            set {
+                this["LosaCotaLinealIzquierda"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool LosaCotaLinealDerecha {
+            get {
+                return ((bool)(this["LosaCotaLinealDerecha"]));
+            }
+            set {
+                this["LosaCotaLinealDerecha"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ZapataCotaLinealArriba {
+            get {
+                return ((bool)(this["ZapataCotaLinealArriba"]));
+            }
+            set {
+                this["ZapataCotaLinealArriba"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ZapataCotaLinealAbajo {
+            get {
+                return ((bool)(this["ZapataCotaLinealAbajo"]));
+            }
+            set {
+                this["ZapataCotaLinealAbajo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ZapataCotaLinealIzquierda {
+            get {
+                return ((bool)(this["ZapataCotaLinealIzquierda"]));
+            }
+            set {
+                this["ZapataCotaLinealIzquierda"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ZapataCotaLinealDerecha {
+            get {
+                return ((bool)(this["ZapataCotaLinealDerecha"]));
+            }
+            set {
+                this["ZapataCotaLinealDerecha"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ZapataCorridaCotaLinealArriba {
+            get {
+                return ((bool)(this["ZapataCorridaCotaLinealArriba"]));
+            }
+            set {
+                this["ZapataCorridaCotaLinealArriba"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ZapataCorridaCotaLinealAbajo {
+            get {
+                return ((bool)(this["ZapataCorridaCotaLinealAbajo"]));
+            }
+            set {
+                this["ZapataCorridaCotaLinealAbajo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ZapataCorridaCotaLinealIzquierda {
+            get {
+                return ((bool)(this["ZapataCorridaCotaLinealIzquierda"]));
+            }
+            set {
+                this["ZapataCorridaCotaLinealIzquierda"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ZapataCorridaCotaLinealDerecha {
+            get {
+                return ((bool)(this["ZapataCorridaCotaLinealDerecha"]));
+            }
+            set {
+                this["ZapataCorridaCotaLinealDerecha"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PlateaCotaLinealArriba {
+            get {
+                return ((bool)(this["PlateaCotaLinealArriba"]));
+            }
+            set {
+                this["PlateaCotaLinealArriba"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PlateaCotaLinealAbajo {
+            get {
+                return ((bool)(this["PlateaCotaLinealAbajo"]));
+            }
+            set {
+                this["PlateaCotaLinealAbajo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PlateaCotaLinealIzquierda {
+            get {
+                return ((bool)(this["PlateaCotaLinealIzquierda"]));
+            }
+            set {
+                this["PlateaCotaLinealIzquierda"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PlateaCotaLinealDerecha {
+            get {
+                return ((bool)(this["PlateaCotaLinealDerecha"]));
+            }
+            set {
+                this["PlateaCotaLinealDerecha"] = value;
             }
         }
     }

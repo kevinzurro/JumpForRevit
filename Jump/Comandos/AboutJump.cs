@@ -7,9 +7,6 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.DB.Structure;
 using Autodesk.Revit.DB.ExtensibleStorage;
-using Revit.ES.Extension;
-using Revit.ES.Extension.Attributes;
-using Revit.ES.Extension.ElementExtensions;
 
 namespace Jump
 {
@@ -94,39 +91,4 @@ namespace Jump
         AbajoDerecha,
     }
 
-    [Schema(AboutJump.guidArmaduraRepresentacionEntity, AboutJump.nombreEsquemaArmaduraRepresentacion)]
-    public class ArmaduraRepresentacionEntity : IRevitEntity
-    {
-        [Field]
-        public ElementId Vista { get; set; }
-
-        [Field]
-        public List<ElementId> ListaCurvas { get; set; }
-
-        [Field]
-        public List<ElementId> ListaTextos { get; set; }
-
-        [Field]
-        public ElementId TipoDeTexto { get; set; }
-
-        [Field]
-        public ElementId Etiqueta { get; set; }
-
-        [Field(Documentation = "XYZ Position", UnitType = UnitType.UT_Length)]
-        public XYZ Posicion { get; set; }
-    }
-
-    [Schema(AboutJump.guidRepresentacionesEntity, AboutJump.nombreEsquemaRepresentaciones)]
-    public class RepresentacionesEntity : IRevitEntity
-    {
-        [Field]
-        public List<ArmaduraRepresentacionEntity> ListaRepresentaciones { get; set; }
-    }
-
-    [Schema(AboutJump.guidDGVEntity, AboutJump.nombreEsquemaDataGridView)]
-    public class DGVEntity : IRevitEntity
-    {
-        [Field]
-        public Dictionary<ElementId, ElementId> DGVDiametrosYEstilos { get; set; }
-    }
 }

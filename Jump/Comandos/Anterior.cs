@@ -1157,5 +1157,52 @@ namespace Jump
         //}
 
         #endregion
+
+        ///<summary> Obtiene una lista de elementos según una selección en un ListBox </summary>
+        //public static List<Element> ObtenerElementosDeUnListbox(System.Windows.Forms.ListBox listbox,
+        //                                                        Document doc,
+        //                                                        List<Element> todosLosElementos)
+        //{
+        //    // Crea la lista a devolver
+        //    List<Element> elementos = new List<Element>();
+        //    List<string> elementosSeleccionados = new List<string>();
+
+        //    elementosSeleccionados = listbox.SelectedItems.Cast<string>().ToList();
+
+        //    // Recorre la lista de elementos seleccionados
+        //    for (int i = 0; i < elementosSeleccionados.Count; i++)
+        //    {
+        //        for (int j = 0; j < todosLosElementos.Count; j++)
+        //        {
+        //            // Obtiene el FamilySymbol del elemento
+        //            FamilySymbol sym = null;
+        //            string simbolo = "";
+
+        //            try
+        //            {
+        //                sym = doc.GetElement(todosLosElementos[j].GetTypeId()) as FamilySymbol;
+        //            }
+        //            catch (Exception) { }
+
+        //            if (sym != null)
+        //            {
+        //                simbolo = sym.Family.Name + ": ";
+        //            }
+
+        //            // Crea el nombre a mostrar y luego el ID del elemento
+        //            string nombre = simbolo + todosLosElementos[j].Name + " <" + todosLosElementos[j].Id.ToString() + ">";
+
+        //            // Verifica que el nombre del listbox sea igual al del elemento de la lista
+        //            if (nombre == elementosSeleccionados[i])
+        //            {
+        //                // Agrega el elemento a la lista
+        //                elementos.Add(todosLosElementos[j]);
+        //            }
+        //        }
+        //    }
+
+        //    return elementos;
+        //}
+
     }
 }

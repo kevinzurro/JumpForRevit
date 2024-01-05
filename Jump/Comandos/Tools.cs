@@ -7,14 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using SpreadsheetLight;
-using DocumentFormat.OpenXml;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.DB.Structure;
 using Autodesk.Revit.ApplicationServices;
 using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.DB.ExtensibleStorage;
+using Autodesk.Revit.DB.Analysis;
+using System.Windows;
 
 namespace Jump
 {
@@ -29,10 +29,9 @@ namespace Jump
         //private static double precisionOrdenarY = Properties.Settings.Default.precisionOrdenarY;
         private static int precisionOrdenarX = 0;//Properties.Settings.Default.precisionOrdenarX;
         private static int precisionOrdenarY = 0;//Properties.Settings.Default.precisionOrdenarY;
-
-        #endregion
-
-        #region Nombre para el DataGridView de diámetros y estilos de líneas
+        private static int precisionAnguloPositivo = 45;//Properties.Settings.Default.precisionOrdenarX;
+        private static int precisionAnguloNegativo = -45;//Properties.Settings.Default.precisionOrdenarY;
+        private static double puntoParaEvaluarLinea = 0.5;
 
         #endregion
 
@@ -93,6 +92,9 @@ namespace Jump
 
         #endregion
 
+        private static int puntoInicialReferencia = 0;
+        private static int puntoFinalReferencia = 1;
+
         // Lista de escalas para la vista
         private static List<int> listaEscalas = CompletarEscalas();
 
@@ -135,8 +137,8 @@ namespace Jump
             return lista;
         }
 
-        // Lista de elementos filtrados por clases
-        private static List<ElementFilter> filtroElementosPorClase = new List<ElementFilter>()
+        // Lista de elementos estructurales filtrados por clases
+        private static List<ElementFilter> filtroElementosEstructuralesPorClase = new List<ElementFilter>()
         {
             new ElementClassFilter(typeof(Floor)),
             new ElementClassFilter(typeof(HostedSweep)),
@@ -156,6 +158,56 @@ namespace Jump
             BuiltInCategory.OST_StructuralFraming,
             BuiltInCategory.OST_StructuralFoundation,
             BuiltInCategory.OST_WallsStructure
+        };
+
+        // Lista de elementos analíticos filtrados por clases
+        private static List<ElementFilter> filtroElementosAnaliticosPorClase = new List<ElementFilter>()
+        {
+            new ElementClassFilter(typeof(AnalyticalElement)),
+            new ElementClassFilter(typeof(AnalyticalLink)),
+            new ElementClassFilter(typeof(AnalyticalMember)),
+            new ElementClassFilter(typeof(AnalyticalPanel)),
+            new ElementClassFilter(typeof(BoundaryConditions)),
+            new ElementClassFilter(typeof(AreaLoad)),
+            new ElementClassFilter(typeof(LineLoad)),
+            new ElementClassFilter(typeof(PointLoad)),
+            new ElementClassFilter(typeof(ReferencePoint))
+        };
+
+        // Crea un arreglo con todas las categorías analíticas
+        private static BuiltInCategory[] categoriasAnaliticas = new BuiltInCategory[]
+        {
+            BuiltInCategory.OST_AnalyticalMember,
+            BuiltInCategory.OST_AnalyticalMemberCrossSection,
+            BuiltInCategory.OST_AnalyticalMemberLocalCoordSys,
+            BuiltInCategory.OST_AnalyticalNodes,
+            BuiltInCategory.OST_AnalyticalNodes_Lines,
+            BuiltInCategory.OST_AnalyticalNodes_Planes,
+            BuiltInCategory.OST_AnalyticalNodes_Points,
+            BuiltInCategory.OST_AnalyticalOpening,
+            BuiltInCategory.OST_AnalyticalPanel,
+            BuiltInCategory.OST_AnalyticalPanelLocalCoordSys,
+            BuiltInCategory.OST_AnalyticalPipeConnectionLineSymbol,
+            BuiltInCategory.OST_AnalyticalPipeConnections,
+            BuiltInCategory.OST_AnalyticalRigidLinks,
+            BuiltInCategory.OST_AnalyticSpaces,
+            BuiltInCategory.OST_AnalyticSurfaces,
+            BuiltInCategory.OST_BeamAnalytical,
+            BuiltInCategory.OST_BraceAnalytical,
+            BuiltInCategory.OST_ColumnAnalytical,
+            BuiltInCategory.OST_ColumnAnalyticalGeometry,
+            BuiltInCategory.OST_ColumnAnalyticalRigidLinks,
+            BuiltInCategory.OST_FloorAnalytical,
+            BuiltInCategory.OST_FloorsAnalyticalGeometry,
+            BuiltInCategory.OST_FootingAnalyticalGeometry,
+            BuiltInCategory.OST_FoundationSlabAnalytical,
+            BuiltInCategory.OST_FramingAnalyticalGeometry,
+            BuiltInCategory.OST_IsolatedFoundationAnalytical,
+            BuiltInCategory.OST_LinksAnalytical,
+            BuiltInCategory.OST_RigidLinksAnalytical,
+            BuiltInCategory.OST_WallAnalytical,
+            BuiltInCategory.OST_WallFoundationAnalytical,
+            BuiltInCategory.OST_WallsAnalyticalGeometry
         };
 
         #endregion
@@ -609,7 +661,7 @@ namespace Jump
             IList<ElementFilter> b = new List<ElementFilter>();
 
             // Recorre todas las clases de la lista
-            foreach (ElementFilter elemFil in filtroElementosPorClase)
+            foreach (ElementFilter elemFil in filtroElementosEstructuralesPorClase)
             {
                 b.Add(elemFil);
             }
@@ -664,7 +716,7 @@ namespace Jump
             IList<ElementFilter> b = new List<ElementFilter>();
 
             // Recorre todas las clases de la lista
-            foreach (ElementFilter elemFil in filtroElementosPorClase)
+            foreach (ElementFilter elemFil in filtroElementosEstructuralesPorClase)
             {
                 b.Add(elemFil);
             }
@@ -699,10 +751,10 @@ namespace Jump
             }
 
             //Filtra que los elementos sean de la clase FamilyInstance
-            List<Element> pilotes = colector.OfClass(typeof(FamilyInstance)).ToList();
-
+            List<Element> elemFamIns = colector.OfClass(typeof(FamilyInstance)).ToList();
+            
             // Recorre la lista de pilotes
-            foreach (Element elem in pilotes)
+            foreach (Element elem in elemFamIns)
             {
                 // Verifica que el elementos sea de la categoría
                 if (elem.Category.Id == new ElementId(BuiltInCategory.OST_StructuralFoundation))
@@ -721,6 +773,58 @@ namespace Jump
         /// <summary> Obtiene una lista de todos los ejemplares analíticos </summary>
         public static List<Element> ObtenerTodosEjemplaresAnaliticos(Document doc)
         {
+            // Crea un arreglo con todas las categorías estructurales
+            BuiltInCategory[] categorias = categoriasAnaliticas;
+
+            // Crea una lista de filtros
+            IList<ElementFilter> a = new List<ElementFilter>(categorias.Count());
+
+            // Recorre cada categoria y agrega al al filtro 
+            foreach (BuiltInCategory bic in categorias)
+            {
+                a.Add(new ElementCategoryFilter(bic));
+            }
+
+            // Crea un filtro que contiene un conjunto de filtros
+            LogicalOrFilter filtroCategorias = new LogicalOrFilter(a);
+
+            // Crea un filtro que contiene un conjunto de filtros
+            LogicalAndFilter filtroFamilyInstance = new LogicalAndFilter
+                                                    (filtroCategorias, new ElementClassFilter(typeof(FamilyInstance)));
+
+            // Crea una lista de filtros por clase
+            IList<ElementFilter> b = new List<ElementFilter>();
+
+            // Recorre todas las clases de la lista
+            foreach (ElementFilter elemFil in filtroElementosAnaliticosPorClase)
+            {
+                b.Add(elemFil);
+            }
+
+            // Agrega que tipo de clase tiene que filtrar
+            b.Add(filtroFamilyInstance);
+
+            // Crea el filtro final
+            LogicalOrFilter filtroClases = new LogicalOrFilter(b);
+
+            // Crea el colector
+            FilteredElementCollector colector = new FilteredElementCollector(doc);
+
+            // Toma el colector y lo pasa por el filtro
+            colector.WherePasses(filtroClases);
+
+            // Crea la lista y asigna los elementos que sean de ejemplar
+            List<Element> elementos = colector.WhereElementIsNotElementType().ToList();
+
+            // Ordena la lista alfabéticamente
+            elementos = elementos.OrderBy(x => x.Name).ToList();
+
+            return elementos;
+        }
+
+        /// <summary> Obtiene una lista de todos los ejemplares analíticos </summary>
+        public static List<Element> ObtenerTodosEjemplaresAnaliticosOriginal(Document doc)
+        {
             // Crea el colector
             FilteredElementCollector colector = new FilteredElementCollector(doc);
 
@@ -731,7 +835,7 @@ namespace Jump
             List<Element> lista = (from elem in elementos
                                    where elem.Category != null
                                    && elem.Category.CategoryType == CategoryType.AnalyticalModel
-                                   && elem.Category.Id != new ElementId(BuiltInCategory.OST_LoadCases)
+                                   //&& elem.Category.Id != new ElementId(BuiltInCategory.OST_LoadCases)
                                    select elem).ToList();
             return lista;
         }
@@ -1298,9 +1402,7 @@ namespace Jump
             List<Rebar> listaArmadura = new List<Rebar>();
 
             // Obtiene todas las barras del elemento
-            IList<Rebar> lista = RebarHostData.GetRebarHostData(elem).GetRebarsInHost();
-
-            listaArmadura.AddRange(lista);
+            listaArmadura = RebarHostData.GetRebarHostData(elem).GetRebarsInHost().ToList();
 
             return listaArmadura;
         }
@@ -2454,8 +2556,10 @@ namespace Jump
         ///<summary> Crea una etiqueta horizontal en la parte superior central sin guía en una vista particular </summary>
         public static IndependentTag CrearEtiquetaIndependienteArribaMedio(Document doc, View vista, Element elem, FamilySymbol tipoEtiqueta)
         {
-            // Obtiene la referencia del elemento
             Reference referencia = new Reference(elem);
+
+            XYZ puntoMedio = null;
+            bool banderaMedio = false;
 
             Transform tra = vista.CropBox.Transform;
 
@@ -2484,16 +2588,19 @@ namespace Jump
 
                 arriba = direccion.CrossProduct(vista.ViewDirection);
                 arriba = (vista.CropBox.Transform.Inverse.OfVector(arriba).Y > 0) ? arriba : -arriba;
+
+                puntoMedio = curva.ComputeDerivatives(Tools.corteTransversalBasadoLinea, true).Origin;
+                banderaMedio = true;
             }
 
             bool geometria = false;
 
             Face cara = ReferenciaCaraExtremaElementoEnVista(vista, arriba, elem, ref geometria);
 
-            XYZ puntoMedio = Tools.ObtenerPuntoMedioCara(cara);
+            puntoMedio = (puntoMedio == null) ? Tools.ObtenerPuntoMedioCara(cara) : puntoMedio;
 
             // Verifica si la geometría se recupera de GetSymbolGeometry
-            if (geometria && elem is FamilyInstance)
+            if (!banderaMedio && geometria && elem is FamilyInstance)
             {
                 Transform tr = (elem as FamilyInstance).GetTotalTransform();
 
@@ -3570,7 +3677,16 @@ namespace Jump
                     cara = ReferenciaCaraExtremaElementoEnVista(vista, -izquierda, elem, ref geometria);
                 }
 
-                XYZ punto = Tools.ObtenerPuntoMedioCara(cara);
+                XYZ punto = new XYZ();
+
+                if (cara == null)
+                {
+                    punto = Tools.PuntoExtremoElementoEnVista(elem, puntoInicialReferencia);
+                }
+                else
+                {
+                    punto = Tools.ObtenerPuntoMedioCara(cara);
+                }
 
                 // Verifica si la geometría se recupera de GetSymbolGeometry
                 if (geometria && elem is FamilyInstance)
@@ -3592,8 +3708,18 @@ namespace Jump
             }
 
             // Agrega las referencias del plano superior e inferior del elemento
-            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, -direccion, elem).Reference);
-            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, direccion, elem).Reference);
+            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, -direccion, elem));
+            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, direccion, elem));
+
+            if (ArregloRef.get_Item(puntoInicialReferencia) == null)
+            {
+                ArregloRef.set_Item(puntoInicialReferencia, Tools.ReferenciaPuntoExtremoElementoEnVista(elem, puntoInicialReferencia));
+            }
+
+            if (ArregloRef.get_Item(puntoFinalReferencia) == null)
+            {
+                ArregloRef.set_Item(puntoFinalReferencia, Tools.ReferenciaPuntoExtremoElementoEnVista(elem, puntoFinalReferencia));
+            }
 
             // Crea la linea
             Line linea = Line.CreateBound(puntoInicial, puntoInicial.Add(direccion));
@@ -3660,7 +3786,16 @@ namespace Jump
                     cara = ReferenciaCaraExtremaElementoEnVista(vista, -derecha, elem, ref geometria);
                 }
 
-                XYZ punto = Tools.ObtenerPuntoMedioCara(cara);
+                XYZ punto = new XYZ();
+
+                if (cara == null)
+                {
+                    punto = Tools.PuntoExtremoElementoEnVista(elem, puntoFinalReferencia);
+                }
+                else
+                {
+                    punto = Tools.ObtenerPuntoMedioCara(cara);
+                }
 
                 // Verifica si la geometría se recupera de GetSymbolGeometry
                 if (geometria && elem is FamilyInstance)
@@ -3682,8 +3817,18 @@ namespace Jump
             }
 
             // Agrega las referencias del plano superior e inferior del elemento
-            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, -direccion, elem).Reference);
-            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, direccion, elem).Reference);
+            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, -direccion, elem));
+            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, direccion, elem));
+
+            if (ArregloRef.get_Item(puntoInicialReferencia) == null)
+            {
+                ArregloRef.set_Item(puntoInicialReferencia, Tools.ReferenciaPuntoExtremoElementoEnVista(elem, puntoInicialReferencia));
+            }
+
+            if (ArregloRef.get_Item(puntoFinalReferencia) == null)
+            {
+                ArregloRef.set_Item(puntoFinalReferencia, Tools.ReferenciaPuntoExtremoElementoEnVista(elem, puntoFinalReferencia));
+            }
 
             // Crea la linea
             Line linea = Line.CreateBound(puntoInicial, puntoFinal);
@@ -3740,8 +3885,17 @@ namespace Jump
                 bool geometria = false;
 
                 Face cara = ReferenciaCaraExtremaElementoEnVista(vista, arriba, elem, ref geometria);
-                
-                XYZ punto = Tools.ObtenerPuntoMedioCara(cara);
+
+                XYZ punto = new XYZ();
+
+                if (cara == null)
+                {
+                    punto = Tools.PuntoExtremoElementoEnVista(elem, puntoInicialReferencia);
+                }
+                else
+                {
+                    punto = Tools.ObtenerPuntoMedioCara(cara);
+                }
 
                 // Verifica si la geometría se recupera de GetSymbolGeometry
                 if (geometria && elem is FamilyInstance)
@@ -3763,8 +3917,18 @@ namespace Jump
             }
 
             // Agrega las referencias del plano superior e inferior del elemento
-            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, -direccion, elem).Reference);
-            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, direccion, elem).Reference);
+            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, -direccion, elem));
+            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, direccion, elem));
+
+            if (ArregloRef.get_Item(puntoInicialReferencia) == null)
+            {
+                ArregloRef.set_Item(puntoInicialReferencia, Tools.ReferenciaPuntoExtremoElementoEnVista(elem, puntoInicialReferencia));
+            }
+
+            if (ArregloRef.get_Item(puntoFinalReferencia) == null)
+            {
+                ArregloRef.set_Item(puntoFinalReferencia, Tools.ReferenciaPuntoExtremoElementoEnVista(elem, puntoFinalReferencia));
+            }
 
             // Crea la linea
             Line linea = Line.CreateBound(puntoInicial, puntoFinal);
@@ -3822,7 +3986,16 @@ namespace Jump
 
                 Face cara = ReferenciaCaraExtremaElementoEnVista(vista, abajo, elem, ref geometria);
 
-                XYZ punto = Tools.ObtenerPuntoMedioCara(cara);
+                XYZ punto = new XYZ();
+
+                if (cara == null)
+                {
+                    punto = Tools.PuntoExtremoElementoEnVista(elem, puntoFinalReferencia);
+                }
+                else
+                {
+                    punto = Tools.ObtenerPuntoMedioCara(cara);
+                }
 
                 // Verifica si la geometría se recupera de GetSymbolGeometry
                 if (geometria && elem is FamilyInstance)
@@ -3844,8 +4017,18 @@ namespace Jump
             }
 
             // Agrega las referencias del plano superior e inferior del elemento
-            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, -direccion, elem).Reference);
-            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, direccion, elem).Reference);
+            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, -direccion, elem));
+            ArregloRef.Append(ReferenciaCaraExtremaElementoEnVista(vista, direccion, elem));
+
+            if (ArregloRef.get_Item(puntoInicialReferencia) == null)
+            {
+                ArregloRef.set_Item(puntoInicialReferencia, Tools.ReferenciaPuntoExtremoElementoEnVista(elem, puntoInicialReferencia));
+            }
+
+            if (ArregloRef.get_Item(puntoFinalReferencia) == null)
+            {
+                ArregloRef.set_Item(puntoFinalReferencia, Tools.ReferenciaPuntoExtremoElementoEnVista(elem, puntoFinalReferencia));
+            }
 
             // Crea la linea
             Line linea = Line.CreateBound(puntoInicial, puntoFinal);
@@ -4179,8 +4362,8 @@ namespace Jump
 
         #region Referencias 
 
-        ///<summary> Obtiene la cara del plano más alejado de un elemento en una dirección dada </summary>
-        public static Face ReferenciaCaraExtremaElementoEnVista(View vista, XYZ direccion, Element elem)
+        ///<summary> Obtiene la referencia de la cara del plano más alejado de un elemento en una dirección dada </summary>
+        public static Reference ReferenciaCaraExtremaElementoEnVista(View vista, XYZ direccion, Element elem)
         {
             // Crea el string de la referencia a devolver
             Face face = null;
@@ -4207,9 +4390,6 @@ namespace Jump
                 // Recorre todas las caras del solido
                 foreach (Face cara in solido.Faces)
                 {
-                    // Obtiene las coordenadas 3D de la cara en un punto dado
-                    XYZ puntoMedio = ObtenerPuntoMedioCara(cara);
-
                     // Obtiene el vector normal de la cara en un punto dado
                     XYZ normal = ObtenerVectorNormalCara(cara);
 
@@ -4232,7 +4412,7 @@ namespace Jump
                 }
             }
 
-            return face;
+            return (face != null) ? face.Reference : null;
         }
 
         ///<summary> Obtiene la cara del plano más alejado de un elemento en una dirección dada, bool es true si la geometría se recupera de GetSymbolGeometry </summary>
@@ -4260,9 +4440,6 @@ namespace Jump
                 // Recorre todas las caras del solido
                 foreach (Face cara in solido.Faces)
                 {
-                    // Obtiene las coordenadas 3D de la cara en un punto dado
-                    XYZ puntoMedio = ObtenerPuntoMedioCara(cara);
-
                     // Obtiene el vector normal de la cara en un punto dado
                     XYZ normal = ObtenerVectorNormalCara(cara);
 
@@ -4271,7 +4448,7 @@ namespace Jump
                     {
                         // Distancia del punto medio de la cara al baricentro del elemento en el sentido del vector dirección de la vista
                         double distanciaACara = DistanciaBaricentroElementoACara(vista, direccion, elem, cara, ref banderaGeometria);
-
+                        
                         // Verifica que la distancia sea mayor
                         if (distanciaACara > distancia)
                         {
@@ -4283,6 +4460,11 @@ namespace Jump
                         }
                     }
                 }
+            }
+
+            if (face == null)
+            {
+                //face = (Tools.ReferenciaPuntoExtremoElementoEnVista(elem, puntoInicialReferencia));
             }
 
             return face;
@@ -4366,6 +4548,54 @@ namespace Jump
             }
 
             return solidos;
+        }
+
+        ///<summary> Obtiene la referencia del punto inicial o final de un elemento </summary>
+        public static Reference ReferenciaPuntoExtremoElementoEnVista(Element elem, int posicion)
+        {
+            Reference referencia = null;
+
+            Options opcion = new Options();
+
+            opcion.DetailLevel = ViewDetailLevel.Fine;
+
+            opcion.ComputeReferences = true;
+
+            opcion.IncludeNonVisibleObjects = true;
+
+            foreach (GeometryObject geoObj in elem.get_Geometry(opcion))
+            {
+                if (geoObj is Curve)
+                {
+                    referencia = (geoObj as Curve).GetEndPointReference(posicion);
+                }
+            }
+
+            return referencia;
+        }
+
+        ///<summary> Obtiene el punto inicial o final de un elemento </summary>
+        public static XYZ PuntoExtremoElementoEnVista(Element elem, int posicion)
+        {
+            XYZ punto= null;
+
+            Options opcion = new Options();
+
+            opcion.DetailLevel = ViewDetailLevel.Fine;
+
+            opcion.ComputeReferences = true;
+
+            opcion.IncludeNonVisibleObjects = true;
+
+            foreach (GeometryObject geoObj in elem.get_Geometry(opcion))
+            {
+                if (geoObj is Curve)
+                {
+                    punto = (geoObj as Curve).GetEndPoint(posicion);
+                }
+            }
+
+            return punto;
         }
 
         ///<summary> Transforma la dirección de una vista del proyecto al sistema de coordenadas local de la familia </summary>
@@ -5323,7 +5553,7 @@ namespace Jump
         }
 
         ///<summary> Cambia las configuraciones de visualización de la vista </summary>
-        public static View CambiarConfiguracionVista(System.Windows.Forms.ComboBox comboEscala, Document doc, View vista, ViewDetailLevel nivelDetalle)
+        public static View CambiarConfiguracionVista(System.Windows.Forms.ComboBox comboEscala, Document doc, View vista, ViewDetailLevel nivelDetalle, DisplayStyle estiloVista)
         {
             // Crea la variable
             int escala;
@@ -5344,8 +5574,10 @@ namespace Jump
             // Cambia el nivel de detalle de la vista
             vista.DetailLevel = nivelDetalle;
 
+            vista.DisplayStyle = estiloVista;
+
             // Activa el cuadro de recorte
-            vista.CropBoxActive = false;
+            vista.CropBoxActive = true;
 
             // Desactiva la visibilidad del cuadro de recorte
             vista.CropBoxVisible = false;
@@ -5353,6 +5585,8 @@ namespace Jump
             // Oculta las categorías
             vista.SetCategoryHidden(Category.GetCategory(doc, BuiltInCategory.OST_Grids).Id, true);
             vista.SetCategoryHidden(Category.GetCategory(doc, BuiltInCategory.OST_Sections).Id, true);
+
+            doc.Regenerate();
 
             return vista;
         }
@@ -5396,6 +5630,8 @@ namespace Jump
 
             // Muestra todos los elementos de la lista
             Tools.MostrarElementosVista(doc, vista, ElementosMostar);
+
+            doc.Regenerate();
         }
 
         ///<summary> Elimina de la lista los subelementos </summary>
@@ -5450,6 +5686,124 @@ namespace Jump
                 }
                 catch (Exception) { }
             }
+
+            return vista;
+        }
+
+        ///<summary> Ajusta el recuadro de una vista al elemento dado </summary>
+        public static View AjustarRecuadroDeVista(View vista, Element elem)
+        {
+            try
+            {
+                BoundingBoxXYZ recuadroVista = vista.CropBox;
+                BoundingBoxXYZ bbElem = elem.get_BoundingBox(null);
+
+                Transform tra = recuadroVista.Transform;
+
+                XYZ abajoInferiorIzquierda = bbElem.Min;
+                XYZ abajoInferiorDerecha = new XYZ(bbElem.Max.X, bbElem.Min.Y, bbElem.Min.Z);
+                XYZ abajoSuperiorIzquierda = new XYZ(bbElem.Min.X, bbElem.Max.Y, bbElem.Min.Z);
+                XYZ abajoSuperiorDerecha = new XYZ(bbElem.Max.X, bbElem.Max.Y, bbElem.Min.Z);
+
+                XYZ arribaSuperiorDerecha = bbElem.Max;
+                XYZ arribaSuperiorIzquierda = new XYZ(bbElem.Min.X, bbElem.Max.Y, bbElem.Max.Z);
+                XYZ arribaInferiorDerecha = new XYZ(bbElem.Max.X, bbElem.Min.Y, bbElem.Max.Z);
+                XYZ arribaInferiorIzquierda = new XYZ(bbElem.Min.X, bbElem.Min.Y, bbElem.Max.Z);
+
+                var puntos = new XYZ[8] { abajoInferiorIzquierda, abajoInferiorDerecha, abajoSuperiorIzquierda, abajoSuperiorDerecha,
+                                          arribaSuperiorDerecha, arribaSuperiorIzquierda, arribaInferiorDerecha, arribaInferiorIzquierda };
+
+                int cantidad = puntos.Length - 1;
+
+                for (int i = 0; i <= cantidad; i++)
+                {
+                    // Transforma las coordenadas del recuadro a coordenadas del modelo
+                    puntos[i] = bbElem.Transform.OfPoint(puntos[i]);
+
+                    // Transforma a coordenadas de la vista
+                    puntos[i] = tra.Inverse.OfPoint(puntos[i]);
+                }
+
+                double MinX = puntos.Min(j => j.X);
+                double MinY = puntos.Min(j => j.Y);
+                double MinZ = puntos.Min(j => j.Z);
+                double MaxX = puntos.Max(j => j.X);
+                double MaxY = puntos.Max(j => j.Y);
+                double MaxZ = puntos.Max(j => j.Z);
+
+                recuadroVista.Min = new XYZ(MinX, MinY, MinZ);
+                recuadroVista.Max = new XYZ(MaxX, MaxY, MaxZ);
+
+                vista.CropBox = recuadroVista;
+            }
+            catch (Exception) { }
+
+            return vista;
+        }
+
+        ///<summary> Ajusta el recuadro de una vista con todos los elementos </summary>
+        public static View AjustarRecuadroDeVista(View vista, Element elem, List<Rebar> lista)
+        {
+            try
+            {
+                BoundingBoxXYZ recuadroVista = vista.CropBox;
+                BoundingBoxXYZ bbElem = new BoundingBoxXYZ();
+
+                List<XYZ> puntosMaxMin =  new List<XYZ>();
+
+                puntosMaxMin.Add(elem.get_BoundingBox(vista).Max);
+                puntosMaxMin.Add(elem.get_BoundingBox(vista).Min);
+
+                foreach (Rebar barra in lista)
+                {
+                    puntosMaxMin.Add(barra.get_BoundingBox(vista).Max);
+                    puntosMaxMin.Add(barra.get_BoundingBox(vista).Min);
+                }
+
+                bbElem.Max = new XYZ(puntosMaxMin.Max(x => x.X), puntosMaxMin.Max(x => x.Y), puntosMaxMin.Max(x => x.Z));
+                bbElem.Min = new XYZ(puntosMaxMin.Min(x => x.X), puntosMaxMin.Min(x => x.Y), puntosMaxMin.Min(x => x.Z));
+
+                Transform tra = recuadroVista.Transform;
+
+                XYZ abajoInferiorIzquierda = bbElem.Min;
+                XYZ abajoInferiorDerecha = new XYZ(bbElem.Max.X, bbElem.Min.Y, bbElem.Min.Z);
+                XYZ abajoSuperiorIzquierda = new XYZ(bbElem.Min.X, bbElem.Max.Y, bbElem.Min.Z);
+                XYZ abajoSuperiorDerecha = new XYZ(bbElem.Max.X, bbElem.Max.Y, bbElem.Min.Z);
+
+                XYZ arribaSuperiorDerecha = bbElem.Max;
+                XYZ arribaSuperiorIzquierda = new XYZ(bbElem.Min.X, bbElem.Max.Y, bbElem.Max.Z);
+                XYZ arribaInferiorDerecha = new XYZ(bbElem.Max.X, bbElem.Min.Y, bbElem.Max.Z);
+                XYZ arribaInferiorIzquierda = new XYZ(bbElem.Min.X, bbElem.Min.Y, bbElem.Max.Z);
+
+                var puntos = new XYZ[8] { abajoInferiorIzquierda, abajoInferiorDerecha, abajoSuperiorIzquierda, abajoSuperiorDerecha,
+                                          arribaSuperiorDerecha, arribaSuperiorIzquierda, arribaInferiorDerecha, arribaInferiorIzquierda };
+
+                int cantidad = puntos.Length - 1;
+
+                for (int i = 0; i <= cantidad; i++)
+                {
+                    // Transforma las coordenadas del recuadro a coordenadas del modelo
+                    puntos[i] = bbElem.Transform.OfPoint(puntos[i]);
+
+                    // Transforma a coordenadas de la vista
+                    puntos[i] = tra.Inverse.OfPoint(puntos[i]);
+                }
+
+                double MinX = puntos.Min(j => j.X);
+                double MinY = puntos.Min(j => j.Y);
+                double MinZ = puntos.Min(j => j.Z);
+                double MaxX = puntos.Max(j => j.X);
+                double MaxY = puntos.Max(j => j.Y);
+                double MaxZ = puntos.Max(j => j.Z);
+
+                recuadroVista.Min = new XYZ(MinX, MinY, MinZ);
+                recuadroVista.Max = new XYZ(MaxX, MaxY, MaxZ);
+
+                vista.CropBox = recuadroVista;
+
+                vista.Document.Regenerate();
+            }
+            catch (Exception) { }
 
             return vista;
         }
@@ -5520,6 +5874,115 @@ namespace Jump
             }
 
             return li;
+        }
+
+        ///<summary> Obtiene el valor X de la propiedad Location </summary>
+        private static double ObtenerX(Location loc)
+        {
+            if (loc is LocationPoint)
+            {
+                // Si es LocationPoint, devuelve la coordenada X del punto
+                return Math.Round((loc as LocationPoint).Point.X, precisionOrdenarX);
+            }
+            else
+            {
+                // Si es LocationCurve, verifica la dirección de la curva
+                Curve curve = (loc as LocationCurve).Curve;
+
+                // Obtiene el vector de dirección de la curva
+                XYZ curveDirection = curve.ComputeDerivatives(puntoParaEvaluarLinea, true).BasisX.Normalize();
+                
+                // Calcula el ángulo en grados
+                double angulo = Math.Atan2(curveDirection.Y, curveDirection.X) * (180 / Math.PI);
+                
+                // Verifica si el ángulo está entre los ángulos dados
+                if (angulo >= precisionAnguloNegativo && angulo <= precisionAnguloPositivo)
+                {
+                    // Devuelve la coordenada X del punto inicial de la curva
+                    return Math.Round(curve.GetEndPoint(0).X, precisionOrdenarX);
+                }
+                else if (angulo >= 180 + precisionAnguloNegativo && angulo <= 180 + precisionAnguloPositivo)
+                {
+                    // Devuelve la coordenada X del punto final de la curva
+                    return Math.Round(curve.GetEndPoint(1).X, precisionOrdenarX);
+                }
+                else
+                {
+                    // Devuelve la coordenada X del punto final de la curva
+                    return Math.Round(curve.GetEndPoint(1).X, precisionOrdenarX);
+                }
+            }
+        }
+
+        ///<summary> Obtiene el valor Y de la propiedad Location </summary>
+        private static double ObtenerY(Location loc)
+        {
+            if (loc is LocationPoint)
+            {
+                // Si es LocationPoint, devuelve la coordenada Y del punto
+                return Math.Round((loc as LocationPoint).Point.Y, precisionOrdenarY);
+            }
+            else
+            {
+                // Si es LocationCurve, verifica la dirección de la curva
+                Curve curve = (loc as LocationCurve).Curve;
+
+                // Obtiene el vector de dirección de la curva
+                XYZ curveDirection = curve.ComputeDerivatives(puntoParaEvaluarLinea, true).BasisX.Normalize();
+                
+                // Calcula el ángulo en grados
+                double angulo = Math.Atan2(curveDirection.Y, curveDirection.X) * (180 / Math.PI);
+                
+                // Verifica si el ángulo está entre los ángulos dados
+                if (angulo >= precisionAnguloNegativo && angulo <= precisionAnguloPositivo)
+                {
+                    // Devuelve la coordenada Y del punto inicial de la curva
+                    return Math.Round(curve.GetEndPoint(0).Y, precisionOrdenarY);
+                }
+                else if (angulo >= 180 + precisionAnguloNegativo && angulo <= 180 + precisionAnguloPositivo)
+                {
+                    // Devuelve la coordenada Y del punto final de la curva
+                    return Math.Round(curve.GetEndPoint(1).Y, precisionOrdenarY);
+                }
+                else
+                {
+                    // Devuelve la coordenada Y del punto final de la curva
+                    return Math.Round(curve.GetEndPoint(1).Y, precisionOrdenarY);
+                }
+            }
+        }
+
+        //<summary> Obtiene true si LocationCurve se encuentra entre un ángulo +- determinado </summary>
+        private static bool EsHorizontal(Element elem)
+        {
+            if (elem.Location is LocationCurve locationCurve)
+            {
+                // Si es LocationCurve, verifica la dirección de la curva
+                Curve curve = locationCurve.Curve;
+                
+                // Obtiene el vector de dirección de la curva
+                XYZ curveDirection = curve.ComputeDerivatives(puntoParaEvaluarLinea, true).BasisX.Normalize();
+
+                // Calcula el ángulo en grados
+                double angulo = Math.Atan2(curveDirection.Y, curveDirection.X) * (180 / Math.PI);
+
+                // Verifica si el ángulo está entre los ángulos dados
+                return (angulo >= precisionAnguloNegativo && angulo <= precisionAnguloPositivo ||
+                        angulo >= 180 + precisionAnguloNegativo && angulo <= 180 + precisionAnguloPositivo);
+            }
+
+            return true;
+        }
+
+        ///<summary> Ordena una lista de elementos de izquierda a derecha, arriba hacia abajo y la devuelve </summary>
+        public static List<Element> OrdenarIzquierdaDerechaArribaAbajoMod(List<Element> lista)
+        {
+            // Ordena la lista XYZ con una precisión determinada
+            lista = lista.OrderByDescending(elem => EsHorizontal(elem))
+                         .ThenByDescending(elem => ObtenerY(elem.Location))
+                         .ThenBy(elem => ObtenerX(elem.Location)).ToList();
+
+            return lista;
         }
 
         ///<summary> Ordena una lista de elementos de izquierda a derecha, arriba hacia abajo y la devuelve </summary>
@@ -5744,7 +6207,7 @@ namespace Jump
 
         #region Rellenar Combobox, ListBox, verificar CheckBox
 
-        ///<summary> Rellena un Combobox con una lista de Element </summary>
+        ///<summary> Rellena un Combobox con una lista de Element y muestra el nombre de tipo </summary>
         public static void RellenarCombobox<T>(System.Windows.Forms.ComboBox combo, List<T> lista)
         {
             // Limpia el combobox
@@ -5762,6 +6225,102 @@ namespace Jump
                 // Asigna el primer elemento a la lista desplegable
                 combo.SelectedIndex = 0;
             }
+        }
+
+        ///<summary> Rellena un Combobox con una lista de Element y muestra el nombre de familia, tipo y ID </summary>
+        public static void RellenarComboBoxDeElementosPreview(System.Windows.Forms.ComboBox combo, Document doc, List<Element> lista)
+        {
+            List<string> elementos = new List<string>();
+
+            combo.Items.Clear();
+
+            foreach (Element elem in lista)
+            {
+                string nombre = null;
+
+                try
+                {
+                    Element tipo = doc.GetElement(elem.GetTypeId());
+
+                    Parameter param = tipo.get_Parameter(BuiltInParameter.SYMBOL_FAMILY_NAME_PARAM);
+
+                    nombre = param.AsString() + " " + elem.Name + " <" + elem.Id.ToString() + ">"; ;
+
+                    elementos.Add(nombre);
+                }
+                catch (Exception) { }
+            }
+
+            if (elementos.Count > 0)
+            {
+                elementos = elementos.OrderBy(x => x).ToList();
+
+                combo.Items.AddRange(elementos.ToArray());
+
+                combo.SelectedIndex = 0;
+            }
+        }
+
+        ///<summary> Rellena una ListBox con los elementos de una lista y muestra el nombre de familia, tipo y ID </summary>
+        public static void RellenarListBoxDeElementos(System.Windows.Forms.ListBox listbox, Document doc, List<Element> lista)
+        {
+            List<string> elementos = new List<string>();
+
+            foreach (Element elem in lista)
+            {
+                string nombre = null;
+
+                try
+                {
+                    Element tipo = doc.GetElement(elem.GetTypeId());
+
+                    Parameter param = tipo.get_Parameter(BuiltInParameter.SYMBOL_FAMILY_NAME_PARAM);
+
+                    nombre = param.AsString() + " " + elem.Name + " <" + elem.Id.ToString() + ">"; ;
+
+                    elementos.Add(nombre);
+                }
+                catch (Exception) { }
+            }
+
+            if (elementos.Count > 0)
+            {
+                elementos = elementos.OrderBy(x => x).ToList();
+
+                listbox.Items.AddRange(elementos.ToArray());
+            }
+        }
+
+        ///<summary> Obtiene una lista de elementos según una selección en un ListBox </summary>
+        public static List<Element> ObtenerElementosDeUnListbox(System.Windows.Forms.ListBox listbox, Document doc, List<Element> todosLosElementos)
+        {
+            // Crea la lista a devolver
+            List<Element> elementos = new List<Element>();
+            List<ElementId> elementosID = new List<ElementId>();
+            List<string> elementosSeleccionados = new List<string>();
+
+            elementosSeleccionados = listbox.SelectedItems.Cast<string>().ToList();
+
+            foreach (string nombre in elementosSeleccionados)
+            {
+                string id = nombre.Remove(0, nombre.IndexOf("<"));
+                id = id.Remove(0, 1);
+                id = id.Remove(id.IndexOf(">"), 1);
+
+                Int64 ID = Convert.ToInt64(id);
+
+                elementosID.Add(new ElementId(ID));
+            }
+
+            if (elementosID.Count>0)
+            {
+                foreach (ElementId id in elementosID)
+                {
+                    elementos.Add(doc.GetElement(id));
+                }
+            }
+
+            return elementos;
         }
 
         ///<summary> Rellena un Combobox con las escalas </summary>
@@ -5796,85 +6355,6 @@ namespace Jump
                 // Asigna el primer elemento a la lista desplegable
                 combo.SelectedIndex = 0;
             }
-        }
-
-        ///<summary> Rellena una ListBox con los elementos de una lista </summary>
-        public static void RellenarListBoxDeElementos(System.Windows.Forms.ListBox listbox, Document doc, List<Element> lista)
-        {
-            // Recorre la lista y agrega a la listbox elementos
-            try
-            {
-                foreach (Element elem in lista)
-                {
-                    FamilySymbol sym = null;
-                    string simbolo = "";
-
-                    try
-                    {
-                        // Obtiene el FamilySymbol del elemento
-                        sym = doc.GetElement(elem.GetTypeId()) as FamilySymbol;
-                    }
-                    catch (Exception) { }
-
-                    if (sym != null)
-                    {
-                        simbolo = sym.Family.Name + ": ";
-                    }
-
-                    // Crea el nombre a mostrar y luego el ID del elemento
-                    string nombre = simbolo + elem.Name + " <" + elem.Id.ToString() + ">";
-
-                    // Agrega el objeto y asigna el nombre 
-                    listbox.Items.Add(nombre);
-                }
-            }
-            catch (Exception) { }
-        }
-
-        ///<summary> Obtiene una lista de elementos según una selección en un ListBox </summary>
-        public static List<Element> ObtenerElementosDeUnListbox(System.Windows.Forms.ListBox listbox,
-                                                                Document doc,
-                                                                List<Element> todosLosElementos)
-        {
-            // Crea la lista a devolver
-            List<Element> elementos = new List<Element>();
-            List<string> elementosSeleccionados = new List<string>();
-
-            elementosSeleccionados = listbox.SelectedItems.Cast<string>().ToList();
-
-            // Recorre la lista de elementos seleccionados
-            for (int i = 0; i < elementosSeleccionados.Count; i++)
-            {
-                for (int j = 0; j < todosLosElementos.Count; j++)
-                {
-                    // Obtiene el FamilySymbol del elemento
-                    FamilySymbol sym = null;
-                    string simbolo = "";
-
-                    try
-                    {
-                        sym = doc.GetElement(todosLosElementos[j].GetTypeId()) as FamilySymbol;
-                    }
-                    catch (Exception) { }
-
-                    if (sym != null)
-                    {
-                        simbolo = sym.Family.Name + ": ";
-                    }
-
-                    // Crea el nombre a mostrar y luego el ID del elemento
-                    string nombre = simbolo + todosLosElementos[j].Name + " <" + todosLosElementos[j].Id.ToString() + ">";
-
-                    // Verifica que el nombre del listbox sea igual al del elemento de la lista
-                    if (nombre == elementosSeleccionados[i])
-                    {
-                        // Agrega el elemento a la lista
-                        elementos.Add(todosLosElementos[j]);
-                    }
-                }
-            }
-
-            return elementos;
         }
 
         ///<summary> Rellena una ListBox con los elementos de una lista </summary>
@@ -5954,15 +6434,18 @@ namespace Jump
         public static void EnumeracionParametrosEjemplarListaElementos(System.Windows.Forms.ListBox listbox,
                                                                        Element elemento, string prefijo, int valorActual, string sufijo)
         {
-            // Obtiene el nombre del parámetro seleccionado
-            string parametroSeleccionado = listbox.SelectedItem.ToString();
-                        
-            // Busca el parámetro en el elemento
-            Parameter parametro = elemento.LookupParameter(parametroSeleccionado);
+            try
+            {
+                // Obtiene el nombre del parámetro seleccionado
+                string parametroSeleccionado = listbox.SelectedItem.ToString();
 
-            // Asigna la enumeración al parámetro
-            parametro.Set(prefijo + valorActual.ToString() + sufijo);
-            
+                // Busca el parámetro en el elemento
+                Parameter parametro = elemento.LookupParameter(parametroSeleccionado);
+
+                // Asigna la enumeración al parámetro
+                parametro.Set(prefijo + valorActual.ToString() + sufijo);
+            }
+            catch (Exception) { }
         }
 
         /// <summary> Valida que los textos ingresados en un TextBox sean solamente números o tecla borrar </summary>

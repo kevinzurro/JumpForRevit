@@ -99,16 +99,21 @@ namespace Jump
             lblPrecisionOrdenarDescripcion.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf1-2-3");
             lblPresicionOrdenarUnidadX.Text = LabelUtils.GetLabelForUnit(this.tipoUnidad);
             lblPresicionOrdenarUnidadY.Text = LabelUtils.GetLabelForUnit(this.tipoUnidad);
+            lblPrecisionNodo.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf1-2-4");
+            lblNodoAnalitico.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf1-2-5");
+            lblPrecisionNodoAnaliticoUnidad.Text = LabelUtils.GetLabelForUnit(this.tipoUnidad);
             gbxVista.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf1-3-1");
             rbtnVistaLocal.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf1-3-2");
             rbtnVistaGlobal.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf1-3-3");
 
-            double precisionX = Properties.Settings.Default.precisionOrdenarX;
-            double precisionY = Properties.Settings.Default.precisionOrdenarY;
+            double precisionX = Properties.Settings.Default.PrecisionOrdenarX;
+            double precisionY = Properties.Settings.Default.PrecisionOrdenarY;
+            double precisionNodoAnalitico = Properties.Settings.Default.PrecisionNodoAnalitico;
 
             this.pcbxGeneral.BackgroundImage = Iconos_e_Imagenes.Imagenes.Configuraciones_Precision;
             this.txtPrecisionOrdenarX.Text = UnitUtils.ConvertFromInternalUnits(precisionX, this.tipoUnidad).ToString();
             this.txtPrecisionOrdenarY.Text = UnitUtils.ConvertFromInternalUnits(precisionY, this.tipoUnidad).ToString();
+            this.txtPrecisionNodoAnalitico.Text = UnitUtils.ConvertFromInternalUnits(precisionNodoAnalitico, this.tipoUnidad).ToString();
             this.rbtnVistaGlobal.Checked = Properties.Settings.Default.rbtnGeneralVistaGlobal;
             this.rbtnVistaLocal.Checked = Properties.Settings.Default.rbtnGeneralVistaLocal;
 
@@ -425,10 +430,12 @@ namespace Jump
 
             double precisionX = Convert.ToDouble(this.txtPrecisionOrdenarX.Text);
             double precisionY = Convert.ToDouble(this.txtPrecisionOrdenarY.Text);
-            
+            double precisionNodoAnalitico = Convert.ToDouble(this.txtPrecisionNodoAnalitico.Text);
+
             // Pestaña General
-            Properties.Settings.Default.precisionOrdenarX = UnitUtils.ConvertToInternalUnits(precisionX, this.tipoUnidad);
-            Properties.Settings.Default.precisionOrdenarY = UnitUtils.ConvertToInternalUnits(precisionY, this.tipoUnidad);
+            Properties.Settings.Default.PrecisionOrdenarX = UnitUtils.ConvertToInternalUnits(precisionX, this.tipoUnidad);
+            Properties.Settings.Default.PrecisionOrdenarY = UnitUtils.ConvertToInternalUnits(precisionY, this.tipoUnidad);
+            Properties.Settings.Default.PrecisionNodoAnalitico = UnitUtils.ConvertToInternalUnits(precisionNodoAnalitico, this.tipoUnidad);
             Properties.Settings.Default.rbtnGeneralVistaGlobal = this.rbtnVistaGlobal.Checked;
             Properties.Settings.Default.rbtnGeneralVistaLocal = this.rbtnVistaLocal.Checked;
 

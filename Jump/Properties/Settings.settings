@@ -5,7 +5,7 @@
     <Setting Name="IdiomaDelPrograma" Type="System.String" Scope="User">
       <Value Profile="(Default)">Español</Value>
     </Setting>
-    <Setting Name="precisionOrdenarX" Type="System.Double" Scope="User">
+    <Setting Name="PrecisionOrdenarX" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="ZapataIndiceComboboxEscalaVista" Type="System.Int32" Scope="User">
@@ -29,7 +29,7 @@
     <Setting Name="rbtnGeneralVistaGlobal" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="precisionOrdenarY" Type="System.Double" Scope="User">
+    <Setting Name="PrecisionOrdenarY" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="PosicionBarraADibujar" Type="System.Int32" Scope="User">
@@ -211,6 +211,9 @@
     </Setting>
     <Setting Name="PlateaCotaLinealDerecha" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="PrecisionNodoAnalitico" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.01</Value>
     </Setting>
   </Settings>
 </SettingsFile>

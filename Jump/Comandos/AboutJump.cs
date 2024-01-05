@@ -30,7 +30,8 @@ namespace Jump
         public const string nombreColumnaDiametros = "Diametro";
         public const string nombreColumnaEstilosLineas = "EstiloLinea";
 
-        // DataGridView de diámetros y estilos de líneas
+        // Propiedas a mostrar al usuario
+        public const string parametroMostrarUsuarioPlanos = "FamilyName";
         public const string parametroMostrarUsuario = "Name";
         public const string parametroId = "Id";
 

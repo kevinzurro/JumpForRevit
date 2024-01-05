@@ -179,6 +179,10 @@
             this.EstiloLinea = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Diametro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblDiametroEstilo = new System.Windows.Forms.Label();
+            this.lblPrecisionNodo = new System.Windows.Forms.Label();
+            this.txtPrecisionNodoAnalitico = new System.Windows.Forms.TextBox();
+            this.lblPrecisionNodoAnaliticoUnidad = new System.Windows.Forms.Label();
+            this.lblNodoAnalitico = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabcConfiguraciones.SuspendLayout();
             this.tbpgGeneral.SuspendLayout();
@@ -379,6 +383,10 @@
             // 
             // gbxConfiguraciones
             // 
+            this.gbxConfiguraciones.Controls.Add(this.lblNodoAnalitico);
+            this.gbxConfiguraciones.Controls.Add(this.lblPrecisionNodoAnaliticoUnidad);
+            this.gbxConfiguraciones.Controls.Add(this.txtPrecisionNodoAnalitico);
+            this.gbxConfiguraciones.Controls.Add(this.lblPrecisionNodo);
             this.gbxConfiguraciones.Controls.Add(this.lblPrecisionOrdenarDescripcion);
             this.gbxConfiguraciones.Controls.Add(this.lblY);
             this.gbxConfiguraciones.Controls.Add(this.lblX);
@@ -1317,11 +1325,31 @@
             resources.ApplyResources(this.lblDiametroEstilo, "lblDiametroEstilo");
             this.lblDiametroEstilo.Name = "lblDiametroEstilo";
             // 
+            // lblPrecisionNodo
+            // 
+            resources.ApplyResources(this.lblPrecisionNodo, "lblPrecisionNodo");
+            this.lblPrecisionNodo.Name = "lblPrecisionNodo";
+            // 
+            // txtPrecisionNodoAnalitico
+            // 
+            resources.ApplyResources(this.txtPrecisionNodoAnalitico, "txtPrecisionNodoAnalitico");
+            this.txtPrecisionNodoAnalitico.Name = "txtPrecisionNodoAnalitico";
+            // 
+            // lblPrecisionNodoAnaliticoUnidad
+            // 
+            resources.ApplyResources(this.lblPrecisionNodoAnaliticoUnidad, "lblPrecisionNodoAnaliticoUnidad");
+            this.lblPrecisionNodoAnaliticoUnidad.Name = "lblPrecisionNodoAnaliticoUnidad";
+            // 
+            // lblNodoAnalitico
+            // 
+            resources.ApplyResources(this.lblNodoAnalitico, "lblNodoAnalitico");
+            this.lblNodoAnalitico.Name = "lblNodoAnalitico";
+            // 
             // frmConfiguraciones
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Window;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.tableLayoutPanel1);
             this.KeyPreview = true;
             this.MinimizeBox = false;
@@ -1553,5 +1581,9 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn EstiloLinea;
         private System.Windows.Forms.DataGridViewTextBoxColumn Diametro;
         private System.Windows.Forms.Label lblDiametroEstilo;
+        private System.Windows.Forms.Label lblPrecisionNodo;
+        private System.Windows.Forms.Label lblPrecisionNodoAnaliticoUnidad;
+        private System.Windows.Forms.TextBox txtPrecisionNodoAnalitico;
+        private System.Windows.Forms.Label lblNodoAnalitico;
     }
 }

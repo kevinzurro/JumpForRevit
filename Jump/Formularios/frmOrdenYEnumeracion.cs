@@ -64,7 +64,7 @@ namespace Jump
             Tools.RellenarCombobox(this.cmbCategorias, listaCategorias);
 
             // Asigna la categoría
-            this.categoria = (BuiltInCategory)listaCategorias.FirstOrDefault<Category>().Id.IntegerValue;
+            this.categoria = (BuiltInCategory)listaCategorias.FirstOrDefault<Category>().Id.Value;
         }
 
         /// <summary> Agrega los elementos a enumerar a la lista </summary>
@@ -264,8 +264,18 @@ namespace Jump
                 t.Commit();
             }
 
+            if (this.listaElementosEnumerar.Count > 0)
+            {
+                TaskDialog.Show(Language.ObtenerTexto(IdiomaDelPrograma, "OrdYEnu5-2"),
+                                this.listaElementosEnumerar.Count.ToString() + Language.ObtenerTexto(IdiomaDelPrograma, "OrdYEnu5-3"));
+            }
+        }
+
+        /// <summary> Botón cancelar del formulario </summary>
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
             // Cierra el formulario
-            //this.Close();
+            this.Close();
         }
     }
 }

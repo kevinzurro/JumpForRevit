@@ -27,7 +27,7 @@ namespace Jump
             {
                 tra.Start();
 
-                frmDetalleAutomatico Viga = new frmDetalleAutomatico(doc, uiDoc);
+                frmDetalleAutomatico Viga = new frmDetalleAutomatico(doc);
 
                 Viga.clase = typeof(FamilyInstance);
                 Viga.categoria = BuiltInCategory.OST_StructuralFraming;
@@ -36,6 +36,7 @@ namespace Jump
                 Viga.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.VigaEtiquetaIndependiente;
                 Viga.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.VigaEtiquetaCotaProfundidad;
                 Viga.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.ArmaduraEtiquetaIndependiente;
+                Viga.listaSeleccionados = uiDoc.Selection.GetElementIds().ToList();
                 Viga.cotaHorizontalArriba = Jump.Properties.Settings.Default.VigaCotaLinealArriba;
                 Viga.cotaHorizontalAbajo = Jump.Properties.Settings.Default.VigaCotaLinealAbajo;
                 Viga.cotaVerticalIzquierda = Jump.Properties.Settings.Default.VigaCotaLinealIzquierda;

@@ -34,21 +34,12 @@ namespace Jump
             this.vistaActual = doc.ActiveView;
             this.IdiomaDelPrograma = Tools.ObtenerIdiomaDelPrograma();
 
-            // Llama a la función de visibilidad
-            VisibilidadEstructural(doc);
-            
-            return Result.Succeeded;
-        }
-
-        /// <summary> Muestra los elementos estructurales en la vista actual </summary>
-        private void VisibilidadEstructural(Document doc)
-        {
             // Crea una lista de elementos a apagar y prender la visibilidad
             List<Element> todo = Tools.ObtenerTodosEjemplares(doc);
-            List<Element> estructura = Tools.ObtenerTodosEjemplaresEstructuralesActivos(doc);
+            List<Element> estructura = Tools.ObtenerTodosEjemplaresEstructurales(doc);
 
             // Empieza la transacción
-            using (Transaction t = new Transaction(doc, Language.ObtenerTexto(IdiomaDelPrograma, "EleEst1")))
+            using (Transaction t = new Transaction(doc, Language.ObtenerTexto(IdiomaDelPrograma, "EleEst4")))
             {
                 t.Start();
 
@@ -58,6 +49,8 @@ namespace Jump
 
                 t.Commit();
             };
+
+            return Result.Succeeded;
         }
     }
 }

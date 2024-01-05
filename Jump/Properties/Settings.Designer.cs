@@ -38,12 +38,12 @@ namespace Jump.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public double precisionOrdenarX {
+        public double PrecisionOrdenarX {
             get {
-                return ((double)(this["precisionOrdenarX"]));
+                return ((double)(this["PrecisionOrdenarX"]));
             }
             set {
-                this["precisionOrdenarX"] = value;
+                this["PrecisionOrdenarX"] = value;
             }
         }
         
@@ -134,12 +134,12 @@ namespace Jump.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public double precisionOrdenarY {
+        public double PrecisionOrdenarY {
             get {
-                return ((double)(this["precisionOrdenarY"]));
+                return ((double)(this["PrecisionOrdenarY"]));
             }
             set {
-                this["precisionOrdenarY"] = value;
+                this["PrecisionOrdenarY"] = value;
             }
         }
         
@@ -860,6 +860,18 @@ namespace Jump.Properties {
             }
             set {
                 this["PlateaCotaLinealDerecha"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.01")]
+        public double PrecisionNodoAnalitico {
+            get {
+                return ((double)(this["PrecisionNodoAnalitico"]));
+            }
+            set {
+                this["PrecisionNodoAnalitico"] = value;
             }
         }
     }

@@ -44,6 +44,12 @@ namespace Jump
                 Tools.ActivarVisibilidadArmaduras(doc, vistaActual);
                 Tools.ArmaduraSolida(doc, vista3D, vistaActual.Id, visibilidad);
 
+                try
+                {
+                    vistaActual.DetailLevel = ViewDetailLevel.Medium;
+                }
+                catch (Exception) { }
+
                 t.Commit();
             };
             

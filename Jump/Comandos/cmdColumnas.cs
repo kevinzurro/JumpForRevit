@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.DB.Structure;
 using Autodesk.Revit.ApplicationServices;
-using Autodesk.Revit.UI.Selection;
 
 namespace Jump
 {
@@ -29,7 +27,7 @@ namespace Jump
             {
                 tra.Start();
 
-                frmDetalleAutomatico Columna = new frmDetalleAutomatico(doc, uiDoc);
+                frmDetalleAutomatico Columna = new frmDetalleAutomatico(doc);
 
                 Columna.clase = typeof(FamilyInstance);
                 Columna.categoria = BuiltInCategory.OST_StructuralColumns;
@@ -38,6 +36,7 @@ namespace Jump
                 Columna.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.ColumnaEtiquetaIndependiente;
                 Columna.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.ColumnaEtiquetaCotaProfundidad;
                 Columna.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.ArmaduraEtiquetaIndependiente;
+                Columna.listaSeleccionados = uiDoc.Selection.GetElementIds().ToList();
                 Columna.cotaHorizontalArriba = Jump.Properties.Settings.Default.ColumnaCotaLinealArriba;
                 Columna.cotaHorizontalAbajo = Jump.Properties.Settings.Default.ColumnaCotaLinealAbajo;
                 Columna.cotaVerticalIzquierda = Jump.Properties.Settings.Default.ColumnaCotaLinealIzquierda;

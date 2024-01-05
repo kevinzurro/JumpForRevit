@@ -514,7 +514,7 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="panel8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>386, 103</value>
+    <value>386, 50</value>
   </data>
   <data name="panel8.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -541,7 +541,7 @@
     <value>3</value>
   </data>
   <data name="tableLayoutPanel13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>386, 203</value>
+    <value>386, 143</value>
   </data>
   <data name="tableLayoutPanel13.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -565,10 +565,10 @@
     <value>Fill</value>
   </data>
   <data name="gbxArmadura.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 238</value>
+    <value>3, 298</value>
   </data>
   <data name="gbxArmadura.Size" type="System.Drawing.Size, System.Drawing">
-    <value>392, 222</value>
+    <value>392, 162</value>
   </data>
   <data name="gbxArmadura.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -588,6 +588,117 @@
   <data name="&gt;&gt;gbxArmadura.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="lblNodoAnalitico.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="lblNodoAnalitico.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblNodoAnalitico.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 172</value>
+  </data>
+  <data name="lblNodoAnalitico.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 13</value>
+  </data>
+  <data name="lblNodoAnalitico.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="lblNodoAnalitico.Text" xml:space="preserve">
+    <value>Distancia</value>
+  </data>
+  <data name="&gt;&gt;lblNodoAnalitico.Name" xml:space="preserve">
+    <value>lblNodoAnalitico</value>
+  </data>
+  <data name="&gt;&gt;lblNodoAnalitico.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblNodoAnalitico.Parent" xml:space="preserve">
+    <value>gbxConfiguraciones</value>
+  </data>
+  <data name="&gt;&gt;lblNodoAnalitico.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="lblPrecisionNodoAnaliticoUnidad.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblPrecisionNodoAnaliticoUnidad.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblPrecisionNodoAnaliticoUnidad.Location" type="System.Drawing.Point, System.Drawing">
+    <value>191, 172</value>
+  </data>
+  <data name="lblPrecisionNodoAnaliticoUnidad.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 13</value>
+  </data>
+  <data name="lblPrecisionNodoAnaliticoUnidad.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="lblPrecisionNodoAnaliticoUnidad.Text" xml:space="preserve">
+    <value>Unidad distancia</value>
+  </data>
+  <data name="&gt;&gt;lblPrecisionNodoAnaliticoUnidad.Name" xml:space="preserve">
+    <value>lblPrecisionNodoAnaliticoUnidad</value>
+  </data>
+  <data name="&gt;&gt;lblPrecisionNodoAnaliticoUnidad.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblPrecisionNodoAnaliticoUnidad.Parent" xml:space="preserve">
+    <value>gbxConfiguraciones</value>
+  </data>
+  <data name="&gt;&gt;lblPrecisionNodoAnaliticoUnidad.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="txtPrecisionNodoAnalitico.Location" type="System.Drawing.Point, System.Drawing">
+    <value>75, 169</value>
+  </data>
+  <data name="txtPrecisionNodoAnalitico.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 20</value>
+  </data>
+  <data name="txtPrecisionNodoAnalitico.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;txtPrecisionNodoAnalitico.Name" xml:space="preserve">
+    <value>txtPrecisionNodoAnalitico</value>
+  </data>
+  <data name="&gt;&gt;txtPrecisionNodoAnalitico.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtPrecisionNodoAnalitico.Parent" xml:space="preserve">
+    <value>gbxConfiguraciones</value>
+  </data>
+  <data name="&gt;&gt;txtPrecisionNodoAnalitico.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="lblPrecisionNodo.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblPrecisionNodo.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
+  </data>
+  <data name="lblPrecisionNodo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 145</value>
+  </data>
+  <data name="lblPrecisionNodo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 13</value>
+  </data>
+  <data name="lblPrecisionNodo.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="lblPrecisionNodo.Text" xml:space="preserve">
+    <value>Precisión para nodos analíticos</value>
+  </data>
+  <data name="&gt;&gt;lblPrecisionNodo.Name" xml:space="preserve">
+    <value>lblPrecisionNodo</value>
+  </data>
+  <data name="&gt;&gt;lblPrecisionNodo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblPrecisionNodo.Parent" xml:space="preserve">
+    <value>gbxConfiguraciones</value>
+  </data>
+  <data name="&gt;&gt;lblPrecisionNodo.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="lblPrecisionOrdenarDescripcion.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
@@ -595,10 +706,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblPrecisionOrdenarDescripcion.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 105</value>
+    <value>17, 107</value>
   </data>
   <data name="lblPrecisionOrdenarDescripcion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>379, 38</value>
+    <value>369, 38</value>
   </data>
   <data name="lblPrecisionOrdenarDescripcion.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -616,7 +727,7 @@
     <value>gbxConfiguraciones</value>
   </data>
   <data name="&gt;&gt;lblPrecisionOrdenarDescripcion.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>4</value>
   </data>
   <data name="lblY.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -646,7 +757,7 @@
     <value>gbxConfiguraciones</value>
   </data>
   <data name="&gt;&gt;lblY.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>5</value>
   </data>
   <data name="lblX.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -676,7 +787,7 @@
     <value>gbxConfiguraciones</value>
   </data>
   <data name="&gt;&gt;lblX.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>6</value>
   </data>
   <data name="lblPresicionOrdenarUnidadY.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -706,7 +817,7 @@
     <value>gbxConfiguraciones</value>
   </data>
   <data name="&gt;&gt;lblPresicionOrdenarUnidadY.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>7</value>
   </data>
   <data name="txtPrecisionOrdenarY.Location" type="System.Drawing.Point, System.Drawing">
     <value>75, 73</value>
@@ -727,7 +838,7 @@
     <value>gbxConfiguraciones</value>
   </data>
   <data name="&gt;&gt;txtPrecisionOrdenarY.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>8</value>
   </data>
   <data name="lblPresicionOrdenarUnidadX.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -757,7 +868,7 @@
     <value>gbxConfiguraciones</value>
   </data>
   <data name="&gt;&gt;lblPresicionOrdenarUnidadX.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>9</value>
   </data>
   <data name="txtPrecisionOrdenarX.Location" type="System.Drawing.Point, System.Drawing">
     <value>75, 42</value>
@@ -778,10 +889,13 @@
     <value>gbxConfiguraciones</value>
   </data>
   <data name="&gt;&gt;txtPrecisionOrdenarX.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>10</value>
   </data>
   <data name="lblprecisionOrdenar.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="lblprecisionOrdenar.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
   </data>
   <data name="lblprecisionOrdenar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -790,7 +904,7 @@
     <value>7, 21</value>
   </data>
   <data name="lblprecisionOrdenar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 13</value>
+    <value>216, 13</value>
   </data>
   <data name="lblprecisionOrdenar.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -808,7 +922,7 @@
     <value>gbxConfiguraciones</value>
   </data>
   <data name="&gt;&gt;lblprecisionOrdenar.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>11</value>
   </data>
   <data name="gbxConfiguraciones.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -817,7 +931,7 @@
     <value>3, 3</value>
   </data>
   <data name="gbxConfiguraciones.Size" type="System.Drawing.Size, System.Drawing">
-    <value>392, 144</value>
+    <value>392, 204</value>
   </data>
   <data name="gbxConfiguraciones.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -901,7 +1015,7 @@
     <value>Fill</value>
   </data>
   <data name="gbxVista.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 153</value>
+    <value>3, 213</value>
   </data>
   <data name="gbxVista.Size" type="System.Drawing.Size, System.Drawing">
     <value>392, 79</value>
@@ -955,7 +1069,7 @@
     <value>1</value>
   </data>
   <data name="tableLayoutPanel4.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="gbxArmadura" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="gbxConfiguraciones" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="gbxVista" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Absolute,150,Absolute,85,Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="gbxArmadura" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="gbxConfiguraciones" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="gbxVista" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Absolute,210,Absolute,85,Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="tableLayoutPanel3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4151,6 +4265,9 @@
   </data>
   <data name="pcbxCotaPosicion.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
+  </data>
+  <data name="pcbxCotaPosicion.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="pcbxCotaPosicion.Location" type="System.Drawing.Point, System.Drawing">
     <value>505, 3</value>

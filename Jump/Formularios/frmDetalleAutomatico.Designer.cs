@@ -173,7 +173,7 @@
             this.cmbElementosPreview.Name = "cmbElementosPreview";
             this.cmbElementosPreview.Size = new System.Drawing.Size(302, 23);
             this.cmbElementosPreview.TabIndex = 4;
-            this.cmbElementosPreview.SelectionChangeCommitted += new System.EventHandler(this.cmbElementosPreview_SelectionChangeCommitted);
+            this.cmbElementosPreview.SelectionChangeCommitted += new System.EventHandler(this.ActivarODesactivarImagenes_CheckedChanged);
             // 
             // tableLayoutPanel4
             // 
@@ -240,6 +240,8 @@
             // chbVistaXX
             // 
             this.chbVistaXX.AutoSize = true;
+            this.chbVistaXX.Checked = true;
+            this.chbVistaXX.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chbVistaXX.Location = new System.Drawing.Point(30, 22);
             this.chbVistaXX.Name = "chbVistaXX";
             this.chbVistaXX.Size = new System.Drawing.Size(75, 19);
@@ -546,6 +548,7 @@
             this.rbtnConjuntoDeLaLista.TabStop = true;
             this.rbtnConjuntoDeLaLista.Text = "Elementos de la lista";
             this.rbtnConjuntoDeLaLista.UseVisualStyleBackColor = true;
+            this.rbtnConjuntoDeLaLista.CheckedChanged += new System.EventHandler(this.rbtnTodos_CheckedChanged);
             // 
             // rbtnElementosSeleccionados
             // 
@@ -559,6 +562,7 @@
             this.rbtnElementosSeleccionados.TabStop = true;
             this.rbtnElementosSeleccionados.Text = "Elementos seleccionados";
             this.rbtnElementosSeleccionados.UseVisualStyleBackColor = true;
+            this.rbtnElementosSeleccionados.CheckedChanged += new System.EventHandler(this.rbtnTodos_CheckedChanged);
             // 
             // rbtnTodos
             // 
@@ -573,6 +577,7 @@
             this.rbtnTodos.TabStop = true;
             this.rbtnTodos.Text = "Todos";
             this.rbtnTodos.UseVisualStyleBackColor = true;
+            this.rbtnTodos.CheckedChanged += new System.EventHandler(this.rbtnTodos_CheckedChanged);
             // 
             // lstElementos
             // 
@@ -584,6 +589,7 @@
             this.lstElementos.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.lstElementos.Size = new System.Drawing.Size(253, 374);
             this.lstElementos.TabIndex = 1;
+            this.lstElementos.SelectedIndexChanged += new System.EventHandler(this.rbtnTodos_CheckedChanged);
             // 
             // panel4
             // 

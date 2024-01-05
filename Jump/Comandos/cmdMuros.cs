@@ -27,7 +27,7 @@ namespace Jump
             {
                 tra.Start();
 
-                frmDetalleAutomatico Muro = new frmDetalleAutomatico(doc, uiDoc);
+                frmDetalleAutomatico Muro = new frmDetalleAutomatico(doc);
                 
                 Muro.clase = typeof(Wall);
                 Muro.categoria = BuiltInCategory.OST_Walls;
@@ -36,6 +36,7 @@ namespace Jump
                 Muro.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.MuroEtiquetaIndependiente;
                 Muro.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.MuroEtiquetaCotaProfundidad;
                 Muro.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.ArmaduraEtiquetaIndependiente;
+                Muro.listaSeleccionados = uiDoc.Selection.GetElementIds().ToList();
                 Muro.cotaHorizontalArriba = Jump.Properties.Settings.Default.MuroCotaLinealArriba;
                 Muro.cotaHorizontalAbajo = Jump.Properties.Settings.Default.MuroCotaLinealAbajo;
                 Muro.cotaVerticalIzquierda = Jump.Properties.Settings.Default.MuroCotaLinealIzquierda;

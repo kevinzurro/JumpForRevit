@@ -243,14 +243,6 @@ namespace Jump
             Espanol.Add("Los5", "Aceptar");
             Espanol.Add("Los6", "Cancelar");
 
-            Espanol.Add("VisArm1", "Visibilidad \nde Armadura");
-            Espanol.Add("VisArm2", "Visiblidad de armadura descripción corta");
-            Espanol.Add("VisArm3", "Visiblidad de armadura descripción larga");
-            Espanol.Add("VisArmSol", "Solido");
-            Espanol.Add("VisArmFil", "Filamento");
-            Espanol.Add("VisArmSinTap", "Sin tapar");            
-            Espanol.Add("VisArmTap", "Tapada");
-
             Espanol.Add("DetArm1", "Despiece \nde barra");
             Espanol.Add("DetArm2", "Despiece de barra descripción corta");
             Espanol.Add("DetArm3", "Despiece de barra descripción larga");
@@ -271,6 +263,8 @@ namespace Jump
             Espanol.Add("Conf1-2-1", "Configuraciones");
             Espanol.Add("Conf1-2-2", "Precisión para ordenar los elementos");
             Espanol.Add("Conf1-2-3", "La precisión en 'X' como en 'Y' se utiliza para el Orden y Enumeración de los elementos");
+            Espanol.Add("Conf1-2-4", "Precisión para nudos analíticos");
+            Espanol.Add("Conf1-2-5", "Distancia");
             Espanol.Add("Conf1-3-1", "Corte transversal");
             Espanol.Add("Conf1-3-2", "Local    -    En las coordenadas de la familia ( X ´ ; Y ´ )");
             Espanol.Add("Conf1-3-3", "Global   -    En las coordenadas del proyecto ( X ; Y )");
@@ -340,6 +334,9 @@ namespace Jump
             Espanol.Add("OrdYEnu3-7", "Parámetro");
             Espanol.Add("OrdYEnu3-8", "Enumeración");
             Espanol.Add("OrdYEnu4-1", "Comando de enumeración");
+            Espanol.Add("OrdYEnu5-1", "Orden y enumeración");
+            Espanol.Add("OrdYEnu5-2", "Orden y enumeración");
+            Espanol.Add("OrdYEnu5-3", " elementos fueron enumerados");
 
             Espanol.Add("Idi1", "Idioma");
             Espanol.Add("Idi2", "Permite cambiar el idioma");
@@ -353,10 +350,43 @@ namespace Jump
             Espanol.Add("EleEst1", "Elementos \nestructurales");
             Espanol.Add("EleEst2", "Oculta los elementos que no son estructurales");
             Espanol.Add("EleEst3", "Oculta todos los elementos no estructurales en la vista actual");
+            Espanol.Add("EleEst4", "Visibilidad estructural");
 
             Espanol.Add("EleAna1", "Elementos \nanalíticos");
             Espanol.Add("EleAna2", "Oculta los elementos que no son análiticos");
             Espanol.Add("EleAna3", "Oculta todos los elementos dejando a los elementos análiticos visibles en la vista");
+            Espanol.Add("EleAna4", "Visibilidad analíticos");
+
+            Espanol.Add("VisArm1", "Visibilidad \nde Armadura");
+            Espanol.Add("VisArm2", "Visiblidad de armadura descripción corta");
+            Espanol.Add("VisArm3", "Visiblidad de armadura descripción larga");
+            Espanol.Add("VisArmSol", "Barras sólidas");
+            Espanol.Add("VisArmFil", "Barras filamento");
+            Espanol.Add("VisArmSinTap", "Barras sin tapar");
+            Espanol.Add("VisArmTap", "Barras tapadas");
+
+            Espanol.Add("NodAnaVer1", "Nodos analíticos");
+            Espanol.Add("NodAnaVer2", "Verificación de nodos analíticos descripción corta");
+            Espanol.Add("NodAnaVer3", "Verificación de nodos analíticos descripción larga");
+            Espanol.Add("NodAnaVer4", "Verificación de nodos analíticos");
+            Espanol.Add("NodAnaVer5", "Aceptar");
+            Espanol.Add("NodAnaVer6", "Cancelar");
+            Espanol.Add("NodAnaVer1-1", "Nodos analíticos");
+            Espanol.Add("NodAnaVer1-2", "Nodos cercanos");
+            Espanol.Add("NodAnaVer2-1", "Aislar nodos");
+
+            Espanol.Add("CreaPlano1", "Generar planos");
+            Espanol.Add("CreaPlano2", "Permite crear planos con vistas");
+            Espanol.Add("CreaPlano3", "Permite crear planos con vistas descripción larga");
+            Espanol.Add("CreaPlano4", "Generar planos");
+            Espanol.Add("CreaPlano5", "Aceptar");
+            Espanol.Add("CreaPlano6", "Cancelar");
+            Espanol.Add("CreaPlano1-1", "Vistas");
+            Espanol.Add("CreaPlano2-1", "Cuadro de rotulación");
+            Espanol.Add("CreaPlano3-1", "Crear un plano por cada vista");
+            Espanol.Add("CreaPlano4-1", "Generación de plano");
+            Espanol.Add("CreaPlano4-2", "Generación de plano");
+            Espanol.Add("CreaPlano4-3", " planos fueron creados");
 
             Espanol.Add("ActBar1", "Actualizar la forma de las barras");
             Espanol.Add("ActBar2", "Actualizador de barras");

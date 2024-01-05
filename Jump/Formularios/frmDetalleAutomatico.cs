@@ -20,10 +20,10 @@ namespace Jump
         // Variable necesarias
         string IdiomaDelPrograma;
         Document doc;
-        UIDocument uiDoc;
         string transaccionGrupoImagenPreview = "grupo vista previa";
         int posicionImagenPreview = 0;
-        Transaction traGeneral;
+        TransactionGroup traGeneral;
+        //TransactionGroup traGroupGeneral;
         public bool bandera = false;
         Type claseDetalleBarra = typeof(RebarBendingDetailType); 
         BuiltInCategory categoriaDetalleBarra = BuiltInCategory.OST_RebarBendingDetails;
@@ -41,16 +41,18 @@ namespace Jump
         public bool cotaHorizontalArriba;
         public bool cotaHorizontalAbajo;
         public string clave;
+        public List<ElementId> listaSeleccionados;
 
         // Parámetros generales
         List<Element> listaElementosEstructurales = new List<Element>();
         List<Element> elementos = new List<Element>();
+        List<Element> elementosVistaPreview = new List<Element>();
         List<FamilySymbol> etiquetasElemento = new List<FamilySymbol>();
         List<FamilySymbol> etiquetasArmaduras = new List<FamilySymbol>();
         List<Element> etiquetasLongitud = new List<Element>();
         List<DimensionType> cotasLineales = new List<DimensionType>();
         List<SpotDimensionType> cotasElevacion = new List<SpotDimensionType>();
-
+        
         // Lista de etiquetas creadas en la vista
         List<Element> listaEtiquetasCreadas = new List<Element>();
 
@@ -61,9 +63,10 @@ namespace Jump
         BuiltInCategory categoriaEtiquetaArmadura = BuiltInCategory.OST_RebarTags;
         DimensionStyleType cotaEstiloLineal = DimensionStyleType.Linear;
         ViewDetailLevel nivelDetalle = ViewDetailLevel.Fine;
+        DisplayStyle estiloVista = DisplayStyle.FlatColors;
 
         // Constructor del formulario
-        public frmDetalleAutomatico(Document doc, UIDocument uiDoc)
+        public frmDetalleAutomatico(Document doc)
         {
             InitializeComponent();
             
@@ -72,10 +75,9 @@ namespace Jump
             // Variable necesarias
             this.IdiomaDelPrograma = Tools.ObtenerIdiomaDelPrograma();
             this.doc = doc;
-            this.uiDoc = uiDoc;
 
             // Crea el grupo de transacciones
-            traGeneral = new Transaction(this.doc, transaccionGrupoImagenPreview);
+            traGeneral = new TransactionGroup(this.doc, transaccionGrupoImagenPreview);
             traGeneral.Start();
         }
 
@@ -116,12 +118,14 @@ namespace Jump
 
             // Asigna las zapatas del proyecto a la lista
             this.elementos = Tools.ObtenerTodosEjemplaresSegunClaseYCategoria(doc, clase, categoria);
+            this.elementosVistaPreview = this.elementos;
 
             // Elimina los subelementos
             try { this.elementos = Tools.EliminarSubelementos(this.elementos); } catch (Exception) { }
 
             // Agrega los elementos a la listbox
             Tools.RellenarListBoxDeElementos(this.lstElementos, doc, this.elementos);
+            Tools.RellenarComboBoxDeElementosPreview(this.cmbElementosPreview, this.doc, this.elementosVistaPreview);
         }
 
         /// <summary> Carga los combobox de las etiquetas </summary>
@@ -140,7 +144,6 @@ namespace Jump
             Tools.RellenarCombobox(this.cmbEtiquetaLongitud, etiquetasLongitud);
             Tools.RellenarCombobox(this.cmbEstiloCota, cotasLineales);
             Tools.RellenarCombobox(this.cmbEstiloCotaProfundidad, cotasElevacion);
-            Tools.RellenarCombobox(this.cmbElementosPreview, this.elementos);
             Tools.RellenarComboboxEscalas(this.cmbEscalaVista);
 
             if (this.cmbEscalaVista.Items.Count > 0 && this.indiceComboboxEscalaVista < this.cmbEscalaVista.Items.Count)
@@ -154,61 +157,62 @@ namespace Jump
         private void AsignarPreviewDeImagen()
         {
             // Verifica que existan elementos
-            if (this.elementos.Count > 0)
+            if (this.elementosVistaPreview.Count > 0)
             {
-                // Crea la vista para la sección
-                Autodesk.Revit.DB.View vista = null;
-
-                if (this.chbVistaXX.Checked)
+                using (Transaction tr = new Transaction(this.doc, this.transaccionGrupoImagenPreview))
                 {
+                    tr.Start();
+
                     // Crea la vista para la sección
-                    vista = Tools.VistaXX(this.doc, this.elementos[posicionImagenPreview]);
-                }
+                    Autodesk.Revit.DB.View vista = null;
 
-                else if (this.chbVistaYY.Checked)
-                {
-                    vista = Tools.VistaYY(this.doc, this.elementos[posicionImagenPreview]);
-                }
+                    if (this.chbVistaXX.Checked)
+                    {
+                        vista = Tools.VistaXX(this.doc, this.elementosVistaPreview[posicionImagenPreview]);
+                    }
 
-                else
-                {
-                    // Crea otra vista para la sección
-                    vista = null;
-                }
+                    else if (this.chbVistaYY.Checked)
+                    {
+                        vista = Tools.VistaYY(this.doc, this.elementosVistaPreview[posicionImagenPreview]);
+                    }
 
-                doc.Regenerate();
+                    else
+                    {
+                        // Crea otra vista para la sección
+                        vista = null;
+                    }
 
-                if (vista != null)
-                {
-                    // Configura la vista y crea las etiquetas
-                    CrearEtiquetasYConfigurarVista(vista, this.elementos[posicionImagenPreview]);
+                    if (vista != null)
+                    {
+                        // Configura la vista y crea las etiquetas
+                        vista = CrearEtiquetasYConfigurarVista(vista, this.elementosVistaPreview[posicionImagenPreview]);
 
-                    // Crea la vista previa
-                    PreviewControl vistaPrevia = new PreviewControl(this.doc, vista.Id);
+                        // Crea la vista previa
+                        PreviewControl vistaPrevia = new PreviewControl(this.doc, vista.Id);
 
-                    // Asigna la vista previa para visualizar
-                    this.PreviewEtiquetas.Child = vistaPrevia;
+                        // Asigna la vista previa para visualizar
+                        this.PreviewEtiquetas.Child = vistaPrevia;
+                    }
+
+                    tr.Commit();
                 }
             }
         }
 
         /// <summary> Carga el preview control </summary>
         private void ActivarODesactivarImagenes_CheckedChanged(object sender, EventArgs e)
-        {            
-            // Verifica que la vista previa no sea nula
+        {
+            // Obtiene el indice del elemento seleccionado
+            this.posicionImagenPreview = this.cmbElementosPreview.SelectedIndex;
+
+            // Verifica que exista algo en el PreviewControl
             if (this.PreviewEtiquetas.Child != null)
             {
-                // Obtiene una ventana con el preview de la vista
-                PreviewControl pc = this.PreviewEtiquetas.Child as PreviewControl;
+                // Elimina la vista previa
+                EliminarVistaPrevia();
 
-                // Obtiene la vista
-                Autodesk.Revit.DB.View vista = this.doc.GetElement(pc.ViewId) as Autodesk.Revit.DB.View;
-
-                // Oculta todo menos el elementos y sus barras
-                Tools.MostrarSolamenteElementoYBarrasEnVista(this.doc, vista, this.elementos[posicionImagenPreview]);
-
-                // Crea de nuevo las etiquetas
-                CrearEtiquetas(vista, this.elementos[posicionImagenPreview]);
+                // Actualiza la vista previa
+                AsignarPreviewDeImagen();
             }
         }
 
@@ -229,19 +233,12 @@ namespace Jump
         /// <summary> Ajusta la vista para que quede centrado y con zoom </summary>
         private void AjustarVistaDePreviewControl(object sender, EventArgs e)
         {
-            // Obtiene a ventana con el preview de la vista
-            PreviewControl pc = this.PreviewEtiquetas.Child as PreviewControl;
-
-            // Verifica que no sea nula
-            if (pc != null)
+            // Verifica que la vista previa no sea nula
+            if (this.PreviewEtiquetas.Child != null)
             {
-                try
-                {
-                    // Hace zoom y coloca centrado la vista
-                    pc.UIView.ZoomToFit();
-                }
-                catch (Exception) { }
+                AjustarVistaDePreviewControl();
             }
+
         }
 
         /// <summary> Ajusta la vista para que quede centrado y con zoom </summary>
@@ -295,6 +292,24 @@ namespace Jump
             }
         }
 
+        /// <summary> Cambia la lista de elemento preview según la selección </summary>
+        private void rbtnTodos_CheckedChanged(object sender, EventArgs e)
+        {
+            this.elementosVistaPreview = ObtenerElementosSeleccionados();
+
+            Tools.RellenarComboBoxDeElementosPreview(this.cmbElementosPreview, this.doc, this.elementosVistaPreview);
+
+            // Verifica que exista algo en el PreviewControl
+            if (this.PreviewEtiquetas.Child != null)
+            {
+                // Elimina la vista previa
+                EliminarVistaPrevia();
+
+                // Actualiza la vista previa
+                AsignarPreviewDeImagen();
+            }
+        }
+
         /// <summary> Cierra la transacción grupal y deshace los cambios </summary>
         private void CerrarTransacciónGeneral()
         {
@@ -328,7 +343,7 @@ namespace Jump
 
                 // Elimina las vistas previas
                 EliminarVistaPrevia();
-                
+
                 // Cierra el formulario
                 this.Close();
             }
@@ -363,33 +378,11 @@ namespace Jump
             // Cierra las transacciones grupales
             CerrarTransacciónGeneral();
 
-            // Obtiene los elementos seleccionados en el proyecto
-            List<Element> listaSeleccionados = Tools.ObtenerElementosSeleccionadosEnProyecto(this.uiDoc, this.doc, this.elementos);
-
             // Limpia la lista
             this.listaElementosEstructurales.Clear();
 
-            // Agrega todos los elementos del proyecto a la lista
-            if (this.rbtnTodos.Checked)
-            {
-                // Asigna todas los elementos
-                this.listaElementosEstructurales = this.elementos;
-            }
+            this.listaElementosEstructurales = ObtenerElementosSeleccionados();
 
-            // Agrega los elementos seleccionados en el proyecto a la lista
-            if (this.rbtnElementosSeleccionados.Checked)
-            {
-                // Obtiene los elementos seleccionados que coinciden con la lista de zapatas
-                this.listaElementosEstructurales = Tools.ObtenerElementosCoincidentesConLista(this.elementos, listaSeleccionados);
-            }
-
-            // Agrega los elementos seleccionadas de la listabox
-            if (this.rbtnConjuntoDeLaLista.Checked)
-            {
-                // Obtiene los elementos seleccionados de la listbox y agrega a la lista
-                this.listaElementosEstructurales = Tools.ObtenerElementosDeUnListbox(this.lstElementos, this.doc, this.elementos);
-            }
-            
             // Verifica que la lista de elementos estructurales contenga elementos para poder continuar
             if (this.listaElementosEstructurales.Count > 0)
             {
@@ -412,7 +405,7 @@ namespace Jump
                             // Crea la vista XX
                             Autodesk.Revit.DB.View vista = Tools.VistaXX(this.doc, elem);
 
-                            doc.Regenerate();
+                            this.doc.Regenerate();
 
                             // Configura la vista y crea las etiquetas
                             CrearEtiquetasYConfigurarVista(vista, elem);
@@ -424,7 +417,7 @@ namespace Jump
                             // Crea la vista YY
                             Autodesk.Revit.DB.View vista = Tools.VistaYY(this.doc, elem);
 
-                            doc.Regenerate();
+                            this.doc.Regenerate();
 
                             // Configura la vista y crea las etiquetas
                             CrearEtiquetasYConfigurarVista(vista, elem);
@@ -447,37 +440,59 @@ namespace Jump
             this.Close();
         }
 
-        /// <summary> Crea la vista </summary>
+        /// <summary> Obtiene los elementos según el radiobutton </summary>
+        private List<Element> ObtenerElementosSeleccionados()
+        {
+            List<Element> lista = new List<Element>();
+
+            // Agrega todos los elementos del proyecto a la lista
+            if (this.rbtnTodos.Checked)
+            {
+                // Asigna todas los elementos
+                lista = this.elementos;
+            }
+
+            // Agrega los elementos seleccionados en el proyecto a la lista
+            if (this.rbtnElementosSeleccionados.Checked)
+            {
+                // Obtiene los elementos seleccionados que coinciden con la lista de zapatas
+                lista = Tools.ObtenerElementosCoincidentesConLista(this.elementos, Tools.ObtenerElementoSegunID(this.doc, this.listaSeleccionados));
+            }
+
+            // Agrega los elementos seleccionadas de la listabox
+            if (this.rbtnConjuntoDeLaLista.Checked)
+            {
+                // Obtiene los elementos seleccionados de la listbox y agrega a la lista
+                lista = Tools.ObtenerElementosDeUnListbox(this.lstElementos, this.doc, this.elementos);
+            }
+
+            return lista;
+        }
+
+        /// <summary> Configura la vista y crea las etiquetas seleccionadas  </summary>
         private Autodesk.Revit.DB.View CrearEtiquetasYConfigurarVista(Autodesk.Revit.DB.View vista, Element elem)
         {
             if (vista != null)
             {
-                // Cambia las configuraciones de visualización de la vista
-                vista = Tools.CambiarConfiguracionVista(this.cmbEscalaVista, this.doc, vista, nivelDetalle);
+                vista = Tools.CambiarConfiguracionVista(this.cmbEscalaVista, this.doc, vista, nivelDetalle, estiloVista);
 
-                // Muestra solamente el elemento y sus armaduras
                 Tools.MostrarSolamenteElementoYBarrasEnVista(this.doc, vista, elem);
 
-                // Muestra todos los elementos de la lista
-                Tools.MostrarElementosVista(doc, vista, listaEtiquetasCreadas);
+                vista = Tools.AjustarRecuadroDeVista(vista, elem, Tools.ObtenerArmadurasDeElemento(elem, vista));
 
-                // Crea las etiquetas para la vista
                 CrearEtiquetas(vista, elem);
 
-                doc.Regenerate();
+                this.doc.Regenerate();
             }
 
             return vista;
         }
-
+        
         /// <summary> Crea las etiquetas, cotas y despiece de armaduras en una vista dada </summary>
         private void CrearEtiquetas(Autodesk.Revit.DB.View vista, Element elem)
         {
             // Limpia la lista
             listaEtiquetasCreadas.Clear();
-
-            // Muestra solamente el elemento y sus armaduras
-            Tools.MostrarSolamenteElementoYBarrasEnVista(this.doc, vista, elem);
 
             // Crea la lista de Representacion de Armaduras
             List<ArmaduraRepresentacion> listaArmaduraRepresentacion = new List<ArmaduraRepresentacion>();
@@ -503,7 +518,7 @@ namespace Jump
                     try
                     {
                         // Crea la cota vertical izquierda
-                        listaCotas.Add(Tools.CrearCotaVerticalIzquierdaParaElemento(doc, vista, elem, tipoCota));
+                        listaCotas.Add(Tools.CrearCotaVerticalIzquierdaParaElemento(this.doc, vista, elem, tipoCota));
                     }
                     catch (Exception) { }
                 }
@@ -514,7 +529,7 @@ namespace Jump
                     try
                     {
                         // Crea la cota vertical derecha
-                        listaCotas.Add(Tools.CrearCotaVerticalDerechaParaElemento(doc, vista, elem, tipoCota));
+                        listaCotas.Add(Tools.CrearCotaVerticalDerechaParaElemento(this.doc, vista, elem, tipoCota));
                     }
                     catch (Exception) { }
                 }
@@ -525,7 +540,7 @@ namespace Jump
                     try
                     {
                         // Crea la cota horizontal arriba
-                        listaCotas.Add(Tools.CrearCotaHorizontalArribaParaElemento(doc, vista, elem, tipoCota));
+                        listaCotas.Add(Tools.CrearCotaHorizontalArribaParaElemento(this.doc, vista, elem, tipoCota));
                     }
                     catch (Exception) { }
                 }
@@ -536,7 +551,7 @@ namespace Jump
                     try
                     {
                         // Crea la cota horizontal abajo
-                        listaCotas.Add(Tools.CrearCotaHorizontalAbajoParaElemento(doc, vista, elem, tipoCota));
+                        listaCotas.Add(Tools.CrearCotaHorizontalAbajoParaElemento(this.doc, vista, elem, tipoCota));
                     }
                     catch (Exception) { }
                 }
@@ -643,17 +658,25 @@ namespace Jump
             }
 
             // Mueve los despieces de Armaduras
-            OrdenarYMoverRepresentacionArmaduraSegunDireccion(this.doc, vista, elem, listaArmaduraRepresentacion);
-            
-            // Ajusta el recuadro de la vista
-            Tools.AjustarRecuadroDeVista(this.doc, vista, listaEtiquetasCreadas);
+            OrdenarYMoverRepresentacionArmaduraSegunDireccion(vista, elem, listaArmaduraRepresentacion);
 
             // Ajusta el zoom de la vista
             AjustarVistaDePreviewControl();
         }
 
+        ///<summary> Crea las cotas lineales </summary>
+        public List<Dimension> CrearCotasLineales(Autodesk.Revit.DB.View vista, Element elem, DimensionType tipoCota)
+        {
+            // Crea la lista de cotas en la vista
+            List<Dimension> listaCotas = new List<Dimension>();
+
+            
+
+            return listaCotas;
+        }
+
         ///<summary> Ordena y mueve las Represetaciones de Armaduras según las opciones </summary>
-        public void OrdenarYMoverRepresentacionArmaduraSegunDireccion(Document doc, Autodesk.Revit.DB.View vista, Element elem, List<ArmaduraRepresentacion> armaduras)
+        public void OrdenarYMoverRepresentacionArmaduraSegunDireccion(Autodesk.Revit.DB.View vista, Element elem, List<ArmaduraRepresentacion> armaduras)
         {
             // Crea las listas
             List<ArmaduraRepresentacion> listaArmadurasArriba = new List<ArmaduraRepresentacion>();
@@ -688,17 +711,17 @@ namespace Jump
                 catch (Exception) { }
             }
 
-            OrdenarYMoverListaConArmadurasRepresentacion(doc, vista, tra, elem,
+            OrdenarYMoverListaConArmadurasRepresentacion(vista, tra, elem,
                                                          ref listaArmadurasArriba, ref listaArmadurasAbajo,
                                                          ref listaArmadurasIzquierda, ref listaArmadurasDerecha);
         }
 
         ///<summary> Organiza una Representación de Armadura según una dirección </summary>
         public void OrganizarListaSegunDireccionDeBarra(Autodesk.Revit.DB.View vista, XYZ distanciaRelativa, ArmaduraRepresentacion representacion,
-                                                               ref List<ArmaduraRepresentacion> listaArmadurasArriba,
-                                                               ref List<ArmaduraRepresentacion> listaArmadurasAbajo,
-                                                               ref List<ArmaduraRepresentacion> listaArmadurasIzquierda,
-                                                               ref List<ArmaduraRepresentacion> listaArmadurasDerecha)
+                                                        ref List<ArmaduraRepresentacion> listaArmadurasArriba,
+                                                        ref List<ArmaduraRepresentacion> listaArmadurasAbajo,
+                                                        ref List<ArmaduraRepresentacion> listaArmadurasIzquierda,
+                                                        ref List<ArmaduraRepresentacion> listaArmadurasDerecha)
         {
             // Verifica si la distancia es cero
             if (distanciaRelativa.IsZeroLength())
@@ -743,11 +766,11 @@ namespace Jump
         }
 
         ///<summary> Ordena y mueve las listas de Representación de Armadura </summary>
-        public void OrdenarYMoverListaConArmadurasRepresentacion(Document doc, Autodesk.Revit.DB.View vista, Transform tra, Element elem,
-                                                                        ref List<ArmaduraRepresentacion> listaArmadurasArriba,
-                                                                        ref List<ArmaduraRepresentacion> listaArmadurasAbajo,
-                                                                        ref List<ArmaduraRepresentacion> listaArmadurasIzquierda,
-                                                                        ref List<ArmaduraRepresentacion> listaArmadurasDerecha)
+        public void OrdenarYMoverListaConArmadurasRepresentacion(Autodesk.Revit.DB.View vista, Transform tra, Element elem,
+                                                                 ref List<ArmaduraRepresentacion> listaArmadurasArriba,
+                                                                 ref List<ArmaduraRepresentacion> listaArmadurasAbajo,
+                                                                 ref List<ArmaduraRepresentacion> listaArmadurasIzquierda,
+                                                                 ref List<ArmaduraRepresentacion> listaArmadurasDerecha)
         {
             // Verifica que existan elementos
             if (listaArmadurasArriba.Count > 0)
@@ -756,7 +779,7 @@ namespace Jump
                 listaArmadurasArriba = listaArmadurasArriba.OrderBy(x => tra.Inverse.OfVector(x.Representacion.TagHeadPosition).Y).ToList();
 
                 // Mueve los elementos de la lista
-                MoverListaConArmaduras(doc, vista, elem, vista.UpDirection, listaArmadurasArriba);
+                MoverListaConArmaduras(vista, elem, vista.UpDirection, listaArmadurasArriba);
             }
 
             // Verifica que existan elementos
@@ -766,7 +789,7 @@ namespace Jump
                 listaArmadurasAbajo = listaArmadurasAbajo.OrderByDescending(x => tra.Inverse.OfPoint(x.Representacion.TagHeadPosition).Y).ToList();
 
                 // Mueve los elementos de la lista
-                MoverListaConArmaduras(doc, vista, elem, vista.UpDirection.Negate(), listaArmadurasAbajo);
+                MoverListaConArmaduras(vista, elem, vista.UpDirection.Negate(), listaArmadurasAbajo);
             }
 
             // Verifica que existan elementos
@@ -776,7 +799,7 @@ namespace Jump
                 listaArmadurasDerecha = listaArmadurasDerecha.OrderBy(x => tra.Inverse.OfVector(x.Representacion.TagHeadPosition).X).ToList();
 
                 // Mueve los elementos de la lista
-                MoverListaConArmaduras(doc, vista, elem, vista.RightDirection, listaArmadurasDerecha);
+                MoverListaConArmaduras(vista, elem, vista.RightDirection, listaArmadurasDerecha);
             }
 
             // Verifica que existan elementos
@@ -786,12 +809,12 @@ namespace Jump
                 listaArmadurasIzquierda = listaArmadurasIzquierda.OrderByDescending(x => tra.Inverse.OfVector(x.Representacion.TagHeadPosition).X).ToList();
 
                 // Mueve los elementos de la lista
-                MoverListaConArmaduras(doc, vista, elem, vista.RightDirection.Negate(), listaArmadurasIzquierda);
+                MoverListaConArmaduras(vista, elem, vista.RightDirection.Negate(), listaArmadurasIzquierda);
             }
         }
 
         ///<summary> Mueve la lista de Representacion de Armaduras según una dirección </summary>
-        public void MoverListaConArmaduras(Document doc, Autodesk.Revit.DB.View vista, Element elem, XYZ direccion, List<ArmaduraRepresentacion> armaduras)
+        public void MoverListaConArmaduras(Autodesk.Revit.DB.View vista, Element elem, XYZ direccion, List<ArmaduraRepresentacion> armaduras)
         {
             // Crea las banderas de las direcciones
             bool banderaArriba = true;

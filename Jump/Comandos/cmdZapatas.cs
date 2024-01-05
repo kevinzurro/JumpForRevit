@@ -27,7 +27,7 @@ namespace Jump
             {
                 tra.Start();
 
-                frmDetalleAutomatico Zapata = new frmDetalleAutomatico(doc, uiDoc);
+                frmDetalleAutomatico Zapata = new frmDetalleAutomatico(doc);
 
                 Zapata.clase = typeof(FamilyInstance);
                 Zapata.categoria = BuiltInCategory.OST_StructuralFoundation;
@@ -36,6 +36,7 @@ namespace Jump
                 Zapata.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.ZapataEtiquetaIndependiente;
                 Zapata.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.ZapataEtiquetaCotaProfundidad;
                 Zapata.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.ArmaduraEtiquetaIndependiente;
+                Zapata.listaSeleccionados = uiDoc.Selection.GetElementIds().ToList();
                 Zapata.cotaHorizontalArriba = Jump.Properties.Settings.Default.ZapataCotaLinealArriba;
                 Zapata.cotaHorizontalAbajo = Jump.Properties.Settings.Default.ZapataCotaLinealAbajo;
                 Zapata.cotaVerticalIzquierda = Jump.Properties.Settings.Default.ZapataCotaLinealIzquierda;

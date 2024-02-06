@@ -204,8 +204,6 @@ namespace Jump
             // Abre una transacción
             using (Transaction t = new Transaction(this.doc, Language.ObtenerTexto(IdiomaDelPrograma, "OrdYEnu4-1")))
             {
-                t.Start();
-
                 // Limpia la lista de elementos a enumerar
                 this.listaElementosEnumerar.Clear();
 
@@ -215,6 +213,8 @@ namespace Jump
                 // Verifica que la lista de elementos a enumerar contenga elementos para poder continuar
                 if (this.listaElementosEnumerar.Count > 0)
                 {
+                    t.Start();
+
                     // Llama al formulario barra de progreso
                     frmBarraProgreso barraProgreso = new frmBarraProgreso(this.listaElementosEnumerar.Count);
 
@@ -240,6 +240,11 @@ namespace Jump
                     // Recorre todos los elementos de la lista
                     foreach (Element elem in this.listaElementosEnumerar)
                     {
+                        if (barraProgreso.Cancelado())
+                        {
+                            break;
+                        }
+
                         // Verifica que el usuario cargó un número inicial
                         if (this.txtNumeroInicial.Text != null && this.txtNumeroInicial.Text != "")
                         {
@@ -257,11 +262,19 @@ namespace Jump
                         catch (Exception) { }
                     }
 
+                    // Verifica que la operación no se haya cancelado
+                    if (barraProgreso.Cancelado())
+                    {
+                        t.RollBack();
+                    }
+                    else
+                    {
+                        t.Commit();
+                    }
+
                     // Cierra el formulario barra de progreso
                     barraProgreso.Close();
                 }
-
-                t.Commit();
             }
 
             if (this.listaElementosEnumerar.Count > 0)

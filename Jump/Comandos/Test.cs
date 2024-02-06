@@ -17,6 +17,21 @@ namespace Jump
     public static class Test
     {
         ///<summary> Crea un cuadro 3D de un recuadro </summary>
+        public static void CrearRecuadroElemento(Document doc, View vista, BoundingBoxUV bbUV)
+        {
+            try
+            {
+                BoundingBoxXYZ bb = new BoundingBoxXYZ();
+
+                bb.Max = new XYZ(bbUV.Max.U, bbUV.Max.V, 0);
+                bb.Min = new XYZ(bbUV.Min.U, bbUV.Min.V, 0);
+
+                CrearRecuadroElemento(doc, vista, bb);
+            }
+            catch (Exception) { }
+        }
+
+        ///<summary> Crea un cuadro 3D de un recuadro </summary>
         public static void CrearRecuadroElemento(Document doc, View vista, Outline recuadro)
         {
             try
@@ -55,6 +70,7 @@ namespace Jump
             catch (Exception) { }
         }
 
+        ///<summary> Crea un cuadro 3D o 2D en una vista </summary>
         static void CrearReacuadro(Document doc, View vista, BoundingBoxXYZ bb)
         {
             double xMin = bb.Min.X;

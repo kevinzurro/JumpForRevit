@@ -36,7 +36,19 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.cmbElementosPreview = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.gbxEjecutar = new System.Windows.Forms.GroupBox();
+            this.gbxVistas = new System.Windows.Forms.GroupBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.cmbPlantillaPlanoEstructural = new System.Windows.Forms.ComboBox();
+            this.cmbTipoPlanoEstructural = new System.Windows.Forms.ComboBox();
+            this.chbPlantillaPlanoEstructural = new System.Windows.Forms.CheckBox();
+            this.chbPlanoEstructural = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.chbPlantillaVistaY = new System.Windows.Forms.CheckBox();
+            this.chbPlantillaVistaX = new System.Windows.Forms.CheckBox();
+            this.cmbPlantillaSeccionY = new System.Windows.Forms.ComboBox();
+            this.cmbTipoSeccionY = new System.Windows.Forms.ComboBox();
+            this.cmbPlantillaSeccionX = new System.Windows.Forms.ComboBox();
+            this.cmbTipoSeccionX = new System.Windows.Forms.ComboBox();
             this.lbl12 = new System.Windows.Forms.Label();
             this.lbl11 = new System.Windows.Forms.Label();
             this.chbVistaYY = new System.Windows.Forms.CheckBox();
@@ -78,7 +90,8 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
-            this.gbxEjecutar.SuspendLayout();
+            this.gbxVistas.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.gbxEtiquetas.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -179,7 +192,7 @@
             // 
             this.tableLayoutPanel4.ColumnCount = 1;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Controls.Add(this.gbxEjecutar, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.gbxVistas, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.gbxEtiquetas, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(271, 0);
@@ -187,41 +200,188 @@
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 260F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(487, 521);
             this.tableLayoutPanel4.TabIndex = 7;
             // 
-            // gbxEjecutar
+            // gbxVistas
             // 
-            this.gbxEjecutar.Controls.Add(this.lbl12);
-            this.gbxEjecutar.Controls.Add(this.lbl11);
-            this.gbxEjecutar.Controls.Add(this.chbVistaYY);
-            this.gbxEjecutar.Controls.Add(this.chbVistaXX);
-            this.gbxEjecutar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbxEjecutar.Location = new System.Drawing.Point(3, 444);
-            this.gbxEjecutar.Name = "gbxEjecutar";
-            this.gbxEjecutar.Padding = new System.Windows.Forms.Padding(6);
-            this.gbxEjecutar.Size = new System.Drawing.Size(481, 74);
-            this.gbxEjecutar.TabIndex = 13;
-            this.gbxEjecutar.TabStop = false;
-            this.gbxEjecutar.Text = "Acciones a realizar";
+            this.gbxVistas.Controls.Add(this.panel5);
+            this.gbxVistas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbxVistas.Location = new System.Drawing.Point(3, 264);
+            this.gbxVistas.Name = "gbxVistas";
+            this.gbxVistas.Padding = new System.Windows.Forms.Padding(6);
+            this.gbxVistas.Size = new System.Drawing.Size(481, 254);
+            this.gbxVistas.TabIndex = 13;
+            this.gbxVistas.TabStop = false;
+            this.gbxVistas.Text = "Vistas";
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.cmbPlantillaPlanoEstructural);
+            this.panel5.Controls.Add(this.cmbTipoPlanoEstructural);
+            this.panel5.Controls.Add(this.chbPlantillaPlanoEstructural);
+            this.panel5.Controls.Add(this.chbPlanoEstructural);
+            this.panel5.Controls.Add(this.label1);
+            this.panel5.Controls.Add(this.chbPlantillaVistaY);
+            this.panel5.Controls.Add(this.chbPlantillaVistaX);
+            this.panel5.Controls.Add(this.cmbPlantillaSeccionY);
+            this.panel5.Controls.Add(this.cmbTipoSeccionY);
+            this.panel5.Controls.Add(this.cmbPlantillaSeccionX);
+            this.panel5.Controls.Add(this.cmbTipoSeccionX);
+            this.panel5.Controls.Add(this.lbl12);
+            this.panel5.Controls.Add(this.lbl11);
+            this.panel5.Controls.Add(this.chbVistaYY);
+            this.panel5.Controls.Add(this.chbVistaXX);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(6, 20);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(469, 228);
+            this.panel5.TabIndex = 0;
+            // 
+            // cmbPlantillaPlanoEstructural
+            // 
+            this.cmbPlantillaPlanoEstructural.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbPlantillaPlanoEstructural.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPlantillaPlanoEstructural.FormattingEnabled = true;
+            this.cmbPlantillaPlanoEstructural.Location = new System.Drawing.Point(213, 193);
+            this.cmbPlantillaPlanoEstructural.Name = "cmbPlantillaPlanoEstructural";
+            this.cmbPlantillaPlanoEstructural.Size = new System.Drawing.Size(253, 23);
+            this.cmbPlantillaPlanoEstructural.TabIndex = 35;
+            this.cmbPlantillaPlanoEstructural.SelectionChangeCommitted += new System.EventHandler(this.ActivarODesactivarImagenes_CheckedChanged);
+            // 
+            // cmbTipoPlanoEstructural
+            // 
+            this.cmbTipoPlanoEstructural.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbTipoPlanoEstructural.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipoPlanoEstructural.FormattingEnabled = true;
+            this.cmbTipoPlanoEstructural.Location = new System.Drawing.Point(213, 158);
+            this.cmbTipoPlanoEstructural.Name = "cmbTipoPlanoEstructural";
+            this.cmbTipoPlanoEstructural.Size = new System.Drawing.Size(253, 23);
+            this.cmbTipoPlanoEstructural.TabIndex = 34;
+            this.cmbTipoPlanoEstructural.SelectionChangeCommitted += new System.EventHandler(this.ActivarODesactivarImagenes_CheckedChanged);
+            // 
+            // chbPlantillaPlanoEstructural
+            // 
+            this.chbPlantillaPlanoEstructural.AutoSize = true;
+            this.chbPlantillaPlanoEstructural.Location = new System.Drawing.Point(24, 195);
+            this.chbPlantillaPlanoEstructural.Name = "chbPlantillaPlanoEstructural";
+            this.chbPlantillaPlanoEstructural.Size = new System.Drawing.Size(181, 19);
+            this.chbPlantillaPlanoEstructural.TabIndex = 33;
+            this.chbPlantillaPlanoEstructural.Text = "Plantilla de plano estructural";
+            this.chbPlantillaPlanoEstructural.UseVisualStyleBackColor = true;
+            this.chbPlantillaPlanoEstructural.CheckedChanged += new System.EventHandler(this.ActivarODesactivarImagenes_CheckedChanged);
+            // 
+            // chbPlanoEstructural
+            // 
+            this.chbPlanoEstructural.AutoSize = true;
+            this.chbPlanoEstructural.Checked = true;
+            this.chbPlanoEstructural.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chbPlanoEstructural.Location = new System.Drawing.Point(24, 160);
+            this.chbPlanoEstructural.Name = "chbPlanoEstructural";
+            this.chbPlanoEstructural.Size = new System.Drawing.Size(118, 19);
+            this.chbPlanoEstructural.TabIndex = 32;
+            this.chbPlanoEstructural.Text = "Plano estructural";
+            this.chbPlanoEstructural.UseVisualStyleBackColor = true;
+            this.chbPlanoEstructural.CheckedChanged += new System.EventHandler(this.ActivarODesactivarImagenes_CheckedChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 160);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(17, 15);
+            this.label1.TabIndex = 31;
+            this.label1.Text = "3.";
+            // 
+            // chbPlantillaVistaY
+            // 
+            this.chbPlantillaVistaY.AutoSize = true;
+            this.chbPlantillaVistaY.Location = new System.Drawing.Point(24, 120);
+            this.chbPlantillaVistaY.Name = "chbPlantillaVistaY";
+            this.chbPlantillaVistaY.Size = new System.Drawing.Size(135, 19);
+            this.chbPlantillaVistaY.TabIndex = 30;
+            this.chbPlantillaVistaY.Text = "Plantilla de vista Y-Y";
+            this.chbPlantillaVistaY.UseVisualStyleBackColor = true;
+            this.chbPlantillaVistaY.CheckedChanged += new System.EventHandler(this.ActivarODesactivarImagenes_CheckedChanged);
+            // 
+            // chbPlantillaVistaX
+            // 
+            this.chbPlantillaVistaX.AutoSize = true;
+            this.chbPlantillaVistaX.Location = new System.Drawing.Point(24, 45);
+            this.chbPlantillaVistaX.Name = "chbPlantillaVistaX";
+            this.chbPlantillaVistaX.Size = new System.Drawing.Size(137, 19);
+            this.chbPlantillaVistaX.TabIndex = 29;
+            this.chbPlantillaVistaX.Text = "Plantilla de vista X-X";
+            this.chbPlantillaVistaX.UseVisualStyleBackColor = true;
+            this.chbPlantillaVistaX.CheckedChanged += new System.EventHandler(this.ActivarODesactivarImagenes_CheckedChanged);
+            // 
+            // cmbPlantillaSeccionY
+            // 
+            this.cmbPlantillaSeccionY.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbPlantillaSeccionY.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPlantillaSeccionY.FormattingEnabled = true;
+            this.cmbPlantillaSeccionY.Location = new System.Drawing.Point(213, 118);
+            this.cmbPlantillaSeccionY.Name = "cmbPlantillaSeccionY";
+            this.cmbPlantillaSeccionY.Size = new System.Drawing.Size(253, 23);
+            this.cmbPlantillaSeccionY.TabIndex = 28;
+            this.cmbPlantillaSeccionY.SelectionChangeCommitted += new System.EventHandler(this.ActivarODesactivarImagenes_CheckedChanged);
+            // 
+            // cmbTipoSeccionY
+            // 
+            this.cmbTipoSeccionY.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbTipoSeccionY.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipoSeccionY.FormattingEnabled = true;
+            this.cmbTipoSeccionY.Location = new System.Drawing.Point(213, 83);
+            this.cmbTipoSeccionY.Name = "cmbTipoSeccionY";
+            this.cmbTipoSeccionY.Size = new System.Drawing.Size(253, 23);
+            this.cmbTipoSeccionY.TabIndex = 25;
+            this.cmbTipoSeccionY.SelectionChangeCommitted += new System.EventHandler(this.ActivarODesactivarImagenes_CheckedChanged);
+            // 
+            // cmbPlantillaSeccionX
+            // 
+            this.cmbPlantillaSeccionX.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbPlantillaSeccionX.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPlantillaSeccionX.FormattingEnabled = true;
+            this.cmbPlantillaSeccionX.Location = new System.Drawing.Point(213, 43);
+            this.cmbPlantillaSeccionX.Name = "cmbPlantillaSeccionX";
+            this.cmbPlantillaSeccionX.Size = new System.Drawing.Size(253, 23);
+            this.cmbPlantillaSeccionX.TabIndex = 24;
+            this.cmbPlantillaSeccionX.SelectionChangeCommitted += new System.EventHandler(this.ActivarODesactivarImagenes_CheckedChanged);
+            // 
+            // cmbTipoSeccionX
+            // 
+            this.cmbTipoSeccionX.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbTipoSeccionX.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipoSeccionX.FormattingEnabled = true;
+            this.cmbTipoSeccionX.Location = new System.Drawing.Point(213, 8);
+            this.cmbTipoSeccionX.Name = "cmbTipoSeccionX";
+            this.cmbTipoSeccionX.Size = new System.Drawing.Size(253, 23);
+            this.cmbTipoSeccionX.TabIndex = 21;
+            this.cmbTipoSeccionX.SelectionChangeCommitted += new System.EventHandler(this.ActivarODesactivarImagenes_CheckedChanged);
             // 
             // lbl12
             // 
             this.lbl12.AutoSize = true;
-            this.lbl12.Location = new System.Drawing.Point(9, 48);
+            this.lbl12.Location = new System.Drawing.Point(3, 85);
             this.lbl12.Name = "lbl12";
             this.lbl12.Size = new System.Drawing.Size(17, 15);
-            this.lbl12.TabIndex = 16;
+            this.lbl12.TabIndex = 20;
             this.lbl12.Text = "2.";
             // 
             // lbl11
             // 
             this.lbl11.AutoSize = true;
-            this.lbl11.Location = new System.Drawing.Point(9, 22);
+            this.lbl11.Location = new System.Drawing.Point(3, 10);
             this.lbl11.Name = "lbl11";
             this.lbl11.Size = new System.Drawing.Size(17, 15);
-            this.lbl11.TabIndex = 15;
+            this.lbl11.TabIndex = 19;
             this.lbl11.Text = "1.";
             // 
             // chbVistaYY
@@ -229,26 +389,26 @@
             this.chbVistaYY.AutoSize = true;
             this.chbVistaYY.Checked = true;
             this.chbVistaYY.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chbVistaYY.Location = new System.Drawing.Point(30, 48);
+            this.chbVistaYY.Location = new System.Drawing.Point(24, 85);
             this.chbVistaYY.Name = "chbVistaYY";
-            this.chbVistaYY.Size = new System.Drawing.Size(73, 19);
-            this.chbVistaYY.TabIndex = 14;
-            this.chbVistaYY.Text = "Vista Y-Y";
+            this.chbVistaYY.Size = new System.Drawing.Size(91, 19);
+            this.chbVistaYY.TabIndex = 18;
+            this.chbVistaYY.Text = "Sección Y-Y";
             this.chbVistaYY.UseVisualStyleBackColor = true;
-            this.chbVistaYY.CheckedChanged += new System.EventHandler(this.cmbEscala_SelectedIndexChanged);
+            this.chbVistaYY.CheckedChanged += new System.EventHandler(this.ActivarODesactivarImagenes_CheckedChanged);
             // 
             // chbVistaXX
             // 
             this.chbVistaXX.AutoSize = true;
             this.chbVistaXX.Checked = true;
             this.chbVistaXX.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chbVistaXX.Location = new System.Drawing.Point(30, 22);
+            this.chbVistaXX.Location = new System.Drawing.Point(24, 10);
             this.chbVistaXX.Name = "chbVistaXX";
-            this.chbVistaXX.Size = new System.Drawing.Size(75, 19);
-            this.chbVistaXX.TabIndex = 13;
-            this.chbVistaXX.Text = "Vista X-X";
+            this.chbVistaXX.Size = new System.Drawing.Size(93, 19);
+            this.chbVistaXX.TabIndex = 17;
+            this.chbVistaXX.Text = "Sección X-X";
             this.chbVistaXX.UseVisualStyleBackColor = true;
-            this.chbVistaXX.CheckedChanged += new System.EventHandler(this.cmbEscala_SelectedIndexChanged);
+            this.chbVistaXX.CheckedChanged += new System.EventHandler(this.ActivarODesactivarImagenes_CheckedChanged);
             // 
             // gbxEtiquetas
             // 
@@ -256,7 +416,7 @@
             this.gbxEtiquetas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbxEtiquetas.Location = new System.Drawing.Point(3, 3);
             this.gbxEtiquetas.Name = "gbxEtiquetas";
-            this.gbxEtiquetas.Size = new System.Drawing.Size(481, 435);
+            this.gbxEtiquetas.Size = new System.Drawing.Size(481, 255);
             this.gbxEtiquetas.TabIndex = 2;
             this.gbxEtiquetas.TabStop = false;
             this.gbxEtiquetas.Text = "Etiquetas y cotas";
@@ -274,7 +434,7 @@
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(475, 415);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(475, 235);
             this.tableLayoutPanel6.TabIndex = 2;
             // 
             // panel7
@@ -288,7 +448,7 @@
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel7.Location = new System.Drawing.Point(213, 3);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(259, 409);
+            this.panel7.Size = new System.Drawing.Size(259, 229);
             this.panel7.TabIndex = 5;
             // 
             // cmbEscalaVista
@@ -380,7 +540,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(3, 3);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(204, 409);
+            this.panel6.Size = new System.Drawing.Size(204, 229);
             this.panel6.TabIndex = 4;
             // 
             // lblEscala
@@ -647,8 +807,9 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
-            this.gbxEjecutar.ResumeLayout(false);
-            this.gbxEjecutar.PerformLayout();
+            this.gbxVistas.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.gbxEtiquetas.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
@@ -669,9 +830,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.GroupBox gbxEtiquetaVistaPrevia;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.GroupBox gbxEjecutar;
-        private System.Windows.Forms.CheckBox chbVistaYY;
-        private System.Windows.Forms.CheckBox chbVistaXX;
+        private System.Windows.Forms.GroupBox gbxVistas;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.GroupBox gbxEtiquetas;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
@@ -707,7 +866,21 @@
         private System.Windows.Forms.ComboBox cmbElementosPreview;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.ComboBox cmbTipoSeccionX;
         private System.Windows.Forms.Label lbl12;
         private System.Windows.Forms.Label lbl11;
+        private System.Windows.Forms.CheckBox chbVistaYY;
+        private System.Windows.Forms.CheckBox chbVistaXX;
+        private System.Windows.Forms.ComboBox cmbPlantillaSeccionX;
+        private System.Windows.Forms.ComboBox cmbPlantillaSeccionY;
+        private System.Windows.Forms.ComboBox cmbTipoSeccionY;
+        private System.Windows.Forms.CheckBox chbPlantillaVistaY;
+        private System.Windows.Forms.CheckBox chbPlantillaVistaX;
+        private System.Windows.Forms.ComboBox cmbPlantillaPlanoEstructural;
+        private System.Windows.Forms.ComboBox cmbTipoPlanoEstructural;
+        private System.Windows.Forms.CheckBox chbPlantillaPlanoEstructural;
+        private System.Windows.Forms.CheckBox chbPlanoEstructural;
+        private System.Windows.Forms.Label label1;
     }
 }

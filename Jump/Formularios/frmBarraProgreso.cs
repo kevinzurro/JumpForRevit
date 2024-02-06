@@ -17,6 +17,13 @@ namespace Jump
         int total;
         int contador = 0;
         string texto = null;
+        bool banderaCancelar = false;
+
+        ///<summary> Obtiene el estado true si el proceso fue cancelado por el usuario </summary>
+        public bool Cancelado()
+        {
+            return banderaCancelar;
+        }
 
         public frmBarraProgreso(int totalElementos)
         {
@@ -32,6 +39,8 @@ namespace Jump
             this.pbrBarraProgreso.Value = 0;
             this.pbrBarraProgreso.Maximum = total;
 
+            this.btnCancelar.Text = Language.ObtenerTexto(IdiomaDelPrograma, "BarPro3");
+
             // Llama a la función de cambiar el texto
             CambiarTexto();
 
@@ -46,14 +55,15 @@ namespace Jump
             // Cambia el texto
             this.texto = Language.ObtenerTexto(IdiomaDelPrograma, "BarPro1") + contador.ToString()
                        + Language.ObtenerTexto(IdiomaDelPrograma, "BarPro2") + total.ToString();
+
             lblProgreso.Text = texto;
         }
 
-        ///<summary> incrementa la barra de progreso </summary>
+        ///<summary> Incrementa la barra de progreso </summary>
         public void Incrementar()
         {
             // Incrementa el contador
-            ++contador;
+            contador++;
 
             // Cambia el texto
             CambiarTexto();
@@ -61,6 +71,12 @@ namespace Jump
             // Incrementa la barra de progreso
             pbrBarraProgreso.Value = contador;
             Application.DoEvents();
+        }
+
+        ///<summary> Cancela la acción </summary>
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            banderaCancelar = true;
         }
     }
 }

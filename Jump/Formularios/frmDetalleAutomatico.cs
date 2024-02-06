@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.DB.Structure;
+using System.Windows.Media.TextFormatting;
 
 namespace Jump
 {
@@ -23,7 +24,6 @@ namespace Jump
         string transaccionGrupoImagenPreview = "grupo vista previa";
         int posicionImagenPreview = 0;
         TransactionGroup traGeneral;
-        //TransactionGroup traGroupGeneral;
         public bool bandera = false;
         Type claseDetalleBarra = typeof(RebarBendingDetailType); 
         BuiltInCategory categoriaDetalleBarra = BuiltInCategory.OST_RebarBendingDetails;
@@ -64,6 +64,8 @@ namespace Jump
         DimensionStyleType cotaEstiloLineal = DimensionStyleType.Linear;
         ViewDetailLevel nivelDetalle = ViewDetailLevel.Fine;
         DisplayStyle estiloVista = DisplayStyle.FlatColors;
+        ViewFamily seccion = ViewFamily.Section;
+        ViewFamily planoEstructural = ViewFamily.StructuralPlan;
 
         // Constructor del formulario
         public frmDetalleAutomatico(Document doc)
@@ -86,7 +88,6 @@ namespace Jump
         {
             // Llama a las funciones
             AgregarElementos();
-            CargarCombobox(this.doc);
             AsignarPreviewDeImagen();
 
             // Asignación de textos según el idioma
@@ -105,9 +106,13 @@ namespace Jump
             chbCotaLineal.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "2-6");
             chbCotaElevacion.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "2-7");
             gbxEtiquetaVistaPrevia.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "3-1");
-            gbxEjecutar.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "4-1");
+            gbxVistas.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "4-1");
             chbVistaXX.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "4-2");
+            chbPlantillaVistaX.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "4-2-1");
             chbVistaYY.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "4-3");
+            chbPlantillaVistaY.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "4-3-1");
+            chbPlanoEstructural.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "4-4");
+            chbPlantillaPlanoEstructural.Text = Language.ObtenerTexto(IdiomaDelPrograma, clave + "4-4-1");
         }
 
         /// <summary> Agrega los elementos estructurales a la lista </summary>
@@ -123,21 +128,13 @@ namespace Jump
             // Elimina los subelementos
             try { this.elementos = Tools.EliminarSubelementos(this.elementos); } catch (Exception) { }
 
-            // Agrega los elementos a la listbox
-            Tools.RellenarListBoxDeElementos(this.lstElementos, doc, this.elementos);
-            Tools.RellenarComboBoxDeElementosPreview(this.cmbElementosPreview, this.doc, this.elementosVistaPreview);
-        }
-
-        /// <summary> Carga los combobox de las etiquetas </summary>
-        private void CargarCombobox(Document doc)
-        {
             // Completa la lista
             this.etiquetasElemento.AddRange(Tools.ObtenerEtiquetasIndependientes(doc, categoriaEtiqueta));
             this.etiquetasArmaduras.AddRange(Tools.ObtenerEtiquetasIndependientes(doc, categoriaEtiquetaArmadura));
             this.etiquetasLongitud.AddRange(Tools.ObtenerTodosTiposSegunClaseYCategoria(doc, claseDetalleBarra, categoriaDetalleBarra));
             this.cotasLineales.AddRange(Tools.ObtenerCotas(doc, cotaEstiloLineal));
             this.cotasElevacion.AddRange(Tools.ObtenerCotasElevacion(doc));
-            
+
             // Limpia y rellena el combobox
             Tools.RellenarCombobox(this.cmbEtiquetaElementoEstructural, etiquetasElemento);
             Tools.RellenarCombobox(this.cmbEtiquetaArmadura, etiquetasArmaduras);
@@ -151,8 +148,38 @@ namespace Jump
                 // Asigna el primer elemento a la lista desplegable
                 this.cmbEscalaVista.SelectedIndex = this.indiceComboboxEscalaVista;
             }
-        }
 
+            // Determina la vista que se usa
+            List<ViewFamilyType> tipoSeccion = new FilteredElementCollector(doc).OfClass(typeof(ViewFamilyType))
+                                               .Cast<ViewFamilyType>()
+                                               .Where(v => v.ViewFamily == seccion)
+                                               .OrderBy(x => x.Name).ToList();
+
+            List<ViewFamilyType> tipoPlanoEstructural = new FilteredElementCollector(doc).OfClass(typeof(ViewFamilyType))
+                                                        .Cast<ViewFamilyType>()
+                                                        .Where(v => v.ViewFamily == planoEstructural)
+                                                        .OrderBy(x => x.Name).ToList();
+
+            List<Autodesk.Revit.DB.View> tipoPlanttilla = new FilteredElementCollector(doc)
+                                                          .OfClass(typeof(Autodesk.Revit.DB.View))
+                                                          .Cast<Autodesk.Revit.DB.View>()
+                                                          .Where(v => v.IsTemplate)
+                                                          .OrderBy(x => x.Name).ToList();
+
+            // Agrega los elementos a la listbox
+            Tools.RellenarListBoxDeElementos(this.lstElementos, doc, this.elementos);
+            Tools.RellenarComboBoxDeElementosPreview(this.cmbElementosPreview, this.doc, this.elementosVistaPreview);
+
+            Tools.RellenarCombobox(this.cmbTipoSeccionX, new List<ViewFamilyType>(tipoSeccion));
+            Tools.RellenarCombobox(this.cmbPlantillaSeccionX, new List<Autodesk.Revit.DB.View>(tipoPlanttilla));
+
+            Tools.RellenarCombobox(this.cmbTipoSeccionY, new List<ViewFamilyType>(tipoSeccion));
+            Tools.RellenarCombobox(this.cmbPlantillaSeccionY, new List<Autodesk.Revit.DB.View>(tipoPlanttilla));
+
+            Tools.RellenarCombobox(this.cmbTipoPlanoEstructural, new List<ViewFamilyType>(tipoPlanoEstructural));
+            Tools.RellenarCombobox(this.cmbPlantillaPlanoEstructural, new List<Autodesk.Revit.DB.View>(tipoPlanttilla));
+        }
+        
         /// <summary> Asigna una imagen de prueba para las etiquetas, cotas y despieces de barras </summary>
         private void AsignarPreviewDeImagen()
         {
@@ -169,11 +196,25 @@ namespace Jump
                     if (this.chbVistaXX.Checked)
                     {
                         vista = Tools.VistaXX(this.doc, this.elementosVistaPreview[posicionImagenPreview]);
+
+                        AsignarTipoYPlantillaAVista(vista, (ViewFamilyType)this.cmbTipoSeccionX.SelectedItem,
+                            (Autodesk.Revit.DB.View)this.cmbPlantillaSeccionX.SelectedItem, this.chbPlantillaVistaX);
                     }
 
                     else if (this.chbVistaYY.Checked)
                     {
                         vista = Tools.VistaYY(this.doc, this.elementosVistaPreview[posicionImagenPreview]);
+
+                        AsignarTipoYPlantillaAVista(vista, (ViewFamilyType)this.cmbTipoSeccionY.SelectedItem,
+                            (Autodesk.Revit.DB.View)this.cmbPlantillaSeccionY.SelectedItem, this.chbPlantillaVistaY);
+                    }
+
+                    else if (this.chbPlanoEstructural.Checked)
+                    {
+                        vista = Tools.VistaEnPlanta(this.doc, this.elementosVistaPreview[posicionImagenPreview]);
+
+                        AsignarTipoYPlantillaAVista(vista, (ViewFamilyType)this.cmbTipoPlanoEstructural.SelectedItem,
+                            (Autodesk.Revit.DB.View)this.cmbPlantillaPlanoEstructural.SelectedItem, this.chbPlantillaPlanoEstructural);
                     }
 
                     else
@@ -197,6 +238,31 @@ namespace Jump
                     tr.Commit();
                 }
             }
+        }
+
+        // <summary> Asigna el tipo de seccion y la plantilla a la vista </summary>
+        private void AsignarTipoYPlantillaAVista(Autodesk.Revit.DB.View vista, ViewFamilyType vft, Autodesk.Revit.DB.View plantilla, CheckBox chb)
+        {
+            if (vista != null)
+            {
+                if (vft != null && vft.Id != ElementId.InvalidElementId)
+                {
+                    try { vista.ChangeTypeId(vft.Id); } catch (Exception) { }
+                }
+
+                if (plantilla != null && plantilla.Id != ElementId.InvalidElementId && chb.Checked)
+                {
+                    try 
+                    { 
+                        vista.ViewTemplateId = plantilla.Id;
+
+                        vista.CropBoxActive = true;
+                    } 
+                    catch (Exception) { }
+                }
+            }
+
+            this.doc.Regenerate();
         }
 
         /// <summary> Carga el preview control </summary>
@@ -295,6 +361,8 @@ namespace Jump
         /// <summary> Cambia la lista de elemento preview según la selección </summary>
         private void rbtnTodos_CheckedChanged(object sender, EventArgs e)
         {
+            this.posicionImagenPreview = 0;
+
             this.elementosVistaPreview = ObtenerElementosSeleccionados();
 
             Tools.RellenarComboBoxDeElementosPreview(this.cmbElementosPreview, this.doc, this.elementosVistaPreview);
@@ -399,6 +467,11 @@ namespace Jump
                     // Recorre todos los elementos de la lista
                     foreach (Element elem in this.listaElementosEstructurales)
                     {
+                        if (barraProgreso.Cancelado())
+                        {
+                            break;
+                        }
+
                         // Verifica que la vista X-X esté activado
                         if (this.chbVistaXX.Checked)
                         {
@@ -406,6 +479,9 @@ namespace Jump
                             Autodesk.Revit.DB.View vista = Tools.VistaXX(this.doc, elem);
 
                             this.doc.Regenerate();
+
+                            AsignarTipoYPlantillaAVista(vista, (ViewFamilyType)this.cmbTipoSeccionX.SelectedItem,
+                                (Autodesk.Revit.DB.View)this.cmbPlantillaSeccionX.SelectedItem, this.chbPlantillaVistaX);
 
                             // Configura la vista y crea las etiquetas
                             CrearEtiquetasYConfigurarVista(vista, elem);
@@ -419,6 +495,24 @@ namespace Jump
 
                             this.doc.Regenerate();
 
+                            AsignarTipoYPlantillaAVista(vista, (ViewFamilyType)this.cmbTipoSeccionY.SelectedItem,
+                                (Autodesk.Revit.DB.View)this.cmbPlantillaSeccionY.SelectedItem, this.chbPlantillaVistaY);
+
+                            // Configura la vista y crea las etiquetas
+                            CrearEtiquetasYConfigurarVista(vista, elem);
+                        }
+
+                        // Verifica que la vista Y-Y esté activado
+                        if (this.chbPlanoEstructural.Checked)
+                        {
+                            // Crea la vista YY
+                            Autodesk.Revit.DB.View vista = Tools.VistaEnPlanta(this.doc, elem);
+
+                            this.doc.Regenerate();
+
+                            AsignarTipoYPlantillaAVista(vista, (ViewFamilyType)this.cmbTipoPlanoEstructural.SelectedItem,
+                                (Autodesk.Revit.DB.View)this.cmbPlantillaPlanoEstructural.SelectedItem, this.chbPlantillaPlanoEstructural);
+
                             // Configura la vista y crea las etiquetas
                             CrearEtiquetasYConfigurarVista(vista, elem);
                         }
@@ -427,7 +521,15 @@ namespace Jump
                         barraProgreso.Incrementar();
                     }
 
-                    tra.Commit();
+                    // Verifica que la operación no se haya cancelado
+                    if (barraProgreso.Cancelado())
+                    {
+                        tra.RollBack();
+                    }
+                    else
+                    {
+                        tra.Commit();
+                    }
                 }
 
                 // Cierra el formulario barra de progreso
@@ -474,7 +576,10 @@ namespace Jump
         {
             if (vista != null)
             {
-                vista = Tools.CambiarConfiguracionVista(this.cmbEscalaVista, this.doc, vista, nivelDetalle, estiloVista);
+                if (vista.ViewTemplateId == ElementId.InvalidElementId)
+                {
+                    vista = Tools.CambiarConfiguracionVista(this.cmbEscalaVista, this.doc, vista, nivelDetalle, estiloVista);
+                }
 
                 Tools.MostrarSolamenteElementoYBarrasEnVista(this.doc, vista, elem);
 

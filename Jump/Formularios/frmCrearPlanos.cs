@@ -11,6 +11,7 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.DB.Structure;
 using System.Windows.Controls;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Jump
 {
@@ -24,7 +25,7 @@ namespace Jump
         Type claseTipoPlano = typeof(Autodesk.Revit.DB.FamilyInstance);
         BuiltInCategory categoriaTipoPlano = BuiltInCategory.OST_TitleBlocks;
 
-        List<Element> todosVistas = new List<Element>();
+        List<Autodesk.Revit.DB.View> todosVistas = new List<Autodesk.Revit.DB.View>();
         List<FamilySymbol> todosTiposDePlanos = new List<FamilySymbol>();
 
         public frmCrearPlanos(Document doc)
@@ -38,56 +39,105 @@ namespace Jump
             this.doc = doc;
 
             CargarVistaYTipoPlanos();
+            CargarTreeView();
         }
 
-        // <summary> Carga las vistas del proyecto y los tipos de planos </summary>
+        /// <summary> Carga las vistas del proyecto y los tipos de planos </summary>
         private void CargarVistaYTipoPlanos()
         {
-            this.todosVistas = Tools.ObtenerTodosEjemplaresSegunClase(this.doc, claseVista);
+            this.todosVistas = Tools.ObtenerTodosEjemplaresSegunClase(this.doc, claseVista).Cast<Autodesk.Revit.DB.View>().Where(x => !x.IsTemplate).ToList();
             this.todosTiposDePlanos = new FilteredElementCollector(this.doc).OfCategory(categoriaTipoPlano).WhereElementIsElementType().Cast<FamilySymbol>().ToList();
-
-            // Agrega los elementos a la listbox
-            this.lstVistas.DataSource = this.todosVistas;
-            this.lstVistas.DisplayMember = AboutJump.parametroMostrarUsuario;
-            this.lstVistas.ValueMember = AboutJump.parametroId;
 
             this.lstTipoPlano.DataSource = this.todosTiposDePlanos;
             this.lstTipoPlano.DisplayMember = AboutJump.parametroMostrarUsuarioPlanos;
             this.lstTipoPlano.ValueMember = AboutJump.parametroId;
         }
 
-        //private void CargarTreeView()
-        //{
-        //    List<ViewFamilyType> tipoVistas = new FilteredElementCollector(this.doc).OfClass(typeof(ViewFamilyType)).WhereElementIsElementType().Cast<ViewFamilyType>().ToList();
+        /// <summary> Carga el TreeViewlas con las vistas </summary>
+        private void CargarTreeView()
+        {
+            List<ViewFamilyType> tipoVistas = new FilteredElementCollector(this.doc).OfClass(typeof(ViewFamilyType)).WhereElementIsElementType().Cast<ViewFamilyType>().ToList();
 
-        //    tipoVistas = tipoVistas.OrderBy(x => x.Name).ToList();
+            tipoVistas = tipoVistas.OrderBy(x => x.FamilyName).ThenBy(x => x.Name).ToList();
 
-        //    foreach (ViewFamilyType tipo in tipoVistas)
-        //    {
-        //        TreeNode nodoPrin = new TreeNode(tipo.FamilyName);
+            foreach (ViewFamilyType tipo in tipoVistas)
+            {
+                TreeNode nodoPrin = new TreeNode(tipo.FamilyName + " (" + tipo.Name + ")");
 
-        //        List<Element> vistas = this.todosVistas;
+                List<Autodesk.Revit.DB.View> vistas = this.todosVistas;
 
-        //        vistas = vistas.Where(x => x.GetTypeId() == tipo.Id).ToList();
+                vistas = vistas.Where(x => x.GetTypeId() == tipo.Id).ToList();
 
-        //        foreach (Autodesk.Revit.DB.View vista in vistas)
-        //        {
-        //            TreeNode nodoSecu = new TreeNode();
+                foreach (Autodesk.Revit.DB.View vista in vistas)
+                {
+                    TreeNode nodoSecu = new TreeNode();
 
-        //            nodoSecu.Name = vista.Id.Value.ToString();
-        //            nodoSecu.Text = vista.Name;
+                    nodoSecu.Name = vista.Id.Value.ToString();
+                    nodoSecu.Text = vista.Name;
+                    
+                    nodoPrin.Nodes.Add(nodoSecu);
+                }
+                
+                if (nodoPrin.Nodes.Count > 0)
+                {
+                    this.trvVistas.Nodes.Add(nodoPrin);
 
-        //            nodoPrin.Nodes.Add(nodoSecu);
-        //        }
+                    this.trvVistas.ExpandAll();
+                }
+            }
+        }
 
-        //        if (nodoPrin.Nodes.Count > 0)
-        //        {
-        //            this.trvVistas.Nodes.Add(nodoPrin);
+        /// <summary> Expande todo el TreeView </summary>
+        private void btnExpandir_Click(object sender, EventArgs e)
+        {
+            this.trvVistas.ExpandAll();
+        }
 
-        //            this.trvVistas.ExpandAll();
-        //        }
-        //    }
-        //}
+        /// <summary> Contrae todo el TreeView </summary>
+        private void btnContraer_Click(object sender, EventArgs e)
+        {
+            this.trvVistas.CollapseAll();
+        }
+
+        /// <summary> Evento cuando se hace click en un nodo </summary>
+        private void trvVistas_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Node.Level == 0)
+            {
+                bool estado = e.Node.Checked;
+                
+                foreach (TreeNode nodoSecu in e.Node.Nodes)
+                {
+                    nodoSecu.Checked = estado;
+                }
+            }
+        }
+
+        /// <summary> Selecciona todos los nodos del TreeView </summary>
+        private void btnSeleccionarTodos_Click(object sender, EventArgs e)
+        {
+            CambiarEstadoDeNodo(this.trvVistas.Nodes, true);
+        }
+
+        /// <summary> No selecciona ninguno de los nodos del TreeView </summary>
+        private void btnSeleccionarNinguno_Click(object sender, EventArgs e)
+        {
+            CambiarEstadoDeNodo(this.trvVistas.Nodes, false);
+        }
+
+        // <summary> Cambia el checked del nodo y sus hijos </summary>
+        private void CambiarEstadoDeNodo(TreeNodeCollection nodos, bool estado)
+        {
+            foreach (TreeNode nodo in nodos)
+            {
+                nodo.Checked = estado;
+
+                if (nodo.Nodes.Count > 0)
+                {
+                    CambiarEstadoDeNodo(nodo.Nodes, estado);
+                }
+            }
+        }
 
         /// <summary> Carga el formulario </summary>
         private void frmCrearPlanos_Load(object sender, EventArgs e)
@@ -99,6 +149,10 @@ namespace Jump
             gbxVistas.Text = Language.ObtenerTexto(IdiomaDelPrograma, "CreaPlano1-1");
             gbxTipoPlano.Text = Language.ObtenerTexto(IdiomaDelPrograma, "CreaPlano2-1");
             chbPlanoIndividual.Text = Language.ObtenerTexto(IdiomaDelPrograma, "CreaPlano3-1");
+            btnSeleccionarTodos.Text = Language.ObtenerTexto(IdiomaDelPrograma, "CreaPlano3-2");
+            btnSeleccionarNinguno.Text = Language.ObtenerTexto(IdiomaDelPrograma, "CreaPlano3-3");
+            btnExpandir.Text = Language.ObtenerTexto(IdiomaDelPrograma, "CreaPlano3-4");
+            btnContraer.Text = Language.ObtenerTexto(IdiomaDelPrograma, "CreaPlano3-5");
         }
 
         /// <summary> Cierra el formulario cuando se presiona la tecla Esc </summary>
@@ -112,16 +166,47 @@ namespace Jump
             }
         }
 
+        /// <summary> Obtiene una lista con todos los TreeNodes </summary>
+        private List<TreeNode> ObtenerTodosLosNodos(TreeNodeCollection nodos)
+        {
+            List<TreeNode> todosNodos = new List<TreeNode>();
+
+            foreach (TreeNode nodo in nodos)
+            {
+                todosNodos.Add(nodo);
+
+                todosNodos.AddRange(ObtenerTodosLosNodos(nodo.Nodes));
+            }
+
+            return todosNodos;
+        }
+
         /// <summary> Ejecuta todas las acciones </summary>
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (this.lstVistas.SelectedItems.Count > 0 && this.lstTipoPlano.SelectedItems.Count > 0)
+            List<Autodesk.Revit.DB.View> vistasSeleccionadas = new List<Autodesk.Revit.DB.View>();
+
+            List<TreeNode> todosNodos = ObtenerTodosLosNodos(this.trvVistas.Nodes);
+
+            foreach (TreeNode nodo in todosNodos)
             {
-                frmBarraProgreso barra = new frmBarraProgreso(this.lstVistas.SelectedItems.Count);
+                if (nodo.Level != 0 && nodo.Checked)
+                {
+                    Autodesk.Revit.DB.View vista = this.todosVistas.Where(x => x.Id.Value.ToString() == nodo.Name).FirstOrDefault();
 
-                barra.Show();
+                    if (vista != null)
+                    {
+                        vistasSeleccionadas.Add(vista);
 
-                List<Element> vistasSeleccionadas = lstVistas.SelectedItems.Cast<Element>().ToList();
+                    }
+                }
+            }
+
+            if (vistasSeleccionadas.Count > 0 && this.lstTipoPlano.SelectedItems.Count > 0)
+            {
+                frmBarraProgreso barraProgreso = new frmBarraProgreso(vistasSeleccionadas.Count);
+
+                barraProgreso.Show();
 
                 ElementId tipoDePlano = (this.lstTipoPlano.SelectedItem as FamilySymbol).Id;
 
@@ -135,6 +220,11 @@ namespace Jump
                     {
                         foreach (Autodesk.Revit.DB.View vista in vistasSeleccionadas)
                         {
+                            if (barraProgreso.Cancelado())
+                            {
+                                break;
+                            }
+
                             try
                             {
                                 ViewSheet plano = ViewSheet.Create(this.doc, tipoDePlano);
@@ -158,54 +248,84 @@ namespace Jump
                             }
                             catch (Exception) { }
 
-                            barra.Incrementar();
+                            barraProgreso.Incrementar();
                         }
                     }
                     else
                     {
                         ViewSheet plano = ViewSheet.Create(this.doc, tipoDePlano);
 
+                        UV planoMin = plano.Outline.Min;
+                        UV planoMax = plano.Outline.Max;
+
+                        XYZ planoCentro = new XYZ(planoMax.U + planoMin.U, planoMax.V + planoMin.V, 0) / 2;
+
+                        double anchoPlano = (planoMax.U - planoMin.U);
+
+                        XYZ moverViewport = new XYZ();
+
                         this.doc.Regenerate();
+
+                        int n = 0;
 
                         foreach (Autodesk.Revit.DB.View vista in vistasSeleccionadas)
                         {
+                            if (barraProgreso.Cancelado())
+                            {
+                                break;
+                            }
+
                             try
                             {
                                 Viewport viewport = Viewport.Create(this.doc, plano.Id, vista.Id, XYZ.Zero);
 
                                 this.doc.Regenerate();
 
-                                UV planoMin = plano.Outline.Min;
-                                UV planoMax = plano.Outline.Max;
+                                XYZ dimensionesViewport = viewport.GetBoxOutline().MaximumPoint - viewport.GetBoxOutline().MinimumPoint;
 
-                                XYZ planoCentro = new XYZ(planoMax.U + planoMin.U, planoMax.V + planoMin.V, 0) / 2;
                                 XYZ viewportCentro = (viewport.GetBoxOutline().MaximumPoint + viewport.GetBoxOutline().MinimumPoint) / 2;
-                                XYZ distancia = planoCentro - viewportCentro;
 
-                                ElementTransformUtils.MoveElement(this.doc, viewport.Id, distancia);
+                                XYZ distanciaCentro = planoCentro - viewportCentro;
+
+                                ElementTransformUtils.MoveElement(this.doc, viewport.Id, distanciaCentro + moverViewport);
+
+                                if ((moverViewport + dimensionesViewport).X >= anchoPlano)
+                                {
+                                    n++;
+
+                                    moverViewport = new XYZ(0, dimensionesViewport.Negate().Y, 0).Multiply(n);
+                                }
+                                else
+                                {
+                                    moverViewport = moverViewport + Tools.ProyectarVectorSobreDireccion(dimensionesViewport, plano.RightDirection);
+                                }
                             }
                             catch (Exception) { }
 
-                            barra.Incrementar();
+                            barraProgreso.Incrementar();
                         }
 
                         contador++;
                     }
 
-                    if (contador > 0)
+                    if (contador > 0 && !barraProgreso.Cancelado())
                     {
                         tra.Commit();
+
+                        barraProgreso.Close();
+
+                        TaskDialog.Show(Language.ObtenerTexto(IdiomaDelPrograma, "CreaPlano4-2"),
+                                        contador.ToString() + Language.ObtenerTexto(IdiomaDelPrograma, "CreaPlano4-3"));
                     }
                     else
                     {
                         tra.RollBack();
+
+                        barraProgreso.Close();
                     }
                 }
 
-                barra.Close();
-
-                TaskDialog.Show(Language.ObtenerTexto(IdiomaDelPrograma, "CreaPlano4-2"),
-                                contador.ToString() + Language.ObtenerTexto(IdiomaDelPrograma, "CreaPlano4-3"));
+                try{ CambiarEstadoDeNodo(this.trvVistas.Nodes, false); }catch (Exception) { }
             }
         }
 

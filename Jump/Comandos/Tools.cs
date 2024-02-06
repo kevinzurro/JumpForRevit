@@ -5100,6 +5100,52 @@ namespace Jump
             return vistaYY;
         }
 
+        ///<summary> Crea una vista en planta de un elemento basado </summary>
+        public static View VistaEnPlanta(Document doc, Element elem)
+        {
+            try
+            {
+                // Determina el tipo de vista que se usa
+                ViewFamilyType vft = new FilteredElementCollector(doc)
+                                        .OfClass(typeof(ViewFamilyType))
+                                        .Cast<ViewFamilyType>()
+                                        .FirstOrDefault<ViewFamilyType>(v => ViewFamily.StructuralPlan == v.ViewFamily);
+
+                Level nivel = null;
+
+                if (elem.LevelId != ElementId.InvalidElementId) 
+                {
+                    nivel = doc.GetElement(elem.LevelId) as Level;
+                }
+
+                else if (elem is FamilyInstance)
+                {
+                    FamilyInstance fi = elem as FamilyInstance;
+
+                    Level nivelFi = null;
+
+                    try
+                    {
+                        nivelFi = fi.Host as Level;
+                    }
+                    catch (Exception) { }
+
+                    if (fi.Host is Level && nivelFi != null)
+                    {
+                        nivel = nivelFi;
+                    }
+                }
+
+                ViewPlan vista = ViewPlan.Create(doc, vft.Id, nivel.Id);
+
+                return vista;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         ///<summary> Crea una sección longitudinal de un elemento basado en curva o línea </summary>
         public static View SeccionLongitudinalBasadoEnCurva(Document doc, Element elem)
         {
@@ -5186,7 +5232,7 @@ namespace Jump
                 // Obtiene la longitud de la linea
                 XYZ longitud = new XYZ(final.X - inicial.X, final.Y - inicial.Y, 0);
 
-                // Determina la vista que se usa
+                // Determina el tipo de vista que se usa
                 ViewFamilyType vft = new FilteredElementCollector(doc)
                                         .OfClass(typeof(ViewFamilyType))
                                         .Cast<ViewFamilyType>()
@@ -5573,7 +5619,6 @@ namespace Jump
 
             // Cambia el nivel de detalle de la vista
             vista.DetailLevel = nivelDetalle;
-
             vista.DisplayStyle = estiloVista;
 
             // Activa el cuadro de recorte

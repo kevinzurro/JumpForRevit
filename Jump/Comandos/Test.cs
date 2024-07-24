@@ -149,5 +149,16 @@ namespace Jump
             }
             catch (Exception) { }
         }
+
+        ///<summary> Muestra un mensaje en la pantalla </summary>
+        public static void MostrarMensaje(string texto)
+        {
+            System.Windows.MessageBox.Show(texto);
+        }
+
+        public static void MostrarMensaje(string textoP, string textoS)
+        {
+            System.Windows.MessageBox.Show(textoP + "\n" + textoS);
+        }
     }
 }

@@ -59,7 +59,7 @@ namespace Jump
             lblProgreso.Text = texto;
         }
 
-        ///<summary> Incrementa la barra de progreso </summary>
+        ///<summary> Incrementa la barra de progreso en 1 unidad </summary>
         public void Incrementar()
         {
             // Incrementa el contador
@@ -70,6 +70,7 @@ namespace Jump
 
             // Incrementa la barra de progreso
             pbrBarraProgreso.Value = contador;
+
             Application.DoEvents();
         }
 

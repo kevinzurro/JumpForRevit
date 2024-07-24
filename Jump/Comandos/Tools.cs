@@ -15,6 +15,7 @@ using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.DB.ExtensibleStorage;
 using Autodesk.Revit.DB.Analysis;
 using System.Windows;
+using System.Collections.ObjectModel;
 
 namespace Jump
 {
@@ -1134,13 +1135,25 @@ namespace Jump
         }
 
         ///<summary> Obtiene una lista de elementos ID que coincida con los elementos ID de otra lista </summary>
-        public static List<ElementId> ObtenerElementosIDCoincidentesConLista(List<ElementId> listaBase, List<ElementId> listaSeleccionados)
+        public static List<ElementId> ObtenerElementosCoincidentesConLista(List<ElementId> listaBase, List<ElementId> listaSeleccionados)
         {
             // Crea la lista a devolver
             List<ElementId> lista = new List<ElementId>();
 
             // Compara el ID de los elementos y devuelve los coincidentes
             lista = listaBase.Where(x => listaSeleccionados.Any(y => y == x)).ToList();
+
+            return lista;
+        }
+
+        ///<summary> Obtiene una lista de elementos que no coincida con los elementos de otra lista </summary>
+        public static List<Element> ObtenerElementosNoCoincidentesConLista(List<Element> listaBase, List<Element> listaSeleccionados)
+        {
+            // Crea la lista a devolver
+            List<Element> lista = new List<Element>();
+
+            // Compara el ID de los elementos y devuelve los coincidentes
+            lista = listaBase.Where(x => !listaSeleccionados.Any(y => y.Id == x.Id)).ToList();
 
             return lista;
         }
@@ -1199,7 +1212,7 @@ namespace Jump
         }
 
         #endregion
-        
+
         #region Grupos y elementos anidados
 
         /// <summary> Crea un grupo a partir de una lista de elementos </summary>

@@ -8,6 +8,7 @@ using Autodesk.Revit.UI;
 using Autodesk.Revit.DB.Structure;
 using System.Windows.Media.Imaging;
 using System.Collections;
+using Autodesk.Revit.ApplicationServices;
 
 namespace Jump
 {
@@ -15,6 +16,8 @@ namespace Jump
     {
         // Crear un vector principal con los idiomas disponibles
         public static List<string> IdiomasDisponibles = new List<string>();
+
+        private static string idiomaPredeterminado = "es-ES";
 
         // Crear cada uno de los vectores secundarios para los diferentes idiomas
         private static Dictionary<string, string> Aleman = new Dictionary<string, string>();
@@ -25,6 +28,89 @@ namespace Jump
         private static Dictionary<string, string> Italiano = new Dictionary<string, string>();
         private static Dictionary<string, string> Japones = new Dictionary<string, string>();
         private static Dictionary<string, string> Portugues = new Dictionary<string, string>();
+
+        ///<summary> Obtiene el tipo de idioma que utiliza Revit </summary>
+        public static string ObtenerIdiomaRevit(LanguageType tipoIdioma)
+        {
+            string idioma = "";
+
+            switch (tipoIdioma)
+            {
+                case LanguageType.Brazilian_Portuguese:
+                    idioma = "pt-BR";
+                    break;
+
+                case LanguageType.Chinese_Simplified:
+                    idioma = "zh-CN";
+                    break;
+
+                case LanguageType.Chinese_Traditional:
+                    idioma = "zh-TW";
+                    break;
+
+                case LanguageType.Czech:
+                    idioma = "cs-CZ";
+                    break;
+
+                case LanguageType.Dutch:
+                    idioma = "nl-BE";
+                    break;
+
+                case LanguageType.English_GB:
+                    idioma = "en-BG";
+                    break;
+
+                case LanguageType.English_USA:
+                    idioma = "en-US";
+                    break;
+
+                case LanguageType.French:
+                    idioma = "fr-FR";
+                    break;
+
+                case LanguageType.German:
+                    idioma = "de-DE";
+                    break;
+
+                case LanguageType.Hungarian:
+                    idioma = "hu-HU";
+                    break;
+
+                case LanguageType.Italian:
+                    idioma = "it-IT";
+                    break;
+
+                case LanguageType.Japanese:
+                    idioma = "ja-JP";
+                    break;
+
+                case LanguageType.Korean:
+                    idioma = "ko-KR";
+                    break;
+
+                case LanguageType.Polish:
+                    idioma = "pl-PL";
+                    break;
+
+                case LanguageType.Russian:
+                    idioma = "ru-RU";
+                    break;
+
+                case LanguageType.Spanish:
+                    idioma = "es-ES";
+                    break;
+
+                case LanguageType.Unknown:
+                    idioma = idiomaPredeterminado;
+                    break;
+
+                default:
+                    idioma = idiomaPredeterminado;
+                    break;
+            }
+
+            return idioma;
+        }
 
         ///<summary> Carga los idiomas disponibles al vector principal </summary>
         public static void CargarIdiomasDisponibles()
@@ -415,6 +501,7 @@ namespace Jump
             Espanol.Add("CreaPlano4-1", "Generación de plano");
             Espanol.Add("CreaPlano4-2", "Generación de plano");
             Espanol.Add("CreaPlano4-3", " planos fueron creados");
+            Espanol.Add("CreaPlano4-4", " plano fue creado");
 
             Espanol.Add("ActBar1", "Actualizar la forma de las barras");
             Espanol.Add("ActBar2", "Actualizador de barras");

@@ -11,7 +11,6 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.DB.Structure;
 using System.Windows.Controls;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Jump
 {

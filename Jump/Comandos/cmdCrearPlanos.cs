@@ -7,6 +7,11 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.DB.Structure;
 using Autodesk.Revit.ApplicationServices;
+using Jump.Views;
+using System.Globalization;
+using System.Threading;
+using System.Resources;
+using System.Diagnostics;
 
 namespace Jump
 {
@@ -20,12 +25,42 @@ namespace Jump
             UIDocument uiDoc = uiApp.ActiveUIDocument;
             Application app = uiApp.Application;
             Document doc = uiDoc.Document;
-
+            
             Tools.AddinManager();
 
-            frmCrearPlanos CrearPlanos = new frmCrearPlanos(doc);
+            string IdiomaDelPrograma = Tools.ObtenerIdiomaDelPrograma();
 
-            CrearPlanos.ShowDialog();
+            using (TransactionGroup tg = new TransactionGroup(doc, Language.ObtenerTexto(IdiomaDelPrograma, "CreaPlano4-1")))
+            {
+                tg.Start();
+                try
+                {
+                    VistasModel mVistas = new VistasModel(uiApp);
+                    mVistas.IdiomaDelPrograma = IdiomaDelPrograma;
+
+                    CrearPlanosViewModel mvCrearPlanos = new CrearPlanosViewModel();
+                    mvCrearPlanos.Modelo = mVistas;
+
+                    WinCrearPlanos CrearPlanos = new WinCrearPlanos();
+
+                    CrearPlanos.DataContext = mvCrearPlanos;
+
+                    CrearPlanos.ShowDialog();
+
+                    if (CrearPlanos.DialogResult == true)
+                    {
+                        tg.Assimilate();
+                    }
+                    else
+                    {
+                        tg.RollBack();
+                    }
+                }
+                catch (Exception e)
+                {
+                    tg.RollBack();
+                }
+            }
 
             return Result.Succeeded;
         }

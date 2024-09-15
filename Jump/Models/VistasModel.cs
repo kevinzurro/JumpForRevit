@@ -169,8 +169,6 @@ namespace Jump
 
                     double alturaMax = double.MinValue;
 
-                    List<Element> VistasCreadasEnPlano = new List<Element>();
-
                     foreach (View vista in vistas)
                     {
                         if (barraProgreso.Cancelado())
@@ -180,7 +178,8 @@ namespace Jump
 
                         try
                         {
-                            XYZ punto = new XYZ(xPos, yPos, 0);
+                            // Coloca la vista inicialmente en la esquina superior izquierda
+                            XYZ punto = new XYZ(planoMin.U, planoMax.V, 0);
 
                             Element elem = ColocarVistaEnPlano(plano, vista, punto);
 
@@ -193,61 +192,37 @@ namespace Jump
                                 double elemAncho = bb.Max.X - bb.Min.X;
                                 double elemAlto = bb.Max.Y - bb.Min.Y;
 
-                                if (elem is Viewport)
+                                // Comprobar si el elemento entra en la fila actual; de lo contrario mueve a la siguiente fila
+                                if ((xPos + elemAncho) > (planoMin.U + anchoPlano))
                                 {
-                                    ElementTransformUtils.MoveElement(this.Doc, elem.Id, new XYZ(elemAncho, -elemAlto, 0) / 2);
+                                    // Restablecer xPos al inicio de la nueva fila
+                                    xPos = planoMin.U;
+
+                                    // Mover hacia abajo usando la altura más alta de la fila anterior
+                                    yPos -= alturaMax;
+
+                                    // Reiniciar la altura máxima para la nueva fila
+                                    alturaMax = double.MinValue;
                                 }
 
-                                VistasCreadasEnPlano.Add(elem);
+                                // Mover el elemento a su nueva posición
+                                XYZ nuevaPos = new XYZ(xPos - bb.Min.X, yPos - bb.Max.Y, 0);
+
+                                ElementTransformUtils.MoveElement(this.Doc, elem.Id, nuevaPos);
+
+                                // Actualizar xPos para el siguiente elemento en la fila actual
+                                xPos += elemAncho;
+
+                                // Actualizar la altura máxima de la fila si este elemento es el más alto
+                                if (elemAlto > alturaMax)
+                                {
+                                    alturaMax = elemAlto;
+                                }
                             }
                         }
-                        catch (Exception e) { Debug.WriteLine(e.StackTrace); }
+                        catch (Exception) { }
 
                         barraProgreso.Incrementar();
-                    }
-
-                    foreach (Element elem in VistasCreadasEnPlano)
-                    {
-                        if (barraProgreso.Cancelado())
-                        {
-                            break;
-                        }
-
-                        BoundingBoxXYZ bb = elem.get_BoundingBox(plano);
-
-                        double elemAncho = bb.Max.X - bb.Min.X;
-                        double elemAlto = bb.Max.Y - bb.Min.Y;
-
-                        // Si el elemento no entra en la fila actual, mover a la siguiente fila.
-                        if ((xPos + elemAncho) > (planoMin.U + anchoPlano))
-                        {
-                            // Restablecer xPos al comienzo de la nueva fila.
-                            xPos = planoMin.U;
-
-                            // Mover hacia abajo usando la altura de la fila anterior.
-                            yPos -= alturaMax;
-
-                            // Resetear la altura máxima.
-                            alturaMax = double.MinValue;
-                        }
-
-                        // Mover el elemento a su nueva posición.
-                        XYZ nuevaPos = new XYZ(xPos - bb.Min.X, yPos - bb.Max.Y, 0);
-
-                        try
-                        {
-                            ElementTransformUtils.MoveElement(this.Doc, elem.Id, nuevaPos);
-                        }
-                        catch (Exception e){ Debug.WriteLine(e.StackTrace); }
-
-                        // Actualizar el xPos para el siguiente elemento en la fila actual.
-                        xPos += elemAncho;
-
-                        // Actualizar la altura máxima de la fila si este elemento es el más alto.
-                        if (elemAlto > alturaMax)
-                        {
-                            alturaMax = elemAlto;
-                        }
                     }
 
                     contadorPlanos++;

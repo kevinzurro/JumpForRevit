@@ -13,6 +13,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Diagnostics;
 using System.Windows.Media;
+using System.Windows.Media.TextFormatting;
 
 namespace Jump
 {
@@ -168,6 +169,8 @@ namespace Jump
 
                     double alturaMax = double.MinValue;
 
+                    List<Element> VistasCreadasEnPlano = new List<Element>();
+
                     foreach (View vista in vistas)
                     {
                         if (barraProgreso.Cancelado())
@@ -181,6 +184,8 @@ namespace Jump
 
                             Element elem = ColocarVistaEnPlano(plano, vista, punto);
 
+                            this.Doc.Regenerate();
+
                             if (elem != null)
                             {
                                 BoundingBoxXYZ bb = elem.get_BoundingBox(plano);
@@ -188,31 +193,61 @@ namespace Jump
                                 double elemAncho = bb.Max.X - bb.Min.X;
                                 double elemAlto = bb.Max.Y - bb.Min.Y;
 
-                                if (elemAlto > alturaMax)
-                                {
-                                    alturaMax = elemAlto;
-                                }
-
                                 if (elem is Viewport)
                                 {
                                     ElementTransformUtils.MoveElement(this.Doc, elem.Id, new XYZ(elemAncho, -elemAlto, 0) / 2);
                                 }
 
-                                if (xPos + elemAncho > anchoPlano)
-                                {
-                                    xPos = planoMin.U;
-                                    yPos -= alturaMax;
-                                    alturaMax = double.MinValue;
-                                }
-                                else
-                                {
-                                    xPos += elemAncho;
-                                }
+                                VistasCreadasEnPlano.Add(elem);
                             }
                         }
-                        catch (Exception) { }
+                        catch (Exception e) { Debug.WriteLine(e.StackTrace); }
 
                         barraProgreso.Incrementar();
+                    }
+
+                    foreach (Element elem in VistasCreadasEnPlano)
+                    {
+                        if (barraProgreso.Cancelado())
+                        {
+                            break;
+                        }
+
+                        BoundingBoxXYZ bb = elem.get_BoundingBox(plano);
+
+                        double elemAncho = bb.Max.X - bb.Min.X;
+                        double elemAlto = bb.Max.Y - bb.Min.Y;
+
+                        // Si el elemento no entra en la fila actual, mover a la siguiente fila.
+                        if ((xPos + elemAncho) > (planoMin.U + anchoPlano))
+                        {
+                            // Restablecer xPos al comienzo de la nueva fila.
+                            xPos = planoMin.U;
+
+                            // Mover hacia abajo usando la altura de la fila anterior.
+                            yPos -= alturaMax;
+
+                            // Resetear la altura máxima.
+                            alturaMax = double.MinValue;
+                        }
+
+                        // Mover el elemento a su nueva posición.
+                        XYZ nuevaPos = new XYZ(xPos - bb.Min.X, yPos - bb.Max.Y, 0);
+
+                        try
+                        {
+                            ElementTransformUtils.MoveElement(this.Doc, elem.Id, nuevaPos);
+                        }
+                        catch (Exception e){ Debug.WriteLine(e.StackTrace); }
+
+                        // Actualizar el xPos para el siguiente elemento en la fila actual.
+                        xPos += elemAncho;
+
+                        // Actualizar la altura máxima de la fila si este elemento es el más alto.
+                        if (elemAlto > alturaMax)
+                        {
+                            alturaMax = elemAlto;
+                        }
                     }
 
                     contadorPlanos++;

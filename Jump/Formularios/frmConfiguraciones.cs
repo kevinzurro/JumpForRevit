@@ -106,16 +106,16 @@ namespace Jump
             rbtnVistaLocal.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf1-3-2");
             rbtnVistaGlobal.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf1-3-3");
 
-            double precisionX = Properties.Settings.Default.PrecisionOrdenarX;
-            double precisionY = Properties.Settings.Default.PrecisionOrdenarY;
-            double precisionNodoAnalitico = Properties.Settings.Default.PrecisionNodoAnalitico;
+            double precisionX = Properties.Settings.Default.ConfiguracionPrecisionOrdenarX;
+            double precisionY = Properties.Settings.Default.ConfiguracionPrecisionOrdenarY;
+            double precisionNodoAnalitico = Properties.Settings.Default.ConfiguracionPrecisionNodoAnalitico;
 
             this.pcbxGeneral.BackgroundImage = Iconos_e_Imagenes.Imagenes.Configuraciones_Precision;
             this.txtPrecisionOrdenarX.Text = UnitUtils.ConvertFromInternalUnits(precisionX, this.tipoUnidad).ToString();
             this.txtPrecisionOrdenarY.Text = UnitUtils.ConvertFromInternalUnits(precisionY, this.tipoUnidad).ToString();
             this.txtPrecisionNodoAnalitico.Text = UnitUtils.ConvertFromInternalUnits(precisionNodoAnalitico, this.tipoUnidad).ToString();
-            this.rbtnVistaGlobal.Checked = Properties.Settings.Default.rbtnGeneralVistaGlobal;
-            this.rbtnVistaLocal.Checked = Properties.Settings.Default.rbtnGeneralVistaLocal;
+            this.rbtnVistaGlobal.Checked = Properties.Settings.Default.ConfiguracionVistaGlobal;
+            this.rbtnVistaLocal.Checked = Properties.Settings.Default.ConfiguracionVistaLocal;
 
             gbxArmadura.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf2-1");
             lblArmaduraEnumeracion.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf2-2-1");
@@ -433,11 +433,11 @@ namespace Jump
             double precisionNodoAnalitico = Convert.ToDouble(this.txtPrecisionNodoAnalitico.Text);
 
             // Pestaña General
-            Properties.Settings.Default.PrecisionOrdenarX = UnitUtils.ConvertToInternalUnits(precisionX, this.tipoUnidad);
-            Properties.Settings.Default.PrecisionOrdenarY = UnitUtils.ConvertToInternalUnits(precisionY, this.tipoUnidad);
-            Properties.Settings.Default.PrecisionNodoAnalitico = UnitUtils.ConvertToInternalUnits(precisionNodoAnalitico, this.tipoUnidad);
-            Properties.Settings.Default.rbtnGeneralVistaGlobal = this.rbtnVistaGlobal.Checked;
-            Properties.Settings.Default.rbtnGeneralVistaLocal = this.rbtnVistaLocal.Checked;
+            Properties.Settings.Default.ConfiguracionPrecisionOrdenarX = UnitUtils.ConvertToInternalUnits(precisionX, this.tipoUnidad);
+            Properties.Settings.Default.ConfiguracionPrecisionOrdenarY = UnitUtils.ConvertToInternalUnits(precisionY, this.tipoUnidad);
+            Properties.Settings.Default.ConfiguracionPrecisionNodoAnalitico = UnitUtils.ConvertToInternalUnits(precisionNodoAnalitico, this.tipoUnidad);
+            Properties.Settings.Default.ConfiguracionVistaGlobal = this.rbtnVistaGlobal.Checked;
+            Properties.Settings.Default.ConfiguracionVistaLocal = this.rbtnVistaLocal.Checked;
 
             // Pestaña Armaduras
             Properties.Settings.Default.rbtnArmaduraEnumeracionPorElemento = this.rbtnEnumeracionElemento.Checked;

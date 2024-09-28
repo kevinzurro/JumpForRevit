@@ -37,13 +37,13 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public double PrecisionOrdenarX {
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
+        public double ConfiguracionPrecisionOrdenarX {
             get {
-                return ((double)(this["PrecisionOrdenarX"]));
+                return ((double)(this["ConfiguracionPrecisionOrdenarX"]));
             }
             set {
-                this["PrecisionOrdenarX"] = value;
+                this["ConfiguracionPrecisionOrdenarX"] = value;
             }
         }
         
@@ -110,36 +110,36 @@ namespace Jump.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool rbtnGeneralVistaLocal {
+        public bool ConfiguracionVistaLocal {
             get {
-                return ((bool)(this["rbtnGeneralVistaLocal"]));
+                return ((bool)(this["ConfiguracionVistaLocal"]));
             }
             set {
-                this["rbtnGeneralVistaLocal"] = value;
+                this["ConfiguracionVistaLocal"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool rbtnGeneralVistaGlobal {
+        public bool ConfiguracionVistaGlobal {
             get {
-                return ((bool)(this["rbtnGeneralVistaGlobal"]));
+                return ((bool)(this["ConfiguracionVistaGlobal"]));
             }
             set {
-                this["rbtnGeneralVistaGlobal"] = value;
+                this["ConfiguracionVistaGlobal"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public double PrecisionOrdenarY {
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
+        public double ConfiguracionPrecisionOrdenarY {
             get {
-                return ((double)(this["PrecisionOrdenarY"]));
+                return ((double)(this["ConfiguracionPrecisionOrdenarY"]));
             }
             set {
-                this["PrecisionOrdenarY"] = value;
+                this["ConfiguracionPrecisionOrdenarY"] = value;
             }
         }
         
@@ -866,12 +866,48 @@ namespace Jump.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0.01")]
-        public double PrecisionNodoAnalitico {
+        public double ConfiguracionPrecisionNodoAnalitico {
             get {
-                return ((double)(this["PrecisionNodoAnalitico"]));
+                return ((double)(this["ConfiguracionPrecisionNodoAnalitico"]));
             }
             set {
-                this["PrecisionNodoAnalitico"] = value;
+                this["ConfiguracionPrecisionNodoAnalitico"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("45")]
+        public int ConfiguracionPrecisionAnguloPositivo {
+            get {
+                return ((int)(this["ConfiguracionPrecisionAnguloPositivo"]));
+            }
+            set {
+                this["ConfiguracionPrecisionAnguloPositivo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-45")]
+        public int ConfiguracionPrecisionAnguloNegativo {
+            get {
+                return ((int)(this["ConfiguracionPrecisionAnguloNegativo"]));
+            }
+            set {
+                this["ConfiguracionPrecisionAnguloNegativo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        public double ConfiguracionCorteTransversalBasadoLinea {
+            get {
+                return ((double)(this["ConfiguracionCorteTransversalBasadoLinea"]));
+            }
+            set {
+                this["ConfiguracionCorteTransversalBasadoLinea"] = value;
             }
         }
     }

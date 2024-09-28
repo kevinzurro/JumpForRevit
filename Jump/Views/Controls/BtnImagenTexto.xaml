@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Jump.Views.Controls.BtnImagenTexto"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Jump"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="100">
+    
+    <Button x:Name="btnConfigGeneral"            
+            Height="50"
+            HorizontalAlignment="Stretch"
+            HorizontalContentAlignment="Left"
+            BorderThickness="0"
+            Padding="5"
+            Background="White">
+
+        <StackPanel Orientation="Horizontal" 
+                    HorizontalAlignment="Left">
+
+            <Image x:Name="imgImagen"
+                   Height="35"
+                   Width="35"
+                   Source="{Binding Image}"
+                   Stretch="UniformToFill"/>
+
+            <TextBlock x:Name="lblTexto"
+                       FontSize="15"
+                       Margin="10,0,0,0"
+                       VerticalAlignment="Center"
+                       TextWrapping="Wrap"
+                       Text="{Binding Title}"/>
+
+        </StackPanel>
+
+    </Button>
+    
+</UserControl>

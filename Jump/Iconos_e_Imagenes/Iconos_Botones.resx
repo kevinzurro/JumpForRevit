@@ -139,6 +139,15 @@
   <data name="Boton_Configuracion" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Boton_Configuracion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Boton_Config_Cota" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Boton_Config_Cota.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Boton_Config_Etiquetas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Boton_Config_Etiquetas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Boton_Config_General" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Boton_Config_General.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Boton_Elem_Analitico" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Boton_Elem_Analitico.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

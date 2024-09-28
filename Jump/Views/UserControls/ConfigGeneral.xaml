@@ -1,0 +1,228 @@
+﻿<UserControl x:Class="Jump.Views.UserControls.ConfigGeneral"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Jump"
+             xmlns:vm="clr-namespace:Jump.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="White"
+             MinHeight="200" MinWidth="300">
+
+    <UserControl.Resources>
+        
+        <ResourceDictionary>
+            
+            <ResourceDictionary.MergedDictionaries>
+                
+                <ResourceDictionary Source="/Jump;component/Styles/Estilos.xaml"/>
+                
+            </ResourceDictionary.MergedDictionaries>
+            
+        </ResourceDictionary>
+        
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+
+        </Grid.ColumnDefinitions>
+
+        <StackPanel>
+
+            <Label
+                x:Name="lblprecisionOrdenar"
+                Content="Precisión para ordenar los elementos"
+                Style="{StaticResource ConfigTituloPrincipal}">
+            </Label>
+
+            <Separator Style="{StaticResource ConfigSeparador}"/>
+
+            <StackPanel Style="{StaticResource ConfigStackpanel}">
+
+                <TextBlock
+                    x:Name="lblPrecisionOrdenarDescripcion"
+                    Style="{StaticResource ConfigTexto}"
+                    Text="La precisión en X como en Y se utiliza para el orden y enumeración de los elementos">
+                </TextBlock>
+
+                <Grid Style="{StaticResource ConfigGridIntroduccionDatos}">
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock
+                        Grid.Column="0"
+                        Text="X = ">
+                    </TextBlock>
+                    
+                    <TextBox
+                        Grid.Column="1"
+                        x:Name="txtPrecisionOrdenarX"
+                        Text="{Binding PrecisionOrdenarX}">
+                    </TextBox>
+                    
+                    <TextBlock
+                        Grid.Column="2"
+                        Text="{Binding TxtUnidadDistancia}"
+                        Style="{StaticResource ConfigTextoUnidad}">
+                    </TextBlock>
+                    
+                </Grid>
+
+                <Grid>
+                    
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock
+                        Grid.Column="0"
+                        Text="Y = ">
+                    </TextBlock>
+
+                    <TextBox
+                        Grid.Column="1"
+                        x:Name="txtPrecisionOrdenarY"
+                        Text="{Binding PrecisionOrdenarY}">
+                    </TextBox>
+
+                    <TextBlock
+                        Grid.Column="2"
+                        Text="{Binding TxtUnidadDistancia}"
+                        Style="{StaticResource ConfigTextoUnidad}">
+                    </TextBlock>
+
+                </Grid>
+                
+            </StackPanel>
+            
+            <Label
+                x:Name="lblPrecisionNodo"
+                Content="Precisión para nodos analíticos"
+                Style="{StaticResource ConfigTituloPrincipal}">
+            </Label>
+
+            <Separator Style="{StaticResource ConfigSeparador}"/>
+
+            <StackPanel Style="{StaticResource ConfigStackpanel}">
+
+                <TextBlock
+                    x:Name="lblPrecisionNodoDescripcion"
+                    Style="{StaticResource ConfigTexto}"
+                    Text="Mínima distancia a partir de la cual se analizan la separación de los nodos analíticos">
+                </TextBlock>
+
+                <Grid Style="{StaticResource ConfigGridIntroduccionDatos}">
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock
+                        Grid.Column="0"
+                        Text="D = ">
+                    </TextBlock>
+
+                    <TextBox
+                        Grid.Column="1"
+                        x:Name="txtPrecisionNodoAnalitico"
+                        Text="{Binding PrecisionNodoAnalitico}">
+                    </TextBox>
+
+                    <TextBlock
+                        Grid.Column="2"
+                        Text="{Binding TxtUnidadDistancia}"
+                        Style="{StaticResource ConfigTextoUnidad}">
+                    </TextBlock>
+                </Grid>
+
+            </StackPanel>
+
+            <Label
+                x:Name="lblSeccion"
+                Content="Sección longitudinal y transversal"
+                Style="{StaticResource ConfigTituloPrincipal}">
+            </Label>
+
+            <Separator Style="{StaticResource ConfigSeparador}"/>
+
+            <StackPanel Style="{StaticResource ConfigStackpanel}">
+
+                <TextBlock
+                    x:Name="lblSeccionDescripcion"
+                    Style="{StaticResource ConfigTexto}"
+                    Text="La sección se basa en coordenadas de la familia (Local) o en coordenadas del modelo (Global)">
+                </TextBlock>
+
+                <RadioButton x:Name="rbtnVistaLocal"
+                             Content="Local"
+                             IsChecked="{Binding VistaLocal}"
+                             Style="{StaticResource ConfigRadioButton}">
+                </RadioButton>
+                
+                <RadioButton x:Name="rbtnVistaGlobal"
+                             Content="Global"
+                             IsChecked="{Binding VistaGlobal}"
+                             Style="{StaticResource ConfigRadioButton}">
+                </RadioButton>
+                
+                <TextBlock
+                    x:Name="lblCorteTransversalDescripcion"
+                    Style="{StaticResource ConfigTexto}"
+                    Text="En elementos basados en línea, la sección transversal puede ir desde 0% al 100% indicando el porcentaje a la cual se realiza en corte donde 0% es el inicio y 100% es el final">
+                </TextBlock>
+
+                <Grid Style="{StaticResource ConfigGridIntroduccionDatos}">
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock
+                        Grid.Column="0"
+                        Text="S = ">
+                    </TextBlock>
+
+                    <TextBox
+                        Grid.Column="1"
+                        x:Name="txtSeccionTransversal"
+                        VerticalContentAlignment="Center"
+                        Text="{Binding CorteTransversal}">
+                    </TextBox>
+
+                    <TextBlock
+                        Grid.Column="2"
+                        Text="%     [0 - 100]"
+                        Style="{StaticResource ConfigTextoUnidad}">
+                    </TextBlock>
+                </Grid>
+                
+            </StackPanel>
+
+        </StackPanel>
+
+        <Image x:Name="imgPreviewGeneral"
+               Grid.Column="1"/>
+
+    </Grid>
+</UserControl>

@@ -1,4 +1,5 @@
 ﻿using Jump;
+using Jump.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,7 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Jump
+namespace Jump.ViewModels
 {
     public class CrearPlanosViewModel : ViewModelBase
     {
@@ -19,6 +20,11 @@ namespace Jump
         private bool unPlanoPorVista = true;
         private Familia tipoPlano;
         private VistasModel mVistas;
+
+        public CrearPlanosViewModel(VistasModel modelo)
+        {
+            Modelo = modelo;
+        }
 
         public VistasModel Modelo
         {

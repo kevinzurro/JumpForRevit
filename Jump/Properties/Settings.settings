@@ -5,8 +5,8 @@
     <Setting Name="IdiomaDelPrograma" Type="System.String" Scope="User">
       <Value Profile="(Default)">Español</Value>
     </Setting>
-    <Setting Name="PrecisionOrdenarX" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">1</Value>
+    <Setting Name="ConfiguracionPrecisionOrdenarX" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
     </Setting>
     <Setting Name="ZapataIndiceComboboxEscalaVista" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">5</Value>
@@ -23,14 +23,14 @@
     <Setting Name="rbtnArmaduraDibujoLineasBorde" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="rbtnGeneralVistaLocal" Type="System.Boolean" Scope="User">
+    <Setting Name="ConfiguracionVistaLocal" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="rbtnGeneralVistaGlobal" Type="System.Boolean" Scope="User">
+    <Setting Name="ConfiguracionVistaGlobal" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="PrecisionOrdenarY" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">1</Value>
+    <Setting Name="ConfiguracionPrecisionOrdenarY" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
     </Setting>
     <Setting Name="PosicionBarraADibujar" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -212,8 +212,17 @@
     <Setting Name="PlateaCotaLinealDerecha" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="PrecisionNodoAnalitico" Type="System.Double" Scope="User">
+    <Setting Name="ConfiguracionPrecisionNodoAnalitico" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.01</Value>
+    </Setting>
+    <Setting Name="ConfiguracionPrecisionAnguloPositivo" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">45</Value>
+    </Setting>
+    <Setting Name="ConfiguracionPrecisionAnguloNegativo" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">-45</Value>
+    </Setting>
+    <Setting Name="ConfiguracionCorteTransversalBasadoLinea" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.5</Value>
     </Setting>
   </Settings>
 </SettingsFile>

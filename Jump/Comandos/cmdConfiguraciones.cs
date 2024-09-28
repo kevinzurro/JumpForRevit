@@ -7,6 +7,11 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.DB.Structure;
 using Autodesk.Revit.ApplicationServices;
+using System.Diagnostics;
+using Jump.Models;
+using Jump.ViewModels;
+using Jump.Views;
+using System.Windows.Controls;
 
 namespace Jump
 {
@@ -25,23 +30,56 @@ namespace Jump
 
             string IdiomaDelPrograma = Tools.ObtenerIdiomaDelPrograma();
 
-            using (Transaction tra = new Transaction(doc, Language.ObtenerTexto(IdiomaDelPrograma, "Conf1")))
+            using (TransactionGroup tg = new TransactionGroup(doc, Language.ObtenerTexto(IdiomaDelPrograma, "Conf1")))
             {
-                tra.Start();
+                tg.Start();
 
-                frmConfiguraciones inicioConfiguraciones = new frmConfiguraciones(doc);
-
-                inicioConfiguraciones.ShowDialog();
-
-                if (inicioConfiguraciones.bandera)
+                try
                 {
-                    tra.Commit();
+                    ConfiguracionesModel model = new ConfiguracionesModel(uiApp);
+
+                    ConfigGeneralViewModel ConfigGeneral = new ConfigGeneralViewModel(model);
+                    ConfigEtiquetasViewModel ConfigEtiquetas = new ConfigEtiquetasViewModel(model);
+
+                    WinConfiguraciones Configuraciones = new WinConfiguraciones();
+
+                    Configuraciones.DataContext = ConfigGeneral;
+
+                    Configuraciones.ShowDialog();
+
+                    if (Configuraciones.DialogResult == true)
+                    {
+                        tg.Assimilate();
+                    }
+                    else
+                    {
+                        tg.RollBack();
+                    }
                 }
-                else
+                catch (Exception e)
                 {
-                    tra.RollBack();
+                    Debug.WriteLine(e.Message + "\n" + e.StackTrace);
+                    tg.RollBack();
                 }
             }
+
+            //using (Transaction tra = new Transaction(doc, Language.ObtenerTexto(IdiomaDelPrograma, "Conf1")))
+            //{
+            //    tra.Start();
+
+            //    frmConfiguraciones inicioConfiguraciones = new frmConfiguraciones(doc);
+
+            //    inicioConfiguraciones.ShowDialog();
+
+            //    if (inicioConfiguraciones.bandera)
+            //    {
+            //        tra.Commit();
+            //    }
+            //    else
+            //    {
+            //        tra.RollBack();
+            //    }
+            //}
 
             return Result.Succeeded;
         }

@@ -123,6 +123,36 @@ namespace Jump.Iconos_e_Imagenes {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Boton_Config_Cota {
+            get {
+                object obj = ResourceManager.GetObject("Boton_Config_Cota", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Boton_Config_Etiquetas {
+            get {
+                object obj = ResourceManager.GetObject("Boton_Config_Etiquetas", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Boton_Config_General {
+            get {
+                object obj = ResourceManager.GetObject("Boton_Config_General", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Boton_Configuracion {
             get {
                 object obj = ResourceManager.GetObject("Boton_Configuracion", resourceCulture);

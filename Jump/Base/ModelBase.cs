@@ -5,7 +5,7 @@ using Autodesk.Revit.ApplicationServices;
 
 namespace Jump
 {
-    public  class ModelBase
+    public class ModelBase
     {
         private UIApplication uiApp = null;
         private UIDocument uiDoc = null;

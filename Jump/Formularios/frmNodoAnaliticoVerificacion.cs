@@ -23,7 +23,7 @@ namespace Jump
         Document doc;
         Type claseNodos = typeof(ReferencePoint);
         BuiltInCategory categoria = BuiltInCategory.OST_AnalyticalNodes;
-        double error = Properties.Settings.Default.PrecisionNodoAnalitico;
+        double error = Properties.Settings.Default.ConfiguracionPrecisionNodoAnalitico;
         TransactionGroup tg;
 
         List<ReferencePoint> nodosTodos = new List<ReferencePoint>();

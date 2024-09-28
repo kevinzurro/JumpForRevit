@@ -15,7 +15,7 @@ using System.Diagnostics;
 using System.Windows.Media;
 using System.Windows.Media.TextFormatting;
 
-namespace Jump
+namespace Jump.Models
 {
     public class VistasModel : ModelBase
     {
@@ -212,7 +212,7 @@ namespace Jump
 
                                 // Actualizar xPos para el siguiente elemento en la fila actual
                                 xPos += elemAncho;
-
+                                
                                 // Actualizar la altura máxima de la fila si este elemento es el más alto
                                 if (elemAlto > alturaMax)
                                 {

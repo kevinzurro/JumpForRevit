@@ -16,6 +16,7 @@ using Autodesk.Revit.DB.ExtensibleStorage;
 using Autodesk.Revit.DB.Analysis;
 using System.Windows;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace Jump
 {
@@ -30,8 +31,6 @@ namespace Jump
         //private static double precisionOrdenarY = Properties.Settings.Default.precisionOrdenarY;
         private static int precisionOrdenarX = 0;//Properties.Settings.Default.precisionOrdenarX;
         private static int precisionOrdenarY = 0;//Properties.Settings.Default.precisionOrdenarY;
-        private static int precisionAnguloPositivo = 45;//Properties.Settings.Default.precisionOrdenarX;
-        private static int precisionAnguloNegativo = -45;//Properties.Settings.Default.precisionOrdenarY;
         private static double puntoParaEvaluarLinea = 0.5;
 
         #endregion
@@ -110,7 +109,7 @@ namespace Jump
         private static double multiplicadorCotasProfundidadFin = 1.5;
 
         // Punto para realizar el corte transversal para lineas
-        private static double corteTransversalBasadoLinea = 0.5;
+        private static double puntoMedioDeCurva = 0.5;
 
         #region Funciones para las variables
 
@@ -2602,7 +2601,7 @@ namespace Jump
                 arriba = direccion.CrossProduct(vista.ViewDirection);
                 arriba = (vista.CropBox.Transform.Inverse.OfVector(arriba).Y > 0) ? arriba : -arriba;
 
-                puntoMedio = curva.ComputeDerivatives(Tools.corteTransversalBasadoLinea, true).Origin;
+                puntoMedio = curva.ComputeDerivatives(puntoMedioDeCurva, true).Origin;
                 banderaMedio = true;
             }
 
@@ -5032,7 +5031,7 @@ namespace Jump
                 subT.Start();
 
                 // Verifica que la vista sea Global
-                if (Jump.Properties.Settings.Default.rbtnGeneralVistaGlobal == true)
+                if (Jump.Properties.Settings.Default.ConfiguracionVistaGlobal == true)
                 {
                     // Verifica que sea basado en punto
                     if (elem.Location is LocationPoint)
@@ -5078,7 +5077,7 @@ namespace Jump
             View vistaYY = null;
 
             // Verifica que la vista sea Global
-            if (Jump.Properties.Settings.Default.rbtnGeneralVistaGlobal == true)
+            if (Jump.Properties.Settings.Default.ConfiguracionVistaGlobal == true)
             {
                 // Verifica que sea basado en punto
                 if (elem.Location is LocationPoint)
@@ -5184,7 +5183,7 @@ namespace Jump
                                         .FirstOrDefault<ViewFamilyType>(v => ViewFamily.Section == v.ViewFamily);
 
                 // Obtiene la transformación de la curva
-                Transform curvaTransformada = curva.ComputeDerivatives(corteTransversalBasadoLinea, true);
+                Transform curvaTransformada = curva.ComputeDerivatives(Jump.Properties.Settings.Default.ConfiguracionCorteTransversalBasadoLinea, true);
 
                 // Crea los vectores de dirección de la vista
                 XYZ direccion = longitud.Normalize();
@@ -5252,7 +5251,7 @@ namespace Jump
                                         .FirstOrDefault<ViewFamilyType>(v => ViewFamily.Section == v.ViewFamily);
 
                 // Obtiene la transformación de la curva
-                Transform curvaTransformada = curva.ComputeDerivatives(corteTransversalBasadoLinea, true);
+                Transform curvaTransformada = curva.ComputeDerivatives(Jump.Properties.Settings.Default.ConfiguracionCorteTransversalBasadoLinea, true);
                 
                 // Crea los vectores de dirección de la vista
                 XYZ direccion = longitud.Normalize();
@@ -5274,7 +5273,7 @@ namespace Jump
                 BoundingBoxXYZ bbelem = elem.get_BoundingBox(null);
 
                 // Obtiene el volumen tridimensional del elemento
-                double x = (curva.Length) / 2;
+                double x = curva.Length * (1 - Jump.Properties.Settings.Default.ConfiguracionCorteTransversalBasadoLinea);//curva.Length/2;
                 double y = (bbelem.Max.Y - bbelem.Min.Y) / 2;
 
                 // Crea la caja de sección
@@ -5284,8 +5283,8 @@ namespace Jump
                 cajaSeccion.Transform = tra;
 
                 // Asigna los valores a la caja de sección
-                cajaSeccion.Min = new XYZ(-y, bbelem.Min.Z, -x);
-                cajaSeccion.Max = new XYZ(y, bbelem.Max.Z, x);
+                cajaSeccion.Min = new XYZ(-y, bbelem.Min.Z, 0);//-x
+                cajaSeccion.Max = new XYZ(y, bbelem.Max.Z, x);//x
 
                 // Crear la sección del elemento
                 View seccion = ViewSection.CreateSection(doc, vft.Id, cajaSeccion) as View;
@@ -5954,12 +5953,14 @@ namespace Jump
                 double angulo = Math.Atan2(curveDirection.Y, curveDirection.X) * (180 / Math.PI);
                 
                 // Verifica si el ángulo está entre los ángulos dados
-                if (angulo >= precisionAnguloNegativo && angulo <= precisionAnguloPositivo)
+                if (angulo >= Properties.Settings.Default.ConfiguracionPrecisionAnguloNegativo && 
+                    angulo <= Properties.Settings.Default.ConfiguracionPrecisionAnguloPositivo)
                 {
                     // Devuelve la coordenada X del punto inicial de la curva
                     return Math.Round(curve.GetEndPoint(0).X, precisionOrdenarX);
                 }
-                else if (angulo >= 180 + precisionAnguloNegativo && angulo <= 180 + precisionAnguloPositivo)
+                else if (angulo >= 180 + Properties.Settings.Default.ConfiguracionPrecisionAnguloNegativo && 
+                         angulo <= 180 + Properties.Settings.Default.ConfiguracionPrecisionAnguloPositivo)
                 {
                     // Devuelve la coordenada X del punto final de la curva
                     return Math.Round(curve.GetEndPoint(1).X, precisionOrdenarX);
@@ -5992,12 +5993,14 @@ namespace Jump
                 double angulo = Math.Atan2(curveDirection.Y, curveDirection.X) * (180 / Math.PI);
                 
                 // Verifica si el ángulo está entre los ángulos dados
-                if (angulo >= precisionAnguloNegativo && angulo <= precisionAnguloPositivo)
+                if (angulo >= Properties.Settings.Default.ConfiguracionPrecisionAnguloNegativo && 
+                    angulo <= Properties.Settings.Default.ConfiguracionPrecisionAnguloPositivo)
                 {
                     // Devuelve la coordenada Y del punto inicial de la curva
                     return Math.Round(curve.GetEndPoint(0).Y, precisionOrdenarY);
                 }
-                else if (angulo >= 180 + precisionAnguloNegativo && angulo <= 180 + precisionAnguloPositivo)
+                else if (angulo >= 180 + Properties.Settings.Default.ConfiguracionPrecisionAnguloNegativo && 
+                         angulo <= 180 + Properties.Settings.Default.ConfiguracionPrecisionAnguloPositivo)
                 {
                     // Devuelve la coordenada Y del punto final de la curva
                     return Math.Round(curve.GetEndPoint(1).Y, precisionOrdenarY);
@@ -6025,8 +6028,10 @@ namespace Jump
                 double angulo = Math.Atan2(curveDirection.Y, curveDirection.X) * (180 / Math.PI);
 
                 // Verifica si el ángulo está entre los ángulos dados
-                return (angulo >= precisionAnguloNegativo && angulo <= precisionAnguloPositivo ||
-                        angulo >= 180 + precisionAnguloNegativo && angulo <= 180 + precisionAnguloPositivo);
+                return (angulo >= Properties.Settings.Default.ConfiguracionPrecisionAnguloNegativo && 
+                        angulo <= Properties.Settings.Default.ConfiguracionPrecisionAnguloPositivo ||
+                        angulo >= 180 + Properties.Settings.Default.ConfiguracionPrecisionAnguloNegativo && 
+                        angulo <= 180 + Properties.Settings.Default.ConfiguracionPrecisionAnguloPositivo);
             }
 
             return true;

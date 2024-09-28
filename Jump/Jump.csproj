@@ -183,6 +183,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Imagenes.resx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ConfiguracionesModel.cs" />
     <Compile Include="Models\Familia.cs" />
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Models\VistasModel.cs" />
@@ -198,7 +199,30 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Comandos\Tools.cs" />
+    <Compile Include="Styles\ControlesUI.xaml.cs">
+      <DependentUpon>ControlesUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Styles\Estilos.xaml.cs">
+      <DependentUpon>Estilos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Styles\FuentesUI.xaml.cs">
+      <DependentUpon>FuentesUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\ConfigEtiquetasViewModel.cs" />
+    <Compile Include="ViewModels\ConfigGeneralViewModel.cs" />
     <Compile Include="ViewModels\CrearPlanosViewModel.cs" />
+    <Compile Include="Views\Controls\BtnImagenTexto.xaml.cs">
+      <DependentUpon>BtnImagenTexto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\ConfigEtiquetas.xaml.cs">
+      <DependentUpon>ConfigEtiquetas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\ConfigGeneral.xaml.cs">
+      <DependentUpon>ConfigGeneral.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WinConfiguraciones.xaml.cs">
+      <DependentUpon>WinConfiguraciones.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\WinCrearPlanos.xaml.cs">
       <DependentUpon>WinCrearPlanos.xaml</DependentUpon>
     </Compile>
@@ -208,9 +232,12 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Boton_Config_Etiquetas.png" />
+    <Resource Include="Resources\Boton_Config_General.png" />
+    <Resource Include="Resources\Boton_Config_Cota.png" />
     <None Include="packages.config" />
-    <None Include="Resources\Configuraciones_LineasDeBorde.png" />
-    <None Include="Resources\Configuraciones_LineasCentrales.png" />
+    <Resource Include="Resources\Configuraciones_LineasDeBorde.png" />
+    <Resource Include="Resources\Configuraciones_LineasCentrales.png" />
     <Resource Include="Resources\Configuraciones_TextoArriba.png" />
     <Resource Include="Resources\Configuraciones_TextoAbajo.png" />
     <Resource Include="Resources\Zapata_Vista_Local.png" />
@@ -418,6 +445,34 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Page Include="Styles\ControlesUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Estilos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\FuentesUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\BtnImagenTexto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\ConfigEtiquetas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\ConfigGeneral.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WinConfiguraciones.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\WinCrearPlanos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

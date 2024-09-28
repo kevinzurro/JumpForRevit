@@ -7,11 +7,13 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.DB.Structure;
 using Autodesk.Revit.ApplicationServices;
-using Jump.Views;
 using System.Globalization;
 using System.Threading;
 using System.Resources;
 using System.Diagnostics;
+using Jump.Models;
+using Jump.ViewModels;
+using Jump.Views;
 
 namespace Jump
 {
@@ -33,17 +35,16 @@ namespace Jump
             using (TransactionGroup tg = new TransactionGroup(doc, Language.ObtenerTexto(IdiomaDelPrograma, "CreaPlano4-1")))
             {
                 tg.Start();
+
                 try
                 {
                     VistasModel mVistas = new VistasModel(uiApp);
+
                     mVistas.IdiomaDelPrograma = IdiomaDelPrograma;
+                    
+                    CrearPlanosViewModel mvCrearPlanos = new CrearPlanosViewModel(mVistas);
 
-                    CrearPlanosViewModel mvCrearPlanos = new CrearPlanosViewModel();
-                    mvCrearPlanos.Modelo = mVistas;
-
-                    WinCrearPlanos CrearPlanos = new WinCrearPlanos();
-
-                    CrearPlanos.DataContext = mvCrearPlanos;
+                    WinCrearPlanos CrearPlanos = new WinCrearPlanos(mvCrearPlanos);
 
                     CrearPlanos.ShowDialog();
 

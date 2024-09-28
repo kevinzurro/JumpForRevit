@@ -1,0 +1,13 @@
+﻿<ResourceDictionary x:Class="Jump.Styles.Estilos"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:Jump"
+                    xmlns:vm="clr-namespace:Jump.ViewModels"
+                    xmlns:userControls="clr-namespace:Jump.Views.UserControls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Jump;component/Styles/ControlesUI.xaml"/>
+        <ResourceDictionary Source="/Jump;component/Styles/FuentesUI.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>

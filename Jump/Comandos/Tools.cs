@@ -27,8 +27,6 @@ namespace Jump
         #region Precisión para ordenar los elementos
 
         // Precisión para el orden
-        //private static double precisionOrdenarX = Properties.Settings.Default.precisionOrdenarX;
-        //private static double precisionOrdenarY = Properties.Settings.Default.precisionOrdenarY;
         private static int precisionOrdenarX = 0;//Properties.Settings.Default.precisionOrdenarX;
         private static int precisionOrdenarY = 0;//Properties.Settings.Default.precisionOrdenarY;
         private static double puntoParaEvaluarLinea = 0.5;
@@ -5273,7 +5271,7 @@ namespace Jump
                 BoundingBoxXYZ bbelem = elem.get_BoundingBox(null);
 
                 // Obtiene el volumen tridimensional del elemento
-                double x = curva.Length * (1 - Jump.Properties.Settings.Default.ConfiguracionCorteTransversalBasadoLinea);//curva.Length/2;
+                double x = curva.Length * (1 - Jump.Properties.Settings.Default.ConfiguracionCorteTransversalBasadoLinea);
                 double y = (bbelem.Max.Y - bbelem.Min.Y) / 2;
 
                 // Crea la caja de sección
@@ -5283,8 +5281,8 @@ namespace Jump
                 cajaSeccion.Transform = tra;
 
                 // Asigna los valores a la caja de sección
-                cajaSeccion.Min = new XYZ(-y, bbelem.Min.Z, 0);//-x
-                cajaSeccion.Max = new XYZ(y, bbelem.Max.Z, x);//x
+                cajaSeccion.Min = new XYZ(-y, bbelem.Min.Z, 0);
+                cajaSeccion.Max = new XYZ(y, bbelem.Max.Z, x);
 
                 // Crear la sección del elemento
                 View seccion = ViewSection.CreateSection(doc, vft.Id, cajaSeccion) as View;

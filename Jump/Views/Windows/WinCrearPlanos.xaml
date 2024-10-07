@@ -1,15 +1,15 @@
-﻿<Window x:Class="Jump.Views.WinCrearPlanos"
+﻿<Window x:Class="Jump.Views.Windows.WinCrearPlanos"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:local="clr-namespace:Jump"
-        xmlns:res="clr-namespace:Jump.Properties.Languages"
+        xmlns:vm="clr-namespace:Jump.ViewModels"
         mc:Ignorable="d"
         MinHeight="450" MinWidth="650" WindowStartupLocation="CenterScreen"
         Height="450" Width="650"
         Title="Crear planos">
-    
+
     <Grid>
 
         <Grid.ColumnDefinitions>
@@ -150,43 +150,43 @@
             <DockPanel Grid.Row="0" Margin="5,0">
 
                 <Button x:Name="btnSeleccionarTodos"
-                    Content="Todos" 
-                    HorizontalAlignment="Left" 
-                    VerticalAlignment="Center"
-                    Margin="0,5,5,5"
-                    Width="90"
-                    Height="30" 
-                    Command="{Binding TodosCommand}">
+                        Content="Todos" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Center"
+                        Margin="0,5,5,5"
+                        Width="90"
+                        Height="30" 
+                        Command="{Binding TodosCommand}">
                 </Button>
 
                 <Button x:Name="btnSeleccionarNinguno"
-                    Content="Ninguno" 
-                    HorizontalAlignment="Left" 
-                    VerticalAlignment="Center"
-                    Margin="5"
-                    Width="90"
-                    Height="30" 
-                    Command="{Binding NingunoCommand}">
+                        Content="Ninguno" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Center"
+                        Margin="5"
+                        Width="90"
+                        Height="30" 
+                        Command="{Binding NingunoCommand}">
                 </Button>
 
                 <Button x:Name="btnExpandir"
-                    Content="Expandir" 
-                    HorizontalAlignment="Left" 
-                    VerticalAlignment="Center"
-                    Margin="5"
-                    Width="90"
-                    Height="30"
-                    Command="{Binding ExpandirCommand}">
+                        Content="Expandir" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Center"
+                        Margin="5"
+                        Width="90"
+                        Height="30"
+                        Command="{Binding ExpandirCommand}">
                 </Button>
 
                 <Button x:Name="btnContraer"
-                    Content="Contraer" 
-                    HorizontalAlignment="Left" 
-                    VerticalAlignment="Center"
-                    Margin="5"
-                    Width="90"
-                    Height="30"
-                    Command="{Binding ContraerCommand}">
+                        Content="Contraer" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Center"
+                        Margin="5"
+                        Width="90"
+                        Height="30"
+                        Command="{Binding ContraerCommand}">
                 </Button>
 
             </DockPanel>
@@ -194,4 +194,5 @@
         </Grid>
 
     </Grid>
+    
 </Window>

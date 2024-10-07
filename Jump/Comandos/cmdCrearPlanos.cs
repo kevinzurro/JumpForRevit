@@ -13,7 +13,7 @@ using System.Resources;
 using System.Diagnostics;
 using Jump.Models;
 using Jump.ViewModels;
-using Jump.Views;
+using Jump.Views.Windows;
 
 namespace Jump
 {
@@ -42,9 +42,9 @@ namespace Jump
 
                     mVistas.IdiomaDelPrograma = IdiomaDelPrograma;
                     
-                    CrearPlanosViewModel mvCrearPlanos = new CrearPlanosViewModel(mVistas);
+                    CrearPlanosViewModel vmCrearPlanos = new CrearPlanosViewModel(mVistas);
 
-                    WinCrearPlanos CrearPlanos = new WinCrearPlanos(mvCrearPlanos);
+                    WinCrearPlanos CrearPlanos = new WinCrearPlanos(vmCrearPlanos);
 
                     CrearPlanos.ShowDialog();
 

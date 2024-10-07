@@ -1,0 +1,143 @@
+﻿<Window x:Class="Jump.Views.Windows.WinConfiguraciones"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:local="clr-namespace:Jump"
+        xmlns:vm="clr-namespace:Jump.ViewModels"
+        xmlns:control="clr-namespace:Jump.Views.Controls"
+        xmlns:userControl="clr-namespace:Jump.Views.UserControls"
+        mc:Ignorable="d"
+        MinHeight="500" MinWidth="700" WindowStartupLocation="CenterScreen"
+        Height="500" Width="700"
+        Title="Configuraciones">
+
+    <Window.Resources>
+        
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="/Jump;component/Styles/Estilos.xaml"/>
+
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type vm:ConfigGeneralViewModel}">
+
+                <userControl:ConfigGeneral DataContext="{Binding}"/>
+
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vm:ConfigEtiquetasViewModel}">
+            
+                <userControl:ConfigEtiquetas DataContext="{Binding}"/>
+            
+            </DataTemplate>
+        
+        </ResourceDictionary>
+
+    </Window.Resources>
+
+    <Window.DataContext>
+        
+        <vm:ConfiguracionViewModel/>
+        
+    </Window.DataContext>
+    
+    <Grid Style="{StaticResource ConfigGrid}">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>            
+        </Grid.ColumnDefinitions>
+        
+        <StackPanel Grid.Column="0" Background="White">
+
+            <Button Height="50"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left"
+                    BorderThickness="0"
+                    Padding="5"
+                    Background="White"
+                    Command="{Binding CambiarVistaGeneralCommand}">
+
+                <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Left">
+
+                    <Image Height="30"
+                           Width="30"
+                           Source="/Jump;component/Resources/Boton_Config_General.png"
+                           Stretch="UniformToFill"/>
+
+                    <TextBlock FontSize="15"
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"
+                               TextWrapping="Wrap"
+                               Text="General"/>
+
+                </StackPanel>
+
+            </Button>
+
+            <Button Height="50"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left"
+                    BorderThickness="0"
+                    Padding="5"
+                    Background="White"
+                    Command="{Binding CambiarVistaEtiquetasCommand}">
+
+                <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Left">
+
+                    <Image Height="30"
+                           Width="30"
+                           Source="/Jump;component/Resources/Boton_Config_Etiquetas.png"
+                           Stretch="UniformToFill"/>
+
+                    <TextBlock FontSize="15"
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"
+                               TextWrapping="Wrap"
+                               Text="Etiquetas"/>
+
+                </StackPanel>
+
+            </Button>
+
+            <Button Height="50"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left"
+                    BorderThickness="0"
+                    Padding="5"
+                    Background="White"
+                    Command="{Binding CambiarVistaCotasCommand}">
+
+                <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Left">
+
+                    <Image Height="30"
+                           Width="30"
+                           Source="/Jump;component/Resources/Boton_Config_Cotas.png"
+                           Stretch="UniformToFill"/>
+
+                    <TextBlock FontSize="15"
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"
+                               TextWrapping="Wrap"
+                               Text="Cotas"/>
+
+                </StackPanel>
+
+            </Button>
+
+        </StackPanel>
+
+        <ContentControl Grid.Column="1"
+                        Margin="20,0,0,0"
+                        Content="{Binding VistaActual}">
+        </ContentControl>
+        
+    </Grid>
+    
+</Window>

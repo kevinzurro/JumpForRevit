@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 
-81094212457
+81449650551
 2487669425
-69-1880933035
+701930195141
 28-1935912379
-Styles\ControlesUI.xaml;Styles\Estilos.xaml;Styles\FuentesUI.xaml;Views\Controls\BtnImagenTexto.xaml;Views\UserControls\ConfigEtiquetas.xaml;Views\UserControls\ConfigGeneral.xaml;Views\WinConfiguraciones.xaml;Views\WinCrearPlanos.xaml;
+Styles\ControlesUI.xaml;Styles\Estilos.xaml;Styles\FuentesUI.xaml;Views\Controls\BtnImagenTexto.xaml;Views\UserControls\ConfigEtiquetas.xaml;Views\UserControls\ConfigGeneral.xaml;Views\Windows\WinConfiguraciones.xaml;Views\Windows\WinCrearPlanos.xaml;
 
 False
 

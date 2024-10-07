@@ -6,21 +6,22 @@
              xmlns:local="clr-namespace:Jump"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="100">
-    
-    <Button x:Name="btnConfigGeneral"            
+
+    <Button x:Name="btnConfigGeneral"
             Height="50"
             HorizontalAlignment="Stretch"
             HorizontalContentAlignment="Left"
             BorderThickness="0"
             Padding="5"
-            Background="White">
+            Background="White"
+            Command="{Binding ButtonCommand}">
 
         <StackPanel Orientation="Horizontal" 
                     HorizontalAlignment="Left">
 
             <Image x:Name="imgImagen"
-                   Height="35"
-                   Width="35"
+                   Height="30"
+                   Width="30"
                    Source="{Binding Image}"
                    Stretch="UniformToFill"/>
 

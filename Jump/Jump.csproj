@@ -210,6 +210,7 @@
     </Compile>
     <Compile Include="ViewModels\ConfigEtiquetasViewModel.cs" />
     <Compile Include="ViewModels\ConfigGeneralViewModel.cs" />
+    <Compile Include="ViewModels\ConfiguracionViewModel.cs" />
     <Compile Include="ViewModels\CrearPlanosViewModel.cs" />
     <Compile Include="Views\Controls\BtnImagenTexto.xaml.cs">
       <DependentUpon>BtnImagenTexto.xaml</DependentUpon>
@@ -220,10 +221,10 @@
     <Compile Include="Views\UserControls\ConfigGeneral.xaml.cs">
       <DependentUpon>ConfigGeneral.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\WinConfiguraciones.xaml.cs">
+    <Compile Include="Views\Windows\WinConfiguraciones.xaml.cs">
       <DependentUpon>WinConfiguraciones.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\WinCrearPlanos.xaml.cs">
+    <Compile Include="Views\Windows\WinCrearPlanos.xaml.cs">
       <DependentUpon>WinCrearPlanos.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -232,9 +233,9 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Boton_Config_Cotas.png" />
     <Resource Include="Resources\Boton_Config_Etiquetas.png" />
     <Resource Include="Resources\Boton_Config_General.png" />
-    <Resource Include="Resources\Boton_Config_Cota.png" />
     <None Include="packages.config" />
     <Resource Include="Resources\Configuraciones_LineasDeBorde.png" />
     <Resource Include="Resources\Configuraciones_LineasCentrales.png" />
@@ -469,11 +470,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\WinConfiguraciones.xaml">
+    <Page Include="Views\Windows\WinConfiguraciones.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\WinCrearPlanos.xaml">
+    <Page Include="Views\Windows\WinCrearPlanos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

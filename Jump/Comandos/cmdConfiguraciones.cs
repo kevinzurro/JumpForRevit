@@ -10,7 +10,7 @@ using Autodesk.Revit.ApplicationServices;
 using System.Diagnostics;
 using Jump.Models;
 using Jump.ViewModels;
-using Jump.Views;
+using Jump.Views.Windows;
 using System.Windows.Controls;
 
 namespace Jump
@@ -38,12 +38,19 @@ namespace Jump
                 {
                     ConfiguracionesModel model = new ConfiguracionesModel(uiApp);
 
-                    ConfigGeneralViewModel ConfigGeneral = new ConfigGeneralViewModel(model);
-                    ConfigEtiquetasViewModel ConfigEtiquetas = new ConfigEtiquetasViewModel(model);
+                    ConfigGeneralViewModel vmConfigGeneral = new ConfigGeneralViewModel(model);
+                    ConfigEtiquetasViewModel vmConfigEtiquetas = new ConfigEtiquetasViewModel(model);
+
+                    ConfiguracionViewModel vmConfiguraciones = new ConfiguracionViewModel(model, vmConfigGeneral, vmConfigEtiquetas);
+                    //ConfiguracionViewModel vmConfiguraciones = new ConfiguracionViewModel();
+                    //vmConfiguraciones.Modelo = model;
+                    //vmConfiguraciones.VistaActual = vmConfigGeneral;
+                    //vmConfiguraciones.GeneralVM = vmConfigGeneral;
+                    //vmConfiguraciones.EtiquetasVM = vmConfigEtiquetas;
 
                     WinConfiguraciones Configuraciones = new WinConfiguraciones();
-
-                    Configuraciones.DataContext = ConfigGeneral;
+                    
+                    Configuraciones.DataContext = vmConfiguraciones;
 
                     Configuraciones.ShowDialog();
 
@@ -62,24 +69,6 @@ namespace Jump
                     tg.RollBack();
                 }
             }
-
-            //using (Transaction tra = new Transaction(doc, Language.ObtenerTexto(IdiomaDelPrograma, "Conf1")))
-            //{
-            //    tra.Start();
-
-            //    frmConfiguraciones inicioConfiguraciones = new frmConfiguraciones(doc);
-
-            //    inicioConfiguraciones.ShowDialog();
-
-            //    if (inicioConfiguraciones.bandera)
-            //    {
-            //        tra.Commit();
-            //    }
-            //    else
-            //    {
-            //        tra.RollBack();
-            //    }
-            //}
 
             return Result.Succeeded;
         }

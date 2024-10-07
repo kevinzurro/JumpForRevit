@@ -7,8 +7,7 @@
              xmlns:vm="clr-namespace:Jump.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             Background="White"
-             MinHeight="200" MinWidth="300">
+             MinHeight="200" MinWidth="300" Background="White">
 
     <UserControl.Resources>
         

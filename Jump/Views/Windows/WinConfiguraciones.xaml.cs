@@ -3,8 +3,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Collections.ObjectModel;
+using Jump.ViewModels;
 
-namespace Jump.Views
+namespace Jump.Views.Windows
 {
     public partial class WinConfiguraciones : Window, IDisposable
     {

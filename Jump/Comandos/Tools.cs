@@ -29,7 +29,6 @@ namespace Jump
         // Precisión para el orden
         private static int precisionOrdenarX = 0;//Properties.Settings.Default.precisionOrdenarX;
         private static int precisionOrdenarY = 0;//Properties.Settings.Default.precisionOrdenarY;
-        private static double puntoParaEvaluarLinea = 0.5;
 
         #endregion
 
@@ -232,7 +231,7 @@ namespace Jump
             // Asigna español como el idioma del programa
             if (!bandera)
             {
-                I = "Español";
+                I = "es-ES";
             }
             return I;
         }
@@ -250,20 +249,22 @@ namespace Jump
         ///<summary> Devuelve el idioma guardado en las propiedades </summary>
         public static string ObtenerIdiomaDelPrograma()
         {
-            string I;
+            //string I;
 
-            // Busca el idioma en las preferencias
-            try
-            {
-                I = Properties.Settings.Default["IdiomaDelPrograma"].ToString();
-            }
+            //// Busca el idioma en las preferencias
+            //try
+            //{
+            //    I = Properties.Settings.Default["IdiomaDelPrograma"].ToString();
+            //}
 
-            catch (Exception)
-            {
-                I = "Español";
-            }
+            //catch (Exception)
+            //{
+            //    I = "es-ES";
+            //}
 
-            return I;
+            //return I;
+
+            return AboutJump.IdiomaAddin;
         }
 
         #endregion
@@ -5945,7 +5946,7 @@ namespace Jump
                 Curve curve = (loc as LocationCurve).Curve;
 
                 // Obtiene el vector de dirección de la curva
-                XYZ curveDirection = curve.ComputeDerivatives(puntoParaEvaluarLinea, true).BasisX.Normalize();
+                XYZ curveDirection = curve.ComputeDerivatives(Properties.Settings.Default.ConfiguracionPuntoParaEvaluarLinea, true).BasisX.Normalize();
                 
                 // Calcula el ángulo en grados
                 double angulo = Math.Atan2(curveDirection.Y, curveDirection.X) * (180 / Math.PI);
@@ -5985,7 +5986,7 @@ namespace Jump
                 Curve curve = (loc as LocationCurve).Curve;
 
                 // Obtiene el vector de dirección de la curva
-                XYZ curveDirection = curve.ComputeDerivatives(puntoParaEvaluarLinea, true).BasisX.Normalize();
+                XYZ curveDirection = curve.ComputeDerivatives(Properties.Settings.Default.ConfiguracionPuntoParaEvaluarLinea, true).BasisX.Normalize();
                 
                 // Calcula el ángulo en grados
                 double angulo = Math.Atan2(curveDirection.Y, curveDirection.X) * (180 / Math.PI);
@@ -6020,7 +6021,7 @@ namespace Jump
                 Curve curve = locationCurve.Curve;
                 
                 // Obtiene el vector de dirección de la curva
-                XYZ curveDirection = curve.ComputeDerivatives(puntoParaEvaluarLinea, true).BasisX.Normalize();
+                XYZ curveDirection = curve.ComputeDerivatives(Properties.Settings.Default.ConfiguracionPuntoParaEvaluarLinea, true).BasisX.Normalize();
 
                 // Calcula el ángulo en grados
                 double angulo = Math.Atan2(curveDirection.Y, curveDirection.X) * (180 / Math.PI);

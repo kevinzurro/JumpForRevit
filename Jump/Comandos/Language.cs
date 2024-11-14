@@ -17,100 +17,14 @@ namespace Jump
         // Crear un vector principal con los idiomas disponibles
         public static List<string> IdiomasDisponibles = new List<string>();
 
-        private static string idiomaPredeterminado = "es-ES";
-
         // Crear cada uno de los vectores secundarios para los diferentes idiomas
         private static Dictionary<string, string> Aleman = new Dictionary<string, string>();
         private static Dictionary<string, string> Espanol = new Dictionary<string, string>();
         private static Dictionary<string, string> Frances = new Dictionary<string, string>();
-        private static Dictionary<string, string> Holandes = new Dictionary<string, string>();
         private static Dictionary<string, string> Ingles = new Dictionary<string, string>();
         private static Dictionary<string, string> Italiano = new Dictionary<string, string>();
         private static Dictionary<string, string> Japones = new Dictionary<string, string>();
         private static Dictionary<string, string> Portugues = new Dictionary<string, string>();
-
-        ///<summary> Obtiene el tipo de idioma que utiliza Revit </summary>
-        public static string ObtenerIdiomaRevit(LanguageType tipoIdioma)
-        {
-            string idioma = "";
-
-            switch (tipoIdioma)
-            {
-                case LanguageType.Brazilian_Portuguese:
-                    idioma = "pt-BR";
-                    break;
-
-                case LanguageType.Chinese_Simplified:
-                    idioma = "zh-CN";
-                    break;
-
-                case LanguageType.Chinese_Traditional:
-                    idioma = "zh-TW";
-                    break;
-
-                case LanguageType.Czech:
-                    idioma = "cs-CZ";
-                    break;
-
-                case LanguageType.Dutch:
-                    idioma = "nl-BE";
-                    break;
-
-                case LanguageType.English_GB:
-                    idioma = "en-BG";
-                    break;
-
-                case LanguageType.English_USA:
-                    idioma = "en-US";
-                    break;
-
-                case LanguageType.French:
-                    idioma = "fr-FR";
-                    break;
-
-                case LanguageType.German:
-                    idioma = "de-DE";
-                    break;
-
-                case LanguageType.Hungarian:
-                    idioma = "hu-HU";
-                    break;
-
-                case LanguageType.Italian:
-                    idioma = "it-IT";
-                    break;
-
-                case LanguageType.Japanese:
-                    idioma = "ja-JP";
-                    break;
-
-                case LanguageType.Korean:
-                    idioma = "ko-KR";
-                    break;
-
-                case LanguageType.Polish:
-                    idioma = "pl-PL";
-                    break;
-
-                case LanguageType.Russian:
-                    idioma = "ru-RU";
-                    break;
-
-                case LanguageType.Spanish:
-                    idioma = "es-ES";
-                    break;
-
-                case LanguageType.Unknown:
-                    idioma = idiomaPredeterminado;
-                    break;
-
-                default:
-                    idioma = idiomaPredeterminado;
-                    break;
-            }
-
-            return idioma;
-        }
 
         ///<summary> Carga los idiomas disponibles al vector principal </summary>
         public static void CargarIdiomasDisponibles()
@@ -133,7 +47,6 @@ namespace Jump
             //IdiomasDisponibles.Add("Português");
             //IdiomasDisponibles.Add("Russian");
             //IdiomasDisponibles.Add("Czech");
-            //IdiomasDisponibles.Add("Nederlands");
         }
 
         ///<summary> Carga los textos para cada uno de los vectores secundarios </summary>
@@ -143,7 +56,6 @@ namespace Jump
             Aleman.Clear();
             Espanol.Clear();
             Frances.Clear();
-            Holandes.Clear();
             Ingles.Clear();
             Italiano.Clear();
             Japones.Clear();
@@ -153,7 +65,6 @@ namespace Jump
             CargarAleman();
             CargarEspanol();
             CargarFrances();
-            CargarHolandes();
             CargarIngles();
             CargarItaliano();
             CargarJapones();
@@ -537,15 +448,6 @@ namespace Jump
             Frances.Add("Idi6", "Sauver");
         }
 
-        ///<summary> Carga el idioma Holandes </summary>
-        private static void CargarHolandes()
-        {
-            // Agregar los textos de holandes al vector secundario Holandes[]
-            Holandes.Add("Idi4", "Selecteer taal");
-            Holandes.Add("Idi5", "Beschikbare talen");
-            Holandes.Add("Idi6", "Opslaan");
-        }
-
         ///<summary> Carga el idioma Ingles </summary>
         private static void CargarIngles()
         {
@@ -591,35 +493,31 @@ namespace Jump
             // Devuelve el texto según el idioma seleccionado
             switch (IdiomaDelPrograma)
             {
-                case "Deutsch":
+                case "de-DE":
                     texto = Aleman[key];
                     break;
 
-                case "English":
+                case "en-US":
                     texto = Ingles[key];
                     break;
 
-                case "Español":
+                case "es-ES":
                     texto = Espanol[key];
                     break;
 
-                case "French":
+                case "fr-FR":
                     texto = Frances[key];
                     break;
 
-                case "Italian":
+                case "it-IT":
                     texto = Italiano[key];
                     break;
 
-                case "Japanese":
+                case "ja-JP":
                     texto = Japones[key];
                     break;
 
-                case "Nederlands":
-                    texto = Holandes[key];
-                    break;
-                    
-                case "Português":
+                case "pt-BR":
                     texto = Portugues[key];
                     break;
 

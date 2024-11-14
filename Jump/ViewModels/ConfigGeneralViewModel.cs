@@ -5,16 +5,21 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
+using System.Resources;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Jump.ViewModels
 {
     public class ConfigGeneralViewModel : ViewModelBase
     {
         private ConfiguracionesModel mConfiguracion;
+        private string imagenPreview = "pack://application:,,,/Jump;component/Resources/Configuracion_Precision.png";
 
         public ConfigGeneralViewModel(ConfiguracionesModel model)
         {
@@ -127,9 +132,47 @@ namespace Jump.ViewModels
 
                     Properties.Settings.Default.Save();
 
-                    OnPropertyChanged(nameof(PrecisionOrdenarY));
+                    OnPropertyChanged(nameof(CorteTransversal));
                 }
             }
+        }
+
+        public double PuntoAEvaluarOrden
+        {
+            get { return Properties.Settings.Default.ConfiguracionPuntoParaEvaluarLinea * 100; }
+            set
+            {
+                if (value >= 0 && value <= 100 &&
+                    Properties.Settings.Default.ConfiguracionPuntoParaEvaluarLinea != value / 100)
+                {
+                    Properties.Settings.Default.ConfiguracionPuntoParaEvaluarLinea = value / 100;
+
+                    Properties.Settings.Default.Save();
+
+                    OnPropertyChanged(nameof(PuntoAEvaluarOrden));
+                }
+            }
+        }
+
+        public string ImagenPreview
+        {
+            get { return imagenPreview; }
+            set 
+            {
+                if (imagenPreview != value)
+                {
+                    imagenPreview = value;
+
+                    OnPropertyChanged(nameof(ImagenPreview));
+                }
+            }
+        }
+
+        public RelayCommand CambiarImagenCommand => new RelayCommand(execute => CambiarImagen(execute), canExecute => { return true; });
+
+        private void CambiarImagen(object imagen)
+        {
+            ImagenPreview = imagen as string;
         }
     }
 }

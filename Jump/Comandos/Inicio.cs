@@ -18,20 +18,14 @@ namespace Jump
     [Autodesk.Revit.Attributes.Regeneration(Autodesk.Revit.Attributes.RegenerationOption.Manual)]
     public class Inicio : IExternalApplication
     {
-        // Obtiene el idioma del programa
-        public static string IdiomaDelPrograma = Tools.ObtenerIdiomaDelPrograma();
-        
-        // Ruta del ensamblado o de la addin que se está ejecutando
-        public static string RutaDelEnsamblado = System.Reflection.Assembly.GetExecutingAssembly().Location;
-
-        // Lista de representaciones de armaduras
-        //public static List<ArmaduraRepresentacion> listaArmaduraRepresentacion = new List<ArmaduraRepresentacion>();
-        
         /// <summary> Inicio de la aplicación </summary>
         public Result OnStartup(UIControlledApplication application)
         {
-            // Crear la pestaña con el nombre de la addin
-            application.CreateRibbonTab(AboutJump.NombreAddin);
+            // Obtiene el idioma del programa
+            AboutJump.IdiomaAddin = AboutJump.ObtenerIdiomaRevit(application.ControlledApplication.Language);
+
+            // Ruta del ensamblado o de la addin que se está ejecutando
+            string RutaDelEnsamblado = System.Reflection.Assembly.GetExecutingAssembly().Location;
 
             #region Idioma
 
@@ -39,7 +33,7 @@ namespace Jump
             Language.CargarIdiomasDisponibles();
 
             // Verifica el idioma de la interfaz
-            IdiomaDelPrograma = Tools.VerificarIdioma(IdiomaDelPrograma);
+            AboutJump.IdiomaAddin = Tools.VerificarIdioma(AboutJump.IdiomaAddin);
 
             // Carga los textos para cada uno de los vectores secundarios
             Language.CargaTextosDeCadaIdioma();
@@ -48,10 +42,13 @@ namespace Jump
 
             #region Paneles
 
+            // Crear la pestaña con el nombre de la addin
+            application.CreateRibbonTab(AboutJump.NombreAddin);
+
             //Crear los paneles
-            RibbonPanel panelDetalleArmado = application.CreateRibbonPanel(AboutJump.NombreAddin, Language.ObtenerTexto(IdiomaDelPrograma, "Tit1"));
-            RibbonPanel panelVisibilidad = application.CreateRibbonPanel(AboutJump.NombreAddin, Language.ObtenerTexto(IdiomaDelPrograma, "Tit2"));
-            RibbonPanel panelHerramienta = application.CreateRibbonPanel(AboutJump.NombreAddin, Language.ObtenerTexto(IdiomaDelPrograma, "Tit3"));
+            RibbonPanel panelDetalleArmado = application.CreateRibbonPanel(AboutJump.NombreAddin, Language.ObtenerTexto(AboutJump.IdiomaAddin, "Tit1"));
+            RibbonPanel panelVisibilidad = application.CreateRibbonPanel(AboutJump.NombreAddin, Language.ObtenerTexto(AboutJump.IdiomaAddin, "Tit2"));
+            RibbonPanel panelHerramienta = application.CreateRibbonPanel(AboutJump.NombreAddin, Language.ObtenerTexto(AboutJump.IdiomaAddin, "Tit3"));
 
             #endregion
 
@@ -62,25 +59,25 @@ namespace Jump
             //PushButton botonPilote = panelDetalleArmado.AddItem(new PushButtonData("botonPilote", Language.ObtenerTexto(IdiomaDelPrograma, "Pil1"), RutaDelEnsamblado, "Jump.cmdPilotes")) as PushButton;
             //PushButton botonZapataCorrida = panelDetalleArmado.AddItem(new PushButtonData("botonZapataCorrida", Language.ObtenerTexto(IdiomaDelPrograma, "ZapCor1"), RutaDelEnsamblado, "Jump.cmdZapataCorrida")) as PushButton;
             //PushButton botonPlatea = panelDetalleArmado.AddItem(new PushButtonData("botonPlatea", Language.ObtenerTexto(IdiomaDelPrograma, "Pla1"), RutaDelEnsamblado, "Jump.cmdPlatea")) as PushButton;
-            PushButton botonZapata = panelDetalleArmado.AddItem(new PushButtonData("botonZapata", Language.ObtenerTexto(IdiomaDelPrograma, "Zap1"), RutaDelEnsamblado, "Jump.cmdZapatas")) as PushButton;
-            PushButton botonColumna = panelDetalleArmado.AddItem(new PushButtonData("botonColumna", Language.ObtenerTexto(IdiomaDelPrograma, "Col1"), RutaDelEnsamblado, "Jump.cmdColumnas")) as PushButton;
-            PushButton botonMuro = panelDetalleArmado.AddItem(new PushButtonData("botonMuro", Language.ObtenerTexto(IdiomaDelPrograma, "Mur1"), RutaDelEnsamblado, "Jump.cmdMuros")) as PushButton;
-            PushButton botonViga = panelDetalleArmado.AddItem(new PushButtonData("botonViga", Language.ObtenerTexto(IdiomaDelPrograma, "Vig1"), RutaDelEnsamblado, "Jump.cmdVigas")) as PushButton;
+            PushButton botonZapata = panelDetalleArmado.AddItem(new PushButtonData("botonZapata", Language.ObtenerTexto(AboutJump.IdiomaAddin, "Zap1"), RutaDelEnsamblado, "Jump.cmdZapatas")) as PushButton;
+            PushButton botonColumna = panelDetalleArmado.AddItem(new PushButtonData("botonColumna", Language.ObtenerTexto(AboutJump.IdiomaAddin, "Col1"), RutaDelEnsamblado, "Jump.cmdColumnas")) as PushButton;
+            PushButton botonMuro = panelDetalleArmado.AddItem(new PushButtonData("botonMuro", Language.ObtenerTexto(AboutJump.IdiomaAddin, "Mur1"), RutaDelEnsamblado, "Jump.cmdMuros")) as PushButton;
+            PushButton botonViga = panelDetalleArmado.AddItem(new PushButtonData("botonViga", Language.ObtenerTexto(AboutJump.IdiomaAddin, "Vig1"), RutaDelEnsamblado, "Jump.cmdVigas")) as PushButton;
             //PushButton botonLosa = panelDetalleArmado.AddItem(new PushButtonData("botonLosa", Language.ObtenerTexto(IdiomaDelPrograma, "Los1"), RutaDelEnsamblado, "Jump.cmdLosas")) as PushButton;
-            PushButton botonElemenEstructural = panelVisibilidad.AddItem(new PushButtonData("botonElemenEstructural", Language.ObtenerTexto(IdiomaDelPrograma, "EleEst1"), RutaDelEnsamblado, "Jump.cmdVisibilidadEstructural")) as PushButton;
-            PushButton botonElemenAnalitico = panelVisibilidad.AddItem(new PushButtonData("botonElemenAnalitico", Language.ObtenerTexto(IdiomaDelPrograma, "EleAna1"), RutaDelEnsamblado, "Jump.cmdVisibilidadAnalitica")) as PushButton;
-            PushButton botonOrdenEnumeracion = panelHerramienta.AddItem(new PushButtonData("botonOrdenEnumeracion", Language.ObtenerTexto(IdiomaDelPrograma, "OrdYEnu1"), RutaDelEnsamblado, "Jump.cmdOrdenYEnumeracion")) as PushButton;
-            PushButton botonIdioma = panelHerramienta.AddItem(new PushButtonData("botonIdioma", Language.ObtenerTexto(IdiomaDelPrograma, "Idi1"), RutaDelEnsamblado, "Jump.cmdIdioma")) as PushButton;
-            PushButton botonConfiguracion = panelHerramienta.AddItem(new PushButtonData("botonConfiguracion", Language.ObtenerTexto(IdiomaDelPrograma, "Conf1"), RutaDelEnsamblado, "Jump.cmdConfiguraciones")) as PushButton;
+            PushButton botonElemenEstructural = panelVisibilidad.AddItem(new PushButtonData("botonElemenEstructural", Language.ObtenerTexto(AboutJump.IdiomaAddin, "EleEst1"), RutaDelEnsamblado, "Jump.cmdVisibilidadEstructural")) as PushButton;
+            PushButton botonElemenAnalitico = panelVisibilidad.AddItem(new PushButtonData("botonElemenAnalitico", Language.ObtenerTexto(AboutJump.IdiomaAddin, "EleAna1"), RutaDelEnsamblado, "Jump.cmdVisibilidadAnalitica")) as PushButton;
+            PushButton botonOrdenEnumeracion = panelHerramienta.AddItem(new PushButtonData("botonOrdenEnumeracion", Language.ObtenerTexto(AboutJump.IdiomaAddin, "OrdYEnu1"), RutaDelEnsamblado, "Jump.cmdOrdenYEnumeracion")) as PushButton;
+            PushButton botonIdioma = panelHerramienta.AddItem(new PushButtonData("botonIdioma", Language.ObtenerTexto(AboutJump.IdiomaAddin, "Idi1"), RutaDelEnsamblado, "Jump.cmdIdioma")) as PushButton;
+            PushButton botonConfiguracion = panelHerramienta.AddItem(new PushButtonData("botonConfiguracion", Language.ObtenerTexto(AboutJump.IdiomaAddin, "Conf1"), RutaDelEnsamblado, "Jump.cmdConfiguraciones")) as PushButton;
 
             // Crea los botones para la visibilidad de la armadura que van en el botón desplegable
-            PushButtonData botonArmaSolido = new PushButtonData("botonArmaSolido", Language.ObtenerTexto(IdiomaDelPrograma, "VisArmSol"), RutaDelEnsamblado, "Jump.cmdArmaduraSolido");
-            PushButtonData botonArmaFilamento = new PushButtonData("botonArmaFilamento", Language.ObtenerTexto(IdiomaDelPrograma, "VisArmFil"), RutaDelEnsamblado, "Jump.cmdArmaduraFilamento");
-            PushButtonData botonArmaSinTapa = new PushButtonData("botonArmaSinTapa", Language.ObtenerTexto(IdiomaDelPrograma, "VisArmSinTap"), RutaDelEnsamblado, "Jump.cmdArmaduraSinTapar");
-            PushButtonData botonArmaTapada = new PushButtonData("botonArmaTapada", Language.ObtenerTexto(IdiomaDelPrograma, "VisArmTap"), RutaDelEnsamblado, "Jump.cmdArmaduraTapada");
+            PushButtonData botonArmaSolido = new PushButtonData("botonArmaSolido", Language.ObtenerTexto(AboutJump.IdiomaAddin, "VisArmSol"), RutaDelEnsamblado, "Jump.cmdArmaduraSolido");
+            PushButtonData botonArmaFilamento = new PushButtonData("botonArmaFilamento", Language.ObtenerTexto(AboutJump.IdiomaAddin, "VisArmFil"), RutaDelEnsamblado, "Jump.cmdArmaduraFilamento");
+            PushButtonData botonArmaSinTapa = new PushButtonData("botonArmaSinTapa", Language.ObtenerTexto(AboutJump.IdiomaAddin, "VisArmSinTap"), RutaDelEnsamblado, "Jump.cmdArmaduraSinTapar");
+            PushButtonData botonArmaTapada = new PushButtonData("botonArmaTapada", Language.ObtenerTexto(AboutJump.IdiomaAddin, "VisArmTap"), RutaDelEnsamblado, "Jump.cmdArmaduraTapada");
 
             // Crear el boton desplegable para las armaduras
-            PulldownButton botonArmaVisibilidad = panelVisibilidad.AddItem(new PulldownButtonData("botonArmaVisibilidad", Language.ObtenerTexto(IdiomaDelPrograma, "VisArm1"))) as PulldownButton;
+            PulldownButton botonArmaVisibilidad = panelVisibilidad.AddItem(new PulldownButtonData("botonArmaVisibilidad", Language.ObtenerTexto(AboutJump.IdiomaAddin, "VisArm1"))) as PulldownButton;
 
             #endregion
 
@@ -126,17 +123,17 @@ namespace Jump
             //botonPilote.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "Pil2");
             //botonZapataCorrida.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "ZapCor2");
             //botonPlatea.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "Pla2");
-            botonZapata.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "Zap2");
-            botonColumna.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "Col2");
-            botonMuro.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "Mur2");
-            botonViga.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "Vig2");
+            botonZapata.ToolTip = Language.ObtenerTexto(AboutJump.IdiomaAddin, "Zap2");
+            botonColumna.ToolTip = Language.ObtenerTexto(AboutJump.IdiomaAddin, "Col2");
+            botonMuro.ToolTip = Language.ObtenerTexto(AboutJump.IdiomaAddin, "Mur2");
+            botonViga.ToolTip = Language.ObtenerTexto(AboutJump.IdiomaAddin, "Vig2");
             //botonLosa.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "Los2");
-            botonElemenEstructural.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "EleEst2");
-            botonElemenAnalitico.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "EleAna2");
-            botonArmaVisibilidad.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "VisArm2");
-            botonOrdenEnumeracion.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "OrdYEnu2");
-            botonIdioma.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "Idi2");
-            botonConfiguracion.ToolTip = Language.ObtenerTexto(IdiomaDelPrograma, "Conf2");
+            botonElemenEstructural.ToolTip = Language.ObtenerTexto(AboutJump.IdiomaAddin, "EleEst2");
+            botonElemenAnalitico.ToolTip = Language.ObtenerTexto(AboutJump.IdiomaAddin, "EleAna2");
+            botonArmaVisibilidad.ToolTip = Language.ObtenerTexto(AboutJump.IdiomaAddin, "VisArm2");
+            botonOrdenEnumeracion.ToolTip = Language.ObtenerTexto(AboutJump.IdiomaAddin, "OrdYEnu2");
+            botonIdioma.ToolTip = Language.ObtenerTexto(AboutJump.IdiomaAddin, "Idi2");
+            botonConfiguracion.ToolTip = Language.ObtenerTexto(AboutJump.IdiomaAddin, "Conf2");
 
             #endregion
 
@@ -147,17 +144,17 @@ namespace Jump
             //botonPilote.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "Pil3");
             //botonZapataCorrida.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "ZapCor3");
             //botonPlatea.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "Pla3");
-            botonZapata.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "Zap3");
-            botonColumna.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "Col3");
-            botonMuro.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "Mur3");
-            botonViga.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "Vig3");
+            botonZapata.LongDescription = Language.ObtenerTexto(AboutJump.IdiomaAddin, "Zap3");
+            botonColumna.LongDescription = Language.ObtenerTexto(AboutJump.IdiomaAddin, "Col3");
+            botonMuro.LongDescription = Language.ObtenerTexto(AboutJump.IdiomaAddin, "Mur3");
+            botonViga.LongDescription = Language.ObtenerTexto(AboutJump.IdiomaAddin, "Vig3");
             //botonLosa.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "Los3");
-            botonElemenEstructural.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "EleEst3");
-            botonElemenAnalitico.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "EleAna3");
-            botonArmaVisibilidad.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "VisArm3");
-            botonOrdenEnumeracion.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "OrdYEnu3");
-            botonIdioma.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "Idi3");
-            botonConfiguracion.LongDescription = Language.ObtenerTexto(IdiomaDelPrograma, "Conf3");
+            botonElemenEstructural.LongDescription = Language.ObtenerTexto(AboutJump.IdiomaAddin, "EleEst3");
+            botonElemenAnalitico.LongDescription = Language.ObtenerTexto(AboutJump.IdiomaAddin, "EleAna3");
+            botonArmaVisibilidad.LongDescription = Language.ObtenerTexto(AboutJump.IdiomaAddin, "VisArm3");
+            botonOrdenEnumeracion.LongDescription = Language.ObtenerTexto(AboutJump.IdiomaAddin, "OrdYEnu3");
+            botonIdioma.LongDescription = Language.ObtenerTexto(AboutJump.IdiomaAddin, "Idi3");
+            botonConfiguracion.LongDescription = Language.ObtenerTexto(AboutJump.IdiomaAddin, "Conf3");
 
             #endregion
 

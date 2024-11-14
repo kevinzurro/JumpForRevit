@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="IdiomaDelPrograma" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Español</Value>
+      <Value Profile="(Default)">es-ES</Value>
     </Setting>
     <Setting Name="ConfiguracionPrecisionOrdenarX" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.1</Value>
@@ -222,6 +222,9 @@
       <Value Profile="(Default)">-45</Value>
     </Setting>
     <Setting Name="ConfiguracionCorteTransversalBasadoLinea" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.5</Value>
+    </Setting>
+    <Setting Name="ConfiguracionPuntoParaEvaluarLinea" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.5</Value>
     </Setting>
   </Settings>

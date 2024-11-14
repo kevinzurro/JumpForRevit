@@ -10,10 +10,36 @@ namespace Jump
 {
     public class Familia
     {
-
         private Int64 id;
         private string nombre;
         private string sistema;
+
+        /// <summary> Crea un elemento de familia </summary>
+        public Familia(Element elem)
+        {
+            Document doc = elem.Document;
+
+            this.id = elem.Id.Value;
+            this.nombre = elem.Name;
+
+            if (elem is ElementType)
+            {
+                this.sistema = (elem as ElementType).FamilyName;
+            }
+            else
+            {
+                ElementType tipo = doc.GetElement(elem.GetTypeId()) as ElementType;
+
+                if (tipo != null)
+                {
+                    this.sistema = tipo.FamilyName;
+                }
+                else
+                {
+                    this.sistema = null;
+                }
+            }
+        }
 
         public Int64 ID
         {
@@ -59,33 +85,6 @@ namespace Jump
                 else
                 {
                     return nombre + " <" + id + ">";
-                }
-            }
-        }
-
-        /// <summary> Crea un elemento de familia </summary>
-        public Familia(Element elem)
-        {
-            Document doc = elem.Document;
-
-            this.id = elem.Id.Value;
-            this.nombre = elem.Name;
-
-            if (elem is ElementType)
-            {
-                this.sistema = (elem as ElementType).FamilyName;
-            }
-            else
-            {
-                ElementType tipo = doc.GetElement(elem.GetTypeId()) as ElementType;
-
-                if (tipo != null)
-                {
-                    this.sistema = tipo.FamilyName;
-                }
-                else
-                {
-                    this.sistema = null;
                 }
             }
         }

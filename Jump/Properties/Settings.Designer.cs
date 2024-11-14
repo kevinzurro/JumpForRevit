@@ -25,7 +25,7 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Español")]
+        [global::System.Configuration.DefaultSettingValueAttribute("es-ES")]
         public string IdiomaDelPrograma {
             get {
                 return ((string)(this["IdiomaDelPrograma"]));
@@ -908,6 +908,18 @@ namespace Jump.Properties {
             }
             set {
                 this["ConfiguracionCorteTransversalBasadoLinea"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        public double ConfiguracionPuntoParaEvaluarLinea {
+            get {
+                return ((double)(this["ConfiguracionPuntoParaEvaluarLinea"]));
+            }
+            set {
+                this["ConfiguracionPuntoParaEvaluarLinea"] = value;
             }
         }
     }

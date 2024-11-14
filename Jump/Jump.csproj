@@ -34,8 +34,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.7.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.135\lib\net462\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -89,7 +92,9 @@
     <Compile Include="Base\ModelMenu.cs" />
     <Compile Include="Base\RelayCommand.cs" />
     <Compile Include="Base\ViewModelBase.cs" />
-    <Compile Include="Comandos\AboutJump.cs" />
+    <Compile Include="Clases\Posicion.cs" />
+    <Compile Include="Clases\PosicionTools.cs" />
+    <Compile Include="Clases\AboutJump.cs" />
     <Compile Include="Comandos\Anterior.cs" />
     <Compile Include="Comandos\ArmaduraRepresentacion.cs" />
     <Compile Include="Comandos\cmdConfiguraciones.cs" />
@@ -233,17 +238,26 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Configuracion_Etiquetas_Armadura.png" />
+    <Resource Include="Resources\Configuracion_Vista_Global.png" />
+    <Resource Include="Resources\Configuracion_TextoArriba.png" />
+    <Resource Include="Resources\Configuracion_TextoAbajo.png" />
+    <Resource Include="Resources\Configuracion_Precision.png" />
+    <Resource Include="Resources\Configuracion_LineasDeBorde.png" />
+    <Resource Include="Resources\Configuracion_LineasCentrales.png" />
+    <Resource Include="Resources\Configuracion_Etiquetas_Zapata_Corrida.png" />
+    <Resource Include="Resources\Configuracion_Etiquetas_Zapata_Aislada.png" />
+    <Resource Include="Resources\Configuracion_Etiquetas_Viga.png" />
+    <Resource Include="Resources\Configuracion_Etiquetas_Platea.png" />
+    <Resource Include="Resources\Configuracion_Etiquetas_Pilotes.png" />
+    <Resource Include="Resources\Configuracion_Etiquetas_Muro.png" />
+    <Resource Include="Resources\Configuracion_Etiquetas_Losa.png" />
+    <Resource Include="Resources\Configuracion_Etiquetas_Columna.png" />
+    <Resource Include="Resources\Configuracion_Vista_Local.png" />
     <Resource Include="Resources\Boton_Config_Cotas.png" />
     <Resource Include="Resources\Boton_Config_Etiquetas.png" />
     <Resource Include="Resources\Boton_Config_General.png" />
     <None Include="packages.config" />
-    <Resource Include="Resources\Configuraciones_LineasDeBorde.png" />
-    <Resource Include="Resources\Configuraciones_LineasCentrales.png" />
-    <Resource Include="Resources\Configuraciones_TextoArriba.png" />
-    <Resource Include="Resources\Configuraciones_TextoAbajo.png" />
-    <Resource Include="Resources\Zapata_Vista_Local.png" />
-    <Resource Include="Resources\Zapata_Vista_Global.png" />
-    <Resource Include="Resources\Configuraciones_Viga.png" />
     <Resource Include="Resources\Armadura_solida.png" />
     <Resource Include="Resources\Boton_Orden.png" />
     <Resource Include="Resources\Boton_Idioma.png" />
@@ -252,7 +266,6 @@
     <Resource Include="Resources\Armadura_sin_tapar.png" />
     <Resource Include="Resources\Armadura_filamento.png" />
     <Resource Include="Resources\Boton_Pilote.png" />
-    <Resource Include="Resources\Configuraciones_Precision.JPG" />
     <Resource Include="Resources\Boton_Zapata_Corrida.png" />
     <Resource Include="Resources\Boton_Zapata.png" />
     <Resource Include="Resources\Boton_Viga.png" />
@@ -429,10 +442,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Imagenes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Languages\Resource.es-ES.resx" />
     <EmbeddedResource Include="Properties\Languages\Resource.en-US.resx" />
     <EmbeddedResource Include="Properties\Languages\Resource.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>

@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Resources;
+using System.Reflection;
+using System.Globalization;
+using System.Diagnostics;
+using System.Windows.Controls;
+using System.Threading;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.DB.Structure;
 using Autodesk.Revit.ApplicationServices;
-using System.Diagnostics;
 using Jump.Models;
 using Jump.ViewModels;
 using Jump.Views.Windows;
-using System.Windows.Controls;
 
 namespace Jump
 {
@@ -39,17 +43,13 @@ namespace Jump
                     ConfiguracionesModel model = new ConfiguracionesModel(uiApp);
 
                     ConfigGeneralViewModel vmConfigGeneral = new ConfigGeneralViewModel(model);
+
                     ConfigEtiquetasViewModel vmConfigEtiquetas = new ConfigEtiquetasViewModel(model);
 
                     ConfiguracionViewModel vmConfiguraciones = new ConfiguracionViewModel(model, vmConfigGeneral, vmConfigEtiquetas);
-                    //ConfiguracionViewModel vmConfiguraciones = new ConfiguracionViewModel();
-                    //vmConfiguraciones.Modelo = model;
-                    //vmConfiguraciones.VistaActual = vmConfigGeneral;
-                    //vmConfiguraciones.GeneralVM = vmConfigGeneral;
-                    //vmConfiguraciones.EtiquetasVM = vmConfigEtiquetas;
 
                     WinConfiguraciones Configuraciones = new WinConfiguraciones();
-                    
+
                     Configuraciones.DataContext = vmConfiguraciones;
 
                     Configuraciones.ShowDialog();
@@ -62,10 +62,13 @@ namespace Jump
                     {
                         tg.RollBack();
                     }
+
+                    Configuraciones.Close();
                 }
                 catch (Exception e)
                 {
                     Debug.WriteLine(e.Message + "\n" + e.StackTrace);
+
                     tg.RollBack();
                 }
             }

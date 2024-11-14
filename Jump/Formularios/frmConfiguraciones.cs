@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Resources;
-using System.Windows.Forms;
-using Autodesk.Revit.DB;
-using Autodesk.Revit.UI;
+﻿using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Structure;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Jump
 {
@@ -36,7 +30,7 @@ namespace Jump
             this.diametros = Tools.ObtenerTodosTiposSegunClase(doc, typeof(RebarBarType)).Cast<RebarBarType>().ToList();
             FormatOptions forOpt = doc.GetUnits().GetFormatOptions(SpecTypeId.Length);
             this.tipoUnidad = forOpt.GetUnitTypeId();
-            this.posiciones = AboutJump.Posiciones(this.IdiomaDelPrograma);
+            this.posiciones = PosicionTools.Posiciones(this.IdiomaDelPrograma);
 
             // Llama a las funciones
             //this.dgvEstiloLinea = Tools.ObtenerDataGridViewDeDiametrosYEstilos(this.dgvEstiloLinea, doc, IdiomaDelPrograma);
@@ -80,9 +74,9 @@ namespace Jump
         private void CargarImagenesPredeterminadas()
         {
             // Asigna la imagen
-            this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_Precision;
-            this.pcbxEtiquetaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_Viga;
-            this.pcbxCotaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_Viga;
+            this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuracion_Precision;
+            this.pcbxEtiquetaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuracion_Etiquetas_Viga;
+            this.pcbxCotaPosicion.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuracion_Etiquetas_Viga;
         }
 
         /// <summary> Carga el formulario </summary>
@@ -110,7 +104,7 @@ namespace Jump
             double precisionY = Properties.Settings.Default.ConfiguracionPrecisionOrdenarY;
             double precisionNodoAnalitico = Properties.Settings.Default.ConfiguracionPrecisionNodoAnalitico;
 
-            this.pcbxGeneral.BackgroundImage = Iconos_e_Imagenes.Imagenes.Configuraciones_Precision;
+            this.pcbxGeneral.BackgroundImage = Iconos_e_Imagenes.Imagenes.Configuracion_Precision;
             this.txtPrecisionOrdenarX.Text = UnitUtils.ConvertFromInternalUnits(precisionX, this.tipoUnidad).ToString();
             this.txtPrecisionOrdenarY.Text = UnitUtils.ConvertFromInternalUnits(precisionY, this.tipoUnidad).ToString();
             this.txtPrecisionNodoAnalitico.Text = UnitUtils.ConvertFromInternalUnits(precisionNodoAnalitico, this.tipoUnidad).ToString();
@@ -160,17 +154,17 @@ namespace Jump
             lblArmaduraEnSistemaEtiqueta.Text = Language.ObtenerTexto(IdiomaDelPrograma, "Conf4-2-1-3");
 
             // Agrega la lista de posiciones a la lista desplegable
-            this.cmbArmaduraEtiqueta.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
-            this.cmbAreaRefuerzoEtiqueta.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
-            this.cmbArmaduraEnSistemaEtiqueta.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
-            this.cmbColumnaEtiqueta.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
-            this.cmbLosaEtiqueta.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
-            this.cmbMuroEtiqueta.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
-            this.cmbPiloteEtiqueta.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
-            this.cmbPlateaEtiqueta.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
-            this.cmbVigaEtiqueta.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
-            this.cmbZapataEtiqueta.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
-            this.cmbZapataCorridaEtiqueta.DataSource = AboutJump.Posiciones(this.IdiomaDelPrograma);
+            this.cmbArmaduraEtiqueta.DataSource = PosicionTools.Posiciones(this.IdiomaDelPrograma);
+            this.cmbAreaRefuerzoEtiqueta.DataSource = PosicionTools.Posiciones(this.IdiomaDelPrograma);
+            this.cmbArmaduraEnSistemaEtiqueta.DataSource = PosicionTools.Posiciones(this.IdiomaDelPrograma);
+            this.cmbColumnaEtiqueta.DataSource = PosicionTools.Posiciones(this.IdiomaDelPrograma);
+            this.cmbLosaEtiqueta.DataSource = PosicionTools.Posiciones(this.IdiomaDelPrograma);
+            this.cmbMuroEtiqueta.DataSource = PosicionTools.Posiciones(this.IdiomaDelPrograma);
+            this.cmbPiloteEtiqueta.DataSource = PosicionTools.Posiciones(this.IdiomaDelPrograma);
+            this.cmbPlateaEtiqueta.DataSource = PosicionTools.Posiciones(this.IdiomaDelPrograma);
+            this.cmbVigaEtiqueta.DataSource = PosicionTools.Posiciones(this.IdiomaDelPrograma);
+            this.cmbZapataEtiqueta.DataSource = PosicionTools.Posiciones(this.IdiomaDelPrograma);
+            this.cmbZapataCorridaEtiqueta.DataSource = PosicionTools.Posiciones(this.IdiomaDelPrograma);
 
             // Asigna el indice de la lista desplegable
             this.cmbArmaduraEtiqueta.SelectedIndex = Properties.Settings.Default.ArmaduraEtiquetaIndependiente;
@@ -291,7 +285,7 @@ namespace Jump
         private void CambiarImagenGeneral_MouseMove(object sender, MouseEventArgs e)
         {
             // Asigna la imagen
-            this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_Precision;
+            this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuracion_Precision;
         }
 
         /// <summary> Cambia la imagen cuando el mouse pasa por arriba del radiobutton </summary>
@@ -312,37 +306,37 @@ namespace Jump
             // Verifica que sea el radiobutton de corte local
             else if (sender == this.rbtnVistaLocal)
             {
-                this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_Vista_Local;
+                this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuracion_Vista_Local;
             }
 
             // Verifica que sea el radiobutton de corte global
             else if (sender == this.rbtnVistaGlobal)
             {
-                this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_Vista_Global;
+                this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuracion_Vista_Global;
             }
 
             // Verifica que sea el radiobutton lineas centrales
             else if (sender == this.rbtnLineasCentrales)
             {
-                this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_LineasCentrales;
+                this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuracion_LineasCentrales;
             }
 
             // Verifica que sea el radiobutton lineas de borde
             else if (sender == this.rbtnLineasBorde)
             {
-                this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_LineasDeBorde;
+                this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuracion_LineasDeBorde;
             }
 
             // Verifica que sea el radiobutton de texto de armaduras arriba
             else if (sender == this.rbtnTextoArriba)
             {
-                this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_TextoArriba;
+                this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuracion_TextoArriba;
             }
 
             // Verifica que sea el radiobutton de texto de armaduras abajo
             else if (sender == this.rbtnTextoAbajo)
             {
-                this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_TextoAbajo;
+                this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuracion_TextoAbajo;
             }
         }
         
@@ -353,7 +347,7 @@ namespace Jump
             if (sender == this.gbxConfiguraciones)
             {
                 // Asigna la imagen
-                this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_Precision;                
+                this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuracion_Precision;                
             }
 
             // Verifica que sea el groupbox corte transversal
@@ -363,14 +357,14 @@ namespace Jump
                 if (this.rbtnVistaLocal.Checked == true)
                 {
                     // Asigna la imagen
-                    this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_Vista_Local;
+                    this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuracion_Vista_Local;
                 }
 
                 // Verifica que sea la vista global 
                 if (this.rbtnVistaGlobal.Checked == true)
                 {
                     // Asigna la imagen
-                    this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuraciones_Vista_Global;
+                    this.pcbxGeneral.BackgroundImage = Jump.Iconos_e_Imagenes.Imagenes.Configuracion_Vista_Global;
                 }
             }
         }

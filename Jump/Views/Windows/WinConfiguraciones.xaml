@@ -8,8 +8,8 @@
         xmlns:control="clr-namespace:Jump.Views.Controls"
         xmlns:userControl="clr-namespace:Jump.Views.UserControls"
         mc:Ignorable="d"
-        MinHeight="500" MinWidth="700" WindowStartupLocation="CenterScreen"
-        Height="500" Width="700"
+        MinHeight="600" MinWidth="700" WindowStartupLocation="CenterScreen"
+        Height="auto" Width="700"
         Title="Configuraciones">
 
     <Window.Resources>
@@ -47,8 +47,10 @@
     <Grid Style="{StaticResource ConfigGrid}">
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="*"/>            
+            
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*"/>       
+            
         </Grid.ColumnDefinitions>
         
         <StackPanel Grid.Column="0" Background="White">
@@ -135,7 +137,9 @@
 
         <ContentControl Grid.Column="1"
                         Margin="20,0,0,0"
-                        Content="{Binding VistaActual}">
+                        Content="{Binding VistaActual}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
         </ContentControl>
         
     </Grid>

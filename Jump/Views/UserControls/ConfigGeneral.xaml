@@ -2,12 +2,13 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:local="clr-namespace:Jump"
              xmlns:vm="clr-namespace:Jump.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             MinHeight="200" MinWidth="300" Background="White">
+             Background="White">
 
     <UserControl.Resources>
         
@@ -23,7 +24,8 @@
         
     </UserControl.Resources>
 
-    <Grid>
+    <Grid x:Name="GridSeccionTransversal">
+        
         <Grid.ColumnDefinitions>
 
             <ColumnDefinition Width="2*"/>
@@ -31,49 +33,53 @@
 
         </Grid.ColumnDefinitions>
 
-        <StackPanel>
+        <StackPanel Margin="0,0,20,0">
 
-            <Label
-                x:Name="lblprecisionOrdenar"
-                Content="Precisión para ordenar los elementos"
-                Style="{StaticResource ConfigTituloPrincipal}">
+            <Label x:Name="lblprecisionOrdenar"
+                   Content="Precisión para ordenar los elementos"
+                   Style="{StaticResource ConfigTituloPrincipal}"
+                   Margin="0">
             </Label>
 
             <Separator Style="{StaticResource ConfigSeparador}"/>
 
-            <StackPanel Style="{StaticResource ConfigStackpanel}">
+            <StackPanel Style="{StaticResource ConfigStackpanel}"
+                        ToolTip="La precisión en X como en Y se utiliza para el orden y enumeración de los elementos">
 
-                <TextBlock
-                    x:Name="lblPrecisionOrdenarDescripcion"
-                    Style="{StaticResource ConfigTexto}"
-                    Text="La precisión en X como en Y se utiliza para el orden y enumeración de los elementos">
-                </TextBlock>
+                <i:Interaction.Triggers>
+                    
+                    <i:EventTrigger EventName="MouseEnter">
 
-                <Grid Style="{StaticResource ConfigGridIntroduccionDatos}">
-
+                        <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
+                                               CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Precision.png"/>
+                        
+                    </i:EventTrigger>
+                    
+                </i:Interaction.Triggers>
+                    
+                <Grid Margin="0,0,0,5">
+                    
                     <Grid.ColumnDefinitions>
 
-                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="3*"/>
                         <ColumnDefinition Width="*"/>
 
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock
-                        Grid.Column="0"
-                        Text="X = ">
+                    <TextBlock Grid.Column="0"
+                               Text="Precisión en X:"
+                               Style="{Binding ConfigTexto}">
                     </TextBlock>
                     
-                    <TextBox
-                        Grid.Column="1"
-                        x:Name="txtPrecisionOrdenarX"
-                        Text="{Binding PrecisionOrdenarX}">
+                    <TextBox Grid.Column="1" 
+                             x:Name="txtPrecisionOrdenarX"
+                             Text="{Binding PrecisionOrdenarX}">
                     </TextBox>
                     
-                    <TextBlock
-                        Grid.Column="2"
-                        Text="{Binding TxtUnidadDistancia}"
-                        Style="{StaticResource ConfigTextoUnidad}">
+                    <TextBlock Grid.Column="2"
+                               Text="{Binding TxtUnidadDistancia}"
+                               Style="{StaticResource ConfigTextoUnidad}">
                     </TextBlock>
                     
                 </Grid>
@@ -82,21 +88,20 @@
                     
                     <Grid.ColumnDefinitions>
 
-                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="3*"/>
                         <ColumnDefinition Width="*"/>
 
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock
-                        Grid.Column="0"
-                        Text="Y = ">
+                    <TextBlock Grid.Column="0"
+                               Text="Precisión en Y:"
+                               Style="{Binding ConfigTexto}">
                     </TextBlock>
 
-                    <TextBox
-                        Grid.Column="1"
-                        x:Name="txtPrecisionOrdenarY"
-                        Text="{Binding PrecisionOrdenarY}">
+                    <TextBox Grid.Column="1"
+                             x:Name="txtPrecisionOrdenarY"
+                             Text="{Binding PrecisionOrdenarY}">
                     </TextBox>
 
                     <TextBlock
@@ -109,119 +114,207 @@
                 
             </StackPanel>
             
-            <Label
-                x:Name="lblPrecisionNodo"
-                Content="Precisión para nodos analíticos"
-                Style="{StaticResource ConfigTituloPrincipal}">
+            <Label Content="Precisión para nodos analíticos"
+                   Style="{StaticResource ConfigTituloPrincipal}">
             </Label>
 
             <Separator Style="{StaticResource ConfigSeparador}"/>
 
-            <StackPanel Style="{StaticResource ConfigStackpanel}">
+            <StackPanel Style="{StaticResource ConfigStackpanel}"
+                        ToolTip="Mínima distancia a partir de la cual se analizan la separación de los nodos analíticos">
 
-                <TextBlock
-                    x:Name="lblPrecisionNodoDescripcion"
-                    Style="{StaticResource ConfigTexto}"
-                    Text="Mínima distancia a partir de la cual se analizan la separación de los nodos analíticos">
-                </TextBlock>
+                <i:Interaction.Triggers>
+                    
+                    <i:EventTrigger EventName="MouseEnter">
 
-                <Grid Style="{StaticResource ConfigGridIntroduccionDatos}">
+                        <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
+                                               CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Viga.png"/>
+                        
+                    </i:EventTrigger>
+                    
+                </i:Interaction.Triggers>
+
+                <Grid x:Name="GridNodoAnalitico">
+                    
                     <Grid.ColumnDefinitions>
 
-                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="3*"/>
                         <ColumnDefinition Width="*"/>
 
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock
-                        Grid.Column="0"
-                        Text="D = ">
+                    <TextBlock Grid.Column="0"
+                               Text="Distancia mínima:"
+                               Style="{Binding ConfigTexto}">
                     </TextBlock>
 
-                    <TextBox
-                        Grid.Column="1"
-                        x:Name="txtPrecisionNodoAnalitico"
-                        Text="{Binding PrecisionNodoAnalitico}">
+                    <TextBox Grid.Column="1"
+                             x:Name="txtPrecisionNodoAnalitico"
+                             Text="{Binding PrecisionNodoAnalitico}">
                     </TextBox>
 
-                    <TextBlock
-                        Grid.Column="2"
-                        Text="{Binding TxtUnidadDistancia}"
-                        Style="{StaticResource ConfigTextoUnidad}">
+                    <TextBlock Grid.Column="2"
+                               Text="{Binding TxtUnidadDistancia}"
+                               Style="{StaticResource ConfigTextoUnidad}">
                     </TextBlock>
                 </Grid>
 
             </StackPanel>
 
-            <Label
-                x:Name="lblSeccion"
-                Content="Sección longitudinal y transversal"
-                Style="{StaticResource ConfigTituloPrincipal}">
+            <Label Content="Tipo de sección"
+                   Style="{StaticResource ConfigTituloPrincipal}">
             </Label>
 
             <Separator Style="{StaticResource ConfigSeparador}"/>
 
-            <StackPanel Style="{StaticResource ConfigStackpanel}">
-
-                <TextBlock
-                    x:Name="lblSeccionDescripcion"
-                    Style="{StaticResource ConfigTexto}"
-                    Text="La sección se basa en coordenadas de la familia (Local) o en coordenadas del modelo (Global)">
-                </TextBlock>
+            <StackPanel Style="{StaticResource ConfigStackpanel}"
+                        ToolTip="La sección se basa en coordenadas de la familia (Local) o en coordenadas del modelo (Global)">
 
                 <RadioButton x:Name="rbtnVistaLocal"
                              Content="Local"
                              IsChecked="{Binding VistaLocal}"
                              Style="{StaticResource ConfigRadioButton}">
+
+                    <i:Interaction.Triggers>
+                    
+                        <i:EventTrigger EventName="MouseEnter">
+                        
+                            <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
+                                                   CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Vista_Local.png"/>
+                        
+                        </i:EventTrigger>
+                    
+                    </i:Interaction.Triggers>
+                    
                 </RadioButton>
                 
                 <RadioButton x:Name="rbtnVistaGlobal"
                              Content="Global"
                              IsChecked="{Binding VistaGlobal}"
                              Style="{StaticResource ConfigRadioButton}">
-                </RadioButton>
-                
-                <TextBlock
-                    x:Name="lblCorteTransversalDescripcion"
-                    Style="{StaticResource ConfigTexto}"
-                    Text="En elementos basados en línea, la sección transversal puede ir desde 0% al 100% indicando el porcentaje a la cual se realiza en corte donde 0% es el inicio y 100% es el final">
-                </TextBlock>
 
-                <Grid Style="{StaticResource ConfigGridIntroduccionDatos}">
+                    <i:Interaction.Triggers>
+                        
+                        <i:EventTrigger EventName="MouseEnter">
+
+                            <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
+                                                   CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Vista_Global.png"/>
+                            
+                        </i:EventTrigger>
+                        
+                    </i:Interaction.Triggers>
+                    
+                </RadioButton>
+
+            </StackPanel>
+
+            <Label Content="Sección transversal"
+                   Style="{StaticResource ConfigTituloPrincipal}">
+            </Label>
+
+            <Separator Style="{StaticResource ConfigSeparador}"/>
+
+            <StackPanel Style="{StaticResource ConfigStackpanel}"
+                        ToolTip="En elementos basados en línea, la sección transversal puede ir desde 0% al 100% indicando el porcentaje a la cual se realiza en corte donde 0% es el inicio y 100% es el final">
+                
+                <i:Interaction.Triggers>
+
+                    <i:EventTrigger EventName="MouseEnter">
+
+                        <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
+                                               CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_TextoArriba.png"/>
+
+                    </i:EventTrigger>
+
+                </i:Interaction.Triggers>
+                
+                <Grid>
+
                     <Grid.ColumnDefinitions>
 
-                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="*"/>
 
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock
-                        Grid.Column="0"
-                        Text="S = ">
+                    <TextBlock Grid.Column="0"
+                               Text="Distancia relativa:"
+                               Style="{Binding ConfigTexto}">
                     </TextBlock>
 
-                    <TextBox
-                        Grid.Column="1"
-                        x:Name="txtSeccionTransversal"
-                        VerticalContentAlignment="Center"
-                        Text="{Binding CorteTransversal}">
+                    <TextBox Grid.Column="1"
+                             VerticalContentAlignment="Center"
+                             Text="{Binding CorteTransversal}">
                     </TextBox>
 
-                    <TextBlock
-                        Grid.Column="2"
-                        Text="%     [0 - 100]"
-                        Style="{StaticResource ConfigTextoUnidad}">
+                    <TextBlock Grid.Column="2"
+                               Text="%     [0 - 100]"
+                               Style="{StaticResource ConfigTextoUnidad}">
                     </TextBlock>
+                    
                 </Grid>
+
+            </StackPanel>
+
+            <Label Content="Orden"
+                   Style="{StaticResource ConfigTituloPrincipal}">
+            </Label>
+
+            <Separator Style="{StaticResource ConfigSeparador}"/>
+
+            <StackPanel Style="{StaticResource ConfigStackpanel}"
+                        ToolTip="En elementos basados en curva, es el punto donde se evalua para ordenar los elementos donde 0% es el inicio y 100% es el final de la curva">
+
+                <i:Interaction.Triggers>
+
+                    <i:EventTrigger EventName="MouseEnter">
+
+                        <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
+                                               CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_TextoAbajo.png"/>
+
+                    </i:EventTrigger>
+
+                </i:Interaction.Triggers>
                 
+                <Grid x:Name="GridOrden">
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                               Text="Punto a evaluar:"
+                               Style="{Binding ConfigTexto}">
+                    </TextBlock>
+
+                    <TextBox Grid.Column="1"
+                             VerticalContentAlignment="Center"
+                             Text="{Binding PuntoAEvaluarOrden}">
+                    </TextBox>
+
+                    <TextBlock Grid.Column="2"
+                               Text="%     [0 - 100]"
+                               Style="{StaticResource ConfigTextoUnidad}">
+                    </TextBlock>
+
+                </Grid>
+
             </StackPanel>
 
         </StackPanel>
 
-        <Image x:Name="imgPreviewGeneral"
-               Grid.Column="1"/>
+        <Image x:Name="Preview"
+               Grid.Column="1"
+               Stretch="Uniform"
+               Source="{Binding ImagenPreview}">
+        </Image>
 
     </Grid>
+    
 </UserControl>

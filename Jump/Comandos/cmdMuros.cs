@@ -34,7 +34,7 @@ namespace Jump
                 Muro.categoriaEtiqueta = BuiltInCategory.OST_StructuralFramingTags;
                 Muro.indiceComboboxEscalaVista = Properties.Settings.Default.MuroIndiceComboboxEscalaVista;
                 Muro.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.MuroEtiquetaIndependiente;
-                Muro.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.MuroEtiquetaCotaProfundidad;
+                Muro.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.MuroCotaProfundidad;
                 Muro.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.ArmaduraEtiquetaIndependiente;
                 Muro.listaSeleccionados = uiDoc.Selection.GetElementIds().ToList();
                 Muro.cotaHorizontalArriba = Jump.Properties.Settings.Default.MuroCotaLinealArriba;

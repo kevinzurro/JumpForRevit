@@ -18,36 +18,25 @@ namespace Jump.ViewModels
 {
     public class ConfigGeneralViewModel : ViewModelBase
     {
-        private ConfiguracionesModel mConfiguracion;
-        private string imagenPreview = "pack://application:,,,/Jump;component/Resources/Configuracion_Precision.png";
-
         public ConfigGeneralViewModel(ConfiguracionesModel model)
         {
-            Modelo = model;
-        }
-
-        public ConfiguracionesModel Modelo
-        {
-            get { return mConfiguracion; }
-            set
-            {
-                mConfiguracion = value as ConfiguracionesModel;
-            }
+            ConfigModelo = model;
+            ImagenPreview = "pack://application:,,,/Jump;component/Resources/Configuracion_Precision.png";
         }
 
         public string TxtUnidadDistancia
         {
-            get { return Modelo.ObtenerUnidadDistancia(); }
+            get { return ConfigModelo.ObtenerUnidadDistancia(); }
         }
 
         public double PrecisionOrdenarX
         {
-            get { return Modelo.ConvertirDesdeUnidadesInternas(Properties.Settings.Default.ConfiguracionPrecisionOrdenarX); }
+            get { return ConfigModelo.ConvertirDesdeUnidadesInternas(Properties.Settings.Default.ConfiguracionPrecisionOrdenarX); }
             set
             {
                 if (Properties.Settings.Default.ConfiguracionPrecisionOrdenarX != value)
                 {
-                    Properties.Settings.Default.ConfiguracionPrecisionOrdenarX = Modelo.ConvertirAUnidadesInternas(value);
+                    Properties.Settings.Default.ConfiguracionPrecisionOrdenarX = ConfigModelo.ConvertirAUnidadesInternas(value);
 
                     Properties.Settings.Default.Save();
 
@@ -58,12 +47,12 @@ namespace Jump.ViewModels
         
         public double PrecisionOrdenarY
         {
-            get { return Modelo.ConvertirDesdeUnidadesInternas(Properties.Settings.Default.ConfiguracionPrecisionOrdenarY); }
+            get { return ConfigModelo.ConvertirDesdeUnidadesInternas(Properties.Settings.Default.ConfiguracionPrecisionOrdenarY); }
             set
             {
                 if (Properties.Settings.Default.ConfiguracionPrecisionOrdenarY != value)
                 {
-                    Properties.Settings.Default.ConfiguracionPrecisionOrdenarY = Modelo.ConvertirAUnidadesInternas(value);
+                    Properties.Settings.Default.ConfiguracionPrecisionOrdenarY = ConfigModelo.ConvertirAUnidadesInternas(value);
 
                     Properties.Settings.Default.Save();
 
@@ -154,25 +143,5 @@ namespace Jump.ViewModels
             }
         }
 
-        public string ImagenPreview
-        {
-            get { return imagenPreview; }
-            set 
-            {
-                if (imagenPreview != value)
-                {
-                    imagenPreview = value;
-
-                    OnPropertyChanged(nameof(ImagenPreview));
-                }
-            }
-        }
-
-        public RelayCommand CambiarImagenCommand => new RelayCommand(execute => CambiarImagen(execute), canExecute => { return true; });
-
-        private void CambiarImagen(object imagen)
-        {
-            ImagenPreview = imagen as string;
-        }
     }
 }

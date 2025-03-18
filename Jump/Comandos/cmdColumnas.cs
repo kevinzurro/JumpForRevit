@@ -34,7 +34,7 @@ namespace Jump
                 Columna.categoriaEtiqueta = BuiltInCategory.OST_StructuralColumnTags;
                 Columna.indiceComboboxEscalaVista = Properties.Settings.Default.ColumnaIndiceComboboxEscalaVista;
                 Columna.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.ColumnaEtiquetaIndependiente;
-                Columna.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.ColumnaEtiquetaCotaProfundidad;
+                Columna.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.ColumnaCotaProfundidad;
                 Columna.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.ArmaduraEtiquetaIndependiente;
                 Columna.listaSeleccionados = uiDoc.Selection.GetElementIds().ToList();
                 Columna.cotaHorizontalArriba = Jump.Properties.Settings.Default.ColumnaCotaLinealArriba;

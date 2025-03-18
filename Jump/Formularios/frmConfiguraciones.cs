@@ -255,14 +255,14 @@ namespace Jump
             this.chbPiloteCotaDerecha.Checked = Properties.Settings.Default.PiloteCotaLinealDerecha;
 
             // Agrega las posiciones de cota profundidad
-            CargarCotaProfundidad(this.cmbVigaCotaProfundidad, Properties.Settings.Default.VigaEtiquetaCotaProfundidad);
-            CargarCotaProfundidad(this.cmbMuroCotaProfundidad, Properties.Settings.Default.MuroEtiquetaCotaProfundidad);
-            CargarCotaProfundidad(this.cmbColumnaCotaProfundidad, Properties.Settings.Default.ColumnaEtiquetaCotaProfundidad);
-            CargarCotaProfundidad(this.cmbLosaCotaProfundidad, Properties.Settings.Default.LosaEtiquetaCotaProfundidad);
-            CargarCotaProfundidad(this.cmbZapataCotaProfundidad, Properties.Settings.Default.ZapataEtiquetaCotaProfundidad);
-            CargarCotaProfundidad(this.cmbZapataCorridaCotaProfundidad, Properties.Settings.Default.ZapataCorridaEtiquetaCotaProfundidad);
-            CargarCotaProfundidad(this.cmbPlateaCotaProfundidad, Properties.Settings.Default.PlateaEtiquetaCotaProfundidad);
-            CargarCotaProfundidad(this.cmbPiloteCotaProfundidad, Properties.Settings.Default.PiloteEtiquetaCotaProfundidad);
+            CargarCotaProfundidad(this.cmbVigaCotaProfundidad, Properties.Settings.Default.VigaCotaProfundidad);
+            CargarCotaProfundidad(this.cmbMuroCotaProfundidad, Properties.Settings.Default.MuroCotaProfundidad);
+            CargarCotaProfundidad(this.cmbColumnaCotaProfundidad, Properties.Settings.Default.ColumnaCotaProfundidad);
+            CargarCotaProfundidad(this.cmbLosaCotaProfundidad, Properties.Settings.Default.LosaCotaProfundidad);
+            CargarCotaProfundidad(this.cmbZapataCotaProfundidad, Properties.Settings.Default.ZapataCotaProfundidad);
+            CargarCotaProfundidad(this.cmbZapataCorridaCotaProfundidad, Properties.Settings.Default.ZapataCorridaCotaProfundidad);
+            CargarCotaProfundidad(this.cmbPlateaCotaProfundidad, Properties.Settings.Default.PlateaCotaProfundidad);
+            CargarCotaProfundidad(this.cmbPiloteCotaProfundidad, Properties.Settings.Default.PiloteCotaProfundidad);
         }
 
         /// <summary> Valida que los textos ingresados sean solamente números </summary>
@@ -493,14 +493,14 @@ namespace Jump
             Properties.Settings.Default.PiloteCotaLinealDerecha = this.chbPiloteCotaDerecha.Checked;
 
             // Cotas de profundidad
-            Properties.Settings.Default.VigaEtiquetaCotaProfundidad = ObtenerPosicionCotaProfundidad(this.cmbVigaCotaProfundidad);
-            Properties.Settings.Default.MuroEtiquetaCotaProfundidad = ObtenerPosicionCotaProfundidad(this.cmbMuroCotaProfundidad);
-            Properties.Settings.Default.ColumnaEtiquetaCotaProfundidad = ObtenerPosicionCotaProfundidad(this.cmbColumnaCotaProfundidad);
-            Properties.Settings.Default.LosaEtiquetaCotaProfundidad = ObtenerPosicionCotaProfundidad(this.cmbLosaCotaProfundidad);
-            Properties.Settings.Default.ZapataEtiquetaCotaProfundidad = ObtenerPosicionCotaProfundidad(this.cmbZapataCotaProfundidad);
-            Properties.Settings.Default.ZapataCorridaEtiquetaCotaProfundidad = ObtenerPosicionCotaProfundidad(this.cmbZapataCorridaCotaProfundidad);
-            Properties.Settings.Default.PlateaEtiquetaCotaProfundidad = ObtenerPosicionCotaProfundidad(this.cmbPlateaCotaProfundidad);
-            Properties.Settings.Default.PiloteEtiquetaCotaProfundidad = ObtenerPosicionCotaProfundidad(this.cmbPiloteCotaProfundidad);
+            Properties.Settings.Default.VigaCotaProfundidad = ObtenerPosicionCotaProfundidad(this.cmbVigaCotaProfundidad);
+            Properties.Settings.Default.MuroCotaProfundidad = ObtenerPosicionCotaProfundidad(this.cmbMuroCotaProfundidad);
+            Properties.Settings.Default.ColumnaCotaProfundidad = ObtenerPosicionCotaProfundidad(this.cmbColumnaCotaProfundidad);
+            Properties.Settings.Default.LosaCotaProfundidad = ObtenerPosicionCotaProfundidad(this.cmbLosaCotaProfundidad);
+            Properties.Settings.Default.ZapataCotaProfundidad = ObtenerPosicionCotaProfundidad(this.cmbZapataCotaProfundidad);
+            Properties.Settings.Default.ZapataCorridaCotaProfundidad = ObtenerPosicionCotaProfundidad(this.cmbZapataCorridaCotaProfundidad);
+            Properties.Settings.Default.PlateaCotaProfundidad = ObtenerPosicionCotaProfundidad(this.cmbPlateaCotaProfundidad);
+            Properties.Settings.Default.PiloteCotaProfundidad = ObtenerPosicionCotaProfundidad(this.cmbPiloteCotaProfundidad);
             
             // Guarda las configuraciones
             Properties.Settings.Default.Save();

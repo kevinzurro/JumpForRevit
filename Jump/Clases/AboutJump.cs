@@ -15,7 +15,7 @@ namespace Jump
     {
         public static string nombreAddin = "Jump";
         static string version = "1.0";
-        static string idiomaDelPrograma = "es-ES";
+        static string idiomaAddin = "es-ES";
         public const string nombreEsquemaArmaduraRepresentacion = "RebarRepresentationJumpForRevit";
         public const string nombreEsquemaRepresentaciones = "RepresentationsJumpForRevit";
         public const string nombreEsquemaDataGridView = "DGVDiameterAndStyleJumpForRevit";
@@ -45,9 +45,9 @@ namespace Jump
         /// <summary> Obtiene o establece el idioma del plugin </summary>
         public static string IdiomaAddin
         {
-            get { return idiomaDelPrograma; }
+            get { return idiomaAddin; }
 
-            set{ idiomaDelPrograma = value; }
+            set{ idiomaAddin = value; }
         }
 
         /// <summary> Obtiene la versión de la addin </summary>
@@ -64,89 +64,6 @@ namespace Jump
         public static Guid GuidActualizarBarra
         {
             get { return new Guid(guidActualizarBarra); }
-        }
-
-        ///<summary> Obtiene el tipo de idioma que utiliza Revit </summary>
-        public static string ObtenerIdiomaRevit(LanguageType tipoIdioma)
-        {
-            string idioma = "";
-
-            switch (tipoIdioma)
-            {
-                case LanguageType.Brazilian_Portuguese:
-                    idioma = "pt-BR";
-                    break;
-
-                case LanguageType.Chinese_Simplified:
-                    idioma = "zh-CN";
-                    break;
-
-                case LanguageType.Chinese_Traditional:
-                    idioma = "zh-TW";
-                    break;
-
-                case LanguageType.Czech:
-                    idioma = "cs-CZ";
-                    break;
-
-                case LanguageType.Dutch:
-                    idioma = "nl-BE";
-                    break;
-
-                case LanguageType.English_GB:
-                    idioma = "en-BG";
-                    break;
-
-                case LanguageType.English_USA:
-                    idioma = "en-US";
-                    break;
-
-                case LanguageType.French:
-                    idioma = "fr-FR";
-                    break;
-
-                case LanguageType.German:
-                    idioma = "de-DE";
-                    break;
-
-                case LanguageType.Hungarian:
-                    idioma = "hu-HU";
-                    break;
-
-                case LanguageType.Italian:
-                    idioma = "it-IT";
-                    break;
-
-                case LanguageType.Japanese:
-                    idioma = "ja-JP";
-                    break;
-
-                case LanguageType.Korean:
-                    idioma = "ko-KR";
-                    break;
-
-                case LanguageType.Polish:
-                    idioma = "pl-PL";
-                    break;
-
-                case LanguageType.Russian:
-                    idioma = "ru-RU";
-                    break;
-
-                case LanguageType.Spanish:
-                    idioma = "es-ES";
-                    break;
-
-                case LanguageType.Unknown:
-                    idioma = "es-ES";
-                    break;
-
-                default:
-                    idioma = "es-ES";
-                    break;
-            }
-
-            return idioma;
         }
     }
 }

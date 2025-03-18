@@ -1,5 +1,4 @@
-﻿using Autodesk.Revit.DB.Visual;
-using Jump;
+﻿using Jump;
 using Jump.Models;
 using System;
 using System.Collections.Generic;
@@ -15,31 +14,24 @@ namespace Jump.ViewModels
 {
     public class ConfiguracionViewModel : ViewModelBase
     {
-        private ConfiguracionesModel mConfiguracion;
         private ViewModelBase vistaActual;
         private ConfigGeneralViewModel vmGeneral;
         private ConfigEtiquetasViewModel vmEtiquetas;
+        private ConfigCotasViewModel vmCotas;
+        private ConfigCotasProfundidadViewModel vmCotasProfundidad;
 
         public ConfiguracionViewModel() { }
 
-        public ConfiguracionViewModel(ConfiguracionesModel model,
-                                      ConfigGeneralViewModel general,
-                                      ConfigEtiquetasViewModel etiquetas) 
+        public ConfiguracionViewModel(ConfiguracionesModel model) 
         {
-            Modelo = model;
-            GeneralVM = general;
-            EtiquetasVM = etiquetas;
+            ConfigModelo = model;
+
+            GeneralVM = new ConfigGeneralViewModel(ConfigModelo);
+            EtiquetasVM = new ConfigEtiquetasViewModel(ConfigModelo);
+            CotasVM = new ConfigCotasViewModel(ConfigModelo);
+            CotasProfundidadVM = new ConfigCotasProfundidadViewModel(ConfigModelo);
 
             VistaActual = GeneralVM;
-        }
-
-        public ConfiguracionesModel Modelo
-        {
-            get { return mConfiguracion; }
-            set
-            {
-                mConfiguracion = value;
-            }
         }
 
         public ViewModelBase VistaActual
@@ -72,11 +64,33 @@ namespace Jump.ViewModels
             }
         }
 
+        public ConfigCotasViewModel CotasVM
+        {
+            get { return vmCotas; }
+            set
+            {
+                vmCotas = value;
+                OnPropertyChanged(nameof(CotasVM));
+            }
+        }
+
+        public ConfigCotasProfundidadViewModel CotasProfundidadVM
+        {
+            get { return vmCotasProfundidad; }
+            set
+            {
+                vmCotasProfundidad = value;
+                OnPropertyChanged(nameof(CotasProfundidadVM));
+            }
+        }
+
         public RelayCommand CambiarVistaGeneralCommand => new RelayCommand(execute => CambiarVista(GeneralVM), canExecute => { return true; });
 
         public RelayCommand CambiarVistaEtiquetasCommand => new RelayCommand(execute => CambiarVista(EtiquetasVM), canExecute => { return true; });
 
-        public RelayCommand CambiarVistaCotasCommand => new RelayCommand(execute => CambiarVista(GeneralVM), canExecute => { return true; });
+        public RelayCommand CambiarVistaCotasCommand => new RelayCommand(execute => CambiarVista(CotasVM), canExecute => { return true; });
+
+        public RelayCommand CambiarVistaCotasProfundidadCommand => new RelayCommand(execute => CambiarVista(CotasProfundidadVM), canExecute => { return true; });
 
         private void CambiarVista(ViewModelBase vm) 
         {

@@ -45,34 +45,34 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="ZapataCorridaEtiquetaIndependiente" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="PlateaEtiquetaIndependiente" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="MuroEtiquetaIndependiente" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="PiloteEtiquetaIndependiente" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="ArmaduraEtiquetaIndependiente" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="VigaEtiquetaIndependiente" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="ZapataEtiquetaIndependiente" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
-    <Setting Name="ColumnaEtiquetaCotaProfundidad" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">8</Value>
+    <Setting Name="ColumnaCotaProfundidad" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">7</Value>
     </Setting>
     <Setting Name="ColumnaEtiquetaIndependiente" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="LosaEtiquetaIndependiente" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="AreaRefuerzoEtiquetaIndependiente" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
@@ -89,23 +89,23 @@
     <Setting Name="VigaIndiceComboboxEscalaVista" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">5</Value>
     </Setting>
-    <Setting Name="LosaEtiquetaCotaProfundidad" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">8</Value>
+    <Setting Name="LosaCotaProfundidad" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">7</Value>
     </Setting>
-    <Setting Name="MuroEtiquetaCotaProfundidad" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">8</Value>
+    <Setting Name="MuroCotaProfundidad" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">7</Value>
     </Setting>
-    <Setting Name="PlateaEtiquetaCotaProfundidad" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">8</Value>
+    <Setting Name="PlateaCotaProfundidad" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">7</Value>
     </Setting>
-    <Setting Name="VigaEtiquetaCotaProfundidad" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">8</Value>
+    <Setting Name="VigaCotaProfundidad" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">7</Value>
     </Setting>
-    <Setting Name="ZapataEtiquetaCotaProfundidad" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">8</Value>
+    <Setting Name="ZapataCotaProfundidad" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">7</Value>
     </Setting>
-    <Setting Name="ZapataCorridaEtiquetaCotaProfundidad" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">8</Value>
+    <Setting Name="ZapataCorridaCotaProfundidad" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">7</Value>
     </Setting>
     <Setting Name="MuroIndiceComboboxEscalaVista" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">5</Value>
@@ -113,8 +113,8 @@
     <Setting Name="ZapataCorridaIndiceComboboxEscalaVista" Type="System.String" Scope="User">
       <Value Profile="(Default)">5</Value>
     </Setting>
-    <Setting Name="PiloteEtiquetaCotaProfundidad" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">8</Value>
+    <Setting Name="PiloteCotaProfundidad" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">7</Value>
     </Setting>
     <Setting Name="PiloteCotaLinealArriba" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>

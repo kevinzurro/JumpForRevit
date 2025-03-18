@@ -92,8 +92,8 @@
     <Compile Include="Base\ModelMenu.cs" />
     <Compile Include="Base\RelayCommand.cs" />
     <Compile Include="Base\ViewModelBase.cs" />
-    <Compile Include="Clases\Posicion.cs" />
     <Compile Include="Clases\PosicionTools.cs" />
+    <Compile Include="Clases\Posicion.cs" />
     <Compile Include="Clases\AboutJump.cs" />
     <Compile Include="Comandos\Anterior.cs" />
     <Compile Include="Comandos\ArmaduraRepresentacion.cs" />
@@ -160,7 +160,12 @@
       <DependentUpon>frmDetalleAutomatico.cs</DependentUpon>
     </Compile>
     <Compile Include="Comandos\Inicio.cs" />
-    <Compile Include="Comandos\Language.cs" />
+    <Compile Include="Iconos_e_Imagenes\Imagenes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Imagenes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Languages\Language.cs" />
     <Compile Include="Comandos\Pais.cs" />
     <Compile Include="Formularios\frmConfiguraciones.cs">
       <SubType>Form</SubType>
@@ -183,21 +188,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Iconos_Botones.resx</DependentUpon>
     </Compile>
-    <Compile Include="Iconos_e_Imagenes\Imagenes.Designer.cs">
+    <Compile Include="Languages\Resource.es-ES.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Imagenes.resx</DependentUpon>
+      <DependentUpon>Resource.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Languages\Resource.es-ES.xaml.cs">
+      <DependentUpon>Resource.es-ES.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\ConfiguracionesModel.cs" />
     <Compile Include="Models\Familia.cs" />
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Models\VistasModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Languages\Resource.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resource.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -213,12 +216,20 @@
     <Compile Include="Styles\FuentesUI.xaml.cs">
       <DependentUpon>FuentesUI.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\ConfigCotasProfundidadViewModel.cs" />
+    <Compile Include="ViewModels\ConfigCotasViewModel.cs" />
     <Compile Include="ViewModels\ConfigEtiquetasViewModel.cs" />
     <Compile Include="ViewModels\ConfigGeneralViewModel.cs" />
     <Compile Include="ViewModels\ConfiguracionViewModel.cs" />
     <Compile Include="ViewModels\CrearPlanosViewModel.cs" />
     <Compile Include="Views\Controls\BtnImagenTexto.xaml.cs">
       <DependentUpon>BtnImagenTexto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\ConfigCotas.xaml.cs">
+      <DependentUpon>ConfigCotas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\ConfigCotasProfundidad.xaml.cs">
+      <DependentUpon>ConfigCotasProfundidad.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\ConfigEtiquetas.xaml.cs">
       <DependentUpon>ConfigEtiquetas.xaml</DependentUpon>
@@ -238,6 +249,16 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Configuracion_Etiquetas_Pilote.png" />
+    <Resource Include="Resources\Configuracion_Cotas_Pilote.png" />
+    <Resource Include="Resources\Configuracion_Cotas_Zapata_Aislada.png" />
+    <Resource Include="Resources\Configuracion_Cotas_Losa.png" />
+    <Resource Include="Resources\Configuracion_Cotas_Zapata_Corrida.png" />
+    <Resource Include="Resources\Configuracion_Cotas_Platea.png" />
+    <Resource Include="Resources\Configuracion_Cotas_Muro.png" />
+    <Resource Include="Resources\Configuracion_Cotas_Columna.png" />
+    <Resource Include="Resources\Configuracion_Cotas_Viga.png" />
+    <Resource Include="Resources\Configuracion_Seccion_Transversal.png" />
     <Resource Include="Resources\Configuracion_Etiquetas_Armadura.png" />
     <Resource Include="Resources\Configuracion_Vista_Global.png" />
     <Resource Include="Resources\Configuracion_TextoArriba.png" />
@@ -249,7 +270,6 @@
     <Resource Include="Resources\Configuracion_Etiquetas_Zapata_Aislada.png" />
     <Resource Include="Resources\Configuracion_Etiquetas_Viga.png" />
     <Resource Include="Resources\Configuracion_Etiquetas_Platea.png" />
-    <Resource Include="Resources\Configuracion_Etiquetas_Pilotes.png" />
     <Resource Include="Resources\Configuracion_Etiquetas_Muro.png" />
     <Resource Include="Resources\Configuracion_Etiquetas_Losa.png" />
     <Resource Include="Resources\Configuracion_Etiquetas_Columna.png" />
@@ -442,10 +462,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Imagenes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Languages\Resource.en-US.resx" />
-    <EmbeddedResource Include="Properties\Languages\Resource.resx">
+    <EmbeddedResource Include="Languages\Resource.es-ES.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resource.es-ES.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -458,6 +477,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Page Include="Languages\Resource.es-ES.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\ControlesUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -471,6 +494,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Controls\BtnImagenTexto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\ConfigCotas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\ConfigCotasProfundidad.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

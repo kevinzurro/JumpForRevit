@@ -117,7 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Conf4117" xml:space="preserve">
-    <value>Ingles</value>
+  <data name="Pos1" xml:space="preserve">
+    <value>1 - Arriba Izquierda</value>
+  </data>
+  <data name="Tit1" xml:space="preserve">
+    <value>Detalles de armado</value>
   </data>
 </root>

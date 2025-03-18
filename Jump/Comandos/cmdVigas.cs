@@ -34,7 +34,7 @@ namespace Jump
                 Viga.categoriaEtiqueta = BuiltInCategory.OST_StructuralFramingTags;
                 Viga.indiceComboboxEscalaVista = Properties.Settings.Default.VigaIndiceComboboxEscalaVista;
                 Viga.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.VigaEtiquetaIndependiente;
-                Viga.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.VigaEtiquetaCotaProfundidad;
+                Viga.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.VigaCotaProfundidad;
                 Viga.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.ArmaduraEtiquetaIndependiente;
                 Viga.listaSeleccionados = uiDoc.Selection.GetElementIds().ToList();
                 Viga.cotaHorizontalArriba = Jump.Properties.Settings.Default.VigaCotaLinealArriba;

@@ -1,5 +1,4 @@
-﻿using Microsoft.Xaml.Behaviors;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +22,7 @@ namespace Jump.Views.UserControls
         {
             InitializeComponent();
         }
+
         public void Dispose()
         {
             this.Dispose();

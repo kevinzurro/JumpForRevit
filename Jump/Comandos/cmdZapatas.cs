@@ -34,7 +34,7 @@ namespace Jump
                 Zapata.categoriaEtiqueta = BuiltInCategory.OST_StructuralFoundationTags;
                 Zapata.indiceComboboxEscalaVista = Properties.Settings.Default.ZapataIndiceComboboxEscalaVista;
                 Zapata.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.ZapataEtiquetaIndependiente;
-                Zapata.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.ZapataEtiquetaCotaProfundidad;
+                Zapata.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.ZapataCotaProfundidad;
                 Zapata.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.ArmaduraEtiquetaIndependiente;
                 Zapata.listaSeleccionados = uiDoc.Selection.GetElementIds().ToList();
                 Zapata.cotaHorizontalArriba = Jump.Properties.Settings.Default.ZapataCotaLinealArriba;

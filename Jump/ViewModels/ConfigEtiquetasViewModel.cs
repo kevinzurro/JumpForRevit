@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Resources;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -14,40 +15,24 @@ namespace Jump.ViewModels
 {
     public class ConfigEtiquetasViewModel : ViewModelBase
     {
-        private ConfiguracionesModel mConfiguracion;
+        ObservableCollection<KeyValuePair<int, string>> posicionEtiquetas;
         ObservableCollection<string> posiciones;
-        private string imagenPreview = "pack://application:,,,/Jump;component/Resources/Configuracion_Etiquetas_Viga.png";
 
         public ConfigEtiquetasViewModel(ConfiguracionesModel model)
         {
-            Modelo = model;
+            ConfigModelo = model;
+            ImagenPreview = "pack://application:,,,/Jump;component/Resources/Configuracion_Etiquetas_Viga.png";
 
-            ObservableCollection<string> p = new ObservableCollection<string>();
-
-            foreach (string posicion in PosicionTools.Posiciones(AboutJump.IdiomaAddin))
-            {
-                p.Add(posicion);
-            }
-
-            Posiciones = p;
+            PosicionesEtiquetas = PosicionTools.PosicionesTodas;;
         }
 
-        public ConfiguracionesModel Modelo
+        public ObservableCollection<KeyValuePair<int, string>> PosicionesEtiquetas
         {
-            get { return mConfiguracion; }
+            get { return posicionEtiquetas; }
             set
             {
-                mConfiguracion = value as ConfiguracionesModel;
-            }
-        }
-
-        public ObservableCollection<string> Posiciones
-        {
-            get { return posiciones; }
-            set
-            {
-                posiciones = value;
-                OnPropertyChanged(nameof(Posiciones));
+                posicionEtiquetas = value;
+                OnPropertyChanged(nameof(PosicionesEtiquetas));
             }
         }
 
@@ -227,25 +212,5 @@ namespace Jump.ViewModels
             }
         }
 
-        public string ImagenPreview
-        {
-            get { return imagenPreview; }
-            set
-            {
-                if (imagenPreview != value)
-                {
-                    imagenPreview = value;
-
-                    OnPropertyChanged(nameof(ImagenPreview));
-                }
-            }
-        }
-
-        public RelayCommand CambiarImagenCommand => new RelayCommand(execute => CambiarImagen(execute), canExecute => { return true; });
-
-        private void CambiarImagen(object imagen)
-        {
-            ImagenPreview = imagen as string;
-        }
     }
 }

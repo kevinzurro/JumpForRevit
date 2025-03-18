@@ -9,11 +9,113 @@ using Autodesk.Revit.DB.Structure;
 using System.Windows.Media.Imaging;
 using System.Collections;
 using Autodesk.Revit.ApplicationServices;
+using System.Windows;
+using System.Diagnostics;
+using System.Resources;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.ComTypes;
+using System.Threading;
+using Jump.Languages;
 
 namespace Jump
 {
     public class Language
     {
+        private static string ruta = $"pack://application:,,,/Jump;component/Languages/Resource.{AboutJump.IdiomaAddin}.resx";
+        private static ResourceManager rm;
+
+        ///<summary> Obtiene el tipo de idioma que utiliza Revit </summary>
+        public static string ObtenerIdiomaRevit(LanguageType tipoIdioma)
+        {
+            string idioma = "";
+
+            switch (tipoIdioma)
+            {
+                case LanguageType.Brazilian_Portuguese:
+                    idioma = "pt-BR";
+                    break;
+
+                case LanguageType.Chinese_Simplified:
+                    idioma = "zh-CN";
+                    break;
+
+                case LanguageType.Chinese_Traditional:
+                    idioma = "zh-TW";
+                    break;
+
+                case LanguageType.Czech:
+                    idioma = "cs-CZ";
+                    break;
+
+                case LanguageType.Dutch:
+                    idioma = "nl-BE";
+                    break;
+
+                case LanguageType.English_GB:
+                    idioma = "en-BG";
+                    break;
+
+                case LanguageType.English_USA:
+                    idioma = "en-US";
+                    break;
+
+                case LanguageType.French:
+                    idioma = "fr-FR";
+                    break;
+
+                case LanguageType.German:
+                    idioma = "de-DE";
+                    break;
+
+                case LanguageType.Hungarian:
+                    idioma = "hu-HU";
+                    break;
+
+                case LanguageType.Italian:
+                    idioma = "it-IT";
+                    break;
+
+                case LanguageType.Japanese:
+                    idioma = "ja-JP";
+                    break;
+
+                case LanguageType.Korean:
+                    idioma = "ko-KR";
+                    break;
+
+                case LanguageType.Polish:
+                    idioma = "pl-PL";
+                    break;
+
+                case LanguageType.Russian:
+                    idioma = "ru-RU";
+                    break;
+
+                case LanguageType.Spanish:
+                    idioma = "es-ES";
+                    break;
+
+                case LanguageType.Unknown:
+                    idioma = "es-ES";
+                    break;
+
+                default:
+                    idioma = "es-ES";
+                    break;
+            }
+
+            AboutJump.IdiomaAddin = idioma;
+
+            rm = new ResourceManager(ruta.ToString(), typeof(Resource).Assembly);
+
+            return idioma;
+        }
+
+        public static string GetText(string key)
+        {
+            return rm.GetString(key);//, new System.Globalization.CultureInfo(AboutJump.IdiomaAddin));
+        }
+
         // Crear un vector principal con los idiomas disponibles
         public static List<string> IdiomasDisponibles = new List<string>();
 
@@ -424,15 +526,15 @@ namespace Jump
             Espanol.Add("BarPro2", " elementos de ");
             Espanol.Add("BarPro3", "Cancelar");
 
-            Espanol.Add("Pos0", "1 - Arriba Izquierda");            
-            Espanol.Add("Pos1", "2 - Arriba Centro");
-            Espanol.Add("Pos2", "3 - Arriba Derecha");
-            Espanol.Add("Pos3", "4 - Medio Izquierda");
-            Espanol.Add("Pos4", "5 - Medio Centro");
-            Espanol.Add("Pos5", "6 - Medio Derecha");
-            Espanol.Add("Pos6", "7 - Abajo Izquierda");
-            Espanol.Add("Pos7", "8 - Abajo Centro");
-            Espanol.Add("Pos8", "9 - Abajo Derecha");
+            Espanol.Add("Pos1", "1 - Arriba Izquierda");            
+            Espanol.Add("Pos2", "2 - Arriba Centro");
+            Espanol.Add("Pos3", "3 - Arriba Derecha");
+            Espanol.Add("Pos4", "4 - Medio Izquierda");
+            Espanol.Add("Pos5", "5 - Medio Centro");
+            Espanol.Add("Pos6", "6 - Medio Derecha");
+            Espanol.Add("Pos7", "7 - Abajo Izquierda");
+            Espanol.Add("Pos8", "8 - Abajo Centro");
+            Espanol.Add("Pos9", "9 - Abajo Derecha");
             Espanol.Add("Pos10", "Arriba");
             Espanol.Add("Pos11", "Abajo");
             Espanol.Add("Pos12", "Izquierda");

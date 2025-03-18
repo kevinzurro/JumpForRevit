@@ -193,7 +193,7 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public int ZapataCorridaEtiquetaIndependiente {
             get {
                 return ((int)(this["ZapataCorridaEtiquetaIndependiente"]));
@@ -205,7 +205,7 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public int PlateaEtiquetaIndependiente {
             get {
                 return ((int)(this["PlateaEtiquetaIndependiente"]));
@@ -217,7 +217,7 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public int MuroEtiquetaIndependiente {
             get {
                 return ((int)(this["MuroEtiquetaIndependiente"]));
@@ -229,7 +229,7 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public int PiloteEtiquetaIndependiente {
             get {
                 return ((int)(this["PiloteEtiquetaIndependiente"]));
@@ -253,7 +253,7 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public int VigaEtiquetaIndependiente {
             get {
                 return ((int)(this["VigaEtiquetaIndependiente"]));
@@ -265,7 +265,7 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public int ZapataEtiquetaIndependiente {
             get {
                 return ((int)(this["ZapataEtiquetaIndependiente"]));
@@ -277,19 +277,19 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("8")]
-        public int ColumnaEtiquetaCotaProfundidad {
+        [global::System.Configuration.DefaultSettingValueAttribute("7")]
+        public int ColumnaCotaProfundidad {
             get {
-                return ((int)(this["ColumnaEtiquetaCotaProfundidad"]));
+                return ((int)(this["ColumnaCotaProfundidad"]));
             }
             set {
-                this["ColumnaEtiquetaCotaProfundidad"] = value;
+                this["ColumnaCotaProfundidad"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public int ColumnaEtiquetaIndependiente {
             get {
                 return ((int)(this["ColumnaEtiquetaIndependiente"]));
@@ -301,7 +301,7 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public int LosaEtiquetaIndependiente {
             get {
                 return ((int)(this["LosaEtiquetaIndependiente"]));
@@ -373,73 +373,73 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("8")]
-        public int LosaEtiquetaCotaProfundidad {
+        [global::System.Configuration.DefaultSettingValueAttribute("7")]
+        public int LosaCotaProfundidad {
             get {
-                return ((int)(this["LosaEtiquetaCotaProfundidad"]));
+                return ((int)(this["LosaCotaProfundidad"]));
             }
             set {
-                this["LosaEtiquetaCotaProfundidad"] = value;
+                this["LosaCotaProfundidad"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("8")]
-        public int MuroEtiquetaCotaProfundidad {
+        [global::System.Configuration.DefaultSettingValueAttribute("7")]
+        public int MuroCotaProfundidad {
             get {
-                return ((int)(this["MuroEtiquetaCotaProfundidad"]));
+                return ((int)(this["MuroCotaProfundidad"]));
             }
             set {
-                this["MuroEtiquetaCotaProfundidad"] = value;
+                this["MuroCotaProfundidad"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("8")]
-        public int PlateaEtiquetaCotaProfundidad {
+        [global::System.Configuration.DefaultSettingValueAttribute("7")]
+        public int PlateaCotaProfundidad {
             get {
-                return ((int)(this["PlateaEtiquetaCotaProfundidad"]));
+                return ((int)(this["PlateaCotaProfundidad"]));
             }
             set {
-                this["PlateaEtiquetaCotaProfundidad"] = value;
+                this["PlateaCotaProfundidad"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("8")]
-        public int VigaEtiquetaCotaProfundidad {
+        [global::System.Configuration.DefaultSettingValueAttribute("7")]
+        public int VigaCotaProfundidad {
             get {
-                return ((int)(this["VigaEtiquetaCotaProfundidad"]));
+                return ((int)(this["VigaCotaProfundidad"]));
             }
             set {
-                this["VigaEtiquetaCotaProfundidad"] = value;
+                this["VigaCotaProfundidad"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("8")]
-        public int ZapataEtiquetaCotaProfundidad {
+        [global::System.Configuration.DefaultSettingValueAttribute("7")]
+        public int ZapataCotaProfundidad {
             get {
-                return ((int)(this["ZapataEtiquetaCotaProfundidad"]));
+                return ((int)(this["ZapataCotaProfundidad"]));
             }
             set {
-                this["ZapataEtiquetaCotaProfundidad"] = value;
+                this["ZapataCotaProfundidad"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("8")]
-        public int ZapataCorridaEtiquetaCotaProfundidad {
+        [global::System.Configuration.DefaultSettingValueAttribute("7")]
+        public int ZapataCorridaCotaProfundidad {
             get {
-                return ((int)(this["ZapataCorridaEtiquetaCotaProfundidad"]));
+                return ((int)(this["ZapataCorridaCotaProfundidad"]));
             }
             set {
-                this["ZapataCorridaEtiquetaCotaProfundidad"] = value;
+                this["ZapataCorridaCotaProfundidad"] = value;
             }
         }
         
@@ -469,13 +469,13 @@ namespace Jump.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("8")]
-        public int PiloteEtiquetaCotaProfundidad {
+        [global::System.Configuration.DefaultSettingValueAttribute("7")]
+        public int PiloteCotaProfundidad {
             get {
-                return ((int)(this["PiloteEtiquetaCotaProfundidad"]));
+                return ((int)(this["PiloteCotaProfundidad"]));
             }
             set {
-                this["PiloteEtiquetaCotaProfundidad"] = value;
+                this["PiloteCotaProfundidad"] = value;
             }
         }
         

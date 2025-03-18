@@ -9,7 +9,6 @@
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
              xmlns:local="clr-namespace:Jump"
              xmlns:vm="clr-namespace:Jump.ViewModels"
-             xmlns:language="clr-namespace:Jump.Properties.Languages"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="800"
              Background="White">
@@ -21,6 +20,7 @@
             <ResourceDictionary.MergedDictionaries>
 
                 <ResourceDictionary Source="/Jump;component/Styles/Estilos.xaml"/>
+                <ResourceDictionary Source="/Jump;component/Languages/Resource.es-ES.xaml"/>
 
             </ResourceDictionary.MergedDictionaries>
 
@@ -29,7 +29,7 @@
     </UserControl.Resources>
 
     <Grid>
-        
+
         <Grid.ColumnDefinitions>
 
             <ColumnDefinition Width="2*"/>
@@ -37,411 +37,426 @@
 
         </Grid.ColumnDefinitions>
 
-        <StackPanel Margin="0,0,20,0">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
 
-            <Label Content="Etiquetas independientes"
+            <StackPanel Margin="0,0,20,0">
+
+                <Label Content="{StaticResource Conf4-1-1}"
                    Style="{StaticResource ConfigTituloPrincipal}"
                    Margin="0">
-            </Label>
+                </Label>
 
-            <Separator Style="{StaticResource ConfigSeparador}"/>
+                <Separator Style="{StaticResource ConfigSeparador}"/>
 
-            <StackPanel Style="{StaticResource ConfigStackpanel}">
+                <StackPanel Style="{StaticResource ConfigStackpanel}">
 
-                <TextBlock Text="Posición donde se colocarán las etiquetas independientes para cada elemento"
+                    <TextBlock Text="{StaticResource Conf2-1-2}"
                            TextWrapping="Wrap"
-                           Margin="0,0,0,10">
-                </TextBlock>
+                           Margin="-15,0,0,10">
+                    </TextBlock>
 
-                <Grid Margin="0,0,0,10">
+                    <Grid Margin="0,0,0,10">
 
-                    <i:Interaction.Triggers>
+                        <i:Interaction.Triggers>
 
-                        <i:EventTrigger EventName="MouseEnter">
+                            <i:EventTrigger EventName="MouseEnter">
 
-                            <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
+                                <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
                                                    CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Etiquetas_Viga.png">
-                            </i:InvokeCommandAction>
+                                </i:InvokeCommandAction>
 
-                        </i:EventTrigger>
+                            </i:EventTrigger>
 
-                    </i:Interaction.Triggers>
+                        </i:Interaction.Triggers>
 
-                    <Grid.ColumnDefinitions>
+                        <Grid.ColumnDefinitions>
 
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
 
-                    </Grid.ColumnDefinitions>
+                        </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0"
-                               Text="{x:Static language:Resource.Conf4117}"
+                        <TextBlock Grid.Column="0"
+                               Text="{StaticResource Conf2-1-1-1}"
                                Style="{Binding ConfigTexto}">
-                    </TextBlock>
+                        </TextBlock>
 
-                    <ComboBox Grid.Column="1"
-                              ItemsSource="{Binding Posiciones}"
-                              SelectedIndex="{Binding EtiquetaViga}">
-                    </ComboBox>
+                        <ComboBox Grid.Column="1"
+                                  Style="{StaticResource ConfigComboBox}"
+                                  ItemsSource="{Binding PosicionesEtiquetas}"
+                                  SelectedValue="{Binding EtiquetaViga}">
+                        </ComboBox>
 
-                </Grid>
+                    </Grid>
 
-                <Grid Margin="0,0,0,10">
+                    <Grid Margin="0,0,0,10">
 
-                    <i:Interaction.Triggers>
+                        <i:Interaction.Triggers>
 
-                        <i:EventTrigger EventName="MouseEnter">
+                            <i:EventTrigger EventName="MouseEnter">
 
-                            <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
+                                <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
                                                    CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Etiquetas_Muro.png">
-                            </i:InvokeCommandAction>
+                                </i:InvokeCommandAction>
 
-                        </i:EventTrigger>
+                            </i:EventTrigger>
 
-                    </i:Interaction.Triggers>
+                        </i:Interaction.Triggers>
 
-                    <Grid.ColumnDefinitions>
+                        <Grid.ColumnDefinitions>
 
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
 
-                    </Grid.ColumnDefinitions>
+                        </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0"
-                               Text="Muros"
+                        <TextBlock Grid.Column="0"
+                               Text="{StaticResource Conf2-1-1-2}"
                                Style="{Binding ConfigTexto}">
-                    </TextBlock>
+                        </TextBlock>
 
-                    <ComboBox Grid.Column="1"
-                              ItemsSource="{Binding Posiciones}"
-                              SelectedIndex="{Binding EtiquetaMuro}">
-                    </ComboBox>
+                        <ComboBox Grid.Column="1"
+                                  Style="{StaticResource ConfigComboBox}"
+                                  ItemsSource="{Binding PosicionesEtiquetas}"
+                                  SelectedValue="{Binding EtiquetaMuro}">
+                        </ComboBox>
 
-                </Grid>
+                    </Grid>
 
-                <Grid Margin="0,0,0,10">
+                    <Grid Margin="0,0,0,10">
 
-                    <i:Interaction.Triggers>
+                        <i:Interaction.Triggers>
 
-                        <i:EventTrigger EventName="MouseEnter">
+                            <i:EventTrigger EventName="MouseEnter">
 
-                            <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
+                                <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
                                    CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Etiquetas_Columna.png">
-                            </i:InvokeCommandAction>
+                                </i:InvokeCommandAction>
 
-                        </i:EventTrigger>
+                            </i:EventTrigger>
 
-                    </i:Interaction.Triggers>
+                        </i:Interaction.Triggers>
 
-                    <Grid.ColumnDefinitions>
+                        <Grid.ColumnDefinitions>
 
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
 
-                    </Grid.ColumnDefinitions>
+                        </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0"
-                               Text="Columnas"
+                        <TextBlock Grid.Column="0"
+                               Text="{StaticResource Conf2-1-1-3}"
                                Style="{Binding ConfigTexto}">
-                    </TextBlock>
+                        </TextBlock>
 
-                    <ComboBox Grid.Column="1"
-                              ItemsSource="{Binding Posiciones}"
-                              SelectedIndex="{Binding EtiquetaColumna}">
-                    </ComboBox>
+                        <ComboBox Grid.Column="1"
+                                  Style="{StaticResource ConfigComboBox}"
+                                  ItemsSource="{Binding PosicionesEtiquetas}"
+                                  SelectedValue="{Binding EtiquetaColumna}">
+                        </ComboBox>
 
-                </Grid>
+                    </Grid>
 
-                <Grid Margin="0,0,0,10">
+                    <Grid Margin="0,0,0,10">
 
-                    <i:Interaction.Triggers>
+                        <i:Interaction.Triggers>
 
-                        <i:EventTrigger EventName="MouseEnter">
+                            <i:EventTrigger EventName="MouseEnter">
 
-                            <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
+                                <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
                                    CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Etiquetas_Losa.png">
-                            </i:InvokeCommandAction>
+                                </i:InvokeCommandAction>
 
-                        </i:EventTrigger>
+                            </i:EventTrigger>
 
-                    </i:Interaction.Triggers>
+                        </i:Interaction.Triggers>
 
-                    <Grid.ColumnDefinitions>
+                        <Grid.ColumnDefinitions>
 
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
 
-                    </Grid.ColumnDefinitions>
+                        </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0"
-                               Text="Losas"
+                        <TextBlock Grid.Column="0"
+                               Text="{StaticResource Conf2-1-1-4}"
                                Style="{Binding ConfigTexto}">
-                    </TextBlock>
+                        </TextBlock>
 
-                    <ComboBox Grid.Column="1"
-                              ItemsSource="{Binding Posiciones}"
-                              SelectedIndex="{Binding EtiquetaLosa}">
-                    </ComboBox>
+                        <ComboBox Grid.Column="1"
+                                  Style="{StaticResource ConfigComboBox}"
+                                  ItemsSource="{Binding PosicionesEtiquetas}"
+                                  SelectedValue="{Binding EtiquetaLosa}">
+                        </ComboBox>
 
-                </Grid>
+                    </Grid>
 
-                <Grid Margin="0,0,0,10">
+                    <Grid Margin="0,0,0,10">
 
-                    <i:Interaction.Triggers>
+                        <i:Interaction.Triggers>
 
-                        <i:EventTrigger EventName="MouseEnter">
+                            <i:EventTrigger EventName="MouseEnter">
 
-                            <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
+                                <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
                                    CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Etiquetas_Zapata_Aislada.png">
-                            </i:InvokeCommandAction>
+                                </i:InvokeCommandAction>
 
-                        </i:EventTrigger>
+                            </i:EventTrigger>
 
-                    </i:Interaction.Triggers>
+                        </i:Interaction.Triggers>
 
-                    <Grid.ColumnDefinitions>
+                        <Grid.ColumnDefinitions>
 
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
 
-                    </Grid.ColumnDefinitions>
+                        </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0"
-                               Text="Zapatas"
+                        <TextBlock Grid.Column="0"
+                               Text="{StaticResource Conf2-1-1-5}"
                                Style="{Binding ConfigTexto}">
-                    </TextBlock>
+                        </TextBlock>
 
-                    <ComboBox Grid.Column="1"
-                              ItemsSource="{Binding Posiciones}"
-                              SelectedIndex="{Binding EtiquetaZapata}">
-                    </ComboBox>
+                        <ComboBox Grid.Column="1"
+                                  Style="{StaticResource ConfigComboBox}"
+                                  ItemsSource="{Binding PosicionesEtiquetas}"
+                                  SelectedValue="{Binding EtiquetaZapata}">
+                        </ComboBox>
 
-                </Grid>
+                    </Grid>
 
-                <Grid Margin="0,0,0,10">
+                    <Grid Margin="0,0,0,10">
 
-                    <i:Interaction.Triggers>
+                        <i:Interaction.Triggers>
 
-                        <i:EventTrigger EventName="MouseEnter">
+                            <i:EventTrigger EventName="MouseEnter">
 
-                            <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
+                                <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
                                    CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Etiquetas_Zapata_Corrida.png">
-                            </i:InvokeCommandAction>
+                                </i:InvokeCommandAction>
 
-                        </i:EventTrigger>
+                            </i:EventTrigger>
 
-                    </i:Interaction.Triggers>
+                        </i:Interaction.Triggers>
 
-                    <Grid.ColumnDefinitions>
+                        <Grid.ColumnDefinitions>
 
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
 
-                    </Grid.ColumnDefinitions>
+                        </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0"
-                               Text="Zapatas corridas"
+                        <TextBlock Grid.Column="0"
+                               Text="{StaticResource Conf2-1-1-6}"
                                Style="{Binding ConfigTexto}">
-                    </TextBlock>
+                        </TextBlock>
 
-                    <ComboBox Grid.Column="1"
-                              ItemsSource="{Binding Posiciones}"
-                              SelectedIndex="{Binding EtiquetaZapataCorrida}">
-                    </ComboBox>
+                        <ComboBox Grid.Column="1"
+                                  Style="{StaticResource ConfigComboBox}"
+                                  ItemsSource="{Binding PosicionesEtiquetas}"
+                                  SelectedValue="{Binding EtiquetaZapataCorrida}">
+                        </ComboBox>
 
-                </Grid>
+                    </Grid>
 
-                <Grid Margin="0,0,0,10">
+                    <Grid Margin="0,0,0,10">
 
-                    <i:Interaction.Triggers>
+                        <i:Interaction.Triggers>
 
-                        <i:EventTrigger EventName="MouseEnter">
+                            <i:EventTrigger EventName="MouseEnter">
 
-                            <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
+                                <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
                                    CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Etiquetas_Platea.png">
-                            </i:InvokeCommandAction>
+                                </i:InvokeCommandAction>
 
-                        </i:EventTrigger>
+                            </i:EventTrigger>
 
-                    </i:Interaction.Triggers>
+                        </i:Interaction.Triggers>
 
-                    <Grid.ColumnDefinitions>
+                        <Grid.ColumnDefinitions>
 
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
 
-                    </Grid.ColumnDefinitions>
+                        </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0"
-                               Text="Platea"
+                        <TextBlock Grid.Column="0"
+                               Text="{StaticResource Conf2-1-1-7}"
                                Style="{Binding ConfigTexto}">
-                    </TextBlock>
+                        </TextBlock>
 
-                    <ComboBox Grid.Column="1"
-                              ItemsSource="{Binding Posiciones}"
-                              SelectedIndex="{Binding EtiquetaPlatea}">
-                    </ComboBox>
+                        <ComboBox Grid.Column="1"
+                                  Style="{StaticResource ConfigComboBox}"
+                                  ItemsSource="{Binding PosicionesEtiquetas}"
+                                  SelectedValue="{Binding EtiquetaPlatea}">
+                        </ComboBox>
 
-                </Grid>
+                    </Grid>
 
-                <Grid Margin="0,0,0,10">
+                    <Grid Margin="0,0,0,10">
 
-                    <i:Interaction.Triggers>
+                        <i:Interaction.Triggers>
 
-                        <i:EventTrigger EventName="MouseEnter">
+                            <i:EventTrigger EventName="MouseEnter">
 
-                            <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
-                                   CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Etiquetas_Pilotes.png">
-                            </i:InvokeCommandAction>
+                                <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
+                                   CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Etiquetas_Pilote.png">
+                                </i:InvokeCommandAction>
 
-                        </i:EventTrigger>
+                            </i:EventTrigger>
 
-                    </i:Interaction.Triggers>
+                        </i:Interaction.Triggers>
 
-                    <Grid.ColumnDefinitions>
+                        <Grid.ColumnDefinitions>
 
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
 
-                    </Grid.ColumnDefinitions>
+                        </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0"
-                               Text="Pilotes"
+                        <TextBlock Grid.Column="0"
+                               Text="{StaticResource Conf2-1-1-8}"
                                Style="{Binding ConfigTexto}">
-                    </TextBlock>
+                        </TextBlock>
 
-                    <ComboBox Grid.Column="1"
-                              ItemsSource="{Binding Posiciones}"
-                              SelectedIndex="{Binding EtiquetaPilote}">
-                    </ComboBox>
+                        <ComboBox Grid.Column="1"
+                                  Style="{StaticResource ConfigComboBox}"
+                                  ItemsSource="{Binding PosicionesEtiquetas}"
+                                  SelectedValue="{Binding EtiquetaPilote}">
+                        </ComboBox>
 
-                </Grid>
+                    </Grid>
 
-            </StackPanel>
+                </StackPanel>
 
-            <Label Content="Posición de las etiquetas independientes para armaduras"
+                <Label Content="{StaticResource Conf2-2-1}"
                    Style="{StaticResource ConfigTituloPrincipal}"
                    Margin="0">
-            </Label>
+                </Label>
 
-            <Separator Style="{StaticResource ConfigSeparador}"/>
+                <Separator Style="{StaticResource ConfigSeparador}"/>
 
-            <StackPanel Style="{StaticResource ConfigStackpanel}">
+                <StackPanel Style="{StaticResource ConfigStackpanel}">
 
-                <TextBlock Text="Posición donde se colocarán las etiquetas independientes para las armaduras"
+                    <TextBlock Text="{StaticResource Conf2-2-2}"
                            TextWrapping="Wrap"
-                           Margin="0,0,0,10">
-                </TextBlock>
+                           Margin="-15,0,0,10">
+                    </TextBlock>
 
-                <Grid Margin="0,0,0,10">
+                    <Grid Margin="0,0,0,10">
 
-                    <i:Interaction.Triggers>
+                        <i:Interaction.Triggers>
 
-                        <i:EventTrigger EventName="MouseEnter">
+                            <i:EventTrigger EventName="MouseEnter">
 
-                            <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
+                                <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
                                                    CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Etiquetas_Armadura.png">
-                            </i:InvokeCommandAction>
+                                </i:InvokeCommandAction>
 
-                        </i:EventTrigger>
+                            </i:EventTrigger>
 
-                    </i:Interaction.Triggers>
+                        </i:Interaction.Triggers>
 
-                    <Grid.ColumnDefinitions>
+                        <Grid.ColumnDefinitions>
 
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
 
-                    </Grid.ColumnDefinitions>
+                        </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0"
-                               Text="Armadura"
+                        <TextBlock Grid.Column="0"
+                               Text="{StaticResource Conf2-2-1-1}"
                                Style="{Binding ConfigTexto}">
-                    </TextBlock>
+                        </TextBlock>
 
-                    <ComboBox Grid.Column="1"
-                              ItemsSource="{Binding Posiciones}"
-                              SelectedIndex="{Binding EtiquetaArmadura}">
-                    </ComboBox>
+                        <ComboBox Grid.Column="1"
+                                  Style="{StaticResource ConfigComboBox}"
+                                  ItemsSource="{Binding PosicionesEtiquetas}"
+                                  SelectedValue="{Binding EtiquetaArmadura}">
+                        </ComboBox>
 
-                </Grid>
+                    </Grid>
 
-                <Grid Margin="0,0,0,10">
+                    <Grid Margin="0,0,0,10">
 
-                    <i:Interaction.Triggers>
+                        <i:Interaction.Triggers>
 
-                        <i:EventTrigger EventName="MouseEnter">
+                            <i:EventTrigger EventName="MouseEnter">
 
-                            <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
+                                <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
                                    CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Etiquetas_Armadura.png">
-                            </i:InvokeCommandAction>
+                                </i:InvokeCommandAction>
 
-                        </i:EventTrigger>
+                            </i:EventTrigger>
 
-                    </i:Interaction.Triggers>
+                        </i:Interaction.Triggers>
 
-                    <Grid.ColumnDefinitions>
+                        <Grid.ColumnDefinitions>
 
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
 
-                    </Grid.ColumnDefinitions>
+                        </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0"
-                               Text="Área de refuerzo"
+                        <TextBlock Grid.Column="0"
+                               Text="{StaticResource Conf2-2-1-2}"
                                Style="{Binding ConfigTexto}">
-                    </TextBlock>
+                        </TextBlock>
 
-                    <ComboBox Grid.Column="1"
-                              ItemsSource="{Binding Posiciones}"
-                              SelectedIndex="{Binding EtiquetaAreaRefuerzo}">
-                    </ComboBox>
+                        <ComboBox Grid.Column="1"
+                                  Style="{StaticResource ConfigComboBox}"
+                                  ItemsSource="{Binding PosicionesEtiquetas}"
+                                  SelectedValue="{Binding EtiquetaAreaRefuerzo}">
+                        </ComboBox>
 
-                </Grid>
+                    </Grid>
 
-                <Grid Margin="0,0,0,10">
+                    <Grid Margin="0,0,0,10">
 
-                    <i:Interaction.Triggers>
+                        <i:Interaction.Triggers>
 
-                        <i:EventTrigger EventName="MouseEnter">
+                            <i:EventTrigger EventName="MouseEnter">
 
-                            <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
+                                <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
                                    CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Etiquetas_Armadura.png">
-                            </i:InvokeCommandAction>
+                                </i:InvokeCommandAction>
 
-                        </i:EventTrigger>
+                            </i:EventTrigger>
 
-                    </i:Interaction.Triggers>
+                        </i:Interaction.Triggers>
 
-                    <Grid.ColumnDefinitions>
+                        <Grid.ColumnDefinitions>
 
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
 
-                    </Grid.ColumnDefinitions>
+                        </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0"
-                               Text="Armadura en sistema"
+                        <TextBlock Grid.Column="0"
+                               Text="{StaticResource Conf2-2-1-3}"
                                Style="{Binding ConfigTexto}">
-                    </TextBlock>
+                        </TextBlock>
 
-                    <ComboBox Grid.Column="1"
-                              ItemsSource="{Binding Posiciones}"
-                              SelectedIndex="{Binding EtiquetaArmaduraEnSistema}">
-                    </ComboBox>
+                        <ComboBox Grid.Column="1"
+                                  Style="{StaticResource ConfigComboBox}"
+                                  ItemsSource="{Binding PosicionesEtiquetas}"
+                                  SelectedValue="{Binding EtiquetaArmaduraEnSistema}">
+                        </ComboBox>
 
-                </Grid>
+                    </Grid>
+
+                </StackPanel>
 
             </StackPanel>
 
-        </StackPanel>
-        
+        </ScrollViewer>
+
         <Image Grid.Column="1"
-               Stretch="Uniform"
-               Margin="20"
-               Source="{Binding ImagenPreview}">
+           Stretch="Uniform"
+           Margin="20"
+           Source="{Binding ImagenPreview}">
         </Image>
-        
+
     </Grid>
-    
+
 </UserControl>

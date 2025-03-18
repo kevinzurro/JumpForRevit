@@ -17,6 +17,7 @@
             <ResourceDictionary.MergedDictionaries>
                 
                 <ResourceDictionary Source="/Jump;component/Styles/Estilos.xaml"/>
+                <ResourceDictionary Source="/Jump;component/Languages/Resource.es-ES.xaml"/>
                 
             </ResourceDictionary.MergedDictionaries>
             
@@ -24,7 +25,7 @@
         
     </UserControl.Resources>
 
-    <Grid x:Name="GridSeccionTransversal">
+    <Grid>
         
         <Grid.ColumnDefinitions>
 
@@ -33,286 +34,314 @@
 
         </Grid.ColumnDefinitions>
 
-        <StackPanel Margin="0,0,20,0">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
 
-            <Label x:Name="lblprecisionOrdenar"
-                   Content="Precisión para ordenar los elementos"
+            <StackPanel Margin="0,0,20,0">
+
+                <Label Content="{StaticResource Conf1-2-1}"
                    Style="{StaticResource ConfigTituloPrincipal}"
                    Margin="0">
-            </Label>
+                </Label>
 
-            <Separator Style="{StaticResource ConfigSeparador}"/>
+                <Separator Style="{StaticResource ConfigSeparador}"/>
 
-            <StackPanel Style="{StaticResource ConfigStackpanel}"
-                        ToolTip="La precisión en X como en Y se utiliza para el orden y enumeración de los elementos">
-
-                <i:Interaction.Triggers>
+                <StackPanel Style="{StaticResource ConfigStackpanel}">
                     
-                    <i:EventTrigger EventName="MouseEnter">
-
-                        <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
-                                               CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Precision.png"/>
+                    <StackPanel.ToolTip>
                         
-                    </i:EventTrigger>
-                    
-                </i:Interaction.Triggers>
-                    
-                <Grid Margin="0,0,0,5">
-                    
-                    <Grid.ColumnDefinitions>
+                        <ToolTip Style="{StaticResource ConfigToolTip}" 
+                                 Content="{StaticResource Conf1-2-2}"/>
+                        
+                    </StackPanel.ToolTip>
 
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="*"/>
+                    <i:Interaction.Triggers>
 
-                    </Grid.ColumnDefinitions>
+                        <i:EventTrigger EventName="MouseEnter">
 
-                    <TextBlock Grid.Column="0"
-                               Text="Precisión en X:"
+                            <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
+                                               CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Precision.png"/>
+
+                        </i:EventTrigger>
+
+                    </i:Interaction.Triggers>
+
+                    <Grid Margin="0,0,0,5">
+
+                        <Grid.ColumnDefinitions>
+
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                               Text="{StaticResource Conf1-2-3}"
                                Style="{Binding ConfigTexto}">
-                    </TextBlock>
-                    
-                    <TextBox Grid.Column="1" 
-                             x:Name="txtPrecisionOrdenarX"
+                        </TextBlock>
+
+                        <TextBox Grid.Column="1"
                              Text="{Binding PrecisionOrdenarX}">
-                    </TextBox>
-                    
-                    <TextBlock Grid.Column="2"
+                        </TextBox>
+
+                        <TextBlock Grid.Column="2"
                                Text="{Binding TxtUnidadDistancia}"
                                Style="{StaticResource ConfigTextoUnidad}">
-                    </TextBlock>
-                    
-                </Grid>
+                        </TextBlock>
 
-                <Grid>
-                    
-                    <Grid.ColumnDefinitions>
+                    </Grid>
 
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="*"/>
+                    <Grid>
 
-                    </Grid.ColumnDefinitions>
+                        <Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0"
-                               Text="Precisión en Y:"
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                               Text="{StaticResource Conf1-2-4}"
                                Style="{Binding ConfigTexto}">
-                    </TextBlock>
+                        </TextBlock>
 
-                    <TextBox Grid.Column="1"
-                             x:Name="txtPrecisionOrdenarY"
+                        <TextBox Grid.Column="1"
                              Text="{Binding PrecisionOrdenarY}">
-                    </TextBox>
+                        </TextBox>
 
-                    <TextBlock
+                        <TextBlock
                         Grid.Column="2"
                         Text="{Binding TxtUnidadDistancia}"
                         Style="{StaticResource ConfigTextoUnidad}">
-                    </TextBlock>
+                        </TextBlock>
 
-                </Grid>
-                
-            </StackPanel>
-            
-            <Label Content="Precisión para nodos analíticos"
+                    </Grid>
+
+                </StackPanel>
+
+                <Label Content="{StaticResource Conf1-3-1}"
                    Style="{StaticResource ConfigTituloPrincipal}">
-            </Label>
+                </Label>
 
-            <Separator Style="{StaticResource ConfigSeparador}"/>
+                <Separator Style="{StaticResource ConfigSeparador}"/>
 
-            <StackPanel Style="{StaticResource ConfigStackpanel}"
-                        ToolTip="Mínima distancia a partir de la cual se analizan la separación de los nodos analíticos">
-
-                <i:Interaction.Triggers>
+                <StackPanel Style="{StaticResource ConfigStackpanel}">
                     
-                    <i:EventTrigger EventName="MouseEnter">
-
-                        <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
-                                               CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Viga.png"/>
+                    <StackPanel.ToolTip>
                         
-                    </i:EventTrigger>
-                    
-                </i:Interaction.Triggers>
+                        <ToolTip Style="{StaticResource ConfigToolTip}" 
+                                 Content="{StaticResource Conf1-3-2}"/>
+                        
+                    </StackPanel.ToolTip>
 
-                <Grid x:Name="GridNodoAnalitico">
-                    
-                    <Grid.ColumnDefinitions>
+                    <i:Interaction.Triggers>
 
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="*"/>
+                        <i:EventTrigger EventName="MouseEnter">
 
-                    </Grid.ColumnDefinitions>
+                            <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
+                                               CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Viga.png"/>
 
-                    <TextBlock Grid.Column="0"
-                               Text="Distancia mínima:"
+                        </i:EventTrigger>
+
+                    </i:Interaction.Triggers>
+
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                               Text="{StaticResource Conf1-3-3}"
                                Style="{Binding ConfigTexto}">
-                    </TextBlock>
+                        </TextBlock>
 
-                    <TextBox Grid.Column="1"
-                             x:Name="txtPrecisionNodoAnalitico"
+                        <TextBox Grid.Column="1"
                              Text="{Binding PrecisionNodoAnalitico}">
-                    </TextBox>
+                        </TextBox>
 
-                    <TextBlock Grid.Column="2"
+                        <TextBlock Grid.Column="2"
                                Text="{Binding TxtUnidadDistancia}"
                                Style="{StaticResource ConfigTextoUnidad}">
-                    </TextBlock>
-                </Grid>
+                        </TextBlock>
+                    </Grid>
 
-            </StackPanel>
+                </StackPanel>
 
-            <Label Content="Tipo de sección"
+                <Label Content="{StaticResource Conf1-4-1}"
                    Style="{StaticResource ConfigTituloPrincipal}">
-            </Label>
+                </Label>
 
-            <Separator Style="{StaticResource ConfigSeparador}"/>
+                <Separator Style="{StaticResource ConfigSeparador}"/>
 
-            <StackPanel Style="{StaticResource ConfigStackpanel}"
-                        ToolTip="La sección se basa en coordenadas de la familia (Local) o en coordenadas del modelo (Global)">
+                <StackPanel Style="{StaticResource ConfigStackpanel}">
 
-                <RadioButton x:Name="rbtnVistaLocal"
-                             Content="Local"
+                    <StackPanel.ToolTip>
+
+                        <ToolTip Style="{StaticResource ConfigToolTip}" 
+                                 Content="{StaticResource Conf1-4-2}"/>
+
+                    </StackPanel.ToolTip>
+
+                    <RadioButton Content="{StaticResource Conf1-4-3}"
                              IsChecked="{Binding VistaLocal}"
                              Style="{StaticResource ConfigRadioButton}">
 
-                    <i:Interaction.Triggers>
-                    
-                        <i:EventTrigger EventName="MouseEnter">
-                        
-                            <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
+                        <i:Interaction.Triggers>
+
+                            <i:EventTrigger EventName="MouseEnter">
+
+                                <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
                                                    CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Vista_Local.png"/>
-                        
-                        </i:EventTrigger>
-                    
-                    </i:Interaction.Triggers>
-                    
-                </RadioButton>
-                
-                <RadioButton x:Name="rbtnVistaGlobal"
-                             Content="Global"
+
+                            </i:EventTrigger>
+
+                        </i:Interaction.Triggers>
+
+                    </RadioButton>
+
+                    <RadioButton Content="{StaticResource Conf1-4-4}"
                              IsChecked="{Binding VistaGlobal}"
                              Style="{StaticResource ConfigRadioButton}">
 
+                        <i:Interaction.Triggers>
+
+                            <i:EventTrigger EventName="MouseEnter">
+
+                                <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
+                                                   CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Vista_Global.png"/>
+
+                            </i:EventTrigger>
+
+                        </i:Interaction.Triggers>
+
+                    </RadioButton>
+
+                </StackPanel>
+
+                <Label Content="{StaticResource Conf1-5-1}"
+                   Style="{StaticResource ConfigTituloPrincipal}">
+                </Label>
+
+                <Separator Style="{StaticResource ConfigSeparador}"/>
+
+                <StackPanel Style="{StaticResource ConfigStackpanel}">
+
+                    <StackPanel.ToolTip>
+
+                        <ToolTip Style="{StaticResource ConfigToolTip}" 
+                                 Content="{StaticResource Conf1-5-2}"/>
+
+                    </StackPanel.ToolTip>
+
                     <i:Interaction.Triggers>
-                        
+
                         <i:EventTrigger EventName="MouseEnter">
 
                             <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
-                                                   CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Vista_Global.png"/>
-                            
+                                               CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Seccion_Transversal.png"/>
+
                         </i:EventTrigger>
-                        
+
                     </i:Interaction.Triggers>
-                    
-                </RadioButton>
 
-            </StackPanel>
+                    <Grid>
 
-            <Label Content="Sección transversal"
-                   Style="{StaticResource ConfigTituloPrincipal}">
-            </Label>
+                        <Grid.ColumnDefinitions>
 
-            <Separator Style="{StaticResource ConfigSeparador}"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
 
-            <StackPanel Style="{StaticResource ConfigStackpanel}"
-                        ToolTip="En elementos basados en línea, la sección transversal puede ir desde 0% al 100% indicando el porcentaje a la cual se realiza en corte donde 0% es el inicio y 100% es el final">
-                
-                <i:Interaction.Triggers>
+                        </Grid.ColumnDefinitions>
 
-                    <i:EventTrigger EventName="MouseEnter">
-
-                        <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
-                                               CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_TextoArriba.png"/>
-
-                    </i:EventTrigger>
-
-                </i:Interaction.Triggers>
-                
-                <Grid>
-
-                    <Grid.ColumnDefinitions>
-
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="*"/>
-
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Grid.Column="0"
-                               Text="Distancia relativa:"
+                        <TextBlock Grid.Column="0"
+                               Text="{StaticResource Conf1-5-3}"
                                Style="{Binding ConfigTexto}">
-                    </TextBlock>
+                        </TextBlock>
 
-                    <TextBox Grid.Column="1"
+                        <TextBox Grid.Column="1"
                              VerticalContentAlignment="Center"
                              Text="{Binding CorteTransversal}">
-                    </TextBox>
+                        </TextBox>
 
-                    <TextBlock Grid.Column="2"
-                               Text="%     [0 - 100]"
+                        <TextBlock Grid.Column="2"
+                               Text="{StaticResource Conf1-5-4}"
                                Style="{StaticResource ConfigTextoUnidad}">
-                    </TextBlock>
-                    
-                </Grid>
+                        </TextBlock>
 
-            </StackPanel>
+                    </Grid>
 
-            <Label Content="Orden"
+                </StackPanel>
+
+                <Label Content="{StaticResource Conf1-6-1}"
                    Style="{StaticResource ConfigTituloPrincipal}">
-            </Label>
+                </Label>
 
-            <Separator Style="{StaticResource ConfigSeparador}"/>
+                <Separator Style="{StaticResource ConfigSeparador}"/>
 
-            <StackPanel Style="{StaticResource ConfigStackpanel}"
-                        ToolTip="En elementos basados en curva, es el punto donde se evalua para ordenar los elementos donde 0% es el inicio y 100% es el final de la curva">
+                <StackPanel Style="{StaticResource ConfigStackpanel}">
 
-                <i:Interaction.Triggers>
+                    <StackPanel.ToolTip>
 
-                    <i:EventTrigger EventName="MouseEnter">
+                        <ToolTip Style="{StaticResource ConfigToolTip}" 
+                                 Content="{StaticResource Conf1-6-2}"/>
 
-                        <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
+                    </StackPanel.ToolTip>
+
+                    <i:Interaction.Triggers>
+
+                        <i:EventTrigger EventName="MouseEnter">
+
+                            <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
                                                CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_TextoAbajo.png"/>
 
-                    </i:EventTrigger>
+                        </i:EventTrigger>
 
-                </i:Interaction.Triggers>
-                
-                <Grid x:Name="GridOrden">
+                    </i:Interaction.Triggers>
 
-                    <Grid.ColumnDefinitions>
+                    <Grid>
 
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="*"/>
+                        <Grid.ColumnDefinitions>
 
-                    </Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
 
-                    <TextBlock Grid.Column="0"
-                               Text="Punto a evaluar:"
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                               Text="{StaticResource Conf1-6-3}"
                                Style="{Binding ConfigTexto}">
-                    </TextBlock>
+                        </TextBlock>
 
-                    <TextBox Grid.Column="1"
+                        <TextBox Grid.Column="1"
                              VerticalContentAlignment="Center"
                              Text="{Binding PuntoAEvaluarOrden}">
-                    </TextBox>
+                        </TextBox>
 
-                    <TextBlock Grid.Column="2"
-                               Text="%     [0 - 100]"
+                        <TextBlock Grid.Column="2"
+                               Text="{StaticResource Conf1-6-4}"
                                Style="{StaticResource ConfigTextoUnidad}">
-                    </TextBlock>
+                        </TextBlock>
 
-                </Grid>
+                    </Grid>
+
+                </StackPanel>
 
             </StackPanel>
+            
+        </ScrollViewer>
 
-        </StackPanel>
 
-        <Image x:Name="Preview"
-               Grid.Column="1"
-               Stretch="Uniform"
-               Source="{Binding ImagenPreview}">
+        <Image Grid.Column="1"
+            Stretch="Uniform"
+            Source="{Binding ImagenPreview}">
         </Image>
 
     </Grid>

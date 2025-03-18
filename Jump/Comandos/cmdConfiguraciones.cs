@@ -42,11 +42,7 @@ namespace Jump
                 {
                     ConfiguracionesModel model = new ConfiguracionesModel(uiApp);
 
-                    ConfigGeneralViewModel vmConfigGeneral = new ConfigGeneralViewModel(model);
-
-                    ConfigEtiquetasViewModel vmConfigEtiquetas = new ConfigEtiquetasViewModel(model);
-
-                    ConfiguracionViewModel vmConfiguraciones = new ConfiguracionViewModel(model, vmConfigGeneral, vmConfigEtiquetas);
+                    ConfiguracionViewModel vmConfiguraciones = new ConfiguracionViewModel(model);
 
                     WinConfiguraciones Configuraciones = new WinConfiguraciones();
 

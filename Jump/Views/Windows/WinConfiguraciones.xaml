@@ -8,8 +8,8 @@
         xmlns:control="clr-namespace:Jump.Views.Controls"
         xmlns:userControl="clr-namespace:Jump.Views.UserControls"
         mc:Ignorable="d"
-        MinHeight="600" MinWidth="700" WindowStartupLocation="CenterScreen"
-        Height="auto" Width="700"
+        MinHeight="600" MinWidth="800" WindowStartupLocation="CenterScreen"
+        Height="600" Width="800"
         Title="Configuraciones">
 
     <Window.Resources>
@@ -19,6 +19,7 @@
             <ResourceDictionary.MergedDictionaries>
 
                 <ResourceDictionary Source="/Jump;component/Styles/Estilos.xaml"/>
+                <ResourceDictionary Source="/Jump;component/Languages/Resource.es-ES.xaml"/>
 
             </ResourceDictionary.MergedDictionaries>
 
@@ -33,7 +34,19 @@
                 <userControl:ConfigEtiquetas DataContext="{Binding}"/>
             
             </DataTemplate>
-        
+
+            <DataTemplate DataType="{x:Type vm:ConfigCotasViewModel}">
+
+                <userControl:ConfigCotas DataContext="{Binding}"/>
+
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vm:ConfigCotasProfundidadViewModel}">
+
+                <userControl:ConfigCotasProfundidad DataContext="{Binding}"/>
+
+            </DataTemplate>
+
         </ResourceDictionary>
 
     </Window.Resources>
@@ -48,7 +61,7 @@
 
         <Grid.ColumnDefinitions>
             
-            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>       
             
         </Grid.ColumnDefinitions>
@@ -69,13 +82,15 @@
                     <Image Height="30"
                            Width="30"
                            Source="/Jump;component/Resources/Boton_Config_General.png"
-                           Stretch="UniformToFill"/>
+                           Stretch="UniformToFill">
+                    </Image>
 
                     <TextBlock FontSize="15"
                                Margin="10,0,0,0"
                                VerticalAlignment="Center"
                                TextWrapping="Wrap"
-                               Text="General"/>
+                               Text="{StaticResource Conf1-1}">
+                    </TextBlock>
 
                 </StackPanel>
 
@@ -95,13 +110,15 @@
                     <Image Height="30"
                            Width="30"
                            Source="/Jump;component/Resources/Boton_Config_Etiquetas.png"
-                           Stretch="UniformToFill"/>
+                           Stretch="UniformToFill">
+                    </Image>
 
                     <TextBlock FontSize="15"
                                Margin="10,0,0,0"
                                VerticalAlignment="Center"
                                TextWrapping="Wrap"
-                               Text="Etiquetas"/>
+                               Text="{StaticResource Conf2-1}">
+                    </TextBlock>
 
                 </StackPanel>
 
@@ -121,13 +138,43 @@
                     <Image Height="30"
                            Width="30"
                            Source="/Jump;component/Resources/Boton_Config_Cotas.png"
-                           Stretch="UniformToFill"/>
+                           Stretch="UniformToFill">
+                    </Image>
 
                     <TextBlock FontSize="15"
                                Margin="10,0,0,0"
                                VerticalAlignment="Center"
                                TextWrapping="Wrap"
-                               Text="Cotas"/>
+                               Text="{StaticResource Conf3-1}">
+                    </TextBlock>
+
+                </StackPanel>
+
+            </Button>
+
+            <Button Height="50"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left"
+                    BorderThickness="0"
+                    Padding="5"
+                    Background="White"
+                    Command="{Binding CambiarVistaCotasProfundidadCommand}">
+
+                <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Left">
+
+                    <Image Height="30"
+                           Width="30"
+                           Source="/Jump;component/Resources/Boton_Config_Cotas.png"
+                           Stretch="UniformToFill">
+                    </Image>
+
+                    <TextBlock FontSize="15"
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"
+                               TextWrapping="Wrap"
+                               Text="{StaticResource Conf4-1}">
+                    </TextBlock>
 
                 </StackPanel>
 

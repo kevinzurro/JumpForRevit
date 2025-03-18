@@ -22,7 +22,7 @@ namespace Jump
         public Result OnStartup(UIControlledApplication application)
         {
             // Obtiene el idioma del programa
-            AboutJump.IdiomaAddin = AboutJump.ObtenerIdiomaRevit(application.ControlledApplication.Language);
+            Language.ObtenerIdiomaRevit(application.ControlledApplication.Language);
 
             // Ruta del ensamblado o de la addin que se está ejecutando
             string RutaDelEnsamblado = System.Reflection.Assembly.GetExecutingAssembly().Location;

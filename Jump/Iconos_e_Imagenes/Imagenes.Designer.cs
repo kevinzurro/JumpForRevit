@@ -63,6 +63,86 @@ namespace Jump.Iconos_e_Imagenes {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Configuracion_Cotas_Columna {
+            get {
+                object obj = ResourceManager.GetObject("Configuracion_Cotas_Columna", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Configuracion_Cotas_Losa {
+            get {
+                object obj = ResourceManager.GetObject("Configuracion_Cotas_Losa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Configuracion_Cotas_Muro {
+            get {
+                object obj = ResourceManager.GetObject("Configuracion_Cotas_Muro", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Configuracion_Cotas_Pilote {
+            get {
+                object obj = ResourceManager.GetObject("Configuracion_Cotas_Pilote", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Configuracion_Cotas_Platea {
+            get {
+                object obj = ResourceManager.GetObject("Configuracion_Cotas_Platea", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Configuracion_Cotas_Viga {
+            get {
+                object obj = ResourceManager.GetObject("Configuracion_Cotas_Viga", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Configuracion_Cotas_Zapata_Aislada {
+            get {
+                object obj = ResourceManager.GetObject("Configuracion_Cotas_Zapata_Aislada", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Configuracion_Cotas_Zapata_Corrida {
+            get {
+                object obj = ResourceManager.GetObject("Configuracion_Cotas_Zapata_Corrida", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Configuracion_Etiquetas_Armadura {
             get {
                 object obj = ResourceManager.GetObject("Configuracion_Etiquetas_Armadura", resourceCulture);
@@ -103,9 +183,9 @@ namespace Jump.Iconos_e_Imagenes {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Configuracion_Etiquetas_Pilotes {
+        internal static System.Drawing.Bitmap Configuracion_Etiquetas_Pilote {
             get {
-                object obj = ResourceManager.GetObject("Configuracion_Etiquetas_Pilotes", resourceCulture);
+                object obj = ResourceManager.GetObject("Configuracion_Etiquetas_Pilote", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -176,6 +256,16 @@ namespace Jump.Iconos_e_Imagenes {
         internal static System.Drawing.Bitmap Configuracion_Precision {
             get {
                 object obj = ResourceManager.GetObject("Configuracion_Precision", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Configuracion_Seccion_Transversal {
+            get {
+                object obj = ResourceManager.GetObject("Configuracion_Seccion_Transversal", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -23,10 +23,10 @@ namespace Jump.ViewModels
 
         public CrearPlanosViewModel(VistasModel modelo)
         {
-            Modelo = modelo;
+            ModeloVista = modelo;
         }
 
-        public VistasModel Modelo
+        public VistasModel ModeloVista
         {
             get { return mVistas; }
             set 

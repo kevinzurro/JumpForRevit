@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Jump.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace Jump
     {
         public event PropertyChangingEventHandler PropertyChanging;
         public event PropertyChangedEventHandler PropertyChanged;
+        private ConfiguracionesModel mConfiguracion;
+        private string imagenPreview = null;
 
         protected virtual void OnPropertyChanging(string propertyName)
         {
@@ -28,6 +31,36 @@ namespace Jump
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+
+        public ConfiguracionesModel ConfigModelo
+        {
+            get { return mConfiguracion; }
+            set
+            {
+                mConfiguracion = value as ConfiguracionesModel;
+            }
+        }
+
+        public string ImagenPreview
+        {
+            get { return imagenPreview; }
+            set
+            {
+                if (imagenPreview != value)
+                {
+                    imagenPreview = value;
+
+                    OnPropertyChanged(nameof(ImagenPreview));
+                }
+            }
+        }
+
+        public RelayCommand CambiarImagenCommand => new RelayCommand(execute => CambiarImagen(execute), canExecute => { return true; });
+
+        private void CambiarImagen(object imagen)
+        {
+            ImagenPreview = imagen as string;
         }
     }
 }

@@ -7,6 +7,6 @@
     <FullClassName>Jump.Inicio</FullClassName>
     <Text>Jump</Text>
     <VendorId>ZURROKEVIN</VendorId>
-    <VendorDescription>Kevin Zurro, www.kevinzurro.com</VendorDescription>
+    <VendorDescription>Kevin Zurro, www.github.com/kevinzurro/JumpForRevit</VendorDescription>
   </AddIn>
 </RevitAddIns>

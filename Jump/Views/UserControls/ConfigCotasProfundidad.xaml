@@ -47,7 +47,7 @@
 
                 <StackPanel Style="{StaticResource ConfigStackpanel}">
                     
-                    <TextBlock Text="{StaticResource Conf2-1-2}"
+                    <TextBlock Text="{StaticResource Conf4-1-2}"
                            TextWrapping="Wrap"
                            Margin="-15,0,0,10">
                     </TextBlock>

@@ -16,6 +16,7 @@ using Autodesk.Revit.ApplicationServices;
 using Jump.Models;
 using Jump.ViewModels;
 using Jump.Views.Windows;
+using Jump.Languages;
 
 namespace Jump
 {
@@ -40,7 +41,7 @@ namespace Jump
 
                 try
                 {
-                    ConfiguracionesModel model = new ConfiguracionesModel(uiApp);
+                    ConfiguracionModel model = new ConfiguracionModel(uiApp);
 
                     ConfiguracionViewModel vmConfiguraciones = new ConfiguracionViewModel(model);
 

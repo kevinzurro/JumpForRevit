@@ -283,7 +283,7 @@ namespace Jump
             // Carga los paises disponibles
             Pais.CargarPaisesDisponibles();
 
-            Language.ObtenerIdiomaRevit(LanguageType.Spanish);
+            Language.AsignarIdiomaAddIn(LanguageType.Spanish);
         }
 
         #endregion

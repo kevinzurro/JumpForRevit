@@ -206,18 +206,26 @@
     <system:String x:Key="Conf1-2-4">Precisión en Y:</system:String>
     <system:String x:Key="Conf1-2-5">Precisión en Z:</system:String>
     <system:String x:Key="Conf1-3-1">Precisión para nudos analíticos</system:String>
-    <system:String x:Key="Conf1-3-2">Distancia a partir de la cual se considera que los nudos analíticos se encuentran separados</system:String>
-    <system:String x:Key="Conf1-3-3">Distancia mínima</system:String>
+    <system:String x:Key="Conf1-3-2" xml:space="preserve">Los nudos analíticos que se encuentran a una distancia igual o menor que el valor definido, son considerados que son el mismo nudo y serán unidos mediante vínculos analíticos.
+Los nudos analíticos que se encuentren a una distancia mayor al valor definido no serán conectados.</system:String>
+    <system:String x:Key="Conf1-3-3">Distancia D = </system:String>
     <system:String x:Key="Conf1-4-1">Tipo de sección</system:String>
-    <system:String x:Key="Conf1-4-2">La sección se basa en coordenadas de la familia (Local) o en coordenadas del modelo (Global)</system:String>
+    <system:String x:Key="Conf1-4-2" xml:space="preserve">Las secciones pueden estar referenciadas a las siguientes coordenadas:
+1 - Coordenadas de la familia (Local) son las coordenadas al momento de creación de la familia.
+2 - Coordenadas del proyecto (Global) son las coordenadas del proyecto donde se encuentra incrustada la familia.</system:String>
     <system:String x:Key="Conf1-4-3">Local    -    En las coordenadas de la familia ( X ´ ; Y ´ )</system:String>
     <system:String x:Key="Conf1-4-4">Global   -    En las coordenadas del proyecto ( X ; Y )</system:String>
     <system:String x:Key="Conf1-5-1">Sección transversal</system:String>
-    <system:String x:Key="Conf1-5-2">En elementos basados en línea, la sección transversal puede ir desde el 0% que es el inicio, hasta 100% que es el final</system:String>
-    <system:String x:Key="Conf1-5-3">Distancia relativa:</system:String>
+    <system:String x:Key="Conf1-5-2" xml:space="preserve">Cuando se crea un elemento basado en línea o curva, se solicita un punto inicial y un punto final. La distancia relativa "X" es donde se realizará la vista en sección.
+El valor 0% indica que la vista en sección se realizará en el punto inicial mostrando toda la longitud del elemento.
+El valor 100% indica que la vista en sección se realizará en el punto final mostrando la longitud mínima del elemento.</system:String>
+    <system:String x:Key="Conf1-5-3">Distancia X = </system:String>
     <system:String x:Key="Conf1-5-4">%     [0 - 100]</system:String>
-    <system:String x:Key="Conf1-6-1">Orden</system:String>
-    <system:String x:Key="Conf1-6-2">En elementos basados en curva, es el punto donde se evalua para ordenar los elementos donde 0% es el inicio y 100% es el final de la curva</system:String>
+    <system:String x:Key="Conf1-6-1">Orden y enumeración</system:String>
+    <system:String x:Key="Conf1-6-2" xml:space="preserve">Para ordenar y enumerar elementos basados en líneas o curvas, la distancia relativa es a partir de donde se colocará el punto de análisis.
+El valor 0% indica que se tomará el inicio del elemento como el punto de análisis.
+El valor 50% indica que se tomará la mitad del elemento como el punto de análisis.
+El valor 100% indica que se tomará el final del elemento como el punto de análisis.</system:String>
     <system:String x:Key="Conf1-6-3">Punto a evaluar</system:String>
     <system:String x:Key="Conf1-6-4">%     [0 - 100]</system:String>
     <system:String x:Key="Conf2-1">Etiquetas</system:String>
@@ -317,7 +325,9 @@
     <system:String x:Key="NodAnaVer6">Cancelar</system:String>
     <system:String x:Key="NodAnaVer1-1">Nodos analíticos</system:String>
     <system:String x:Key="NodAnaVer1-2">Nodos cercanos</system:String>
-    <system:String x:Key="NodAnaVer2-1">Aislar nodos</system:String>
+    <system:String x:Key="NodAnaVer2-1">Aislar</system:String>
+    <system:String x:Key="NodAnaVer2-2">Mover</system:String>
+    <system:String x:Key="NodAnaVer2-3">Unir</system:String>
 
     <system:String x:Key="CreaPlano1">Generar planos</system:String>
     <system:String x:Key="CreaPlano2">Permite crear planos con vistas</system:String>
@@ -326,7 +336,7 @@
     <system:String x:Key="CreaPlano5">Aceptar</system:String>
     <system:String x:Key="CreaPlano6">Cancelar</system:String>
     <system:String x:Key="CreaPlano1-1">Vistas</system:String>
-    <system:String x:Key="CreaPlano2-1">Cuadro de rotulación</system:String>
+    <system:String x:Key="CreaPlano2-1">Tipo de plano</system:String>
     <system:String x:Key="CreaPlano3-1">Crear un plano por cada vista</system:String>
     <system:String x:Key="CreaPlano3-2">Todos</system:String>
     <system:String x:Key="CreaPlano3-3">Ninguno</system:String>

@@ -17,11 +17,11 @@ using System.Windows.Media.TextFormatting;
 
 namespace Jump.Models
 {
-    public class ConfiguracionesModel : ModelBase
+    public class ConfiguracionModel : ModelBase
     {
         ForgeTypeId tipoUnidad;
 
-        public ConfiguracionesModel(UIApplication UIApp)
+        public ConfiguracionModel(UIApplication UIApp)
         {
             this.UIApp = UIApp;
             this.UIDoc = UIApp.ActiveUIDocument;

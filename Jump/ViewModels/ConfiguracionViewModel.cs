@@ -15,6 +15,7 @@ namespace Jump.ViewModels
     public class ConfiguracionViewModel : ViewModelBase
     {
         private ViewModelBase vistaActual;
+        private ConfiguracionModel modeloConfig;
         private ConfigGeneralViewModel vmGeneral;
         private ConfigEtiquetasViewModel vmEtiquetas;
         private ConfigCotasViewModel vmCotas;
@@ -22,16 +23,27 @@ namespace Jump.ViewModels
 
         public ConfiguracionViewModel() { }
 
-        public ConfiguracionViewModel(ConfiguracionesModel model) 
+        public ConfiguracionViewModel(ConfiguracionModel model) 
         {
-            ConfigModelo = model;
+            Modelo = model;
+            ModeloConfig = model;
 
-            GeneralVM = new ConfigGeneralViewModel(ConfigModelo);
-            EtiquetasVM = new ConfigEtiquetasViewModel(ConfigModelo);
-            CotasVM = new ConfigCotasViewModel(ConfigModelo);
-            CotasProfundidadVM = new ConfigCotasProfundidadViewModel(ConfigModelo);
+            GeneralVM = new ConfigGeneralViewModel(ModeloConfig);
+            EtiquetasVM = new ConfigEtiquetasViewModel(ModeloConfig);
+            CotasVM = new ConfigCotasViewModel(ModeloConfig);
+            CotasProfundidadVM = new ConfigCotasProfundidadViewModel(ModeloConfig);
 
             VistaActual = GeneralVM;
+        }
+
+        public ConfiguracionModel ModeloConfig
+        {
+            get { return modeloConfig; }
+            set
+            {
+                modeloConfig = value;
+                OnPropertyChanged(nameof(ModeloConfig));
+            }
         }
 
         public ViewModelBase VistaActual

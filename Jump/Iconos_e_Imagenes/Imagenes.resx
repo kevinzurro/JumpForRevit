@@ -118,6 +118,30 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Configuracion_CotaProfundidad_Columna" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Configuracion_CotaProfundidad_Columna.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Configuracion_CotaProfundidad_Losa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Configuracion_CotaProfundidad_Losa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Configuracion_CotaProfundidad_Muro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Configuracion_CotaProfundidad_Muro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Configuracion_CotaProfundidad_Pilote" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Configuracion_CotaProfundidad_Pilote.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Configuracion_CotaProfundidad_Platea" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Configuracion_CotaProfundidad_Platea.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Configuracion_CotaProfundidad_Viga" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Configuracion_CotaProfundidad_Viga.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Configuracion_CotaProfundidad_Zapata_Aislada" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Configuracion_CotaProfundidad_Zapata_Aislada.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Configuracion_CotaProfundidad_Zapata_Corrida" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Configuracion_CotaProfundidad_Zapata_Corrida.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Configuracion_Cotas_Columna" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Configuracion_Cotas_Columna.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -177,6 +201,9 @@
   </data>
   <data name="Configuracion_Precision" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Configuracion_Precision.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Configuracion_Precision_NodoAnalitico" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Configuracion_Precision_NodoAnalitico.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Configuracion_Seccion_Transversal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Configuracion_Seccion_Transversal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

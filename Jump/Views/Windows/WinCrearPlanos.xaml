@@ -10,6 +10,21 @@
         Height="450" Width="650"
         Title="Crear planos">
 
+    <Window.Resources>
+
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="/Jump;component/Styles/Estilos.xaml"/>
+                <ResourceDictionary Source="/Jump;component/Languages/Resource.es-ES.xaml"/>
+
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+
+    </Window.Resources>
+    
     <Grid>
 
         <Grid.ColumnDefinitions>
@@ -30,14 +45,10 @@
         <DockPanel Margin="5">
 
             <Label DockPanel.Dock="Top"
-                   Name="lblVistas"
-                   Content = "Vistas">
+                   Content = "{StaticResource CreaPlano1-1}">
             </Label>
 
-            <TreeView x:Name="trvVistas"
-                      Grid.Column="0"
-                      Grid.Row="0"
-                      Height="auto"
+            <TreeView Height="auto"
                       Width="auto"
                       ItemsSource="{Binding VistasParaMostrar}">
                 
@@ -78,12 +89,10 @@
                    Grid.Column="1">
 
             <Label DockPanel.Dock="Top"
-                   Name="lblPlanos"
-                   Content="Tipo de plano">
+                   Content="{StaticResource CreaPlano2-1}">
             </Label>
 
-            <ListBox x:Name="lstTipoPlano"
-                     Height="auto"
+            <ListBox Height="auto"
                      Width="auto"
                      ItemsSource="{Binding Planos}"
                      SelectedItem="{Binding TipoPlano}">
@@ -105,11 +114,11 @@
         <StackPanel Grid.Column="0" Grid.Row="1">
 
             <CheckBox Grid.Column="0"
-                  Grid.Row="1"
-                  Grid.ColumnSpan="2"
-                  Margin="5"
-                  Content="Crear un plano por cada vista"
-                  IsChecked="{Binding UnPlanoPorVista}">
+                      Grid.Row="1"
+                      Grid.ColumnSpan="2"
+                      Margin="5"
+                      Content="{StaticResource CreaPlano3-1}"
+                      IsChecked="{Binding UnPlanoPorVista}">
             </CheckBox>
 
         </StackPanel>
@@ -124,8 +133,7 @@
 
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="btnAceptar"
-                    Content="Aceptar" 
+            <Button Content="{StaticResource CreaPlano5}" 
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     Margin="0,0,105,0"
@@ -136,8 +144,7 @@
                     CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}">
             </Button>
 
-            <Button x:Name="btnCancelar"
-                    Content="Cancelar" 
+            <Button Content="{StaticResource CreaPlano6}" 
                     HorizontalAlignment="Right" 
                     VerticalAlignment="Center"
                     Margin="5"
@@ -149,8 +156,7 @@
 
             <DockPanel Grid.Row="0" Margin="5,0">
 
-                <Button x:Name="btnSeleccionarTodos"
-                        Content="Todos" 
+                <Button Content="{StaticResource CreaPlano3-2}" 
                         HorizontalAlignment="Left" 
                         VerticalAlignment="Center"
                         Margin="0,5,5,5"
@@ -159,8 +165,7 @@
                         Command="{Binding TodosCommand}">
                 </Button>
 
-                <Button x:Name="btnSeleccionarNinguno"
-                        Content="Ninguno" 
+                <Button Content="{StaticResource CreaPlano3-3}" 
                         HorizontalAlignment="Left" 
                         VerticalAlignment="Center"
                         Margin="5"
@@ -169,8 +174,7 @@
                         Command="{Binding NingunoCommand}">
                 </Button>
 
-                <Button x:Name="btnExpandir"
-                        Content="Expandir" 
+                <Button Content="{StaticResource CreaPlano3-4}" 
                         HorizontalAlignment="Left" 
                         VerticalAlignment="Center"
                         Margin="5"
@@ -179,8 +183,7 @@
                         Command="{Binding ExpandirCommand}">
                 </Button>
 
-                <Button x:Name="btnContraer"
-                        Content="Contraer" 
+                <Button Content="{StaticResource CreaPlano3-4}" 
                         HorizontalAlignment="Left" 
                         VerticalAlignment="Center"
                         Margin="5"

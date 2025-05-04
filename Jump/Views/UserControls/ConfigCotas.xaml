@@ -565,10 +565,7 @@
 
         </ScrollViewer>
 
-        <Image Grid.Column="1"
-               Grid.Row="1"
-               Stretch="Uniform"
-               Margin="20"
+        <Image Style="{StaticResource ConfigImagenPreview}"
                Source="{Binding ImagenPreview}">
         </Image>
 

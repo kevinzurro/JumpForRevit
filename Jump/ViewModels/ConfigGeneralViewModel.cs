@@ -18,25 +18,35 @@ namespace Jump.ViewModels
 {
     public class ConfigGeneralViewModel : ViewModelBase
     {
-        public ConfigGeneralViewModel(ConfiguracionesModel model)
+        private ConfiguracionModel modelConfig;
+
+        public ConfigGeneralViewModel(ConfiguracionModel model)
         {
-            ConfigModelo = model;
+            Modelo = model;
+            ModeloConfiguracion = model;
+
             ImagenPreview = "pack://application:,,,/Jump;component/Resources/Configuracion_Precision.png";
+        }
+
+        public ConfiguracionModel ModeloConfiguracion
+        {
+            get { return modelConfig; }
+            set { modelConfig = value; }
         }
 
         public string TxtUnidadDistancia
         {
-            get { return ConfigModelo.ObtenerUnidadDistancia(); }
+            get { return ModeloConfiguracion.ObtenerUnidadDistancia(); }
         }
 
         public double PrecisionOrdenarX
         {
-            get { return ConfigModelo.ConvertirDesdeUnidadesInternas(Properties.Settings.Default.ConfiguracionPrecisionOrdenarX); }
+            get { return ModeloConfiguracion.ConvertirDesdeUnidadesInternas(Properties.Settings.Default.ConfiguracionPrecisionOrdenarX); }
             set
             {
                 if (Properties.Settings.Default.ConfiguracionPrecisionOrdenarX != value)
                 {
-                    Properties.Settings.Default.ConfiguracionPrecisionOrdenarX = ConfigModelo.ConvertirAUnidadesInternas(value);
+                    Properties.Settings.Default.ConfiguracionPrecisionOrdenarX = ModeloConfiguracion.ConvertirAUnidadesInternas(value);
 
                     Properties.Settings.Default.Save();
 
@@ -47,16 +57,32 @@ namespace Jump.ViewModels
         
         public double PrecisionOrdenarY
         {
-            get { return ConfigModelo.ConvertirDesdeUnidadesInternas(Properties.Settings.Default.ConfiguracionPrecisionOrdenarY); }
+            get { return ModeloConfiguracion.ConvertirDesdeUnidadesInternas(Properties.Settings.Default.ConfiguracionPrecisionOrdenarY); }
             set
             {
                 if (Properties.Settings.Default.ConfiguracionPrecisionOrdenarY != value)
                 {
-                    Properties.Settings.Default.ConfiguracionPrecisionOrdenarY = ConfigModelo.ConvertirAUnidadesInternas(value);
+                    Properties.Settings.Default.ConfiguracionPrecisionOrdenarY = ModeloConfiguracion.ConvertirAUnidadesInternas(value);
 
                     Properties.Settings.Default.Save();
 
                     OnPropertyChanged(nameof(PrecisionOrdenarY));
+                }
+            }
+        }
+
+        public double PrecisionOrdenarZ
+        {
+            get { return ModeloConfiguracion.ConvertirDesdeUnidadesInternas(Properties.Settings.Default.ConfiguracionPrecisionOrdenarZ); }
+            set
+            {
+                if (Properties.Settings.Default.ConfiguracionPrecisionOrdenarZ != value)
+                {
+                    Properties.Settings.Default.ConfiguracionPrecisionOrdenarZ = ModeloConfiguracion.ConvertirAUnidadesInternas(value);
+
+                    Properties.Settings.Default.Save();
+
+                    OnPropertyChanged(nameof(PrecisionOrdenarZ));
                 }
             }
         }

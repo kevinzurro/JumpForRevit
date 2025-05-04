@@ -13,10 +13,10 @@ namespace Jump.ViewModels
     {
         ObservableCollection<KeyValuePair<int, string>> posicionCotasProfundidad;
 
-        public ConfigCotasProfundidadViewModel(ConfiguracionesModel model)
+        public ConfigCotasProfundidadViewModel(ConfiguracionModel model)
         {
-            ConfigModelo = model;
-            ImagenPreview = "pack://application:,,,/Jump;component/Resources/Configuracion_Cotas_Columna.png";
+            Modelo = model;
+            ImagenPreview = "pack://application:,,,/Jump;component/Resources/Configuracion_CotaProfundidad_Viga.png";
             
             PosicionesCotaProfundidad = PosicionTools.PosicionesCotaProfundidad;
         }

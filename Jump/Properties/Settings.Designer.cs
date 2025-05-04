@@ -922,5 +922,17 @@ namespace Jump.Properties {
                 this["ConfiguracionPuntoParaEvaluarLinea"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
+        public double ConfiguracionPrecisionOrdenarZ {
+            get {
+                return ((double)(this["ConfiguracionPrecisionOrdenarZ"]));
+            }
+            set {
+                this["ConfiguracionPrecisionOrdenarZ"] = value;
+            }
+        }
     }
 }

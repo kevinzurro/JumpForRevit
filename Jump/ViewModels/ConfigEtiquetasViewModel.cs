@@ -18,9 +18,9 @@ namespace Jump.ViewModels
         ObservableCollection<KeyValuePair<int, string>> posicionEtiquetas;
         ObservableCollection<string> posiciones;
 
-        public ConfigEtiquetasViewModel(ConfiguracionesModel model)
+        public ConfigEtiquetasViewModel(ConfiguracionModel model)
         {
-            ConfigModelo = model;
+            Modelo = model;
             ImagenPreview = "pack://application:,,,/Jump;component/Resources/Configuracion_Etiquetas_Viga.png";
 
             PosicionesEtiquetas = PosicionTools.PosicionesTodas;;

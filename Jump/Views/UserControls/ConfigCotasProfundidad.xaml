@@ -25,7 +25,7 @@
     </UserControl.Resources>
 
     <Grid>
-        
+
         <Grid.ColumnDefinitions>
 
             <ColumnDefinition Width="2*"/>
@@ -33,7 +33,7 @@
 
         </Grid.ColumnDefinitions>
 
-            <ScrollViewer VerticalScrollBarVisibility="Auto"
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
                           Grid.Column="0">
 
             <StackPanel Margin="0,0,20,0" >
@@ -46,12 +46,12 @@
                 <Separator Style="{StaticResource ConfigSeparador}"/>
 
                 <StackPanel Style="{StaticResource ConfigStackpanel}">
-                    
+
                     <TextBlock Text="{StaticResource Conf4-1-2}"
                            TextWrapping="Wrap"
                            Margin="-15,0,0,10">
                     </TextBlock>
-                    
+
                     <Grid Margin="0,0,0,10">
 
                         <i:Interaction.Triggers>
@@ -59,7 +59,7 @@
                             <i:EventTrigger EventName="MouseEnter">
 
                                 <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
-                               CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Etiquetas_Viga.png">
+                                                       CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_CotaProfundidad_Viga.png">
                                 </i:InvokeCommandAction>
 
                             </i:EventTrigger>
@@ -70,7 +70,7 @@
                             <ColumnDefinition Width="150"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                    
+
                         <TextBlock Grid.Column="0"
                                    Text="{StaticResource Conf4-1-1-1}"
                                    Style="{Binding ConfigTexto}">
@@ -91,7 +91,7 @@
                             <i:EventTrigger EventName="MouseEnter">
 
                                 <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
-                                                       CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Etiquetas_Viga.png">
+                                                       CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_CotaProfundidad_Muro.png">
                                 </i:InvokeCommandAction>
 
                             </i:EventTrigger>
@@ -123,7 +123,7 @@
                             <i:EventTrigger EventName="MouseEnter">
 
                                 <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
-                                   CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Etiquetas_Viga.png">
+                                                       CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_CotaProfundidad_Columna.png">
                                 </i:InvokeCommandAction>
 
                             </i:EventTrigger>
@@ -155,7 +155,7 @@
                             <i:EventTrigger EventName="MouseEnter">
 
                                 <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
-                                   CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Etiquetas_Viga.png">
+                                                       CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_CotaProfundidad_Losa.png">
                                 </i:InvokeCommandAction>
 
                             </i:EventTrigger>
@@ -187,7 +187,7 @@
                             <i:EventTrigger EventName="MouseEnter">
 
                                 <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
-                                   CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Etiquetas_Viga.png">
+                                                       CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_CotaProfundidad_Zapata_Aislada.png">
                                 </i:InvokeCommandAction>
 
                             </i:EventTrigger>
@@ -219,7 +219,7 @@
                             <i:EventTrigger EventName="MouseEnter">
 
                                 <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
-                                   CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Etiquetas_Viga.png">
+                                                       CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_CotaProfundidad_Zapata_Corrida.png">
                                 </i:InvokeCommandAction>
 
                             </i:EventTrigger>
@@ -251,7 +251,7 @@
                             <i:EventTrigger EventName="MouseEnter">
 
                                 <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
-                                   CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Etiquetas_Viga.png">
+                                                       CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_CotaProfundidad_Platea.png">
                                 </i:InvokeCommandAction>
 
                             </i:EventTrigger>
@@ -283,7 +283,7 @@
                             <i:EventTrigger EventName="MouseEnter">
 
                                 <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
-                                   CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Etiquetas_Viga.png">
+                                                       CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_CotaProfundidad_Pilote.png">
                                 </i:InvokeCommandAction>
 
                             </i:EventTrigger>
@@ -314,13 +314,10 @@
 
         </ScrollViewer>
 
-        <Image Grid.Column="1"
-               Grid.Row="1"
-               Stretch="Uniform"
-               Margin="20"
+        <Image Style="{StaticResource ConfigImagenPreview}"
                Source="{Binding ImagenPreview}">
         </Image>
-        
+
     </Grid>
-    
+
 </UserControl>

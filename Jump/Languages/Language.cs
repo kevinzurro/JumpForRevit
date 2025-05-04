@@ -10,12 +10,17 @@ using System.Windows.Media.Imaging;
 using System.Collections;
 using Autodesk.Revit.ApplicationServices;
 using System.Windows;
+using Jump.Languages;
 using System.Diagnostics;
 using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.ComTypes;
 using System.Threading;
-using Jump.Languages;
+using System.Windows.Forms;
+using System.Reflection;
+using System.Globalization;
+using Jump.Properties;
+using System.Security.Policy;
 
 namespace Jump
 {
@@ -25,7 +30,7 @@ namespace Jump
         private static ResourceManager rm;
 
         ///<summary> Obtiene el tipo de idioma que utiliza Revit </summary>
-        public static string ObtenerIdiomaRevit(LanguageType tipoIdioma)
+        public static string AsignarIdiomaAddIn(LanguageType tipoIdioma)
         {
             string idioma = "";
 
@@ -106,14 +111,35 @@ namespace Jump
 
             AboutJump.IdiomaAddin = idioma;
 
-            rm = new ResourceManager(ruta.ToString(), typeof(Resource).Assembly);
+            //Thread.CurrentThread.CurrentUICulture = new CultureInfo(idioma);
+
+            //Properties.Recurso.Culture = new CultureInfo(idioma);
+
+            //CargarDiccionarioDeIdiomas();
 
             return idioma;
         }
 
-        public static string GetText(string key)
+        ///<summary> Carga el diccionario de recursos según el idioma de Revit </summary>
+        public static void CargarDiccionarioDeIdiomas()
         {
-            return rm.GetString(key);//, new System.Globalization.CultureInfo(AboutJump.IdiomaAddin));
+            try
+            {
+                Uri uri = new Uri($"..\\Languages\\Resource.{AboutJump.IdiomaAddin}.xaml", UriKind.Relative);
+
+                //ResourceDictionary diccionarioIdiomas = System.Windows.Application.LoadComponent(uri) as ResourceDictionary;
+
+                ResourceDictionary diccionarioIdiomas = new ResourceDictionary();
+                diccionarioIdiomas.Source = uri;
+
+                //System.Windows.Application.Current.Resources.MergedDictionaries.Clear();
+
+                System.Windows.Application.Current.Resources.MergedDictionaries.Add(diccionarioIdiomas);
+            }
+            catch (Exception e) 
+            { 
+                Debug.WriteLine("Error al cargar el idioma " + e.Message + "\n" + e.StackTrace); 
+            }
         }
 
         // Crear un vector principal con los idiomas disponibles
@@ -496,7 +522,9 @@ namespace Jump
             Espanol.Add("NodAnaVer6", "Cancelar");
             Espanol.Add("NodAnaVer1-1", "Nodos analíticos");
             Espanol.Add("NodAnaVer1-2", "Nodos cercanos");
-            Espanol.Add("NodAnaVer2-1", "Aislar nodos");
+            Espanol.Add("NodAnaVer2-1", "Aislar");
+            Espanol.Add("NodAnaVer2-2", "Mover");
+            Espanol.Add("NodAnaVer2-3", "Unir");
 
             Espanol.Add("CreaPlano1", "Generar planos");
             Espanol.Add("CreaPlano2", "Permite crear planos con vistas");

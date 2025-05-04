@@ -92,6 +92,8 @@
     <Compile Include="Base\ModelMenu.cs" />
     <Compile Include="Base\RelayCommand.cs" />
     <Compile Include="Base\ViewModelBase.cs" />
+    <Compile Include="Clases\Nodo.cs" />
+    <Compile Include="Clases\NodoAnalitico.cs" />
     <Compile Include="Clases\PosicionTools.cs" />
     <Compile Include="Clases\Posicion.cs" />
     <Compile Include="Clases\AboutJump.cs" />
@@ -188,19 +190,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Iconos_Botones.resx</DependentUpon>
     </Compile>
-    <Compile Include="Languages\Resource.es-ES.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resource.es-ES.resx</DependentUpon>
-    </Compile>
     <Compile Include="Languages\Resource.es-ES.xaml.cs">
       <DependentUpon>Resource.es-ES.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\ConfiguracionesModel.cs" />
-    <Compile Include="Models\Familia.cs" />
-    <Compile Include="Models\MenuItem.cs" />
+    <Compile Include="Models\ConfiguracionModel.cs" />
+    <Compile Include="Clases\Familia.cs" />
+    <Compile Include="Clases\MenuItem.cs" />
+    <Compile Include="Models\NodoAnaliticoModel.cs" />
     <Compile Include="Models\VistasModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Recurso.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Recurso.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -222,6 +225,7 @@
     <Compile Include="ViewModels\ConfigGeneralViewModel.cs" />
     <Compile Include="ViewModels\ConfiguracionViewModel.cs" />
     <Compile Include="ViewModels\CrearPlanosViewModel.cs" />
+    <Compile Include="ViewModels\NodoAnaliticoVerificacionViewModel.cs" />
     <Compile Include="Views\Controls\BtnImagenTexto.xaml.cs">
       <DependentUpon>BtnImagenTexto.xaml</DependentUpon>
     </Compile>
@@ -243,12 +247,25 @@
     <Compile Include="Views\Windows\WinCrearPlanos.xaml.cs">
       <DependentUpon>WinCrearPlanos.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Windows\WinNodoAnaliticoVerificacion.xaml.cs">
+      <DependentUpon>WinNodoAnaliticoVerificacion.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Jump.addin">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Configuracion_Precision_NodoAnalitico.png" />
+    <Resource Include="Resources\Boton_Config_CotaProfundidad.png" />
+    <Resource Include="Resources\Configuracion_CotaProfundidad_Zapata_Corrida.png" />
+    <Resource Include="Resources\Configuracion_CotaProfundidad_Zapata_Aislada.png" />
+    <Resource Include="Resources\Configuracion_CotaProfundidad_Viga.png" />
+    <Resource Include="Resources\Configuracion_CotaProfundidad_Platea.png" />
+    <Resource Include="Resources\Configuracion_CotaProfundidad_Pilote.png" />
+    <Resource Include="Resources\Configuracion_CotaProfundidad_Muro.png" />
+    <Resource Include="Resources\Configuracion_CotaProfundidad_Losa.png" />
+    <Resource Include="Resources\Configuracion_CotaProfundidad_Columna.png" />
     <Resource Include="Resources\Configuracion_Etiquetas_Pilote.png" />
     <Resource Include="Resources\Configuracion_Cotas_Pilote.png" />
     <Resource Include="Resources\Configuracion_Cotas_Zapata_Aislada.png" />
@@ -462,9 +479,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Imagenes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Languages\Resource.es-ES.resx">
+    <EmbeddedResource Include="Languages\Resource.es-ES.resx" />
+    <EmbeddedResource Include="Properties\Recurso.es-ES.resx" />
+    <EmbeddedResource Include="Properties\Recurso.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource.es-ES.Designer.cs</LastGenOutput>
+      <LastGenOutput>Recurso.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -518,6 +537,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\WinCrearPlanos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\WinNodoAnaliticoVerificacion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

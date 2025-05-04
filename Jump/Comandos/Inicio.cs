@@ -7,22 +7,23 @@ using System.Windows.Media.Imaging;
 using System.Collections;
 using System.IO;
 using Jump.Properties;
+using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
-using Autodesk.Revit.UI;
-using Autodesk.Revit.DB.Structure;
 using Autodesk.Revit.DB.Events;
+using Autodesk.Revit.DB.Structure;
+using Autodesk.Revit.UI;
 
 namespace Jump
 {
-    [Autodesk.Revit.Attributes.Transaction(Autodesk.Revit.Attributes.TransactionMode.Manual)]
-    [Autodesk.Revit.Attributes.Regeneration(Autodesk.Revit.Attributes.RegenerationOption.Manual)]
+    [Transaction(TransactionMode.Manual)]
+    [Regeneration(RegenerationOption.Manual)]
     public class Inicio : IExternalApplication
     {
         /// <summary> Inicio de la aplicación </summary>
         public Result OnStartup(UIControlledApplication application)
         {
             // Obtiene el idioma del programa
-            Language.ObtenerIdiomaRevit(application.ControlledApplication.Language);
+            Language.AsignarIdiomaAddIn(application.ControlledApplication.Language);
 
             // Ruta del ensamblado o de la addin que se está ejecutando
             string RutaDelEnsamblado = System.Reflection.Assembly.GetExecutingAssembly().Location;

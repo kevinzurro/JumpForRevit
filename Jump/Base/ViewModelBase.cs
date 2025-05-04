@@ -14,7 +14,7 @@ namespace Jump
     {
         public event PropertyChangingEventHandler PropertyChanging;
         public event PropertyChangedEventHandler PropertyChanged;
-        private ConfiguracionesModel mConfiguracion;
+        private ModelBase modelo;
         private string imagenPreview = null;
 
         protected virtual void OnPropertyChanging(string propertyName)
@@ -33,12 +33,12 @@ namespace Jump
             }
         }
 
-        public ConfiguracionesModel ConfigModelo
+        public virtual ModelBase Modelo
         {
-            get { return mConfiguracion; }
+            get { return modelo; }
             set
             {
-                mConfiguracion = value as ConfiguracionesModel;
+                modelo = value as ModelBase;
             }
         }
 

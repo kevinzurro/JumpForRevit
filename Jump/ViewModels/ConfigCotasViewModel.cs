@@ -14,9 +14,9 @@ namespace Jump.ViewModels
 {
     public class ConfigCotasViewModel : ViewModelBase
     {
-        public ConfigCotasViewModel(ConfiguracionesModel model)
+        public ConfigCotasViewModel(ConfiguracionModel model)
         {
-            ConfigModelo = model;
+            Modelo = model;
             ImagenPreview = "pack://application:,,,/Jump;component/Resources/Configuracion_Cotas_Viga.png";
         }
 

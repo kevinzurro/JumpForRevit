@@ -7,6 +7,10 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.DB.Structure;
 using Autodesk.Revit.ApplicationServices;
+using Jump.Models;
+using Jump.ViewModels;
+using Jump.Views.Windows;
+using System.Diagnostics;
 
 namespace Jump
 {
@@ -23,9 +27,39 @@ namespace Jump
 
             Tools.AddinManager();
 
-            frmNodoAnaliticoVerificacion Nodos = new frmNodoAnaliticoVerificacion(doc);
+            //frmNodoAnaliticoVerificacion Nodos = new frmNodoAnaliticoVerificacion(doc);
 
-            Nodos.ShowDialog();
+            //Nodos.ShowDialog();
+
+            using (TransactionGroup tg = new TransactionGroup(doc, Language.ObtenerTexto(AboutJump.IdiomaAddin, "NodAnaVer1-1")))
+            {
+                tg.Start();
+
+                try
+                {
+                    NodoAnaliticoModel mNodoAnalitico = new NodoAnaliticoModel(uiApp);
+
+                    NodoAnaliticoVerificacionViewModel vmNodoAnalitico = new NodoAnaliticoVerificacionViewModel(mNodoAnalitico);
+
+                    WinNodoAnaliticoVerificacion VerificarNodos = new WinNodoAnaliticoVerificacion(vmNodoAnalitico);
+
+                    VerificarNodos.ShowDialog();
+
+                    if (VerificarNodos.DialogResult == true)
+                    {
+                        tg.Assimilate();
+                    }
+                    else
+                    {
+                        tg.RollBack();
+                    }
+                }
+                catch (Exception e)
+                {
+                    Debug.Write(e.StackTrace);
+                    tg.RollBack();
+                }
+            }
 
             return Result.Succeeded;
         }

@@ -1,0 +1,154 @@
+﻿<Window x:Class="Jump.Views.Windows.WinNodoAnaliticoVerificacion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:local="clr-namespace:Jump"
+        xmlns:vm="clr-namespace:Jump.ViewModels"
+        mc:Ignorable="d"
+        MinHeight="450" MinWidth="650" 
+        WindowStartupLocation="CenterScreen"
+        SizeToContent="WidthAndHeight"
+        Height="450" Width="650"
+        Title="Nodos analíticos">
+
+    <Window.Resources>
+
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="/Jump;component/Styles/Estilos.xaml"/>
+                <ResourceDictionary Source="/Jump;component/Languages/Resource.es-ES.xaml"/>
+
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+
+    </Window.Resources>
+    
+    <Grid>
+        
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
+
+        </Grid.RowDefinitions>
+
+        <DockPanel Margin="5">
+
+            <Label DockPanel.Dock="Top"
+                   Content = "{StaticResource NodAnaVer1-1}">
+            </Label>
+
+            <ListBox Height="auto"
+                     Width="auto"
+                     ItemsSource="{Binding TodosLosNodos}"
+                     SelectedItem="{Binding NodoPrincipal}">
+
+                <ListBox.ItemTemplate>
+
+                    <HierarchicalDataTemplate DataType="{x:Type local:NodoAnalitico}">
+
+                        <TextBlock Text="{Binding Nombre}"/>
+
+                    </HierarchicalDataTemplate>
+
+                </ListBox.ItemTemplate>
+
+            </ListBox>
+            
+        </DockPanel>
+
+        <DockPanel Grid.Column="1" 
+                   Margin="5">
+
+            <Label DockPanel.Dock="Top"
+                   Content = "{StaticResource NodAnaVer1-2}">
+            </Label>
+
+            <ListBox Height="auto"
+                     Width="auto"
+                     ItemsSource="{Binding NodoPrincipal.NodosCercanos}"
+                     SelectedItem="{Binding NodoSeleccionado}">
+
+                <ListBox.ItemTemplate>
+
+                    <DataTemplate DataType="{x:Type local:NodoAnalitico}">
+
+                        <TextBlock Text="{Binding Nombre}"/>
+
+                    </DataTemplate>
+
+                </ListBox.ItemTemplate>
+
+            </ListBox>
+
+        </DockPanel>
+
+        <DockPanel Grid.Row="2" Margin="5,0">
+
+            <Button Content="{StaticResource NodAnaVer2-1}" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Center"
+                    Margin="0,5,5,5"
+                    Width="90"
+                    Height="30" 
+                    Command="{Binding AislarCommand}">
+            </Button>
+
+            <Button Content="{StaticResource NodAnaVer2-2}" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Center"
+                    Margin="5"
+                    Width="90"
+                    Height="30" 
+                    Command="{Binding MoverCommand}">
+            </Button>
+
+            <Button Content="{StaticResource NodAnaVer2-3}" 
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Center"
+                    Margin="5"
+                    Width="90"
+                    Height="30" 
+                    Command="{Binding UnirCommand}">
+            </Button>
+
+        </DockPanel>
+
+        <Button Content="{StaticResource NodAnaVer5}" 
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Margin="0,0,105,0"
+                Width="90"
+                Height="30"
+                Grid.Column="1"
+                Grid.Row="2"
+                Command="{Binding AceptarCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}">
+        </Button>
+
+        <Button Content="{StaticResource NodAnaVer6}" 
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Margin="5"
+                Width="90"
+                Height="30"
+                Grid.Column="1"
+                Grid.Row="2"
+                IsCancel="True">
+        </Button>
+
+    </Grid>
+    
+</Window>

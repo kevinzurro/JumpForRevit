@@ -48,10 +48,13 @@
                 <StackPanel Style="{StaticResource ConfigStackpanel}">
                     
                     <StackPanel.ToolTip>
-                        
-                        <ToolTip Style="{StaticResource ConfigToolTip}" 
-                                 Content="{StaticResource Conf1-2-2}"/>
-                        
+
+                        <ToolTip Style="{StaticResource ConfigToolTip}">
+                            <TextBlock Text="{StaticResource Conf1-2-2}"
+                                       TextWrapping="Wrap">
+                            </TextBlock>
+                        </ToolTip>
+
                     </StackPanel.ToolTip>
 
                     <i:Interaction.Triggers>
@@ -75,18 +78,42 @@
 
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="0"
-                               Text="{StaticResource Conf1-2-3}"
-                               Style="{Binding ConfigTexto}">
+                        <TextBlock Text="{StaticResource Conf1-2-3}"
+                                   Style="{StaticResource ConfigTexto}">
                         </TextBlock>
 
                         <TextBox Grid.Column="1"
-                             Text="{Binding PrecisionOrdenarX}">
+                                 Text="{Binding PrecisionOrdenarX}">
                         </TextBox>
 
                         <TextBlock Grid.Column="2"
-                               Text="{Binding TxtUnidadDistancia}"
-                               Style="{StaticResource ConfigTextoUnidad}">
+                                   Text="{Binding TxtUnidadDistancia}"
+                                   Style="{StaticResource ConfigTextoUnidad}">
+                        </TextBlock>
+
+                    </Grid>
+
+                    <Grid Margin="0,0,0,5">
+
+                        <Grid.ColumnDefinitions>
+
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="{StaticResource Conf1-2-4}"
+                                   Style="{StaticResource ConfigTexto}">
+                        </TextBlock>
+
+                        <TextBox Grid.Column="1"
+                                 Text="{Binding PrecisionOrdenarY}">
+                        </TextBox>
+
+                        <TextBlock Grid.Column="2"
+                                   Text="{Binding TxtUnidadDistancia}"
+                                   Style="{StaticResource ConfigTextoUnidad}">
                         </TextBlock>
 
                     </Grid>
@@ -101,19 +128,17 @@
 
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="0"
-                               Text="{StaticResource Conf1-2-4}"
-                               Style="{Binding ConfigTexto}">
+                        <TextBlock Text="{StaticResource Conf1-2-5}"
+                                   Style="{StaticResource ConfigTexto}">
                         </TextBlock>
 
                         <TextBox Grid.Column="1"
-                             Text="{Binding PrecisionOrdenarY}">
+                                 Text="{Binding PrecisionOrdenarZ}">
                         </TextBox>
 
-                        <TextBlock
-                        Grid.Column="2"
-                        Text="{Binding TxtUnidadDistancia}"
-                        Style="{StaticResource ConfigTextoUnidad}">
+                        <TextBlock Grid.Column="2"
+                                   Text="{Binding TxtUnidadDistancia}"
+                                   Style="{StaticResource ConfigTextoUnidad}">
                         </TextBlock>
 
                     </Grid>
@@ -129,10 +154,13 @@
                 <StackPanel Style="{StaticResource ConfigStackpanel}">
                     
                     <StackPanel.ToolTip>
-                        
-                        <ToolTip Style="{StaticResource ConfigToolTip}" 
-                                 Content="{StaticResource Conf1-3-2}"/>
-                        
+
+                        <ToolTip Style="{StaticResource ConfigToolTip}">
+                            <TextBlock Text="{StaticResource Conf1-3-2}"
+                                       TextWrapping="Wrap">
+                            </TextBlock>
+                        </ToolTip>
+
                     </StackPanel.ToolTip>
 
                     <i:Interaction.Triggers>
@@ -140,7 +168,7 @@
                         <i:EventTrigger EventName="MouseEnter">
 
                             <i:InvokeCommandAction Command="{Binding CambiarImagenCommand}"
-                                               CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Viga.png"/>
+                                               CommandParameter="pack://application:,,,/Jump;component/Resources/Configuracion_Precision_NodoAnalitico.png"/>
 
                         </i:EventTrigger>
 
@@ -158,7 +186,7 @@
 
                         <TextBlock Grid.Column="0"
                                Text="{StaticResource Conf1-3-3}"
-                               Style="{Binding ConfigTexto}">
+                               Style="{StaticResource ConfigTexto}">
                         </TextBlock>
 
                         <TextBox Grid.Column="1"
@@ -183,8 +211,11 @@
 
                     <StackPanel.ToolTip>
 
-                        <ToolTip Style="{StaticResource ConfigToolTip}" 
-                                 Content="{StaticResource Conf1-4-2}"/>
+                        <ToolTip Style="{StaticResource ConfigToolTip}">
+                            <TextBlock Text="{StaticResource Conf1-4-2}"
+                                       TextWrapping="Wrap">
+                            </TextBlock>
+                        </ToolTip>
 
                     </StackPanel.ToolTip>
 
@@ -234,8 +265,11 @@
 
                     <StackPanel.ToolTip>
 
-                        <ToolTip Style="{StaticResource ConfigToolTip}" 
-                                 Content="{StaticResource Conf1-5-2}"/>
+                        <ToolTip Style="{StaticResource ConfigToolTip}">
+                            <TextBlock Text="{StaticResource Conf1-5-2}"
+                                       TextWrapping="Wrap">
+                            </TextBlock>
+                        </ToolTip>
 
                     </StackPanel.ToolTip>
 
@@ -262,7 +296,7 @@
 
                         <TextBlock Grid.Column="0"
                                Text="{StaticResource Conf1-5-3}"
-                               Style="{Binding ConfigTexto}">
+                               Style="{StaticResource ConfigTexto}">
                         </TextBlock>
 
                         <TextBox Grid.Column="1"
@@ -289,8 +323,11 @@
 
                     <StackPanel.ToolTip>
 
-                        <ToolTip Style="{StaticResource ConfigToolTip}" 
-                                 Content="{StaticResource Conf1-6-2}"/>
+                        <ToolTip Style="{StaticResource ConfigToolTip}">
+                            <TextBlock Text="{StaticResource Conf1-6-2}"
+                                       TextWrapping="Wrap">
+                            </TextBlock>
+                        </ToolTip>
 
                     </StackPanel.ToolTip>
 
@@ -317,7 +354,7 @@
 
                         <TextBlock Grid.Column="0"
                                Text="{StaticResource Conf1-6-3}"
-                               Style="{Binding ConfigTexto}">
+                               Style="{StaticResource ConfigTexto}">
                         </TextBlock>
 
                         <TextBox Grid.Column="1"
@@ -339,9 +376,8 @@
         </ScrollViewer>
 
 
-        <Image Grid.Column="1"
-            Stretch="Uniform"
-            Source="{Binding ImagenPreview}">
+        <Image Style="{StaticResource ConfigImagenPreview}"
+               Source="{Binding ImagenPreview}">
         </Image>
 
     </Grid>

@@ -20,13 +20,16 @@ namespace Jump
     public class NodoAnaliticoModel : ModelBase
     {
         Type claseNodos = typeof(ReferencePoint);
-        BuiltInCategory categoria = BuiltInCategory.OST_AnalyticalNodes;
+        Type claseVinculos = typeof(AnalyticalLinkType);
+        BuiltInCategory categoriaNodos = BuiltInCategory.OST_AnalyticalNodes;
+        BuiltInCategory categoriaVinculos = BuiltInCategory.OST_LinksAnalytical;
         double error = Properties.Settings.Default.ConfiguracionPrecisionNodoAnalitico;
 
         List<ReferencePoint> todosNodosRefPoi = new List<ReferencePoint>();
         ObservableCollection<NodoAnalitico> todosNodos = new ObservableCollection<NodoAnalitico>();
         ObservableCollection<NodoAnalitico> nodosConCercania = new ObservableCollection<NodoAnalitico>();
         ObservableCollection<NodoAnalitico> nodosOrdenados = new ObservableCollection<NodoAnalitico>();
+        ObservableCollection<Familia> tiposDeVinculosAnaliticos = new ObservableCollection<Familia>();
 
         public NodoAnaliticoModel(UIApplication UIApp)
         {
@@ -36,7 +39,7 @@ namespace Jump
             this.Doc = UIDoc.Document;
 
             todosNodosRefPoi = Tools.ObtenerTodosEjemplaresSegunClaseYCategoria
-                (this.Doc, this.claseNodos, this.categoria).
+                (this.Doc, this.claseNodos, this.categoriaNodos).
                 Cast<ReferencePoint>().ToList();
 
             foreach (ReferencePoint punto in todosNodosRefPoi)
@@ -45,6 +48,14 @@ namespace Jump
             }
 
             VerificarProximidad();
+
+            List<AnalyticalLinkType> vinculos = Tools.ObtenerTodosTiposSegunClaseYCategoria
+                (this.Doc, claseVinculos, categoriaVinculos).Cast<AnalyticalLinkType>().ToList();
+
+            foreach (AnalyticalLinkType vinculo in vinculos)
+            {
+                tiposDeVinculosAnaliticos.Add(new Familia(vinculo));
+            }
         }
 
         private void VerificarProximidad()
@@ -76,6 +87,11 @@ namespace Jump
         public ObservableCollection<NodoAnalitico> ObtenerNodosConCercania()
         {
             return nodosOrdenados;
+        }
+
+        public ObservableCollection<Familia> ObtenerVinculosAnaliticos()
+        {
+            return tiposDeVinculosAnaliticos;
         }
 
         public void AislarNodosEnLaVista(NodoAnalitico nodoPrincipal, NodoAnalitico nodoParaAislar)
@@ -113,19 +129,35 @@ namespace Jump
             }
         }
 
-        public void MoverrNodos(NodoAnalitico nodoPrincipal, NodoAnalitico nodoParaAislar)
+        public void MoverNodos(NodoAnalitico nodoPrincipal, NodoAnalitico nodoParaMover)
         {
-            View vista = this.Doc.ActiveView;
-
             using (Transaction tra = new Transaction(this.Doc, Language.ObtenerTexto(AboutJump.IdiomaAddin, "NodAnaVer2-2")))
             {
                 tra.Start();
 
                 try
                 {
-                    XYZ distancia = nodoPrincipal.XYZ.Subtract(nodoParaAislar.XYZ);
+                    XYZ distancia = nodoPrincipal.XYZ.Subtract(nodoParaMover.XYZ);
 
-                    ElementTransformUtils.MoveElement(this.Doc, nodoParaAislar.Punto.Id, distancia);
+                    ElementTransformUtils.MoveElement(this.Doc, nodoParaMover.Punto.Id, distancia);
+                }
+                catch (Exception) { }
+
+                tra.Commit();
+            }
+        }
+
+        public void UnirNodos(NodoAnalitico nodoPrincipal, NodoAnalitico nodoSecundario, Familia tipoDeVinculo)
+        {
+            using (Transaction tra = new Transaction(this.Doc, Language.ObtenerTexto(AboutJump.IdiomaAddin, "NodAnaVer2-3")))
+            {
+                tra.Start();
+
+                try
+                {
+                    ElementId tipo = new ElementId(tipoDeVinculo.ID);
+
+                    AnalyticalLink.Create(this.Doc, tipo, nodoPrincipal.Punto.GetHubId(), nodoSecundario.Punto.GetHubId());
                 }
                 catch (Exception) { }
 

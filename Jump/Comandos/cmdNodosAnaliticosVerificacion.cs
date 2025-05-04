@@ -27,10 +27,6 @@ namespace Jump
 
             Tools.AddinManager();
 
-            //frmNodoAnaliticoVerificacion Nodos = new frmNodoAnaliticoVerificacion(doc);
-
-            //Nodos.ShowDialog();
-
             using (TransactionGroup tg = new TransactionGroup(doc, Language.ObtenerTexto(AboutJump.IdiomaAddin, "NodAnaVer1-1")))
             {
                 tg.Start();
@@ -54,9 +50,8 @@ namespace Jump
                         tg.RollBack();
                     }
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    Debug.Write(e.StackTrace);
                     tg.RollBack();
                 }
             }

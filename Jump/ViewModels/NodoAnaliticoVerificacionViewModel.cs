@@ -16,14 +16,23 @@ namespace Jump.ViewModels
     public class NodoAnaliticoVerificacionViewModel : ViewModelBase
     {
         private ObservableCollection<NodoAnalitico> todosNodos = new ObservableCollection<NodoAnalitico>();
+        private ObservableCollection<Familia> tiposDeVinculosAnaliticos = new ObservableCollection<Familia>();
         private NodoAnalitico nodoPrincipal = null;
         private NodoAnalitico nodoSeleccionado = null;
+        private Familia tipoVinculoSeleccionado = null;
 
         public NodoAnaliticoVerificacionViewModel(NodoAnaliticoModel model)
         {
             Modelo = model;
 
             TodosLosNodos = model.ObtenerNodosConCercania();
+
+            TiposDeVinculosAnaliticos = model.ObtenerVinculosAnaliticos();
+
+            if (TiposDeVinculosAnaliticos.Count >= 1)
+            {
+                tipoVinculoSeleccionado = TiposDeVinculosAnaliticos.First();
+            }
         }
 
         public ObservableCollection<NodoAnalitico> TodosLosNodos
@@ -35,6 +44,19 @@ namespace Jump.ViewModels
                 {
                     todosNodos = value;
                     OnPropertyChanged(nameof(TodosLosNodos));
+                }
+            }
+        }
+
+        public ObservableCollection<Familia> TiposDeVinculosAnaliticos
+        {
+            get { return tiposDeVinculosAnaliticos; }
+            set
+            {
+                if (tiposDeVinculosAnaliticos != value)
+                {
+                    tiposDeVinculosAnaliticos = value;
+                    OnPropertyChanged(nameof(TiposDeVinculosAnaliticos));
                 }
             }
         }
@@ -65,6 +87,19 @@ namespace Jump.ViewModels
             }
         }
 
+        public Familia TipoVinculoSeleccionado
+        {
+            get { return tipoVinculoSeleccionado; }
+            set
+            {
+                if (tipoVinculoSeleccionado != value)
+                {
+                    tipoVinculoSeleccionado = value;
+                    OnPropertyChanged(nameof(TipoVinculoSeleccionado));
+                }
+            }
+        }
+
         public RelayCommand AislarCommand => new RelayCommand(execute => Aislar(), canExecute => { return true; });
 
         public RelayCommand MoverCommand => new RelayCommand(execute => Mover(), canExecute => { return true; });
@@ -80,12 +115,12 @@ namespace Jump.ViewModels
 
         private void Mover()
         {
-            (Modelo as NodoAnaliticoModel).MoverrNodos(NodoPrincipal, NodoSeleccionado);
+            (Modelo as NodoAnaliticoModel).MoverNodos(NodoPrincipal, NodoSeleccionado);
         }
 
         private void Unir()
         {
-
+            (Modelo as NodoAnaliticoModel).UnirNodos(NodoPrincipal, NodoSeleccionado, TipoVinculoSeleccionado);
         }
 
         private void Aceptar(object parameter)

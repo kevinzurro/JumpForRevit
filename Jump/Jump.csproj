@@ -241,6 +241,9 @@
     <Compile Include="Views\UserControls\ConfigGeneral.xaml.cs">
       <DependentUpon>ConfigGeneral.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Windows\WinBarraProgreso.xaml.cs">
+      <DependentUpon>WinBarraProgreso.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\WinConfiguraciones.xaml.cs">
       <DependentUpon>WinConfiguraciones.xaml</DependentUpon>
     </Compile>
@@ -529,6 +532,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\ConfigGeneral.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\WinBarraProgreso.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

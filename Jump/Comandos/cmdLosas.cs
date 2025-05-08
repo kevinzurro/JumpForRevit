@@ -8,6 +8,8 @@ using Autodesk.Revit.UI;
 using Autodesk.Revit.DB.Structure;
 using Autodesk.Revit.ApplicationServices;
 using Autodesk.Revit.Exceptions;
+using Jump.Views.Windows;
+using System.Diagnostics;
 
 namespace Jump
 {
@@ -23,31 +25,49 @@ namespace Jump
 
             Tools.AddinManager();
 
-            using (Transaction tra = new Transaction(doc, "Test"))
+            int cantidad = 10;
+            WinBarraProgreso barra = new WinBarraProgreso(cantidad);
+
+            barra.Show();
+
+            for (int i = 0; i < cantidad; i++)
             {
-                tra.Start();
+                barra.Incrementar();
 
-                bool bandera = true;
-
-                View vista = doc.ActiveView;
-
-                while (bandera)
+                if (barra.Cancelado || !barra.IsVisible)
                 {
-                    try
-                    {
-                        Element elem = doc.GetElement(uiDoc.Selection.PickObject(Autodesk.Revit.UI.Selection.ObjectType.Element));
-
-                        //Test.MoverElementoAOrigen(doc, vista, elem);
-                        Test.CrearRecuadroElemento(doc, vista, elem.get_BoundingBox(vista));
-                    }
-                    catch (Exception)
-                    {
-                        bandera = false;
-                    }
-                }
-
-                tra.Commit();
+                    barra.Cancelado = true;
+                    break;
+                };
             }
+
+            barra.Close();
+            
+            //using (Transaction tra = new Transaction(doc, "Test"))
+            //{
+            //    tra.Start();
+
+            //    bool bandera = true;
+
+            //    View vista = doc.ActiveView;
+
+            //    while (bandera)
+            //    {
+            //        try
+            //        {
+            //            Element elem = doc.GetElement(uiDoc.Selection.PickObject(Autodesk.Revit.UI.Selection.ObjectType.Element));
+
+            //            //Test.MoverElementoAOrigen(doc, vista, elem);
+            //            Test.CrearRecuadroElemento(doc, vista, elem.get_BoundingBox(vista));
+            //        }
+            //        catch (Exception)
+            //        {
+            //            bandera = false;
+            //        }
+            //    }
+
+            //    tra.Commit();
+            //}
             return Result.Succeeded;
         }            
     }

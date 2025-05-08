@@ -5,7 +5,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:Jump"
         xmlns:vm="clr-namespace:Jump.ViewModels"
-        xmlns:control="clr-namespace:Jump.Views.Controls"
         xmlns:userControl="clr-namespace:Jump.Views.UserControls"
         mc:Ignorable="d"
         MinHeight="600" MinWidth="800" WindowStartupLocation="CenterScreen"

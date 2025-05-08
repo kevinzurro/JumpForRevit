@@ -119,12 +119,9 @@
                    Margin="5,0,0,0"
                    HorizontalAlignment="Stretch">
 
-            <Button Content="{StaticResource NodAnaVer2-1}" 
-                    HorizontalAlignment="Left" 
-                    VerticalAlignment="Center"
+            <Button Content="{StaticResource NodAnaVer2-1}"
+                    Style="{StaticResource BtnAceptarCancelar}"
                     Margin="0,5,5,5"
-                    Width="90"
-                    Height="30" 
                     Command="{Binding AislarCommand}">
             </Button>
 
@@ -148,24 +145,18 @@
 
         </DockPanel>
 
-        <Button Content="{StaticResource NodAnaVer5}" 
-                HorizontalAlignment="Right"
-                VerticalAlignment="Center"
+        <Button Content="{StaticResource NodAnaVer5}"
+                Style="{StaticResource BtnAceptarCancelar}"
                 Margin="0,0,105,0"
-                Width="90"
-                Height="30"
                 Grid.Column="1"
                 Grid.Row="2"
                 Command="{Binding AceptarCommand}"
                 CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}">
         </Button>
 
-        <Button Content="{StaticResource NodAnaVer6}" 
-                HorizontalAlignment="Right"
-                VerticalAlignment="Center"
+        <Button Content="{StaticResource NodAnaVer6}"
+                Style="{StaticResource BtnAceptarCancelar}"
                 Margin="5"
-                Width="90"
-                Height="30"
                 Grid.Column="1"
                 Grid.Row="2"
                 IsCancel="True">

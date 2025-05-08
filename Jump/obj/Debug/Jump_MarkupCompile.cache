@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 
-12-1159883744
+13582579222
 2487669425
-82-124268315
+83-1191979745
 291656170898
-Languages\Resource.es-ES.xaml;Styles\ControlesUI.xaml;Styles\Estilos.xaml;Styles\FuentesUI.xaml;Views\Controls\BtnImagenTexto.xaml;Views\UserControls\ConfigCotas.xaml;Views\UserControls\ConfigCotasProfundidad.xaml;Views\UserControls\ConfigEtiquetas.xaml;Views\UserControls\ConfigGeneral.xaml;Views\Windows\WinConfiguraciones.xaml;Views\Windows\WinCrearPlanos.xaml;Views\Windows\WinNodoAnaliticoVerificacion.xaml;
+Languages\Resource.es-ES.xaml;Styles\ControlesUI.xaml;Styles\Estilos.xaml;Styles\FuentesUI.xaml;Views\Controls\BtnImagenTexto.xaml;Views\UserControls\ConfigCotas.xaml;Views\UserControls\ConfigCotasProfundidad.xaml;Views\UserControls\ConfigEtiquetas.xaml;Views\UserControls\ConfigGeneral.xaml;Views\Windows\WinBarraProgreso.xaml;Views\Windows\WinConfiguraciones.xaml;Views\Windows\WinCrearPlanos.xaml;Views\Windows\WinNodoAnaliticoVerificacion.xaml;
 
 False
 

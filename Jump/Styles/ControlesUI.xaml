@@ -13,4 +13,12 @@
         <Setter Property="Background" Value="White"/>
     </Style>
 
+    <Style x:Key="BtnAceptarCancelar" TargetType="Button">
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Width" Value="90"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
 </ResourceDictionary>

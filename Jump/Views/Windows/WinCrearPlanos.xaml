@@ -156,39 +156,28 @@
 
             <DockPanel Grid.Row="0" Margin="5,0">
 
-                <Button Content="{StaticResource CreaPlano3-2}" 
-                        HorizontalAlignment="Left" 
-                        VerticalAlignment="Center"
+                <Button Content="{StaticResource CreaPlano3-2}"
+                        Style="{StaticResource BtnAceptarCancelar}"
                         Margin="0,5,5,5"
-                        Width="90"
-                        Height="30" 
                         Command="{Binding TodosCommand}">
                 </Button>
 
-                <Button Content="{StaticResource CreaPlano3-3}" 
-                        HorizontalAlignment="Left" 
-                        VerticalAlignment="Center"
+                <Button Content="{StaticResource CreaPlano3-3}"
+                        Style="{StaticResource BtnAceptarCancelar}"
                         Margin="5"
-                        Width="90"
-                        Height="30" 
                         Command="{Binding NingunoCommand}">
                 </Button>
 
-                <Button Content="{StaticResource CreaPlano3-4}" 
-                        HorizontalAlignment="Left" 
-                        VerticalAlignment="Center"
+                <Button Content="{StaticResource CreaPlano3-4}"
+                        Style="{StaticResource BtnAceptarCancelar}"
                         Margin="5"
-                        Width="90"
-                        Height="30"
                         Command="{Binding ExpandirCommand}">
                 </Button>
 
-                <Button Content="{StaticResource CreaPlano3-4}" 
+                <Button Content="{StaticResource CreaPlano3-4}"
+                        Style="{StaticResource BtnAceptarCancelar}"
                         HorizontalAlignment="Left" 
-                        VerticalAlignment="Center"
                         Margin="5"
-                        Width="90"
-                        Height="30"
                         Command="{Binding ContraerCommand}">
                 </Button>
 

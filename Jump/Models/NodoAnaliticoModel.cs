@@ -14,6 +14,8 @@ using System.Windows.Documents;
 using System.Diagnostics;
 using System.Windows.Media;
 using System.Windows.Media.TextFormatting;
+using Jump;
+using Jump.Views.Windows;
 
 namespace Jump
 {

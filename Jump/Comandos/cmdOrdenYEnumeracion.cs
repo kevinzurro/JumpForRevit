@@ -1,12 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
+using System.Threading;
+using System.Globalization;
+using System.Resources;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using Autodesk.Revit.DB.Structure;
 using Autodesk.Revit.ApplicationServices;
+using Jump.Languages;
 
 namespace Jump
 {
@@ -21,9 +23,22 @@ namespace Jump
             Application app = uiApp.Application;
             Document doc = uiDoc.Document;
 
-            // Muestra el formulario
-            frmOrdenYEnumeracion inicioOrdenEnumeracion = new frmOrdenYEnumeracion(doc, uiDoc);
-            inicioOrdenEnumeracion.ShowDialog();
+            // Resources.Titulo1 = Ingles
+            // Resources.es-ES.Titulo1 = Español
+
+            Debug.WriteLine(CultureInfo.CurrentUICulture is null); //return false (es-ES)
+
+            Debug.WriteLine(Thread.CurrentThread.CurrentUICulture is null); //return false (es-ES)
+
+            Debug.WriteLine(Resources.Culture is null); //return true (null)
+
+            Debug.WriteLine(Resources.Titulo1); // return Ingles
+
+            Resources.Culture = new CultureInfo("es-ES");
+
+            Debug.WriteLine(Resources.Culture is null); //return false (es-ES)
+
+            Debug.WriteLine(Resources.Titulo1); // return Ingles however, it should return to Español
 
             return Result.Succeeded;
         }

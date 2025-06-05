@@ -3,8 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-        xmlns:local="clr-namespace:Jump.Views.Windows"
-        xmlns:vm="clr-namespace:Jump.Views.Windows"
+        xmlns:local="clr-namespace:Jump"
         mc:Ignorable="d" 
         MinHeight="150" MinWidth="650" 
         WindowStartupLocation="CenterScreen"
@@ -20,7 +19,7 @@
             <ResourceDictionary.MergedDictionaries>
 
                 <ResourceDictionary Source="/Jump;component/Styles/Estilos.xaml"/>
-                <ResourceDictionary Source="/Jump;component/Languages/Resource.es-ES.xaml"/>
+                <ResourceDictionary Source="/Jump;component/Languages/Language.xaml"/>
 
             </ResourceDictionary.MergedDictionaries>
 

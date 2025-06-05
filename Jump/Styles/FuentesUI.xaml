@@ -61,4 +61,17 @@
         <Setter Property="Margin" Value="0"/>
     </Style>
 
+    <Style x:Key="LblTextoBoxStackpanel" TargetType="StackPanel">
+        <Setter Property="Margin" Value="5"/>
+    </Style>
+
+    <Style x:Key="LblTextoBlock" TargetType="TextBlock">
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="Margin" Value="0,5,0,0"/>
+    </Style>
+
+    <Style x:Key="LblTextoBox" TargetType="TextBox">
+        <Setter Property="Margin" Value="0,5,5,0"/>
+    </Style>
+    
 </ResourceDictionary>

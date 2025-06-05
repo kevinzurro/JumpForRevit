@@ -94,6 +94,7 @@
     <Compile Include="Base\ViewModelBase.cs" />
     <Compile Include="Clases\Nodo.cs" />
     <Compile Include="Clases\NodoAnalitico.cs" />
+    <Compile Include="Clases\ObjetoRevit.cs" />
     <Compile Include="Clases\PosicionTools.cs" />
     <Compile Include="Clases\Posicion.cs" />
     <Compile Include="Clases\AboutJump.cs" />
@@ -190,26 +191,27 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Iconos_Botones.resx</DependentUpon>
     </Compile>
-    <Compile Include="Languages\Resource.es-ES.xaml.cs">
-      <DependentUpon>Resource.es-ES.xaml</DependentUpon>
+    <Compile Include="Languages\Language.xaml.cs">
+      <DependentUpon>Language.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\ConfiguracionModel.cs" />
     <Compile Include="Clases\Familia.cs" />
     <Compile Include="Clases\MenuItem.cs" />
+    <Compile Include="Models\EnumeracionModel.cs" />
     <Compile Include="Models\NodoAnaliticoModel.cs" />
     <Compile Include="Models\VistasModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Recurso.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Recurso.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Comandos\Tools.cs" />
+    <Compile Include="Languages\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Styles\ControlesUI.xaml.cs">
       <DependentUpon>ControlesUI.xaml</DependentUpon>
     </Compile>
@@ -225,6 +227,7 @@
     <Compile Include="ViewModels\ConfigGeneralViewModel.cs" />
     <Compile Include="ViewModels\ConfiguracionViewModel.cs" />
     <Compile Include="ViewModels\CrearPlanosViewModel.cs" />
+    <Compile Include="ViewModels\EnumeracionViewModel.cs" />
     <Compile Include="ViewModels\NodoAnaliticoVerificacionViewModel.cs" />
     <Compile Include="Views\Controls\BtnImagenTexto.xaml.cs">
       <DependentUpon>BtnImagenTexto.xaml</DependentUpon>
@@ -249,6 +252,9 @@
     </Compile>
     <Compile Include="Views\Windows\WinCrearPlanos.xaml.cs">
       <DependentUpon>WinCrearPlanos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\WinEnumeracion.xaml.cs">
+      <DependentUpon>WinEnumeracion.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\WinNodoAnaliticoVerificacion.xaml.cs">
       <DependentUpon>WinNodoAnaliticoVerificacion.xaml</DependentUpon>
@@ -482,11 +488,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Imagenes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Languages\Resource.es-ES.resx" />
-    <EmbeddedResource Include="Properties\Recurso.es-ES.resx" />
-    <EmbeddedResource Include="Properties\Recurso.resx">
+    <EmbeddedResource Include="Languages\Resources.es-ES.resx" />
+    <EmbeddedResource Include="Languages\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Recurso.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -499,7 +504,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Page Include="Languages\Resource.es-ES.xaml">
+    <Page Include="Languages\Language.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -544,6 +549,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\WinCrearPlanos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\WinEnumeracion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

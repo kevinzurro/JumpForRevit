@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace Jump
 {
-    public  class RelayCommand : ICommand
+    public class RelayCommand : ICommand
     {
         private Action<object> execute;
         private Func<object, bool> canExecute;
@@ -28,6 +28,34 @@ namespace Jump
         public void Execute(object parameter)
         {
             execute?.Invoke(parameter);
+        }
+    }
+
+    public  class RelayCommand<T> : ICommand
+    {
+        private Action<T> execute;
+        private Predicate<T> canExecute;
+
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
+
+        public RelayCommand(Action<T> execute, Predicate<T> canExecute = null)
+        {
+            this.execute = execute;
+            this.canExecute = canExecute;
+        }
+
+        public bool CanExecute(object parameter)
+        {
+            return canExecute == null || canExecute((T)parameter);
+        }
+
+        public void Execute(object parameter)
+        {
+            execute((T)parameter);
         }
     }
 }

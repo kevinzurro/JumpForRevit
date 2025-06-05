@@ -7,9 +7,9 @@ using System.Windows;
 
 namespace Jump.Languages
 {
-    partial class Resource : ResourceDictionary
+    partial class Language : ResourceDictionary
     {
-        public Resource()
+        public Language()
         {
             this.InitializeComponent();
         }

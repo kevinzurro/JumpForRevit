@@ -17,7 +17,7 @@
             <ResourceDictionary.MergedDictionaries>
                 
                 <ResourceDictionary Source="/Jump;component/Styles/Estilos.xaml"/>
-                <ResourceDictionary Source="/Jump;component/Languages/Resource.es-ES.xaml"/>
+                <ResourceDictionary Source="/Jump;component/Languages/Language.xaml"/>
                 
             </ResourceDictionary.MergedDictionaries>
             

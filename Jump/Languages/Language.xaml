@@ -1,8 +1,8 @@
-﻿<ResourceDictionary x:Class="Jump.Languages.Resource"
+﻿<ResourceDictionary x:Class="Jump.Languages.Language"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
-
+    
     <system:String x:Key="Tit1">Detalles de armado</system:String>
     <system:String x:Key="Tit2">Visibilidad</system:String>
     <system:String x:Key="Tit3">Herramientas</system:String>
@@ -208,7 +208,7 @@
     <system:String x:Key="Conf1-3-1">Precisión para nudos analíticos</system:String>
     <system:String x:Key="Conf1-3-2" xml:space="preserve">Los nudos analíticos que se encuentran a una distancia igual o menor que el valor definido, son considerados que son el mismo nudo y serán unidos mediante vínculos analíticos.
 Los nudos analíticos que se encuentren a una distancia mayor al valor definido no serán conectados.</system:String>
-    <system:String x:Key="Conf1-3-3">Distancia D = </system:String>
+    <system:String x:Key="Conf1-3-3">Distancia D =</system:String>
     <system:String x:Key="Conf1-4-1">Tipo de sección</system:String>
     <system:String x:Key="Conf1-4-2" xml:space="preserve">Las secciones pueden estar referenciadas a las siguientes coordenadas:
 1 - Coordenadas de la familia (Local) son las coordenadas al momento de creación de la familia.
@@ -219,7 +219,7 @@ Los nudos analíticos que se encuentren a una distancia mayor al valor definido 
     <system:String x:Key="Conf1-5-2" xml:space="preserve">Cuando se crea un elemento basado en línea o curva, se solicita un punto inicial y un punto final. La distancia relativa "X" es donde se realizará la vista en sección.
 El valor 0% indica que la vista en sección se realizará en el punto inicial mostrando toda la longitud del elemento.
 El valor 100% indica que la vista en sección se realizará en el punto final mostrando la longitud mínima del elemento.</system:String>
-    <system:String x:Key="Conf1-5-3">Distancia X = </system:String>
+    <system:String x:Key="Conf1-5-3">Distancia X =</system:String>
     <system:String x:Key="Conf1-5-4">%     [0 - 100]</system:String>
     <system:String x:Key="Conf1-6-1">Orden y enumeración</system:String>
     <system:String x:Key="Conf1-6-2" xml:space="preserve">Para ordenar y enumerar elementos basados en líneas o curvas, la distancia relativa es a partir de donde se colocará el punto de análisis.
@@ -353,8 +353,8 @@ El valor 100% indica que se tomará el final del elemento como el punto de anál
     <system:String x:Key="EliBar1">Eliminar la representación de las barras</system:String>
     <system:String x:Key="EliBar2">Eliminador de barras</system:String>
 
-    <system:String x:Key="BarPro1">Procesando </system:String>
-    <system:String x:Key="BarPro2"> elementos de </system:String>
+    <system:String x:Key="BarPro1">Procesando</system:String>
+    <system:String x:Key="BarPro2">elementos de</system:String>
     <system:String x:Key="BarPro3">Cancelar</system:String>
 
     <system:String x:Key="Pos1">1 - Arriba Izquierda</system:String>
@@ -370,5 +370,5 @@ El valor 100% indica que se tomará el final del elemento como el punto de anál
     <system:String x:Key="Pos11">2 - Derecha</system:String>
     <system:String x:Key="Pos12">3 - Abajo</system:String>
     <system:String x:Key="Pos13">4 - Izquierda</system:String>
-
+    
 </ResourceDictionary>

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -10,6 +12,7 @@ namespace Jump
 {
     public class Familia
     {
+        private Document doc;
         private Int64 id;
         private string nombre;
         private string sistema;
@@ -17,7 +20,7 @@ namespace Jump
         /// <summary> Crea un elemento de familia </summary>
         public Familia(Element elem)
         {
-            Document doc = elem.Document;
+            this.doc = elem.Document;
 
             this.id = elem.Id.Value;
             this.nombre = elem.Name;
@@ -88,5 +91,45 @@ namespace Jump
                 }
             }
         }
+
+        /// <summary> Obtiene el Elemento desde la familia </summary>
+        public static Element ObtenerElemento(Familia familia)
+        {
+            Element elem = familia.doc.GetElement(new ElementId(familia.ID));
+
+            return elem;
+        }
+
+        /// <summary> Obtiene una lista de elementos desde una lista de familias </summary>
+        public static List<Element> ObtenerElemento(List<Familia> familias)
+        {
+            List<Element> lista = new List<Element>();
+
+            foreach (Familia fa in familias)
+            {
+                Element elem = Familia.ObtenerElemento(fa);
+
+                if (elem != null)
+                {
+                    lista.Add(elem);
+                }
+            }
+
+            return lista;
+        }
+
+        /// <summary> Obtiene una colección observable de familias con los elementos de revit </summary>
+        public static ObservableCollection<Familia> ObtenerFamilia(List<Element> elementos)
+        {
+            ObservableCollection<Familia> familias = new ObservableCollection<Familia>();
+
+            foreach (Element elem in elementos)
+            {
+                familias.Add(new Familia(elem));
+            }
+
+            return familias;
+        }
+
     }
 }

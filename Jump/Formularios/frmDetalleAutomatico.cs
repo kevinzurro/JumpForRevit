@@ -160,7 +160,7 @@ namespace Jump
                                                         .Where(v => v.ViewFamily == planoEstructural)
                                                         .OrderBy(x => x.Name).ToList();
 
-            List<Autodesk.Revit.DB.View> tipoPlanttilla = new FilteredElementCollector(doc)
+            List<Autodesk.Revit.DB.View> tipoPlantilla = new FilteredElementCollector(doc)
                                                           .OfClass(typeof(Autodesk.Revit.DB.View))
                                                           .Cast<Autodesk.Revit.DB.View>()
                                                           .Where(v => v.IsTemplate)
@@ -171,13 +171,13 @@ namespace Jump
             Tools.RellenarComboBoxDeElementosPreview(this.cmbElementosPreview, this.doc, this.elementosVistaPreview);
 
             Tools.RellenarCombobox(this.cmbTipoSeccionX, new List<ViewFamilyType>(tipoSeccion));
-            Tools.RellenarCombobox(this.cmbPlantillaSeccionX, new List<Autodesk.Revit.DB.View>(tipoPlanttilla));
+            Tools.RellenarCombobox(this.cmbPlantillaSeccionX, new List<Autodesk.Revit.DB.View>(tipoPlantilla));
 
             Tools.RellenarCombobox(this.cmbTipoSeccionY, new List<ViewFamilyType>(tipoSeccion));
-            Tools.RellenarCombobox(this.cmbPlantillaSeccionY, new List<Autodesk.Revit.DB.View>(tipoPlanttilla));
+            Tools.RellenarCombobox(this.cmbPlantillaSeccionY, new List<Autodesk.Revit.DB.View>(tipoPlantilla));
 
             Tools.RellenarCombobox(this.cmbTipoPlanoEstructural, new List<ViewFamilyType>(tipoPlanoEstructural));
-            Tools.RellenarCombobox(this.cmbPlantillaPlanoEstructural, new List<Autodesk.Revit.DB.View>(tipoPlanttilla));
+            Tools.RellenarCombobox(this.cmbPlantillaPlanoEstructural, new List<Autodesk.Revit.DB.View>(tipoPlantilla));
         }
         
         /// <summary> Asigna una imagen de prueba para las etiquetas, cotas y despieces de barras </summary>

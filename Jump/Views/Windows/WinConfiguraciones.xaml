@@ -66,27 +66,17 @@
         
         <StackPanel Grid.Column="0" Background="White">
 
-            <Button Height="50"
-                    HorizontalAlignment="Stretch"
-                    HorizontalContentAlignment="Left"
-                    BorderThickness="0"
-                    Padding="5"
-                    Background="White"
+            <Button Style="{StaticResource BtnImagenYTexto}"
                     Command="{Binding CambiarVistaGeneralCommand}">
 
                 <StackPanel Orientation="Horizontal" 
                             HorizontalAlignment="Left">
 
-                    <Image Height="30"
-                           Width="30"
-                           Source="/Jump;component/Resources/Boton_Config_General.png"
-                           Stretch="Uniform">
+                    <Image Style="{StaticResource ImgImagenYTexto}"
+                           Source="/Jump;component/Resources/Boton_Config_General.png">
                     </Image>
 
-                    <TextBlock FontSize="15"
-                               Margin="10,0,0,0"
-                               VerticalAlignment="Center"
-                               TextWrapping="Wrap"
+                    <TextBlock Style="{StaticResource TxbImagenYTexto}"
                                Text="{StaticResource Conf1-1}">
                     </TextBlock>
 
@@ -94,27 +84,17 @@
 
             </Button>
 
-            <Button Height="50"
-                    HorizontalAlignment="Stretch"
-                    HorizontalContentAlignment="Left"
-                    BorderThickness="0"
-                    Padding="5"
-                    Background="White"
+            <Button Style="{StaticResource BtnImagenYTexto}"
                     Command="{Binding CambiarVistaEtiquetasCommand}">
 
                 <StackPanel Orientation="Horizontal" 
                             HorizontalAlignment="Left">
 
-                    <Image Height="30"
-                           Width="30"
-                           Source="/Jump;component/Resources/Boton_Config_Etiquetas.png"
-                           Stretch="Uniform">
+                    <Image Style="{StaticResource ImgImagenYTexto}"
+                           Source="/Jump;component/Resources/Boton_Config_Etiquetas.png">
                     </Image>
 
-                    <TextBlock FontSize="15"
-                               Margin="10,0,0,0"
-                               VerticalAlignment="Center"
-                               TextWrapping="Wrap"
+                    <TextBlock Style="{StaticResource TxbImagenYTexto}"
                                Text="{StaticResource Conf2-1}">
                     </TextBlock>
 
@@ -122,27 +102,17 @@
 
             </Button>
 
-            <Button Height="50"
-                    HorizontalAlignment="Stretch"
-                    HorizontalContentAlignment="Left"
-                    BorderThickness="0"
-                    Padding="5"
-                    Background="White"
+            <Button Style="{StaticResource BtnImagenYTexto}"
                     Command="{Binding CambiarVistaCotasCommand}">
 
                 <StackPanel Orientation="Horizontal" 
                             HorizontalAlignment="Left">
 
-                    <Image Height="30"
-                           Width="30"
-                           Source="/Jump;component/Resources/Boton_Config_Cotas.png"
-                           Stretch="Uniform">
+                    <Image Style="{StaticResource ImgImagenYTexto}"
+                           Source="/Jump;component/Resources/Boton_Config_Cotas.png">
                     </Image>
 
-                    <TextBlock FontSize="15"
-                               Margin="10,0,0,0"
-                               VerticalAlignment="Center"
-                               TextWrapping="Wrap"
+                    <TextBlock Style="{StaticResource TxbImagenYTexto}"
                                Text="{StaticResource Conf3-1}">
                     </TextBlock>
 
@@ -150,27 +120,17 @@
 
             </Button>
 
-            <Button Height="50"
-                    HorizontalAlignment="Stretch"
-                    HorizontalContentAlignment="Left"
-                    BorderThickness="0"
-                    Padding="5"
-                    Background="White"
+            <Button Style="{StaticResource BtnImagenYTexto}"
                     Command="{Binding CambiarVistaCotasProfundidadCommand}">
 
                 <StackPanel Orientation="Horizontal" 
                             HorizontalAlignment="Left">
 
-                    <Image Height="30"
-                           Width="30"
-                           Source="/Jump;component/Resources/Boton_Config_CotaProfundidad.png"
-                           Stretch="Uniform">
+                    <Image Style="{StaticResource ImgImagenYTexto}"
+                           Source="/Jump;component/Resources/Boton_Config_CotaProfundidad.png">
                     </Image>
 
-                    <TextBlock FontSize="15"
-                               Margin="10,0,0,0"
-                               VerticalAlignment="Center"
-                               TextWrapping="Wrap"
+                    <TextBlock Style="{StaticResource TxbImagenYTexto}"
                                Text="{StaticResource Conf4-1}">
                     </TextBlock>
 
@@ -182,9 +142,9 @@
 
         <ContentControl Grid.Column="1"
                         Margin="20,0,0,0"
-                        Content="{Binding VistaActual}"
                         HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch">
+                        VerticalAlignment="Stretch"
+                        Content="{Binding VistaActual}">
         </ContentControl>
         
     </Grid>

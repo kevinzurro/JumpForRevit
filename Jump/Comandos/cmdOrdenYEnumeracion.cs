@@ -9,6 +9,7 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.ApplicationServices;
 using Jump.Languages;
+using System.Reflection;
 
 namespace Jump
 {
@@ -26,19 +27,29 @@ namespace Jump
             // Resources.Titulo1 = Ingles
             // Resources.es-ES.Titulo1 = Español
 
-            Debug.WriteLine(CultureInfo.CurrentUICulture is null); //return false (es-ES)
+            //Debug.WriteLine(CultureInfo.CurrentUICulture); //return false (es-ES)
 
-            Debug.WriteLine(Thread.CurrentThread.CurrentUICulture is null); //return false (es-ES)
+            //Debug.WriteLine(Thread.CurrentThread.CurrentUICulture); //return false (es-ES)
 
-            Debug.WriteLine(Resources.Culture is null); //return true (null)
+            //Debug.WriteLine(Resources.Culture is null); //return true (null)
 
-            Debug.WriteLine(Resources.Titulo1); // return Ingles
+            //Debug.WriteLine(Resources.Titulo1); // return Ingles
 
-            Resources.Culture = new CultureInfo("es-ES");
+            //Resources.Culture = new CultureInfo("es-ES");
 
-            Debug.WriteLine(Resources.Culture is null); //return false (es-ES)
+            //Debug.WriteLine(Resources.Culture is null); //return false (es-ES)
 
-            Debug.WriteLine(Resources.Titulo1); // return Ingles however, it should return to Español
+            //ResourceManager rm = new ResourceManager(typeof(Resources));
+
+            ResourceManager rm = new ResourceManager("Jump.Languages.Resources", typeof(Resources).Assembly);
+
+            Debug.WriteLine(Assembly.GetExecutingAssembly().Location);
+
+            TaskDialog.Show("ti", rm.GetString("Titulo1", new CultureInfo("es-ES")));
+
+            //Debug.WriteLine(Assembly.GetExecutingAssembly());
+
+            //Debug.WriteLine(Resources.Titulo1); // return Ingles however, it should return to Español
 
             return Result.Succeeded;
         }

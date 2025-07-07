@@ -11,8 +11,8 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
-using Jump.Models;
 using System.Windows.Controls;
+using Jump.Models;
 
 namespace Jump.ViewModels
 {

@@ -1,0 +1,327 @@
+﻿<UserControl x:Class="Jump.Views.UserControls.DetAutSeccion"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:local="clr-namespace:Jump"
+             xmlns:vm="clr-namespace:Jump.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800"
+             Background="White">
+
+    <UserControl.Resources>
+
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="/Jump;component/Styles/Estilos.xaml"/>
+                <ResourceDictionary Source="/Jump;component/Languages/Language.xaml"/>
+
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+
+    </UserControl.Resources>
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0"
+              Margin="10,0,0,0">
+            
+            <Grid.RowDefinitions>
+
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0">
+
+                <Label Style="{StaticResource LblDetAut}"
+                       Content="{StaticResource DetAut2-1}">
+                </Label>
+
+                <Separator Style="{StaticResource SepDetAut}"/>
+
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               Style="{StaticResource TxbDetAut}"
+                               Text="{StaticResource DetAut2-1-1}">
+                    </TextBlock>
+
+                    <ComboBox Grid.Row="0" 
+                              Grid.Column="1" 
+                              Style="{StaticResource CmbDetAutNombre}"
+                              SelectedItem="{Binding TipoDeVista}"
+                              ItemsSource="{Binding TiposDeVistas}">
+                    </ComboBox>
+
+                    <CheckBox Grid.Row="1"
+                              Grid.Column="0"
+                              Style="{StaticResource ChbDetAut}"
+                              IsChecked="{Binding EscalaBool}">
+
+                        <TextBlock Style="{Binding ConfigTexto}"
+                                   Text="{StaticResource DetAut2-1-2}">
+                        </TextBlock>
+
+                    </CheckBox>
+
+                    <ComboBox Grid.Row="1" 
+                              Grid.Column="1" 
+                              Style="{StaticResource CmbDetAut}"
+                              SelectedItem="{Binding Escala}"
+                              ItemsSource="{Binding Escalas}">
+                    </ComboBox>
+
+                    <CheckBox Grid.Row="2"
+                              Grid.Column="0"
+                              Style="{StaticResource ChbDetAut}"
+                              IsChecked="{Binding PlantillaDeVistaBool}">
+
+                        <TextBlock Style="{Binding ConfigTexto}"
+                                   Text="{StaticResource DetAut2-1-3}">
+                        </TextBlock>
+
+                    </CheckBox>
+
+                    <ComboBox Grid.Row="2" 
+                              Grid.Column="1" 
+                              Style="{StaticResource CmbDetAutNombre}"
+                              SelectedItem="{Binding PlantillaDeVista}"
+                              ItemsSource="{Binding PlantillasParaLaVista}">
+                    </ComboBox>
+
+                    <CheckBox Grid.Row="3"
+                              Grid.Column="0"
+                              Style="{StaticResource ChbDetAut}"
+                              IsChecked="{Binding EtiquetaElementoBool}">
+
+                        <TextBlock Style="{Binding ConfigTexto}"
+                                   Text="{StaticResource DetAut2-1-4}">
+                        </TextBlock>
+
+                    </CheckBox>
+
+                    <ComboBox Grid.Row="3" 
+                              Grid.Column="1" 
+                              Style="{StaticResource CmbDetAutNombre}"
+                              SelectedItem="{Binding EtiquetaElemento}"
+                              ItemsSource="{Binding EtiquetasParaElementos}">
+                    </ComboBox>
+
+                    <CheckBox Grid.Row="4"
+                              Grid.Column="0"
+                              Style="{StaticResource ChbDetAut}"
+                              IsChecked="{Binding EtiquetaArmaduraBool}">
+
+                        <TextBlock Style="{Binding ConfigTexto}"
+                                   Text="{StaticResource DetAut2-1-5}">
+                        </TextBlock>
+
+                    </CheckBox>
+
+                    <ComboBox Grid.Row="4" 
+                              Grid.Column="1" 
+                              Style="{StaticResource CmbDetAutNombre}"
+                              SelectedItem="{Binding EtiquetaArmadura}"
+                              ItemsSource="{Binding EtiquetasParaArmadura}">
+                    </ComboBox>
+
+                    <CheckBox Grid.Row="5"
+                              Grid.Column="0"
+                              Style="{StaticResource ChbDetAut}"
+                              IsChecked="{Binding DetalleArmaduraBool}">
+
+                        <TextBlock Style="{Binding ConfigTexto}"
+                                   Text="{StaticResource DetAut2-1-6}">
+                        </TextBlock>
+
+                    </CheckBox>
+
+                    <ComboBox Grid.Row="5" 
+                              Grid.Column="1" 
+                              Style="{StaticResource CmbDetAutNombre}"
+                              SelectedItem="{Binding DetalleArmadura}"
+                              ItemsSource="{Binding DetallesParaArmadura}">
+                    </ComboBox>
+
+                    <CheckBox Grid.Row="6"
+                              Grid.Column="0"
+                              Style="{StaticResource ChbDetAut}"
+                              IsChecked="{Binding CotaLinealBool}">
+
+                        <TextBlock Style="{Binding ConfigTexto}"
+                                   Text="{StaticResource DetAut2-1-7}">
+                        </TextBlock>
+
+                    </CheckBox>
+
+                    <ComboBox Grid.Row="6" 
+                              Grid.Column="1" 
+                              Style="{StaticResource CmbDetAutNombre}"
+                              SelectedItem="{Binding CotaLineal}"
+                              ItemsSource="{Binding CotasLineales}">
+                    </ComboBox>
+
+                    <CheckBox Grid.Row="7"
+                              Grid.Column="0"
+                              Style="{StaticResource ChbDetAut}"
+                              IsChecked="{Binding CotaProfundidadBool}">
+
+                        <TextBlock Style="{Binding ConfigTexto}"
+                                   Text="{StaticResource DetAut2-1-8}">
+                        </TextBlock>
+
+                    </CheckBox>
+
+                    <ComboBox Grid.Row="7" 
+                              Grid.Column="1" 
+                              Style="{StaticResource CmbDetAutNombre}"
+                              SelectedItem="{Binding CotaProfundidad}"
+                              ItemsSource="{Binding CotasParaProfundidad}">
+                    </ComboBox>
+
+                </Grid>
+
+            </StackPanel>
+
+            <Grid Grid.Row="1">
+
+                <Grid.RowDefinitions>
+
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" >
+                    
+                    <Label Style="{StaticResource LblDetAut}"
+                           Content="{StaticResource DetAut1-1}">
+                    </Label>
+
+                    <Separator Style="{StaticResource SepDetAut}"/>
+
+                    <RadioButton Style="{StaticResource RbtnTexto}"
+                                 Content="{StaticResource DetAut1-2}"
+                                 IsChecked="{Binding FamiliasTodasBool}"
+                                 Command="{Binding FamiliasTodasCommand}">
+                    </RadioButton>
+                    
+                    <RadioButton Style="{StaticResource RbtnTexto}"
+                                 Content="{StaticResource DetAut1-3}"
+                                 IsChecked="{Binding FamiliasSeleccionadasEnRevitBool}"
+                                 Command="{Binding FamiliasSeleccionadasEnRevitCommand}">
+                    </RadioButton>
+
+                    <RadioButton Style="{StaticResource RbtnTexto}"
+                                 Content="{StaticResource DetAut1-4}"
+                                 IsChecked="{Binding FamiliasListboxBool}"
+                                 Command="{Binding FamiliasListboxCommand}">
+                    </RadioButton>
+                    
+                </StackPanel>
+                
+                <ListBox Grid.Row="1"
+                         Margin="5,3,5,5"
+                         SelectionMode="Extended"
+                         ItemsSource="{Binding FamiliasTodas}"
+                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                         ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                         local:ListBoxSelectedItemsBehavior.SelectedItems="{Binding FamiliasListbox, Mode=TwoWay}">
+
+                    <i:Interaction.Triggers>
+                        
+                        <i:EventTrigger EventName="SelectionChanged">
+
+                            <i:InvokeCommandAction Command="{Binding FamiliasListboxSeleccionCommand}"
+                                   PassEventArgsToCommand="True"/>
+                            
+                        </i:EventTrigger>
+                        
+                    </i:Interaction.Triggers>
+                    
+                    <ListBox.ItemTemplate>
+
+                        <DataTemplate DataType="{x:Type local:Familia}">
+
+                            <TextBlock Text="{Binding NombreCompletoID}"/>
+
+                        </DataTemplate>
+
+                    </ListBox.ItemTemplate>
+
+                </ListBox>
+
+            </Grid>
+            
+        </Grid>
+
+        <Grid Grid.Column="1"
+              Margin="10,0,0,0">
+
+            <Grid.RowDefinitions>
+
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+
+            </Grid.RowDefinitions>
+
+            <StackPanel>
+
+                <Label Style="{StaticResource LblDetAut}"
+                       Content="{StaticResource DetAut3-1}">
+                </Label>
+
+                <Separator Style="{StaticResource SepDetAut}"/>
+
+                <ComboBox Style="{StaticResource CmbDetAutNombreID}"
+                          SelectedItem="{Binding VistaPrevia}"
+                          ItemsSource="{Binding FamiliasSeleccionadas}">
+                </ComboBox>
+
+            </StackPanel>
+            
+            <ContentControl Grid.Row="1"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Content="{Binding VistaActual}">
+            </ContentControl>
+
+        </Grid>
+
+    </Grid>
+    
+</UserControl>

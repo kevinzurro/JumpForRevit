@@ -1103,7 +1103,19 @@ namespace Jump
 
             return lista;
         }
-        
+
+        ///<summary> Obtiene una lista de elementos seleccionado en el proyecto </summary>
+        public static List<Element> ObtenerElementosSeleccionadosEnProyecto(UIDocument uiDoc, Document doc)
+        {
+            // Obtiene el Id de los elementos seleccionados
+            List<ElementId> listaId = uiDoc.Selection.GetElementIds().ToList();
+
+            // Obtiene los elementos según el ID
+            List<Element> lista = Tools.ObtenerElementoSegunID(doc, listaId);
+
+            return lista;
+        }
+
         ///<summary> Obtiene una lista de elementos según una selección en un ListBox </summary>
         public static List<Element> ObtenerElementosSeleccionadosEnProyecto(UIDocument uiDoc, Document doc, List<Element> todosLosElementos)
         {
@@ -5648,7 +5660,32 @@ namespace Jump
 
             return vista;
         }
-        
+
+        ///<summary> Cambia las configuraciones de visualización de la vista </summary>
+        public static View CambiarConfiguracionVista(int escala, Document doc, View vista, ViewDetailLevel nivelDetalle, DisplayStyle estiloVista)
+        {
+            // Cambia la escala de la vista
+            vista.Scale = escala;
+
+            // Cambia el nivel de detalle de la vista
+            vista.DetailLevel = nivelDetalle;
+            vista.DisplayStyle = estiloVista;
+
+            // Activa el cuadro de recorte
+            vista.CropBoxActive = true;
+
+            // Desactiva la visibilidad del cuadro de recorte
+            vista.CropBoxVisible = false;
+
+            // Oculta las categorías
+            vista.SetCategoryHidden(Category.GetCategory(doc, BuiltInCategory.OST_Grids).Id, true);
+            vista.SetCategoryHidden(Category.GetCategory(doc, BuiltInCategory.OST_Sections).Id, true);
+
+            doc.Regenerate();
+
+            return vista;
+        }
+
         ///<summary> Oculta todo excepto el elemento y sus armaduras en una vista </summary>
         public static void MostrarSolamenteElementoYBarrasEnVista(Document doc, View vista, Element elem)
         {

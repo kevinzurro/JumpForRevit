@@ -34,8 +34,7 @@
 
         </Grid.ColumnDefinitions>
 
-        <ScrollViewer VerticalScrollBarVisibility="Auto"
-                      Grid.Column="0">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
 
             <Grid>
 

@@ -8,12 +8,13 @@ using Autodesk.Revit.UI;
 using Autodesk.Revit.DB.Structure;
 using Autodesk.Revit.DB.ExtensibleStorage;
 using Autodesk.Revit.ApplicationServices;
+using System.Collections.ObjectModel;
 
 namespace Jump
 {
     public static class AboutJump
     {
-        public static string nombreAddin = "Jump";
+        private static string nombreAddin = "Jump";
         static string version = "1.0";
         static string idiomaAddin = "es-ES";
         public const string nombreEsquemaArmaduraRepresentacion = "RebarRepresentationJumpForRevit";
@@ -35,6 +36,23 @@ namespace Jump
         public const string parametroMostrarUsuarioPlanos = "FamilyName";
         public const string parametroMostrarUsuario = "Name";
         public const string parametroId = "Id";
+
+        private static ObservableCollection<int> escalas = new ObservableCollection<int>() 
+        {
+            1,
+            2,
+            5,
+            10,
+            20,
+            25,
+            50,
+            100,
+            200,
+            500,
+            1000,
+            2000,
+            5000,
+        };
 
         /// <summary> Obtiene el nombre de la addin </summary>
         public static string NombreAddin
@@ -64,6 +82,11 @@ namespace Jump
         public static Guid GuidActualizarBarra
         {
             get { return new Guid(guidActualizarBarra); }
+        }
+
+        public static ObservableCollection<int> Escalas
+        {
+            get { return escalas; }
         }
     }
 }

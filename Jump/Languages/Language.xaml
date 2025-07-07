@@ -7,6 +7,24 @@
     <system:String x:Key="Tit2">Visibilidad</system:String>
     <system:String x:Key="Tit3">Herramientas</system:String>
 
+    <system:String x:Key="DetAutSecXX">Sección X-X</system:String>
+    <system:String x:Key="DetAutSecYY">Sección Y-Y</system:String>
+    <system:String x:Key="DetAutPlaEst">Plano estructural</system:String>
+    <system:String x:Key="DetAut1-1">Selección</system:String>
+    <system:String x:Key="DetAut1-2">Todos</system:String>
+    <system:String x:Key="DetAut1-3">Seleccionados en Revit</system:String>
+    <system:String x:Key="DetAut1-4">Según la lista</system:String>
+    <system:String x:Key="DetAut2-1">Etiquetas</system:String>
+    <system:String x:Key="DetAut2-1-1">Tipo de vista</system:String>
+    <system:String x:Key="DetAut2-1-2">Escala</system:String>
+    <system:String x:Key="DetAut2-1-3">Plantilla de vista</system:String>
+    <system:String x:Key="DetAut2-1-4">Etiqueta de elemento</system:String>
+    <system:String x:Key="DetAut2-1-5">Etiqueta de armadura</system:String>
+    <system:String x:Key="DetAut2-1-6">Detalle de armadura</system:String>
+    <system:String x:Key="DetAut2-1-7">Cota lineal</system:String>
+    <system:String x:Key="DetAut2-1-8">Cota de elevación</system:String>
+    <system:String x:Key="DetAut3-1">Vista previa</system:String>
+
     <system:String x:Key="Pil1">Pilotes</system:String>
     <system:String x:Key="Pil2">Pilotes descripción corta</system:String>
     <system:String x:Key="Pil3">Pilotes descripción larga</system:String>

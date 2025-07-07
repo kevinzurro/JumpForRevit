@@ -131,5 +131,14 @@ namespace Jump
             return familias;
         }
 
+        /// <summary> Obtiene una colección observable de familias con los elementos de revit </summary>
+        public static ObservableCollection<Familia> ObtenerFamilia(List<FamilySymbol> elementos)
+        {
+            ObservableCollection<Familia> familias = new ObservableCollection<Familia>();
+
+            familias = Familia.ObtenerFamilia(elementos.Cast<Element>().ToList());
+
+            return familias;
+        }
     }
 }

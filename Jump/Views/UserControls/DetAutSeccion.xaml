@@ -307,7 +307,7 @@
 
                 <Separator Style="{StaticResource SepDetAut}"/>
 
-                <ComboBox Style="{StaticResource CmbDetAutNombreID}"
+                <ComboBox Style="{StaticResource CmbDetAutNombreCompletoID}"
                           SelectedItem="{Binding VistaPrevia}"
                           ItemsSource="{Binding FamiliasSeleccionadas}">
                 </ComboBox>

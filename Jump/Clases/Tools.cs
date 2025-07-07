@@ -881,7 +881,7 @@ namespace Jump
             return lista;
         }
 
-        ///<summary> Obtiene una lista ordenada alfabéticamente de todos los parametros de ejemplar de una categoría</summary>
+        ///<summary> Obtiene una lista ordenada alfabéticamente de todos los parametros de ejemplar de una categoría </summary>
         public static List<Parameter> ObtenerParametrosEjemplar(Document doc, BuiltInCategory categoria)
         {
             // Crea una lista vacia
@@ -1028,19 +1028,18 @@ namespace Jump
             return estilos;
         }
 
-        ///<summary> Obtiene una lista ordenada alfabéticamente con todas las etiquetas de armadura </summary>
+        ///<summary> Obtiene una lista ordenada alfabéticamente con todas los tipos de etiquetas según la categoría </summary>
         public static List<FamilySymbol> ObtenerEtiquetasIndependientes(Document doc, BuiltInCategory categoria)
         {
             // Crea la lista a devolver
             List<FamilySymbol> etiquetas = new List<FamilySymbol>();
-
-            // Busca las etiquetas
-            IEnumerable<FamilySymbol> tags = new FilteredElementCollector(doc).OfClass(typeof(FamilySymbol)).Cast<FamilySymbol>();
-
-            // Filtra según sean la categoría asignada
-            etiquetas = (from elem in tags
-                         where elem.Category.Id == new ElementId(categoria)
-                         select elem).ToList();
+            
+            etiquetas = new FilteredElementCollector(doc)
+                                .WhereElementIsElementType()
+                                .OfClass(typeof(FamilySymbol))
+                                .OfCategory(categoria)
+                                .Cast<FamilySymbol>()
+                                .ToList();
 
             return etiquetas;
         }
@@ -1069,9 +1068,10 @@ namespace Jump
             List<DimensionType> lista = new List<DimensionType>();
 
             // Crea un filtro de la categoría dimensiones
-            IEnumerable<DimensionType> colector = new FilteredElementCollector(doc).WhereElementIsElementType()
-                                                                                   .OfClass(typeof(DimensionType))
-                                                                                   .Cast<DimensionType>();
+            IEnumerable<DimensionType> colector = new FilteredElementCollector(doc)
+                                                        .WhereElementIsElementType()
+                                                        .OfClass(typeof(DimensionType))
+                                                        .Cast<DimensionType>();
 
             // Filtra según sean la categoría asignada
             lista = (from elem in colector
@@ -1089,9 +1089,10 @@ namespace Jump
         public static List<SpotDimensionType> ObtenerCotasElevacion(Document doc)
         {
             // Crea un filtro de la categoría dimensiones
-            IEnumerable<SpotDimensionType> colector = new FilteredElementCollector(doc).WhereElementIsElementType()
-                                                                                       .OfClass(typeof(SpotDimensionType))
-                                                                                       .Cast<SpotDimensionType>();
+            IEnumerable<SpotDimensionType> colector = new FilteredElementCollector(doc)
+                                                            .WhereElementIsElementType()
+                                                            .OfClass(typeof(SpotDimensionType))
+                                                            .Cast<SpotDimensionType>();
 
             // Filtra que sea de la categoría adecuada
             List<SpotDimensionType> lista = (from elem in colector

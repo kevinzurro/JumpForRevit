@@ -22,31 +22,38 @@ namespace Jump.Models
         string transaccionGeneral = "Transacción general";
         int posicionImagenPreview = 0;
         TransactionGroup traGeneral;
-        Type claseDetalleBarra = typeof(RebarBendingDetailType);
 
-        // Parámetros para las etiquetas y vistas
+        // Detalle de armadura
+        Type claseDetalleBarra = typeof(RebarBendingDetailType);
         BuiltInCategory categoriaDetalleBarra = BuiltInCategory.OST_RebarBendingDetails;
-        BuiltInCategory categoriaEtiquetaArmadura = BuiltInCategory.OST_RebarTags;
-        DimensionStyleType cotaEstiloLineal = DimensionStyleType.Linear;
-        ViewDetailLevel nivelDetalle = ViewDetailLevel.Fine;
-        DisplayStyle estiloVista = DisplayStyle.FlatColors;
+
+        // Parámetros para las vistas
         ViewFamily seccion = ViewFamily.Section;
         ViewFamily planoEstructural = ViewFamily.StructuralPlan;
+        DisplayStyle estiloVista = DisplayStyle.FlatColors;
+        ViewDetailLevel nivelDetalle = ViewDetailLevel.Fine;
+
+        // Parámetros para las etiquetas y cotas
+        BuiltInCategory categoriaEtiquetaArmadura = BuiltInCategory.OST_RebarTags;
+        DimensionStyleType cotaEstiloLineal = DimensionStyleType.Linear;
 
         // Lista de objetos
+        List<ViewFamilyType> tipoDeVista = new List<ViewFamilyType>();
+        List<ViewFamilyType> tipoPlanoEstructural = new List<ViewFamilyType>();
+        List<View> plantillas = new List<View>();
+        List<FamilySymbol> etiquetasElemento = new List<FamilySymbol>();
+        List<FamilySymbol> etiquetasArmaduras = new List<FamilySymbol>();
+        List<Element> detalleArmadura = new List<Element>();
+        List<DimensionType> cotasLineales = new List<DimensionType>();
+        List<SpotDimensionType> cotasElevacion = new List<SpotDimensionType>();
+
+        // Objetos creados
+        List<Element> listaEtiquetasCreadas = new List<Element>();
         //List<Familia> familiasEstructurales = new List<Familia>();
         //List<Element> listaElementosEstructurales = new List<Element>();
         //List<Element> elementos = new List<Element>();
         //List<Element> elementosVistaPreview = new List<Element>();
         //List<Element> etiquetasLongitud = new List<Element>();
-        List<Element> listaEtiquetasCreadas = new List<Element>();
-        //List<FamilySymbol> etiquetasElemento = new List<FamilySymbol>();
-        //List<FamilySymbol> etiquetasArmaduras = new List<FamilySymbol>();
-        //List<DimensionType> cotasLineales = new List<DimensionType>();
-        //List<SpotDimensionType> cotasElevacion = new List<SpotDimensionType>();
-        List<ViewFamilyType> tipoDeVista = new List<ViewFamilyType>();
-        List<ViewFamilyType> tipoPlanoEstructural = new List<ViewFamilyType>();
-        List<View> plantillas = new List<View>();
 
         public DetalleAutomaticoModel(UIApplication UIApp)
         {
@@ -64,7 +71,8 @@ namespace Jump.Models
                                 .Where(v => v.ViewFamily == seccion)
                                 .OrderBy(x => x.Name).ToList();
 
-            tipoPlanoEstructural = new FilteredElementCollector(Doc).OfClass(typeof(ViewFamilyType))
+            tipoPlanoEstructural = new FilteredElementCollector(Doc)
+                                        .OfClass(typeof(ViewFamilyType))
                                         .Cast<ViewFamilyType>()
                                         .Where(v => v.ViewFamily == planoEstructural)
                                         .OrderBy(x => x.Name).ToList();
@@ -74,6 +82,14 @@ namespace Jump.Models
                                 .Cast<Autodesk.Revit.DB.View>()
                                 .Where(v => v.IsTemplate)
                                 .OrderBy(x => x.Name).ToList();
+
+            etiquetasArmaduras = Tools.ObtenerEtiquetasIndependientes(this.Doc, categoriaEtiquetaArmadura);
+            
+            detalleArmadura = Tools.ObtenerTodosTiposSegunClaseYCategoria(this.Doc, claseDetalleBarra, categoriaDetalleBarra);
+
+            cotasLineales = Tools.ObtenerCotas(this.Doc, cotaEstiloLineal);
+
+            cotasElevacion = Tools.ObtenerCotasElevacion(this.Doc);
         }
 
         /// <summary> Prefijo para obtener el lenguaje </summary>
@@ -112,6 +128,9 @@ namespace Jump.Models
         /// <summary> Cota lineal horizontal abajo del elemento estructural </summary>
         public bool CotaHorizontalAbajo { get; set; }
 
+        /// <summary> Lista de elementos seleccionados en Revit </summary>
+        public List<ElementId> ListaSeleccionados { get; set; }
+
         /// <summary> Obtiene todos los tipos de vistas para la sección </summary>
         public ObservableCollection<Familia> ObtenerTiposDeVistas()
         {
@@ -128,8 +147,55 @@ namespace Jump.Models
             return tiposPlanoEstructura;
         }
 
-        /// <summary> Lista de elementos seleccionados en Revit </summary>
-        public List<ElementId> ListaSeleccionados { get; set; }
+        /// <summary> Obtiene todas las plantillas de vistas </summary>
+        public ObservableCollection<Familia> ObtenerTiposDePlantillas()
+        {
+            ObservableCollection<Familia> plantillas = Familia.ObtenerFamilia(this.plantillas.Cast<Element>().ToList());
+
+            return plantillas;
+        }
+
+        /// <summary> Obtiene todas las etiquetas para el elemento estructural </summary>
+        public ObservableCollection<Familia> ObtenerEtiquetasElemento()
+        { 
+            etiquetasElemento = Tools.ObtenerEtiquetasIndependientes(this.Doc, CategoriaEtiqueta);
+
+            ObservableCollection<Familia> etiquetas = Familia.ObtenerFamilia(etiquetasElemento);
+
+            return etiquetas;
+        }
+
+        /// <summary> Obtiene todas las etiquetas para las armaduras </summary>
+        public ObservableCollection<Familia> ObtenerEtiquetasArmadura()
+        {
+            ObservableCollection<Familia> etiquetas = Familia.ObtenerFamilia(this.etiquetasArmaduras);
+
+            return etiquetas;
+        }
+
+        /// <summary> Obtiene todos los tipos de detalles de armaduras </summary>
+        public ObservableCollection<Familia> ObtenerTiposDeDetalleDeArmadura()
+        {
+            ObservableCollection<Familia> detalles = Familia.ObtenerFamilia(this.detalleArmadura);
+
+            return detalles;
+        }
+
+        /// <summary> Obtiene todos los tipos de cotas lineales </summary>
+        public ObservableCollection<Familia> ObtenerTiposDeCotaLineales()
+        {
+            ObservableCollection<Familia> tipos = Familia.ObtenerFamilia(this.cotasLineales.Cast<Element>().ToList());
+
+            return tipos;
+        }
+
+        /// <summary> Obtiene todos los tipos de cotas de elevación </summary>
+        public ObservableCollection<Familia> ObtenerTiposDeCotaDeElevacion()
+        {
+            ObservableCollection<Familia> tipos = Familia.ObtenerFamilia(this.cotasElevacion.Cast<Element>().ToList());
+
+            return tipos;
+        }
 
         /// <summary> Obtiene una colección observable con todas las instancias de familias </summary>
         public ObservableCollection<Familia> ObtenerTodasLasFamilias()

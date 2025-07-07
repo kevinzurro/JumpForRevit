@@ -69,6 +69,24 @@ namespace Jump.ViewModels
 
             Escalas = AboutJump.Escalas;
             Escala = Modelo.IndiceComboboxEscalaVista;
+
+            PlantillasParaLaVista = Modelo.ObtenerTiposDePlantillas();
+            PlantillaDeVista = PlantillasParaLaVista.FirstOrDefault();
+
+            EtiquetasParaElementos = Modelo.ObtenerEtiquetasElemento();
+            EtiquetaElemento = EtiquetasParaElementos.FirstOrDefault();
+
+            EtiquetasParaArmadura = Modelo.ObtenerEtiquetasArmadura();
+            EtiquetaArmadura = EtiquetasParaArmadura.FirstOrDefault();
+
+            DetallesParaArmadura = Modelo.ObtenerTiposDeDetalleDeArmadura();
+            DetalleArmadura = DetallesParaArmadura.FirstOrDefault();
+
+            CotasLineales = Modelo.ObtenerTiposDeCotaLineales();
+            CotaLineal = CotasLineales.FirstOrDefault();
+
+            CotasParaProfundidad = Modelo.ObtenerTiposDeCotaDeElevacion();
+            CotaProfundidad = CotasParaProfundidad.FirstOrDefault();
         }
 
         public new DetalleAutomaticoModel Modelo
@@ -145,7 +163,9 @@ namespace Jump.ViewModels
                 if (escala != value)
                 {
                     escala = value;
+
                     Modelo.IndiceComboboxEscalaVista = value;
+
                     OnPropertyChanged(nameof(Escala));
                 }
             }

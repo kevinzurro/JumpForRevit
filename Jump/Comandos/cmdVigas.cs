@@ -69,6 +69,19 @@ namespace Jump
 
                 //frmDetalleAutomatico Viga = new frmDetalleAutomatico(doc);
 
+                //Viga.clave = "Vig";
+                //Viga.clase = typeof(FamilyInstance);
+                //Viga.categoria = BuiltInCategory.OST_StructuralFraming;
+                //Viga.categoriaEtiqueta = BuiltInCategory.OST_StructuralFramingTags;
+                //Viga.indiceComboboxEscalaVista = Properties.Settings.Default.VigaIndiceComboboxEscalaVista;
+                //Viga.posicionEtiquetaIndependienteElemento = Jump.Properties.Settings.Default.VigaEtiquetaIndependiente;
+                //Viga.posicionEtiquetaCotaProfundidad = Jump.Properties.Settings.Default.VigaCotaProfundidad;
+                //Viga.posicionEtiquetaIndependienteArmadura = Jump.Properties.Settings.Default.ArmaduraEtiquetaIndependiente;
+                //Viga.cotaHorizontalArriba = Jump.Properties.Settings.Default.VigaCotaLinealArriba;
+                //Viga.cotaHorizontalAbajo = Jump.Properties.Settings.Default.VigaCotaLinealAbajo;
+                //Viga.cotaVerticalIzquierda = Jump.Properties.Settings.Default.VigaCotaLinealIzquierda;
+                //Viga.cotaVerticalDerecha = Jump.Properties.Settings.Default.VigaCotaLinealDerecha;
+
                 //Viga.ShowDialog();
 
                 //// Guarda el indice en las configuraciones

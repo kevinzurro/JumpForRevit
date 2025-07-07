@@ -154,13 +154,26 @@
         <Setter Property="ItemTemplate">
             <Setter.Value>
                 <DataTemplate DataType="{x:Type local:Familia}">
+                    <TextBlock Text="{Binding Nombre}"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CmbDetAutNombreCompleto" TargetType="ComboBox">
+        <Setter Property="SelectedValuePath" Value="Key"/>
+        <Setter Property="DisplayMemberPath" Value="Value"/>
+        <Setter Property="Margin" Value="0,2,10,5"/>
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <DataTemplate DataType="{x:Type local:Familia}">
                     <TextBlock Text="{Binding NombreCompleto}"/>
                 </DataTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style x:Key="CmbDetAutNombreID" TargetType="ComboBox">
+    <Style x:Key="CmbDetAutNombreCompletoID" TargetType="ComboBox">
         <Setter Property="SelectedValuePath" Value="Key"/>
         <Setter Property="DisplayMemberPath" Value="Value"/>
         <Setter Property="Margin" Value="0,2,10,5"/>

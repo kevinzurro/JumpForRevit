@@ -63,8 +63,7 @@
                         </i:Interaction.Triggers>
 
                         <Label Content="{StaticResource Conf3-1-1}"
-                               Style="{StaticResource ConfigTituloPrincipal}"
-                               Margin="0">
+                               Style="{StaticResource LblTituloPrincipalInicial}">
                         </Label>
 
                         <Separator Style="{StaticResource ConfigSeparador}"/>
@@ -126,7 +125,7 @@
                         </i:Interaction.Triggers>
                         
                         <Label Content="{StaticResource Conf3-2-1}"
-                           Style="{StaticResource ConfigTituloPrincipal}"
+                           Style="{StaticResource LblTituloPrincipal}"
                            Margin="0">
                         </Label>
 
@@ -189,7 +188,7 @@
                         </i:Interaction.Triggers>
                         
                         <Label Content="{StaticResource Conf3-3-1}" 
-                           Style="{StaticResource ConfigTituloPrincipal}" 
+                           Style="{StaticResource LblTituloPrincipal}" 
                            Margin="0">
                         </Label>
 
@@ -252,7 +251,7 @@
                         </i:Interaction.Triggers>
                         
                         <Label Content="{StaticResource Conf3-4-1}" 
-                           Style="{StaticResource ConfigTituloPrincipal}" 
+                           Style="{StaticResource LblTituloPrincipal}" 
                            Margin="0">
                         </Label>
 
@@ -321,8 +320,7 @@
                         </i:Interaction.Triggers>
 
                         <Label Content="{StaticResource Conf3-5-1}"
-                           Style="{StaticResource ConfigTituloPrincipal}"
-                           Margin="0">
+                           Style="{StaticResource LblTituloPrincipalInicial}">
                         </Label>
 
                         <Separator Style="{StaticResource ConfigSeparador}"/>
@@ -384,7 +382,7 @@
                         </i:Interaction.Triggers>
 
                         <Label Content="{StaticResource Conf3-6-1}"
-                           Style="{StaticResource ConfigTituloPrincipal}"
+                           Style="{StaticResource LblTituloPrincipal}"
                            Margin="0">
                         </Label>
 
@@ -447,7 +445,7 @@
                         </i:Interaction.Triggers>
 
                         <Label Content="{StaticResource Conf3-7-1}" 
-                           Style="{StaticResource ConfigTituloPrincipal}" 
+                           Style="{StaticResource LblTituloPrincipal}" 
                            Margin="0">
                         </Label>
 
@@ -510,7 +508,7 @@
                         </i:Interaction.Triggers>
 
                         <Label Content="{StaticResource Conf3-8-1}" 
-                           Style="{StaticResource ConfigTituloPrincipal}" 
+                           Style="{StaticResource LblTituloPrincipal}" 
                            Margin="0">
                         </Label>
 

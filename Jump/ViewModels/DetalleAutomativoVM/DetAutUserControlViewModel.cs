@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autodesk.Revit.DB;
+using Autodesk.Revit.UI;
 using Jump.Models;
 
 namespace Jump.ViewModels
@@ -13,8 +14,8 @@ namespace Jump.ViewModels
     public class DetAutUserControlViewModel : ViewModelBase
     {
         private DetalleAutomaticoModel modelo;
-        private ViewModelBase vistaActual;
         private Familia vistaPrevia;
+        private PreviewControl vistaActual;
 
         private Familia tipoDeVista;
         private ObservableCollection<Familia> tiposDeVista;
@@ -95,26 +96,6 @@ namespace Jump.ViewModels
             set { modelo = value; }
         }
 
-        public ViewModelBase VistaActual
-        {
-            get { return vistaActual; }
-            set
-            {
-                vistaActual = value;
-                OnPropertyChanged(nameof(VistaActual));
-            }
-        }
-
-        public Familia VistaPrevia
-        {
-            get { return vistaPrevia; }
-            set
-            {
-                vistaPrevia = value;
-                OnPropertyChanged(nameof(VistaPrevia));
-            }
-        }
-
         public Familia TipoDeVista
         {
             get { return tipoDeVista; }
@@ -149,6 +130,9 @@ namespace Jump.ViewModels
                 if (escalabool != value)
                 {
                     escalabool = value;
+                    
+                    CrearEtiquetasParaVistaPreview();
+
                     OnPropertyChanged(nameof(EscalaBool));
                     OnPropertyChanged(nameof(PlantillaDeVistaBool));
                 }
@@ -192,6 +176,9 @@ namespace Jump.ViewModels
                 if (!escalabool != value)
                 {
                     escalabool = !value;
+
+                    CrearEtiquetasParaVistaPreview();
+
                     OnPropertyChanged(nameof(EscalaBool));
                     OnPropertyChanged(nameof(PlantillaDeVistaBool));
                 }
@@ -232,6 +219,9 @@ namespace Jump.ViewModels
                 if (etiquetaElementobool != value)
                 {
                     etiquetaElementobool = value;
+
+                    CrearEtiquetasParaVistaPreview();
+
                     OnPropertyChanged(nameof(EtiquetaElementoBool));
                 }
             }
@@ -271,6 +261,9 @@ namespace Jump.ViewModels
                 if (etiquetaArmadurabool != value)
                 {
                     etiquetaArmadurabool = value;
+
+                    CrearEtiquetasParaVistaPreview();
+
                     OnPropertyChanged(nameof(EtiquetaArmaduraBool));
                 }
             }
@@ -310,6 +303,9 @@ namespace Jump.ViewModels
                 if (detalleArmadurabool != value)
                 {
                     detalleArmadurabool = value;
+
+                    CrearEtiquetasParaVistaPreview();
+
                     OnPropertyChanged(nameof(DetalleArmaduraBool));
                 }
             }
@@ -349,6 +345,9 @@ namespace Jump.ViewModels
                 if (cotaLinealbool != value)
                 {
                     cotaLinealbool = value;
+
+                    CrearEtiquetasParaVistaPreview();
+
                     OnPropertyChanged(nameof(CotaLinealBool));
                 }
             }
@@ -388,6 +387,9 @@ namespace Jump.ViewModels
                 if (cotaProfundidadbool != value)
                 {
                     cotaProfundidadbool = value;
+
+                    CrearEtiquetasParaVistaPreview();
+
                     OnPropertyChanged(nameof(CotaProfundidadBool));
                 }
             }
@@ -427,6 +429,9 @@ namespace Jump.ViewModels
                 if (familiasTodasBool != value)
                 {
                     familiasTodasBool = value;
+
+                    //CrearEtiquetasParaVistaPreview();
+
                     OnPropertyChanged(nameof(FamiliasTodasBool));
                 }
             }
@@ -453,6 +458,9 @@ namespace Jump.ViewModels
                 if (familiasSeleccionadasEnRevitBool != value)
                 {
                     familiasSeleccionadasEnRevitBool = value;
+
+                    //CrearEtiquetasParaVistaPreview();
+
                     OnPropertyChanged(nameof(FamiliasSeleccionadasEnRevitBool));
                 }
             }
@@ -479,6 +487,9 @@ namespace Jump.ViewModels
                 if (familiasListboxBool != value)
                 {
                     familiasListboxBool = value;
+
+                    //CrearEtiquetasParaVistaPreview();
+
                     OnPropertyChanged(nameof(FamiliasListboxBool));
                 }
             }
@@ -495,6 +506,38 @@ namespace Jump.ViewModels
 
                     OnPropertyChanged(nameof(FamiliasListbox));
                 }
+            }
+        }
+
+        public Familia VistaPrevia
+        {
+            get { return vistaPrevia; }
+            set
+            {
+                vistaPrevia = value;
+
+                CrearEtiquetasParaVistaPreview();
+
+                OnPropertyChanged(nameof(VistaPrevia));
+            }
+        }
+
+        public PreviewControl VistaActual
+        {
+            get { return vistaActual; }
+            set
+            {
+                vistaActual = value;
+
+                if (vistaActual != null)
+                {
+                    vistaActual.Loaded += (sender, args) =>
+                    {
+                        vistaActual.UIView.ZoomToFit();
+                    };
+                }
+
+                OnPropertyChanged(nameof(VistaActual));
             }
         }
 
@@ -519,19 +562,36 @@ namespace Jump.ViewModels
 
         public RelayCommand FamiliasListboxSeleccionCommand => new RelayCommand(execute => CambiarFamiliasListbox(FamiliasListbox), canExecute => { return true; });
 
-        private void CambiarFamiliasSeleccionadas(ObservableCollection<Familia> familias)
+        private void CrearEtiquetasParaVistaPreview()
         {
-            FamiliasSeleccionadas = familias;
+            View vista = null;
+            Element elem = null;
 
-            VistaPrevia = FamiliasSeleccionadas.FirstOrDefault();
+            if (VistaActual != null)
+            {
+                vista = Modelo.Doc.GetElement(VistaActual.ViewId) as View;
+            }
+
+            if (VistaPrevia != null)
+            {
+                elem = Familia.ObtenerElemento(VistaPrevia);
+            }
+
+            Modelo.CrearEtiquetasDeElementoParaPreview(this, vista, elem);
         }
-
         private void CambiarFamiliasListbox(ObservableCollection<Familia> familias)
         {
             if (FamiliasListboxBool)
             {
                 CambiarFamiliasSeleccionadas(familias);
             }
+        }
+
+        private void CambiarFamiliasSeleccionadas(ObservableCollection<Familia> familias)
+        {
+            FamiliasSeleccionadas = familias;
+
+            VistaPrevia = FamiliasSeleccionadas.FirstOrDefault();
         }
     }
 }

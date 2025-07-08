@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Jump.Models;
 
 namespace Jump.ViewModels
@@ -75,6 +76,11 @@ namespace Jump.ViewModels
                 {
                     vistaActual = value;
 
+                    if ((vistaActual as DetAutUserControlViewModel).VistaActual != null)
+                    {
+                        (vistaActual as DetAutUserControlViewModel).VistaActual.Dispose();
+                    }
+
                     OnPropertyChanged(nameof(VistaActual));
                 }
             }
@@ -130,5 +136,17 @@ namespace Jump.ViewModels
             VistaActual = VM;
         }
 
+        public RelayCommand AceptarCommand => new RelayCommand(execute => CrearVistasYEtiquetas(execute), canExecute => { return true; });
+
+        private void CrearVistasYEtiquetas(object parameter)
+        {
+            Modelo.CrearVistasYEtiquetas(this);
+
+            if (parameter is Window window)
+            {
+                window.DialogResult = true;
+                window.Close();
+            }
+        }
     }
 }

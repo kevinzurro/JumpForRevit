@@ -66,6 +66,12 @@
         
         <StackPanel Grid.Column="0" Background="White">
 
+            <Label Style="{StaticResource LblTituloPrincipalInicial}"
+                   Content="{StaticResource Conf10}">
+            </Label>
+
+            <Separator Style="{StaticResource SepDetAut}"/>
+            
             <Button Style="{StaticResource BtnImagenYTexto}"
                     Command="{Binding CambiarVistaGeneralCommand}">
 
@@ -141,7 +147,7 @@
         </StackPanel>
 
         <ContentControl Grid.Column="1"
-                        Margin="20,0,0,0"
+                        Margin="10,0,0,0"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
                         Content="{Binding VistaActual}">

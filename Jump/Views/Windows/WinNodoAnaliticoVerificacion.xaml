@@ -47,6 +47,7 @@
         <DockPanel Margin="5">
 
             <Label DockPanel.Dock="Top"
+                   Style="{StaticResource LblTituloPrincipalInicial}"
                    Content = "{StaticResource NodAnaVer1-1}">
             </Label>
 
@@ -73,6 +74,7 @@
                    Margin="5">
 
             <Label DockPanel.Dock="Top"
+                   Style="{StaticResource LblTituloPrincipalInicial}"
                    Content = "{StaticResource NodAnaVer1-2}">
             </Label>
 

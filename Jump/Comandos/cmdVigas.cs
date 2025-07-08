@@ -54,19 +54,6 @@ namespace Jump
 
                 Viga.ShowDialog();
 
-                //// Guarda el indice en las configuraciones
-                Properties.Settings.Default.VigaIndiceComboboxEscalaVista = model.IndiceComboboxEscalaVista;
-                Properties.Settings.Default.Save();
-
-                if (Viga.DialogResult == true)
-                {
-                    tra.Commit();
-                }
-                else
-                {
-                    tra.RollBack();
-                }
-
                 //frmDetalleAutomatico Viga = new frmDetalleAutomatico(doc);
 
                 //Viga.clave = "Vig";
@@ -84,18 +71,19 @@ namespace Jump
 
                 //Viga.ShowDialog();
 
-                //// Guarda el indice en las configuraciones
-                //Properties.Settings.Default.VigaIndiceComboboxEscalaVista = Viga.indiceComboboxEscalaVista;
-                //Properties.Settings.Default.Save();
+                // Guarda el indice en las configuraciones
+                Properties.Settings.Default.VigaIndiceComboboxEscalaVista = model.IndiceComboboxEscalaVista;
+                Properties.Settings.Default.Save();
 
-                //if (Viga.bandera)
-                //{
-                //    tra.Commit();
-                //}
-                //else
-                //{
-                //    tra.RollBack();
-                //}
+                if (Viga.DialogResult == true)
+                {
+                    tra.Commit();
+                }
+                else
+                {
+                    tra.RollBack();
+                }
+
             }
 
             return Result.Succeeded;

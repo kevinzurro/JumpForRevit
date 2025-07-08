@@ -122,10 +122,6 @@ D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Styles\Control
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Styles\Estilos.g.cs
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Styles\FuentesUI.g.cs
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Views\Controls\BtnImagenTexto.g.cs
-D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Views\UserControls\ConfigCotas.g.cs
-D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Views\UserControls\ConfigCotasProfundidad.g.cs
-D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Views\UserControls\ConfigEtiquetas.g.cs
-D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Views\UserControls\ConfigGeneral.g.cs
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Views\UserControls\DetAutSeccion.g.cs
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Views\Windows\WinBarraProgreso.g.cs
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Views\Windows\WinConfiguraciones.g.cs
@@ -138,10 +134,6 @@ D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump_MarkupCom
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump_MarkupCompile.lref
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Styles\Estilos.baml
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Views\Controls\BtnImagenTexto.baml
-D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Views\UserControls\ConfigCotas.baml
-D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Views\UserControls\ConfigCotasProfundidad.baml
-D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Views\UserControls\ConfigEtiquetas.baml
-D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Views\UserControls\ConfigGeneral.baml
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Views\UserControls\DetAutSeccion.baml
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Views\Windows\WinBarraProgreso.baml
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Views\Windows\WinConfiguraciones.baml
@@ -170,3 +162,11 @@ D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\es-ES\Jump.res
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump.csproj.CopyComplete
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump.dll
 D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Jump.pdb
+D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Views\UserControls\Config\ConfigCotas.g.cs
+D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Views\UserControls\Config\ConfigCotasProfundidad.g.cs
+D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Views\UserControls\Config\ConfigEtiquetas.g.cs
+D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Views\UserControls\Config\ConfigGeneral.g.cs
+D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Views\UserControls\Config\ConfigCotas.baml
+D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Views\UserControls\Config\ConfigCotasProfundidad.baml
+D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Views\UserControls\Config\ConfigEtiquetas.baml
+D:\KEVIN\FACULTAD DE INGENIERIA\Revit\Plugins\Jump\Jump\obj\Debug\Views\UserControls\Config\ConfigGeneral.baml

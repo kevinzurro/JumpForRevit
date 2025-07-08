@@ -55,7 +55,20 @@
 
         </Grid.ColumnDefinitions>
 
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+
+        </Grid.RowDefinitions>
+
         <StackPanel Grid.Column="0">
+
+            <Label Style="{StaticResource LblTituloPrincipalInicial}"
+                   Content="{StaticResource DetAut10}">
+            </Label>
+
+            <Separator Style="{StaticResource SepDetAut}"/>
 
             <Button Style="{StaticResource BtnImagenYTexto}"
                     Command="{Binding SeccionXXCommand}">
@@ -72,7 +85,7 @@
                     </Image>
 
                     <TextBlock Style="{StaticResource TxbImagenYTexto}"
-                               Text="{StaticResource DetAutSecXX}">
+                               Text="{StaticResource DetAutXX}">
                     </TextBlock>
 
                 </StackPanel>
@@ -94,7 +107,7 @@
                     </Image>
 
                     <TextBlock Style="{StaticResource TxbImagenYTexto}"
-                               Text="{StaticResource DetAutSecYY}">
+                               Text="{StaticResource DetAutYY}">
                     </TextBlock>
 
                 </StackPanel>
@@ -125,20 +138,29 @@
 
         </StackPanel>
 
-        <!--<Grid Grid.Column="1">
-
-            <userControl:DetAutSeccion Visibility="{Binding VistaXX, Converter={StaticResource BoolToVisibilityConverter}}"/>
-            <userControl:DetAutSeccion Visibility="{Binding VistaYY, Converter={StaticResource BoolToVisibilityConverter}}"/>
-            <userControl:DetAutSeccion Visibility="{Binding VistaPlanta, Converter={StaticResource BoolToVisibilityConverter}}"/>
-
-        </Grid>-->
-        
         <ContentControl Grid.Column="1"
-                        Margin="20,0,0,0"
+                        Margin="10,0,0,0"
                         VerticalAlignment="Stretch"
                         HorizontalAlignment="Stretch"
                         Content="{Binding VistaActual}">
         </ContentControl>
+
+        <Button Content="{StaticResource DetAut5}"
+                Style="{StaticResource BtnAceptarCancelar}"
+                Margin="0,0,105,0"
+                Grid.Column="1"
+                Grid.Row="2"
+                Command="{Binding AceptarCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}">
+        </Button>
+
+        <Button Content="{StaticResource DetAut6}"
+                Style="{StaticResource BtnAceptarCancelar}"
+                Margin="5"
+                Grid.Column="1"
+                Grid.Row="2"
+                IsCancel="True">
+        </Button>
 
     </Grid>
     

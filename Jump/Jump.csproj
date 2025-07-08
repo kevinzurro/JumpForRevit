@@ -240,16 +240,16 @@
     <Compile Include="Views\Controls\BtnImagenTexto.xaml.cs">
       <DependentUpon>BtnImagenTexto.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\ConfigCotas.xaml.cs">
+    <Compile Include="Views\UserControls\Config\ConfigCotas.xaml.cs">
       <DependentUpon>ConfigCotas.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\ConfigCotasProfundidad.xaml.cs">
+    <Compile Include="Views\UserControls\Config\ConfigCotasProfundidad.xaml.cs">
       <DependentUpon>ConfigCotasProfundidad.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\ConfigEtiquetas.xaml.cs">
+    <Compile Include="Views\UserControls\Config\ConfigEtiquetas.xaml.cs">
       <DependentUpon>ConfigEtiquetas.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\ConfigGeneral.xaml.cs">
+    <Compile Include="Views\UserControls\Config\ConfigGeneral.xaml.cs">
       <DependentUpon>ConfigGeneral.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\DetAutSeccion.xaml.cs">
@@ -538,19 +538,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\ConfigCotas.xaml">
+    <Page Include="Views\UserControls\Config\ConfigCotas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\ConfigCotasProfundidad.xaml">
+    <Page Include="Views\UserControls\Config\ConfigCotasProfundidad.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\ConfigEtiquetas.xaml">
+    <Page Include="Views\UserControls\Config\ConfigEtiquetas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\ConfigGeneral.xaml">
+    <Page Include="Views\UserControls\Config\ConfigGeneral.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

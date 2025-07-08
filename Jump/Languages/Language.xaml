@@ -7,8 +7,15 @@
     <system:String x:Key="Tit2">Visibilidad</system:String>
     <system:String x:Key="Tit3">Herramientas</system:String>
 
-    <system:String x:Key="DetAutSecXX">Sección X-X</system:String>
-    <system:String x:Key="DetAutSecYY">Sección Y-Y</system:String>
+    <system:String x:Key="DetAut1">Vigas</system:String>
+    <system:String x:Key="DetAut2">Vigas descripción corta</system:String>
+    <system:String x:Key="DetAut3">Vigas descripción larga</system:String>
+    <system:String x:Key="DetAut4">Vigas</system:String>
+    <system:String x:Key="DetAut5">Aceptar</system:String>
+    <system:String x:Key="DetAut6">Cancelar</system:String>
+    <system:String x:Key="DetAut10">Vistas</system:String>
+    <system:String x:Key="DetAutXX">Sección X-X</system:String>
+    <system:String x:Key="DetAutYY">Sección Y-Y</system:String>
     <system:String x:Key="DetAutPlaEst">Plano estructural</system:String>
     <system:String x:Key="DetAut1-1">Selección</system:String>
     <system:String x:Key="DetAut1-2">Todos</system:String>
@@ -217,6 +224,7 @@
     <system:String x:Key="Conf4">Configuraciones</system:String>
     <system:String x:Key="Conf5">Aceptar</system:String>
     <system:String x:Key="Conf6">Cancelar</system:String>
+    <system:String x:Key="Conf10">Tipo de configuración</system:String>
     <system:String x:Key="Conf1-1">General</system:String>
     <system:String x:Key="Conf1-2-1">Precisión para ordenar los elementos</system:String>
     <system:String x:Key="Conf1-2-2">La precisión en 'X' como en 'Y' se utiliza para el Orden y Enumeración de los elementos</system:String>

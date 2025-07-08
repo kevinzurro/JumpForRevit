@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 
-161360225658
+161190750760
 2487669425
-971361353638
+97489232580
 291656170898
-Languages\Language.xaml;Styles\ControlesUI.xaml;Styles\Estilos.xaml;Styles\FuentesUI.xaml;Views\Controls\BtnImagenTexto.xaml;Views\UserControls\ConfigCotas.xaml;Views\UserControls\ConfigCotasProfundidad.xaml;Views\UserControls\ConfigEtiquetas.xaml;Views\UserControls\ConfigGeneral.xaml;Views\UserControls\DetAutSeccion.xaml;Views\Windows\WinBarraProgreso.xaml;Views\Windows\WinConfiguraciones.xaml;Views\Windows\WinCrearPlanos.xaml;Views\Windows\WinDetalleAutomatico.xaml;Views\Windows\WinEnumeracion.xaml;Views\Windows\WinNodoAnaliticoVerificacion.xaml;
+Languages\Language.xaml;Styles\ControlesUI.xaml;Styles\Estilos.xaml;Styles\FuentesUI.xaml;Views\Controls\BtnImagenTexto.xaml;Views\UserControls\Config\ConfigCotas.xaml;Views\UserControls\Config\ConfigCotasProfundidad.xaml;Views\UserControls\Config\ConfigEtiquetas.xaml;Views\UserControls\Config\ConfigGeneral.xaml;Views\UserControls\DetAutSeccion.xaml;Views\Windows\WinBarraProgreso.xaml;Views\Windows\WinConfiguraciones.xaml;Views\Windows\WinCrearPlanos.xaml;Views\Windows\WinDetalleAutomatico.xaml;Views\Windows\WinEnumeracion.xaml;Views\Windows\WinNodoAnaliticoVerificacion.xaml;
 
 False
 

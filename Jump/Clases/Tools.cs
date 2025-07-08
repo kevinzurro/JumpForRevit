@@ -927,21 +927,10 @@ namespace Jump
             // Crea una lista vacia de niveles
             List<Level> niveles = new List<Level>();
 
-            // Crea un collector de Niveles
-            FilteredElementCollector collector = new FilteredElementCollector(doc);
-
-            //Filtra que los elementos sean de nivel
-            List<Element> elementos = collector.OfClass(typeof(Level)).ToList();
-
-            // Llena la lista de niveles
-            foreach (var item in elementos)
-            {
-                // Convierte el elemento en un Nivel
-                Level nivel = item as Level;
-
-                // Agrega el nivel a la lista
-                niveles.Add(nivel);
-            }
+            niveles = new FilteredElementCollector(doc)
+                            .OfClass(typeof(Level))
+                            .Cast<Level>()
+                            .ToList();
 
             // Ordena la lista alfabéticamente
             niveles = niveles.OrderBy(x => x.Name).ToList(); ;
@@ -950,7 +939,7 @@ namespace Jump
         }
 
         ///<summary> Obtiene una lista de los elementos seleccionados en el modelo </summary>
-        public static List<Element> ObtenerConjuntoSeleccionado(Document doc, UIDocument uiDoc)
+        public static List<Element> ObtenerConjuntoSeleccionadoEnRevit(Document doc, UIDocument uiDoc)
         {
             // Crea una lista de elementos a devolver
             List<Element> elementos = new List<Element>();
@@ -5137,32 +5126,41 @@ namespace Jump
                                         .Cast<ViewFamilyType>()
                                         .FirstOrDefault<ViewFamilyType>(v => ViewFamily.StructuralPlan == v.ViewFamily);
 
-                Level nivel = null;
+                ElementId nivel = null;
 
                 if (elem.LevelId != ElementId.InvalidElementId) 
                 {
-                    nivel = doc.GetElement(elem.LevelId) as Level;
+                    nivel = elem.LevelId;
                 }
 
                 else if (elem is FamilyInstance)
                 {
                     FamilyInstance fi = elem as FamilyInstance;
 
-                    Level nivelFi = null;
-
-                    try
+                    if (fi.Host is Level)
                     {
-                        nivelFi = fi.Host as Level;
+                        nivel = fi.Host.Id;
                     }
-                    catch (Exception) { }
-
-                    if (fi.Host is Level && nivelFi != null)
+                    else
                     {
-                        nivel = nivelFi;
+                        Parameter param = fi.get_Parameter(BuiltInParameter.INSTANCE_REFERENCE_LEVEL_PARAM);
+
+                        if (doc.GetElement(param.AsElementId()) is Level)
+                        {
+                            nivel = param.AsElementId();
+                        }
+
                     }
                 }
 
-                ViewPlan vista = ViewPlan.Create(doc, vft.Id, nivel.Id);
+                else if (elem is WallFoundation)
+                {
+                    WallFoundation wf = elem as WallFoundation;
+
+                    nivel = doc.GetElement(wf.WallId).LevelId;
+                }
+
+                ViewPlan vista = ViewPlan.Create(doc, vft.Id, nivel);
 
                 return vista;
             }

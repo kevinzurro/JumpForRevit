@@ -45,6 +45,7 @@
         <DockPanel Margin="5">
 
             <Label DockPanel.Dock="Top"
+                   Style="{StaticResource LblTituloPrincipalInicial}"
                    Content = "{StaticResource CreaPlano1-1}">
             </Label>
 
@@ -89,6 +90,7 @@
                    Grid.Column="1">
 
             <Label DockPanel.Dock="Top"
+                   Style="{StaticResource LblTituloPrincipalInicial}"
                    Content="{StaticResource CreaPlano2-1}">
             </Label>
 

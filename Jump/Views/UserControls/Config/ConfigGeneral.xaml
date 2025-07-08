@@ -39,8 +39,7 @@
             <StackPanel Margin="0,0,20,0">
 
                 <Label Content="{StaticResource Conf1-2-1}"
-                   Style="{StaticResource ConfigTituloPrincipal}"
-                   Margin="0">
+                   Style="{StaticResource LblTituloPrincipalInicial}">
                 </Label>
 
                 <Separator Style="{StaticResource ConfigSeparador}"/>
@@ -146,7 +145,7 @@
                 </StackPanel>
 
                 <Label Content="{StaticResource Conf1-3-1}"
-                   Style="{StaticResource ConfigTituloPrincipal}">
+                   Style="{StaticResource LblTituloPrincipal}">
                 </Label>
 
                 <Separator Style="{StaticResource ConfigSeparador}"/>
@@ -202,7 +201,7 @@
                 </StackPanel>
 
                 <Label Content="{StaticResource Conf1-4-1}"
-                   Style="{StaticResource ConfigTituloPrincipal}">
+                   Style="{StaticResource LblTituloPrincipal}">
                 </Label>
 
                 <Separator Style="{StaticResource ConfigSeparador}"/>
@@ -256,7 +255,7 @@
                 </StackPanel>
 
                 <Label Content="{StaticResource Conf1-5-1}"
-                   Style="{StaticResource ConfigTituloPrincipal}">
+                   Style="{StaticResource LblTituloPrincipal}">
                 </Label>
 
                 <Separator Style="{StaticResource ConfigSeparador}"/>
@@ -314,7 +313,7 @@
                 </StackPanel>
 
                 <Label Content="{StaticResource Conf1-6-1}"
-                   Style="{StaticResource ConfigTituloPrincipal}">
+                   Style="{StaticResource LblTituloPrincipal}">
                 </Label>
 
                 <Separator Style="{StaticResource ConfigSeparador}"/>

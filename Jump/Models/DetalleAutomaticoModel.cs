@@ -21,7 +21,7 @@ namespace Jump.Models
         // Variable necesarias
         string transaccionGeneral = "Transacción general";
         int posicionImagenPreview = 0;
-        TransactionGroup traGeneral;
+        Transaction traGeneral;
 
         // Detalle de armadura
         Type claseDetalleBarra = typeof(RebarBendingDetailType);
@@ -38,8 +38,8 @@ namespace Jump.Models
         DimensionStyleType cotaEstiloLineal = DimensionStyleType.Linear;
 
         // Lista de objetos
-        List<ViewFamilyType> tipoDeVista = new List<ViewFamilyType>();
-        List<ViewFamilyType> tipoPlanoEstructural = new List<ViewFamilyType>();
+        List<ViewFamilyType> tipoVistasSeccion = new List<ViewFamilyType>();
+        List<ViewFamilyType> tipoVistasPlanoEstructural = new List<ViewFamilyType>();
         List<View> plantillas = new List<View>();
         List<FamilySymbol> etiquetasElemento = new List<FamilySymbol>();
         List<FamilySymbol> etiquetasArmaduras = new List<FamilySymbol>();
@@ -62,16 +62,16 @@ namespace Jump.Models
             this.Appli = UIApp.Application;
             this.Doc = UIDoc.Document;
 
-            traGeneral = new TransactionGroup(this.Doc, transaccionGeneral);
+            traGeneral = new Transaction(this.Doc, transaccionGeneral);
             traGeneral.Start();
 
-            tipoDeVista = new FilteredElementCollector(Doc)
+            tipoVistasSeccion = new FilteredElementCollector(Doc)
                                 .OfClass(typeof(ViewFamilyType))
                                 .Cast<ViewFamilyType>()
                                 .Where(v => v.ViewFamily == seccion)
                                 .OrderBy(x => x.Name).ToList();
 
-            tipoPlanoEstructural = new FilteredElementCollector(Doc)
+            tipoVistasPlanoEstructural = new FilteredElementCollector(Doc)
                                         .OfClass(typeof(ViewFamilyType))
                                         .Cast<ViewFamilyType>()
                                         .Where(v => v.ViewFamily == planoEstructural)
@@ -132,17 +132,17 @@ namespace Jump.Models
         public List<ElementId> ListaSeleccionados { get; set; }
 
         /// <summary> Obtiene todos los tipos de vistas para la sección </summary>
-        public ObservableCollection<Familia> ObtenerTiposDeVistas()
+        public ObservableCollection<Familia> ObtenerTiposDeSecciones()
         {
-            ObservableCollection<Familia> tiposDeVistas = Familia.ObtenerFamilia(this.tipoDeVista.Cast<Element>().ToList());
+            ObservableCollection<Familia> tiposDeVistas = Familia.ObtenerFamilia(this.tipoVistasSeccion.Cast<Element>().ToList());
 
             return tiposDeVistas;
         }
 
         /// <summary> Obtiene todos los tipos de vistas para la sección </summary>
-        public ObservableCollection<Familia> ObtenerTiposDePlanoEstructural()
+        public ObservableCollection<Familia> ObtenerTiposDePlanosEstructurales()
         {
-            ObservableCollection<Familia> tiposPlanoEstructura = Familia.ObtenerFamilia(this.tipoPlanoEstructural.Cast<Element>().ToList());
+            ObservableCollection<Familia> tiposPlanoEstructura = Familia.ObtenerFamilia(this.tipoVistasPlanoEstructural.Cast<Element>().ToList());
 
             return tiposPlanoEstructura;
         }
@@ -240,6 +240,25 @@ namespace Jump.Models
             }
         }
 
+        /// <summary> Crea las etiquetas de un elemento en la vista preview </summary>
+        public void CrearEtiquetasDeElementoParaPreview(DetAutUserControlViewModel ucvm, View vista, Element elem)
+        {
+            if (vista != null && elem != null)
+            {
+                Debug.WriteLine("Cambia de etiquetas");
+            }
+        }
+
+        /// <summary> Muestra el elemento estructural, sus barras y ajusta el recuadro de la vista </summary>
+        private View MostrarElementoBarrasYAjustarRecuadroDeVista(View vista, Element elem)
+        {
+            Tools.MostrarSolamenteElementoYBarrasEnVista(this.Doc, vista, elem);
+
+            vista = Tools.AjustarRecuadroDeVista(vista, elem, Tools.ObtenerArmadurasDeElemento(elem, vista));
+
+            return vista;
+        }
+
         /// <summary> Asigna el tipo de seccion y la plantilla a la vista </summary>
         private void AsignarTipoYPlantillaAVista(View vista, DetAutUserControlViewModel ucvm)
         {
@@ -275,7 +294,7 @@ namespace Jump.Models
         }
 
         /// <summary> Crea la vista XX </summary>
-        private View CrearVistaXX(Element elem, DetAutUserControlViewModel ucvm)
+        public View CrearVistaXX(Element elem, DetAutUserControlViewModel ucvm)
         {
             // Crea la vista XX
             View vista = Tools.VistaXX(this.Doc, elem);
@@ -284,11 +303,13 @@ namespace Jump.Models
 
             AsignarTipoYPlantillaAVista(vista, ucvm);
 
+            vista = MostrarElementoBarrasYAjustarRecuadroDeVista(vista, elem);
+
             return vista;
         }
 
         /// <summary> Crea la vista YY </summary>
-        private View CrearVistaYY(Element elem, DetAutUserControlViewModel ucvm)
+        public View CrearVistaYY(Element elem, DetAutUserControlViewModel ucvm)
         {
             // Crea la vista YY
             View vista = Tools.VistaYY(this.Doc, elem);
@@ -297,11 +318,13 @@ namespace Jump.Models
 
             AsignarTipoYPlantillaAVista(vista, ucvm);
 
+            vista = MostrarElementoBarrasYAjustarRecuadroDeVista(vista, elem);
+
             return vista;
         }
 
         /// <summary> Crea la vista en planta del elemento </summary>
-        private View CrearVistaEnPlanta(Element elem, DetAutUserControlViewModel ucvm)
+        public View CrearVistaEnPlanta(Element elem, DetAutUserControlViewModel ucvm)
         {
             // Crea la vista en planta
             View vista = Tools.VistaEnPlanta(this.Doc, elem);
@@ -310,14 +333,18 @@ namespace Jump.Models
 
             AsignarTipoYPlantillaAVista(vista, ucvm);
 
+            vista = MostrarElementoBarrasYAjustarRecuadroDeVista(vista, elem);
+
             return vista;
         }
 
-        public void CrearVistasYEtiquetas(DetalleAutomaticoViewModel detAutVM,
-                                          DetAutUserControlViewModel ucvmXX,
-                                          DetAutUserControlViewModel ucvmYY,
-                                          DetAutUserControlViewModel ucvmPlanta)
+        /// <summary> Crea las vistas y las etiquetas de las vistas </summary>
+        public void CrearVistasYEtiquetas(DetalleAutomaticoViewModel detAutVM)
         {
+            DetAutUserControlViewModel ucvmXX = detAutVM.DetAutoSeccXX;
+            DetAutUserControlViewModel ucvmYY = detAutVM.DetAutoSeccYY;
+            DetAutUserControlViewModel ucvmPlanta = detAutVM.DetAutoPlanta;
+
             CerrarTransacciónGeneral();
 
             int contX = (detAutVM.VistaXX) ? ucvmXX.FamiliasSeleccionadas.Count : 0;
@@ -330,7 +357,7 @@ namespace Jump.Models
             // Muestra el formulario
             barraProgreso.Show();
 
-            using (Transaction tra = new Transaction(this.Doc, Language.ObtenerTexto(IdiomaDelPrograma, Clave + "5-1")))
+            using (Transaction tra = new Transaction(this.Doc, Language.ObtenerTexto(AboutJump.IdiomaAddin, Clave + "5-1")))
             {
                 tra.Start();
 
@@ -400,186 +427,190 @@ namespace Jump.Models
                 {
                     tra.Commit();
                 }
+
+                barraProgreso.Close();
             }
         }
 
+        /// <summary> Crea las etiquetas de un elemento en una vista particular </summary>
         public void CrearEtiquetasDeElemento(DetAutUserControlViewModel ucvm, View vista, Element elem)
         {
-            Tools.MostrarSolamenteElementoYBarrasEnVista(this.Doc, vista, elem);
-
-            vista = Tools.AjustarRecuadroDeVista(vista, elem, Tools.ObtenerArmadurasDeElemento(elem, vista));
-
-            listaEtiquetasCreadas.Clear();
-
-            // Crea la lista de cotas en la vista
-            List<Dimension> listaCotas = new List<Dimension>();
-
-            // Cota lineal
-            if (ucvm.CotaLinealBool)
+            if (vista != null && elem != null)
             {
-                // Obtiene el DimensionType de la cota seleccionada
-                DimensionType tipoCota = (DimensionType)Familia.ObtenerElemento(ucvm.CotaLineal);
+                vista = MostrarElementoBarrasYAjustarRecuadroDeVista(vista, elem);
 
-                // Verifica que esté activo la cota vertical izquierda
-                if (this.CotaVerticalIzquierda)
+                listaEtiquetasCreadas.Clear();
+
+                // Crea la lista de cotas en la vista
+                List<Dimension> listaCotas = new List<Dimension>();
+
+                // Cota lineal
+                if (ucvm.CotaLinealBool)
                 {
-                    try
+                    // Obtiene el DimensionType de la cota seleccionada
+                    DimensionType tipoCota = (DimensionType)Familia.ObtenerElemento(ucvm.CotaLineal);
+
+                    // Verifica que esté activo la cota vertical izquierda
+                    if (this.CotaVerticalIzquierda)
                     {
-                        // Crea la cota vertical izquierda
-                        listaCotas.Add(Tools.CrearCotaVerticalIzquierdaParaElemento(this.Doc, vista, elem, tipoCota));
+                        try
+                        {
+                            // Crea la cota vertical izquierda
+                            listaCotas.Add(Tools.CrearCotaVerticalIzquierdaParaElemento(this.Doc, vista, elem, tipoCota));
+                        }
+                        catch (Exception) { }
                     }
-                    catch (Exception) { }
-                }
 
-                // Verifica que esté activo la cota vertical derecha
-                if (this.CotaVerticalDerecha)
-                {
-                    try
+                    // Verifica que esté activo la cota vertical derecha
+                    if (this.CotaVerticalDerecha)
                     {
-                        // Crea la cota vertical derecha
-                        listaCotas.Add(Tools.CrearCotaVerticalDerechaParaElemento(this.Doc, vista, elem, tipoCota));
+                        try
+                        {
+                            // Crea la cota vertical derecha
+                            listaCotas.Add(Tools.CrearCotaVerticalDerechaParaElemento(this.Doc, vista, elem, tipoCota));
+                        }
+                        catch (Exception) { }
                     }
-                    catch (Exception) { }
-                }
 
-                // Verifica que esté activo la cota horizontal arriba
-                if (this.CotaHorizontalArriba)
-                {
-                    try
+                    // Verifica que esté activo la cota horizontal arriba
+                    if (this.CotaHorizontalArriba)
                     {
-                        // Crea la cota horizontal arriba
-                        listaCotas.Add(Tools.CrearCotaHorizontalArribaParaElemento(this.Doc, vista, elem, tipoCota));
+                        try
+                        {
+                            // Crea la cota horizontal arriba
+                            listaCotas.Add(Tools.CrearCotaHorizontalArribaParaElemento(this.Doc, vista, elem, tipoCota));
+                        }
+                        catch (Exception) { }
                     }
-                    catch (Exception) { }
-                }
 
-                // Verifica que esté activo la cota horizontal abajo
-                if (this.CotaHorizontalAbajo)
-                {
-                    try
+                    // Verifica que esté activo la cota horizontal abajo
+                    if (this.CotaHorizontalAbajo)
                     {
-                        // Crea la cota horizontal abajo
-                        listaCotas.Add(Tools.CrearCotaHorizontalAbajoParaElemento(this.Doc, vista, elem, tipoCota));
+                        try
+                        {
+                            // Crea la cota horizontal abajo
+                            listaCotas.Add(Tools.CrearCotaHorizontalAbajoParaElemento(this.Doc, vista, elem, tipoCota));
+                        }
+                        catch (Exception) { }
                     }
-                    catch (Exception) { }
-                }
-
-                if (listaCotas.Count > 0)
-                {
-                    // Agrega las cotas a la lista
-                    listaEtiquetasCreadas.AddRange(listaCotas);
-                }
-            }
-
-            // Etiqueta del elemento estructural
-            if (ucvm.EtiquetaElementoBool)
-            {
-                try
-                {
-                    // Obtiene el FamilySymbol de la etiqueta seleccionada
-                    FamilySymbol tipoEtiqueta = (FamilySymbol)Familia.ObtenerElemento(ucvm.EtiquetaElemento);
-
-                    // Crea una etiqueta independiente del elemento
-                    IndependentTag etiqueta = Tools.CrearEtiquetaSegunConfiguracion(this.Doc, vista, elem, tipoEtiqueta, this.PosicionEtiquetaIndependienteElemento);
 
                     if (listaCotas.Count > 0)
                     {
-                        // Obtiene la dirección según las configuraciones
-                        XYZ direccion = Tools.DireccionSegunPosicionDeEtiqueta(vista, elem, etiqueta, this.PosicionEtiquetaIndependienteElemento);
-
-                        // Obtiene el vector para mover la etiqueta
-                        XYZ vector = Tools.ObtenerVectorParaMoverEtiqueta(vista, direccion, etiqueta, listaCotas);
-
-                        // Mueve la etiqueta
-                        ElementTransformUtils.MoveElement(this.Doc, etiqueta.Id, vector);
+                        // Agrega las cotas a la lista
+                        listaEtiquetasCreadas.AddRange(listaCotas);
                     }
-
-                    // Agrega la etiqueta a la lista
-                    listaEtiquetasCreadas.Add(etiqueta);
                 }
-                catch (Exception) { }
-            }
 
-            // Cota de elevación
-            if (ucvm.CotaProfundidadBool)
-            {
-                try
-                {
-                    // Obtiene el SpotDimensionType de la cota de profundidad seleccionada
-                    SpotDimensionType tipoCotaProfundidad = (SpotDimensionType)Familia.ObtenerElemento(ucvm.CotaProfundidad);
-
-                    // Crea la cota de profundidad
-                    SpotDimension cotaProfundidad = Tools.CrearCotaProfundidad(this.Doc, vista, elem, tipoCotaProfundidad, this.PosicionEtiquetaCotaProfundidad);
-
-                    // Agrega la cota de profundidad a la lista
-                    listaEtiquetasCreadas.Add(cotaProfundidad);
-                }
-                catch (Exception) { }
-            }
-
-            // Obtiene todas las armaduras del elemento
-            List<Rebar> todasBarras = Tools.ObtenerArmadurasDeElemento(elem, vista);
-
-            // Obtiene las armaduras que su plano sea paralelo al de la vista
-            List<Rebar> barras = Tools.ObtenerArmaduraPerpendicularVista(vista, todasBarras);
-
-            // Crea la lista de Representacion de Armaduras
-            List<ArmaduraRepresentacion> listaArmaduraRepresentacion = new List<ArmaduraRepresentacion>();
-
-            // Recorre todas las armaduras que posee el elemento
-            foreach (Rebar barra in barras)
-            {
-                IndependentTag etiquetaArmadura = null;
-
-                // Etiqueta de armadura
-                if (ucvm.EtiquetaArmaduraBool)
+                // Etiqueta del elemento estructural
+                if (ucvm.EtiquetaElementoBool)
                 {
                     try
                     {
                         // Obtiene el FamilySymbol de la etiqueta seleccionada
-                        FamilySymbol tipoEtiqueta = (FamilySymbol)Familia.ObtenerElemento(ucvm.EtiquetaArmadura);
+                        FamilySymbol tipoEtiqueta = (FamilySymbol)Familia.ObtenerElemento(ucvm.EtiquetaElemento);
 
-                        // Crea la etiqueta independiente de la barra
-                        etiquetaArmadura = Tools.CrearEtiquetaArmaduraSegunConfiguracion(this.Doc, vista, barra, tipoEtiqueta, this.PosicionEtiquetaIndependienteArmadura);
+                        // Crea una etiqueta independiente del elemento
+                        IndependentTag etiqueta = Tools.CrearEtiquetaSegunConfiguracion(this.Doc, vista, elem, tipoEtiqueta, this.PosicionEtiquetaIndependienteElemento);
 
-                        // Agrega la etiqueta de armadura a la lista
-                        listaEtiquetasCreadas.Add(etiquetaArmadura);
+                        if (listaCotas.Count > 0)
+                        {
+                            // Obtiene la dirección según las configuraciones
+                            XYZ direccion = Tools.DireccionSegunPosicionDeEtiqueta(vista, elem, etiqueta, this.PosicionEtiquetaIndependienteElemento);
+
+                            // Obtiene el vector para mover la etiqueta
+                            XYZ vector = Tools.ObtenerVectorParaMoverEtiqueta(vista, direccion, etiqueta, listaCotas);
+
+                            // Mueve la etiqueta
+                            ElementTransformUtils.MoveElement(this.Doc, etiqueta.Id, vector);
+                        }
+
+                        // Agrega la etiqueta a la lista
+                        listaEtiquetasCreadas.Add(etiqueta);
                     }
                     catch (Exception) { }
                 }
 
-                // Longitud parcial de barra
-                if (ucvm.DetalleArmaduraBool)
+                // Cota de elevación
+                if (ucvm.CotaProfundidadBool)
                 {
                     try
                     {
-                        RebarBendingDetailType tipoBarra = (RebarBendingDetailType)Familia.ObtenerElemento(ucvm.DetalleArmadura);
+                        // Obtiene el SpotDimensionType de la cota de profundidad seleccionada
+                        SpotDimensionType tipoCotaProfundidad = (SpotDimensionType)Familia.ObtenerElemento(ucvm.CotaProfundidad);
 
-                        XYZ baricentro = Tools.ObtenerBaricentroDeRecuadro(barra.get_BoundingBox(vista));
+                        // Crea la cota de profundidad
+                        SpotDimension cotaProfundidad = Tools.CrearCotaProfundidad(this.Doc, vista, elem, tipoCotaProfundidad, this.PosicionEtiquetaCotaProfundidad);
 
-                        IndependentTag representacionArmadura = RebarBendingDetail.Create(Doc, vista.Id, barra.Id, Jump.Properties.Settings.Default.PosicionBarraADibujar, tipoBarra, baricentro, 0) as IndependentTag;
-
-                        this.Doc.Regenerate();
-
-                        listaEtiquetasCreadas.Add(representacionArmadura);
-
-                        ArmaduraRepresentacion armadura = new ArmaduraRepresentacion(representacionArmadura, etiquetaArmadura, this.PosicionEtiquetaIndependienteArmadura);
-
-                        listaArmaduraRepresentacion.Add(armadura);
+                        // Agrega la cota de profundidad a la lista
+                        listaEtiquetasCreadas.Add(cotaProfundidad);
                     }
                     catch (Exception) { }
                 }
 
-                // Regenera el documento
-                this.Doc.Regenerate();
-            }
+                // Obtiene todas las armaduras del elemento
+                List<Rebar> todasBarras = Tools.ObtenerArmadurasDeElemento(elem, vista);
 
-            // Mueve los despieces de Armaduras
-            OrdenarYMoverRepresentacionArmaduraSegunDireccion(vista, elem, listaArmaduraRepresentacion);
+                // Obtiene las armaduras que su plano sea paralelo al de la vista
+                List<Rebar> barras = Tools.ObtenerArmaduraPerpendicularVista(vista, todasBarras);
+
+                // Crea la lista de Representacion de Armaduras
+                List<ArmaduraRepresentacion> listaArmaduraRepresentacion = new List<ArmaduraRepresentacion>();
+
+                // Recorre todas las armaduras que posee el elemento
+                foreach (Rebar barra in barras)
+                {
+                    IndependentTag etiquetaArmadura = null;
+
+                    // Etiqueta de armadura
+                    if (ucvm.EtiquetaArmaduraBool)
+                    {
+                        try
+                        {
+                            // Obtiene el FamilySymbol de la etiqueta seleccionada
+                            FamilySymbol tipoEtiqueta = (FamilySymbol)Familia.ObtenerElemento(ucvm.EtiquetaArmadura);
+
+                            // Crea la etiqueta independiente de la barra
+                            etiquetaArmadura = Tools.CrearEtiquetaArmaduraSegunConfiguracion(this.Doc, vista, barra, tipoEtiqueta, this.PosicionEtiquetaIndependienteArmadura);
+
+                            // Agrega la etiqueta de armadura a la lista
+                            listaEtiquetasCreadas.Add(etiquetaArmadura);
+                        }
+                        catch (Exception) { }
+                    }
+
+                    // Longitud parcial de barra
+                    if (ucvm.DetalleArmaduraBool)
+                    {
+                        try
+                        {
+                            RebarBendingDetailType tipoBarra = (RebarBendingDetailType)Familia.ObtenerElemento(ucvm.DetalleArmadura);
+
+                            XYZ baricentro = Tools.ObtenerBaricentroDeRecuadro(barra.get_BoundingBox(vista));
+
+                            IndependentTag representacionArmadura = RebarBendingDetail.Create(Doc, vista.Id, barra.Id, Jump.Properties.Settings.Default.PosicionBarraADibujar, tipoBarra, baricentro, 0) as IndependentTag;
+
+                            this.Doc.Regenerate();
+
+                            listaEtiquetasCreadas.Add(representacionArmadura);
+
+                            ArmaduraRepresentacion armadura = new ArmaduraRepresentacion(representacionArmadura, etiquetaArmadura, this.PosicionEtiquetaIndependienteArmadura);
+
+                            listaArmaduraRepresentacion.Add(armadura);
+                        }
+                        catch (Exception) { }
+                    }
+
+                    // Regenera el documento
+                    this.Doc.Regenerate();
+                }
+
+                // Mueve los despieces de Armaduras
+                OrdenarYMoverRepresentacionArmaduraSegunDireccion(vista, elem, listaArmaduraRepresentacion);
+            }
         }
 
         ///<summary> Ordena y mueve las Represetaciones de Armaduras según las opciones </summary>
-        public void OrdenarYMoverRepresentacionArmaduraSegunDireccion(View vista, Element elem, List<ArmaduraRepresentacion> armaduras)
+        private void OrdenarYMoverRepresentacionArmaduraSegunDireccion(View vista, Element elem, List<ArmaduraRepresentacion> armaduras)
         {
             // Crea las listas
             List<ArmaduraRepresentacion> listaArmadurasArriba = new List<ArmaduraRepresentacion>();
@@ -620,7 +651,7 @@ namespace Jump.Models
         }
 
         ///<summary> Organiza una Representación de Armadura según una dirección </summary>
-        public void OrganizarListaSegunDireccionDeBarra(View vista, XYZ distanciaRelativa, ArmaduraRepresentacion representacion,
+        private void OrganizarListaSegunDireccionDeBarra(View vista, XYZ distanciaRelativa, ArmaduraRepresentacion representacion,
                                                         ref List<ArmaduraRepresentacion> listaArmadurasArriba,
                                                         ref List<ArmaduraRepresentacion> listaArmadurasAbajo,
                                                         ref List<ArmaduraRepresentacion> listaArmadurasIzquierda,
@@ -669,7 +700,7 @@ namespace Jump.Models
         }
 
         ///<summary> Ordena y mueve las listas de Representación de Armadura </summary>
-        public void OrdenarYMoverListaConArmadurasRepresentacion(View vista, Transform tra, Element elem,
+        private void OrdenarYMoverListaConArmadurasRepresentacion(View vista, Transform tra, Element elem,
                                                                  ref List<ArmaduraRepresentacion> listaArmadurasArriba,
                                                                  ref List<ArmaduraRepresentacion> listaArmadurasAbajo,
                                                                  ref List<ArmaduraRepresentacion> listaArmadurasIzquierda,
@@ -717,7 +748,7 @@ namespace Jump.Models
         }
 
         ///<summary> Mueve la lista de Representacion de Armaduras según una dirección </summary>
-        public void MoverListaConArmaduras(View vista, Element elem, XYZ direccion, List<ArmaduraRepresentacion> armaduras)
+        private void MoverListaConArmaduras(View vista, Element elem, XYZ direccion, List<ArmaduraRepresentacion> armaduras)
         {
             // Crea las banderas de las direcciones
             bool banderaArriba = true;
